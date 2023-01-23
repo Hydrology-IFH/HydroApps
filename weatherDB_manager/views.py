@@ -35,9 +35,9 @@ with open(app_dir.joinpath("markdown/Methode.html"), "r", encoding="utf8") as f:
         r'|(\.alert.*?\s{(.|\n)*?})',
         "", f.read()) 
 
-def get_max_downloads(request):
+def get_wdb_max_downloads(request):
     if request.user.is_authenticated and request.user.is_active:
-        return request.user.max_downloads
+        return request.user.wdb_max_downloads
     else:
         return 10
  
@@ -51,7 +51,7 @@ def get_ts(request, *args, **kwargs):
     context = CONTEXT_BASE.copy()
     context.update({
         'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
-        "max_downloads": get_max_downloads(request)
+        "wdb_max_downloads": get_max_downloads(request)
         })
 
     # new
@@ -91,9 +91,9 @@ def download_ts(request, *args, **kwargs):
     if not gstats._check_stids(stids):
         raise Http404("You selected stations that are not in the Database")
 
-    max_downloads = get_max_downloads(request)
-    if len(stids)>max_downloads:
-        raise Http404(f"Only {max_downloads} stations are allowed at once")
+    wdb_max_downloads = get_wdb_max_downloads(request)
+    if len(stids)>wdb_max_downloads:
+        raise Http404(f"Only {wdb_max_downloads} stations are allowed at once")
 
     period = TimestampPeriod(
         start=request.POST["period_start"],
