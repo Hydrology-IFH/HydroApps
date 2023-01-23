@@ -20,7 +20,8 @@ import datetime
 from django.utils import timezone
 
 CONTEXT_BASE = {
-    "debug":DEBUG
+    "debug": DEBUG,
+    "active_app": "weatherDB"
 }
 
 app_dir = Path(__file__).parent

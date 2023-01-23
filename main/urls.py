@@ -23,8 +23,6 @@ from .views import impressum_view, home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path("impressum/", impressum_view, name="impressum"),
-    # path("", home_view, name="home"),
     path("", include("HydroApps.urls")),
     path("weatherDB/", include("weatherDB_manager.urls")),
     path("weatherdb/", include("weatherDB_manager.urls")),
@@ -32,7 +30,8 @@ urlpatterns = [
     path("klimzuk/", include("klimzuk.urls")),
     path("auth/", include("my_auth.urls")),
     path("<str:app_name>/auth/", include("my_auth.urls")),
-    path("(?<str:app_name>None)/auth/", include("my_auth.urls")),
+    path("<str:app_name>/impressum/", impressum_view, name="impressum"),
+    path("impressum/", impressum_view, name="impressum"),
     path("favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))
     )

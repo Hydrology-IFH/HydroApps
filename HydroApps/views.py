@@ -6,10 +6,7 @@ CONTEXT_BASE = {
     "debug": DEBUG,
     "base_template": "HydroApps//base.html"
 }
-from main.utils.utils import get_context, get_base_template
+from main.utils.utils import get_context
 
-def impressum_view(request, *args, **kwargs):
-    return render(request, "impressum.html", get_context(request))
-
-def home_view(request, *args, **kwargs):
-    return render(request, "home.html", get_context(request))
+def home_view(request, *args, **kwargs): 
+    return render(request, "HydroApps\home.html", get_context(request))

@@ -242,7 +242,7 @@
     <!-- Footer -->
     <div class="col-auto d-inline-flex position-relative fixed-bottom"
           style="left:50%; transform: translate(-50%, 0%);">
-      <a href="{% url 'HydroApps:impressum' %}">Impressum</a>
+      <a href={% if active_app %}"{% url 'impressum' app_name=active_app %}"{% else %}"{% url 'impressum' %}"{% endif %}>Impressum</a>    
     </div>
 
     <div class="col-auto position-sticky
