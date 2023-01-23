@@ -9,26 +9,22 @@ def get_base_template(request):
     else:
         return "HydroApps\\base.html"
     
-def get_context(request):
+def get_context(request, **kwargs):
     context = {"debug": DEBUG}
-    
-    first_url_part = request.META["PATH_INFO"].split("/")[1]
-    print(first_url_part)
-    print(request.META["PATH_INFO"])
-    if first_url_part in ("weather", "weatherDB", "weatherdb"):
-        context.update({
-            "base_template":"weatherDB\\base.html",
-            "active_app": "weatherDB"})
-    elif first_url_part == "klimzuk":
-        context.update({
-            "base_template":"klimzuk\\base.html",
-            "active_app": "klimzuk"})
+    if "app_name" in kwargs:
+        app_name = kwargs["app_name"]
     else:
-        context.update({
-            "base_template":"HydroApps\\base.html",
-            # "active_app": "hydroapps"
-            # "base_template": "base_main.html",
-            "active_app": False
-            })
+        first_url_part = request.META["PATH_INFO"].split("/")[1]
+        print(first_url_part)
+        print(request.META["PATH_INFO"])
+        if first_url_part in ("weather", "weatherDB", "weatherdb"):
+            app_name = "weatherDB"
+        elif first_url_part == "klimzuk":
+            app_name = "klimzuk"
+        else:
+            app_name = "HydroApps"
+    context.update({
+        "base_template": f"{app_name}\\base.html",
+        "active_app": app_name})
 
     return context

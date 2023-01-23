@@ -6,7 +6,7 @@ CONTEXT_BASE = {
 }
 
 def impressum_view(request, *args, **kwargs):
-    return render(request, "impressum.html", get_context(request))
+    return render(request, "impressum.html", get_context(request, **kwargs))
 
 def home_view(request, *args, **kwargs):
     return render(request, "home.html", CONTEXT_BASE)

@@ -28,10 +28,10 @@ urlpatterns = [
     path("weatherdb/", include("weatherDB_manager.urls")),
     path("weather/", include("weatherDB_manager.urls")),
     path("klimzuk/", include("klimzuk.urls")),
-    path("auth/", include("my_auth.urls")),
+    # path("auth/", include("my_auth.urls")),
     path("<str:app_name>/auth/", include("my_auth.urls")),
+    # path("impressum/", impressum_view, name="impressum"),
     path("<str:app_name>/impressum/", impressum_view, name="impressum"),
-    path("impressum/", impressum_view, name="impressum"),
     path("favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))
     )

@@ -1,9 +1,9 @@
 {% extends base_template %}
-{% load bootstrap4 %}
+{% load bootstrap5 %}
 
 {% block content %}
 <h2>Register to WeatherDB App</h2>
-<p><a class="mb-4" href="{% url 'login' %}">Back to login</a></p>
+<p><a class="mb-4" href="{% url 'login' app_name=active_app %}">Back to login</a></p>
 <form method="post">
     {% csrf_token %}
     {% comment %} {% bootstrap_form form %} {% endcomment %}

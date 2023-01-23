@@ -6,7 +6,7 @@
 {% endblock %} {% endcomment %}
 
 {% block content %}
-<h2>profile page for {{user.username}} on the WeatherDB-App</h2>
+<h2>Profile page for {{user.username}} on the Hydro-Apps</h2>
 
 {% if not user.is_db_user %}
   <div class="modal fade" id="requestDBAccessModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="requestDBAccessModalLabel" aria-hidden="true">
@@ -24,7 +24,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">return to profile</button>
-          <a type="button btn btn-primary" class="btn btn-primary" href='{%url "weatherDB:request_db_access" %}'>Send request</a>
+          <a type="button btn btn-primary" class="btn btn-primary" href='{%url "weatherDB:request_db_access" app_name=active_app %}'>Send request</a>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
         <span class="input-group-text">Password</span>
         <input type="password" name="password" value="notarealpassword" maxlength="50" class="form-control" title="" disabled="" id="id_password">
         <div class="input-group-append">
-          <a href="{% url 'password_change' %}" class="btn btn-primary">Change Password</a>
+          <a href="{% url 'password_change' app_name=active_app %}" class="btn btn-primary">Change Password</a>
         </div>
       </div>
     </div>
@@ -68,22 +68,32 @@
           </script>
         {% endif %}
       </div>
-      <small class="form-text text-muted">This information will get used to decide whether you are granted access to the database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg...</small>
+      <small class="form-text text-muted">This information will get used to decide whether you are granted access to some ressources like e.g. the WeatherDB database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg...</small>
     </div>
-    {% if user.is_db_user %}
-      {% bootstrap_field form.db_password show_label='skip' addon_before='API Password' addon_after_class=None addon_after='<div id="addon_after_api_pwd"></div>' %}
-    {% else %}
-      <div class="form-group mb-3">
-        <div class="input-group">
-          <span class="input-group-text">Database access</span>
-          <input type="text" name="db_access" value="You haven't yet been granted access to the WeatherDB database." class="form-control" title="" disabled>
-          <div class="input-group-append">
-            <a class="btn btn-primary" data-toggle="modal" data-target="#requestDBAccessModal" id="requestDBAccessModalButton">request access</a>
-          </div>
+    {% if active_app == "weatherDB" %}    
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">WeatherDB</h5>
+          <h6 class="card-subtitle mb-2 text-muted">specific profile settings for this app</h6>
+
+    
+          {% if user.is_db_user %}
+            {% bootstrap_field form.db_password show_label='skip' addon_before='API Password' addon_after_class=None addon_after='<div id="addon_after_api_pwd"></div>' %}
+          {% else %}
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <span class="input-group-text">Database access</span>
+                <input type="text" name="db_access" value="You haven't yet been granted access to the WeatherDB database." class="form-control" title="" disabled>
+                <div class="input-group-append">
+                  <a class="btn btn-primary" data-toggle="modal" data-target="#requestDBAccessModal" id="requestDBAccessModalButton">request access</a>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% bootstrap_field form.max_downloads show_label='skip' addon_before='max Dowload' addon_after_class=None addon_after='<div id="addon_after_max_download"></div>' %}
         </div>
       </div>
     {% endif %}
-    {% bootstrap_field form.max_downloads show_label='skip' addon_before='max Dowload' addon_after_class=None addon_after='<div id="addon_after_max_download"></div>' %}
     <input type="submit" class="btn btn-primary" value="Save Changes">
 </form>
 {% endblock %}
@@ -113,7 +123,7 @@
       let btn_resend = document.createElement("a");
       btn_resend.id="btn_resend_email_conf";
       btn_resend.className = "btn btn-outline-primary";
-      btn_resend.href="{% url 'resend_email_confirmation' %}";
+      btn_resend.href="{% url 'resend_email_confirmation' app_name=active_app %}";
       btn_resend.innerHTML = "<i class='bi bi-arrow-clockwise'>";
       btn_resend.setAttribute("data-toggle", "tooltip");
       btn_resend.setAttribute("data-placement", "top");
@@ -126,7 +136,7 @@
       let btn_resend = document.createElement("a");
       btn_resend.id="btn_resend_email_conf";
       btn_resend.className = "btn btn-outline-primary";
-      btn_resend.href="{% url 'resend_email_confirmation' %}";
+      btn_resend.href="{% url 'resend_email_confirmation' app_name=active_app %}";
       btn_resend.innerHTML = "<i class='bi bi-arrow-clockwise'>";
       btn_resend.setAttribute("data-toggle", "tooltip");
       btn_resend.setAttribute("data-placement", "top");
@@ -156,7 +166,7 @@
       let btn_renew = document.createElement("a");
       btn_renew.id="btn_renew_api_pwd";
       btn_renew.className = "btn btn-outline-primary";
-      btn_renew.href="{% url 'renew_db_password' %}";
+      btn_renew.href="{% url 'renew_db_password' app_name=active_app %}";
       btn_renew.innerHTML = "<i class='bi bi-arrow-clockwise'>";
       btn_renew.setAttribute("data-toggle", "tooltip");
       btn_renew.setAttribute("data-placement", "top");

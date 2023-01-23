@@ -10,9 +10,9 @@
 
 <p>To use the package you need login credentials, that are saved in a secretSettings_weatherDB.py file and have to be inside of the UNI Freiburg network.
 {% if user.is_authenticated %}
-    You can download your personal secretSettings_weatherDB.py file from your <a href="{% url "user_profile"%}">Profile page</a>.
+    You can download your personal secretSettings_weatherDB.py file from your <a href="{% url "user_profile" app_name=active_app %}">Profile page</a>.
 {% else %}
-    You can get those credentials by <a href="{% url "register"%}">requesting an account</a> on this page.
+    You can get those credentials by <a href="{% url "register" app_name=active_app %}">requesting an account</a> on this page.
     If your account was activated you can download your secretSettings_weatherDB.py file from your Profile page.
 {% endif %}
 </p> 

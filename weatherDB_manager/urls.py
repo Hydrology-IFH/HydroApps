@@ -27,5 +27,4 @@ urlpatterns = [
     path('download_secret_settings', download_secret_settings, name="download_secret_settings"),
     path('method', method_view, name="method"),
     path('package', package_view, name="package"),
-    # path("auth/", include("my_auth.urls")),
 ]

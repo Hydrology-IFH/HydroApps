@@ -11,7 +11,6 @@ from main.settings import DEBUG
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
-# from django.shortcuts import redirect
 from pathlib import Path
 from distutils.util import strtobool
 import warnings
