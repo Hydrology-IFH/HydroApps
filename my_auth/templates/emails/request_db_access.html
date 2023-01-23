@@ -10,7 +10,7 @@ personal introduction: {{ user.personal_introduction }}
 
 Please click on the link below to grant <b>Database access</b> to this user:
 
-{{ domain }}{% url 'confirm_user' uidb64=uid token=token %}?grant_db_access=True
+{{ domain }}{% url 'confirm_user' uidb64=uid token=token app_name="HydroApps"  %}?grant_db_access=True
 
 If you think, it's not for you, then just ignore this email.
 This is an automatic generated E-mail, please don't answer it.

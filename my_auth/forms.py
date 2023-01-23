@@ -8,7 +8,7 @@ personal_introduction_widget = forms.Textarea(
     attrs={
         "rows":2, 
         "class": "form-control",
-        "placeholder": "Why should you be granted access to the WeatherDB database? Explain in your own words",
+        "placeholder": "Why should you be granted access to the Hydro-Apps resources? Explain in your own words",
         "title": "This information will get used to decide whether you are granted access to the database. The information will only be visible to you and the admin of this site."})
 
 class CustomUserCreationForm(UserCreationForm):

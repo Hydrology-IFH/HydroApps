@@ -3,7 +3,7 @@ Helo {{ user.first_name }} {{ user.last_name }},
 
 Please click on the link below to confirm your registration:
 
-{{ domain }}{% url 'confirm_email' uidb64=uid token=token %}
+{{ domain }}{% url 'confirm_email' uidb64=uid token=token app_name="HydroApps" %}
 
 If you think, it's not for you, then just ignore this email.
 This is an automatic generated E-mail, please don't answer it.
