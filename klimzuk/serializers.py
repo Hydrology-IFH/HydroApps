@@ -1,10 +1,4 @@
 from rest_framework import serializers
-# from .models import get_ts_model
-
-# def get_ts_serializer(model):
-#     class TSSerializer(serializers.Serializer):
-#         class Meta:
-#             model = model
 
 class TSSerializer(serializers.Serializer):
     date = serializers.IntegerField()
