@@ -1,0 +1,12 @@
+{% extends base_template %}
+
+{% block content %}
+<h2>Your E-Mail Adress got confirmed.</h2>
+ {% if user.is_active %}
+ <p>Your account is now activated.</p>
+ {% else %}
+  <p>To fully activate your acount the Administrators have to allow your account.</p>
+  <p>For this reason an E-mail was send to the Administrator to confirm your registration. Please wait 1-2 days for this step to be done.</p>
+  <p>You will receive an email notification when your account got confirmed. Please check your spam folder.</p>
+ {% endif %}
+{% endblock %}

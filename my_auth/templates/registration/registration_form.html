@@ -1,0 +1,33 @@
+{% extends base_template %}
+{% load bootstrap4 %}
+
+{% block content %}
+<h2>Register to WeatherDB App</h2>
+<p><a class="mb-4" href="{% url 'login' %}">Back to login</a></p>
+<form method="post">
+    {% csrf_token %}
+    {% comment %} {% bootstrap_form form %} {% endcomment %}
+    {% bootstrap_field form.username show_label='skip' addon_before='Username'%}
+    {% bootstrap_field form.email show_label='skip' addon_before='E-Mail'%}
+    {% bootstrap_field form.first_name show_label='skip' addon_before='First Name' %}
+    {% bootstrap_field form.last_name show_label='skip' addon_before='Last Name' %}
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend"><span class="input-group-text">personal introduction</span></div>
+        {{ form.personal_introduction }}
+      </div>
+      <small class="form-text text-muted">This information will get used to decide whether you are granted access to the database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg...</small>
+      {% if not form.personal_introduction.errors %}
+        <script type="text/javascript">
+          let el = document.getElementById("id_personal_introduction")
+          if (el.textContent!=""){
+            el.classList.add("is-valid")} ;
+        </script>
+      {% endif %}
+    </div>
+    {% bootstrap_field form.password1 show_label='skip' addon_before='Password'%}
+    {% bootstrap_field form.password2 show_label='skip' addon_before='Password confirmation'%}
+    {% bootstrap_field form.hcaptcha show_label='skip' %}
+    <input type="submit" class="btn btn-primary" value="Register">
+</form>
+{% endblock %}

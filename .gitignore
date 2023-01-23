@@ -1,0 +1,12 @@
+__pycache__
+__pycache__/*
+*/__pycache__
+*.pyc
+migrations
+garbage
+sync.ffs_db
+klimzuk/static/klimzuk/PDF
+klimzuk/static/klimzuk/PNG
+*.pdf
+*.log
+logs/

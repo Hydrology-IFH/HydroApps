@@ -1,0 +1,17 @@
+{% autoescape off %}
+Hello Admin,
+
+The following User wants access to the WeatherDB database.
+Username: {{ user.username }}
+First Name: {{ user.first_name }}
+Last Name: {{ user.last_name }}
+Email:{{ user.email }}
+personal introduction: {{ user.personal_introduction }}
+
+Please click on the link below to grant <b>Database access</b> to this user:
+
+{{ domain }}{% url 'confirm_user' uidb64=uid token=token %}?grant_db_access=True
+
+If you think, it's not for you, then just ignore this email.
+This is an automatic generated E-mail, please don't answer it.
+{% endautoescape %}

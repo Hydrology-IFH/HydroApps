@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_first %}
+  <title>WeatherDB</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'weatherDB/img/favicon.ico'%}">
+  <meta name="description" content="Eine Darstellung der Klima-Prognosen für einzelne Wetter-Stationen. Ergebnisse des ASGII Projekts">
+{% endblock %}
+
+{% block navbar_brand %}
+  <img type="image/png" src="{% static "weatherDB/img/icon.png" %}" alt="WeatherDB-Logo" class="d-none d-sm-inline">
+{% endblock %}
+
+{% block navbar_appname %}WeatherDB{% endblock %}
+
+{% block navbar_app %}
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item "><a href="{% url 'weatherDB:home' %}" class="nav-link">Home</a></li>
+    <li class="nav-item "><a href="{% url 'weatherDB:method' %}" class="nav-link">Method</a></li>
+    <li class="nav-item "><a href="{% url 'weatherDB:get_ts' %}" class="nav-link">Download</a></li>
+    <li class="nav-item "><a href="{% url 'weatherDB:package' %}" class="nav-link">Package</a></li>
+  </ul>
+{% endblock %}
+
+{% block login_navbar %}
+    {% with active_app="weatherDB" %}
+        {{ block.super }}
+    {% endwith%}
+{% endblock login_navbar%}

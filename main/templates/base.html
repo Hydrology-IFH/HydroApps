@@ -1,0 +1,290 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+  {% block head_first %}{% endblock %}
+  <!-- load bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"> {% endcomment %}
+
+  <!-- extra styles -->
+  <style>
+    .popover{max-width: 15cm; }
+    p{max-width: 30cm; }
+    ul{max-width: 30cm; }
+    .quellen{
+      max-width:30cm;
+      font-size: 13px;}
+    .container{max-width:38cm;}
+    table.header td{
+      margin:0;
+      padding:0;
+    }
+    table.header{
+      margin:10;
+      padding:10;
+    }
+    .webapps-menu span {
+      font-size:34px;
+      color: var(--bs-navbar-brand-hover-color);
+    }
+    .navbar-brand img {
+      width: 75px;
+      height: 75px;
+    }
+    .navbar-toggler{
+      border: 0px;
+    }
+    .dropdown-apps .dropdown-item{
+      font-size: 20px;
+    }
+    .dropdown-apps li{
+      padding: 3px;
+    }
+  </style>
+
+  <!-- for mobile navbar view -->
+  <style>
+    .animated-icon2 {
+      width: 30px;
+      height: 20px;
+      position: relative;
+      margin: 0px;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: .5s ease-in-out;
+      -moz-transition: .5s ease-in-out;
+      -o-transition: .5s ease-in-out;
+      transition: .5s ease-in-out;
+      cursor: pointer;
+    }
+    
+    .animated-icon2 span{
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 9px;
+      opacity: 1;
+      left: 0;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: .25s ease-in-out;
+      -moz-transition: .25s ease-in-out;
+      -o-transition: .25s ease-in-out;
+      transition: .25s ease-in-out;
+    }
+    
+    .animated-icon2 span {
+      background: #e3f2fd;
+    }
+    
+    .animated-icon2 span:nth-child(1) {
+      top: 0px;
+    }
+    
+    .animated-icon2 span:nth-child(2), .animated-icon2 span:nth-child(3) {
+      top: 10px;
+    }
+    
+    .animated-icon2 span:nth-child(4) {
+      top: 20px;
+    }
+    
+    .animated-icon2.open span:nth-child(1) {
+      top: 11px;
+      width: 0%;
+      left: 50%;
+    }
+    
+    .animated-icon2.open span:nth-child(2) {
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    
+    .animated-icon2.open span:nth-child(3) {
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+    
+    .animated-icon2.open span:nth-child(4) {
+      top: 11px;
+      width: 0%;
+      left: 50%;
+    }
+    
+    button.navbar-toggler{
+      border: 0px;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="{% static 'css\custom_bootstrap_primary.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  {% block head %}{% endblock %}
+</head>
+<body style="background-color: #F2F2F2;"> 
+  <!-- Navigation Pane -->
+  <p class="container-fluid sticky-top">
+    <table class="header">
+      <tr>
+        <td>
+          <a href="http://www.uni-freiburg.de/" target="_blank">
+            <img src="{% static "ihf_header_left.gif" %}" height="165" border="0" align="left">
+          </a>
+        </td><td height="165" width="100%" style="position:relative;" >
+          <img src="{% static "ihf_header_center.gif" %}" width="100%" height="165" border="0" style="position:absolute;top:0;">
+          <div class="container pt-md-2 pl-0 pr-0 pl-md-2 pr-md-2 pl-sm-1 pr-sm-1" style="position:absolute;top:0;">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-toggler" style="z-index:100;">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                  {% block navbar_brand %}{% endblock %} 
+                </a>
+              </div>
+              <!-- Mobile Menu -->
+              <button class="navbar-toggler second-button" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#menuitems" aria-controls="menuitems"
+                      aria-expanded="false" aria-label="Toggle navigation">
+                <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
+              </button>
+
+              <!-- Hydro-Apps Menu -->
+              <div class="navbar-collapse collapse" id="menuitems">
+                <ul class="nav navbar-nav ml-auto">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle webapps-menu" href="#" id="navbarDropdownApps" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {% comment %} <div class="dropdown-menu" aria-labelledby="navbarDropdown"> {% endcomment %}
+                        <span class="align-middle d-inline d-lg-none d-xl-inline">{% block navbar_appname %}{% endblock %}</span>
+                      {% comment %} <span class="d-xl-none d-inline">Hydro-Apps</span> {% endcomment %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-apps" aria-labelledby="navbarDropdownApps">
+                      <div style="font-weight:bold;font-size:20px;margin-left:1.25rem; padding-bottom:0.5rem">Hydro-Apps</div>
+                      <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item">Übersicht</a></li>
+                      <li><a href="{% url 'weatherDB:home' %}" class="dropdown-item">WeatherDB</a></li>
+                      <li><a href="{% url 'klimzuk:home' %}" class="dropdown-item">KlimZuk</a></li>
+                      <li><a href="https://naturwb.de" class="dropdown-item">NatUrWB</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              {% comment %} </div> {% endcomment %}
+              <!-- App specific Menu -->
+                {% block navbar_app %}{% endblock %}
+               <!-- Login Menu --> 
+               {% comment %} still needs changing of href depending on active app{% endcomment %}
+                <ul class="nav navbar-nav ms-auto">
+                  <li class="nav-item dropdown">
+                    {% block login_navbar %}
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {% if user.is_authenticated %}{{ user.username }} {% endif %}<i class="bi bi-person-circle"></i>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% if user.is_authenticated %}
+                          <a href={% if active_app %}"{% url 'user_profile' app_name=active_app %}"{% else %}"{% url 'user_profile' %}"{% endif %} class="dropdown-item">Profil</a>
+                          {% if user.is_superuser %}
+                            <a href="{% url 'admin:index' %}" class="dropdown-item">Admin</a>
+                          {% endif %}
+                          <a href={% if active_app %}"{% url 'logout' app_name=active_app %}"{% else %}"{% url 'logout' %}"{% endif %}class="dropdown-item">Log out</a>
+                        {% else %}
+                          <a href={% if active_app %}"{% url 'login' app_name=active_app%}"{% else %}"{% url 'login' %}"{% endif %} class="dropdown-item">Login</a>
+                        {% endif %}
+                      </div>
+                    {% endblock login_navbar %}
+                  </li>
+                </ul>
+              </div>
+            </nav>
+  
+          </div>
+        </td><td>
+          <a href="https://www.hydro.uni-freiburg.de/" target="_parent" class="d-none d-md-inline">
+            <img src="{% static "ihf_header_right.gif" %}" width="205" height="165" border="0"  align="right">
+          </a>
+        </td>
+      </tr>
+    </table>
+  </p>
+
+  <!-- Page content -->
+  <div class="container shadow
+              col-xl-9 col-lg-11 col-12
+              mt-md-2
+              pb-md-2 mb-md-4
+              pl-0 pr-0 pl-md-2 pr-md-2 pl-sm-1 pr-sm-1"
+       style="background-color: #FFFFFF;"
+       id="main_page">
+    <div class="container-fluid">
+      {% if debug %}
+        <div class="container-fluid alert alert-danger" role "alert">
+          <h3>
+            !!! This website is in debuging mode !!!
+          </h3>
+        </div>
+      {% endif%}
+    {% comment %} <div class="container-fluid alert alert-warning" role "alert">
+      <h4>
+        !!! This website is still under active development !!!
+      </h4>
+      <p>If you find some problems or have suggestions, please contact me: max.schmit_at_hydrology.uni-freiburg.de</p>
+      
+    </div> {% endcomment %}
+      {% block content %}{% endblock %}
+    </div>
+
+
+    <!-- Footer -->
+    <div class="col-auto d-inline-flex position-relative fixed-bottom"
+          style="left:50%; transform: translate(-50%, 0%);">
+      <a href="{% url 'HydroApps:impressum' %}">Impressum</a>
+    </div>
+
+    <div class="col-auto position-sticky
+                d-inline-flex justify-content-end
+                fixed-bottom
+                " style="left:100%">
+      &#169; Max Schmit (2022)
+    </div>
+  </div>
+
+  <!-- Skripte -->
+  {% block scripts_first %}{% endblock %}
+
+  <!-- load JQuery -->
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+  <!-- Mobile view Navbar -->
+  <script defer>
+    let activate_navbar = () => {
+      let path = document.location.href;
+      let navitems = document.querySelectorAll("#menuitems > .navbar-nav > .nav-item > a");
+      navitems.forEach((el) => {
+        if (el.href==path){
+          el.parentElement.classList.add('active')
+        } else {
+          el.parentElement.classList.remove('active')
+        }
+      })
+    }
+    activate_navbar()
+    {% comment %} mobile button {% endcomment %}
+    document.querySelector("button.second-button").addEventListener("click",
+      ()=>{$('.animated-icon2').toggleClass('open');}
+    )
+  </script>
+
+  {% block scripts %}{% endblock %}
+
+</body>

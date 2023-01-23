@@ -1,0 +1,13 @@
+{% extends base_template %}
+
+{% block content %}
+{%if email_send %}
+    <h2>Your request for Database access got send to the Admins</h2>
+    <p>This can take several days until the admin will provide you with the requested privileges. </p>
+    <p>You will get notified by E-Mail when your request is treated.  Please also check your spam folder.</p>
+{% else %}
+    <h2>Your request could <b>not</b> get send to the admins.</h2>
+    <p>It seems that your account did not get activated yet or you didn#T activate your E-mailadress until now.</p>
+    <p>As long as your profile is not complete, you will not be able to get database access.</p>
+{% endif %}
+{% endblock %}
