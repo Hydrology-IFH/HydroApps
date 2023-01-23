@@ -14,8 +14,8 @@ class UserAdminConfig(UserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('username','first_name','last_name', "personal_introduction")}),
         ('Activity', {'fields': ('date_joined','last_login')}),
-        ('WeatherDB', {'fields': ("is_db_user", 'db_password')}),
-        ('Permissions', {'fields': ('is_email_confirmed', "is_staff", 'is_superuser', 'is_active', 'max_downloads')}),
+        ('WeatherDB', {'fields': ("wdb_is_db_user", 'db_password')}),
+        ('Permissions', {'fields': ('is_email_confirmed', "is_staff", 'is_superuser', 'is_active', 'wdb_max_downloads')}),
     )
     add_fieldsets = (
         (None, {

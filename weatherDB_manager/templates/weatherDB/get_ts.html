@@ -199,13 +199,13 @@
 {% block scripts %}
   <script type="text/javascript">
     var needs_captcha = "{{ needs_captcha }}"=="True";
-    var max_downloads = {{ max_downloads }};
+    var max_downloads = {{ wdb_max_downloads }};
     var download_url = "{% url 'weatherDB:download_ts' %}";
     {% comment %} var base_url = "{% url 'weatherDB:home' %}"; {% endcomment %}
   </script>
   {{ meta_n|json_script:"meta_n-data" }}
   {% comment %} {{ needs_captcha|script:"needs_captcha" }}
-  {{ max_downloads|script:"max_downloads" }} {% endcomment %}
+  {{ wdb_max_downloads|script:"wdb_max_downloads" }} {% endcomment %}
   {% if debug %} 
     <script src={% static "weatherDB/js/get_ts_map.js" %} defer></script>
   {%else%}

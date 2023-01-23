@@ -2,7 +2,7 @@
 {% load bootstrap5 %}
 
 {% block content %}
-<h2>Register to WeatherDB App</h2>
+<h2>Register to Hydro-Apps</h2>
 <p><a class="mb-4" href="{% url 'login' app_name=active_app %}">Back to login</a></p>
 <form method="post">
     {% csrf_token %}
@@ -16,7 +16,7 @@
         <div class="input-group-prepend"><span class="input-group-text">personal introduction</span></div>
         {{ form.personal_introduction }}
       </div>
-      <small class="form-text text-muted">This information will get used to decide whether you are granted access to the database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg...</small>
+      <small class="form-text text-muted">This information will get used to decide to what resource you will get access to. For e.g. to decide if you should get a database access to the WeatherDB. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg...</small>
       {% if not form.personal_introduction.errors %}
         <script type="text/javascript">
           let el = document.getElementById("id_personal_introduction")

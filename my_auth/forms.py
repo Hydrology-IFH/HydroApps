@@ -54,7 +54,7 @@ class CustomUserChangeForm(forms.ModelForm):
         disabled=True,
         label="WeatherDB API Password"
     )
-    max_downloads = forms.CharField(
+    wdb_max_downloads = forms.CharField(
         max_length=10,
         required=False,
         help_text='This is the number of stations you can download at once from this Website.',
@@ -64,7 +64,7 @@ class CustomUserChangeForm(forms.ModelForm):
 
     class Meta(UserChangeForm.Meta):
         model = Account
-        fields = ("email", "username", "first_name", "last_name", "db_password", "max_downloads", "personal_introduction")
+        fields = ("email", "username", "first_name", "last_name", "db_password", "wdb_max_downloads", "personal_introduction")
         widgets = {"personal_introduction": personal_introduction_widget}
 
     def username_clean(self):

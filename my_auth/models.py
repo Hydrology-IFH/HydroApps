@@ -41,7 +41,7 @@ class AccountManager(BaseUserManager):
         other_fields.setdefault('is_staff',True)
         other_fields.setdefault('is_superuser',True)
         other_fields.setdefault('is_active',True)
-        other_fields.setdefault('is_db_user',True)
+        other_fields.setdefault('wdb_is_db_user',True)
         if other_fields.get('is_staff') is not True:
             raise ValueError('is_staff is set to False')
         if other_fields.get('is_superuser') is not True:
@@ -58,7 +58,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
     date_joined   = models.DateTimeField(verbose_name='date_joined', auto_now_add=True)
     last_login    = models.DateTimeField(verbose_name='last login', auto_now=True)
     personal_introduction = models.TextField(max_length=300, blank=False, 
-        help_text=_("Comment of the user why he/she should have access to the database"))
+        help_text=_("Comment of the user why he/she should have access to the Hydro-Apps"))
     is_email_confirmed=models.BooleanField(default=False,
         help_text=_('Designates whether the user confirmed it\'s e-mail address.'))
     is_active  = models.BooleanField(default=False,
@@ -66,11 +66,14 @@ class Account(AbstractBaseUser,PermissionsMixin):
     is_staff = models.BooleanField(default=False,
         help_text=_('Designates whether the user can log into this admin site.'),
     )
-    is_db_user = models.BooleanField(default=False,
-        help_text=_('Designates whether the user can log into the database site.'),
+    is_tester = models.BooleanField(default=False,
+        help_text=_('Designates whether the user can see features that didn\'t yet get released.'),
     )
-    max_downloads = models.IntegerField(
-        default=10, help_text=_('Designates the number of stations a user can download at once.'))
+    wdb_is_db_user = models.BooleanField(default=False,
+        help_text=_('Designates whether the user can log into the WeatherDB-database site.'),
+    )
+    wdb_max_downloads = models.IntegerField(
+        default=10, help_text=_('Designates the number of stations a user can download at once on the WeatherDB App.'))
 
     # is_admin      = models.BooleanField(default=False)
     is_superuser  = models.BooleanField(default=False,
@@ -169,13 +172,13 @@ def save_old_values(instance,**kwargs):
     instance._old_email = instance.email
     instance._old_username = instance.username
     instance._old_db_password = instance.db_password
-    instance._old_is_db_user = instance.is_db_user
+    instance._old_wdb_is_db_user = instance.wdb_is_db_user
 
 @receiver(post_save, sender=Account, dispatch_uid="update_db_user")
 def update_db_user(instance, created, **kwargs):
     with connection.cursor() as cursor:
-        if instance.is_db_user:
-            if created or instance._old_is_db_user!=instance.is_db_user:
+        if instance.wdb_is_db_user:
+            if created or instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
                 if instance.db_password is None:
                     db_password = Account.objects.make_random_password(30)
                 else:
@@ -190,7 +193,7 @@ def update_db_user(instance, created, **kwargs):
                     ))
                 instance.db_password = db_password
                 instance._old_db_password = db_password
-                instance._old_is_db_user = instance.is_db_user
+                instance._old_wdb_is_db_user = instance.wdb_is_db_user
                 instance.save()
             elif instance._old_username!=instance.username:
                 cursor.execute("""
@@ -206,7 +209,7 @@ def update_db_user(instance, created, **kwargs):
                         username=instance.username,
                         password=instance.db_password
                     ))
-        elif instance._old_is_db_user!=instance.is_db_user:
+        elif instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
             cursor.execute(
                 "DROP USER IF EXISTS \"{username}\";".format(
                     username=instance.username))

@@ -91,7 +91,7 @@ def confirm_user(request, uidb64, token, **kwargs):
         if user.is_email_confirmed:
             user.is_active = True
             if "grant_db_access" in request.GET and bool(strtobool(request.GET["grant_db_access"])):
-                user.is_db_user = True
+                user.wdb_is_db_user = True
             user.save()
             user.send_activation_notice(request)
             context = get_context(request, **kwargs)
