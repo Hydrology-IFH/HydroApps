@@ -11,12 +11,12 @@ def get_base_template(request):
     
 def get_context(request, **kwargs):
     context = {"debug": DEBUG}
+
+    # get active_app
     if "app_name" in kwargs:
         app_name = kwargs["app_name"]
     else:
         first_url_part = request.META["PATH_INFO"].split("/")[1]
-        print(first_url_part)
-        print(request.META["PATH_INFO"])
         if first_url_part in ("weather", "weatherDB", "weatherdb"):
             app_name = "weatherDB"
         elif first_url_part == "klimzuk":
