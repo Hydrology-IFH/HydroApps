@@ -167,8 +167,7 @@
                       {% comment %} <span class="d-xl-none d-inline">Hydro-Apps</span> {% endcomment %}
                     </a>
                     <ul class="dropdown-menu dropdown-apps" aria-labelledby="navbarDropdownApps">
-                      <div style="font-weight:bold;font-size:20px;margin-left:1.25rem; padding-bottom:0.5rem">Hydro-Apps</div>
-                      <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item">Übersicht</a></li>
+                      <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item"><b>Hydro-Apps</b></a></li>
                       <li><a href="{% url 'weatherDB:home' %}" class="dropdown-item">WeatherDB</a></li>
                       <li><a href="{% url 'klimzuk:home' %}" class="dropdown-item">KlimZuk</a></li>
                       <li><a href="https://naturwb.de" class="dropdown-item">NatUrWB</a></li>
@@ -188,13 +187,13 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if user.is_authenticated %}
-                          <a href={% if active_app %}"{% url 'user_profile' app_name=active_app %}"{% else %}"{% url 'user_profile' %}"{% endif %} class="dropdown-item">Profil</a>
+                          <a href="{% url 'user_profile' app_name=active_app %}" class="dropdown-item">Profil</a>
                           {% if user.is_superuser %}
                             <a href="{% url 'admin:index' %}" class="dropdown-item">Admin</a>
                           {% endif %}
-                          <a href={% if active_app %}"{% url 'logout' app_name=active_app %}"{% else %}"{% url 'logout' %}"{% endif %}class="dropdown-item">Log out</a>
+                          <a href="{% url 'logout' app_name=active_app %}" class="dropdown-item">Log out</a>
                         {% else %}
-                          <a href={% if active_app %}"{% url 'login' app_name=active_app%}"{% else %}"{% url 'login' %}"{% endif %} class="dropdown-item">Login</a>
+                          <a href="{% url 'login' app_name=active_app%}" class="dropdown-item">Login</a>
                         {% endif %}
                       </div>
                     {% endblock login_navbar %}
@@ -243,14 +242,14 @@
     <!-- Footer -->
     <div class="col-auto d-inline-flex position-relative fixed-bottom"
           style="left:50%; transform: translate(-50%, 0%);">
-      <a href={% if active_app %}"{% url 'impressum' app_name=active_app %}"{% else %}"{% url 'impressum' %}"{% endif %}>Impressum</a>    
+      <a href="{% url 'impressum' app_name=active_app %}">Impressum</a>    
     </div>
 
     <div class="col-auto position-sticky
                 d-inline-flex justify-content-end
                 fixed-bottom
                 " style="left:100%">
-      &#169; Max Schmit (2022)
+      &#169; HyFr - Max Schmit (2023)
     </div>
   </div>
 
