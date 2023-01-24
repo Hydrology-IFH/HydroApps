@@ -70,7 +70,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
         help_text=_('Designates whether the user can see features that didn\'t yet get released.'),
     )
     wdb_is_db_user = models.BooleanField(default=False,
-        help_text=_('Designates whether the user can log into the WeatherDB-database site.'),
+        help_text=_('Designates whether the user can log into the WeatherDB-database.'),
     )
     wdb_max_downloads = models.IntegerField(
         default=10, help_text=_('Designates the number of stations a user can download at once on the WeatherDB App.'))
@@ -114,7 +114,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'Activate your WeatherDB account', 
+            'Activate your Hydro-Apps account', 
             message, 
             to=[self.email]
         )
@@ -129,7 +129,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'Confirm an account for WeatherDB', 
+            'Confirm an account for Hydro-Apps', 
             message, 
             to=[self.email]
         )
@@ -144,7 +144,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'WeatherDB account got activated', 
+            'Hydro-Apps account got activated', 
             message, 
             to=[self.email]
         )
@@ -159,7 +159,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'WeatherDB account got activated', 
+            'Confirm a request for WeatherDB-access to database', 
             message, 
             to=[self.email]
         )

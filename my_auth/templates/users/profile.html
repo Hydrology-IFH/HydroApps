@@ -9,13 +9,12 @@
 <h2>Profile page for {{user.username}} on the Hydro-Apps</h2>
 
 {% if not user.wdb_is_db_user %}
-  <div class="modal fade" id="requestDBAccessModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="requestDBAccessModalLabel" aria-hidden="true">
+  <div class="modal fade" id="requestDBAccessModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="requestDBAccessModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="requestDBAccessModalLabel">request Access to the Database</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           </button>
         </div>
         <div class="modal-body">
@@ -23,7 +22,7 @@
           <p> If you didn't yet provide a good introduction please return to your profile page and update your profile.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">return to profile</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">return to profile</button>
           <a type="button btn btn-primary" class="btn btn-primary" href='{%url "request_db_access" app_name=active_app %}'>Send request</a>
         </div>
       </div>
@@ -34,7 +33,7 @@
 {% if messages %}
   {% for message in messages %}
     <div class="{% if message.tags %}{{ message.tags }}{% endif %} alert alert-dismissible fade show" role="alert">{{ message }}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -85,7 +84,7 @@
                 <span class="input-group-text">Database access</span>
                 <input type="text" name="db_access" value="You haven't yet been granted access to the WeatherDB database." class="form-control" title="" disabled>
                 <div class="input-group-append">
-                  <a class="btn btn-primary" data-toggle="modal" data-target="#requestDBAccessModal" id="requestDBAccessModalButton">request access</a>
+                  <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestDBAccessModal" id="requestDBAccessModalButton">request access</a>
                 </div>
               </div>
             </div>
@@ -103,15 +102,15 @@
   (() => {
     let icon = document.createElement('i');
     icon.className = 'bi';
-    {% comment %} icon.setAttribute("data-toggle", "tooltip");
-    icon.setAttribute("data-placement", "top");  {% endcomment %}
+    {% comment %} icon.setAttribute("data-bs-toggle", "tooltip");
+    icon.setAttribute("data-bs-placement", "top");  {% endcomment %}
 
     // email
     let is_email_confirmed = ({{ user.is_email_confirmed|yesno:"true,false" }});
     let addon_after_email = document.getElementById('addon_after_email');
     addon_after_email.className = 'input-group-text';
-    addon_after_email.setAttribute("data-toggle", "tooltip");
-    addon_after_email.setAttribute("data-placement", "top");
+    addon_after_email.setAttribute("data-bs-toggle", "tooltip");
+    addon_after_email.setAttribute("data-bs-placement", "top");
     let icon_email = icon.cloneNode();
     if (is_email_confirmed){
       icon_email.classList.add("bi-envelope-check", "text-success");
@@ -125,8 +124,8 @@
       btn_resend.className = "btn btn-outline-primary";
       btn_resend.href="{% url 'resend_email_confirmation' app_name=active_app %}";
       btn_resend.innerHTML = "<i class='bi bi-arrow-clockwise'>";
-      btn_resend.setAttribute("data-toggle", "tooltip");
-      btn_resend.setAttribute("data-placement", "top");
+      btn_resend.setAttribute("data-bs-toggle", "tooltip");
+      btn_resend.setAttribute("data-bs-placement", "top");
       btn_resend.setAttribute("title", "Resend an E-mail confirmation mail.");
       addon_after_email.parentElement.appendChild(btn_resend);
     }
@@ -138,8 +137,8 @@
       btn_resend.className = "btn btn-outline-primary";
       btn_resend.href="{% url 'resend_email_confirmation' app_name=active_app %}";
       btn_resend.innerHTML = "<i class='bi bi-arrow-clockwise'>";
-      btn_resend.setAttribute("data-toggle", "tooltip");
-      btn_resend.setAttribute("data-placement", "top");
+      btn_resend.setAttribute("data-bs-toggle", "tooltip");
+      btn_resend.setAttribute("data-bs-placement", "top");
       btn_resend.setAttribute("title", "Resend an E-mail confirmation mail.");
       addon_after_email.parentElement.appendChild(btn_resend);
     }
@@ -147,8 +146,8 @@
     // user account
     let addon_after_user = document.getElementById('addon_after_user');
     addon_after_user.className = 'input-group-text';
-    addon_after_user.setAttribute("data-toggle", "tooltip");
-    addon_after_user.setAttribute("data-placement", "top");
+    addon_after_user.setAttribute("data-bs-toggle", "tooltip");
+    addon_after_user.setAttribute("data-bs-placement", "top");
     let icon_account = icon.cloneNode();
     if ({{user.is_active|yesno:"true,false"}}){
       icon_account.classList.add("bi-person-check", "text-success");
@@ -168,8 +167,8 @@
       btn_renew.className = "btn btn-outline-primary";
       btn_renew.href="{% url 'renew_db_password' app_name=active_app %}";
       btn_renew.innerHTML = "<i class='bi bi-arrow-clockwise'>";
-      btn_renew.setAttribute("data-toggle", "tooltip");
-      btn_renew.setAttribute("data-placement", "top");
+      btn_renew.setAttribute("data-bs-toggle", "tooltip");
+      btn_renew.setAttribute("data-bs-placement", "top");
       btn_renew.setAttribute("title", "Renew the API Password");
       addon_after_api.appendChild(btn_renew);
 
@@ -186,8 +185,8 @@
             console.log("Input data copied to clipboard successfully");
         })
         });
-        btn_clipboard.setAttribute("data-toggle", "tooltip");
-        btn_clipboard.setAttribute("data-placement", "top");
+        btn_clipboard.setAttribute("data-bs-toggle", "tooltip");
+        btn_clipboard.setAttribute("data-bs-placement", "top");
         btn_clipboard.setAttribute("title", "Copy the API Password to your clipboard")
         addon_after_api.appendChild(btn_clipboard);   
       }
@@ -197,8 +196,8 @@
       btn_download.className = btn_renew.className;
       btn_download.href="{% url 'weatherDB:download_secret_settings' %}";
       btn_download.innerHTML = "<i class='bi bi-download'>";
-      btn_download.setAttribute("data-toggle", "tooltip");
-      btn_download.setAttribute("data-placement", "top");
+      btn_download.setAttribute("data-bs-toggle", "tooltip");
+      btn_download.setAttribute("data-bs-placement", "top");
       btn_download.setAttribute("title", "Download your personal secret settings file"); 
       addon_after_api.appendChild(btn_download);
     }    
@@ -215,14 +214,14 @@
   mail_body=encodeURIComponent("Hello Admin, \n\nI need a higher download limit for the weatherDB website, because: \n... fill out ...\n\nPlease update my Account.\n\nSincerely,\n")
   btn_request_more.href=`mailto:max.schmit@hydrology.uni-freiburg.de?subject=[WeatherDB]Request a higher download limit&body=${mail_body}`;
   btn_request_more.innerHTML = "<i class='bi bi-send'>";
-  btn_request_more.setAttribute("data-toggle", "tooltip");
-  btn_request_more.setAttribute("data-placement", "top");
+  btn_request_more.setAttribute("data-bs-toggle", "tooltip");
+  btn_request_more.setAttribute("data-bs-placement", "top");
   btn_request_more.setAttribute("title", "Request a higher download limit");
   addon_after_max_download.appendChild(btn_request_more);
 
   // start bootstrap tooltip
   $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-bs-toggle="tooltip"]').tooltip()
   })
 
 </script>
