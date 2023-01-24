@@ -51,7 +51,7 @@ def get_ts(request, *args, **kwargs):
     context = CONTEXT_BASE.copy()
     context.update({
         'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
-        "wdb_max_downloads": get_max_downloads(request)
+        "wdb_max_downloads": get_wdb_max_downloads(request)
         })
 
     # new
