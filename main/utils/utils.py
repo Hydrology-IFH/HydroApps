@@ -9,8 +9,15 @@ def get_base_template(request):
     else:
         return "HydroApps\\base.html"
     
-def get_context(request, **kwargs):
-    context = {"debug": DEBUG}
+def check_show_release(request):
+    return DEBUG or (request.user.is_authenticated and request.user.is_tester)
+
+def get_context_base(request, **kwargs):
+    return {"debug": DEBUG,
+            "show_unreleased": check_show_release(request)}
+
+def get_context_extra(request, **kwargs):
+    context = get_context_base(request, **kwargs)
 
     # get active_app
     if "app_name" in kwargs:

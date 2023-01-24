@@ -22,8 +22,7 @@
   </ul>
 {% endblock %}
 
-{% block login_navbar %}
-    {% with active_app="weatherDB" %}
-        {{ block.super }}
-    {% endwith%}
-{% endblock login_navbar%}
+{% block body_all %}
+  {% firstof "weatherDB" as active_app %}
+  {{ block.super}}
+{% endblock %}

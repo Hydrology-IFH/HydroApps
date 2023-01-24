@@ -5,29 +5,29 @@ import json
 from django.core.serializers import serialize
 from main.settings import DEBUG
 from pathlib import Path
-
-CONTEXT_BASE = {
-    "debug": DEBUG
-}
-
-app_dir = Path(__file__).parent
+from main.utils.utils import get_context_base
+from main.decorators import unreleased
 
 # Create your views here.
+@unreleased
 def home_view(request, *args, **kwargs):
-    context = CONTEXT_BASE
+    context = get_context_base(request)
     return render(request, "klimzuk\home.html", context)
 
+@unreleased
 def map_view(request, *args, **kwargs):
-    context = CONTEXT_BASE.copy()
+    context = get_context_base(request)
     context.update({
         'meta_n': json.loads(serialize("geojson", MetaN.objects.all()))
         })
     return render(request, "klimzuk\klimzuk_map.html", context)
 
+@unreleased
 def method_view(request, *args, **kwargs):
-    context = CONTEXT_BASE.copy()
+    context = get_context_base(request)
     return render(request, "klimzuk\method.html", context)
 
+@unreleased
 def package_view(request, *args, **kwargs):
-    context = CONTEXT_BASE.copy()
+    context = get_context_base(request)
     return render(request, "klimzuk\package.html", context)

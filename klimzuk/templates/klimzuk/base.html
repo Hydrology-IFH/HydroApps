@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block body_all %}{% firstof "klimzuk" as active_app %}{{ block.super}}{% endblock %}
-
 {% block head_first %}
   <title>KlimZuk</title>
   <link rel="icon" type="image/x-icon" href="{% static 'klimzuk/img/favicon.ico'%}">
@@ -21,4 +19,9 @@
     <li class="nav-item "><a href="{% url 'klimzuk:method' %}" class="nav-link">Methode</a></li>
     <li class="nav-item "><a href="{% url 'klimzuk:map' %}" class="nav-link">Karte</a></li>
   </ul>
+{% endblock %}
+
+{% block body_all %}
+  {% firstof "klimzuk" as active_app %}
+  {{ block.super}}
 {% endblock %}

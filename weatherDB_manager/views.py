@@ -7,6 +7,7 @@ from django.http import Http404, HttpResponse
 from .classes.weatherDB.stations import GroupStations
 from .classes.weatherDB.lib.utils import TimestampPeriod
 from .forms import HCaptchaForm
+from main.utils.utils import get_context_base
 from main.settings import DEBUG
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -17,11 +18,6 @@ import warnings
 import re
 import datetime
 from django.utils import timezone
-
-CONTEXT_BASE = {
-    "debug": DEBUG,
-    "active_app": "weatherDB"
-}
 
 app_dir = Path(__file__).parent
 
@@ -43,12 +39,12 @@ def get_wdb_max_downloads(request):
  
 # Create your views here.
 def home(request, *args, **kwargs):
-    context = CONTEXT_BASE
+    context = get_context_base(request)
     return render(request, "weatherDB\home.html", context)
 
 
 def get_ts(request, *args, **kwargs):
-    context = CONTEXT_BASE.copy()
+    context = get_context_base(request)
     context.update({
         'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
         "wdb_max_downloads": get_wdb_max_downloads(request)
@@ -201,10 +197,10 @@ def download_secret_settings(request):
         return response
 
 def method_view(request, *args, **kwargs):
-    context = CONTEXT_BASE.copy()
+    context = get_context_base(request)
     context.update({"method": METHOD})
     return render(request, "weatherDB\method.html", context)
 
 def package_view(request, *args, **kwargs):
-    context = CONTEXT_BASE.copy()
+    context = get_context_base(request)
     return render(request, "weatherDB\package.html", context)

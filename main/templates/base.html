@@ -169,7 +169,9 @@
                     <ul class="dropdown-menu dropdown-apps" aria-labelledby="navbarDropdownApps">
                       <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item"><b>Hydro-Apps</b></a></li>
                       <li><a href="{% url 'weatherDB:home' %}" class="dropdown-item">WeatherDB</a></li>
+                      {% if show_unreleased %}
                       <li><a href="{% url 'klimzuk:home' %}" class="dropdown-item">KlimZuk</a></li>
+                      {% endif %}
                       <li><a href="https://naturwb.de" class="dropdown-item">NatUrWB</a></li>
                     </ul>
                   </li>
