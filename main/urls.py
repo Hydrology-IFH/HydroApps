@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
-from .views import impressum_view, home_view
+from .views import impressum_view, datenschutz_view
 
 #from weatherDB_manager.urls import urlpatterns as weatherDB_manager_urls
 
@@ -28,10 +28,9 @@ urlpatterns = [
     path("weatherdb/", include("weatherDB_manager.urls")),
     path("weather/", include("weatherDB_manager.urls")),
     path("klimzuk/", include("klimzuk.urls")),
-    # path("auth/", include("my_auth.urls")),
     path("<str:app_name>/auth/", include("my_auth.urls")),
-    # path("impressum/", impressum_view, name="impressum"),
     path("<str:app_name>/impressum/", impressum_view, name="impressum"),
+    path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
     path("favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))
     )

@@ -244,7 +244,8 @@
     <!-- Footer -->
     <div class="col-auto d-inline-flex position-relative fixed-bottom"
           style="left:50%; transform: translate(-50%, 0%);">
-      <a href="{% url 'impressum' app_name=active_app %}">Impressum</a>    
+      <a href="{% url 'impressum' app_name=active_app %}" class="me-2">Impressum</a>
+      <a href="{% url 'datenschutz' app_name=active_app %}" class="me-2">Datenschutzerklärung</a> 
     </div>
 
     <div class="col-auto position-sticky
