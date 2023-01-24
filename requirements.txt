@@ -1,0 +1,11 @@
+# run: pip install -i requirements.txt
+django-bootstrap-v5
+psycopg2
+django-hCaptcha
+djangorestframework
+django-q2
+django-request
+
+# maybee not needed anymore
+django-npm
+geoip2
