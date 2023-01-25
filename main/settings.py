@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     # 'django.contrib.redirects',
     'request', # for statistics, pip install django-request
     'django_q', # to setup tasks to run periodicaly, pip install django-q2
-    "bootstrap5", # django-bootstrap-v5
+    "django_bootstrap5", # django-bootstrap5
     'hcaptcha', # pip install django-hCaptcha
     'rest_framework', #  djangorestframework
 ]
