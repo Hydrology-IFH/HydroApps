@@ -1,8 +1,10 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordResetForm
 from django import forms
+from django.db import models
 from .models import Account
 from django.core.exceptions import ValidationError
 from hcaptcha.fields import hCaptchaField
+from django.utils.translation import gettext_lazy as _
 
 personal_introduction_widget = forms.Textarea(
     attrs={
@@ -16,8 +18,18 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = Account
-        fields = UserCreationForm.Meta.fields + ("email", "first_name", "last_name", "personal_introduction")
-        widgets = {"personal_introduction": personal_introduction_widget}
+        fields = UserCreationForm.Meta.fields + \
+            ("email", 
+             "first_name", 
+             "last_name", 
+             "personal_introduction", 
+             "confirmed_data_policy")
+        widgets = {
+            "personal_introduction": personal_introduction_widget,
+        }
+        help_texts = {
+            "confirmed_data_policy": "<a href='/datenschutz' id='link_privacy'>Privacy agreement</a>"
+        }
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
@@ -50,16 +62,16 @@ class CustomUserChangeForm(forms.ModelForm):
     db_password = forms.CharField(
         max_length=50,
         required=False,
-        help_text='This is the Password to log into the database. Please use this together with your username to use the python package.',
+        help_text=_('This is the Password to log into the database. Please use this together with your username to use the python package.'),
         disabled=True,
         label="WeatherDB API Password"
     )
     wdb_max_downloads = forms.CharField(
         max_length=10,
         required=False,
-        help_text='This is the number of stations you can download at once from this Website.',
+        help_text=_('This is the number of stations you can download at once from this Website.'),
         disabled=True,
-        label="Maximum allowed Stations to download at once"
+        label=_("Maximum allowed Stations to download at once")
     )
 
     class Meta(UserChangeForm.Meta):
@@ -80,18 +92,6 @@ class CustomUserChangeForm(forms.ModelForm):
         if new.count():
             raise ValidationError("Email Already Exist")
         return email
-
-    # def save(self, commit = True):
-    #     user = Account.objects.create_user(
-    #         username=self.cleaned_data['username'],
-    #         email=self.cleaned_data['email'],
-    #         password=self.cleaned_data['password1'],
-    #         first_name=self.cleaned_data['first_name'],
-    #         last_name=self.cleaned_data['last_name'],
-    #         is_email_confirmed=False,
-    #         is_active=False,
-    #     )
-    #     return user
 
 class CustomPasswordResetForm(PasswordResetForm):
     hcaptcha = hCaptchaField()

@@ -25,8 +25,11 @@
     </div>
     {% bootstrap_field form.password1 show_label='skip' addon_before='Password'%}
     {% bootstrap_field form.password2 show_label='skip' addon_before='Password confirmation'%}
-    {% bootstrap_field form.confirmed_data_policy addon_after='I agree to the terms of usage of my data I provided in this form, and I did read and agree to the policy aggreement of this website '%}
+    {% bootstrap_field form.confirmed_data_policy %}
     {% bootstrap_field form.hcaptcha show_label='skip' %}
     <input type="submit" class="btn btn-primary" value="Register">
 </form>
+<script>
+  document.getElementById("link_privacy").href = '{% url "datenschutz" app_name=active_app %}';
+</script>
 {% endblock %}

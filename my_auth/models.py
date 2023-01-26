@@ -59,6 +59,9 @@ class Account(AbstractBaseUser,PermissionsMixin):
     last_login    = models.DateTimeField(verbose_name='last login', auto_now=True)
     personal_introduction = models.TextField(max_length=300, blank=False, 
         help_text=_("Comment of the user why he/she should have access to the Hydro-Apps"))
+    confirmed_data_policy = models.BooleanField(blank=False,
+        verbose_name=_('I agree to the terms of usage of my data and I did read and agree to the policy agreement of this website.'),
+        help_text=_('Designates whether the user confirmed the data policy agreement.'))
     is_email_confirmed=models.BooleanField(default=False,
         help_text=_('Designates whether the user confirmed it\'s e-mail address.'))
     is_active  = models.BooleanField(default=False,
