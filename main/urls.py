@@ -24,9 +24,9 @@ from .views import impressum_view, datenschutz_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("HydroApps.urls")),
-    path("weatherDB/", include("weatherDB_manager.urls")),
+    # path("weatherDB/", include("weatherDB_manager.urls")),
     path("weatherdb/", include("weatherDB_manager.urls")),
-    path("weather/", include("weatherDB_manager.urls")),
+    # path("weather/", include("weatherDB_manager.urls")),
     path("klimzuk/", include("klimzuk.urls")),
     path("<str:app_name>/auth/", include("my_auth.urls")),
     path("<str:app_name>/impressum/", impressum_view, name="impressum"),
