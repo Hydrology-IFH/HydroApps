@@ -25,3 +25,11 @@
   {% firstof "klimzuk" as active_app %}
   {{ block.super}}
 {% endblock %}
+
+{% block unrelease_message %}
+  <div class="container-fluid alert alert-warning" role "alert">
+    <h3>
+      !!! This Application did not yet get released. You can see it, because you are a Test-User !!!
+    </h3>
+  </div>
+{% endblock %}

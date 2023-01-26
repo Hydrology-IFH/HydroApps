@@ -230,13 +230,7 @@
           </h3>
         </div>
       {% endif%}
-    {% comment %} <div class="container-fluid alert alert-warning" role "alert">
-      <h4>
-        !!! This website is still under active development !!!
-      </h4>
-      <p>If you find some problems or have suggestions, please contact me: max.schmit_at_hydrology.uni-freiburg.de</p>
-      
-    </div> {% endcomment %}
+      {% block unrelease_message %}{% endblock %}
       {% block content %}{% endblock %}
     </div>
 
