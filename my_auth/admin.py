@@ -12,10 +12,10 @@ class UserAdminConfig(UserAdmin):
     readonly_fields=['date_joined','last_login', "db_password"]
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('username','first_name','last_name', "personal_introduction")}),
+        ('Personal info', {'fields': ('username','first_name','last_name', "personal_introduction", "confirmed_data_policy")}),
         ('Activity', {'fields': ('date_joined','last_login')}),
-        ('WeatherDB', {'fields': ("wdb_is_db_user", 'db_password')}),
-        ('Permissions', {'fields': ('is_email_confirmed', "is_staff", 'is_superuser', 'is_active', 'wdb_max_downloads')}),
+        ('WeatherDB', {'fields': ("wdb_is_db_user", 'wdb_max_downloads', 'db_password')}),
+        ('Permissions', {'fields': ('is_email_confirmed', "is_staff", 'is_superuser', 'is_active', 'is_tester')}),
     )
     add_fieldsets = (
         (None, {
