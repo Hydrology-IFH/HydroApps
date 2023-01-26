@@ -1,4 +1,4 @@
-"""weatherDB_manager URL Configuration
+"""weatherDB URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path, include
 
-from weatherDB_manager.views import (
+from weatherDB.views import (
     home, get_ts, download_ts, download_secret_settings,
     package_view, method_view)
 

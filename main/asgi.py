@@ -1,5 +1,5 @@
 """
-ASGI config for weatherDB_manager project.
+ASGI config for weatherDB project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -12,6 +12,6 @@ import os
 from django.core.asgi import get_asgi_application
 
 os.environ["DJ_DEBUG"] = "False"
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'weatherDB_manager.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'weatherDB.settings')
 
 application = get_asgi_application()

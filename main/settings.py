@@ -47,12 +47,12 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    #own
-    'weatherDB_manager',
+    # own
+    'weatherDB',
     'my_auth',
     'klimzuk',
     "HydroApps",
-    #django
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,8 +61,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.gis',
     # New packages
-    # 'django.contrib.sites',
-    # 'django.contrib.redirects',
     'request', # for statistics, pip install django-request
     'django_q', # to setup tasks to run periodicaly, pip install django-q2
     "django_bootstrap5", # django-bootstrap5
@@ -238,7 +236,7 @@ else:
 STATIC_ROOT = secrets.STATIC_DIR
 STATICFILES_DIRS = [
     BASE_DIR.joinpath("main/static"),
-    # ("weatherDB", BASE_DIR.joinpath("weatherDB_manager/static")),
+    # ("weatherDB", BASE_DIR.joinpath("weatherDB/static")),
     # ("klimzuk", BASE_DIR.joinpath("klimzuk/static"))
 ]
 # STATICFILES_FINDERS = (

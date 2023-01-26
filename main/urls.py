@@ -1,4 +1,4 @@
-"""weatherDB_manager URL Configuration
+"""weatherDB URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -19,14 +19,14 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from .views import impressum_view, datenschutz_view
 
-#from weatherDB_manager.urls import urlpatterns as weatherDB_manager_urls
+#from weatherDB.urls import urlpatterns as weatherDB_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("HydroApps.urls")),
-    # path("weatherDB/", include("weatherDB_manager.urls")),
-    path("weatherdb/", include("weatherDB_manager.urls")),
-    # path("weather/", include("weatherDB_manager.urls")),
+    # path("weatherDB/", include("weatherDB.urls")),
+    path("weatherdb/", include("weatherDB.urls")),
+    # path("weather/", include("weatherDB.urls")),
     path("klimzuk/", include("klimzuk.urls")),
     path("<str:app_name>/auth/", include("my_auth.urls")),
     path("<str:app_name>/impressum/", impressum_view, name="impressum"),

@@ -1,5 +1,5 @@
 """
-WSGI config for weatherDB_manager project.
+WSGI config for weatherDB project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

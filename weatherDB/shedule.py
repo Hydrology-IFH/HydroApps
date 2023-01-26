@@ -1,5 +1,5 @@
-from weatherDB_manager.classes.weatherDB.broker import Broker
-from weatherDB_manager.models import TSDownloads, CacheHCaptchaTest
+from weatherDB.classes.weatherDB.broker import Broker
+from weatherDB.models import TSDownloads, CacheHCaptchaTest
 
 def regular_update(*args, **kwargs):
     Broker().update_db(*args, **kwargs)
@@ -14,7 +14,7 @@ def cleanup_cache(*args, **kwargs):
 # from django_q.tasks import schedule
 # import datetime
 # today = datetime.date.today()
-# schedule('weatherDB_manager.shedule.regular_update',
+# schedule('weatherDB.shedule.regular_update',
 #         schedule_type='D',
 #         name="weatherDB update",
 #         repeats=-1,
@@ -22,7 +22,7 @@ def cleanup_cache(*args, **kwargs):
 #             today + datetime.timedelta(days=7-today.isoweekday()),
 #             datetime.datetime.min.time())
 #     )
-# schedule('weatherDB_manager.shedule.cleanup_cache',
+# schedule('weatherDB.shedule.cleanup_cache',
 #         schedule_type='D',
 #         name="cleanup download cache",
 #         repeats=-1,
