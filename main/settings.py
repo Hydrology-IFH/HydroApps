@@ -236,13 +236,8 @@ else:
     STATIC_URL = "/static/"
 STATIC_ROOT = secrets.STATIC_DIR
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath("main/static"),
-    # ("weatherDB", BASE_DIR.joinpath("weatherDB/static")),
-    # ("klimzuk", BASE_DIR.joinpath("klimzuk/static"))
+    BASE_DIR.joinpath("main/static")
 ]
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-# )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
