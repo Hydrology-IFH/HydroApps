@@ -1,11 +1,20 @@
 # run: pip install -i requirements.txt
+django
 django-bootstrap5
 psycopg2
 django-hCaptcha
 djangorestframework
 django-q2
 django-request
+sqlalchemy
+psycopg2
+
+# for WeatherDB
 progressbar2
+numpy
+pandas
+geopandas
+rasterio
 
 # maybee not needed anymore
 django-npm
