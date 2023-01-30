@@ -280,6 +280,8 @@ REQUEST_IGNORE_AJAX=True
 # GDAL
 if "GDAL_LIBRARY_PATH" in os.environ:
     GDAL_LIBRARY_PATH = os.environ["GDAL_LIBRARY_PATH"]
+if "GEOS_LIBRARY_PATH" in os.environ:
+    GEOS_LIBRARY_PATH = os.environ["GEOS_LIBRARY_PATH"]
 
 # temporary folder
 CACHE_DIR = Path(secrets.CACHE_DIR)
