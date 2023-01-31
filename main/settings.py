@@ -77,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # added
+    'django.middleware.locale.LocaleMiddleware'
     # 'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
@@ -235,13 +236,8 @@ else:
     STATIC_URL = "/static/"
 STATIC_ROOT = secrets.STATIC_DIR
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath("main/static"),
-    # ("weatherDB", BASE_DIR.joinpath("weatherDB/static")),
-    # ("klimzuk", BASE_DIR.joinpath("klimzuk/static"))
+    BASE_DIR.joinpath("main/static")
 ]
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-# )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -279,6 +275,8 @@ REQUEST_IGNORE_AJAX=True
 # GDAL
 if "GDAL_LIBRARY_PATH" in os.environ:
     GDAL_LIBRARY_PATH = os.environ["GDAL_LIBRARY_PATH"]
+if "GEOS_LIBRARY_PATH" in os.environ:
+    GEOS_LIBRARY_PATH = os.environ["GEOS_LIBRARY_PATH"]
 
 # temporary folder
 CACHE_DIR = Path(secrets.CACHE_DIR)
