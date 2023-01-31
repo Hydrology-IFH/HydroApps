@@ -2105,9 +2105,14 @@ class StationBase:
 
             # create sql parts
             kinds_before = kinds.copy()
-            kinds = [
-                "{agg_fun}({kind}) AS {kind}".format(
-                    agg_fun=self._agg_fun, kind=kind) for kind in kinds]
+            kinds = []
+            for kind in kinds_before:
+                if re.search(r".*(_min)|(_max)", kind):
+                    agg_fun = "MIN" if re.search(r".*_min", kind) else "MAX"
+                else:
+                    agg_fun = self._agg_fun
+                kinds.append(f"ROUND({agg_fun}({kind}), 0) AS {kind}")
+
             timestamp_col = "date_trunc('{agg_to}', timestamp)".format(
                 agg_to=agg_to)
             group_by = "GROUP BY " + timestamp_col
@@ -3630,23 +3635,13 @@ class GroupStation(object):
                 # check if min and max for temperature should get added
                 use_kinds = kinds.copy()
                 if stat._para == "t":
-                    if type(use_kinds)== str:
+                    if type(use_kinds)==str:
                         use_kinds=[use_kinds]
                     if "best" in use_kinds:
                         use_kinds.insert(use_kinds.index("best"), "filled")
-                        use_kinds.pop("best")
-                    # if add_t_max:
-                    #     if "raw" in kinds:
-                    #         use_kinds.insert(
-                    #             use_kinds.index("raw")+1,
-                    #             "raw_max")
-                    #     elif "filled" in kinds or "best" in kinds:
-                    #         use_kinds.insert(
-                    #             use_kinds.index("filled")+1,
-                    #             "filled_max")
-                    # if add_t_min:
+                        use_kinds.remove("best")
                     for k in ["raw", "filled"]:
-                        if k in kinds:
+                        if k in use_kinds:
                             if add_t_max:
                                 use_kinds.insert(
                                     use_kinds.index(k)+1,
@@ -3655,23 +3650,11 @@ class GroupStation(object):
                                 use_kinds.insert(
                                     use_kinds.index(k)+1,
                                     f"{k}_min")
-                        # if "raw" in kinds:
-                        #     use_kinds.insert(
-                        #         use_kinds.index("raw")+1,
-                        #         "raw_min")
-                        # elif "filled" in kinds:
-                        #     use_kinds.insert(
-                        #         use_kinds.index("filled")+1,
-                        #         "filled_min")
-                        # elif "best" in kinds:
-                        #     use_kinds.insert(
-                        #         use_kinds.index("best")+1,
-                        #         "filled_min")
-
 
                 # get the data from station object
                 df = stat.get_df(
                     period=period,
+                    kinds=use_kinds,
                     kinds=use_kinds,
                     agg_to=agg_to,
                     nas_allowed=nas_allowed,
