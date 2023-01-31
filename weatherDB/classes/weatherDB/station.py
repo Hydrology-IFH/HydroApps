@@ -3641,7 +3641,7 @@ class GroupStation(object):
                         use_kinds.insert(use_kinds.index("best"), "filled")
                         use_kinds.remove("best")
                     for k in ["raw", "filled"]:
-                        if k in use_kinds:
+                        if k in kinds:
                             if add_t_max:
                                 use_kinds.insert(
                                     use_kinds.index(k)+1,

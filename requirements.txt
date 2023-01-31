@@ -5,6 +5,7 @@ django-hCaptcha
 djangorestframework
 django-q2
 django-request
+progressbar2
 
 # maybee not needed anymore
 django-npm
