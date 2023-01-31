@@ -1301,7 +1301,8 @@ class GroupStations(object):
 
     def create_ts(self, dir, period=(None, None), kinds="best",
                   stids="all", agg_to="10 min", r_r0=None, split_date=False, 
-                  nas_allowed=True, add_na_share=False):
+                  nas_allowed=True, add_na_share=False, 
+                  add_t_min=False, add_t_max=False):
         """Download and create the weather tables as csv files.
 
         Parameters
@@ -1352,6 +1353,12 @@ class GroupStations(object):
             If True, one column per asked kind is added with the respective share of NAs, if the aggregation step is not the smallest.
             The "kind"_na_share column is in percentage.
             The default is False.
+        add_t_min : bool, optional
+            Should the minimal temperature value get added?
+            The default is False.
+        add_t_max : bool, optional
+            Should the maximal temperature value get added?
+            The default is False.
         """
         start_time = datetime.datetime.now()
         # check directory and stids
@@ -1366,9 +1373,9 @@ class GroupStations(object):
             raise ValueError("For the given settings, no timeseries could get extracted from the database.\nMaybe try to change the nas_allowed parameter to True, to see, where the problem comes from.")
 
         # create GroupStation instances
-        stats = self.get_group_stations(stids=stids)
+        gstats = self.get_group_stations(stids=stids)
         pbar = StationsBase._get_progressbar(
-            max_value=len(stats),
+            max_value=len(gstats),
             name="create RoGeR-TS")
         pbar.update(0)
 
@@ -1377,7 +1384,7 @@ class GroupStations(object):
                     dir, "w",
                     compression=zipfile.ZIP_DEFLATED,
                     compresslevel=5) as zf:
-                for stat in stats:
+                for stat in gstats:
                     stat.create_ts(
                         dir=zf,
                         period=period,
@@ -1386,11 +1393,13 @@ class GroupStations(object):
                         r_r0=r_r0,
                         split_date=split_date,
                         nas_allowed=nas_allowed,
-                        add_na_share=add_na_share)
+                        add_na_share=add_na_share,
+                        add_t_min=add_t_min,
+                        add_t_max=add_t_max)
                     pbar.variables["last_station"] = stat.id
                     pbar.update(pbar.value + 1)
         else:
-            for stat in stats:
+            for stat in gstats:
                 stat.create_ts(
                     dir=dir.joinpath(str(stat.id)),
                     period=period,
@@ -1399,7 +1408,9 @@ class GroupStations(object):
                     r_r0=r_r0,
                     split_date=split_date,
                     nas_allowed=nas_allowed,
-                    add_na_share=add_na_share)
+                    add_na_share=add_na_share,
+                    add_t_min=add_t_min,
+                    add_t_max=add_t_max)
                 pbar.variables["last_station"] = stat.id
                 pbar.update(pbar.value + 1)
 
@@ -1431,7 +1442,8 @@ class GroupStations(object):
                 quantity=len(stids), dir=dir))
 
     def create_roger_ts(self, dir, period=(None, None), stids="all",
-                        kind="best", r_r0=1):
+                        kind="best", r_r0=1, 
+                        add_t_min=False, add_t_max=False):
         """Create the timeserie files for roger as csv.
 
         This is only a wrapper function for create_ts with some standard settings.
@@ -1464,6 +1476,12 @@ class GroupStations(object):
             If list of int or floats, then the list should have the same length as the ET-timeserie and is appended to the Timeserie.
             If pd.Series, then the index should be a timestamp index. The series is then joined to the ET timeserie.
             The default is 1.
+        add_t_min : bool, optional
+            Should the minimal temperature value get added?
+            The default is False.
+        add_t_max : bool, optional
+            Should the maximal temperature value get added?
+            The default is False.
 
         Raises
         ------
