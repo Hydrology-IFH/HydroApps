@@ -46,6 +46,8 @@ class TSDownloads(models.Model):
     kinds = models.CharField(max_length=30, null=True)
     agg_to = models.CharField(max_length=10, null=True)
     add_na_share = models.BooleanField(blank=True, null=True)
+    add_t_min = models.BooleanField(blank=True, null=True)
+    add_t_max = models.BooleanField(blank=True, null=True)
 
     def delete(self):
         file = Path(self.filepath)
@@ -54,7 +56,8 @@ class TSDownloads(models.Model):
         super().delete()
 
     @classmethod
-    def create_file(cls, stids, period_start, period_end,split_date,kinds,aggregation,add_na_share, request):
+    def create_file(cls, stids, period_start, period_end, split_date, kinds,
+                    aggregation, add_na_share, add_t_min, add_t_max, request):
         temp_zf = CACHE_DIR.joinpath(
             "ts_produkt_" + datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")+".zip")
         # check if already existing and add number
@@ -73,12 +76,15 @@ class TSDownloads(models.Model):
             split_date=split_date,
             kinds=str(kinds),
             agg_to=aggregation,
-            add_na_share=add_na_share
+            add_na_share=add_na_share,
+            add_t_min=add_t_min,
+            add_t_max=add_t_max
             )
         return obj
 
     @classmethod
-    def get_cached_file(cls, stids, period_start, period_end,split_date,kinds,aggregation,add_na_share):
+    def get_cached_file(cls, stids, period_start, period_end, split_date, kinds, 
+                        aggregation, add_na_share, add_t_min, add_t_max):
         objs = cls.objects.filter(
             stids=stids,
             period_start=period_start,
@@ -86,7 +92,9 @@ class TSDownloads(models.Model):
             split_date=split_date,
             kinds=str(kinds),
             agg_to=aggregation,
-            add_na_share=add_na_share
+            add_na_share=add_na_share,
+            add_t_min=add_t_min,
+            add_t_max=add_t_max
             )
         if len(objs)>0:
             for obj in objs:

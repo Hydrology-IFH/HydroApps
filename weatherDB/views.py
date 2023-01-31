@@ -51,7 +51,7 @@ def get_ts(request, *args, **kwargs):
         })
 
     # new
-    if not (request.user.is_authenticated and request.user.is_active):
+    if not ((request.user.is_authenticated and request.user.is_active) or DEBUG):
         context.update({
             "needs_captcha": True,
             "hcaptchaform": HCaptchaForm()})
@@ -65,7 +65,8 @@ def download_ts(request, *args, **kwargs):
     gstats = GroupStations()
 
     if request.method == "POST":
-        if not (request.user.is_authenticated and request.user.is_active): # captcha only needed when not an active user
+        if not ((request.user.is_authenticated and request.user.is_active)
+                or DEBUG): # captcha only needed when not an active user and not DEBUG
             hcaptcha_cache = CacheHCaptchaTest.objects.filter(
                 csrf_token__exact=request.POST["csrfmiddlewaretoken"],
                 timestamp__gt=timezone.make_aware(
@@ -120,6 +121,16 @@ def download_ts(request, *args, **kwargs):
     else:
         add_na_share = False
 
+    if "add_t_min" in request.POST:
+        add_t_min=bool(strtobool(request.POST["add_t_min"]))
+    else:
+        add_t_min = False
+
+    if "add_t_max" in request.POST:
+        add_t_max=bool(strtobool(request.POST["add_t_max"]))
+    else:
+        add_t_max=False
+
     # set kinds
     if add_filled_by:
         kinds = [kind]+["filled_by"]
@@ -135,15 +146,11 @@ def download_ts(request, *args, **kwargs):
         split_date=split_date,
         kinds=kinds,
         aggregation=agg_to,
-        add_na_share=add_na_share)
-
-    # period = TimestampPeriod(
-    #         start=form.cleaned_data["period_start"],
-    #         end=form.cleaned_data["period_end"])
-    # nas_allowed = form.cleaned_data["kind"] in ["raw", "qc"]
+        add_na_share=add_na_share,
+        add_t_min=add_t_min,
+        add_t_max=add_t_max)
 
     # create a temporary zip folder with timeseries
-    # para_dict = form.get_para_dict()
     existing_url = TSDownloads.get_cached_file(**para_dict)
     if existing_url:
         return HttpResponse(existing_url)
@@ -159,17 +166,9 @@ def download_ts(request, *args, **kwargs):
                 r_r0=None,
                 split_date=split_date, 
                 add_na_share=add_na_share, 
-                nas_allowed=nas_allowed)
-        # gstats.create_ts(
-        #             dir=temp_zf.get_fp(),
-        #             period=period,
-        #             kinds=form.cleaned_data["kinds"],
-        #             stids=form.cleaned_data["stids"],
-        #             agg_to=form.cleaned_data["aggregation"],
-        #             r_r0=None,
-        #             split_date=form.cleaned_data["split_date"], 
-        #             add_na_share=form.cleaned_data["add_na_share"], 
-        #             nas_allowed=nas_allowed)
+                nas_allowed=nas_allowed,
+                add_t_min=add_t_min,
+                add_t_max=add_t_max)
 
     return HttpResponse(temp_zf.get_url())
 
