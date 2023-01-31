@@ -3655,7 +3655,6 @@ class GroupStation(object):
                 df = stat.get_df(
                     period=period,
                     kinds=use_kinds,
-                    kinds=use_kinds,
                     agg_to=agg_to,
                     nas_allowed=nas_allowed,
                     add_na_share=add_na_share)
