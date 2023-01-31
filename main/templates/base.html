@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% load i18n %}
 <html lang="en">
 <head>
   {% block head_first %}{% endblock %}
@@ -138,7 +139,7 @@
     <table class="header">
       <tr>
         <td>
-          <a href="http://www.uni-freiburg.de/" target="_blank">
+          <a href="https://www.uni-freiburg.de/" target="_blank">
             <img src="{% static "ihf_header_left.gif" %}" height="165" border="0" align="left">
           </a>
         </td><td height="165" width="100%" style="position:relative;" >
@@ -189,13 +190,13 @@
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if user.is_authenticated %}
-                          <a href="{% url 'user_profile' app_name=active_app %}" class="dropdown-item">Profil</a>
+                          <a href="{% url 'user_profile' app_name=active_app %}" class="dropdown-item">{% trans "Profil" %}</a>
                           {% if user.is_superuser %}
-                            <a href="{% url 'admin:index' %}" class="dropdown-item">Admin</a>
+                            <a href="{% url 'admin:index' %}" class="dropdown-item">{% trans Admin %}</a>
                           {% endif %}
-                          <a href="{% url 'logout' app_name=active_app %}" class="dropdown-item">Log out</a>
+                          <a href="{% url 'logout' app_name=active_app %}" class="dropdown-item">{% trans "Log out" %}</a>
                         {% else %}
-                          <a href="{% url 'login' app_name=active_app%}" class="dropdown-item">Login</a>
+                          <a href="{% url 'login' app_name=active_app%}" class="dropdown-item">{% trans "Login" %}</a>
                         {% endif %}
                       </div>
                     {% endblock login_navbar %}
@@ -238,8 +239,8 @@
     <!-- Footer -->
     <div class="col-auto d-inline-flex position-relative fixed-bottom"
           style="left:50%; transform: translate(-50%, 0%);">
-      <a href="{% url 'impressum' app_name=active_app %}" class="me-2">Impressum</a>
-      <a href="{% url 'datenschutz' app_name=active_app %}" class="me-2">Datenschutzerklärung</a> 
+      <a href="{% url 'impressum' app_name=active_app %}" class="me-2">{% trans "Impressum" %}</a>
+      <a href="{% url 'datenschutz' app_name=active_app %}" class="me-2">{% trans "privacy agreement" %}</a> 
     </div>
 
     <div class="col-auto position-sticky

@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-31 15:42+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\my_auth\forms.py:65
+msgid ""
+"This is the Password to log into the database. Please use this together with "
+"your username to use the python package."
+msgstr ""
+
+#: .\my_auth\forms.py:72
+msgid ""
+"This is the number of stations you can download at once from this Website."
+msgstr ""
+
+#: .\my_auth\forms.py:74
+msgid "Maximum allowed Stations to download at once"
+msgstr ""
+
+#: .\my_auth\models.py:22
+msgid "Users must have an email address"
+msgstr ""
+
+#: .\my_auth\models.py:24
+msgid "Users must have an unique username"
+msgstr ""
+
+#: .\my_auth\models.py:33
+msgid "This username is already a database user for the weather database."
+msgstr ""
+
+#: .\my_auth\models.py:54
+msgid "email address"
+msgstr ""
+
+#: .\my_auth\models.py:61
+msgid "Comment of the user why he/she should have access to the Hydro-Apps"
+msgstr ""
+
+#: .\my_auth\models.py:63
+msgid ""
+"I agree to the terms of usage of my data and I did read and agree to the "
+"policy agreement of this website."
+msgstr ""
+
+#: .\my_auth\models.py:64
+msgid "Designates whether the user confirmed the data policy agreement."
+msgstr ""
+
+#: .\my_auth\models.py:66
+msgid "Designates whether the user confirmed it's e-mail address."
+msgstr ""
+
+#: .\my_auth\models.py:68
+msgid "Designates whether the user got activated by a super user."
+msgstr ""
+
+#: .\my_auth\models.py:70
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: .\my_auth\models.py:73
+msgid ""
+"Designates whether the user can see features that didn't yet get released."
+msgstr ""
+
+#: .\my_auth\models.py:76
+msgid "Designates whether the user can log into the WeatherDB-database."
+msgstr ""
+
+#: .\my_auth\models.py:79
+msgid ""
+"Designates the number of stations a user can download at once on the "
+"WeatherDB App."
+msgstr ""
+
+#: .\my_auth\models.py:83
+msgid "Designates whether the user is superuser."
+msgstr ""
+
+#: .\my_auth\models.py:85
+msgid "The Password for this user to log into the database."
+msgstr ""

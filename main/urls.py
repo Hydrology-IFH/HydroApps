@@ -18,14 +18,16 @@ from django.urls import path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from .views import impressum_view, datenschutz_view
+from django.conf.urls.i18n import i18n_patterns
+
 
 #from weatherDB.urls import urlpatterns as weatherDB_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("HydroApps.urls")),
+    # path("", include("HydroApps.urls")),
     # path("weatherDB/", include("weatherDB.urls")),
-    path("weatherdb/", include("weatherDB.urls")),
+    # path("weatherdb/", include("weatherDB.urls")),
     # path("weather/", include("weatherDB.urls")),
     path("klimzuk/", include("klimzuk.urls")),
     path("<str:app_name>/auth/", include("my_auth.urls")),
@@ -33,5 +35,12 @@ urlpatterns = [
     path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
     path("favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))
+    ),
+    path('i18n/', include('django.conf.urls.i18n')),
+    *i18n_patterns(
+        path("", include("HydroApps.urls")),
+        path("weatherdb/", include("weatherDB.urls")),
+        path("<str:app_name>/impressum/", impressum_view, name="impressum"),
+        path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
     )
 ]

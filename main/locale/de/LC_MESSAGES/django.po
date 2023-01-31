@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: HydroApps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-31 15:42+0100\n"
+"PO-Revision-Date: 2023-01-31 15:42+0100\n"
+"Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SearchPath-0: klimzuk/locale\n"
+"X-Poedit-SearchPath-1: main/locale\n"
+"X-Poedit-SearchPath-2: weatherDB/locale\n"
+"X-Poedit-SearchPath-3: my_auth/locale\n"
+"X-Poedit-SearchPath-4: HydroApps/locale\n"
+
+#: .\main\settings.py:223
+msgid "German"
+msgstr ""
+
+#: .\main\settings.py:224
+msgid "English"
+msgstr ""
+
+#: .\main\templates\base.html:198
+msgid "Profil"
+msgstr "Profil"
+
+#: .\main\templates\base.html:202
+msgid "Log out"
+msgstr "Ausloggen"
+
+#: .\main\templates\base.html:204
+msgid "Login"
+msgstr "Einloggen"
+
+#: .\main\templates\base.html:247
+msgid "Impressum"
+msgstr "Impressum"
+
+#: .\main\templates\base.html:248
+msgid "privacy agreement"
+msgstr "Datenschutzerklärung"
+
+#: .\main\templates\datenschutz.html:6
+msgid "Privacy aggrement"
+msgstr "Datenschutzerklärung"
+
+#: .\main\templates\datenschutz.html:7
+msgid "Overview of privacy agreement"
+msgstr "Datenschutz auf einen Blick"
+
+#: .\main\templates\datenschutz.html:9
+msgid "General notes"
+msgstr "Allgemeine Hinweise"
+
+#: .\main\templates\datenschutz.html:10
+msgid ""
+"The following notices provide a simple overview of what happens to your "
+"personal data\n"
+"  when you visit this website. Personal data is any data that can be used to "
+"identify you personally.\n"
+" For more detailed information on the subject of data protection, please "
+"refer to this privacy aggrement."
+msgstr ""
+"Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, "
+"was mit Ihren personenbezogenen Daten\n"
+"  passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind "
+"alle Daten, mit denen Sie pers&ouml;nlich\n"
+"  identifiziert werden k&ouml;nnen. Ausf&uuml;hrliche Informationen zum "
+"Thema Datenschutz entnehmen Sie unserer unter\n"
+"  diesem Text aufgef&uuml;hrten Datenschutzerkl&auml;rung."
+
+#: .\main\templates\datenschutz.html:13
+msgid "Data collection on this site"
+msgstr "Datenerfassung auf dieser Website"
+
+#: .\main\templates\datenschutz.html:14
+msgid "Who is responsible for the data Collection on this site?"
+msgstr "Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?"
+
+#: .\main\templates\datenschutz.html:15
+msgid ""
+"Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. "
+"Dessen Kontaktdaten k&ouml;nnen Sie dem\n"
+"  Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser "
+"Datenschutzerkl&auml;rung entnehmen."
+msgstr ""
+"Data processing on this website is done by the website operator. You can "
+"find his contact details in the\n"
+"  Section \"Information about the responsible party\" in this privacy "
+"aggrement."
+
+#: .\main\templates\datenschutz.html:17
+msgid "Wie erfassen wir Ihre Daten?"
+msgstr "How is your data collected?"
+
+#: .\main\templates\datenschutz.html:18
+msgid ""
+"Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. "
+"Hierbei kann es sich z.&nbsp;B. um Daten\n"
+"  handeln, die Sie in ein Kontaktformular, Anmeldeformular oder "
+"Anfrageformular eingeben."
+msgstr ""
+"On the one hand, your data is collected by you providing it to us. This can "
+"be e.g. data that you enter in a contact\n"
+"  that you enter in a contact form, registration form or request form."
+
+#: .\main\templates\datenschutz.html:20
+msgid ""
+"Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der "
+"Website durch unsere IT-Systeme erfasst.\n"
+"  Das sind vor allem technische Daten (z.&nbsp;B. Internetbrowser, "
+"Betriebssystem, IP-Adresse oder Uhrzeit des Seitenaufrufs). Die\n"
+"  Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website "
+"betreten."
+msgstr ""
+
+#: .\main\templates\datenschutz.html:23
+msgid "Wof&uuml;r nutzen wir Ihre Daten?"
+msgstr ""
+
+#~ msgid ""
+#~ "Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?"
+#~ msgstr "Who is responsible for the data Collection on this site?"
+
+#~ msgid "Datenerfassung auf dieser Website"
+#~ msgstr "Data collection on this site"
+
+#~ msgid "Datenschutz auf einen Blick"
+#~ msgstr "Overview of privacy agreement"
+
+#~ msgid "Allgemeine Hinweise"
+#~ msgstr "General notes"
+
+#~ msgid ""
+#~ "Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, "
+#~ "was mit Ihren personenbezogenen Daten\n"
+#~ "  passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind "
+#~ "alle Daten, mit denen Sie pers&ouml;nlich\n"
+#~ "  identifiziert werden k&ouml;nnen. Ausf&uuml;hrliche Informationen zum "
+#~ "Thema Datenschutz entnehmen Sie unserer unter\n"
+#~ "  diesem Text aufgef&uuml;hrten Datenschutzerkl&auml;rung."
+#~ msgstr ""
+#~ "The following notices provide a simple overview of what happens to your "
+#~ "personal data\n"
+#~ "  when you visit this website. Personal data is any data that can be used "
+#~ "to identify you personally.\n"
+#~ " For more detailed information on the subject of data protection, please "
+#~ "refer to this privacy aggrement."
+
+#~ msgid "Datenschutz&shy;erkl&auml;rung"
+#~ msgstr "privacy agreement"
