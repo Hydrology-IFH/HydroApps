@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-01 17:15+0100\n"
-"PO-Revision-Date: 2023-02-01 17:15+0100\n"
+"POT-Creation-Date: 2023-02-01 17:27+0100\n"
+"PO-Revision-Date: 2023-02-01 17:25+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -32,7 +32,7 @@ msgid "Home"
 msgstr "Home"
 
 #: .\django\klimzuk\templates\klimzuk\base.html:20
-#: .\django\klimzuk\templates\klimzuk\method.html:10
+#: .\django\klimzuk\templates\klimzuk\method.html:11
 msgid "Method"
 msgstr "Method"
 
@@ -65,11 +65,13 @@ msgstr ""
 #: .\django\klimzuk\templates\klimzuk\klimzuk_map.html:38
 msgid ""
 "There you will be able to download all the plots for this station or add the "
-"station the the selection form. By filling out the form and clicking on "
+"station the the selection form. By filling out the form and clicking on 'add "
+"plots' you will be able to see the plots here and compare them."
 msgstr ""
 "Dort können Sie alle Abbildungen für diese Station herunterladen oder die "
 "Station in das Auswahl-Formular übernehmen. Füllen Sie das Formular aus und "
-"klicken Sie auf "
+"klicken Sie auf 'Abbildungen hinzufügen' um die einzelnen Abbildung "
+"angezeigt zu kriegen und sie vergleichen zu können."
 
 #: .\django\klimzuk\templates\klimzuk\klimzuk_map.html:47
 msgid "Select plots to show"

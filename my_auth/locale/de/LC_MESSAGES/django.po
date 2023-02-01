@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-01 17:15+0100\n"
-"PO-Revision-Date: 2023-02-01 15:46+0100\n"
+"POT-Creation-Date: 2023-02-01 17:27+0100\n"
+"PO-Revision-Date: 2023-02-01 17:28+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -202,7 +202,7 @@ msgstr ""
 
 #: .\django\my_auth\templates\registration\login.html:6
 msgid "Login to Hydro-Apps"
-msgstr "Auf Hydro-Apps einloggen"
+msgstr "Anmelden auf Hydro-Apps"
 
 #: .\django\my_auth\templates\registration\login.html:9
 msgid "You are already loged in as"
@@ -220,6 +220,14 @@ msgstr "Noch kein Konto?"
 #: .\django\my_auth\templates\registration\registration_form.html:32
 msgid "Register"
 msgstr "Registrieren"
+
+#: .\django\my_auth\templates\registration\login.html:20
+msgid "E-Mail/Username"
+msgstr "E-Mail/Nutzername"
+
+#: .\django\my_auth\templates\registration\login.html:21
+msgid "Forgot Password"
+msgstr "Passwort vergessen"
 
 #: .\django\my_auth\templates\registration\password_reset_complete.html:4
 msgid "Password reset complete"
