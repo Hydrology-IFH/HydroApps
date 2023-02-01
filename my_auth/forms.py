@@ -10,8 +10,8 @@ personal_introduction_widget = forms.Textarea(
     attrs={
         "rows":2, 
         "class": "form-control",
-        "placeholder": "Why should you be granted access to the Hydro-Apps resources? Explain in your own words",
-        "title": "This information will get used to decide whether you are granted access to the database. The information will only be visible to you and the admin of this site."})
+        "placeholder": _("Why should you be granted access to the Hydro-Apps resources? Explain in your own words"),
+        "title": _("This information will get used to decide whether you are granted access to the database. The information will only be visible to you and the admin of this site.")})
 
 class CustomUserCreationForm(UserCreationForm):
     hcaptcha = hCaptchaField()
@@ -28,21 +28,21 @@ class CustomUserCreationForm(UserCreationForm):
             "personal_introduction": personal_introduction_widget,
         }
         help_texts = {
-            "confirmed_data_policy": "<a href='/datenschutz' id='link_privacy'>Privacy agreement</a>"
+            "confirmed_data_policy": "<a href='/datenschutz' id='link_privacy'>{0}</a>".format(_("Privacy agreement"))
         }
 
     def clean_username(self):
         username = self.cleaned_data['username'].lower()
         new = Account.objects.filter(username = username)
         if new.count():
-            raise ValidationError("User Already Exist")
+            raise ValidationError(_("User Already Exist"))
         return username
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         new = Account.objects.filter(email=email)
         if new.count():
-            raise ValidationError("Email Already Exist")
+            raise ValidationError(_("Email Already Exist"))
         return email
 
     def save(self, commit = True):
@@ -83,14 +83,14 @@ class CustomUserChangeForm(forms.ModelForm):
         username = self.cleaned_data['username'].lower()
         new = Account.objects.filter(username = username)
         if new.count():
-            raise ValidationError("User Already Exist")
+            raise ValidationError(_("User Already Exist"))
         return username
 
     def email_clean(self):
         email = self.cleaned_data['email'].lower()
         new = Account.objects.filter(email=email)
         if new.count():
-            raise ValidationError("Email Already Exist")
+            raise ValidationError(_("Email Already Exist"))
         return email
 
 class CustomPasswordResetForm(PasswordResetForm):

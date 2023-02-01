@@ -25,14 +25,6 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path("", include("HydroApps.urls")),
-    # path("weatherDB/", include("weatherDB.urls")),
-    # path("weatherdb/", include("weatherDB.urls")),
-    # path("weather/", include("weatherDB.urls")),
-    path("klimzuk/", include("klimzuk.urls")),
-    path("<str:app_name>/auth/", include("my_auth.urls")),
-    path("<str:app_name>/impressum/", impressum_view, name="impressum"),
-    path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
     path("favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))
     ),
@@ -40,6 +32,10 @@ urlpatterns = [
     *i18n_patterns(
         path("", include("HydroApps.urls")),
         path("weatherdb/", include("weatherDB.urls")),
+        path("<str:app_name>/impressum/", impressum_view, name="impressum"),
+        path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
+        path("klimzuk/", include("klimzuk.urls")),
+        path("<str:app_name>/auth/", include("my_auth.urls")),
         path("<str:app_name>/impressum/", impressum_view, name="impressum"),
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
     )

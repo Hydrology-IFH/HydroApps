@@ -19,7 +19,7 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">  
       <div class="col">
         <div class="card">
-          <a href="weatherDB/" class="stretched-link"></a>
+          <a href="{% url 'weatherDB:home' %}" class="stretched-link"></a>
           <img src="{% static 'weatherDB/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
           <div class="card-body">
             <h5 class="card-title">WeatherDB</h5>
@@ -30,7 +30,7 @@
       {% if show_unreleased %}
       <div class="col">
         <div class="card">
-          <a href="klimzuk/" class="stretched-link"></a>
+          <a href="{% url 'klimzuk:home' %}" class="stretched-link"></a>
           <img src="{% static 'klimzuk/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB">
           <div class="card-body">
             <h5 class="card-title">KlimZuk</h5>
