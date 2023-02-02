@@ -25,6 +25,7 @@ from main.utils.utils import get_context_extra
 @csrf_protect
 def register(request, **kwargs):
     context = get_context_extra(request, **kwargs)
+    context.update({"HCAPTCHA_SITEKEY": settings.HCAPTCHA_SITEKEY})
 
     if request.method == "GET":
         context.update({"form": CustomUserCreationForm})
@@ -106,6 +107,7 @@ def confirm_user(request, uidb64, token, **kwargs):
 
 def request_reset_password(request, **kwargs):
     context = get_context_extra(request, **kwargs)
+    context.update({"HCAPTCHA_SITEKEY": settings.HCAPTCHA_SITEKEY})
     if request.method == 'POST':
         form = CustomPasswordResetForm(request.POST)
         if form.is_valid():

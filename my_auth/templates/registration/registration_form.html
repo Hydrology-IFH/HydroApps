@@ -27,7 +27,8 @@
     {% bootstrap_field form.password1 show_label='skip' addon_before='{% trans "Password" %}'%}
     {% bootstrap_field form.password2 show_label='skip' addon_before='{% trans "Password confirmation" %}'%}
     {% bootstrap_field form.confirmed_data_policy %}
-    {% bootstrap_field form.hcaptcha show_label='skip' %}
+    <script src="https://js.hcaptcha.com/1/api.js?hl={{ request.LANGUAGE_CODE }}" async defer></script>
+    <div class="h-captcha" data-sitekey="{{ HCAPTCHA_SITEKEY }}" ></div>
     <input type="submit" class="btn btn-primary" value="{% trans 'Register' %}">
 </form>
 <script>
