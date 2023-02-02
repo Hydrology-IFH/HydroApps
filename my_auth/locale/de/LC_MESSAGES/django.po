@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-01 17:27+0100\n"
-"PO-Revision-Date: 2023-02-01 17:28+0100\n"
+"POT-Creation-Date: 2023-02-02 10:48+0100\n"
+"PO-Revision-Date: 2023-02-02 10:48+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\django\my_auth\forms.py:13
+#: .\my_auth\forms.py:13
 msgid ""
 "Why should you be granted access to the Hydro-Apps resources? Explain in "
 "your own words"
@@ -26,7 +26,7 @@ msgstr ""
 "Warum sollten Sie Zugang zu den Ressourcen von Hydro-Apps erhalten? "
 "Begründen Sie in Ihren eigenen Worten"
 
-#: .\django\my_auth\forms.py:14
+#: .\my_auth\forms.py:14
 msgid ""
 "This information will get used to decide whether you are granted access to "
 "the database. The information will only be visible to you and the admin of "
@@ -36,19 +36,19 @@ msgstr ""
 "Datenbank gewährt wird. Die Informationen sind nur für Sie und den "
 "Administrator der Webseite sichtbar."
 
-#: .\django\my_auth\forms.py:31
+#: .\my_auth\forms.py:31
 msgid "Privacy agreement"
 msgstr "Datenschutzerklärung"
 
-#: .\django\my_auth\forms.py:38 .\django\my_auth\forms.py:86
+#: .\my_auth\forms.py:38 .\my_auth\forms.py:87
 msgid "User Already Exist"
 msgstr "Nutzer*in existiert bereits"
 
-#: .\django\my_auth\forms.py:45 .\django\my_auth\forms.py:93
+#: .\my_auth\forms.py:45 .\my_auth\forms.py:94
 msgid "Email Already Exist"
 msgstr "E-Mail existiert bereits"
 
-#: .\django\my_auth\forms.py:65
+#: .\my_auth\forms.py:66
 msgid ""
 "This is the Password to log into the database. Please use this together with "
 "your username to use the python package."
@@ -56,41 +56,41 @@ msgstr ""
 "Dies ist das Passwort für die Anmeldung bei der Datenbank. Bitte verwenden "
 "Sie dieses zusammen mit Ihrem Benutzernamen, um das Python-Paket zu nutzen."
 
-#: .\django\my_auth\forms.py:72
+#: .\my_auth\forms.py:73
 msgid ""
 "This is the number of stations you can download at once from this Website."
 msgstr ""
 "Dies ist die Anzahl an Stationen die auf einmal heruntergeladen werden "
 "können."
 
-#: .\django\my_auth\forms.py:74
+#: .\my_auth\forms.py:75
 msgid "Maximum allowed Stations to download at once"
 msgstr "Maximal erlaubte Stationen je Download"
 
-#: .\django\my_auth\models.py:22
+#: .\my_auth\models.py:22
 msgid "Users must have an email address"
 msgstr "Nutzer*in benötigt eine E-Mail Adresse"
 
-#: .\django\my_auth\models.py:24
+#: .\my_auth\models.py:24
 msgid "Users must have an unique username"
 msgstr "Nutzer*in benötigt einen eindeutigen Nutzernamen"
 
-#: .\django\my_auth\models.py:33
+#: .\my_auth\models.py:33
 msgid "This username is already a database user for the weatherDB database."
 msgstr ""
 "Dieser Nutzername ist bereits ein Datenbank-Nutzer für die WeatherDB-"
 "Datenbank."
 
-#: .\django\my_auth\models.py:54
+#: .\my_auth\models.py:54
 msgid "email address"
 msgstr "E-Mail Adresse"
 
-#: .\django\my_auth\models.py:61
+#: .\my_auth\models.py:61
 msgid "Comment of the user why he/she should have access to the Hydro-Apps"
 msgstr ""
 "Begründung des/der Nutzer*in wieso Er/Sie Zugang zu Hydro-Apps haben sollte"
 
-#: .\django\my_auth\models.py:63
+#: .\my_auth\models.py:63
 msgid ""
 "I agree to the terms of usage of my data and I did read and agree to the "
 "policy agreement of this website."
@@ -98,33 +98,33 @@ msgstr ""
 "Ich habe die Datenschutzerklärung dieser Seite gelesen und stimme der "
 "Nutzung meiner Daten zu."
 
-#: .\django\my_auth\models.py:64
+#: .\my_auth\models.py:64
 msgid "Designates whether the user confirmed the data policy agreement."
 msgstr "Gibt an ob der/die Nutzer*in die Datenschutzerklärung bestätigt hat."
 
-#: .\django\my_auth\models.py:66
+#: .\my_auth\models.py:66
 msgid "Designates whether the user confirmed it's e-mail address."
 msgstr "Gibt an ob der/die Nutzer*in die E-Mail Adresse bestätigt hat."
 
-#: .\django\my_auth\models.py:68
+#: .\my_auth\models.py:68
 msgid "Designates whether the user got activated by a super user."
 msgstr ""
 "Gibt an ob der/die Nutzer*in durch einen Administrator bestätigt wurde."
 
-#: .\django\my_auth\models.py:70
+#: .\my_auth\models.py:70
 msgid "Designates whether the user can log into this admin site."
 msgstr "Gibt an ob der/die Nutzer*in sich ins Admin Portal einloggen kann."
 
-#: .\django\my_auth\models.py:73
+#: .\my_auth\models.py:73
 msgid ""
 "Designates whether the user can see features that didn't yet get released."
 msgstr "Gibt an ob der/die Nutzer*in unveröffentlichte Inhalte sehen kann."
 
-#: .\django\my_auth\models.py:76
+#: .\my_auth\models.py:76
 msgid "Designates whether the user can log into the WeatherDB-database."
 msgstr "Gibt an ob der/die Nutzer*in zugang zur WeatherDB-Datenbank hat."
 
-#: .\django\my_auth\models.py:79
+#: .\my_auth\models.py:79
 msgid ""
 "Designates the number of stations a user can download at once on the "
 "WeatherDB App."
@@ -132,32 +132,32 @@ msgstr ""
 "Gibt die Anzahl an Stationen die ein*e Nutzer*in auf einmal von der "
 "WeatherDB-App herunterladen kann."
 
-#: .\django\my_auth\models.py:83
+#: .\my_auth\models.py:83
 msgid "Designates whether the user is superuser."
 msgstr "Gibt an ob der/die Nutzer*in super user Rechte hat."
 
-#: .\django\my_auth\models.py:85
+#: .\my_auth\models.py:85
 msgid "The Password for this user to log into the database."
 msgstr ""
 "Das Passwort für diese*n Nutzer*in um sich auf der WeatherDB-Datenbank "
 "einzuloggen."
 
-#: .\django\my_auth\templates\emails\account_activation_email.html:4
-#: .\django\my_auth\templates\emails\confirm_email.html:4
-#: .\django\my_auth\templates\emails\db_access_granted.html:4
-#: .\django\my_auth\templates\registration\password_reset_email.html:3
+#: .\my_auth\templates\emails\account_activation_email.html:2
+#: .\my_auth\templates\emails\confirm_email.html:2
+#: .\my_auth\templates\emails\db_access_granted.html:2
+#: .\my_auth\templates\registration\password_reset_email.html:2
 msgid "Hello"
 msgstr "Hallo"
 
-#: .\django\my_auth\templates\emails\account_activation_email.html:6
+#: .\my_auth\templates\emails\account_activation_email.html:4
 msgid "Your account for"
 msgstr "Ihr Konto für"
 
-#: .\django\my_auth\templates\emails\account_activation_email.html:6
+#: .\my_auth\templates\emails\account_activation_email.html:4
 msgid "got activated and is now ready to use"
 msgstr "wurde aktiviert und kann jetzt genutzt werden"
 
-#: .\django\my_auth\templates\emails\account_activation_email.html:8
+#: .\my_auth\templates\emails\account_activation_email.html:6
 msgid ""
 "If you think, it's not you, then just ignore this email.\n"
 "This is an automatic generated E-mail, please don't answer it."
@@ -166,14 +166,14 @@ msgstr ""
 "diese E-Mail einfach.\n"
 "Dies ist eine automatisch generierte E-Mail, bitte beantworten Sie sie nicht."
 
-#: .\django\my_auth\templates\emails\confirm_email.html:6
+#: .\my_auth\templates\emails\confirm_email.html:4
 msgid "Please click on the link below to confirm your registration:"
 msgstr ""
 "Bitte klicken Sie auf den folgenden Link um ihre Registrierung zu bestätigen:"
 
-#: .\django\my_auth\templates\emails\confirm_email.html:10
-#: .\django\my_auth\templates\emails\db_access_granted.html:8
-#: .\django\my_auth\templates\registration\password_reset_email.html:10
+#: .\my_auth\templates\emails\confirm_email.html:8
+#: .\my_auth\templates\emails\db_access_granted.html:6
+#: .\my_auth\templates\registration\password_reset_email.html:9
 msgid ""
 "If you think, it's not for you, then just ignore this email.\n"
 "This is an automatic generated E-mail, please don't answer it."
@@ -182,7 +182,7 @@ msgstr ""
 "diese E-Mail einfach.\n"
 "Dies ist eine automatisch generierte E-Mail, bitte beantworten Sie sie nicht."
 
-#: .\django\my_auth\templates\emails\db_access_granted.html:6
+#: .\my_auth\templates\emails\db_access_granted.html:4
 msgid ""
 "The admin did grant you Database access to the WeatherDB. You can login on "
 "our"
@@ -190,84 +190,100 @@ msgstr ""
 "Der Administrator hat ihnen Zugriff auf die WeatherDB-Datenbank gewährt. Sie "
 "können sich auf"
 
-#: .\django\my_auth\templates\emails\db_access_granted.html:6
+#: .\my_auth\templates\emails\db_access_granted.html:4
 msgid "WeatherDB Website"
 msgstr "WeatherDb-Webseite"
 
-#: .\django\my_auth\templates\emails\db_access_granted.html:6
+#: .\my_auth\templates\emails\db_access_granted.html:4
 msgid "and go to your profile page to download your database password"
 msgstr ""
 "unserer Seite einloggen und zu ihrer Profilseite gehen um die Zugangsdaten "
 "herunterzuladen"
 
-#: .\django\my_auth\templates\registration\login.html:6
+#: .\my_auth\templates\registration\login.html:6
 msgid "Login to Hydro-Apps"
 msgstr "Anmelden auf Hydro-Apps"
 
-#: .\django\my_auth\templates\registration\login.html:9
+#: .\my_auth\templates\registration\login.html:9
 msgid "You are already loged in as"
 msgstr "Sie sind bereits eingelogt"
 
-#: .\django\my_auth\templates\registration\login.html:11
+#: .\my_auth\templates\registration\login.html:11
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\django\my_auth\templates\registration\login.html:16
+#: .\my_auth\templates\registration\login.html:16
 msgid "No Account yet?"
 msgstr "Noch kein Konto?"
 
-#: .\django\my_auth\templates\registration\login.html:16
-#: .\django\my_auth\templates\registration\registration_form.html:32
+#: .\my_auth\templates\registration\login.html:16
+#: .\my_auth\templates\registration\registration_form.html:36
 msgid "Register"
 msgstr "Registrieren"
 
-#: .\django\my_auth\templates\registration\login.html:20
+#: .\my_auth\templates\registration\login.html:20
+#: .\my_auth\templates\registration\registration_form.html:10
+#: .\my_auth\templates\users\profile.html:52
+msgid "Username"
+msgstr "Nutzername"
+
+#: .\my_auth\templates\registration\login.html:20
 msgid "E-Mail/Username"
 msgstr "E-Mail/Nutzername"
 
-#: .\django\my_auth\templates\registration\login.html:21
+#: .\my_auth\templates\registration\login.html:22
+#: .\my_auth\templates\registration\registration_form.html:29
+#: .\my_auth\templates\users\profile.html:45
+msgid "Password"
+msgstr "Passwort"
+
+#: .\my_auth\templates\registration\login.html:24
+msgid "Login"
+msgstr "Anmelden"
+
+#: .\my_auth\templates\registration\login.html:30
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
-#: .\django\my_auth\templates\registration\password_reset_complete.html:4
+#: .\my_auth\templates\registration\password_reset_complete.html:4
 msgid "Password reset complete"
 msgstr "Passwort-Wiederherstellung erfolgreich"
 
-#: .\django\my_auth\templates\registration\password_reset_complete.html:5
+#: .\my_auth\templates\registration\password_reset_complete.html:5
 msgid "Your password got successfully reset."
 msgstr "Ihr Passwort wurde erfolgreich geändert."
 
-#: .\django\my_auth\templates\registration\password_reset_complete.html:6
-#: .\django\my_auth\templates\registration\registration_form.html:7
+#: .\my_auth\templates\registration\password_reset_complete.html:6
+#: .\my_auth\templates\registration\registration_form.html:7
 msgid "Back to login"
 msgstr "Zurück zum Einloggen"
 
-#: .\django\my_auth\templates\registration\password_reset_confirm.html:6
+#: .\my_auth\templates\registration\password_reset_confirm.html:6
 msgid "Reset your password"
 msgstr "Passwort zurücksetzen"
 
-#: .\django\my_auth\templates\registration\password_reset_confirm.html:11
+#: .\my_auth\templates\registration\password_reset_confirm.html:11
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: .\django\my_auth\templates\registration\password_reset_email.html:5
+#: .\my_auth\templates\registration\password_reset_email.html:4
 msgid "Someone asked for password reset for email"
 msgstr ""
 "Jemand hat nach einer Zurückstellung des Passworts für die E-Mail Adresse"
 
-#: .\django\my_auth\templates\registration\password_reset_email.html:5
+#: .\my_auth\templates\registration\password_reset_email.html:4
 msgid "on the Hydro-Apps website"
 msgstr "auf der Hydro-Apps Webseite"
 
-#: .\django\my_auth\templates\registration\password_reset_email.html:6
+#: .\my_auth\templates\registration\password_reset_email.html:5
 msgid "Follow the link below"
 msgstr "Folgen Sie dem folgenden Link"
 
-#: .\django\my_auth\templates\registration\password_reset_request_confirm.html:6
+#: .\my_auth\templates\registration\password_reset_request_confirm.html:6
 msgid "Link send"
 msgstr "Link verschickt"
 
-#: .\django\my_auth\templates\registration\password_reset_request_confirm.html:7
+#: .\my_auth\templates\registration\password_reset_request_confirm.html:7
 msgid ""
 "A link was send to your E-Mail Adress to reset your password. Please also "
 "check your spam folder."
@@ -275,43 +291,43 @@ msgstr ""
 "Ein Wiederherstellungs-Link wurde an Ihre E-Mail Adresse geschickt. Bitte "
 "überprüfen Sie auch Ihren Spam-Ordner."
 
-#: .\django\my_auth\templates\registration\password_reset_request_form.html:6
+#: .\my_auth\templates\registration\password_reset_request_form.html:6
 msgid "Send password reset link"
 msgstr "Sende Passwort-Wiederherstellungs-Link"
 
-#: .\django\my_auth\templates\registration\password_reset_request_form.html:12
+#: .\my_auth\templates\registration\password_reset_request_form.html:12
 msgid "Reset"
 msgstr "Wiederherstellen"
 
-#: .\django\my_auth\templates\registration\password_reset_subject.txt:2
+#: .\my_auth\templates\registration\password_reset_subject.txt:2
 msgid "Password reset for Hydro-Apps"
 msgstr "Passwort wiederherstellen für Hydro-Apps"
 
-#: .\django\my_auth\templates\registration\registration_done.html:5
+#: .\my_auth\templates\registration\registration_done.html:5
 msgid "Account was set up and a confirmation E-Mail was send to your E-mail."
 msgstr ""
 "Konto wurde eingerichtet und eine Bestätigungs-E-Mail wurde an Sie gesendet."
 
-#: .\django\my_auth\templates\registration\registration_done.html:6
+#: .\my_auth\templates\registration\registration_done.html:6
 msgid "Please check your spam folder"
 msgstr "Bitte überprüfen Sie Ihren Spam-Ordner"
 
-#: .\django\my_auth\templates\registration\registration_email_confirmed.html:5
+#: .\my_auth\templates\registration\registration_email_confirmed.html:5
 msgid "Your E-Mail Adress got confirmed."
 msgstr "Ihre E-Mail-Adresse wurde bestätigt."
 
-#: .\django\my_auth\templates\registration\registration_email_confirmed.html:7
+#: .\my_auth\templates\registration\registration_email_confirmed.html:7
 msgid "Your account is now activated."
 msgstr "Ihr Konto ist jetzt aktiviert."
 
-#: .\django\my_auth\templates\registration\registration_email_confirmed.html:9
+#: .\my_auth\templates\registration\registration_email_confirmed.html:9
 msgid ""
 "To fully activate your acount the Administrators have to allow your account."
 msgstr ""
 "Um Ihr Konto vollständig freizuschalten müssen die Administrator*innen Sie "
 "zuerst freischalten."
 
-#: .\django\my_auth\templates\registration\registration_email_confirmed.html:10
+#: .\my_auth\templates\registration\registration_email_confirmed.html:10
 msgid ""
 "For this reason an E-mail was send to the Administrator to confirm your "
 "registration. Please wait 1-2 days for this step to be done."
@@ -320,7 +336,7 @@ msgstr ""
 "Ihre Anmeldung zu bestätigen. Bitte warten Sie 1-2 Tage, bis dieser Schritt "
 "erledigt ist."
 
-#: .\django\my_auth\templates\registration\registration_email_confirmed.html:11
+#: .\my_auth\templates\registration\registration_email_confirmed.html:11
 msgid ""
 "You will receive an email notification when your account got confirmed. "
 "Please check your spam folder."
@@ -328,16 +344,26 @@ msgstr ""
 "Sie erhalten eine E-Mail-Benachrichtigung, wenn Ihr Konto bestätigt wurde. "
 "Bitte überprüfen Sie Ihren Spam-Ordner."
 
-#: .\django\my_auth\templates\registration\registration_form.html:6
+#: .\my_auth\templates\registration\registration_form.html:6
 msgid "Register to Hydro-Apps"
 msgstr "Auf Hydro-Apps Registrieren"
 
-#: .\django\my_auth\templates\registration\registration_form.html:17
-#: .\django\my_auth\templates\users\profile.html:57
+#: .\my_auth\templates\registration\registration_form.html:13
+#: .\my_auth\templates\users\profile.html:54
+msgid "First Name"
+msgstr "Vorname"
+
+#: .\my_auth\templates\registration\registration_form.html:15
+#: .\my_auth\templates\users\profile.html:56
+msgid "Last Name"
+msgstr "Nachname"
+
+#: .\my_auth\templates\registration\registration_form.html:18
+#: .\my_auth\templates\users\profile.html:60
 msgid "personal introduction"
 msgstr "persönliche Vorstellung"
 
-#: .\django\my_auth\templates\registration\registration_form.html:19
+#: .\my_auth\templates\registration\registration_form.html:20
 msgid ""
 "This information will get used to decide to what resource you will get "
 "access to. For e.g. to decide if you should get a database access to the "
@@ -351,25 +377,29 @@ msgstr ""
 "Administrator*innen dieser Seite sichtbar sein. z.B. ich arbeite an der Uni "
 "Freiburg Hydrologie oder ich bin Student der Hydrologie in Freiburg..."
 
-#: .\django\my_auth\templates\registration\registration_user_confirmed.html:5
+#: .\my_auth\templates\registration\registration_form.html:31
+msgid "Password confirmation"
+msgstr "Passwort bestätigen"
+
+#: .\my_auth\templates\registration\registration_user_confirmed.html:5
 msgid "The User-Account"
 msgstr "Das Nutzerkonto"
 
-#: .\django\my_auth\templates\registration\registration_user_confirmed.html:5
+#: .\my_auth\templates\registration\registration_user_confirmed.html:5
 msgid "got confirmed"
 msgstr "wurde bestätigt"
 
-#: .\django\my_auth\templates\registration\registration_user_confirmed.html:6
+#: .\my_auth\templates\registration\registration_user_confirmed.html:6
 msgid "A notification E-mail was send to the user."
 msgstr "Eine Bestätigungs-E-Mail wurde an den/die Nutzer*in gesendet."
 
-#: .\django\my_auth\templates\registration\request_db_access_send.html:6
+#: .\my_auth\templates\registration\request_db_access_send.html:6
 msgid "Your request for WeatherDB-Database access got send to the Admins"
 msgstr ""
 "Ihre Anfrage für den WeatherDB-Datenbankzugang wurde an die "
 "Administrator*inen gesendet"
 
-#: .\django\my_auth\templates\registration\request_db_access_send.html:7
+#: .\my_auth\templates\registration\request_db_access_send.html:7
 msgid ""
 "This can take several days until the admin will provide you with the "
 "requested privileges."
@@ -377,7 +407,7 @@ msgstr ""
 "Dies kann einige Tage dauern, bis die Administrator*innen Ihnen den Zugriff "
 "gewähren."
 
-#: .\django\my_auth\templates\registration\request_db_access_send.html:8
+#: .\my_auth\templates\registration\request_db_access_send.html:8
 msgid ""
 "You will get notified by E-Mail when your request is treated.  Please also "
 "check your spam folder."
@@ -385,12 +415,12 @@ msgstr ""
 "Sie werden per E-Mail benachrichtigt, sobald Ihre Anfrage bestätigt wurde. "
 "Bitte überprüfen Sie auch Ihren Spam-Ordner."
 
-#: .\django\my_auth\templates\registration\request_db_access_send.html:10
+#: .\my_auth\templates\registration\request_db_access_send.html:10
 msgid "Your request could <b>not</b> get send to the admins."
 msgstr ""
 "Ihre Anfrage konnte <b>nicht</b> an die Administrator*innen geschickt werden."
 
-#: .\django\my_auth\templates\registration\request_db_access_send.html:11
+#: .\my_auth\templates\registration\request_db_access_send.html:11
 msgid ""
 "It seems that your account did not get activated yet or you didn't activate "
 "your E-mail adress until now."
@@ -398,7 +428,7 @@ msgstr ""
 "Es scheint, dass Ihr Konto noch nicht aktiviert wurde oder Sie Ihre E-Mail-"
 "Adresse noch nicht aktiviert haben."
 
-#: .\django\my_auth\templates\registration\request_db_access_send.html:12
+#: .\my_auth\templates\registration\request_db_access_send.html:12
 msgid ""
 "As long as your profile is not complete, you will not be able to get "
 "WeatehrDB-database access."
@@ -406,11 +436,11 @@ msgstr ""
 "Solange Ihr Profil nicht vollständig ist, können Sie keinen Zugang zur "
 "WeatherDB-Datenbank erhalten."
 
-#: .\django\my_auth\templates\users\email_confirmation_resend_done.html:5
+#: .\my_auth\templates\users\email_confirmation_resend_done.html:5
 msgid "Reactivation Link send to"
 msgstr "Wiederherstellungs-Link gesendet an"
 
-#: .\django\my_auth\templates\users\email_confirmation_resend_done.html:6
+#: .\my_auth\templates\users\email_confirmation_resend_done.html:6
 msgid ""
 "An E-Mail was send to you to reactivate your account. Please also check your "
 "spam folder."
@@ -418,36 +448,48 @@ msgstr ""
 "Eine E-Mail um ihren Account zu reaktivieren wurde an Sie gesendet. Bitte "
 "überprüfen Sie auch ihren Spam Ordner."
 
-#: .\django\my_auth\templates\users\password_change_done.html:4
+#: .\my_auth\templates\users\password_change_done.html:4
 msgid "Password changed"
 msgstr "Passwort geändert"
 
-#: .\django\my_auth\templates\users\password_change_done.html:5
+#: .\my_auth\templates\users\password_change_done.html:5
 msgid "Your Password got successfully changed."
 msgstr "Ihr Passwort wurde erfolgreich geändert."
 
-#: .\django\my_auth\templates\users\password_change_done.html:6
+#: .\my_auth\templates\users\password_change_done.html:6
 msgid "Back to your Profile"
 msgstr "Zurück zu ihrem Profil"
 
-#: .\django\my_auth\templates\users\password_change_form.html:6
+#: .\my_auth\templates\users\password_change_form.html:6
 msgid "Change Password for"
 msgstr "Ändere Passwort für"
 
-#: .\django\my_auth\templates\users\password_change_form.html:12
-#: .\django\my_auth\templates\users\profile.html:93
+#: .\my_auth\templates\users\password_change_form.html:9
+msgid "Old Password"
+msgstr "Altes Passwort"
+
+#: .\my_auth\templates\users\password_change_form.html:11
+msgid "New Password"
+msgstr "Neues Passwort"
+
+#: .\my_auth\templates\users\password_change_form.html:13
+msgid "New Password confirmation"
+msgstr "Neues Passwort bestätigen"
+
+#: .\my_auth\templates\users\password_change_form.html:15
+#: .\my_auth\templates\users\profile.html:97
 msgid "Save Changes"
 msgstr "Speichere Änderungen"
 
-#: .\django\my_auth\templates\users\profile.html:6
+#: .\my_auth\templates\users\profile.html:6
 msgid "Profile page for"
 msgstr "Profil-Seite für"
 
-#: .\django\my_auth\templates\users\profile.html:6
+#: .\my_auth\templates\users\profile.html:6
 msgid "on the Hydro-Apps"
 msgstr "auf den Hydro-Apps"
 
-#: .\django\my_auth\templates\users\profile.html:18
+#: .\my_auth\templates\users\profile.html:18
 msgid ""
 "To access the Database it is important to have a meaningfull personal "
 "introduction in your profile settings."
@@ -456,7 +498,7 @@ msgstr ""
 "aussagekräftige persönliche Vorstellung in Ihren Profileinstellungen zu "
 "haben."
 
-#: .\django\my_auth\templates\users\profile.html:19
+#: .\my_auth\templates\users\profile.html:19
 msgid ""
 "If you didn't yet provide a good introduction please return to your profile "
 "page and update your profile."
@@ -464,23 +506,19 @@ msgstr ""
 "Wenn Sie sich noch nicht gut vorgestellt haben, kehren Sie bitte zu Ihrer "
 "Profilseite zurück und aktualisieren Sie Ihr Profil."
 
-#: .\django\my_auth\templates\users\profile.html:22
+#: .\my_auth\templates\users\profile.html:22
 msgid "return to profile"
 msgstr "zurück zu ihrem Profil"
 
-#: .\django\my_auth\templates\users\profile.html:23
+#: .\my_auth\templates\users\profile.html:23
 msgid "Send request"
 msgstr "Sende Anfrage"
 
-#: .\django\my_auth\templates\users\profile.html:45
-msgid "Password"
-msgstr "Passwort"
-
-#: .\django\my_auth\templates\users\profile.html:48
+#: .\my_auth\templates\users\profile.html:48
 msgid "Change Password"
 msgstr "Ändere Passwort"
 
-#: .\django\my_auth\templates\users\profile.html:67
+#: .\my_auth\templates\users\profile.html:70
 msgid ""
 "This information will get used to decide whether you are granted access to "
 "some ressources like e.g. the WeatherDB database. The information will only "
@@ -494,37 +532,45 @@ msgstr ""
 "an der Uni Freiburg Hydrologie oder ich bin Student der Hydrologie in "
 "Freiburg..."
 
-#: .\django\my_auth\templates\users\profile.html:72
+#: .\my_auth\templates\users\profile.html:75
 msgid "WeatherDB"
 msgstr "WeatherDB"
 
-#: .\django\my_auth\templates\users\profile.html:73
+#: .\my_auth\templates\users\profile.html:76
 msgid "specific profile settings for the active app"
 msgstr "spezifische Profileigenschaften für die aktive App"
 
-#: .\django\my_auth\templates\users\profile.html:81
+#: .\my_auth\templates\users\profile.html:84
 msgid "Database access"
 msgstr "Datenbankzugang"
 
-#: .\django\my_auth\templates\users\profile.html:84
+#: .\my_auth\templates\users\profile.html:85
+msgid "You haven't yet been granted access to the WeatherDB database."
+msgstr "Ihnen wurde noch kein Zugang zur WeatherDB-Datenbank gewährt."
+
+#: .\my_auth\templates\users\profile.html:87
 msgid "request access"
 msgstr "Zugang anfragen"
 
-#: .\django\my_auth\templates\users\profile.html:115
+#: .\my_auth\templates\users\profile.html:92
+msgid "maximal Download"
+msgstr "maximaler Download"
+
+#: .\my_auth\templates\users\profile.html:119
 msgid "Your E-Mail adress got confirmed"
 msgstr "Ihre E-Mail-Adresse wurde bestätigt"
 
-#: .\django\my_auth\templates\users\profile.html:118
+#: .\my_auth\templates\users\profile.html:122
 msgid "You still have to confirm your E-Mail adress"
 msgstr "Sie müssen noch Ihre E-Mail-Adresse bestätigen"
 
-#: .\django\my_auth\templates\users\profile.html:127
-#: .\django\my_auth\templates\users\profile.html:140
-#: .\django\my_auth\templates\users\profile.html:152
+#: .\my_auth\templates\users\profile.html:131
+#: .\my_auth\templates\users\profile.html:144
+#: .\my_auth\templates\users\profile.html:156
 msgid "Resend an E-mail confirmation mail."
 msgstr "E-Mail Bestätigung erneut zuschicken."
 
-#: .\django\my_auth\templates\users\profile.html:155
+#: .\my_auth\templates\users\profile.html:159
 msgid ""
 "You Account still has to get activated. <br>If your E-Mail is confirmed and "
 "you waited for 2 ore more days and your account is still not active, please "
@@ -534,19 +580,19 @@ msgstr ""
 "Sie 2 oder mehr Tage gewartet haben und Ihr Konto immer noch nicht aktiv "
 "ist, schreiben Sie bitte an"
 
-#: .\django\my_auth\templates\users\profile.html:170
+#: .\my_auth\templates\users\profile.html:174
 msgid "Renew the API Password"
 msgstr "Erneure das API Passwort"
 
-#: .\django\my_auth\templates\users\profile.html:188
+#: .\my_auth\templates\users\profile.html:192
 msgid "Copy the API Password to your clipboard"
 msgstr "Kopiere das API Passwort"
 
-#: .\django\my_auth\templates\users\profile.html:199
+#: .\my_auth\templates\users\profile.html:203
 msgid "Download your personal secret settings file"
 msgstr "Laden Sie Ihre persönliche \"secret settings\" Datei herunter"
 
-#: .\django\my_auth\templates\users\profile.html:212
+#: .\my_auth\templates\users\profile.html:216
 msgid ""
 "Hello Admin, \\n\\nI need a higher download limit for the weatherDB website, "
 "because: \\n... fill out ...\\n\\nPlease update my Account.\\n\\nSincerely,"
@@ -556,8 +602,8 @@ msgstr ""
 "Anwendung, weil ich \\n... füllen Sie dies aus...\\n\\nBitte aktualisieren "
 "Sie mein Konto.\\n\\nMit freundlichen Grüßen,\\n"
 
-#: .\django\my_auth\templates\users\profile.html:213
-#: .\django\my_auth\templates\users\profile.html:217
+#: .\my_auth\templates\users\profile.html:217
+#: .\my_auth\templates\users\profile.html:221
 msgid "Request a higher download limit"
 msgstr "Beantrage ein höheres Download-Limit"
 

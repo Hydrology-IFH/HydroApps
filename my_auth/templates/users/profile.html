@@ -49,9 +49,12 @@
         </div>
       </div>
     </div>
-    {% bootstrap_field form.username show_label='skip' addon_before='Username' addon_after_class=None addon_after='<div id="addon_after_user"></div>' %}
-    {% bootstrap_field form.first_name show_label='skip' addon_before='First Name' %}
-    {% bootstrap_field form.last_name show_label='skip' addon_before='Last Name' %}
+    {% trans "Username" as un %}
+    {% bootstrap_field form.username show_label='skip' addon_before=un addon_after_class=None addon_after='<div id="addon_after_user"></div>' %}
+    {% trans "First Name" as fn %}
+    {% bootstrap_field form.first_name show_label='skip' addon_before=fn %}
+    {% trans "Last Name" as ln %}
+    {% bootstrap_field form.last_name show_label='skip' addon_before=ln %}
     <div class="form-group mb-3">
       <div class="input-group">
         <span class="input-group-text">{% trans "personal introduction" %}</span>
@@ -79,14 +82,15 @@
             <div class="form-group mb-3">
               <div class="input-group">
                 <span class="input-group-text">{% trans "Database access" %}</span>
-                <input type="text" name="db_access" value="You haven't yet been granted access to the WeatherDB database." class="form-control" title="" disabled>
+                <input type="text" name="db_access" value="{% trans "You haven't yet been granted access to the WeatherDB database." %}" class="form-control" title="" disabled>
                 <div class="input-group-append">
                   <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestDBAccessModal" id="requestDBAccessModalButton">{% trans "request access" %}</a>
                 </div>
               </div>
             </div>
           {% endif %}
-          {% bootstrap_field form.wdb_max_downloads show_label='skip' addon_before='{% trans "maximal Download" %}' addon_after_class=None addon_after='<div id="addon_after_max_download"></div>' %}
+          {% trans "maximal Download" as md %}
+          {% bootstrap_field form.wdb_max_downloads show_label='skip' addon_before=md addon_after_class=None addon_after='<div id="addon_after_max_download"></div>' %}
         </div>
       </div>
     {% endif %}

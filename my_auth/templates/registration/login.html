@@ -17,12 +17,18 @@
   <form method="post">
     {% csrf_token %}
     {% bootstrap_form_errors form %}
-    {% bootstrap_field form.username show_label='skip' addon_before='Username' placeholder='E-Mail/Username'%}
-    {% bootstrap_field form.password show_label='skip' addon_before='Password' addon_after_class=None addon_after='<a id="a_password_reset" class="btn btn-primary">Forgot Password</a>'%}
-    <input class="btn btn-primary" type="submit" value="Login">
+    {% trans "Username" as user %} {% trans "E-Mail/Username" as ph_user %}
+    {% bootstrap_field form.username show_label='skip' addon_before=user placeholder=ph_user %}
+    {% trans "Password" as pass %}
+    {% bootstrap_field form.password show_label='skip' addon_before=pass addon_after_class=None addon_after='<a id="a_password_reset" class="btn btn-primary"></a>'%}
+    <input class="btn btn-primary" type="submit" value='{% trans "Login" %}'>
   </form>
   <script>
-    document.getElementById("a_password_reset").href = "{% url 'password_reset' app_name=active_app %}"
+    (() => {
+      a_reset = document.getElementById("a_password_reset");
+      a_reset.href = "{% url 'password_reset' app_name=active_app %}";
+      a_reset.textContent = '{% trans "Forgot Password" %}'
+    })()
   </script>
 {% endif %}
 

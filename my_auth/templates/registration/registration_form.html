@@ -7,11 +7,13 @@
 <p><a class="mb-4" href="{% url 'login' app_name=active_app %}">{% trans "Back to login" %}</a></p>
 <form method="post">
     {% csrf_token %}
-    {% comment %} {% bootstrap_form form %} {% endcomment %}
-    {% bootstrap_field form.username show_label='skip' addon_before='{% trans "Username" %}' form_group_class="form-group input-group mb-3" layout="horizontal" %}
-    {% bootstrap_field form.email show_label='skip' addon_before='E-Mail'%}
-    {% bootstrap_field form.first_name show_label='skip' addon_before='{% trans "First Name" %}' %}
-    {% bootstrap_field form.last_name show_label='skip' addon_before='{% trans "Last Name" %}' %}
+    {% trans "Username" as un %}
+    {% bootstrap_field form.username show_label='skip' addon_before=un form_group_class="form-group input-group mb-3" layout="horizontal" placeholder=un %}
+    {% bootstrap_field form.email show_label='skip' addon_before='E-Mail' placeholder="max@mustermann.de" %}
+    {% trans "First Name" as fn %}
+    {% bootstrap_field form.first_name show_label='skip' addon_before=fn placeholder="Max" %}
+    {% trans "Last Name" as ln %}
+    {% bootstrap_field form.last_name show_label='skip' addon_before=ln placeholder="Mustermann"%}
     <div class="form-group input-group">
       <span class="input-group-text">{% trans "personal introduction" %}</span>
       {{ form.personal_introduction }}
@@ -24,8 +26,10 @@
         </script>
       {% endif %}
     </div>
-    {% bootstrap_field form.password1 show_label='skip' addon_before='{% trans "Password" %}'%}
-    {% bootstrap_field form.password2 show_label='skip' addon_before='{% trans "Password confirmation" %}'%}
+    {% trans "Password" as pass %}
+    {% bootstrap_field form.password1 show_label='skip' addon_before=pass %}
+    {% trans "Password confirmation" as pass2 %}
+    {% bootstrap_field form.password2 show_label='skip' addon_before=pass2 %}
     {% bootstrap_field form.confirmed_data_policy %}
     <script src="https://js.hcaptcha.com/1/api.js?hl={{ request.LANGUAGE_CODE }}" async defer></script>
     <div class="h-captcha" data-sitekey="{{ HCAPTCHA_SITEKEY }}" ></div>

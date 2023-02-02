@@ -28,7 +28,7 @@ class CustomUserCreationForm(UserCreationForm):
             "personal_introduction": personal_introduction_widget,
         }
         help_texts = {
-            "confirmed_data_policy": "<a href='/datenschutz' id='link_privacy'>{0}</a>".format(_("Privacy agreement"))
+            "confirmed_data_policy": "<a href='/datenschutz' id='link_privacy'>{0}</a>".format(_("Privacy agreement")),
         }
 
     def clean_username(self):
@@ -53,8 +53,9 @@ class CustomUserCreationForm(UserCreationForm):
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
             personal_introduction=self.cleaned_data['personal_introduction'],
+            confirmed_data_policy=self.cleaned_data['confirmed_data_policy'],
             is_email_confirmed=False,
-            is_active=False,
+            is_active=False
         )
         return user
 

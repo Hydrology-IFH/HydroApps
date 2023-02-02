@@ -1,6 +1,4 @@
-{% autoescape off %}
-{% load i18n %}
-
+{% autoescape off %}{% load i18n %}
 {% trans "Hello" %} {{ user.first_name }} {{ user.last_name }},
 
 {% trans "The admin did grant you Database access to the WeatherDB. You can login on our" %} <a href="{% url 'login' app_name="weatherDB" %}">{% trans "WeatherDB Website" %}</a> {% trans "and go to your profile page to download your database password" %}.

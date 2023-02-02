@@ -216,7 +216,7 @@
                         {% if user.is_authenticated %}
                           <a href="{% url 'user_profile' app_name=active_app %}" class="dropdown-item">{% trans "Profil" %}</a>
                           {% if user.is_superuser %}
-                            <a href="{% url 'admin:index' %}" class="dropdown-item">{% trans Admin %}</a>
+                            <a href="{% url 'admin:index' %}" class="dropdown-item">{% trans "Admin" %}</a>
                           {% endif %}
                           <a href="{% url 'logout' app_name=active_app %}" class="dropdown-item">{% trans "Log out" %}</a>
                         {% else %}

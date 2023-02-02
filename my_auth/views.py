@@ -20,6 +20,7 @@ from django.contrib.auth.views import (
     LoginView, LogoutView
 )
 from main.utils.utils import get_context_extra
+from main import settings
 
 # Create your views here.
 @csrf_protect
