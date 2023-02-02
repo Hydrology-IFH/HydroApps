@@ -176,7 +176,11 @@
                       {% if show_unreleased %}
                       <li><a href="{% url 'klimzuk:home' %}" class="dropdown-item">KlimZuk</a></li>
                       {% endif %}
-                      <li><a href="https://naturwb.de" class="dropdown-item">NatUrWB</a></li>
+                      <li><a href="https://naturwb.de" class="dropdown-item">
+                        <div class="row">
+                          <span class="col">NatUrWB</span>
+                          <i class="bi bi-box-arrow-up-right col"></i>
+                        </div></a></li>
                     </ul>
                   </li>
                 </ul>

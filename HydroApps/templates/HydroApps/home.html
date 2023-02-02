@@ -10,6 +10,15 @@
   img.card-img-top{
     width: 15rem;
   }
+  div.card > i.bi-box-arrow-up-right{
+    position: absolute;
+    align-self: end;
+    margin-right: 1rem !important;
+    margin-top: 0.5rem !important;
+    font-size: 1.5rem;
+    color: #004A99;
+    align-self: flex-end !important;
+  }
 </style>
 {% endblock %}
 
@@ -19,7 +28,7 @@
   <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4">  
       <div class="col">
-        <div class="card">
+        <div class="card h-100">
           <a href="{% url 'weatherDB:home' %}" class="stretched-link"></a>
           <img src="{% static 'weatherDB/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
           <div class="card-body">
@@ -30,7 +39,7 @@
       </div>
       {% if show_unreleased %}
       <div class="col">
-        <div class="card">
+        <div class="card h-100">
           <a href="{% url 'klimzuk:home' %}" class="stretched-link"></a>
           <img src="{% static 'klimzuk/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB">
           <div class="card-body">
@@ -41,9 +50,10 @@
       </div>
       {% endif %}
       <div class="col">
-        <div class="card">
+        <div class="card h-100">
           <a href="https://naturwb.de" class="stretched-link"></a>
           <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
+          <i class="bi bi-box-arrow-up-right"></i>
           <div class="card-body">
             <h5 class="card-title">NatUrWB</h5>
             <p class="card-text">{% trans "This is an Application to get the near natural water balance of cities." %} </p>
