@@ -182,10 +182,10 @@ class MyLoginView(LoginView):
     
     def get_default_redirect_url(self):
         active_app = get_context_extra(self.request)["active_app"]
-        return f"/{active_app}/auth/accounts/profile/"
+        return f"/{self.request.LANGUAGE_CODE}/{active_app}/auth/accounts/profile/"
 
 
 class MyLogoutView(LogoutView):
     def get_next_page(self):
         active_app = get_context_extra(self.request)["active_app"]
-        return f"/{active_app}/"
+        return f"/{self.request.LANGUAGE_CODE}/{active_app}/"
