@@ -1,25 +1,26 @@
 {% extends base_template %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
-<h1>Datenschutz&shy;erkl&auml;rung</h1>
-<h2>1. Datenschutz auf einen Blick</h2>
-<h3>Allgemeine Hinweise</h3>
-<p>Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, was mit Ihren personenbezogenen Daten
-  passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie pers&ouml;nlich
-  identifiziert werden k&ouml;nnen. Ausf&uuml;hrliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter
-  diesem Text aufgef&uuml;hrten Datenschutzerkl&auml;rung.</p>
-<h3>Datenerfassung auf dieser Website</h3>
-<h4>Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?</h4>
-<p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten k&ouml;nnen Sie dem
-  Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser Datenschutzerkl&auml;rung entnehmen.</p>
-<h4>Wie erfassen wir Ihre Daten?</h4>
-<p>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.&nbsp;B. um Daten
-  handeln, die Sie in ein Kontaktformular, Anmeldeformular oder Anfrageformular eingeben.</p>
-<p>Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst.
+<h1>{% trans "Privacy aggrement" %}</h1>
+<h2>1. {% trans "Overview of privacy agreement" %}</h2>
+
+<h3>{% trans "General notes" %}</h3>
+<p>{% blocktrans %}The following notices provide a simple overview of what happens to your personal data
+  when you visit this website. Personal data is any data that can be used to identify you personally.
+ For more detailed information on the subject of data protection, please refer to this privacy aggrement.{% endblocktrans %}</p>
+<h3>{% trans "Data collection on this site" %}</h3>
+<h4>{% trans "Who is responsible for the data Collection on this site?" %}</h4>
+<p>{% blocktrans %}Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten k&ouml;nnen Sie dem
+  Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser Datenschutzerkl&auml;rung entnehmen.{% endblocktrans %}</p>
+<h4>{% trans "Wie erfassen wir Ihre Daten?" %}</h4>
+<p>{% blocktrans %}Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.&nbsp;B. um Daten
+  handeln, die Sie in ein Kontaktformular, Anmeldeformular oder Anfrageformular eingeben.{% endblocktrans %}</p>
+<p>{% blocktrans %}Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst.
   Das sind vor allem technische Daten (z.&nbsp;B. Internetbrowser, Betriebssystem, IP-Adresse oder Uhrzeit des Seitenaufrufs). Die
-  Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.</p>
-<h4>Wof&uuml;r nutzen wir Ihre Daten?</h4>
+  Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.{% endblocktrans %}</p>
+<h4>{% trans "Wof&uuml;r nutzen wir Ihre Daten?" %}</h4>
 <p>Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gew&auml;hrleisten. Andere Daten
   k&ouml;nnen zur Analyse Ihres Nutzerverhaltens verwendet werden.</p>
 <h4>Welche Rechte haben Sie bez&uuml;glich Ihrer Daten?</h4>
@@ -63,12 +64,13 @@
   <br><a href="mailto:datenschutzbeauftragter@uni-freiburg.de">datenschutzbeauftragter@uni-freiburg.de</a></p>
 
 <h3>Speicherdauer</h3>
-<p>Soweit innerhalb dieser Datenschutzerkl&auml;rung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre
+<p>{% blocktrans %}Soweit innerhalb dieser Datenschutzerkl&auml;rung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre
   personenbezogenen Daten bei uns, bis der Zweck f&uuml;r die Datenverarbeitung entf&auml;llt. Wenn Sie ein berechtigtes
   L&ouml;schersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten
   gel&ouml;scht, sofern wir keine anderen rechtlich zul&auml;ssigen Gr&uuml;nde f&uuml;r die Speicherung Ihrer
   personenbezogenen Daten haben (z.&nbsp;B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall
-  erfolgt die L&ouml;schung nach Fortfall dieser Gr&uuml;nde.</p>
+  erfolgt die L&ouml;schung nach Fortfall dieser Gr&uuml;nde.{% endblocktrans %}</p>
+<p>{% trans "Ihr angelegtes Konto und die dazugehörigen Daten löschen wir nach einer Inaktivität von 2 Jahren." %}</p>
 <h3>Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website</h3>
 <p>Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage
   von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1

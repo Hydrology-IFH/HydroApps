@@ -1,12 +1,9 @@
 {% extends base_template %}
 {% load django_bootstrap5 %}
-
-{% comment %} {% block head %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-{% endblock %} {% endcomment %}
+{% load i18n %}
 
 {% block content %}
-<h2>Profile page for {{user.username}} on the Hydro-Apps</h2>
+<h2>{% trans "Profile page for" %} {{user.username}} {% trans "on the Hydro-Apps" %}</h2>
 
 {% if not user.wdb_is_db_user %}
   <div class="modal fade" id="requestDBAccessModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="requestDBAccessModalLabel" aria-hidden="true">
@@ -18,12 +15,12 @@
           </button>
         </div>
         <div class="modal-body">
-          <p> To access the Database it is important to have a meaningfull personal introduction in your profile settings.</p>
-          <p> If you didn't yet provide a good introduction please return to your profile page and update your profile.
+          <p>{% trans "To access the Database it is important to have a meaningfull personal introduction in your profile settings." %}</p>
+          <p>{% trans "If you didn't yet provide a good introduction please return to your profile page and update your profile." %}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">return to profile</button>
-          <a type="button btn btn-primary" class="btn btn-primary" href='{%url "request_db_access" app_name=active_app %}'>Send request</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "return to profile" %}</button>
+          <a type="button btn btn-primary" class="btn btn-primary" href='{%url "request_db_access" app_name=active_app %}'>{% trans "Send request" %}</a>
         </div>
       </div>
     </div>
@@ -45,19 +42,22 @@
     {% bootstrap_field form.email show_label='skip' addon_before='E-Mail' addon_after_class=None addon_after='<div id="addon_after_email"></div>'%}
     <div class="form-group mb-3">
       <div class="input-group">
-        <span class="input-group-text">Password</span>
+        <span class="input-group-text">{% trans "Password" %}</span>
         <input type="password" name="password" value="notarealpassword" maxlength="50" class="form-control" title="" disabled="" id="id_password">
         <div class="input-group-append">
-          <a href="{% url 'password_change' app_name=active_app %}" class="btn btn-primary">Change Password</a>
+          <a href="{% url 'password_change' app_name=active_app %}" class="btn btn-primary">{% trans "Change Password" %}</a>
         </div>
       </div>
     </div>
-    {% bootstrap_field form.username show_label='skip' addon_before='Username' addon_after_class=None addon_after='<div id="addon_after_user"></div>' %}
-    {% bootstrap_field form.first_name show_label='skip' addon_before='First Name' %}
-    {% bootstrap_field form.last_name show_label='skip' addon_before='Last Name' %}
+    {% trans "Username" as un %}
+    {% bootstrap_field form.username show_label='skip' addon_before=un addon_after_class=None addon_after='<div id="addon_after_user"></div>' %}
+    {% trans "First Name" as fn %}
+    {% bootstrap_field form.first_name show_label='skip' addon_before=fn %}
+    {% trans "Last Name" as ln %}
+    {% bootstrap_field form.last_name show_label='skip' addon_before=ln %}
     <div class="form-group mb-3">
       <div class="input-group">
-        <span class="input-group-text">personal introduction</span>
+        <span class="input-group-text">{% trans "personal introduction" %}</span>
         {{ form.personal_introduction }}
         {% if not form.personal_introduction.errors %}
           <script type="text/javascript">
@@ -67,13 +67,13 @@
           </script>
         {% endif %}
       </div>
-      <small class="form-text text-muted">This information will get used to decide whether you are granted access to some ressources like e.g. the WeatherDB database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg...</small>
+      <small class="form-text text-muted">{% trans "This information will get used to decide whether you are granted access to some ressources like e.g. the WeatherDB database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg..." %}</small>
     </div>
     {% if active_app == "weatherDB" %}    
       <div class="card" style="width: 100%;">
         <div class="card-body">
-          <h5 class="card-title">WeatherDB</h5>
-          <h6 class="card-subtitle mb-2 text-muted">specific profile settings for this app</h6>
+          <h5 class="card-title">{% trans "WeatherDB" %}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{% trans "specific profile settings for the active app" %}</h6>
 
     
           {% if user.wdb_is_db_user %}
@@ -81,19 +81,20 @@
           {% else %}
             <div class="form-group mb-3">
               <div class="input-group">
-                <span class="input-group-text">Database access</span>
-                <input type="text" name="db_access" value="You haven't yet been granted access to the WeatherDB database." class="form-control" title="" disabled>
+                <span class="input-group-text">{% trans "Database access" %}</span>
+                <input type="text" name="db_access" value="{% trans "You haven't yet been granted access to the WeatherDB database." %}" class="form-control" title="" disabled>
                 <div class="input-group-append">
-                  <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestDBAccessModal" id="requestDBAccessModalButton">request access</a>
+                  <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestDBAccessModal" id="requestDBAccessModalButton">{% trans "request access" %}</a>
                 </div>
               </div>
             </div>
           {% endif %}
-          {% bootstrap_field form.wdb_max_downloads show_label='skip' addon_before='max Dowload' addon_after_class=None addon_after='<div id="addon_after_max_download"></div>' %}
+          {% trans "maximal Download" as md %}
+          {% bootstrap_field form.wdb_max_downloads show_label='skip' addon_before=md addon_after_class=None addon_after='<div id="addon_after_max_download"></div>' %}
         </div>
       </div>
     {% endif %}
-    <input type="submit" class="btn btn-primary" value="Save Changes">
+    <input type="submit" class="btn btn-primary" value="{% trans "Save Changes" %}">
 </form>
 {% endblock %}
 
@@ -114,10 +115,10 @@
     let icon_email = icon.cloneNode();
     if (is_email_confirmed){
       icon_email.classList.add("bi-envelope-check", "text-success");
-      addon_after_email.setAttribute("title", "Your E-Mail adress got confirmed");
+      addon_after_email.setAttribute("title", '{% trans "Your E-Mail adress got confirmed" %}');
     } else {
       icon_email.classList.add("bi-envelope-dash", "text-danger");
-      addon_after_email.setAttribute("title", "You still have to confirm your E-Mail adress");
+      addon_after_email.setAttribute("title", '{% trans "You still have to confirm your E-Mail adress" %}');
 
       let btn_resend = document.createElement("a");
       btn_resend.id="btn_resend_email_conf";
@@ -126,7 +127,7 @@
       btn_resend.innerHTML = "<i class='bi bi-arrow-clockwise'>";
       btn_resend.setAttribute("data-bs-toggle", "tooltip");
       btn_resend.setAttribute("data-bs-placement", "top");
-      btn_resend.setAttribute("title", "Resend an E-mail confirmation mail.");
+      btn_resend.setAttribute("title", '{% trans "Resend an E-mail confirmation mail." %}');
       addon_after_email.parentElement.appendChild(btn_resend);
     }
     addon_after_email.appendChild(icon_email);
@@ -139,7 +140,7 @@
       btn_resend.innerHTML = "<i class='bi bi-arrow-clockwise'>";
       btn_resend.setAttribute("data-bs-toggle", "tooltip");
       btn_resend.setAttribute("data-bs-placement", "top");
-      btn_resend.setAttribute("title", "Resend an E-mail confirmation mail.");
+      btn_resend.setAttribute("title", '{% trans "Resend an E-mail confirmation mail." %}');
       addon_after_email.parentElement.appendChild(btn_resend);
     }
     
@@ -151,10 +152,10 @@
     let icon_account = icon.cloneNode();
     if ({{user.is_active|yesno:"true,false"}}){
       icon_account.classList.add("bi-person-check", "text-success");
-      addon_after_user.setAttribute("title", "Your Account is active");
+      addon_after_user.setAttribute("title", '{% trans "Resend an E-mail confirmation mail." %}');
     } else {
       icon_account.classList.add("bi-person-dash", "text-danger");
-      addon_after_user.setAttribute("title", "You Account still has to get activated. <br>If your E-Mail is confirmed and you waited for 2 ore more days and your account is still not active, please write to max.schmit_at_hydrology.uni-freiburg.de");
+      addon_after_user.setAttribute("title", '{% trans "You Account still has to get activated. <br>If your E-Mail is confirmed and you waited for 2 ore more days and your account is still not active, please write to" %} max.schmit@hydrology.uni-freiburg.de');
     }
     addon_after_user.appendChild(icon_account);
 
@@ -169,7 +170,7 @@
       btn_renew.innerHTML = "<i class='bi bi-arrow-clockwise'>";
       btn_renew.setAttribute("data-bs-toggle", "tooltip");
       btn_renew.setAttribute("data-bs-placement", "top");
-      btn_renew.setAttribute("title", "Renew the API Password");
+      btn_renew.setAttribute("title", '{% trans "Renew the API Password" %}');
       addon_after_api.appendChild(btn_renew);
 
       if (navigator.clipboard != undefined){
@@ -182,12 +183,12 @@
           e.stopPropagation();
           let api_key_dom = document.getElementById("id_db_password");
           navigator.clipboard.writeText(api_key_dom.value).then(res=>{
-            console.log("Input data copied to clipboard successfully");
+            console.log('Input data copied to clipboard successfully');
         })
         });
         btn_clipboard.setAttribute("data-bs-toggle", "tooltip");
         btn_clipboard.setAttribute("data-bs-placement", "top");
-        btn_clipboard.setAttribute("title", "Copy the API Password to your clipboard")
+        btn_clipboard.setAttribute("title", '{% trans "Copy the API Password to your clipboard" %}')
         addon_after_api.appendChild(btn_clipboard);   
       }
 
@@ -198,7 +199,7 @@
       btn_download.innerHTML = "<i class='bi bi-download'>";
       btn_download.setAttribute("data-bs-toggle", "tooltip");
       btn_download.setAttribute("data-bs-placement", "top");
-      btn_download.setAttribute("title", "Download your personal secret settings file"); 
+      btn_download.setAttribute("title", '{% trans "Download your personal secret settings file" %}'); 
       addon_after_api.appendChild(btn_download);
     }    
 
@@ -211,12 +212,12 @@
   let btn_request_more = document.createElement("a");
   btn_request_more.id="btn_renew_max_download";
   btn_request_more.className = "btn btn-outline-primary";
-  mail_body=encodeURIComponent("Hello Admin, \n\nI need a higher download limit for the weatherDB website, because: \n... fill out ...\n\nPlease update my Account.\n\nSincerely,\n")
-  btn_request_more.href=`mailto:max.schmit@hydrology.uni-freiburg.de?subject=[WeatherDB]Request a higher download limit&body=${mail_body}`;
+  mail_body=encodeURIComponent('{% trans "Hello Admin, \n\nI need a higher download limit for the weatherDB website, because: \n... fill out ...\n\nPlease update my Account.\n\nSincerely,\n" %}')
+  btn_request_more.href=`mailto:max.schmit@hydrology.uni-freiburg.de?subject=[WeatherDB]{% trans "Request a higher download limit" %}&body=${mail_body}`;
   btn_request_more.innerHTML = "<i class='bi bi-send'>";
   btn_request_more.setAttribute("data-bs-toggle", "tooltip");
   btn_request_more.setAttribute("data-bs-placement", "top");
-  btn_request_more.setAttribute("title", "Request a higher download limit");
+  btn_request_more.setAttribute("title", '{% trans "Request a higher download limit" %}');
   addon_after_max_download.appendChild(btn_request_more);
 
   // start bootstrap tooltip

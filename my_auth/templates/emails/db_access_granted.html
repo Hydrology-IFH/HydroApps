@@ -1,8 +1,8 @@
-{% autoescape off %}
-Helo {{ user.first_name }} {{ user.last_name }},
+{% autoescape off %}{% load i18n %}
+{% trans "Hello" %} {{ user.first_name }} {{ user.last_name }},
 
-The admin did grant you Database access. You can login on our <a href="{% url 'login' app_name="HydroApps" %}">Hydro-Apps Website </a>.
+{% trans "The admin did grant you Database access to the WeatherDB. You can login on our" %} <a href="{% url 'login' app_name="weatherDB" %}">{% trans "WeatherDB Website" %}</a> {% trans "and go to your profile page to download your database password" %}.
 
-If you think, it's not for you, then just ignore this email.
-This is an automatic generated E-mail, please don't answer it.
+{% blocktrans %}If you think, it's not for you, then just ignore this email.
+This is an automatic generated E-mail, please don't answer it.{% endblocktrans %}
 {% endautoescape %}

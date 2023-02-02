@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block head_first %}
   <title>KlimZuk</title>
   <link rel="icon" type="image/x-icon" href="{% static 'klimzuk/img/favicon.ico'%}">
-  <meta name="description" content="Eine Darstellung der Klima-Prognosen für einzelne Wetter-Stationen. Ergebnisse des ASGII Projekts">
+  <meta name="description" content='{% trans "A presentation of climate forecasts for individual weather stations. Results from the ASG-II project." %}'>
 {% endblock %}
 
 {% block navbar_brand %}
@@ -15,9 +16,9 @@
 
 {% block navbar_app %}
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item "><a href="{% url 'klimzuk:home' %}" class="nav-link">Home</a></li>
-    <li class="nav-item "><a href="{% url 'klimzuk:method' %}" class="nav-link">Methode</a></li>
-    <li class="nav-item "><a href="{% url 'klimzuk:map' %}" class="nav-link">Karte</a></li>
+    <li class="nav-item "><a href="{% url 'klimzuk:home' %}" class="nav-link">{% trans "Home" %}</a></li>
+    <li class="nav-item "><a href="{% url 'klimzuk:method' %}" class="nav-link">{% trans "Method" %}</a></li>
+    <li class="nav-item "><a href="{% url 'klimzuk:map' %}" class="nav-link">{% trans "Map" %}</a></li>
   </ul>
 {% endblock %}
 

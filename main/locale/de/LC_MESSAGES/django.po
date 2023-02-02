@@ -1,0 +1,574 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: HydroApps\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-02 10:48+0100\n"
+"PO-Revision-Date: 2023-02-01 12:30+0100\n"
+"Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SearchPath-0: klimzuk/locale\n"
+"X-Poedit-SearchPath-1: main/locale\n"
+"X-Poedit-SearchPath-2: weatherDB/locale\n"
+"X-Poedit-SearchPath-3: my_auth/locale\n"
+"X-Poedit-SearchPath-4: HydroApps/locale\n"
+
+#: .\main\settings.py:223
+msgid "German"
+msgstr "Deutsch"
+
+#: .\main\settings.py:224
+msgid "English"
+msgstr "Englisch"
+
+#: .\main\templates\base.html:223
+msgid "Profil"
+msgstr "Profil"
+
+#: .\main\templates\base.html:225
+msgid "Admin"
+msgstr ""
+
+#: .\main\templates\base.html:227
+msgid "Log out"
+msgstr "Ausloggen"
+
+#: .\main\templates\base.html:229
+msgid "Login"
+msgstr "Einloggen"
+
+#: .\main\templates\base.html:272
+msgid "imprint"
+msgstr "Impressum"
+
+#: .\main\templates\base.html:273
+msgid "privacy agreement"
+msgstr "Datenschutzerklärung"
+
+#: .\main\templates\datenschutz.html:6
+msgid "Privacy aggrement"
+msgstr "Datenschutzerklärung"
+
+#: .\main\templates\datenschutz.html:7
+msgid "Overview of privacy agreement"
+msgstr "Datenschutz auf einen Blick"
+
+#: .\main\templates\datenschutz.html:9
+msgid "General notes"
+msgstr "Allgemeine Hinweise"
+
+#: .\main\templates\datenschutz.html:10
+msgid ""
+"The following notices provide a simple overview of what happens to your "
+"personal data\n"
+"  when you visit this website. Personal data is any data that can be used to "
+"identify you personally.\n"
+" For more detailed information on the subject of data protection, please "
+"refer to this privacy aggrement."
+msgstr ""
+"Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, "
+"was mit Ihren personenbezogenen Daten\n"
+"  passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind "
+"alle Daten, mit denen Sie pers&ouml;nlich\n"
+"  identifiziert werden k&ouml;nnen. Ausf&uuml;hrliche Informationen zum "
+"Thema Datenschutz entnehmen Sie unserer unter\n"
+"  diesem Text aufgef&uuml;hrten Datenschutzerkl&auml;rung."
+
+#: .\main\templates\datenschutz.html:13
+msgid "Data collection on this site"
+msgstr "Datenerfassung auf dieser Website"
+
+#: .\main\templates\datenschutz.html:14
+msgid "Who is responsible for the data Collection on this site?"
+msgstr "Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?"
+
+#: .\main\templates\datenschutz.html:15
+msgid ""
+"Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. "
+"Dessen Kontaktdaten k&ouml;nnen Sie dem\n"
+"  Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser "
+"Datenschutzerkl&auml;rung entnehmen."
+msgstr ""
+"Data processing on this website is done by the website operator. You can "
+"find his contact details in the\n"
+"  Section \"Information about the responsible party\" in this privacy "
+"aggrement."
+
+#: .\main\templates\datenschutz.html:17
+msgid "Wie erfassen wir Ihre Daten?"
+msgstr "How is your data collected?"
+
+#: .\main\templates\datenschutz.html:18
+msgid ""
+"Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. "
+"Hierbei kann es sich z.&nbsp;B. um Daten\n"
+"  handeln, die Sie in ein Kontaktformular, Anmeldeformular oder "
+"Anfrageformular eingeben."
+msgstr ""
+"On the one hand, your data is collected by you providing it to us. This can "
+"be e.g. data that you enter in a contact\n"
+"  that you enter in a contact form, registration form or request form."
+
+#: .\main\templates\datenschutz.html:20
+msgid ""
+"Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der "
+"Website durch unsere IT-Systeme erfasst.\n"
+"  Das sind vor allem technische Daten (z.&nbsp;B. Internetbrowser, "
+"Betriebssystem, IP-Adresse oder Uhrzeit des Seitenaufrufs). Die\n"
+"  Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website "
+"betreten."
+msgstr ""
+
+#: .\main\templates\datenschutz.html:23
+msgid "Wof&uuml;r nutzen wir Ihre Daten?"
+msgstr ""
+
+#: .\main\templates\datenschutz.html:67
+msgid ""
+"Soweit innerhalb dieser Datenschutzerkl&auml;rung keine speziellere "
+"Speicherdauer genannt wurde, verbleiben Ihre\n"
+"  personenbezogenen Daten bei uns, bis der Zweck f&uuml;r die "
+"Datenverarbeitung entf&auml;llt. Wenn Sie ein berechtigtes\n"
+"  L&ouml;schersuchen geltend machen oder eine Einwilligung zur "
+"Datenverarbeitung widerrufen, werden Ihre Daten\n"
+"  gel&ouml;scht, sofern wir keine anderen rechtlich zul&auml;ssigen Gr&uuml;"
+"nde f&uuml;r die Speicherung Ihrer\n"
+"  personenbezogenen Daten haben (z.&nbsp;B. steuer- oder handelsrechtliche "
+"Aufbewahrungsfristen); im letztgenannten Fall\n"
+"  erfolgt die L&ouml;schung nach Fortfall dieser Gr&uuml;nde."
+msgstr ""
+
+#: .\main\templates\datenschutz.html:73
+msgid ""
+"Ihr angelegtes Konto und die dazugehörigen Daten löschen wir nach einer "
+"Inaktivität von 2 Jahren."
+msgstr ""
+
+#: .\main\templates\impressum.html:6
+msgid "Imprint"
+msgstr "Impressum"
+
+#: .\main\templates\impressum.html:8
+msgid ""
+"This site was created in 2022 by Max Schmit at the Chair of Hydrology at the "
+"University of Freiburg."
+msgstr ""
+"Diese Seite wurde 2022 von Max Schmit an der Professur für Hydrologie der "
+"Universität Freiburg erstellt."
+
+#: .\main\templates\impressum.html:11
+msgid ""
+"Author - content, structure, implementation and conception of the website"
+msgstr "Autor - Inhalt, Aufbau, Umsetzung und Konzeption der Webseite"
+
+#: .\main\templates\impressum.html:19
+msgid "Max Schmit is at your disposal for questions, problems and comments."
+msgstr ""
+"Zu Fragen, Problemen und Anmerkungen steht Ihnen Max Schmit gerne zur "
+"Verfügung."
+
+#: .\main\templates\impressum.html:22
+msgid "Editor"
+msgstr "Herausgeber"
+
+#: .\main\templates\impressum.html:24
+msgid "Chair of Hydrology - Albert-Ludwigs University of Freiburg i.Br."
+msgstr "Professur für Hydrologie - Albert-Ludwigs Universität Freiburg i.Br."
+
+#: .\main\templates\impressum.html:25
+msgid "Managingn Director"
+msgstr "Geschäftsführender Direktor"
+
+#: .\main\templates\impressum.html:30
+msgid "Tax identification number"
+msgstr "Umsatzsteueridentifikationsnummer"
+
+#: .\main\templates\impressum.html:33
+msgid "used images"
+msgstr "genutzte Bilder"
+
+#: .\main\templates\impressum.html:34
+msgid "The following image sources were used for this page"
+msgstr "Folgende Bild-Quellen wurden für diese Seite genutzt"
+
+#: .\main\templates\impressum.html:41
+msgid "used software"
+msgstr "Benutzte Software"
+
+#: .\main\templates\impressum.html:42
+msgid "The following software packages got used for creating this website"
+msgstr "The following software packages got used for creating this website"
+
+#: .\main\templates\impressum.html:64
+msgid ""
+"This list does not claim to be a complete list of all the software used, but "
+"only lists the main packages. We thank all the developers of these packages "
+"for their work, because without their work this project would not have been "
+"possible."
+msgstr ""
+"Diese Auflistung hat nicht den Anspruch eine ausschöpfende Auflistung der "
+"verwendeten Software zu sein, sondern nur die Hauptpakete aufzulisten. Den "
+"Entwickler*Innen dieser Pakete soll hiermit für ihre Arbeit gedankt werden, "
+"da ohne deren Arbeit dieses Projekt nicht hätte entstehen können."
+
+#: .\main\templates\impressum.html:65
+msgid ""
+"Certainly many more software packages were used that are not listed here. "
+"However, we would like to thank them as well."
+msgstr ""
+"Sicher kamen noch viele weitere Software-Pakete zum Einsatz die hier nicht "
+"aufgeführt werden können. Der Dank gilt ihnen aber ebenso."
+
+#: .\main\templates\impressum.html:67
+msgid "Used datasets"
+msgstr "Genutzte Datensätze"
+
+#: .\main\templates\impressum.html:69
+msgid ""
+"The following data sets were used to determine the time series for WeatherDB-"
+"App"
+msgstr ""
+"Folgende Datensätze fanden eine Verwendung zum bestimmen der WeatherDB-"
+"Zeitreihen"
+
+#: .\main\templates\impressum.html:72 .\main\templates\impressum.html:74
+#: .\main\templates\impressum.html:78 .\main\templates\impressum.html:80
+#: .\main\templates\impressum.html:82 .\main\templates\impressum.html:84
+#: .\main\templates\impressum.html:86
+msgid "Available online at"
+msgstr "Online verfügbar unter"
+
+#: .\main\templates\impressum.html:78 .\main\templates\impressum.html:80
+#: .\main\templates\impressum.html:82 .\main\templates\impressum.html:84
+msgid "last checked on"
+msgstr "zuletzt geprüft am"
+
+#: .\main\templates\impressum.html:90
+msgid "Disclaimer"
+msgstr "Haftungsausschluss"
+
+#: .\main\templates\impressum.html:91
+msgid ""
+"\n"
+"  The Chair of Hydrology as publisher and Max Schmit as author of the "
+"website do not assume any liability or guarantee for the correctness, "
+"reliability, completeness and accuracy of this website and its contents, "
+"including hyperlinked websites. The contents of this website have been "
+"researched and implemented with the greatest possible care. Nevertheless, "
+"errors in the editing process cannot be excluded. The publisher and the "
+"author do not assume any responsibility for improper or inappropriate use of "
+"the services offered here by third parties."
+msgstr ""
+"\n"
+" Die Professur für Hydrologie als Herausgeber und Max Schmit, als Autor der "
+"Internetseite übernehmen keinerlei Haftung oder Garantie für die "
+"Richtigkeit, Verlässlichkeit, Vollständigkeit und Genauigkeit dieser "
+"Webseite und ihrer Inhalte, inklusive der durch Hyperlinks verknüpften "
+"Webseiten. Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt "
+"recherchiert und implementiert. Fehler im Bearbeitungsvorgang sind dennoch "
+"nicht auszuschließen. Der Herausgeber und der Autor übernehmen keinerlei "
+"Verantwortung für missbräuchliche oder unsachgemäße Anwendung der hier "
+"angebotenen Dienste durch Dritte."
+
+#: .\main\templates\impressum.html:93
+msgid ""
+"\n"
+"  The use of the contents of this website, including downloading time "
+"series, as well as downloading programs, is at the user's own risk. The mere "
+"use of the website does not constitute any contractual relationship between "
+"the user and the publisher.\n"
+msgstr ""
+"\n"
+"Die Nutzung der Inhalte der Website, einschließlich heruntergeladene "
+"Zeitreihen, sowie heruntergeladener Programme, erfolgt auf eigene Gefahr des "
+"Nutzers. Mit der reinen Nutzung der Website kommt keinerlei "
+"Vertragsverhältnis zwischen dem Nutzer und dem Herausgeber zustande.\n"
+
+#: .\main\templates\impressum.html:95
+msgid ""
+"\n"
+"  Excluded are claims for direct or indirect damages or consequences of a "
+"material or immaterial nature arising from the direct, indirect or non-use "
+"of the content, data and knowledge offered or which arise from access to the "
+"published information, through misuse of the connection or technical faults. "
+"Also excluded are rights and obligations between the Chair of Hydrology and "
+"the user of this website or third parties.\n"
+msgstr ""
+"\n"
+"Ausgeschlossen sind Haftungsansprüche wegen direkter oder indirekter Schäden "
+"oder Konsequenzen materieller oder immaterieller Art, die durch die direkte, "
+"indirekte oder Nicht- Nutzung der angebotenen Inhalte, Daten und des "
+"angebotenen Wissensstoffes entstehen oder welche aus dem Zugriff der "
+"veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch "
+"technische Störungen entstanden sind. Ausgeschlossen sind auch Rechte und "
+"Pflichten zwischen der Professur für Hydrologie und dem Nutzer dieser "
+"Website oder Dritten.\n"
+
+#: .\main\templates\impressum.html:99
+msgid "Disclaimer for external links"
+msgstr "Haftungsausschluss bei externen links"
+
+#: .\main\templates\impressum.html:100
+msgid ""
+"\n"
+"  The contents of external sites or the services offered by them, to which "
+"the Chair of Hydrology refers to with links, have not been checked and do "
+"not reflect the opinion of the publisher. They serve merely to provide "
+"information and to illustrate connections. The publisher has no influence on "
+"the current and future design and content of the linked pages. The inclusion "
+"of external links does not imply that the publisher adopts the content "
+"behind the reference or link as its own.\n"
+msgstr ""
+"\n"
+"Die Inhalte fremder Seiten oder die darauf angebotenen Dienstleistungen, auf "
+"die die Professur für Hydrologie mittels Links hinweist, wurden nicht "
+"überprüft und spiegeln nicht die Meinung des Herausgebers wieder, sondern "
+"dienen lediglich der Information und der Darstellung von Zusammenhängen. Der "
+"Herausgeber hat keinerlei Einfluss auf die aktuelle und zukünftige "
+"Gestaltung und auf die Inhalte der verknüpften Seiten. Das Setzen von "
+"externen Links bedeutet nicht, dass sich der Herausgeber die hinter dem "
+"Verweis oder Link liegenden Inhalte zu Eigen macht.\n"
+
+#: .\main\templates\impressum.html:102
+msgid ""
+"\n"
+"  The Chair of Hydrology declares that it has no influence whatsoever on the "
+"design and content of the externally linked pages. Therefore, the Chair of "
+"Hydrology hereby expressly distances itself from all contents of all linked "
+"pages on this homepage. This declaration applies to all links displayed on "
+"this homepage.\n"
+msgstr ""
+"\n"
+"Die Professur für Hydrologie erklärt ausdrücklich, dass sie keinerlei "
+"Einfluss auf die Gestaltung und die Inhalte der extern gelinkten Seiten hat. "
+"Deshalb distanziert sich die Professur für Hydrologie hiermit ausdrücklich "
+"von allen Inhalten aller verlinkte Seiten auf dieser Homepage. Diese "
+"Erklärung gilt für alle auf dieser Homepage angezeigten Links.\n"
+
+#: .\main\templates\impressum.html:106
+msgid "Copyright"
+msgstr "Urheberrecht"
+
+#: .\main\templates\impressum.html:107
+msgid ""
+"\n"
+"  The texts, illustrations, photos and maps published on this website as "
+"well as the design of the website are protected by copyright and may only be "
+"copied and printed for private, scientific and non-commercial use. They are "
+"the property of the author or the persons, companies or institutions "
+"mentioned by name. Contents and rights of third parties are marked as such. "
+"Should an error have occurred despite careful handling, please contact the "
+"above-mentioned persons. Any use not permitted by German copyright and "
+"ancillary copyright law requires the prior written consent of the author or "
+"the respective copyright holder. Use for personal, private and non-"
+"commercial use is permitted, as long as you do not remove any copyright or "
+"other intellectual property notices. Caching in a cache or on a proxy server "
+"to optimize access speed is permitted.\n"
+msgstr ""
+"\n"
+"Die auf dieser Webseite veröffentlichten Texte, Abbildungen, Fotos und "
+"Karten, sowie die Gestaltung der Webseite sind urheberrechtlich geschützt "
+"und dürfen nur zum privaten, wissenschaftlichen und nicht gewerblichen "
+"Gebrauch kopiert und ausgedruckt werden. Sie sind Eigentum des Autors oder "
+"der jeweils namentlich genannten Personen, Firmen oder Institutionen. "
+"Inhalte und Rechte Dritter sind dabei als solche gekennzeichnet. Sollte "
+"dabei trotz sorgfältigen Vorgehens ein Fehler entstanden sein, bitten wir um "
+"Kontaktaufnahme mit den o.g. Ansprechpartnern. Jede vom deutschen Urheber- "
+"und Leistungsschutzrecht nicht zugelassene Verwertung bedarf der vorherigen "
+"schriftlichen Zustimmung des Autors oder jeweiligen Rechteinhabers. Die "
+"Nutzung für den persönlichen, privaten und nicht kommerziellen Gebrauch ist "
+"erlaubt, sofern Sie keine Urheberrechts- oder sonstigen Hinweise auf das "
+"geistige Eigentum entfernen. Die Zwischenspeicherung in einem Cache oder auf "
+"einem Proxy-Server zur Optimierung der Zugriffsgeschwindigkeit ist "
+"gestattet.\n"
+
+#: .\main\templates\impressum.html:109
+msgid ""
+"\n"
+"  The graphics and downloaded time series may be used without permission. "
+"The citation of the website, as well as the setting of links to our website "
+"are expressly permitted. If this website is displayed in external frames, we "
+"ask for prior consultation and consent.\n"
+msgstr ""
+"\n"
+"Die Grafiken und heruntergeladenen Zeitreihen können ohne Zustimmung "
+"verwendet werden. Das Zitieren der Webseite, sowie das Setzen von Links auf "
+"unsere Webseite sind ausdrücklich erlaubt. Bei Darstellung dieser Webseite "
+"in fremden Frames bitten wir um vorherige Rücksprache und Zustimmung.\n"
+
+#: .\main\templates\impressum.html:113
+msgid "Data protection"
+msgstr "Datenschutz"
+
+#: .\main\templates\impressum.html:114
+msgid ""
+"\n"
+"  By visiting this website, files may be temporarily stored when downloading "
+"a time series. Furthermore, the IP address, the user name and the time of "
+"the download will be stored. The entered location, polygons or address will "
+"not be stored by us. A transfer to third parties, for commercial or non-"
+"commercial purposes, does not take place. The data is deleted at regular "
+"intervals (maximum 7 days).\n"
+msgstr ""
+"\n"
+"Durch den Besuch dieser Webseite können beim herunterladen einer Zeitreihe "
+"die Dateien temporär gespeichert werden. Weiterhin wird die IP-Adresse, der "
+"Benutzernamme und die Uhrzeit des Downloads abgespeichert. Die eingegebene "
+"Ortsangabe, Polygone oder Adresse wird dabei durch uns nicht gespeichert. "
+"Eine Weitergabe an Dritte, zu kommerziellen oder nichtkommerziellen Zwecken, "
+"findet nicht statt. Die Daten werden in regelmässigen Abständen gelöscht "
+"(maximal 7 Tage).\n"
+
+#: .\main\templates\impressum.html:117
+msgid ""
+"For the purpose of user statistics, the IP address, the current time and the "
+"URL are stored when the page is called up. Data will not be passed on to "
+"third parties for commercial or non-commercial purposes."
+msgstr ""
+"Zu Zwecken der Nutzerstatistik wird beim aufrufen der Seite die IP Adresse, "
+"der aktuelle Zeitpunkt, sowie die aufgerufene URL abgespeichert. Eine "
+"Weitergabe an Dritte, zu kommerziellen oder nicht kommerziellen Zwecken, "
+"findet nicht statt."
+
+#: .\main\templates\impressum.html:120
+msgid ""
+"We use the hCaptcha anti-bot service (hereinafter \"hCaptcha\") on our "
+"website. This service is provided by Intuition Machines, Inc., a Delaware US "
+"Corporation (\"IMI\"). hCaptcha is used to check whether the data entered on "
+"our website (such as on a login page or contact form) has been entered by a "
+"human or by an automated program. To do this, hCaptcha analyzes the behavior "
+"of the website or mobile app visitor based on various characteristics. This "
+"analysis starts automatically as soon as the website or mobile app visitor "
+"enters a part of the website or app with hCaptcha enabled. For the analysis, "
+"hCaptcha evaluates various information (e.g. IP address, how long the "
+"visitor has been on the website or app, or mouse movements made by the "
+"user). The data collected during the analysis will be forwarded to IMI. Data "
+"processing is based on Art. 6(1)(f) of the GDPR (DSGVO): the website or "
+"mobile app operator has a legitimate interest in protecting its site from "
+"abusive automated crawling and spam. IMI acts as a \"data processor\" acting "
+"on behalf of its customers as defined under the GDPR, and a \"service "
+"provider\" for the purposes of the California Consumer Privacy Act (CCPA). "
+"For more information about hCaptcha and IMI's privacy policy and terms of "
+"use, please visit the following links: "
+msgstr ""
+"Wir verwenden auf unserer Website den Anti-Bot-Dienst hCaptcha (nachfolgend "
+"\"hCaptcha\"). Dieser Dienst wird von Intuition Machines, Inc. "
+"bereitgestellt, einer US-amerikanischen Gesellschaft mit Sitz in Delaware "
+"(\"IMI\"). hCaptcha wird verwendet, um zu überprüfen, ob die auf unserer "
+"Website (z. B. auf einer Anmeldeseite oder einem Kontaktformular) "
+"eingegebenen Daten von einem Menschen oder einem automatisierten Programm "
+"eingegeben wurden. Zu diesem Zweck analysiert hCaptcha das Verhalten des "
+"Besuchers der Website oder der mobilen App anhand verschiedener Merkmale. "
+"Diese Analyse beginnt automatisch, sobald der Besucher der Website oder der "
+"mobilen App einen Teil der Website oder der App mit aktiviertem hCaptcha "
+"betritt. Für die Analyse wertet hCaptcha verschiedene Informationen aus (z."
+"B. IP-Adresse, Verweildauer des Besuchers auf der Website oder App oder "
+"Mausbewegungen des Nutzers). Die bei der Analyse erhobenen Daten werden an "
+"das IMI weitergeleitet. Die Datenverarbeitung erfolgt auf Grundlage von Art. "
+"6(1)(f) der DSGVO: Der Betreiber der Website oder der mobilen App hat ein "
+"berechtigtes Interesse daran, seine Website vor missbräuchlichem "
+"automatisiertem Crawling und Spam zu schützen. Das IMI handelt als "
+"\"Datenverarbeiter\", der im Namen seiner Kunden im Sinne der DSGVO handelt, "
+"und als \"Dienstleister\" im Sinne des California Consumer Privacy Act "
+"(CCPA). Weitere Informationen über hCaptcha und die Datenschutzrichtlinien "
+"und Nutzungsbedingungen von IMI finden Sie unter den folgenden Links: "
+
+#: .\main\templates\impressum.html:120
+msgid "and"
+msgstr "und"
+
+#: .\main\templates\impressum.html:122
+msgid "Notes"
+msgstr "Hinweise"
+
+#: .\main\templates\impressum.html:123
+msgid ""
+"\n"
+"  The fact that a term or designation on this website is not identified as a "
+"brand or trademark does not allow the conclusion that it may not be a brand "
+"or trademark after all. The same applies to patents and other forms of "
+"protection.\n"
+msgstr ""
+"\n"
+"Die Tatsache, dass ein Begriff oder eine Bezeichnung auf dieser Website "
+"nicht als Marke oder Warenzeichen gekennzeichnet ist, lässt nicht den "
+"Schluss zu, dass es sich nicht evtl. doch um eine Marke oder ein "
+"Warenzeichen handelt. Gleiches gilt für Patente und andere Schutzformen.\n"
+
+#: .\main\templates\impressum.html:125
+msgid ""
+"\n"
+"  The Professorship of Hydrology and the author expressly reserve the right "
+"to change, delete or temporarily not publish contents in whole or in part at "
+"any time without prior notice.\n"
+msgstr ""
+"\n"
+"Die Professur für Hydrologie und der Autor behalten sich ausdrücklich vor, "
+"jederzeit Inhalte ohne Ankündigung ganz oder teilweise zu ändern, zu löschen "
+"oder zeitweise nicht zu veröffentlichen.\n"
+
+#: .\main\templates\impressum.html:127
+msgid ""
+"\n"
+"  The contact data in the imprint are not to be used for advertising "
+"purposes. Commercial use and distribution of this data is not permitted. \n"
+msgstr ""
+"\n"
+"Die Kontaktdaten im Impressum sind nicht zu Werbezwecken zu verwenden. Eine "
+"kommerzielle Nutzung und Weitergabe dieser Daten ist nicht erlaubt.\n"
+
+#: .\main\templates\unreleased.html:5
+msgid "unreleased"
+msgstr ""
+
+#: .\main\templates\unreleased.html:7
+msgid ""
+"This Application didn't get released yet. If you want to test it, you need "
+"to login and apply for a test User account."
+msgstr ""
+
+#~ msgid "Impressum"
+#~ msgstr "Impressum"
+
+#~ msgid ""
+#~ "Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?"
+#~ msgstr "Who is responsible for the data Collection on this site?"
+
+#~ msgid "Datenerfassung auf dieser Website"
+#~ msgstr "Data collection on this site"
+
+#~ msgid "Datenschutz auf einen Blick"
+#~ msgstr "Overview of privacy agreement"
+
+#~ msgid "Allgemeine Hinweise"
+#~ msgstr "General notes"
+
+#~ msgid ""
+#~ "Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, "
+#~ "was mit Ihren personenbezogenen Daten\n"
+#~ "  passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind "
+#~ "alle Daten, mit denen Sie pers&ouml;nlich\n"
+#~ "  identifiziert werden k&ouml;nnen. Ausf&uuml;hrliche Informationen zum "
+#~ "Thema Datenschutz entnehmen Sie unserer unter\n"
+#~ "  diesem Text aufgef&uuml;hrten Datenschutzerkl&auml;rung."
+#~ msgstr ""
+#~ "The following notices provide a simple overview of what happens to your "
+#~ "personal data\n"
+#~ "  when you visit this website. Personal data is any data that can be used "
+#~ "to identify you personally.\n"
+#~ " For more detailed information on the subject of data protection, please "
+#~ "refer to this privacy aggrement."
+
+#~ msgid "Datenschutz&shy;erkl&auml;rung"
+#~ msgstr "privacy agreement"

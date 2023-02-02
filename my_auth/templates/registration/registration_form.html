@@ -1,20 +1,23 @@
 {% extends base_template %}
 {% load django_bootstrap5 %}
+{% load i18n %}
 
 {% block content %}
-<h2>Register to Hydro-Apps</h2>
-<p><a class="mb-4" href="{% url 'login' app_name=active_app %}">Back to login</a></p>
+<h2>{% trans "Register to Hydro-Apps" %}</h2>
+<p><a class="mb-4" href="{% url 'login' app_name=active_app %}">{% trans "Back to login" %}</a></p>
 <form method="post">
     {% csrf_token %}
-    {% comment %} {% bootstrap_form form %} {% endcomment %}
-    {% bootstrap_field form.username show_label='skip' addon_before='Username' form_group_class="form-group input-group mb-3" layout="horizontal" %}
-    {% bootstrap_field form.email show_label='skip' addon_before='E-Mail'%}
-    {% bootstrap_field form.first_name show_label='skip' addon_before='First Name' %}
-    {% bootstrap_field form.last_name show_label='skip' addon_before='Last Name' %}
+    {% trans "Username" as un %}
+    {% bootstrap_field form.username show_label='skip' addon_before=un form_group_class="form-group input-group mb-3" layout="horizontal" placeholder=un %}
+    {% bootstrap_field form.email show_label='skip' addon_before='E-Mail' placeholder="max@mustermann.de" %}
+    {% trans "First Name" as fn %}
+    {% bootstrap_field form.first_name show_label='skip' addon_before=fn placeholder="Max" %}
+    {% trans "Last Name" as ln %}
+    {% bootstrap_field form.last_name show_label='skip' addon_before=ln placeholder="Mustermann"%}
     <div class="form-group input-group">
-      <span class="input-group-text">personal introduction</span>
+      <span class="input-group-text">{% trans "personal introduction" %}</span>
       {{ form.personal_introduction }}
-      <small class="form-text text-muted">This information will get used to decide to what resource you will get access to. For e.g. to decide if you should get a database access to the WeatherDB. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg...</small>
+      <small class="form-text text-muted">{% trans "This information will get used to decide to what resource you will get access to. For e.g. to decide if you should get a database access to the WeatherDB. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg..." %}</small>
       {% if not form.personal_introduction.errors %}
         <script type="text/javascript">
           let el = document.getElementById("id_personal_introduction")
@@ -23,11 +26,14 @@
         </script>
       {% endif %}
     </div>
-    {% bootstrap_field form.password1 show_label='skip' addon_before='Password'%}
-    {% bootstrap_field form.password2 show_label='skip' addon_before='Password confirmation'%}
+    {% trans "Password" as pass %}
+    {% bootstrap_field form.password1 show_label='skip' addon_before=pass %}
+    {% trans "Password confirmation" as pass2 %}
+    {% bootstrap_field form.password2 show_label='skip' addon_before=pass2 %}
     {% bootstrap_field form.confirmed_data_policy %}
-    {% bootstrap_field form.hcaptcha show_label='skip' %}
-    <input type="submit" class="btn btn-primary" value="Register">
+    <script src="https://js.hcaptcha.com/1/api.js?hl={{ request.LANGUAGE_CODE }}" async defer></script>
+    <div class="h-captcha" data-sitekey="{{ HCAPTCHA_SITEKEY }}" ></div>
+    <input type="submit" class="btn btn-primary" value="{% trans 'Register' %}">
 </form>
 <script>
   document.getElementById("link_privacy").href = '{% url "datenschutz" app_name=active_app %}';

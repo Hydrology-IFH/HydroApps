@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import sys, os
 from urllib.parse import urlparse
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -214,16 +215,20 @@ LOGGING = {
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
 USE_TZ = True
 
+# setup of translations
+LANGUAGES = [
+    ('de', _('German')),
+    ('en', _('English')),
+]
+LANGUAGE_CODE = 'en'
+USE_I18N = True
+USE_L10N = True
+LOCALE_PATHS = [
+    BASE_DIR / "main\locale"
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
