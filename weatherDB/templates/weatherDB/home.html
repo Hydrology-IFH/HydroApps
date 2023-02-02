@@ -1,7 +1,7 @@
 {% extends 'weatherDB/base.html' %}
-{% block content %}
+{% load i18n %}
 
-  <h1>Home</h1>
-  <p>This is the Web interface for the WeatherDB. The WeatherDB is a Database that automatically downloads the weather station data from the DWD-CDC server, checks the data, creates completely filled timeseries and aplies a Richter correction to the precipitation data. On this Web interface you can download the raw, checked, filled and Richter corrected timeseries for your simulations.</p>
-  
+{% block content %}
+  <h1>{% trans "Home" %}</h1>
+  <p>{% blocktrans %}This is the Web interface for the WeatherDB. The WeatherDB is a Database that automatically downloads the weather station data from the DWD-CDC server, checks the data, creates completely filled timeseries and aplies a Richter correction to the precipitation data. On this Web interface you can download the raw, checked, filled and Richter corrected timeseries for your simulations.{% endblocktrans %}</p>
 {% endblock %}

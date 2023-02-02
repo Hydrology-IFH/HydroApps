@@ -1,6 +1,7 @@
 {% extends base_template %}
+{% load i18n %}
 
 {% block content %}
-<h2>The User-Account {{ conf_user.username }} got confirmed.</h2>
-  <p>A notification E-mail was send to the user.</p>
+<h2>{% trans "The User-Account" %} {{ conf_user.username }} {% trans "got confirmed" %}.</h2>
+  <p>{% trans "A notification E-mail was send to the user." %}</p>
 {% endblock %}
