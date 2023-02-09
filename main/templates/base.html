@@ -60,7 +60,7 @@
                       {% if show_unreleased %}
                       <li><a href="{% url 'klimzuk:home' %}" class="dropdown-item">KlimZuk</a></li>
                       {% endif %}
-                      <li><a href="https://naturwb.de" class="dropdown-item">
+                      <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
                         <div class="row">
                           <span class="col">NatUrWB</span>
                           <i class="bi bi-box-arrow-up-right col"></i>
@@ -195,6 +195,11 @@
     )
   </script>
 
+  <!-- activate Bootstrap tooltips -->
+  <script>
+    var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+  </script>
   {% block scripts %}{% endblock %}
 
 </body>
