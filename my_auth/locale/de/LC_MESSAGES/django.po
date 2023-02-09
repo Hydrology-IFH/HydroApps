@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 10:48+0100\n"
+"POT-Creation-Date: 2023-02-09 09:32+0100\n"
 "PO-Revision-Date: 2023-02-02 10:48+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -295,7 +295,7 @@ msgstr ""
 msgid "Send password reset link"
 msgstr "Sende Passwort-Wiederherstellungs-Link"
 
-#: .\my_auth\templates\registration\password_reset_request_form.html:12
+#: .\my_auth\templates\registration\password_reset_request_form.html:13
 msgid "Reset"
 msgstr "Wiederherstellen"
 

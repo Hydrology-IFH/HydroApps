@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 10:48+0100\n"
-"PO-Revision-Date: 2023-02-01 17:25+0100\n"
+"POT-Creation-Date: 2023-02-09 09:32+0100\n"
+"PO-Revision-Date: 2023-02-09 09:34+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -73,11 +73,16 @@ msgstr ""
 "klicken Sie auf 'Abbildungen hinzufügen' um die einzelnen Abbildung "
 "angezeigt zu kriegen und sie vergleichen zu können."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:47
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:48
 msgid "Select plots to show"
 msgstr "Abbildungen auswählen"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:50
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:185
+msgid "Show me an explanation of the plots."
+msgstr "Zeigen Sie mir eine Erklärung der Abbildungen."
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:60
 msgid ""
 "Choose the Parameters you would like to see.<br>select multiple values with "
 "Ctrl"
@@ -85,68 +90,68 @@ msgstr ""
 "Wählen Sie die Parameter, die Sie sehen möchten.<br>Mehrere Werte mit Strg "
 "auswählen"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:52
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:62
 msgid "precipitation"
 msgstr "Niederschlag"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:53
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:63
 msgid "temperature"
 msgstr "Temperatur"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:54
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:64
 msgid "dew point temperature"
 msgstr "Taupunkttemperatur"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:55
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:65
 msgid "potential evapotranspiration"
 msgstr "potentiale Evapotranspiration"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:56
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:66
 msgid "radiation"
 msgstr "Strahlung"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:57
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:67
 msgid "relative air moisture"
 msgstr "relative Luftfeuchtigkeit"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:58
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:68
 msgid "snowfall"
 msgstr "Schneefall"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:65
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:75
 msgid "Which period do you want to see?<br>select multiple values with Ctrl."
 msgstr ""
 "Welchen Zeitraum wollen Sie sehen?<br>Wählen Sie mehrere Werte mit Strg."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:65
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:75
 msgid "Period"
 msgstr "Zeitraum"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:67
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:77
 msgid "Year"
 msgstr "Jahr"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:68
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:78
 msgid "Winter"
 msgstr "Winter"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:69
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:79
 msgid "Spring"
 msgstr "Frühling"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:70
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:80
 msgid "Summer"
 msgstr "Sommer"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:71
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:81
 msgid "Fall"
 msgstr "Herbst"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:72
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:82
 msgid "daily maximums"
 msgstr "tägliche Maximas"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:78
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:88
 msgid ""
 "Enter the station IDs you would like to see as a comma separated list."
 "<br>The easier way to select a station is by clicking on it on the map."
@@ -155,28 +160,40 @@ msgstr ""
 "Liste ein.<br>Die einfachste Möglichkeit, eine Station auszuwählen, ist, sie "
 "auf der Karte anzuklicken."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:78
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:80
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:88
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:90
 msgid "selected station IDs"
 msgstr "gewählte Stations-IDs"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:91
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:101
 msgid "Show selection on map"
 msgstr "Zeige Auswahl auf der Karte"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:98
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:108
 msgid "Color Selection"
 msgstr "Färbe die Auswahl auf der Karte"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:103
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:109
+msgid "Remove Coloring"
+msgstr "Einfärbung entfernen"
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:112
 msgid "Filter Selection"
 msgstr "Filtre die Auswahl auf der Karte"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:126
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:113
+msgid "Remove Filters"
+msgstr "Filter entfernen"
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:121
+msgid "show plots"
+msgstr "Abbildungen anzeigen"
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:134
 msgid "Plot explanation"
 msgstr "Erläuterung der Abbildung"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:139
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:147
 msgid ""
 "The time period of this plot, here spring. This means that on this plot only "
 "the mean of the spring is shown."
@@ -184,7 +201,7 @@ msgstr ""
 "Der Zeitraum dieser Abbildung ist hier das Frühjahr. Das bedeutet, dass in "
 "dieser Grafik nur der Mittelwert des Frühjahrs angezeigt wird."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:142
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:150
 msgid ""
 "The <b>blue dots</b> mark the simulated measurements according to 7 "
 "different climate scenarios of this station.<br>The <b>light blue lines</b> "
@@ -200,7 +217,7 @@ msgstr ""
 "<br>Die <b>dicke blaue Linie</b> den Mittelwert der 7 Szenarien mit dem "
 "Vertrauensintervall."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:144
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:152
 msgid ""
 "The <b>red dots</b> mark the measurements of this station. So here are the "
 "mean spring temperatures for every year.<br>The <b>thick red line</b> marks "
@@ -212,11 +229,11 @@ msgstr ""
 "rote Linie</b> markiert einen gleitenden Durchschnitt (der Durchschnitt "
 "eines Zeitfensters von 11 Jahren um einen Punkt) dieser Werte."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:147
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:155
 msgid "The climate reference period taken. Here 1981-2010."
 msgstr "Der gewählte Klimareferenzzeitraum. Hier 1981-2010."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:149
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:157
 msgid ""
 "A kind of Boxplot of the reference climate period. Showing the min, max and "
 "mean of the 7 different climate scenarios mean for this climate period."
@@ -228,7 +245,7 @@ msgstr ""
 "Zusätzlich zeigt eine horizontale rote Linie den Mittelwert der "
 "Beobachtungen für die Klimareferenzperiode."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:151
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:159
 msgid ""
 "The near future climate period and the difference of the mean compared to "
 "the reference period. Here 2031-2060."
@@ -236,7 +253,7 @@ msgstr ""
 "Die weit in der Zukunft liegende Klimaperiode und die Differenz der "
 "Mittelwerte im Vergleich zur Referenzperiode. Hier 2071-2100."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:153
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:161
 msgid ""
 "A kind Boxplot of the near future climate period. Showing the min, max and "
 "mean of the 7 different climate scenarios mean for this climate period."
@@ -245,7 +262,7 @@ msgstr ""
 "Maximal- und Mittelwert der 7 verschiedenen Klimaszenarien für diese "
 "Klimaperiode."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:155
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:163
 msgid ""
 "The far future climate period and the difference of the mean compared to the "
 "reference period. Here 2071-2100."
@@ -253,7 +270,7 @@ msgstr ""
 "Die weit in der Zukunft liegende Klimaperiode und die Differenz der "
 "Mittelwerte im Vergleich zur Referenzperiode. Hier 2071-2100."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:157
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:165
 msgid ""
 "A kind Boxplot of the far future climate period. Showing the min, max and "
 "mean of the 7 different climate scenarios mean for this climate period."
@@ -262,10 +279,18 @@ msgstr ""
 "Minimal-, Maximal- und Mittelwert der 7 verschiedenen Klimaszenarien für "
 "diese Klimaperiode."
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:160
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:168
 msgid "The moving window size in years"
 msgstr "Die Größe des gleitenden Fensters in Jahren"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:163
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:171
 msgid "Close"
 msgstr "Schließen"
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:181
+msgid "Plots"
+msgstr "Abbildungen"
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:183
+msgid "clear plots"
+msgstr "Abbildungen entfernen"

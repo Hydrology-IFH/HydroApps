@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HydroApps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 10:48+0100\n"
+"POT-Creation-Date: 2023-02-09 09:32+0100\n"
 "PO-Revision-Date: 2023-02-01 12:30+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -32,27 +32,27 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
-#: .\main\templates\base.html:223
+#: .\main\templates\base.html:110
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:225
+#: .\main\templates\base.html:112
 msgid "Admin"
 msgstr ""
 
-#: .\main\templates\base.html:227
+#: .\main\templates\base.html:114
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:229
+#: .\main\templates\base.html:116
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:272
+#: .\main\templates\base.html:159
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:273
+#: .\main\templates\base.html:160
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 

@@ -178,9 +178,9 @@
     <div id="plot_area">
       <div class="card" style="{width: '100%'}" v-if="plots_data.length>0">
         <div class="card-body">
-          <h2 class="card-title">Plots</h2>
+          <h2 class="card-title">{% trans "Plots" %}</h2>
           <div class="plot-area-buttons">
-            <button class="btn btn-primary" @click="clear_plot_area">clear plots</button>
+            <button class="btn btn-primary" @click="clear_plot_area">{% trans "clear plots" %}</button>
             <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
               data-bs-html="true" title='{% trans "Show me an explanation of the plots." %}'>
               <button class="btn btn-primary btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#explanationModal" >
@@ -213,12 +213,8 @@
   
 
 <script>
-  {% comment %} $(document).ready(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-  }); {% endcomment %}
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-  
 </script>
 
 {% endblock %}
