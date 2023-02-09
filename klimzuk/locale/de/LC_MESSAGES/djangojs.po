@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 12:26+0100\n"
-"PO-Revision-Date: 2023-02-09 12:26+0100\n"
+"POT-Creation-Date: 2023-02-09 14:39+0100\n"
+"PO-Revision-Date: 2023-02-09 14:40+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -17,6 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
+
+#: .\klimzuk\static\klimzuk\js\map.js:78
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "selected"
+msgstr "ausgewählt"
+
+#: .\klimzuk\static\klimzuk\js\map.js:78
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "not select"
+msgstr "nicht gewählt"
 
 #: .\klimzuk\static\klimzuk\js\map.js:109
 #: .\klimzuk\static\klimzuk\js\map.min.js:1

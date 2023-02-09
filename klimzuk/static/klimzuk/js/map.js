@@ -75,7 +75,7 @@ class KlimZukMap{
                 let div = L.DomUtil.create('div', 'legend container-fluid');
                 div.innerHTML = "<h3>Legend</h3>"
                 let icons = [this.IconSelect, this.IconUnselect]
-                let names = ["selected", "not select"];
+                let names = [gettext("selected"), gettext("not select")];
                 for (let i=0; i <2; i++){
                     let row = L.DomUtil.create('div', "row justify-content-right");
                     let col_icon = L.DomUtil.create('div', "col-auto pr-0");
