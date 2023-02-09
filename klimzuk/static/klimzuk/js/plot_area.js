@@ -1,20 +1,20 @@
 "use strict";
 
 const para_dict = {
-  "pr": "Niederschlag",
-  "tas": "Lufttemperatur",
-  "td": "Feuchtetemperatur",
-  "rsds": "Globalstrahlung (W/m²)",
-  "rh": "relative Luftfeuchtigkeit",
-  "ET": "evapotranspiration",
-  "snow": "Schnee"}
+  "pr": gettext("precipitation"),
+  "tas": gettext("air temperature"),
+  "td": gettext("moisted temperature"),
+  "rsds": gettext("global radiation (W/m²)"),
+  "rh": gettext("relative air moisture"),
+  "ET": gettext("evapotranspiration"),
+  "snow": gettext("snowfall")}
 const period_dict = {
-  "a": "Year",
-  "m": "Daily Maximum",
-  "w": "Winter",
-  "f": "Spring",
-  "s": "Summer",
-  "h": "Fall"
+  "a": gettext("Year"),
+  "m": gettext("Daily Maximum"),
+  "w": gettext("Winter"),
+  "f": gettext("Spring"),
+  "s": gettext("Summer"),
+  "h": gettext("Fall")
 }
 
 var plots_data = Vue.ref([])

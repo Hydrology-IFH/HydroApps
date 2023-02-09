@@ -73,7 +73,7 @@ class KlimZukMap{
         this.legend = new (L.Control.extend({
             onAdd: (map)=>{
                 let div = L.DomUtil.create('div', 'legend container-fluid');
-                div.innerHTML = "<h3>Legend</h3>"
+                div.innerHTML = `<h3>${gettext("Legend")}</h3>`
                 let icons = [this.IconSelect, this.IconUnselect]
                 let names = [gettext("selected"), gettext("not select")];
                 for (let i=0; i <2; i++){

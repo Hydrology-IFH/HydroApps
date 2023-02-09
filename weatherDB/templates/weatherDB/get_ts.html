@@ -124,11 +124,11 @@
               <div id="collapseAccMap" class="collapse" aria-labelledby="headingAccMap" data-parent="#accordion">
                 <div class="accordion-body">
                   <div class="row pb-1">
-                    <button type="button" class="btn btn-primary me-1 col" id="btn_color_selection">{% trans "Color Selection on map" %}</button>
+                    <button type="button" class="btn btn-primary me-1 col" id="btn_color_selection">{% trans "Color Selection" %}</button>
                     <button type="button" class="btn btn-primary col invisible" id="btn_remove_coloring">{% trans "Remove Coloring" %}</button>
                   </div>
                   <div class="row">
-                    <button type="button" class="btn btn-primary me-1 col" id="btn_filter_stations">{% trans "Filter Selection on map" %}</button>
+                    <button type="button" class="btn btn-primary me-1 col" id="btn_filter_stations">{% trans "Filter Selection" %}</button>
                     <button type="button" class="btn btn-primary col invisible" id="btn_remove_filter">{% trans "Remove Filters" %}</button>
                   </div>
                 </div>
@@ -211,7 +211,7 @@
             </div>
           {% endif %}
           <div class="col d-inline-flex justify-content-end ps-0 me-0">
-            <input type="submit" value="download" name="download_ts" class="btn btn-primary mt-1" style="font-size: 20px; font-weight: 600;" id="btn_download_ts">
+            <input type="submit" value='{% trans "download" %}' name="download_ts" class="btn btn-primary mt-1" style="font-size: 20px; font-weight: 600;" id="btn_download_ts">
           </div>
         </div>
       </div>
@@ -231,12 +231,13 @@
     var download_url = "{% url 'weatherDB:download_ts' %}";
     {% comment %} var base_url = "{% url 'weatherDB:home' %}"; {% endcomment %}
   </script>
+  <script src="{% url 'weatherDB:javascript-catalog' %}"></script>
   {{ meta_n|json_script:"meta_n-data" }}
   {% comment %} {{ needs_captcha|script:"needs_captcha" }}
   {{ wdb_max_downloads|script:"wdb_max_downloads" }} {% endcomment %}
   {% if debug %} 
     <script src={% static "weatherDB/js/get_ts_map.js" %} defer></script>
-  {%else%}
+  {% else %}
     <script src={% static "weatherDB/js/get_ts_map.min.js" %} defer></script>
   {% endif%}
 

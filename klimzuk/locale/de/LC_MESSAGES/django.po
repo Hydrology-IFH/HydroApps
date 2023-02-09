@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 09:46+0100\n"
+"POT-Creation-Date: 2023-02-09 15:26+0100\n"
 "PO-Revision-Date: 2023-02-09 10:48+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -78,7 +78,7 @@ msgid "Select plots to show"
 msgstr "Abbildungen auswählen"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:50
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:185
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:184
 msgid "Show me an explanation of the plots."
 msgstr "Zeigen Sie mir eine Erklärung der Abbildungen."
 
@@ -193,6 +193,20 @@ msgstr "Abbildungen anzeigen"
 msgid "Plot explanation"
 msgstr "Erläuterung der Abbildung"
 
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:141
+msgid "Parameter of this plot described on the y-Axis"
+msgstr ""
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:143
+#, fuzzy
+#| msgid "selected station IDs"
+msgid "The Station ID"
+msgstr "gewählte Stations-IDs"
+
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:145
+msgid "The stations height above the sea."
+msgstr ""
+
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:147
 msgid ""
 "The time period of this plot, here spring. This means that on this plot only "
@@ -287,10 +301,10 @@ msgstr "Die Größe des gleitenden Fensters in Jahren"
 msgid "Close"
 msgstr "Schließen"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:181
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:180
 msgid "Plots"
 msgstr "Abbildungen"
 
-#: .\klimzuk\templates\klimzuk\klimzuk_map.html:183
+#: .\klimzuk\templates\klimzuk\klimzuk_map.html:182
 msgid "clear plots"
 msgstr "Abbildungen entfernen"

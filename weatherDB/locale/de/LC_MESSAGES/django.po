@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 09:46+0100\n"
-"PO-Revision-Date: 2023-02-01 16:28+0100\n"
+"POT-Creation-Date: 2023-02-09 15:26+0100\n"
+"PO-Revision-Date: 2023-02-09 15:29+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -166,20 +166,20 @@ msgid "Show selection on map"
 msgstr "Zeige Auswahl auf der Karte"
 
 #: .\weatherDB\templates\weatherDB\get_ts.html:127
-msgid "Color Selection on map"
-msgstr "Färbe die Auswahl auf der Karte"
+msgid "Color Selection"
+msgstr "Auswahl einfärben"
 
 #: .\weatherDB\templates\weatherDB\get_ts.html:128
 msgid "Remove Coloring"
-msgstr "Entferne die Einfärbung"
+msgstr "Einfärbung entfernen"
 
 #: .\weatherDB\templates\weatherDB\get_ts.html:131
-msgid "Filter Selection on map"
-msgstr "Filtre die Auswahl auf der Karte"
+msgid "Filter Selection"
+msgstr "Auswahl filtern"
 
 #: .\weatherDB\templates\weatherDB\get_ts.html:132
 msgid "Remove Filters"
-msgstr "Entferne den Filter"
+msgstr "Filter entfernen"
 
 #: .\weatherDB\templates\weatherDB\get_ts.html:142
 msgid "Additional options"
@@ -251,6 +251,10 @@ msgstr ""
 msgid "add maximal daily Temperature"
 msgstr "maximale tägliche Temperatur hinzufügen"
 
+#: .\weatherDB\templates\weatherDB\get_ts.html:215
+msgid "download"
+msgstr "Herunterladen"
+
 #: .\weatherDB\templates\weatherDB\home.html:6
 msgid ""
 "This is the Web interface for the WeatherDB. The WeatherDB is a Database "
@@ -313,7 +317,7 @@ msgstr "herunterladen"
 
 #: .\weatherDB\templates\weatherDB\package.html:13
 msgid "You can get those credentials by"
-msgstr "Sie können diese Zugangsdaten erhalten, indem Sie auf dieser Seite "
+msgstr "Sie können diese Zugangsdaten erhalten, indem Sie auf dieser Seite"
 
 #: .\weatherDB\templates\weatherDB\package.html:13
 msgid "requesting an account"
