@@ -13,7 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
+from django.urls import path
+from django.views.i18n import JavaScriptCatalog
+from django.views.decorators.cache import cache_page
 
 from weatherDB.views import (
     home, get_ts, download_ts, download_secret_settings,
@@ -27,4 +29,8 @@ urlpatterns = [
     path('download_secret_settings', download_secret_settings, name="download_secret_settings"),
     path('method', method_view, name="method"),
     path('package', package_view, name="package"),
+    path('jsi18n',
+        cache_page(86400, key_prefix='jsi18n')(
+            JavaScriptCatalog.as_view(packages=['weatherDB'])),
+        name='javascript-catalog'),
 ]

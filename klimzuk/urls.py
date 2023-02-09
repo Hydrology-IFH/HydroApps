@@ -13,16 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
+from django.urls import path
+from django.views.i18n import JavaScriptCatalog
+from django.views.decorators.cache import cache_page
 
 from .views import (home_view, map_view, method_view)
-# from .api import get_ts_api
 
 app_name = 'klimzuk'
 urlpatterns = [
     path('', home_view, name="home"),
     path('map', map_view, name="map"),
     path('method', method_view, name="method"),
-    # path("auth/", include("my_auth.urls")),
-    # path('api-auth/', include('rest_framework.urls')),
+    path('jsi18n',
+         cache_page(86400, key_prefix='jsi18n')(
+            JavaScriptCatalog.as_view(packages=['klimzuk'])),
+         name='javascript-catalog'),
 ]

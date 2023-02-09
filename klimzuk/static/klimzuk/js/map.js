@@ -73,9 +73,9 @@ class KlimZukMap{
         this.legend = new (L.Control.extend({
             onAdd: (map)=>{
                 let div = L.DomUtil.create('div', 'legend container-fluid');
-                div.innerHTML = "<h3>Legend</h3>"
+                div.innerHTML = `<h3>${gettext("Legend")}</h3>`
                 let icons = [this.IconSelect, this.IconUnselect]
-                let names = ["selected", "not select"];
+                let names = [gettext("selected"), gettext("not select")];
                 for (let i=0; i <2; i++){
                     let row = L.DomUtil.create('div', "row justify-content-right");
                     let col_icon = L.DomUtil.create('div', "col-auto pr-0");
@@ -106,35 +106,35 @@ class KlimZukMap{
             "click",
             (event) => {
                 this.apply_coloring();
-                event.target.textContent = "Update Coloring";
+                event.target.textContent = gettext("Update Coloring");
                 this.buttons.remove_coloring.classList.remove("invisible");
             });
         this.buttons.remove_coloring.addEventListener(
             "click",
             (event) => {
                 this.remove_coloring();
-                this.buttons.color_selection.textContent = "Color Selection";
+                this.buttons.color_selection.textContent = gettext("Color Selection");
                 event.target.classList.add("invisible");
             });
         this.buttons.filter_stations.addEventListener(
             "click",
             (event) => {
                 this.apply_filter();
-                event.target.textContent = "Update Filter";
+                event.target.textContent = gettext("Update Filter");
                 this.buttons.remove_filter.classList.remove("invisible");
             });
         this.buttons.remove_filter.addEventListener(
             "click",
             (event) => {
                 this.remove_filter();
-                this.buttons.filter_stations.textContent = "Filter Selection";
+                this.buttons.filter_stations.textContent = gettext("Filter Selection");
                 event.target.classList.add("invisible");
             });
         this.buttons.add_plots.addEventListener(
             "click",
             (event) => {
                 this.add_plots();
-                event.target.value = "add new plots";
+                event.target.value = gettext("add new plots");
             }
         )
     }
@@ -201,26 +201,38 @@ class KlimZukMap{
             (layer) => {
                 let props = layer.feature.properties;
                 let stid = layer.feature.properties.pk;
-                let str_select = this.is_selected(stid)? "unselect":"select";
+                let str_select = this.is_selected(stid)? gettext("unselect"):gettext("select");
+                let tooltip_select = gettext("Add this station to the selected stations list on the right");
+                let tooltip_download = gettext("Download all the plots for this station as PDF.");
+                let label_betreiber = gettext("Betreiber");
+                let label_name = gettext("Name");
                 let str = `<div class="container gx-0 pb-2" id="popup_stid_${stid}">\
                     <h6 style="float: left">${stid}</h6><br>\
                     <table>\
-                    <tr><td><b>Name:</b></td><td> ${props.name}</td><br>\
-                    <tr><td><b>Betreiber:</b></td><td> ${props.operator}</td>\
+                    <tr><td><b>${label_name}:</b></td><td> ${props.name}</td><br>\
+                    <tr><td><b>${label_betreiber}:</b></td><td> ${props.operator}</td>\
                     </tr></table></div>\
                     <div class="container gx-0"><div class="row justify-content-center"><div class="col">\
                         <button class="btn btn-primary rm-3" onclick="button_select_station('${stid}', event)" \
-                            data-toggle="tooltip" data-placement="top" data-container="body" data-trigger="hover"\
-                            title="Add this station to the selected stations list on the right">${str_select}</button></div><div class="col gx-0">\
-                        <a class="btn btn-primary" href="/static/klimzuk/PDF/A4_Ann_Trends_${stid}.pdf" download style="color:#FFFFFF" \
-                            data-toggle="tooltip" data-placement="top" data-container="body" data-trigger="hover" \
-                            title="Download all the plots for this station as PDF."><i class="bi bi-download"></i></a>\
+                            data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body" data-bs-trigger="hover"\
+                            data-bs-title="${tooltip_select}">${str_select}</button></div>\
+                        <div class="col gx-0">\
+                            <a class="btn btn-primary" href="/static/klimzuk/PDF/A4_Ann_Trends_${stid}.pdf" download style="color:#FFFFFF" \
+                                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body" data-bs-trigger="hover" \
+                                data-bs-title="${tooltip_download}">\
+                                <i class="bi bi-download"></i>\
+                            </a>\
                     </div></div></div>`
                 return str
             },
-           { minWidth: 130}
+           { minWidth: 150}
         )
-        this.lmarkers.on('click', ()=>{$('.leaflet-popup-content [data-toggle="tooltip"]').tooltip();})
+        this.lmarkers.on('click', ()=>{
+            tooltipList = tooltipList.filter((el) => el._element.isConnected);
+            [...document.querySelectorAll('.leaflet-popup-content [data-bs-toggle="tooltip"]')
+                ].map(tooltipTriggerEl => tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl)));
+            // $('.leaflet-popup-content [data-toggle="tooltip"]').tooltip();
+        })
         this.lmarkers.getLayers().forEach((layer) => {
             layer.setIcon(new this.IconDefault);
         })
@@ -356,7 +368,7 @@ class KlimZukMap{
     }
 
     is_selected(stid){
-        return this.get_selected_stations().includes(stid)
+        return this.get_selected_stations().includes(String(stid));
     }
 
     select_station(stid){
@@ -374,7 +386,7 @@ class KlimZukMap{
     unselect_station(stid){
         let selected_stids = this.get_selected_stations();
         if (selected_stids.includes(stid)){
-            selected_stids.pop(stid);
+            selected_stids.splice(selected_stids.indexOf(stid),1);
             this.input_stids.dom_input.value = ", ".join(selected_stids);
             this.update_coloring();
             this.update_filter();

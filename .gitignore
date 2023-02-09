@@ -12,3 +12,4 @@ klimzuk/static/klimzuk/PNG
 logs/
 TODO
 */django.mo
+*.mo
