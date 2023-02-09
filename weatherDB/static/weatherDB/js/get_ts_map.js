@@ -311,11 +311,12 @@ class Form{
                 let quot_regnie_filled = Math.round(100/layer.feature.properties.quot_filled_regnie*1000)/10;
                 let quot_hyras_filled = Math.round(100/layer.feature.properties.quot_filled_hyras*1000)/10;
                 let quot_corr_filled = Math.round(layer.feature.properties.quot_corr_filled*10)/10;
+                let label_btn_select = this.is_selected(stid)? gettext("unselect"):gettext("select");
                 let date_options = {
                     year:'numeric', month:'numeric', day:'numeric',
                     hour:'numeric', minute:'2-digit'};
                 let str = `<div class="container pl-0"><div class="row"><div class="col"><h6 style="float: left">${gettext("Station ID")}: ${stid}</h6>\
-                    <button class="btn btn-primary pr-3" style="float:right" type="button" onclick="button_select_station('${stid}', event)">${gettext("select")}</button></div></div></div>\
+                    <button class="btn btn-primary pr-3" style="float:right" type="button" onclick="button_select_station('${stid}', event)">${label_btn_select}</button></div></div></div>\
                     <b>${gettext("available period of own raw data")}:</b>\
                     <br>${raw_from.toLocaleString("de-DE", date_options)} - \
                     ${raw_until.toLocaleString("de-DE", date_options)}\
@@ -445,6 +446,10 @@ class Form{
 
     get_kind(){
         return this.input_kind.get_value();
+    }
+
+    is_selected(stid){
+        return this.get_selected_stations().includes(String(stid));
     }
 
     apply_filter(){
@@ -686,13 +691,17 @@ class Form{
             console.log(`The station id ${stid} is not a valid ID`);
         }
         this.check_stations_input();
+        this.update_coloring();
+        this.update_filter();
     }
 
     unselect_station(stid){
         let selected_stids = this.get_selected_stations();
         if (selected_stids.includes(stid)){
-            selected_stids.pop(stid);
-            this.input_stids.dom_input.value = ", ".join(selected_stids); 
+            selected_stids.splice(selected_stids.indexOf(stid),1);
+            this.input_stids.dom_input.value = selected_stids.join(", "); 
+            this.update_coloring();
+            this.update_filter();
         }
     }
 

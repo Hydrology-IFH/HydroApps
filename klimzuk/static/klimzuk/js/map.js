@@ -368,7 +368,7 @@ class KlimZukMap{
     }
 
     is_selected(stid){
-        return this.get_selected_stations().includes(stid)
+        return this.get_selected_stations().includes(String(stid));
     }
 
     select_station(stid){
@@ -386,7 +386,7 @@ class KlimZukMap{
     unselect_station(stid){
         let selected_stids = this.get_selected_stations();
         if (selected_stids.includes(stid)){
-            selected_stids.pop(stid);
+            selected_stids.splice(selected_stids.indexOf(stid),1);
             this.input_stids.dom_input.value = ", ".join(selected_stids);
             this.update_coloring();
             this.update_filter();
