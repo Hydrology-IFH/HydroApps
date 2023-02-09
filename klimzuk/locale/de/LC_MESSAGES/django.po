@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 15:26+0100\n"
-"PO-Revision-Date: 2023-02-09 10:48+0100\n"
+"POT-Creation-Date: 2023-02-09 16:00+0100\n"
+"PO-Revision-Date: 2023-02-09 16:03+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -195,17 +195,15 @@ msgstr "Erläuterung der Abbildung"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:141
 msgid "Parameter of this plot described on the y-Axis"
-msgstr ""
+msgstr "Parameter dieses Diagramms der auf y-Achse angezeigt wird"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:143
-#, fuzzy
-#| msgid "selected station IDs"
 msgid "The Station ID"
-msgstr "gewählte Stations-IDs"
+msgstr "Die Stations-ID"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:145
 msgid "The stations height above the sea."
-msgstr ""
+msgstr "Die Stationshöhe über dem Meeresspiegel."
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:147
 msgid ""
