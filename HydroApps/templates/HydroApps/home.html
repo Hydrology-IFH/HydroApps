@@ -26,8 +26,8 @@
   <h3>Hydro-Apps</h3>
   <p>{% trans "On this site you will find several Web Apllications that got created by the department of Hydrology at the University of Freiburg." %}</p>
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">  
-      <div class="col">
+    <div class="row g-4">  
+      <div class="col col-flex">
         <div class="card h-100">
           <a href="{% url 'weatherDB:home' %}" class="stretched-link"></a>
           <img src="{% static 'weatherDB/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
@@ -38,7 +38,7 @@
         </div>
       </div>
       {% if show_unreleased %}
-      <div class="col">
+      <div class="col col-flex">
         <div class="card h-100">
           <a href="{% url 'klimzuk:home' %}" class="stretched-link"></a>
           <img src="{% static 'klimzuk/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB">
@@ -49,7 +49,7 @@
         </div>
       </div>
       {% endif %}
-      <div class="col">
+      <div class="col col-flex">
         <div class="card h-100">
           <a target="_blank" rel="noopener noreferrer" href="https://naturwb.de" class="stretched-link"></a>
           <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
