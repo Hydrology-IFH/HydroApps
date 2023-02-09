@@ -13,10 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
+from django.urls import path
+from django.views.i18n import JavaScriptCatalog
+from django.views.decorators.cache import cache_page
 
 from .views import (home_view, map_view, method_view)
-from django.views.i18n import JavaScriptCatalog
 
 app_name = 'klimzuk'
 urlpatterns = [
@@ -24,6 +25,7 @@ urlpatterns = [
     path('map', map_view, name="map"),
     path('method', method_view, name="method"),
     path('jsi18n',
-         JavaScriptCatalog.as_view(packages=['klimzuk']),
+         cache_page(86400, key_prefix='jsi18n')(
+            JavaScriptCatalog.as_view(packages=['klimzuk'])),
          name='javascript-catalog'),
 ]
