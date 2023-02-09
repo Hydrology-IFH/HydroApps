@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-09 12:26+0100\n"
+"PO-Revision-Date: 2023-02-09 12:26+0100\n"
+"Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: .\klimzuk\static\klimzuk\js\map.js:109
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Update Coloring"
+msgstr "Einfärbung aktualisieren"
+
+#: .\klimzuk\static\klimzuk\js\map.js:116
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Color Selection"
+msgstr "Auswahl einfärben"
+
+#: .\klimzuk\static\klimzuk\js\map.js:123
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Update Filter"
+msgstr "Filter aktualisieren"
+
+#: .\klimzuk\static\klimzuk\js\map.js:130
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Filter Selection"
+msgstr "auf Auswahl filtern"
+
+#: .\klimzuk\static\klimzuk\js\map.js:137
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "add new plots"
+msgstr "Füge Abbildungen hinzu"
+
+#: .\klimzuk\static\klimzuk\js\map.js:204
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "unselect"
+msgstr "abwählen"
+
+#: .\klimzuk\static\klimzuk\js\map.js:204
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "select"
+msgstr "auswählen"
+
+#: .\klimzuk\static\klimzuk\js\map.js:205
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Add this station to the selected stations list on the right"
+msgstr ""
+"Füge diese Station zur Liste der ausgewählten Stationen auf der rechten "
+"Seite hinzu"
+
+#: .\klimzuk\static\klimzuk\js\map.js:206
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Download all the plots for this station as PDF."
+msgstr "Laden Sie alle Plots für diese Station als PDF herunter."
+
+#: .\klimzuk\static\klimzuk\js\map.js:207
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Betreiber"
+msgstr "operator"
+
+#: .\klimzuk\static\klimzuk\js\map.js:208
+#: .\klimzuk\static\klimzuk\js\map.min.js:1
+msgid "Name"
+msgstr "name"

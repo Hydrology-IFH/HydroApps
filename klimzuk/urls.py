@@ -16,13 +16,14 @@ Including another URLconf
 from django.urls import path, include
 
 from .views import (home_view, map_view, method_view)
-# from .api import get_ts_api
+from django.views.i18n import JavaScriptCatalog
 
 app_name = 'klimzuk'
 urlpatterns = [
     path('', home_view, name="home"),
     path('map', map_view, name="map"),
     path('method', method_view, name="method"),
-    # path("auth/", include("my_auth.urls")),
-    # path('api-auth/', include('rest_framework.urls')),
+    path('jsi18n',
+         JavaScriptCatalog.as_view(packages=['klimzuk']),
+         name='javascript-catalog'),
 ]

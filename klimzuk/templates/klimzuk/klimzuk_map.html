@@ -47,7 +47,7 @@
             <div class="d-flex col-auto"> 
               <h3>{% trans "Select plots to show" %}</h3>
               <span class="ms-auto mb-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-              data-bs-html="true" title='{% trans "Show me an explanation of the plots." %}'>
+              data-bs-html="true" data-bs-title='{% trans "Show me an explanation of the plots." %}'>
                 <button class="btn btn-primary btn btn-primary ms-auto mb-2" data-bs-toggle="modal" data-bs-target="#explanationModal" >
                   <i class="bi bi-question-circle"></i>
                 </button>
@@ -57,7 +57,7 @@
             
             <div class="form-group input-group mb-3">
               <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-              data-bs-html="true" title='{% trans "Choose the Parameters you would like to see.<br>select multiple values with Ctrl" %}'>Parameter</span>
+              data-bs-html="true" data-bs-title='{% trans "Choose the Parameters you would like to see.<br>select multiple values with Ctrl" %}'>Parameter</span>
               <select class="form-select" id="parameter" name="parameter" multiple>
                 <option value="pr" selected>{% trans "precipitation" %}</option>
                 <option value="tas">{% trans "temperature" %}</option>
@@ -72,7 +72,7 @@
 
             <div class="input-group mb-3">
               <span class="input-group-text" id="label_period" data-bs-toggle="tooltip" data-bs-placement="top"
-              data-bs-html="true" title='{% trans "Which period do you want to see?<br>select multiple values with Ctrl." %}'>{% trans "Period" %}</span>
+              data-bs-html="true" data-bs-title='{% trans "Which period do you want to see?<br>select multiple values with Ctrl." %}'>{% trans "Period" %}</span>
               <select class="form-select" id="period" name="period" multiple>
                 <option value="a" selected>{% trans "Year" %}</option>
                 <option value="W">{% trans "Winter" %} (12-2)</option>
@@ -85,7 +85,7 @@
 
             <div id="station_ids_div" class="input-group mb-3">
               <span class="input-group-text" id="label_station_ids"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-              data-bs-html="true" title='{% trans "Enter the station IDs you would like to see as a comma separated list.<br>The easier way to select a station is by clicking on it on the map." %}'>{% trans "selected station IDs" %}</span>
+              data-bs-html="true" data-bs-title='{% trans "Enter the station IDs you would like to see as a comma separated list.<br>The easier way to select a station is by clicking on it on the map." %}'>{% trans "selected station IDs" %}</span>
               <textarea class="form-control" rows="1" id="station_ids" name="station_ids" value=""
                 label='{% trans "selected station IDs" %}' required=""></textarea>
               <div class="invalid-feedback" id="invalid-feedback-station_ids">
@@ -173,7 +173,6 @@
       </div>
     </div>
   </div>
-  
   <div class="pt-2 col-12">
     <div id="plot_area">
       <div class="card" style="{width: '100%'}" v-if="plots_data.length>0">
@@ -182,8 +181,8 @@
           <div class="plot-area-buttons">
             <button class="btn btn-primary" @click="clear_plot_area">{% trans "clear plots" %}</button>
             <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-              data-bs-html="true" title='{% trans "Show me an explanation of the plots." %}'>
-              <button class="btn btn-primary btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#explanationModal" >
+              data-bs-title='{% trans "Show me an explanation of the plots." %}'>
+              <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#explanationModal" >
                 <i class="bi bi-question-circle"></i>
               </button>
             </span>
@@ -198,6 +197,7 @@
 
 {% block scripts %}
   {{ meta_n|json_script:"stations_meta" }}
+  <script src="{% url 'klimzuk:javascript-catalog' %}"></script>
   {% if debug %}
     <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.js"></script>
     <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
@@ -209,12 +209,11 @@
     <script src={% static "klimzuk/js/plot_area.min.js" %} defer></script>
     <script src={% static "klimzuk/js/map.min.js" %} defer></script>
   {% endif%}
-  <script src="https://unpkg.com/@popperjs/core@2"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
 <script>
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
 
 {% endblock %}

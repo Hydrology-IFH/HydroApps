@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HydroApps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 09:32+0100\n"
-"PO-Revision-Date: 2023-02-01 12:30+0100\n"
+"POT-Creation-Date: 2023-02-09 09:46+0100\n"
+"PO-Revision-Date: 2023-02-09 10:05+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -38,7 +38,7 @@ msgstr "Profil"
 
 #: .\main\templates\base.html:112
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: .\main\templates\base.html:114
 msgid "Log out"
@@ -129,10 +129,16 @@ msgid ""
 "  Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website "
 "betreten."
 msgstr ""
+"Other data is collected automatically or after your consent when you visit "
+"the website by our IT systems.\n"
+"  This is mainly technical data (e.&nbsp;g. internet browser, operating "
+"system, IP address or time of page view). The\n"
+"  The collection of this data takes place automatically as soon as you enter "
+"this website."
 
 #: .\main\templates\datenschutz.html:23
 msgid "Wof&uuml;r nutzen wir Ihre Daten?"
-msgstr ""
+msgstr "What do we use your data for?"
 
 #: .\main\templates\datenschutz.html:67
 msgid ""
@@ -148,12 +154,25 @@ msgid ""
 "Aufbewahrungsfristen); im letztgenannten Fall\n"
 "  erfolgt die L&ouml;schung nach Fortfall dieser Gr&uuml;nde."
 msgstr ""
+"Unless a more specific storage period is specified in this data protection "
+"statement, your personal data will remain with us\n"
+"  until the purpose of the data processing no longer applies. If you have a "
+"legitimate\n"
+"  request or if you revoke your consent to data processing, your data will "
+"be deleted,\n"
+"   unless we have other legally permissible reasons for storing your "
+"personal\n"
+"  data (e.g. retention periods under tax or commercial law).\n"
+"  In the latter case, the data will be deleted after these reasons have "
+"ceased to apply."
 
 #: .\main\templates\datenschutz.html:73
 msgid ""
 "Ihr angelegtes Konto und die dazugehörigen Daten löschen wir nach einer "
 "Inaktivität von 2 Jahren."
 msgstr ""
+"We will delete your created account and the associated data after 2 years of "
+"inactivity."
 
 #: .\main\templates\impressum.html:6
 msgid "Imprint"
@@ -530,13 +549,16 @@ msgstr ""
 
 #: .\main\templates\unreleased.html:5
 msgid "unreleased"
-msgstr ""
+msgstr "unveröffentlicht"
 
 #: .\main\templates\unreleased.html:7
 msgid ""
 "This Application didn't get released yet. If you want to test it, you need "
 "to login and apply for a test User account."
 msgstr ""
+"Diese Anwendung wurde noch nicht veröffentlicht. Wenn Sie diese testen "
+"möchten, müssen Sie sich anmelden und beantragen das Sie als Test Nutzer "
+"freigeschaltet werden."
 
 #~ msgid "Impressum"
 #~ msgstr "Impressum"

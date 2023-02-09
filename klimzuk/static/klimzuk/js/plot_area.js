@@ -40,6 +40,11 @@ var plotAreaApp = Vue.createApp({
     clear_plot_area(){
       this.plots_data.splice(0, this.plots_data.length);
     }
+  },
+  updated() {
+      tooltipList = tooltipList.filter((el) => el._element.isConnected);
+      [...document.querySelectorAll('div#plot_area [data-bs-toggle="tooltip"]')
+        ].map(tooltipTriggerEl => tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl)));
   }
 })
 
@@ -56,23 +61,11 @@ plotAreaApp.component(
       src: function(){
         return `/static/klimzuk/PNG/A4_Ann_Trends_${this.station_id}_${this.para}_${this.period}.png`
       },
-      // plot_key: function(){
-      //     return `${this.station_id}_${this.para}_${this.period}`
-      // },
-      // para_readable: function(){
-      //   return para_dict[this.para]
-      // },
-      // period_readable: function(){
-      //   return period_dict[this.period]
-      // },
-      // top_px: function(){return this.top + "px"},
-      // left_px: function(){return this.left + "px"},
       style: function(){
         let jitter = this.n_start*15;
         return {left: jitter + 5 +"px", top: jitter + 60 + "px"}
       }
     },
-    // template: `<div class="card" v-bind:style="{width: width, top: top_px, left: left_px, cursor:cursor}" v-on:mousedown.left="dragMouseDown" v-on:mouseover="mouseOver"><div class="card-body"><img class="plot_img" v-bind:src="src"></div></div>`,
     template: `<div class="card plot_card" :style="style"><div class="card-body"><button type="button" class="btn-close" aria-label="Close" @click="remove_plot"></button><img class="plot_img" v-bind:src="src"></div></div>`,
     methods: {
       remove_plot(){

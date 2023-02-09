@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 09:32+0100\n"
-"PO-Revision-Date: 2023-02-09 09:34+0100\n"
+"POT-Creation-Date: 2023-02-09 09:46+0100\n"
+"PO-Revision-Date: 2023-02-09 10:48+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -171,7 +171,7 @@ msgstr "Zeige Auswahl auf der Karte"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:108
 msgid "Color Selection"
-msgstr "Färbe die Auswahl auf der Karte"
+msgstr "Auswahl einfärben"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:109
 msgid "Remove Coloring"
@@ -179,7 +179,7 @@ msgstr "Einfärbung entfernen"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:112
 msgid "Filter Selection"
-msgstr "Filtre die Auswahl auf der Karte"
+msgstr "auf Auswahl filtern"
 
 #: .\klimzuk\templates\klimzuk\klimzuk_map.html:113
 msgid "Remove Filters"
