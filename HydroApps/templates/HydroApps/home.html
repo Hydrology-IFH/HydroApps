@@ -10,14 +10,19 @@
   img.card-img-top{
     width: 15rem;
   }
-  div.card > i.bi-box-arrow-up-right{
+  div.card > i.bi-box-arrow-up-right
+  {
     position: absolute;
     align-self: end;
     margin-right: 1rem !important;
     margin-top: 0.5rem !important;
     font-size: 1.5rem;
-    color: #004A99;
     align-self: flex-end !important;
+    color: #004A99;
+  }
+  a.list-group-item {
+    --bs-list-group-action-hover-color: #fff;
+    --bs-list-group-action-hover-bg: #0d6efd;
   }
 </style>
 {% endblock %}
@@ -62,12 +67,43 @@
       </div>
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
-          <a target="_blank" rel="noopener noreferrer" href="http://www.naturnahe-regenwasserbewirtschaftung.info/"></a>
+          <a target="_blank" rel="noopener noreferrer" href="http://www.naturnahe-regenwasserbewirtschaftung.info/" class="stretched-link"></a>
           <img src="{% static 'logos_other_sites/Logo_FReWaB.png' %}" class="card-img-top mx-auto" alt="Logo of FReWaB" >
           <i class="bi bi-box-arrow-up-right"></i>
           <div class="card-body">
             <h5 class="card-title">FReWaB</h5>
             <p class="card-text">{% trans "This is an Application to simulate the water balance of a small area in Freiburg and to show the effects near natural rainwater management can have on it." %} </p>
+          </div>
+        </div>
+      </div>
+      {% comment %} Measurement links {% endcomment %}
+      <div class="accordion" id="accordionAdditionals">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingAccMeasurements">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#AccMeasurements" aria-expanded="true" aria-controls="AccMeasurements">
+              Measurments
+            </button>
+          </h2>
+          <div id="AccMeasurements" class="accordion-collapse collapse show" aria-labelledby="headingAccMeasurements" data-bs-parent="#accordionAdditionals">
+            <div class="accordion-body">
+              <ul class="list-group d-inline-flex">
+                <a class="list-group-item list-group-item-action d-flex justify-content-between"  target="_blank" rel="noopener noreferrer" 
+                   href="http://www.hydrology.uni-freiburg.de/aktuell/dreisam/index.html">
+                  {% trans "Pegel Dreisam" %}
+                  <i class="bi bi-box-arrow-up-right ms-4"></i>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex justify-content-between" target="_blank" rel="noopener noreferrer" 
+                   href="https://hydrologie.shinyapps.io/MeteoVauban/" >
+                  {% trans "Meteo Station Vauban" %}
+                  <i class="bi bi-box-arrow-up-right ms-4"></i>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex justify-content-between"  target="_blank" rel="noopener noreferrer" 
+                   href="https://hydrologie.shinyapps.io/MeteoEichstetten/">
+                  {% trans "Meteo Station Eichstetten" %}
+                  <i class="bi bi-box-arrow-up-right ms-4"></i>
+                </a> 
+              </ul>
+            </div>
           </div>
         </div>
       </div>

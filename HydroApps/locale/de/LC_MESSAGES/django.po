@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-21 10:08+0100\n"
-"PO-Revision-Date: 2023-02-21 10:09+0100\n"
+"POT-Creation-Date: 2023-02-21 11:49+0100\n"
+"PO-Revision-Date: 2023-02-21 12:26+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -58,3 +58,15 @@ msgstr ""
 "Dies ist eine Anwendung, um den Wasserhaushalt eines kleinen Gebietes in "
 "Freiburg zu simulieren und um zu zeigen, welche Auswirkungen eine naturnahe "
 "Regenwasserbewirtschaftung darauf haben kann."
+
+#: .\django\HydroApps\templates\HydroApps\home.html:88
+msgid "Pegel Dreisam"
+msgstr "Water Level Dreisam"
+
+#: .\django\HydroApps\templates\HydroApps\home.html:93
+msgid "Meteo Station Vauban"
+msgstr "Meteo-Station Vauban"
+
+#: .\django\HydroApps\templates\HydroApps\home.html:98
+msgid "Meteo Station Eichstetten"
+msgstr "Meteo-Station Eichstetten"
