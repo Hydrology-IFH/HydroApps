@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HydroApps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 16:00+0100\n"
+"POT-Creation-Date: 2023-02-21 10:08+0100\n"
 "PO-Revision-Date: 2023-02-09 10:05+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -24,51 +24,51 @@ msgstr ""
 "X-Poedit-SearchPath-3: my_auth/locale\n"
 "X-Poedit-SearchPath-4: HydroApps/locale\n"
 
-#: .\main\settings.py:223
+#: .\django\main\settings.py:223
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:224
+#: .\django\main\settings.py:224
 msgid "English"
 msgstr "Englisch"
 
-#: .\main\templates\base.html:110
+#: .\django\main\templates\base.html:110
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:112
+#: .\django\main\templates\base.html:112
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:114
+#: .\django\main\templates\base.html:114
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:116
+#: .\django\main\templates\base.html:116
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:159
+#: .\django\main\templates\base.html:159
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:160
+#: .\django\main\templates\base.html:160
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 
-#: .\main\templates\datenschutz.html:6
+#: .\django\main\templates\datenschutz.html:6
 msgid "Privacy aggrement"
 msgstr "Datenschutzerklärung"
 
-#: .\main\templates\datenschutz.html:7
+#: .\django\main\templates\datenschutz.html:7
 msgid "Overview of privacy agreement"
 msgstr "Datenschutz auf einen Blick"
 
-#: .\main\templates\datenschutz.html:9
+#: .\django\main\templates\datenschutz.html:9
 msgid "General notes"
 msgstr "Allgemeine Hinweise"
 
-#: .\main\templates\datenschutz.html:10
+#: .\django\main\templates\datenschutz.html:10
 msgid ""
 "The following notices provide a simple overview of what happens to your "
 "personal data\n"
@@ -85,15 +85,15 @@ msgstr ""
 "Thema Datenschutz entnehmen Sie unserer unter\n"
 "  diesem Text aufgef&uuml;hrten Datenschutzerkl&auml;rung."
 
-#: .\main\templates\datenschutz.html:13
+#: .\django\main\templates\datenschutz.html:13
 msgid "Data collection on this site"
 msgstr "Datenerfassung auf dieser Website"
 
-#: .\main\templates\datenschutz.html:14
+#: .\django\main\templates\datenschutz.html:14
 msgid "Who is responsible for the data Collection on this site?"
 msgstr "Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?"
 
-#: .\main\templates\datenschutz.html:15
+#: .\django\main\templates\datenschutz.html:15
 msgid ""
 "Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. "
 "Dessen Kontaktdaten k&ouml;nnen Sie dem\n"
@@ -105,11 +105,11 @@ msgstr ""
 "  Section \"Information about the responsible party\" in this privacy "
 "aggrement."
 
-#: .\main\templates\datenschutz.html:17
+#: .\django\main\templates\datenschutz.html:17
 msgid "Wie erfassen wir Ihre Daten?"
 msgstr "How is your data collected?"
 
-#: .\main\templates\datenschutz.html:18
+#: .\django\main\templates\datenschutz.html:18
 msgid ""
 "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. "
 "Hierbei kann es sich z.&nbsp;B. um Daten\n"
@@ -120,7 +120,7 @@ msgstr ""
 "be e.g. data that you enter in a contact\n"
 "  that you enter in a contact form, registration form or request form."
 
-#: .\main\templates\datenschutz.html:20
+#: .\django\main\templates\datenschutz.html:20
 msgid ""
 "Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der "
 "Website durch unsere IT-Systeme erfasst.\n"
@@ -136,11 +136,11 @@ msgstr ""
 "  The collection of this data takes place automatically as soon as you enter "
 "this website."
 
-#: .\main\templates\datenschutz.html:23
+#: .\django\main\templates\datenschutz.html:23
 msgid "Wof&uuml;r nutzen wir Ihre Daten?"
 msgstr "What do we use your data for?"
 
-#: .\main\templates\datenschutz.html:67
+#: .\django\main\templates\datenschutz.html:67
 msgid ""
 "Soweit innerhalb dieser Datenschutzerkl&auml;rung keine speziellere "
 "Speicherdauer genannt wurde, verbleiben Ihre\n"
@@ -166,7 +166,7 @@ msgstr ""
 "  In the latter case, the data will be deleted after these reasons have "
 "ceased to apply."
 
-#: .\main\templates\datenschutz.html:73
+#: .\django\main\templates\datenschutz.html:73
 msgid ""
 "Ihr angelegtes Konto und die dazugehörigen Daten löschen wir nach einer "
 "Inaktivität von 2 Jahren."
@@ -174,11 +174,11 @@ msgstr ""
 "We will delete your created account and the associated data after 2 years of "
 "inactivity."
 
-#: .\main\templates\impressum.html:6
+#: .\django\main\templates\impressum.html:6
 msgid "Imprint"
 msgstr "Impressum"
 
-#: .\main\templates\impressum.html:8
+#: .\django\main\templates\impressum.html:8
 msgid ""
 "This site was created in 2022 by Max Schmit at the Chair of Hydrology at the "
 "University of Freiburg."
@@ -186,50 +186,50 @@ msgstr ""
 "Diese Seite wurde 2022 von Max Schmit an der Professur für Hydrologie der "
 "Universität Freiburg erstellt."
 
-#: .\main\templates\impressum.html:11
+#: .\django\main\templates\impressum.html:11
 msgid ""
 "Author - content, structure, implementation and conception of the website"
 msgstr "Autor - Inhalt, Aufbau, Umsetzung und Konzeption der Webseite"
 
-#: .\main\templates\impressum.html:19
+#: .\django\main\templates\impressum.html:19
 msgid "Max Schmit is at your disposal for questions, problems and comments."
 msgstr ""
 "Zu Fragen, Problemen und Anmerkungen steht Ihnen Max Schmit gerne zur "
 "Verfügung."
 
-#: .\main\templates\impressum.html:22
+#: .\django\main\templates\impressum.html:22
 msgid "Editor"
 msgstr "Herausgeber"
 
-#: .\main\templates\impressum.html:24
+#: .\django\main\templates\impressum.html:24
 msgid "Chair of Hydrology - Albert-Ludwigs University of Freiburg i.Br."
 msgstr "Professur für Hydrologie - Albert-Ludwigs Universität Freiburg i.Br."
 
-#: .\main\templates\impressum.html:25
+#: .\django\main\templates\impressum.html:25
 msgid "Managingn Director"
 msgstr "Geschäftsführender Direktor"
 
-#: .\main\templates\impressum.html:30
+#: .\django\main\templates\impressum.html:30
 msgid "Tax identification number"
 msgstr "Umsatzsteueridentifikationsnummer"
 
-#: .\main\templates\impressum.html:33
+#: .\django\main\templates\impressum.html:33
 msgid "used images"
 msgstr "genutzte Bilder"
 
-#: .\main\templates\impressum.html:34
+#: .\django\main\templates\impressum.html:34
 msgid "The following image sources were used for this page"
 msgstr "Folgende Bild-Quellen wurden für diese Seite genutzt"
 
-#: .\main\templates\impressum.html:41
+#: .\django\main\templates\impressum.html:41
 msgid "used software"
 msgstr "Benutzte Software"
 
-#: .\main\templates\impressum.html:42
+#: .\django\main\templates\impressum.html:42
 msgid "The following software packages got used for creating this website"
 msgstr "The following software packages got used for creating this website"
 
-#: .\main\templates\impressum.html:64
+#: .\django\main\templates\impressum.html:64
 msgid ""
 "This list does not claim to be a complete list of all the software used, but "
 "only lists the main packages. We thank all the developers of these packages "
@@ -241,7 +241,7 @@ msgstr ""
 "Entwickler*Innen dieser Pakete soll hiermit für ihre Arbeit gedankt werden, "
 "da ohne deren Arbeit dieses Projekt nicht hätte entstehen können."
 
-#: .\main\templates\impressum.html:65
+#: .\django\main\templates\impressum.html:65
 msgid ""
 "Certainly many more software packages were used that are not listed here. "
 "However, we would like to thank them as well."
@@ -249,11 +249,11 @@ msgstr ""
 "Sicher kamen noch viele weitere Software-Pakete zum Einsatz die hier nicht "
 "aufgeführt werden können. Der Dank gilt ihnen aber ebenso."
 
-#: .\main\templates\impressum.html:67
+#: .\django\main\templates\impressum.html:67
 msgid "Used datasets"
 msgstr "Genutzte Datensätze"
 
-#: .\main\templates\impressum.html:69
+#: .\django\main\templates\impressum.html:69
 msgid ""
 "The following data sets were used to determine the time series for WeatherDB-"
 "App"
@@ -261,23 +261,28 @@ msgstr ""
 "Folgende Datensätze fanden eine Verwendung zum bestimmen der WeatherDB-"
 "Zeitreihen"
 
-#: .\main\templates\impressum.html:72 .\main\templates\impressum.html:74
-#: .\main\templates\impressum.html:78 .\main\templates\impressum.html:80
-#: .\main\templates\impressum.html:82 .\main\templates\impressum.html:84
-#: .\main\templates\impressum.html:86
+#: .\django\main\templates\impressum.html:72
+#: .\django\main\templates\impressum.html:74
+#: .\django\main\templates\impressum.html:78
+#: .\django\main\templates\impressum.html:80
+#: .\django\main\templates\impressum.html:82
+#: .\django\main\templates\impressum.html:84
+#: .\django\main\templates\impressum.html:86
 msgid "Available online at"
 msgstr "Online verfügbar unter"
 
-#: .\main\templates\impressum.html:78 .\main\templates\impressum.html:80
-#: .\main\templates\impressum.html:82 .\main\templates\impressum.html:84
+#: .\django\main\templates\impressum.html:78
+#: .\django\main\templates\impressum.html:80
+#: .\django\main\templates\impressum.html:82
+#: .\django\main\templates\impressum.html:84
 msgid "last checked on"
 msgstr "zuletzt geprüft am"
 
-#: .\main\templates\impressum.html:90
+#: .\django\main\templates\impressum.html:90
 msgid "Disclaimer"
 msgstr "Haftungsausschluss"
 
-#: .\main\templates\impressum.html:91
+#: .\django\main\templates\impressum.html:91
 msgid ""
 "\n"
 "  The Chair of Hydrology as publisher and Max Schmit as author of the "
@@ -300,7 +305,7 @@ msgstr ""
 "Verantwortung für missbräuchliche oder unsachgemäße Anwendung der hier "
 "angebotenen Dienste durch Dritte."
 
-#: .\main\templates\impressum.html:93
+#: .\django\main\templates\impressum.html:93
 msgid ""
 "\n"
 "  The use of the contents of this website, including downloading time "
@@ -314,7 +319,7 @@ msgstr ""
 "Nutzers. Mit der reinen Nutzung der Website kommt keinerlei "
 "Vertragsverhältnis zwischen dem Nutzer und dem Herausgeber zustande.\n"
 
-#: .\main\templates\impressum.html:95
+#: .\django\main\templates\impressum.html:95
 msgid ""
 "\n"
 "  Excluded are claims for direct or indirect damages or consequences of a "
@@ -334,11 +339,11 @@ msgstr ""
 "Pflichten zwischen der Professur für Hydrologie und dem Nutzer dieser "
 "Website oder Dritten.\n"
 
-#: .\main\templates\impressum.html:99
+#: .\django\main\templates\impressum.html:99
 msgid "Disclaimer for external links"
 msgstr "Haftungsausschluss bei externen links"
 
-#: .\main\templates\impressum.html:100
+#: .\django\main\templates\impressum.html:100
 msgid ""
 "\n"
 "  The contents of external sites or the services offered by them, to which "
@@ -359,7 +364,7 @@ msgstr ""
 "externen Links bedeutet nicht, dass sich der Herausgeber die hinter dem "
 "Verweis oder Link liegenden Inhalte zu Eigen macht.\n"
 
-#: .\main\templates\impressum.html:102
+#: .\django\main\templates\impressum.html:102
 msgid ""
 "\n"
 "  The Chair of Hydrology declares that it has no influence whatsoever on the "
@@ -375,11 +380,11 @@ msgstr ""
 "von allen Inhalten aller verlinkte Seiten auf dieser Homepage. Diese "
 "Erklärung gilt für alle auf dieser Homepage angezeigten Links.\n"
 
-#: .\main\templates\impressum.html:106
+#: .\django\main\templates\impressum.html:106
 msgid "Copyright"
 msgstr "Urheberrecht"
 
-#: .\main\templates\impressum.html:107
+#: .\django\main\templates\impressum.html:107
 msgid ""
 "\n"
 "  The texts, illustrations, photos and maps published on this website as "
@@ -412,7 +417,7 @@ msgstr ""
 "einem Proxy-Server zur Optimierung der Zugriffsgeschwindigkeit ist "
 "gestattet.\n"
 
-#: .\main\templates\impressum.html:109
+#: .\django\main\templates\impressum.html:109
 msgid ""
 "\n"
 "  The graphics and downloaded time series may be used without permission. "
@@ -426,11 +431,11 @@ msgstr ""
 "unsere Webseite sind ausdrücklich erlaubt. Bei Darstellung dieser Webseite "
 "in fremden Frames bitten wir um vorherige Rücksprache und Zustimmung.\n"
 
-#: .\main\templates\impressum.html:113
+#: .\django\main\templates\impressum.html:113
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: .\main\templates\impressum.html:114
+#: .\django\main\templates\impressum.html:114
 msgid ""
 "\n"
 "  By visiting this website, files may be temporarily stored when downloading "
@@ -449,7 +454,7 @@ msgstr ""
 "findet nicht statt. Die Daten werden in regelmässigen Abständen gelöscht "
 "(maximal 7 Tage).\n"
 
-#: .\main\templates\impressum.html:117
+#: .\django\main\templates\impressum.html:117
 msgid ""
 "For the purpose of user statistics, the IP address, the current time and the "
 "URL are stored when the page is called up. Data will not be passed on to "
@@ -460,7 +465,7 @@ msgstr ""
 "Weitergabe an Dritte, zu kommerziellen oder nicht kommerziellen Zwecken, "
 "findet nicht statt."
 
-#: .\main\templates\impressum.html:120
+#: .\django\main\templates\impressum.html:120
 msgid ""
 "We use the hCaptcha anti-bot service (hereinafter \"hCaptcha\") on our "
 "website. This service is provided by Intuition Machines, Inc., a Delaware US "
@@ -503,15 +508,15 @@ msgstr ""
 "(CCPA). Weitere Informationen über hCaptcha und die Datenschutzrichtlinien "
 "und Nutzungsbedingungen von IMI finden Sie unter den folgenden Links: "
 
-#: .\main\templates\impressum.html:120
+#: .\django\main\templates\impressum.html:120
 msgid "and"
 msgstr "und"
 
-#: .\main\templates\impressum.html:122
+#: .\django\main\templates\impressum.html:122
 msgid "Notes"
 msgstr "Hinweise"
 
-#: .\main\templates\impressum.html:123
+#: .\django\main\templates\impressum.html:123
 msgid ""
 "\n"
 "  The fact that a term or designation on this website is not identified as a "
@@ -525,7 +530,7 @@ msgstr ""
 "Schluss zu, dass es sich nicht evtl. doch um eine Marke oder ein "
 "Warenzeichen handelt. Gleiches gilt für Patente und andere Schutzformen.\n"
 
-#: .\main\templates\impressum.html:125
+#: .\django\main\templates\impressum.html:125
 msgid ""
 "\n"
 "  The Professorship of Hydrology and the author expressly reserve the right "
@@ -537,7 +542,7 @@ msgstr ""
 "jederzeit Inhalte ohne Ankündigung ganz oder teilweise zu ändern, zu löschen "
 "oder zeitweise nicht zu veröffentlichen.\n"
 
-#: .\main\templates\impressum.html:127
+#: .\django\main\templates\impressum.html:127
 msgid ""
 "\n"
 "  The contact data in the imprint are not to be used for advertising "
@@ -547,11 +552,11 @@ msgstr ""
 "Die Kontaktdaten im Impressum sind nicht zu Werbezwecken zu verwenden. Eine "
 "kommerzielle Nutzung und Weitergabe dieser Daten ist nicht erlaubt.\n"
 
-#: .\main\templates\unreleased.html:5
+#: .\django\main\templates\unreleased.html:5
 msgid "unreleased"
 msgstr "unveröffentlicht"
 
-#: .\main\templates\unreleased.html:7
+#: .\django\main\templates\unreleased.html:7
 msgid ""
 "This Application didn't get released yet. If you want to test it, you need "
 "to login and apply for a test User account."

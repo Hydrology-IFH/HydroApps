@@ -41,7 +41,7 @@
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
           <a href="{% url 'klimzuk:home' %}" class="stretched-link"></a>
-          <img src="{% static 'klimzuk/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB">
+          <img src="{% static 'klimzuk/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of KlimZuk">
           <div class="card-body">
             <h5 class="card-title">KlimZuk</h5>
             <p class="card-text">{% trans "This is an Application to get the climate projections of single weather stations." %} </p>
@@ -52,11 +52,22 @@
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
           <a target="_blank" rel="noopener noreferrer" href="https://naturwb.de" class="stretched-link"></a>
-          <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
+          <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of NatUrWB" >
           <i class="bi bi-box-arrow-up-right"></i>
           <div class="card-body">
             <h5 class="card-title">NatUrWB</h5>
             <p class="card-text">{% trans "This is an Application to get the near natural water balance of cities." %} </p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
+          <a target="_blank" rel="noopener noreferrer" href="http://www.naturnahe-regenwasserbewirtschaftung.info/"></a>
+          <img src="{% static 'logos_other_sites/Logo_FReWaB.png' %}" class="card-img-top mx-auto" alt="Logo of FReWaB" >
+          <i class="bi bi-box-arrow-up-right"></i>
+          <div class="card-body">
+            <h5 class="card-title">FReWaB</h5>
+            <p class="card-text">{% trans "This is an Application to simulate the water balance of a small area in Freiburg and to show the effects near natural rainwater management can have on it." %} </p>
           </div>
         </div>
       </div>
