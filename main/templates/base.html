@@ -47,7 +47,7 @@
 
               <!-- Hydro-Apps Menu -->
               <div class="navbar-collapse collapse" id="menuitems">
-                <ul class="nav navbar-nav ml-auto">
+                <ul class="nav navbar-nav me-auto">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle webapps-menu" href="#" id="navbarDropdownApps" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {% comment %} <div class="dropdown-menu" aria-labelledby="navbarDropdown"> {% endcomment %}
@@ -97,7 +97,7 @@
                 <ul class="nav navbar-nav">
                   <li class="nav-item dropdown">
                     {% block login_navbar %}
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarLoginDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:30px">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarLoginDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {% if user.is_authenticated %}{{ user.username }} {% endif %}<i class="bi bi-person-circle"></i>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarLoginDropdown">

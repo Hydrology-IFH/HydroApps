@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-09 15:29+0100\n"
-"PO-Revision-Date: 2023-02-09 14:40+0100\n"
+"PO-Revision-Date: 2023-02-09 16:02+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: .\klimzuk\static\klimzuk\js\map.js:76
 #: .\klimzuk\static\klimzuk\js\map.min.js:1
 msgid "Legend"
-msgstr ""
+msgstr "Legende"
 
 #: .\klimzuk\static\klimzuk\js\map.js:78
 #: .\klimzuk\static\klimzuk\js\map.min.js:1
@@ -93,64 +93,64 @@ msgstr "name"
 #: .\klimzuk\static\klimzuk\js\plot_area.js:4
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "precipitation"
-msgstr ""
+msgstr "Niederschlag"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:5
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "air temperature"
-msgstr ""
+msgstr "Lufttemperatur"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:6
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "moisted temperature"
-msgstr ""
+msgstr "Feuchtetemperatur"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:7
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "global radiation (W/m²)"
-msgstr ""
+msgstr "Globalstrahlung (W/m²)"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:8
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "relative air moisture"
-msgstr ""
+msgstr "relative Luftfeuchtigkeit"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:9
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "evapotranspiration"
-msgstr ""
+msgstr "Evapotranspiration"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:10
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "snowfall"
-msgstr ""
+msgstr "Schneefall"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:12
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "Year"
-msgstr ""
+msgstr "Jahr"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:13
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "Daily Maximum"
-msgstr ""
+msgstr "tägliches Maximum"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:14
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "Winter"
-msgstr ""
+msgstr "Winter"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:15
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "Spring"
-msgstr ""
+msgstr "Frühling"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:16
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "Summer"
-msgstr ""
+msgstr "Sommer"
 
 #: .\klimzuk\static\klimzuk\js\plot_area.js:17
 #: .\klimzuk\static\klimzuk\js\plot_area.min.js:1
 msgid "Fall"
-msgstr ""
+msgstr "Herbst"

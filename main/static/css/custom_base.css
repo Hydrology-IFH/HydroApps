@@ -33,3 +33,6 @@ table.header{
 div.lang-dropdown-menu{
   min-width: 0;
 }
+a.nav-link{
+  font-size: 24px;
+}
