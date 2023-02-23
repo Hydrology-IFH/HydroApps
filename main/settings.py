@@ -98,6 +98,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.utils.utils.get_context_extra',# add default context, todo: delete from all the other views
             ],
         },
     },
@@ -162,6 +163,7 @@ AUTHENTICATION_BACKENDS = [
 
 #LOGOUT_REDIRECT_URL = 'home'
 LOGIN_REDIRECT_URL = "user_profile"
+LOGOUT_REDIRECT_URL = "home"
 
 # HCAPTCHA
 HCAPTCHA_SITEKEY = secrets.HCAPTCHA_SITEKEY
