@@ -1,1 +1,4 @@
+[diff "po"]
+    textconv=msgcat --no-location --no-wrap --sort-output | grep -v -E '"POT-Creation-Date:|"PO-Revision-Date:'
+    
 *.po    diff=po
