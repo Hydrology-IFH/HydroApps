@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-22 10:59+0100\n"
-"PO-Revision-Date: 2023-02-21 12:26+0100\n"
+"POT-Creation-Date: 2023-02-23 12:51+0100\n"
+"PO-Revision-Date: 2023-02-22 11:19+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -58,6 +58,10 @@ msgstr ""
 "Dies ist eine Anwendung, um den Wasserhaushalt eines kleinen Gebietes in "
 "Freiburg zu simulieren und um zu zeigen, welche Auswirkungen eine naturnahe "
 "Regenwasserbewirtschaftung darauf haben kann."
+
+#: .\HydroApps\templates\HydroApps\home.html:85
+msgid "Measurments"
+msgstr "Messungen"
 
 #: .\HydroApps\templates\HydroApps\home.html:93
 msgid "Pegel Dreisam"

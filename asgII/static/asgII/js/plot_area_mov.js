@@ -76,7 +76,7 @@ var plotCard = plotAreaApp.component(
     props: ['station_id', 'para', 'period'],
     computed: {
       src: function(){
-        return `static/klimzuk/PNG/A4_Ann_Trends_${this.station_id}_${this.para}_${this.period}.png`
+        return `static/asgII/PNG/A4_Ann_Trends_${this.station_id}_${this.para}_${this.period}.png`
       },
       plot_key: function(){
           return `${this.station_id}_${this.para}_${this.period}`

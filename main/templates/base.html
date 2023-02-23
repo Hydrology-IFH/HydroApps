@@ -4,6 +4,20 @@
 <html lang="en">
 <head>
   {% block head_first %}{% endblock %}
+
+  <!-- OpenGraph protocol -->
+  <meta property="og:title" content="HydroApps"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:description" content={% trans "A website with different Webtools created by the hydrology department at the university of Freiburg." %}/>
+  <meta property="og:url" content="apps.hydrology.uni-freiburg.de"/>
+  <meta property="og:image" content="{% static 'logo_HydroApps.png' %}"/>
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="The HydroApps-Logo" />
+  <meta property="og:image:width" content="264" />
+  <meta property="og:image:height" content="291" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale" content="en_GB" />
+
   <!-- load bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
@@ -47,31 +61,29 @@
 
               <!-- Hydro-Apps Menu -->
               <div class="navbar-collapse collapse" id="menuitems">
-                <ul class="nav navbar-nav me-auto">
+                <ul class="nav navbar-nav me-0">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle webapps-menu" href="#" id="navbarDropdownApps" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {% comment %} <div class="dropdown-menu" aria-labelledby="navbarDropdown"> {% endcomment %}
-                        <span class="align-middle d-inline d-lg-none d-xl-inline">{% block navbar_appname %}{% endblock %}</span>
-                      {% comment %} <span class="d-xl-none d-inline">Hydro-Apps</span> {% endcomment %}
+                      <span class="align-middle d-inline d-lg-none d-xl-inline">{% block navbar_appname %}{% endblock %}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-apps" aria-labelledby="navbarDropdownApps">
                       <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item"><b>Hydro-Apps</b></a></li>
                       <li><a href="{% url 'weatherDB:home' %}" class="dropdown-item">WeatherDB</a></li>
                       {% if show_unreleased %}
-                      <li><a href="{% url 'klimzuk:home' %}" class="dropdown-item">KlimZuk</a></li>
+                      <li><a href="{% url 'asgII:home' %}" class="dropdown-item">ASG-II</a></li>
                       {% endif %}
                       <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                        <div class="row">
-                          <span class="col">NatUrWB</span>
-                          <i class="bi bi-box-arrow-up-right col"></i>
-                        </div></a></li>
+                        <div class="d-flex">
+                          <span class="me-auto">NatUrWB</span>
+                          <i class="bi bi-box-arrow-up-right"></i>
+                        </div>
+                      </a></li>
                     </ul>
                   </li>
                 </ul>
-              {% comment %} </div> {% endcomment %}
-              <!-- App specific Menu -->
-                {% block navbar_app %}{% endblock %}
-              <!-- Language switcher Menu --> 
+                <!-- App specific Menu -->
+                  {% block navbar_app %}{% endblock %}
+                <!-- Language switcher Menu --> 
                 {% get_current_language as LANGUAGE_CODE %}
                 <ul class="nav navbar-nav ms-auto">
                   <li class="nav-item dropdown">
@@ -82,7 +94,6 @@
                   <div class="dropdown-menu lang-dropdown-menu" aria-labelledby="navbarLangDropdown">
                     <form action="{% url 'set_language' %}" method="post" id="lang_form">
                       {% csrf_token %}
-                      {% comment %} <input name="next" type="hidden" value="weatherdb/"> {% endcomment %}
                       <button type="submit" class="dropdown-item {% if LANGUAGE_CODE == 'en' %}active{% endif %}" name="language" value="en">
                         <img src="{% static 'img/united-states-of-america.png' %}" height="30">
                       </button >
@@ -93,7 +104,6 @@
                   </div>
                 </ul>
               <!-- Login Menu --> 
-               {% comment %} still needs changing of href depending on active app{% endcomment %}
                 <ul class="nav navbar-nav">
                   <li class="nav-item dropdown">
                     {% block login_navbar %}

@@ -45,10 +45,10 @@
       {% if show_unreleased %}
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
-          <a href="{% url 'klimzuk:home' %}" class="stretched-link"></a>
-          <img src="{% static 'klimzuk/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of KlimZuk">
+          <a href="{% url 'asgII:home' %}" class="stretched-link"></a>
+          <img src="{% static 'asgII/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of asgII">
           <div class="card-body">
-            <h5 class="card-title">KlimZuk</h5>
+            <h5 class="card-title">asgII</h5>
             <p class="card-text">{% trans "This is an Application to get the climate projections of single weather stations." %} </p>
           </div>
         </div>
@@ -81,7 +81,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingAccMeasurements">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#AccMeasurements" aria-expanded="true" aria-controls="AccMeasurements">
-              Measurments
+              {% trans "Measurments" %}
             </button>
           </h2>
           <div id="AccMeasurements" class="accordion-collapse collapse show" aria-labelledby="headingAccMeasurements" data-bs-parent="#accordionAdditionals">

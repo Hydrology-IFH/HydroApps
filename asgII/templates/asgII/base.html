@@ -3,27 +3,27 @@
 {% load i18n %}
 
 {% block head_first %}
-  <title>KlimZuk</title>
-  <link rel="icon" type="image/x-icon" href="{% static 'klimzuk/img/favicon.ico'%}">
+  <title>ASG-II</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'asgII/img/favicon.ico'%}">
   <meta name="description" content='{% trans "A presentation of climate forecasts for individual weather stations. Results from the ASG-II project." %}'>
 {% endblock %}
 
 {% block navbar_brand %}
-  <img type="image/png" src="{% static "klimzuk/img/icon.png" %}" alt="KlimZuk-Logo" class="d-none d-sm-inline">
+  <img type="image/png" src="{% static "asgII/img/icon.png" %}" alt="asgII-Logo" class="d-none d-sm-inline">
 {% endblock %}
 
-{% block navbar_appname %}KlimZuk{% endblock %}
+{% block navbar_appname %}ASG-II{% endblock %}
 
 {% block navbar_app %}
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item "><a href="{% url 'klimzuk:home' %}" class="nav-link">{% trans "Home" %}</a></li>
-    <li class="nav-item "><a href="{% url 'klimzuk:method' %}" class="nav-link">{% trans "Method" %}</a></li>
-    <li class="nav-item "><a href="{% url 'klimzuk:map' %}" class="nav-link">{% trans "Map" %}</a></li>
+    <li class="nav-item "><a href="{% url 'asgII:home' %}" class="nav-link">{% trans "Home" %}</a></li>
+    <li class="nav-item "><a href="{% url 'asgII:method' %}" class="nav-link">{% trans "Method" %}</a></li>
+    <li class="nav-item "><a href="{% url 'asgII:map' %}" class="nav-link">{% trans "Map" %}</a></li>
   </ul>
 {% endblock %}
 
 {% block body_all %}
-  {% firstof "klimzuk" as active_app %}
+  {% firstof "asgII" as active_app %}
   {{ block.super}}
 {% endblock %}
 
