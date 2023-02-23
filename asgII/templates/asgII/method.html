@@ -1,0 +1,19 @@
+{% extends 'asgII/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+<style>span{text-align: left;}</style>
+{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Method" %}</h1>
+<p>{% trans "To explain the method how the hereby presented data got created we refer to chapter 2.3 and 3 of the " %}
+  <a href="https://www.chr-khr.org/sites/default/files/chrpublications/ASG-II_Synthese_{{ LANGUAGE_CODE.upper }}_mit-Links.pdf">{% trans "project synthesis" %}.</a>
+</p>
+{% get_static_prefix as STATIC_PREFIX %}
+<iframe id="project_synthesis_method" 
+        src="{{STATIC_PREFIX}}asgII\literature\ASG-II_Synthese_{{LANGUAGE_CODE.upper}}_mit-Links_Auszug.pdf"
+        width="100%" height="600px"></iframe>
+{% endblock %}

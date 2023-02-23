@@ -1,0 +1,142 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-09 15:29+0100\n"
+"PO-Revision-Date: 2023-02-23 12:16+0100\n"
+"Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: .\asgII\static\asgII\js\map.js:76 .\asgII\static\asgII\js\map.min.js:1
+msgid "Legend"
+msgstr "Legende"
+
+#: .\asgII\static\asgII\js\map.js:78 .\asgII\static\asgII\js\map.min.js:1
+msgid "selected"
+msgstr "ausgewählt"
+
+#: .\asgII\static\asgII\js\map.js:78 .\asgII\static\asgII\js\map.min.js:1
+msgid "not select"
+msgstr "nicht gewählt"
+
+#: .\asgII\static\asgII\js\map.js:109 .\asgII\static\asgII\js\map.min.js:1
+msgid "Update Coloring"
+msgstr "Einfärbung aktualisieren"
+
+#: .\asgII\static\asgII\js\map.js:116 .\asgII\static\asgII\js\map.min.js:1
+msgid "Color Selection"
+msgstr "Auswahl einfärben"
+
+#: .\asgII\static\asgII\js\map.js:123 .\asgII\static\asgII\js\map.min.js:1
+msgid "Update Filter"
+msgstr "Filter aktualisieren"
+
+#: .\asgII\static\asgII\js\map.js:130 .\asgII\static\asgII\js\map.min.js:1
+msgid "Filter Selection"
+msgstr "auf Auswahl filtern"
+
+#: .\asgII\static\asgII\js\map.js:137 .\asgII\static\asgII\js\map.min.js:1
+msgid "add new plots"
+msgstr "Füge Abbildungen hinzu"
+
+#: .\asgII\static\asgII\js\map.js:204 .\asgII\static\asgII\js\map.min.js:1
+msgid "unselect"
+msgstr "abwählen"
+
+#: .\asgII\static\asgII\js\map.js:204 .\asgII\static\asgII\js\map.min.js:1
+msgid "select"
+msgstr "auswählen"
+
+#: .\asgII\static\asgII\js\map.js:205 .\asgII\static\asgII\js\map.min.js:1
+msgid "Add this station to the selected stations list on the right"
+msgstr ""
+"Füge diese Station zur Liste der ausgewählten Stationen auf der rechten "
+"Seite hinzu"
+
+#: .\asgII\static\asgII\js\map.js:206 .\asgII\static\asgII\js\map.min.js:1
+msgid "Download all the plots for this station as PDF."
+msgstr "Laden Sie alle Plots für diese Station als PDF herunter."
+
+#: .\asgII\static\asgII\js\map.js:207 .\asgII\static\asgII\js\map.min.js:1
+msgid "Betreiber"
+msgstr "operator"
+
+#: .\asgII\static\asgII\js\map.js:208 .\asgII\static\asgII\js\map.min.js:1
+msgid "Name"
+msgstr "name"
+
+#: .\asgII\static\asgII\js\plot_area.js:4
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "precipitation"
+msgstr "Niederschlag"
+
+#: .\asgII\static\asgII\js\plot_area.js:5
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "air temperature"
+msgstr "Lufttemperatur"
+
+#: .\asgII\static\asgII\js\plot_area.js:6
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "moisted temperature"
+msgstr "Feuchtetemperatur"
+
+#: .\asgII\static\asgII\js\plot_area.js:7
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "global radiation (W/m²)"
+msgstr "Globalstrahlung (W/m²)"
+
+#: .\asgII\static\asgII\js\plot_area.js:8
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "relative air moisture"
+msgstr "relative Luftfeuchtigkeit"
+
+#: .\asgII\static\asgII\js\plot_area.js:9
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "evapotranspiration"
+msgstr "Evapotranspiration"
+
+#: .\asgII\static\asgII\js\plot_area.js:10
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "snowfall"
+msgstr "Schneefall"
+
+#: .\asgII\static\asgII\js\plot_area.js:12
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "Year"
+msgstr "Jahr"
+
+#: .\asgII\static\asgII\js\plot_area.js:13
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "Daily Maximum"
+msgstr "tägliches Maximum"
+
+#: .\asgII\static\asgII\js\plot_area.js:14
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "Winter"
+msgstr "Winter"
+
+#: .\asgII\static\asgII\js\plot_area.js:15
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "Spring"
+msgstr "Frühling"
+
+#: .\asgII\static\asgII\js\plot_area.js:16
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "Summer"
+msgstr "Sommer"
+
+#: .\asgII\static\asgII\js\plot_area.js:17
+#: .\asgII\static\asgII\js\plot_area.min.js:1
+msgid "Fall"
+msgstr "Herbst"

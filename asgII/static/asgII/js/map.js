@@ -34,7 +34,7 @@ class InputField{
     }
 }
 
-class KlimZukMap{
+class asgIIMap{
     constructor(){
         this.get_stations_meta()
 
@@ -57,13 +57,13 @@ class KlimZukMap{
 
         // icons
         L.Icon.Default.prototype.options.imagePath = location.origin;
-        L.Icon.Default.prototype.options.shadowUrl = "/static/klimzuk/img/Leaflet-Marker-shadow.png"; 
+        L.Icon.Default.prototype.options.shadowUrl = "/static/asgII/img/Leaflet-Marker-shadow.png"; 
         this.IconDefault = L.Icon.Default.extend(
-            {options:{iconUrl:"/static/klimzuk/img/marker-icon-blue.png"}});
+            {options:{iconUrl:"/static/asgII/img/marker-icon-blue.png"}});
         this.IconUnselect = L.Icon.Default.extend(
-            {options:{iconUrl:"/static/klimzuk/img/marker-icon-red.png"}});
+            {options:{iconUrl:"/static/asgII/img/marker-icon-red.png"}});
         this.IconSelect = L.Icon.Default.extend(
-            {options:{iconUrl:"/static/klimzuk/img/marker-icon-green.png"}});
+            {options:{iconUrl:"/static/asgII/img/marker-icon-green.png"}});
 
         // set variables
         this.coloring_active = false;
@@ -217,7 +217,7 @@ class KlimZukMap{
                             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body" data-bs-trigger="hover"\
                             data-bs-title="${tooltip_select}">${str_select}</button></div>\
                         <div class="col gx-0">\
-                            <a class="btn btn-primary" href="/static/klimzuk/PDF/A4_Ann_Trends_${stid}.pdf" download style="color:#FFFFFF" \
+                            <a class="btn btn-primary" href="/static/asgII/PDF/A4_Ann_Trends_${stid}.pdf" download style="color:#FFFFFF" \
                                 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body" data-bs-trigger="hover" \
                                 data-bs-title="${tooltip_download}">\
                                 <i class="bi bi-download"></i>\
@@ -442,7 +442,7 @@ class KlimZukMap{
 }
 
 
-const klimzukmap = new KlimZukMap();
+const asgIImap = new asgIIMap();
 
 // button functions
 // let check_stations_input = function(event){
@@ -453,12 +453,12 @@ const klimzukmap = new KlimZukMap();
 
 let button_select_station = (stid, event) => {
     if (event.target.innerText == "select") {
-        klimzukmap.select_station(stid);
+        asgIImap.select_station(stid);
         event.target.innerText = "unselect";
     } else {
-        klimzukmap.unselect_station(stid);
+        asgIImap.unselect_station(stid);
         event.target.innerText = "select";
     }
 }
 
-klimzukmap.addEventListeners()
+asgIImap.addEventListeners()

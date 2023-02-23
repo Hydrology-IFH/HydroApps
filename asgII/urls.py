@@ -19,13 +19,13 @@ from django.views.decorators.cache import cache_page
 
 from .views import (home_view, map_view, method_view)
 
-app_name = 'klimzuk'
+app_name = 'asgII'
 urlpatterns = [
     path('', home_view, name="home"),
     path('map', map_view, name="map"),
     path('method', method_view, name="method"),
     path('jsi18n',
          cache_page(86400, key_prefix='jsi18n')(
-            JavaScriptCatalog.as_view(packages=['klimzuk'])),
+            JavaScriptCatalog.as_view(packages=['asgII'])),
          name='javascript-catalog'),
 ]

@@ -5,8 +5,8 @@ __pycache__/*
 migrations
 garbage
 sync.ffs_db
-klimzuk/static/klimzuk/PDF
-klimzuk/static/klimzuk/PNG
+asgII/static/asgII/PDF
+asgII/static/asgII/PNG
 *.pdf
 *.log
 logs/

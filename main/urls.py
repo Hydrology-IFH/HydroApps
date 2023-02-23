@@ -34,7 +34,7 @@ urlpatterns = [
         path("weatherdb/", include("weatherDB.urls")),
         path("<str:app_name>/impressum/", impressum_view, name="impressum"),
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
-        path("klimzuk/", include("klimzuk.urls")),
+        path("asgII/", include("asgII.urls")),
         path("<str:app_name>/auth/", include("my_auth.urls")),
         path("<str:app_name>/impressum/", impressum_view, name="impressum"),
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),

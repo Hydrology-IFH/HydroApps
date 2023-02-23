@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     # own
     'weatherDB',
     'my_auth',
-    'klimzuk',
+    'asgII',
     "HydroApps",
     # django
     'django.contrib.admin',

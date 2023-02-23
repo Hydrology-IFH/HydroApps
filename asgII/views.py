@@ -12,7 +12,7 @@ from main.decorators import unreleased
 @unreleased
 def home_view(request, *args, **kwargs):
     context = get_context_base(request)
-    return render(request, "klimzuk/home.html", context)
+    return render(request, "asgII/home.html", context)
 
 @unreleased
 def map_view(request, *args, **kwargs):
@@ -20,14 +20,14 @@ def map_view(request, *args, **kwargs):
     context.update({
         'meta_n': json.loads(serialize("geojson", MetaN.objects.all()))
         })
-    return render(request, "klimzuk/klimzuk_map.html", context)
+    return render(request, "asgII/asgII_map.html", context)
 
 @unreleased
 def method_view(request, *args, **kwargs):
     context = get_context_base(request)
-    return render(request, "klimzuk/method.html", context)
+    return render(request, "asgII/method.html", context)
 
 @unreleased
 def package_view(request, *args, **kwargs):
     context = get_context_base(request)
-    return render(request, "klimzuk/package.html", context)
+    return render(request, "asgII/package.html", context)
