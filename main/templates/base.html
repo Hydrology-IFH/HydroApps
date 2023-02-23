@@ -4,6 +4,20 @@
 <html lang="en">
 <head>
   {% block head_first %}{% endblock %}
+
+  <!-- OpenGraph protocol -->
+  <meta property="og:title" content="HydroApps"/>
+  <meta property="og:type" content="Website"/>
+  <meta property="og:description" content={% trans "A website with different Webtools created by the hydrology department at the university of Freiburg." %}/>
+  <meta property="og:url" content="apps.hydrology.uni-freiburg.de"/>
+  <meta property="og:image" content="{% static 'logo_HydroApps.png' %}"/>
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="The HydroApps-Logo" />
+  <meta property="og:image:width" content="264" />
+  <meta property="og:image:height" content="291" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale" content="en_GB" />
+
   <!-- load bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-22 10:59+0100\n"
+"POT-Creation-Date: 2023-02-23 09:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -25,27 +25,35 @@ msgstr "Deutsch"
 msgid "English"
 msgstr "Englisch"
 
-#: .\main\templates\base.html:110
+#: .\main\templates\base.html:11
+msgid ""
+"A website with different Webtools created by the hydrology department at the "
+"university of Freiburg."
+msgstr ""
+"Eine Internetseite mit verschiedenen Web-Anwendungen die an der Professur "
+"für Hydrologie an der Uni Freiburg erstellt wurden."
+
+#: .\main\templates\base.html:115
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:112
+#: .\main\templates\base.html:117
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:114
+#: .\main\templates\base.html:119
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:116
+#: .\main\templates\base.html:121
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:159
+#: .\main\templates\base.html:164
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:160
+#: .\main\templates\base.html:165
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 
@@ -746,8 +754,8 @@ msgid ""
 "or mobile app operator has a legitimate\n"
 "  interest in protecting its site from abusive automated crawling and spam. "
 "IMI acts as a \"data processor\" acting on\n"
-"  behalf of its customers as defined under the GDPR, and a \"service provider"
-"\" for the purposes of the California\n"
+"  behalf of its customers as defined under the GDPR, and a \"service "
+"provider\" for the purposes of the California\n"
 "  Consumer Privacy Act (CCPA). </p>\n"
 "<p>For more information about hCaptcha and IMI's privacy policy and terms of "
 "use, please\n"
