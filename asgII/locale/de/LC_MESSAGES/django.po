@@ -7,8 +7,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-27 18:41+0100\n"
-"PO-Revision-Date: \n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -46,6 +44,7 @@ msgid "Select plots to show"
 msgstr "Abbildungen auswählen"
 
 #: .\asgII\templates\asgII\asgII_map.html:50
+#: .\asgII\templates\asgII\asgII_map.html:187
 #: .\asgII\templates\asgII\asgII_map.html:187
 msgid "Show me an explanation of the plots."
 msgstr "Zeigen Sie mir eine Erklärung der Abbildungen."
@@ -247,19 +246,29 @@ msgstr ""
 #: .\asgII\templates\asgII\asgII_map.html:167
 msgid "A Boxplot of the far future climate period."
 msgstr "Ein Boxplot der Klimaperiode der fernen Zukunft ."
+"Die Klimaperiode der fernen Zukunft (2071-2100) und die Differenz des "
+"Ensemble-Means im Vergleich zur Referenzperiode."
 
+#: .\asgII\templates\asgII\asgII_map.html:167
+msgid "A Boxplot of the far future climate period."
+msgstr "Ein Boxplot der Klimaperiode der fernen Zukunft ."
+
+#: .\asgII\templates\asgII\asgII_map.html:170
 #: .\asgII\templates\asgII\asgII_map.html:170
 msgid "The moving window size in years"
 msgstr "Die Größe des gleitenden Fensters in Jahren"
 
 #: .\asgII\templates\asgII\asgII_map.html:174
+#: .\asgII\templates\asgII\asgII_map.html:174
 msgid "Close"
 msgstr "Schließen"
 
 #: .\asgII\templates\asgII\asgII_map.html:183
+#: .\asgII\templates\asgII\asgII_map.html:183
 msgid "Plots"
 msgstr "Abbildungen"
 
+#: .\asgII\templates\asgII\asgII_map.html:185
 #: .\asgII\templates\asgII\asgII_map.html:185
 msgid "clear plots"
 msgstr "Abbildungen entfernen"
@@ -292,7 +301,19 @@ msgid ""
 "of streamflow of the river Rhine and its tributaries&quot; project, "
 "abbreviated as ASG-II. You can find detailed informations about the project "
 "in the"
+"This tool presents bias corrected projections of regional climate models for "
+"climate stations in the Rhine catchment area. Those were created within the "
+"&quot;Impact of climate change on the rain, snow and glacier melt components "
+"of streamflow of the river Rhine and its tributaries&quot; project, "
+"abbreviated as ASG-II. You can find detailed informations about the project "
+"in the"
 msgstr ""
+"Dieses Tool präsentiert biaskorrigierte Projektionen regionaler Klimamodelle "
+"an den Klimastationen im Rheineinzugsgebiet. Diese wurden im Rahmen des "
+"Projekts &quot;Auswirkungen des Klimawandels auf die Abflussanteile aus "
+"Regen, Schnee und Gletscherschmelze im Rhein und seinen Zuflüssen&quot;, "
+"kurz ASG-II, erstellt. Ausführliche Informationen über das Projekt finden "
+"Sie in dem"
 "Dieses Tool präsentiert biaskorrigierte Projektionen regionaler Klimamodelle "
 "an den Klimastationen im Rheineinzugsgebiet. Diese wurden im Rahmen des "
 "Projekts &quot;Auswirkungen des Klimawandels auf die Abflussanteile aus "
