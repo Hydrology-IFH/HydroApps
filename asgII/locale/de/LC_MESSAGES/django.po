@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-27 19:28+0100\n"
+"POT-Creation-Date: 2023-02-27 19:57+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -219,8 +219,8 @@ msgstr ""
 "eines Zeitfensters von 11 Jahren um einen Punkt) dieser Werte."
 
 #: .\asgII\templates\asgII\asgII_map.html:157
-msgid "The climate reference period (1981-2010) taken."
-msgstr "Der gewählte Klimareferenzzeitraum (1981-2010)."
+msgid "The reference climate period (1981-2010) taken."
+msgstr "Der gewählte Referenz-Klimaperiode (1981-2010)."
 
 #: .\asgII\templates\asgII\asgII_map.html:159
 msgid "A Boxplot of the reference climate period."
