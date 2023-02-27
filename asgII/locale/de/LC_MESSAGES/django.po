@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 12:51+0100\n"
-"PO-Revision-Date: 2023-02-23 12:52+0100\n"
+"POT-Creation-Date: 2023-02-27 18:12+0100\n"
+"PO-Revision-Date: 2023-02-27 18:25+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -46,7 +46,7 @@ msgid "Select plots to show"
 msgstr "Abbildungen auswählen"
 
 #: .\asgII\templates\asgII\asgII_map.html:50
-#: .\asgII\templates\asgII\asgII_map.html:184
+#: .\asgII\templates\asgII\asgII_map.html:187
 msgid "Show me an explanation of the plots."
 msgstr "Zeigen Sie mir eine Erklärung der Abbildungen."
 
@@ -161,19 +161,19 @@ msgstr "Abbildungen anzeigen"
 msgid "Plot explanation"
 msgstr "Erläuterung der Abbildung"
 
-#: .\asgII\templates\asgII\asgII_map.html:141
+#: .\asgII\templates\asgII\asgII_map.html:143
 msgid "Parameter of this plot described on the y-Axis"
 msgstr "Parameter dieses Diagramms der auf y-Achse angezeigt wird"
 
-#: .\asgII\templates\asgII\asgII_map.html:143
+#: .\asgII\templates\asgII\asgII_map.html:145
 msgid "The Station ID"
 msgstr "Die Stations-ID"
 
-#: .\asgII\templates\asgII\asgII_map.html:145
+#: .\asgII\templates\asgII\asgII_map.html:147
 msgid "The stations height above the sea."
 msgstr "Die Stationshöhe über dem Meeresspiegel."
 
-#: .\asgII\templates\asgII\asgII_map.html:147
+#: .\asgII\templates\asgII\asgII_map.html:149
 msgid ""
 "The time period of this plot, here spring. This means that on this plot only "
 "the mean of the spring is shown."
@@ -181,23 +181,20 @@ msgstr ""
 "Der Zeitraum dieser Abbildung ist hier das Frühjahr. Das bedeutet, dass in "
 "dieser Grafik nur der Mittelwert des Frühjahrs angezeigt wird."
 
-#: .\asgII\templates\asgII\asgII_map.html:150
-msgid ""
-"The <b>blue dots</b> mark the simulated measurements according to 7 "
-"different climate scenarios of this station.<br>The <b>light blue lines</b> "
-"mark the moving average (The average of a window of 11 years around a point) "
-"of those simulated measurements for one scenario.<br>The <b>thick blue line</"
-"b> mark the mean of the 7 scenarios moving average, together with the "
-"confidence interval."
-msgstr ""
-"Die <b>blauen Punkte</b> markieren die simulierten Messungen nach 7 "
-"verschiedenen Klimaszenarien für diese Station.<br>Die <b>hellblauen Linien</"
-"b> markieren den gleitenden Durchschnitt (der Durchschnitt eines 11-Jahres-"
-"Fensters um einen Punkt) dieser simulierten Messungen für ein Szenario."
-"<br>Die <b>dicke blaue Linie</b> den Mittelwert der 7 Szenarien mit dem "
-"Vertrauensintervall."
-
 #: .\asgII\templates\asgII\asgII_map.html:152
+msgid ""
+"The <b>blue dots</b> mark the individual RCM ensemble members.<br>The "
+"<b>light blue lines</b> mark the moving average for each of the members. The "
+"bandwidth (min-max) of these averages is represented by the <b>light blue "
+"area</b> and the ensemble mean of those by <br>the <b>thick blue line</b>."
+msgstr ""
+"Die <b>blauen Punkte</b> markieren die jahreswerte der einzelnen Ensemble-"
+"Members.<br>Die <b>hellblauen Linien</b> markieren den gleitenden "
+"Durchschnitt der einzelnen Ensemble-Member. Die Bandbreite (min-max) dieser "
+"7 Linien ist durch die <b>hellblaue Fläche</b> markiert und deren Ensemble-"
+"Mittelwert durch die <b>dicke blaue Linie</b>."
+
+#: .\asgII\templates\asgII\asgII_map.html:154
 msgid ""
 "The <b>red dots</b> mark the measurements of this station. So here are the "
 "mean spring temperatures for every year.<br>The <b>thick red line</b> marks "
@@ -209,69 +206,61 @@ msgstr ""
 "rote Linie</b> markiert einen gleitenden Durchschnitt (der Durchschnitt "
 "eines Zeitfensters von 11 Jahren um einen Punkt) dieser Werte."
 
-#: .\asgII\templates\asgII\asgII_map.html:155
-msgid "The climate reference period taken. Here 1981-2010."
-msgstr "Der gewählte Klimareferenzzeitraum. Hier 1981-2010."
-
 #: .\asgII\templates\asgII\asgII_map.html:157
-msgid ""
-"A kind of Boxplot of the reference climate period. Showing the min, max and "
-"mean of the 7 different climate scenarios mean for this climate period."
-"<br>Additionaly a horizontal red line shows the observations mean for the "
-"reference climate period."
-msgstr ""
-"Eine Art Boxplot der Klimareferenzperiode. Sie zeigt die Minimal-, Maximal- "
-"und Mittelwerte der 7 verschiedenen Klimaszenarien für diese Klimaperiode. "
-"Zusätzlich zeigt eine horizontale rote Linie den Mittelwert der "
-"Beobachtungen für die Klimareferenzperiode."
+msgid "The climate reference period (1981-2010) taken."
+msgstr "Der gewählte Klimareferenzzeitraum (1981-2010)."
 
 #: .\asgII\templates\asgII\asgII_map.html:159
+msgid "A Boxplot of the reference climate period."
+msgstr "Ein Boxplot der Klimareferenzperiode."
+
+#: .\asgII\templates\asgII\asgII_map.html:159
+#: .\asgII\templates\asgII\asgII_map.html:163
+#: .\asgII\templates\asgII\asgII_map.html:167
 msgid ""
-"The near future climate period and the difference of the mean compared to "
-"the reference period. Here 2031-2060."
+"Showing the min, max and mean of the ensemble collection for this climate "
+"period."
 msgstr ""
-"Die weit in der Zukunft liegende Klimaperiode und die Differenz der "
-"Mittelwerte im Vergleich zur Referenzperiode. Hier 2071-2100."
+"Zeigt den Minimal-, Maximal- und Mittelwert der 7 verschiedenen Ensemble-"
+"Member für diese Klimaperiode."
 
 #: .\asgII\templates\asgII\asgII_map.html:161
 msgid ""
-"A kind Boxplot of the near future climate period. Showing the min, max and "
-"mean of the 7 different climate scenarios mean for this climate period."
+"The near future climate period (2031-2060) and the difference of the mean "
+"compared to the reference period."
 msgstr ""
-"Eine Art Boxplot der nahen zukünftigen Klimaperiode. Zeigt den Minimal-, "
-"Maximal- und Mittelwert der 7 verschiedenen Klimaszenarien für diese "
-"Klimaperiode."
+"Die Klimaperiode der fernen Zukunft und die Differenz des Ensemble-Means im "
+"Vergleich zur Referenzperiode. Hier 2071-2100."
 
 #: .\asgII\templates\asgII\asgII_map.html:163
-msgid ""
-"The far future climate period and the difference of the mean compared to the "
-"reference period. Here 2071-2100."
-msgstr ""
-"Die weit in der Zukunft liegende Klimaperiode und die Differenz der "
-"Mittelwerte im Vergleich zur Referenzperiode. Hier 2071-2100."
+msgid "A Boxplot of the near future climate period."
+msgstr "Ein Boxplot der Klimaperiode der nahen Zukunft ."
 
 #: .\asgII\templates\asgII\asgII_map.html:165
 msgid ""
-"A kind Boxplot of the far future climate period. Showing the min, max and "
-"mean of the 7 different climate scenarios mean for this climate period."
+"The far future climate period (2071-2100) and the difference of the mean "
+"compared to the reference period."
 msgstr ""
-"Eine Art Boxplot der weit in der Zukunft liegenden Klimaperiode. Zeigt den "
-"Minimal-, Maximal- und Mittelwert der 7 verschiedenen Klimaszenarien für "
-"diese Klimaperiode."
+"Die Klimaperiode der fernen Zukunft (2071-2100) und die Differenz des "
+"Ensemble-Means im Vergleich zur Referenzperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:168
+#: .\asgII\templates\asgII\asgII_map.html:167
+msgid "A Boxplot of the far future climate period."
+msgstr "Ein Boxplot der Klimaperiode der fernen Zukunft ."
+
+#: .\asgII\templates\asgII\asgII_map.html:170
 msgid "The moving window size in years"
 msgstr "Die Größe des gleitenden Fensters in Jahren"
 
-#: .\asgII\templates\asgII\asgII_map.html:171
+#: .\asgII\templates\asgII\asgII_map.html:174
 msgid "Close"
 msgstr "Schließen"
 
-#: .\asgII\templates\asgII\asgII_map.html:180
+#: .\asgII\templates\asgII\asgII_map.html:183
 msgid "Plots"
 msgstr "Abbildungen"
 
-#: .\asgII\templates\asgII\asgII_map.html:182
+#: .\asgII\templates\asgII\asgII_map.html:185
 msgid "clear plots"
 msgstr "Abbildungen entfernen"
 
@@ -297,17 +286,19 @@ msgstr "Karte"
 
 #: .\asgII\templates\asgII\home.html:8
 msgid ""
-"This tool presents bias corrected projections for climate stations in the "
-"Rhine catchment area. Those were a result of the &quot;Impact of climate "
-"change on the rain, snow and glacier melt components of streamflow of the "
-"river Rhine and its tributaries&quot; project, abbreviated as ASG-II. You "
-"can find detailed informations about the project in the"
+"This tool presents bias corrected projections of regional climate models for "
+"climate stations in the Rhine catchment area. Those were created within the "
+"&quot;Impact of climate change on the rain, snow and glacier melt components "
+"of streamflow of the river Rhine and its tributaries&quot; project, "
+"abbreviated as ASG-II. You can find detailed informations about the project "
+"in the"
 msgstr ""
-"Dieses Tool präsentiert biaskorrigierte Projektionen der Klimastationen im "
-"Rheineinzugsgebiet. Diese wurden im Rahmen des Projekts &quot;Auswirkungen "
-"des Klimawandels auf die Abflussanteile aus Regen, Schnee und "
-"Gletscherschmelze im Rhein und seinen Zuflüssen&quot;, kurz ASG-II, "
-"erstellt. Ausführliche Informationen über das Projekt finden Sie in dem"
+"Dieses Tool präsentiert biaskorrigierte Projektionen regionaler Klimamodelle "
+"an den Klimastationen im Rheineinzugsgebiet. Diese wurden im Rahmen des "
+"Projekts &quot;Auswirkungen des Klimawandels auf die Abflussanteile aus "
+"Regen, Schnee und Gletscherschmelze im Rhein und seinen Zuflüssen&quot;, "
+"kurz ASG-II, erstellt. Ausführliche Informationen über das Projekt finden "
+"Sie in dem"
 
 #: .\asgII\templates\asgII\home.html:9 .\asgII\templates\asgII\method.html:13
 msgid "project synthesis"
@@ -320,12 +311,3 @@ msgid ""
 msgstr ""
 "Zur Erläuterung der Methode, wie die hier vorgestellten Daten entstanden "
 "sind, verweisen wir auf Kapitel 2.3 und 3 vom"
-
-#~ msgid ""
-#~ "KlimZuk is an abbreviation for climate future (<b>Klim</b>a <b>Zuk</"
-#~ "b>unft). Here you will find climate projection data for different weather "
-#~ "stations that got created during the ASG-II project."
-#~ msgstr ""
-#~ "KlimZuk steht für <b>Klim</b>a <b>Zuk</b>unft. Hier werden die im ASGII-"
-#~ "Projekt entstandene Klima-Projektionen der einzelnen Wetterstationen "
-#~ "dargestellt."
