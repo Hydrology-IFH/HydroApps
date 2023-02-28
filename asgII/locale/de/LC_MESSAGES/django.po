@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-27 19:57+0100\n"
+"POT-Creation-Date: 2023-02-28 17:34+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -46,7 +46,7 @@ msgid "Select plots to show"
 msgstr "Abbildungen auswählen"
 
 #: .\asgII\templates\asgII\asgII_map.html:50
-#: .\asgII\templates\asgII\asgII_map.html:188
+#: .\asgII\templates\asgII\asgII_map.html:214
 msgid "Show me an explanation of the plots."
 msgstr "Zeigen Sie mir eine Erklärung der Abbildungen."
 
@@ -161,11 +161,11 @@ msgstr "Abbildungen anzeigen"
 msgid "Plot explanation"
 msgstr "Erläuterung der Abbildung"
 
-#: .\asgII\templates\asgII\asgII_map.html:138
+#: .\asgII\templates\asgII\asgII_map.html:140
 msgid "<b>Dots</b> mark the annual data."
 msgstr "<b>Punkte</b> markieren jährliche Werte."
 
-#: .\asgII\templates\asgII\asgII_map.html:139
+#: .\asgII\templates\asgII\asgII_map.html:141
 msgid ""
 "<b>Lines</b> mark the 11-year moving means. (The average of a window of 11 "
 "years around a point)"
@@ -173,19 +173,35 @@ msgstr ""
 "<b>Linien</b> markieren das 11 jährige gleitende Mittel. (Der Mittelwert "
 "eines 11 jährigen Zeitraums um einen Punkt)"
 
-#: .\asgII\templates\asgII\asgII_map.html:143
+#: .\asgII\templates\asgII\asgII_map.html:152
+msgid ""
+"Switch between the plot explanation of the project synthesis or the online "
+"explanation"
+msgstr ""
+"Wechseln Sie zwischen der Beschreibung der Abbildung des Projektberichts und "
+"der Online-Erklärung"
+
+#: .\asgII\templates\asgII\asgII_map.html:162
+msgid "This is the plot explanation from the"
+msgstr "Dies ist die Erklärung der Abbildung aus dem"
+
+#: .\asgII\templates\asgII\asgII_map.html:162
+msgid "ASG-II project synthesis"
+msgstr "ASG-II Projektbericht"
+
+#: .\asgII\templates\asgII\asgII_map.html:169
 msgid "Parameter of this plot described on the y-Axis"
 msgstr "Parameter dieses Diagramms der auf y-Achse angezeigt wird"
 
-#: .\asgII\templates\asgII\asgII_map.html:145
+#: .\asgII\templates\asgII\asgII_map.html:171
 msgid "The Station ID"
 msgstr "Die Stations-ID"
 
-#: .\asgII\templates\asgII\asgII_map.html:147
+#: .\asgII\templates\asgII\asgII_map.html:173
 msgid "The stations height above the sea."
 msgstr "Die Stationshöhe über dem Meeresspiegel."
 
-#: .\asgII\templates\asgII\asgII_map.html:149
+#: .\asgII\templates\asgII\asgII_map.html:175
 msgid ""
 "The time period of this plot, here spring. This means that on this plot only "
 "the mean of the spring is shown."
@@ -193,7 +209,7 @@ msgstr ""
 "Der Zeitraum dieser Abbildung ist hier das Frühjahr. Das bedeutet, dass in "
 "dieser Grafik nur der Mittelwert des Frühjahrs angezeigt wird."
 
-#: .\asgII\templates\asgII\asgII_map.html:152
+#: .\asgII\templates\asgII\asgII_map.html:178
 msgid ""
 "The <b>blue dots</b> mark the individual RCM ensemble members.<br>The "
 "<b>light blue lines</b> mark the moving average for each of the members. The "
@@ -206,7 +222,7 @@ msgstr ""
 "7 Linien ist durch die <b>hellblaue Fläche</b> markiert und deren Ensemble-"
 "Mittelwert durch die <b>dicke blaue Linie</b>."
 
-#: .\asgII\templates\asgII\asgII_map.html:154
+#: .\asgII\templates\asgII\asgII_map.html:180
 msgid ""
 "The <b>red dots</b> mark the measurements of this station. So here are the "
 "mean spring temperatures for every year.<br>The <b>thick red line</b> marks "
@@ -218,17 +234,17 @@ msgstr ""
 "rote Linie</b> markiert einen gleitenden Durchschnitt (der Durchschnitt "
 "eines Zeitfensters von 11 Jahren um einen Punkt) dieser Werte."
 
-#: .\asgII\templates\asgII\asgII_map.html:157
+#: .\asgII\templates\asgII\asgII_map.html:183
 msgid "The reference climate period (1981-2010) taken."
 msgstr "Der gewählte Referenz-Klimaperiode (1981-2010)."
 
-#: .\asgII\templates\asgII\asgII_map.html:159
+#: .\asgII\templates\asgII\asgII_map.html:185
 msgid "A Boxplot of the reference climate period."
 msgstr "Ein Boxplot der Klimareferenzperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:159
-#: .\asgII\templates\asgII\asgII_map.html:163
-#: .\asgII\templates\asgII\asgII_map.html:167
+#: .\asgII\templates\asgII\asgII_map.html:185
+#: .\asgII\templates\asgII\asgII_map.html:189
+#: .\asgII\templates\asgII\asgII_map.html:193
 msgid ""
 "Showing the min, max and mean of the ensemble collection for this climate "
 "period."
@@ -236,7 +252,7 @@ msgstr ""
 "Zeigt den Minimal-, Maximal- und Mittelwert der 7 verschiedenen Ensemble-"
 "Member für diese Klimaperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:161
+#: .\asgII\templates\asgII\asgII_map.html:187
 msgid ""
 "The near future climate period (2031-2060) and the difference of the "
 "ensemble mean compared to the reference period."
@@ -244,11 +260,11 @@ msgstr ""
 "Die Klimaperiode der fernen Zukunft (2071-2100) und die Differenz des "
 "Ensemble-Means im Vergleich zur Referenzperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:163
+#: .\asgII\templates\asgII\asgII_map.html:189
 msgid "A Boxplot of the near future climate period."
 msgstr "Ein Boxplot der Klimaperiode der nahen Zukunft ."
 
-#: .\asgII\templates\asgII\asgII_map.html:165
+#: .\asgII\templates\asgII\asgII_map.html:191
 msgid ""
 "The far future climate period (2071-2100) and the difference of the ensemble "
 "mean compared to the reference period."
@@ -256,23 +272,23 @@ msgstr ""
 "Die Klimaperiode der fernen Zukunft (2071-2100) und die Differenz des "
 "Ensemble-Means im Vergleich zur Referenzperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:167
+#: .\asgII\templates\asgII\asgII_map.html:193
 msgid "A Boxplot of the far future climate period."
 msgstr "Ein Boxplot der Klimaperiode der fernen Zukunft."
 
-#: .\asgII\templates\asgII\asgII_map.html:170
+#: .\asgII\templates\asgII\asgII_map.html:196
 msgid "The moving window size in years"
 msgstr "Die Größe des gleitenden Fensters in Jahren"
 
-#: .\asgII\templates\asgII\asgII_map.html:175
+#: .\asgII\templates\asgII\asgII_map.html:201
 msgid "Close"
 msgstr "Schließen"
 
-#: .\asgII\templates\asgII\asgII_map.html:184
+#: .\asgII\templates\asgII\asgII_map.html:210
 msgid "Plots"
 msgstr "Abbildungen"
 
-#: .\asgII\templates\asgII\asgII_map.html:186
+#: .\asgII\templates\asgII\asgII_map.html:212
 msgid "clear plots"
 msgstr "Abbildungen entfernen"
 
