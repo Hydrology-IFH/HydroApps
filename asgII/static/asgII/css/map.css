@@ -68,7 +68,11 @@ div.plot_card .btn-close{
     position: relative;
 }
 
-.modal-body > div {
+div.explanation-plot {
+    position: relative;    
+}
+
+div.explanation-plot > div {
     position: absolute;    
     border-radius: 3px;
     
@@ -76,7 +80,7 @@ div.plot_card .btn-close{
     /* border: 1px solid black;  */
 }
 
-.modal-body > div:hover{
+div.explanation-plot > div:hover{
     border: 1px solid var(--bs-primary);
     box-shadow: 0 0 10px #9ecaed;
     outline: none;

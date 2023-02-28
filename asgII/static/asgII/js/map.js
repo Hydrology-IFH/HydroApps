@@ -379,7 +379,8 @@ class asgIIMap{
                 this.input_stids.dom_input.value += ", " + stid;
             }
             this.update_coloring();
-            this.update_filter();      
+            this.update_filter();
+            this.check_stations_input();
         }
     }
 
@@ -387,9 +388,10 @@ class asgIIMap{
         let selected_stids = this.get_selected_stations();
         if (selected_stids.includes(stid)){
             selected_stids.splice(selected_stids.indexOf(stid),1);
-            this.input_stids.dom_input.value = ", ".join(selected_stids);
+            this.input_stids.dom_input.value = selected_stids.join(", ");
             this.update_coloring();
             this.update_filter();
+            this.check_stations_input();
         }
     }
 
@@ -407,7 +409,7 @@ class asgIIMap{
             return false;
         } else {
             // check if input has right pattern
-            if (!(/^\s*\w+_(\d{1,5})\s*([,;]{1}\s*\w+_\d{1,5})*[\s,;]$/.test(in_text))){
+            if (!(/^\s*\w+_(\d{1,5})\s*([,;]{1}\s*\w+_\d{1,5})*[\s,;]*$/.test(in_text))){
                 this.input_stids.make_invalid(
                     "The given list of stations is not in the right pattern.<br>The Station Ids must be provided as a comma or semmicolon seperated list of IDs.");
                 return false;

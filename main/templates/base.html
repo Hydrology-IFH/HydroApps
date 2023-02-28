@@ -36,7 +36,7 @@
 {% block body_all %}
 <body style="background-color: #F2F2F2;"> 
   <!-- Navigation Pane -->
-  <div class="container-fluid sticky-top">
+  <div class="sticky-top">
     <table class="header">
       <tr>
         <td>
@@ -116,7 +116,7 @@
                           {% if user.is_superuser %}
                             <a href="{% url 'admin:index' %}" class="dropdown-item">{% trans "Admin" %}</a>
                           {% endif %}
-                          <a href="{% url 'logout' app_name=active_app %}" class="dropdown-item">{% trans "Log out" %}</a>
+                          <a href="{% url 'logout' app_name=active_app %}?next={% url active_app|add:':home' %}" class="dropdown-item">{% trans "Log out" %}</a>
                         {% else %}
                           <a href="{% url 'login' app_name=active_app%}" class="dropdown-item">{% trans "Login" %}</a>
                         {% endif %}
@@ -167,9 +167,9 @@
 
     <div class="col-auto position-sticky
                 d-inline-flex justify-content-end
-                fixed-bottom
-                " style="left:100%">
-      &#169; HyFr - Max Schmit (2023)
+                fixed-bottom" 
+         style="left:100%">
+      &#169; {% block copyright %}HyFr (2023){% endblock copyright %}
     </div>
   </div>
 

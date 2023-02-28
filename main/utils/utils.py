@@ -23,7 +23,7 @@ def get_context_extra(request, **kwargs):
     if "app_name" in kwargs:
         app_name = kwargs["app_name"]
     else:
-        first_url_part = request.META["PATH_INFO"].split("/")[1]
+        first_url_part = request.META["PATH_INFO"].split("/")[2]
         if first_url_part in ("weather", "weatherDB", "weatherdb"):
             app_name = "weatherDB"
         elif first_url_part == "asgII":
