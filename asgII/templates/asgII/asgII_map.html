@@ -137,7 +137,7 @@
         <div class="modal-body p-0 m-2">
           
           <div class="d-flex justify-content-end" style="position:relative;z-index: 2;">
-            <p class="mb-0">{% trans "<b>Dots</b> mark the annual data." %}<br>
+            <p class="mb-0 me-auto">{% trans "<b>Dots</b> mark the annual data." %}<br>
                {% trans "<b>Lines</b> mark the 11-year moving means. (The average of a window of 11 years around a point)" %}</p>
             <div>
               <script type="text/javascript">
@@ -147,7 +147,7 @@
                   })
                 }
               </script>
-              <button id="switch_modal_explanation" style="position:relative" onclick="switch_explanation()" class="btn btn-primary"
+              <button style="position:relative" onclick="switch_explanation()" class="btn btn-primary"
                       data-bs-toggle="tooltip" data-bs-placement="top" 
                       data-bs-title='{% trans "Switch between the plot explanation of the project synthesis or the online explanation" %}'>
                 <i class="bi bi-arrow-left-right"></i>
