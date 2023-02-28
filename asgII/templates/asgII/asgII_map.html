@@ -137,7 +137,7 @@
         <div class="modal-body p-0 m-2">
           
           <div class="d-flex justify-content-end" style="position:relative;z-index: 2;">
-            <p class="mb-0">{% trans "<b>Dots</b> mark the annual data." %}<br>
+            <p class="mb-0 me-auto">{% trans "<b>Dots</b> mark the annual data." %}<br>
                {% trans "<b>Lines</b> mark the 11-year moving means. (The average of a window of 11 years around a point)" %}</p>
             <div>
               <script type="text/javascript">
@@ -147,7 +147,7 @@
                   })
                 }
               </script>
-              <button id="switch_modal_explanation" style="position:relative" onclick="switch_explanation()" class="btn btn-primary"
+              <button style="position:relative" onclick="switch_explanation()" class="btn btn-primary"
                       data-bs-toggle="tooltip" data-bs-placement="top" 
                       data-bs-title='{% trans "Switch between the plot explanation of the project synthesis or the online explanation" %}'>
                 <i class="bi bi-arrow-left-right"></i>
@@ -163,7 +163,7 @@
             </figure>
           </div>
 
-          <div class="explanation-plot" style="margin-top:-40px">
+          <div class="explanation-plot" style="margin-top:-30px">
             <img class="plot_img" src="{% static 'asgII/img/A4_Ann_Trends_DWD_2965_tas_f_example.png' %}">
             <div style="top:12%; left:1%; width:18%; height:6.7%;" data-bs-toggle="tooltip" data-bs-placement="top" 
               data-bs-title='{% trans "Parameter of this plot described on the y-Axis" %}'></div>
