@@ -18,6 +18,7 @@ import warnings
 import re
 import datetime
 from django.utils import timezone
+from django.db import OperationalError
 
 app_dir = Path(__file__).parent
 
@@ -45,10 +46,15 @@ def home(request, *args, **kwargs):
 
 def get_ts(request, *args, **kwargs):
     context = get_context_base(request)
-    context.update({
-        'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
-        "wdb_max_downloads": get_wdb_max_downloads(request)
-        })
+    
+    try:
+        context.update({
+            'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
+            "wdb_max_downloads": get_wdb_max_downloads(request)
+            })
+    except OperationalError: 
+        # when database is down
+        return render(request,"weatherDB/db_not_available.html")
 
     # new
     if not ((request.user.is_authenticated and request.user.is_active) or DEBUG):
