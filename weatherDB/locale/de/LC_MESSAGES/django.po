@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 12:51+0100\n"
-"PO-Revision-Date: 2023-02-09 16:04+0100\n"
+"POT-Creation-Date: 2023-03-02 09:44+0100\n"
+"PO-Revision-Date: 2023-03-02 09:45+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -42,6 +42,14 @@ msgstr "Herunterladen"
 #: .\weatherDB\templates\weatherDB\base.html:22
 msgid "Package"
 msgstr "Paket"
+
+#: .\weatherDB\templates\weatherDB\db_not_available.html:8
+msgid ""
+"We are sorry. The WeatherDB Database Server is not available at the moment, "
+"please come back in some minutes."
+msgstr ""
+"Es tut uns leid. Der WeatherDB Datenbank Server ist im Moment nicht "
+"verfügbar. Bitte kommen Sie in einigen Minuten wieder."
 
 #: .\weatherDB\templates\weatherDB\get_ts.html:47
 msgid "Get a timeserie"

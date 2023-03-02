@@ -117,6 +117,8 @@ DATABASES = {
         'PASSWORD': secrets.DB_DJ_PWD,
         'HOST': secrets.DB_DJ_HOST,
         'PORT': secrets.DB_DJ_PORT,
+        'CONN_MAX_AGE': 120,
+        'CONN_HEALTH_CHECKS': True
     },
     'weather': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -125,6 +127,8 @@ DATABASES = {
         'PASSWORD': secrets.DB_WEA_PWD,
         'HOST': secrets.DB_WEA_HOST,
         'PORT': secrets.DB_WEA_PORT,
+        'CONN_MAX_AGE': 120,
+        'CONN_HEALTH_CHECKS': True
     },
     'weather_django_q': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
