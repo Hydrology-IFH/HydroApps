@@ -294,7 +294,7 @@ CACHE_DIR = Path(secrets.CACHE_DIR)
 if not CACHE_DIR.is_dir(): 
     CACHE_DIR = BASE_DIR.parent.joinpath("Cache")
 if not CACHE_DIR.is_dir(): CACHE_DIR.mkdir()
-CACHE_URL = secrets.BASE_URL + "/downloads/"
+CACHE_URL = secrets.BASE_URL + "/weatherdb/downloads/"
 
 # allow website to be loaded in iframe for CMS
 X_FRAME_OPTIONS = 'allow-from https://uni-freiburg.de/'
