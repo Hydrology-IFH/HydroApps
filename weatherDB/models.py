@@ -136,7 +136,7 @@ class CacheHCaptchaTest(models.Model):
     def clean(cls, max_minutes=10):
         cls.objects.filter(
             timestamp__lte=datetime.datetime.now()-datetime.timedelta(minutes=max_minutes)
-            ).remove()
+            ).delete()
 
     class Meta:
         db_table = "Cache_HCaptcha_Test"
