@@ -129,14 +129,6 @@ DATABASES = {
         'PORT': secrets.DB_WEA_PORT,
         'CONN_MAX_AGE': 120,
         'CONN_HEALTH_CHECKS': True
-    },
-    'weather_django_q': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': secrets.DB_WEA_DJQ_NAME,
-        'USER': secrets.DB_WEA_DJQ_USER,
-        'PASSWORD': secrets.DB_WEA_DJQ_PWD,
-        'HOST': secrets.DB_WEA_DJQ_HOST,
-        'PORT': secrets.DB_WEA_DJQ_PORT,
     }
 }
 
@@ -260,13 +252,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 Q_CLUSTER = {
     'retry': 60*60*24*2+2, # in seconds
     'workers': 4,
-    'orm': 'weather_django_q',
+    'orm': 'default',
     "timeout": 60*60*24*2, # in seconds
     "max_attempts": 4,
     'has_replica': True,
     'name':'django_q_weatherdb',
     'max_attempts':1
-    #'django_redis': 'default'
 }
 
 # for user statistics request
