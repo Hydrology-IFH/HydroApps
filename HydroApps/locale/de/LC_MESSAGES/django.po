@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-23 12:51+0100\n"
+"POT-Creation-Date: 2023-03-20 08:05+0100\n"
 "PO-Revision-Date: 2023-02-22 11:19+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\HydroApps\templates\HydroApps\home.html:32
+#: .\django\HydroApps\templates\HydroApps\home.html:32
 msgid ""
 "On this site you will find several Web Apllications that got created by the "
 "department of Hydrology at the University of Freiburg."
@@ -27,7 +27,7 @@ msgstr ""
 "Professur für Hydrologie der Albert-Ludwigs-Universität in Freiburg erstellt "
 "wurden."
 
-#: .\HydroApps\templates\HydroApps\home.html:41
+#: .\django\HydroApps\templates\HydroApps\home.html:41
 msgid ""
 "This is an Application to get quality checked, corrected and filled weather "
 "station time series for all of germany."
@@ -35,7 +35,7 @@ msgstr ""
 "Dies ist eine Anwendung, um qualitätsgeprüfte, korrigierte und gefüllte "
 "Wetterstations-Zeitreihen für ganz Deutschland zu erhalten."
 
-#: .\HydroApps\templates\HydroApps\home.html:52
+#: .\django\HydroApps\templates\HydroApps\home.html:52
 msgid ""
 "This is an Application to get the climate projections of single weather "
 "stations."
@@ -43,13 +43,13 @@ msgstr ""
 "Dies ist eine Anwendung zur Ermittlung wie sich die Klimaprojektionen auf "
 "einzelne Wetterstationen auswirken."
 
-#: .\HydroApps\templates\HydroApps\home.html:64
+#: .\django\HydroApps\templates\HydroApps\home.html:64
 msgid "This is an Application to get the near natural water balance of cities."
 msgstr ""
 "Dies ist eine Anwendung, um die naturnahe urbanen Wasserbilanz von Städten "
 "zu bestimmen."
 
-#: .\HydroApps\templates\HydroApps\home.html:75
+#: .\django\HydroApps\templates\HydroApps\home.html:75
 msgid ""
 "This is an Application to simulate the water balance of a small area in "
 "Freiburg and to show the effects near natural rainwater management can have "
@@ -59,18 +59,26 @@ msgstr ""
 "Freiburg zu simulieren und um zu zeigen, welche Auswirkungen eine naturnahe "
 "Regenwasserbewirtschaftung darauf haben kann."
 
-#: .\HydroApps\templates\HydroApps\home.html:85
+#: .\django\HydroApps\templates\HydroApps\home.html:86
+msgid ""
+"This application simulates the mobilization of biocides from facades in "
+"cities and shows a potential risk to groundwater."
+msgstr ""
+"Diese Anwendung simuliert die Mobiliserung von Bioziden aus Fassaden in "
+"Städten und zeigt ein mögliches Risiko für das Grundwasser auf. "
+
+#: .\django\HydroApps\templates\HydroApps\home.html:96
 msgid "Measurments"
 msgstr "Messungen"
 
-#: .\HydroApps\templates\HydroApps\home.html:93
-msgid "Pegel Dreisam"
-msgstr "Water Level Dreisam"
+#: .\django\HydroApps\templates\HydroApps\home.html:104
+msgid "Water level Dreisam"
+msgstr "Pegel Dreisam"
 
-#: .\HydroApps\templates\HydroApps\home.html:98
+#: .\django\HydroApps\templates\HydroApps\home.html:109
 msgid "Meteo Station Vauban"
 msgstr "Meteo-Station Vauban"
 
-#: .\HydroApps\templates\HydroApps\home.html:103
+#: .\django\HydroApps\templates\HydroApps\home.html:114
 msgid "Meteo Station Eichstetten"
 msgstr "Meteo-Station Eichstetten"
