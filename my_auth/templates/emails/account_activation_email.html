@@ -1,8 +1,8 @@
-{% autoescape off %}
-Hi {{ user.first_name }} {{ user.last_name }},
+{% autoescape off %}{% load i18n %}
+{% trans "Hello" %} {{ user.first_name }} {{ user.last_name }},
 
-Your account for {{ domain }}{% url 'HydroApps:home'%} got activated and is now ready to use.
+{% trans "Your account for" %} {{ domain }}{% url 'HydroApps:home'%} {% trans "got activated and is now ready to use" %}.
 
-If you think, it's not you, then just ignore this email.
-This is an automatic generated E-mail, please don't answer it.
+{% blocktrans %}If you think, it's not you, then just ignore this email.
+This is an automatic generated E-mail, please don't answer it.{% endblocktrans %}
 {% endautoescape %}

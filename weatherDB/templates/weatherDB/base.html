@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block head_first %}
   <title>WeatherDB</title>
   <link rel="icon" type="image/x-icon" href="{% static 'weatherDB/img/favicon.ico'%}">
-  <meta name="description" content="Eine Darstellung der Klima-Prognosen für einzelne Wetter-Stationen. Ergebnisse des ASGII Projekts">
+  <meta name="description" content='{% trans "An application to download quality checked, filled and corrected weather timeseries for all of germany." %}'>
 {% endblock %}
 
 {% block navbar_brand %}
@@ -15,10 +16,10 @@
 
 {% block navbar_app %}
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item "><a href="{% url 'weatherDB:home' %}" class="nav-link">Home</a></li>
-    <li class="nav-item "><a href="{% url 'weatherDB:method' %}" class="nav-link">Method</a></li>
-    <li class="nav-item "><a href="{% url 'weatherDB:get_ts' %}" class="nav-link">Download</a></li>
-    <li class="nav-item "><a href="{% url 'weatherDB:package' %}" class="nav-link">Package</a></li>
+    <li class="nav-item "><a href="{% url 'weatherDB:home' %}" class="nav-link">{% trans "Home" %}</a></li>
+    <li class="nav-item "><a href="{% url 'weatherDB:method' %}" class="nav-link">{% trans "Method" %}</a></li>
+    <li class="nav-item "><a href="{% url 'weatherDB:get_ts' %}" class="nav-link">{% trans "Download" %}</a></li>
+    <li class="nav-item "><a href="{% url 'weatherDB:package' %}" class="nav-link">{% trans "Package" %}</a></li>
   </ul>
 {% endblock %}
 
@@ -26,3 +27,5 @@
   {% firstof "weatherDB" as active_app %}
   {{ block.super}}
 {% endblock %}
+
+{% block copyright%}HyFr - Max Schmit (2023){%endblock%}

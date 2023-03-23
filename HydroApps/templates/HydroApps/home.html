@@ -1,5 +1,6 @@
 {% extends base_template %}
 {% load static %}
+{% load i18n %}
 
 {%block head %}
 <style type="text/css">
@@ -9,43 +10,100 @@
   img.card-img-top{
     width: 15rem;
   }
+  div.card > i.bi-box-arrow-up-right
+  {
+    position: absolute;
+    align-self: end;
+    margin-right: 1rem !important;
+    margin-top: 0.5rem !important;
+    font-size: 1.5rem;
+    align-self: flex-end !important;
+    color: #004A99;
+  }
+  a.list-group-item {
+    --bs-list-group-action-hover-color: #fff;
+    --bs-list-group-action-hover-bg: #0d6efd;
+  }
 </style>
 {% endblock %}
 
 {% block content %}
   <h3>Hydro-Apps</h3>
-  <p>On this site you will find several Web Apllications that got created by the department of Hydrology at the University of Freiburg.</p>
+  <p>{% trans "On this site you will find several Web Apllications that got created by the department of Hydrology at the University of Freiburg." %}</p>
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">  
-      <div class="col">
-        <div class="card">
-          <a href="weatherDB/" class="stretched-link"></a>
+    <div class="row g-4">  
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
+          <a href="{% url 'weatherDB:home' %}" class="stretched-link"></a>
           <img src="{% static 'weatherDB/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
           <div class="card-body">
             <h5 class="card-title">WeatherDB</h5>
-            <p class="card-text">This is an Application to get quality checked, corrected and filled weather station time series for all of germany. </p>
+            <p class="card-text">{% trans "This is an Application to get quality checked, corrected and filled weather station time series for all of germany." %} </p>
           </div>
         </div>
       </div>
       {% if show_unreleased %}
-      <div class="col">
-        <div class="card">
-          <a href="klimzuk/" class="stretched-link"></a>
-          <img src="{% static 'klimzuk/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB">
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
+          <a href="{% url 'asgII:home' %}" class="stretched-link"></a>
+          <img src="{% static 'asgII/img/logo-520.png' %}" class="card-img-top mx-auto" alt="Logo of asgII">
           <div class="card-body">
-            <h5 class="card-title">KlimZuk</h5>
-            <p class="card-text">This is an Application to get the climate projections of single weather stations. </p>
+            <h5 class="card-title">ASG-II</h5>
+            <p class="card-text">{% trans "This is an Application to get the climate projections of single weather stations." %} </p>
           </div>
         </div>
       </div>
       {% endif %}
-      <div class="col">
-        <div class="card">
-          <a href="https://naturwb.de" class="stretched-link"></a>
-          <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
+          <a target="_blank" rel="noopener noreferrer" href="https://naturwb.de" class="stretched-link"></a>
+          <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of NatUrWB" >
+          <i class="bi bi-box-arrow-up-right"></i>
           <div class="card-body">
             <h5 class="card-title">NatUrWB</h5>
-            <p class="card-text">This is an Application to get the near natural water balance of cities. </p>
+            <p class="card-text">{% trans "This is an Application to get the near natural water balance of cities." %} </p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
+          <a target="_blank" rel="noopener noreferrer" href="http://www.naturnahe-regenwasserbewirtschaftung.info/" class="stretched-link"></a>
+          <img src="{% static 'logos_other_sites/Logo_FReWaB.png' %}" class="card-img-top mx-auto" alt="Logo of FReWaB" >
+          <i class="bi bi-box-arrow-up-right"></i>
+          <div class="card-body">
+            <h5 class="card-title">FReWaB</h5>
+            <p class="card-text">{% trans "This is an Application to simulate the water balance of a small area in Freiburg and to show the effects near natural rainwater management can have on it." %} </p>
+          </div>
+        </div>
+      </div>
+      {% comment %} Measurement links {% endcomment %}
+      <div class="accordion" id="accordionAdditionals">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingAccMeasurements">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#AccMeasurements" aria-expanded="true" aria-controls="AccMeasurements">
+              {% trans "Measurments" %}
+            </button>
+          </h2>
+          <div id="AccMeasurements" class="accordion-collapse collapse show" aria-labelledby="headingAccMeasurements" data-bs-parent="#accordionAdditionals">
+            <div class="accordion-body">
+              <ul class="list-group d-inline-flex">
+                <a class="list-group-item list-group-item-action d-flex justify-content-between"  target="_blank" rel="noopener noreferrer" 
+                   href="http://www.hydrology.uni-freiburg.de/aktuell/dreisam/index.html">
+                  {% trans "Pegel Dreisam" %}
+                  <i class="bi bi-box-arrow-up-right ms-4"></i>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex justify-content-between" target="_blank" rel="noopener noreferrer" 
+                   href="https://hydrologie.shinyapps.io/MeteoVauban/" >
+                  {% trans "Meteo Station Vauban" %}
+                  <i class="bi bi-box-arrow-up-right ms-4"></i>
+                </a>
+                <a class="list-group-item list-group-item-action d-flex justify-content-between"  target="_blank" rel="noopener noreferrer" 
+                   href="https://hydrologie.shinyapps.io/MeteoEichstetten/">
+                  {% trans "Meteo Station Eichstetten" %}
+                  <i class="bi bi-box-arrow-up-right ms-4"></i>
+                </a> 
+              </ul>
+            </div>
           </div>
         </div>
       </div>

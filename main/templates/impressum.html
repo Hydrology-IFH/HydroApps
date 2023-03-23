@@ -1,13 +1,14 @@
 {% extends base_template %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
-<h2>Impressum</h2>
+<h2>{% trans "Imprint" %}</h2>
 <p>
-  Diese Seite wurde 2022 von Max Schmit an der Professur für Hydrologie der Universität Freiburg erstellt.
+  {% trans "This site was created in 2022 by Max Schmit at the Chair of Hydrology at the University of Freiburg." %}
 </p>
 
-<h4>Autor - Inhalt, Aufbau, Umsetzung und Konzeption der Webseite</h4>
+<h4>{% trans "Author - content, structure, implementation and conception of the website" %}</h4>
 <p>
   Max Schmit
   <br>Fahnenbergplatz - 79098 Freiburg
@@ -15,28 +16,31 @@
   <br>Internet: <a target="_blank" rel="noopener" href="https://www.hydrology.uni-freiburg.de/mitarbeiter/schmit">www.hydrology.uni-freiburg.de/mitarbeiter/schmit</a>
 </p>
 <p>
-  Zu Fragen, Problemen und Anmerkungen steht Ihnen Max Schmit gerne zur Verfügung.
+  {% trans "Max Schmit is at your disposal for questions, problems and comments." %}
 </p>
 
-<h4>Herausgeber</h4>
+<h4>{% trans "Editor" %}</h4>
 <p>
-  Professur für Hydrologie - Albert-Ludwigs Universität Freiburg i.Br.
-  <br>Geschäftsführender Direktor: Prof. Dr. Markus Weiler
+  {% trans "Chair of Hydrology - Albert-Ludwigs University of Freiburg i.Br." %}
+  <br>{% trans "Managing Director" %}: Prof. Dr. Markus Weiler
   <br>Fahnenbergplatz - 79098 Freiburg
   <br>Tel.: +49-(0)761 - 203 3530 - Fax: +49-(0)761 - 203 3594
   <br>E-mail: hydrology[at]hydrology.uni-freiburg.de
   <br>Internet: <a target="_blank" rel="noopener" href="https://www.hydro.uni-freiburg.de">www.hydro.uni-freiburg.de</a>
-  <br>Umsatzsteueridentifikationsnummer: DE 142116817 
+  <br>{% trans "Tax identification number" %}: DE 142116817 
 </p>
 
-<h4>genutzte Bilder</h4>
-<p>Folgende Bilder-Quellen wurden für diese Seite genutzt:</p>
+<h4>{% trans "used images" %}</h4>
+<p>{% trans "The following image sources were used for this page" %}:</p>
 <ul>
-  <li><a href="https://www.flaticon.com/free-icons/cloudy" title="cloudy icons">Cloudy icons created by kosonicon - Flaticon</a></li>
+  <li><a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/free-icons/cloudy" title="cloudy icons">Cloudy icons created by kosonicon - Flaticon</a></li>
+  <li><a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/free-icons/germany" title="germany icons">Germany icons created by Freepik - Flaticon</a></li>
+  <li><a target="_blank" rel="noopener noreferrer" href="https://www.flaticon.com/free-icons/uk-flag" title="uk flag icons">Uk flag icons created by Freepik - Flaticon</a></li>
+  <li></li><a target="_blank" rel="noopener noreferrer" href="https://www.freepik.com/free-vector/website-maintenance-abstract-concept-vector-illustration-website-service-webpage-seo-maintenance-web-design-corporate-site-professional-support-security-analysis-update-abstract-metaphor_11668822.htm#query=website%20maintenance&position=0&from_view=keyword&track=ais">Maintenance Image - Image by vectorjuice on Freepik</a></li>
 </ul>
 
-<h4>Benutzte Software</h4>
-<p>Folgende Software-Pakete wurde im Zuge der Erstellung dieses Webtools verwendet:</p>
+<h4>{% trans "used software" %}</h4>
+<p>{% trans "The following software packages got used for creating this website" %}:</p>
 <ul>
   <li><a target="_blank" rel="noopener" href="https://www.python.org/">Python</a></li>
   <li><a target="_blank" rel="noopener" href="https://www.djangoproject.com/">Django</a></li>
@@ -52,74 +56,77 @@
   <li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Microsoft Visual Studio Code</a></li>
   <li><a target="_blank" rel="noopener" href="https://nominatim.org/">Nominatim</a></li>
   <li><a target="_blank" rel="noopener" href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
-  <li><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/4.4/layout/overview/">Bootstrap</a></li>
+  <li><a target="_blank" rel="noopener" href="https://getbootstrap.com">Bootstrap</a></li>
   <li><a target="_blank" rel="noopener" href="https://leafletjs.com/">Leaflet</a></li>
   <li><a target="_blank" rel="noopener" href="https://github.com/aldjemy/aldjemy">Aldjemy</a></li>
+  <li><a target="_blank" rel="noopener" href="https://www.deepl.com/">DeepL</a></li>
 </ul>
 <p>
-  Diese Auflistung hat nicht den Anspruch eine ausschöpfende Auflistung der verwendeten Software zu sein, sondern nur die Hauptpakete aufzulisten. Den Entwickler*Innen dieser Pakete soll hiermit für ihre Arbeit gedankt werden, da ohne deren Arbeit dieses Projekt nicht hätte entstehen können. 
-  <br>Sicher kamen noch viele weitere Software-Pakete zum Einsatz die hier nicht aufgeführt werden können. Der Dank gilt ihnen aber ebenso.
+ {% trans "This list does not claim to be a complete list of all the software used, but only lists the main packages. We thank all the developers of these packages for their work, because without their work this project would not have been possible." %}
+  <br>{% trans "Certainly many more software packages were used that are not listed here. However, we would like to thank them as well." %}
 </p>
-<h4>Genutzte Datensätze</h4>
+<h4>{% trans "Used datasets" %}</h4>
 <p>
-  Folgende Datensätze fanden eine Verwendung zum bestimmen der Zeitreihen:
+  {% trans "The following data sets were used to determine the time series for WeatherDB-App" %}:
   <ul>
     <li>
-      DWD (2019): Historische tägliche Stationsbeobachtungen (Temperatur, Druck, Niederschlag, Sonnenscheindauer, etc.) für Deutschland. Version V006, 2018. Climate Data Center (CDC). Online verfügbar unter <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/">https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/</a>", zuletzt aktualisiert am 29.01.2019, zuletzt geprüft am 07.01.2021.
+      DWD (2019): Historische tägliche Stationsbeobachtungen (Temperatur, Druck, Niederschlag, Sonnenscheindauer, etc.) für Deutschland. Version V006, 2018. Climate Data Center (CDC). {% trans "Available online at" %} <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/">https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/historical/</a> 
     </li><li>
-      DWD (2019): Historische 10-minütige Stationsmessungen der Niederschlagshöhe in Deutschland. Version V1. Climate Data Center (CDC). Online verfügbar unter <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/10_minutes/precipitation/historical">https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/10_minutes/precipitation/historical</a>, zuletzt aktualisiert am 26.02.2019, zuletzt geprüft am 07.01.2021.
+      DWD (2019): Historische 10-minütige Stationsmessungen der Niederschlagshöhe in Deutschland. Version V1. Climate Data Center (CDC). {% trans "Available online at" %} <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/10_minutes/precipitation/historical">https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/10_minutes/precipitation/historical</a>
     </li><li>
-      DWD (2019): Berechnete tägliche Werte von charakteristischen Elementen aus dem Boden und dem Pflanzenbestand. Version V19.3. Climate Data Center (CDC). Online verfügbar unter <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/daily/historical/">https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/daily/historical/</a>", zuletzt aktualisiert am 13.11.2019, zuletzt geprüft am 07.01.2021..
+      DWD (2019): Berechnete tägliche Werte von charakteristischen Elementen aus dem Boden und dem Pflanzenbestand. Version V19.3. Climate Data Center (CDC). Available online at <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/daily/historical/">https://opendata.dwd.de/climate_environment/CDC/derived_germany/soil/daily/historical/</a>
     </li><li>
-      DWD (2021): Raster der vieljährigen Mittel der Lufttemperatur (2m) für Deutschland 1991-2020. Version v1.0: Climate Data Center (CDC). Online verfügbar unter <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/air_temperature_mean">https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/air_temperature_mean</a>, zuletzt geprüft am 13.09.2021.
+      DWD (2021): Raster der vieljährigen Mittel der Lufttemperatur (2m) für Deutschland 1991-2020. Version v1.0: Climate Data Center (CDC). {% trans "Available online at" %} <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/air_temperature_mean">https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/air_temperature_mean</a>, {% trans "last checked on" %} 13.09.2021.
     </li><li>
-      Rauthe, M. et al. 2013. A Central European precipitation climatology. Part I: Generation and validation of a high-resolution gridded daily data set (HYRAS) [online]. Meteorologische Zeitschrift. doi: 10.1127/0941-2948/2013/0436. REGNIE Version 1991-2020. Online verfügbar unter <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/regnie/">https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/regnie/</a>, zuletzt geprüft am 13.09.2021.
+      Rauthe, M. et al. 2013. A Central European precipitation climatology. Part I: Generation and validation of a high-resolution gridded daily data set (HYRAS) [online]. Meteorologische Zeitschrift. doi: 10.1127/0941-2948/2013/0436. REGNIE Version 1991-2020. {% trans "Available online at" %} <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/regnie/">https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/regnie/</a>, {% trans "last checked on" %} 13.09.2021.
     </li><li>
-      DWD (2021): Vieljährige Raster der potentiellen Evapotranspiration über Gras (per Kalendermonat) 1991-2020. Version v1.x: Climate Data Center (CDC). Online verfügbar unter <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/evapo_p">https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/evapo_p</a>, zuletzt geprüft am 13.09.2021.
+      DWD (2021): Vieljährige Raster der potentiellen Evapotranspiration über Gras (per Kalendermonat) 1991-2020. Version v1.x: Climate Data Center (CDC). {% trans "Available online at" %} <a target="_blank" rel="noopener" href="https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/evapo_p">https://opendata.dwd.de/climate_environment/CDC/grids_germany/multi_annual/evapo_p</a>, {% trans "last checked on" %} 13.09.2021.
     </li><li>
-      GeoBasis-DE: Bundesamt für Kartographie und Geodäsie. 2016. Digitales Geländemodell Gitterweite 5 m. DGM5. Produktstand: 2016. Online verfügbar unter <a target="_blank" rel="noopener" href="https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/digitale-gelandemodelle/digitales-gelandemodell-gitterweite-5-m-dgm5.html">https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/digitale-gelandemodelle/digitales-gelandemodell-gitterweite-5-m-dgm5.html</a>, zuletzt geprüft am 08.11.2021.
+      GeoBasis-DE: Bundesamt für Kartographie und Geodäsie. 2016. Digitales Geländemodell Gitterweite 5 m. DGM5. Produktstand: 2016. {% trans "Available online at" %} <a target="_blank" rel="noopener" href="https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/digitale-gelandemodelle/digitales-gelandemodell-gitterweite-5-m-dgm5.html">https://gdz.bkg.bund.de/index.php/default/digitale-geodaten/digitale-gelandemodelle/digitales-gelandemodell-gitterweite-5-m-dgm5.html</a>, {% trans "last checked on" %} 08.11.2021.
     </li><li>
-      OpenStreetMap-Mitwirkende (2020): OpenStreetMap (OSM). Map style: OpenTopoMap (CC-BY-SA). Online verfügbar unter <a target="_blank" rel="noopener" href="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png">https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png</a>, zuletzt geprüft am 08.12.2020.
+      OpenStreetMap-Mitwirkende (2020): OpenStreetMap (OSM). Map style: OpenTopoMap (CC-BY-SA). {% trans "Available online at" %} <a target="_blank" rel="noopener" href="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png">https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png</a>
     </li>
   </ul>
 </p>
-<h4>Haftungsausschluss</h4>
-<p>Die Professur für Hydrologie als Herausgeber und Max Schmit, als Autor der Internetseite übernehmen keinerlei Haftung oder Garantie für die Richtigkeit, Verlässlichkeit, Vollständigkeit und Genauigkeit dieser Webseite und ihrer Inhalte, inklusive der durch Hyperlinks verknüpften Webseiten. Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt recherchiert und implementiert. Fehler im Bearbeitungsvorgang sind dennoch nicht auszuschließen. Der Herausgeber und der Autor übernehmen keinerlei Verantwortung für missbräuchliche oder unsachgemäße Anwendung der hier angebotenen Dienste durch Dritte.
-</p><p>
-Die Nutzung der Inhalte der Website, einschließlich heruntergeladene Zeitreihen, sowie heruntergeladener Programme, erfolgt auf eigene Gefahr des Nutzers. Mit der reinen Nutzung der Website kommt keinerlei Vertragsverhältnis zwischen dem Nutzer und dem Herausgeber zustande.
-</p><p>
-Ausgeschlossen sind Haftungsansprüche wegen direkter oder indirekter Schäden oder Konsequenzen materieller oder immaterieller Art, die durch die direkte, indirekte oder Nicht- Nutzung der angebotenen Inhalte, Daten und des angebotenen Wissensstoffes entstehen oder welche aus dem Zugriff der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstanden sind. Ausgeschlossen sind auch Rechte und Pflichten zwischen der Professur für Hydrologie und dem Nutzer dieser Website oder Dritten.
-</p>
+<h4>{% trans "Disclaimer" %}</h4>
+<p>{% blocktrans %}
+  The Chair of Hydrology as publisher and Max Schmit as author of the website do not assume any liability or guarantee for the correctness, reliability, completeness and accuracy of this website and its contents, including hyperlinked websites. The contents of this website have been researched and implemented with the greatest possible care. Nevertheless, errors in the editing process cannot be excluded. The publisher and the author do not assume any responsibility for improper or inappropriate use of the services offered here by third parties.{% endblocktrans %}
+</p><p>{% blocktrans %}
+  The use of the contents of this website, including downloading time series, as well as downloading programs, is at the user's own risk. The mere use of the website does not constitute any contractual relationship between the user and the publisher.
+{% endblocktrans %}</p><p>{% blocktrans %}
+  Excluded are claims for direct or indirect damages or consequences of a material or immaterial nature arising from the direct, indirect or non-use of the content, data and knowledge offered or which arise from access to the published information, through misuse of the connection or technical faults. Also excluded are rights and obligations between the Chair of Hydrology and the user of this website or third parties.
+{% endblocktrans %}</p>
  
-<h4>Haftungsausschluss bei externen links</h4>
-<p>
-Die Inhalte fremder Seiten oder die darauf angebotenen Dienstleistungen, auf die die Professur für Hydrologie mittels Links hinweist, wurden nicht überprüft und spiegeln nicht die Meinung des Herausgebers wieder, sondern dienen lediglich der Information und der Darstellung von Zusammenhängen. Der Herausgeber hat keinerlei Einfluss auf die aktuelle und zukünftige Gestaltung und auf die Inhalte der verknüpften Seiten. Das Setzen von externen Links bedeutet nicht, dass sich der Herausgeber die hinter dem Verweis oder Link liegenden Inhalte zu Eigen macht.
-</p><p>
-Die Professur für Hydrologie erklärt ausdrücklich, dass sie keinerlei Einfluss auf die Gestaltung und die Inhalte der extern gelinkten Seiten hat. Deshalb distanziert sich die Professur für Hydrologie hiermit ausdrücklich von allen Inhalten aller verlinkte Seiten auf dieser Homepage. Diese Erklärung gilt für alle auf dieser Homepage angezeigten Links.
-</p>
+<h4>{% trans "Disclaimer for external links" %}</h4>
+<p>{% blocktrans %}
+  The contents of external sites or the services offered by them, to which the Chair of Hydrology refers to with links, have not been checked and do not reflect the opinion of the publisher. They serve merely to provide information and to illustrate connections. The publisher has no influence on the current and future design and content of the linked pages. The inclusion of external links does not imply that the publisher adopts the content behind the reference or link as its own.
+{% endblocktrans %}</p><p>{% blocktrans %}
+  The Chair of Hydrology declares that it has no influence whatsoever on the design and content of the externally linked pages. Therefore, the Chair of Hydrology hereby expressly distances itself from all contents of all linked pages on this homepage. This declaration applies to all links displayed on this homepage.
+{% endblocktrans %}</p>
  
-<h4>Copyright</h4>
-<p>
-  Die auf dieser Webseite veröffentlichten Texte, Abbildungen, Fotos und Karten, sowie die Gestaltung der Webseite sind urheberrechtlich geschützt und dürfen nur zum privaten, wissenschaftlichen und nicht gewerblichen Gebrauch kopiert und ausgedruckt werden. Sie sind Eigentum des Autors oder der jeweils namentlich genannten Personen, Firmen oder Institutionen. Inhalte und Rechte Dritter sind dabei als solche gekennzeichnet. Sollte dabei trotz sorgfältigen Vorgehens ein Fehler entstanden sein, bitten wir um Kontaktaufnahme mit den o.g. Ansprechpartnern. Jede vom deutschen Urheber- und Leistungsschutzrecht nicht zugelassene Verwertung bedarf der vorherigen schriftlichen Zustimmung des Autors oder jeweiligen Rechteinhabers. Die Nutzung für den persönlichen, privaten und nicht kommerziellen Gebrauch ist erlaubt, sofern Sie keine Urheberrechts- oder sonstigen Hinweise auf das geistige Eigentum entfernen. Die Zwischenspeicherung in einem Cache oder auf einem Proxy-Server zur Optimierung der Zugriffsgeschwindigkeit ist gestattet.
-</p><p>
-  Die Grafiken und heruntergeladenen Zeitreihen können ohne Zustimmung verwendet werden. Das Zitieren der Webseite, sowie das Setzen von Links auf unsere Webseite sind ausdrücklich erlaubt. Bei Darstellung dieser Webseite in fremden Frames bitten wir um vorherige Rücksprache und Zustimmung.
-</p>
+<h4>{% trans "Copyright" %}</h4>
+<p>{% blocktrans %}
+  The texts, illustrations, photos and maps published on this website as well as the design of the website are protected by copyright and may only be copied and printed for private, scientific and non-commercial use. They are the property of the author or the persons, companies or institutions mentioned by name. Contents and rights of third parties are marked as such. Should an error have occurred despite careful handling, please contact the above-mentioned persons. Any use not permitted by German copyright and ancillary copyright law requires the prior written consent of the author or the respective copyright holder. Use for personal, private and non-commercial use is permitted, as long as you do not remove any copyright or other intellectual property notices. Caching in a cache or on a proxy server to optimize access speed is permitted.
+{% endblocktrans %}</p><p>{% blocktrans %}
+  The graphics and downloaded time series may be used without permission. The citation of the website, as well as the setting of links to our website are expressly permitted. If this website is displayed in external frames, we ask for prior consultation and consent.
+{% endblocktrans %}</p>
 
-<h4>Datenschutz</h4>
-<p>
-  Durch den Besuch dieser Webseite können beim herunterladen einer Zeitreihe die Dateien temporär gespeichert werden. Weiterhin wird die IP-Adresse, der Benutzernamme und die Uhrzeit des Downloads abgespeichert. Die eingegebene Ortsangabe, Polygone oder Adresse wird dabei durch uns nicht gespeichert. Eine Weitergabe an Dritte, zu kommerziellen oder nichtkommerziellen Zwecken, findet nicht statt. Die Daten werden in regelmässigen Abständen gelöscht (maximal 7 Tage).
-</p>
-<p>Zu Zwecken der Nutzerstatistik wird beim aufrufen der Seite die IP Adresse, der aktuelle Zeitpunkt, sowie die aufgerufene URL abgespeichert. Eine Weitergabe an Dritte, zu kommerziellen oder nichtkommerziellen Zwecken, findet nicht statt.</p>
+<h4>{% trans "Data protection" %}</h4>
+<p>{% blocktrans %}
+  By visiting this website, files may be temporarily stored when downloading a time series. Furthermore, the IP address, the user name and the time of the download will be stored. The entered location, polygons or address will not be stored by us. A transfer to third parties, for commercial or non-commercial purposes, does not take place. The data is deleted at regular intervals (maximum 7 days).
+{% endblocktrans %}</p>
+<p>{% blocktrans %}For the purpose of user statistics, the IP address, the current time and the URL are stored when the page is called up. Data will not be passed on to third parties for commercial or non-commercial purposes.{% endblocktrans %}</p>
 
-<h5>hCaptcha<h5>
-  We use the hCaptcha anti-bot service (hereinafter "hCaptcha") on our website. This service is provided by Intuition Machines, Inc., a Delaware US Corporation ("IMI"). hCaptcha is used to check whether the data entered on our website (such as on a login page or contact form) has been entered by a human or by an automated program. To do this, hCaptcha analyzes the behavior of the website or mobile app visitor based on various characteristics. This analysis starts automatically as soon as the website or mobile app visitor enters a part of the website or app with hCaptcha enabled. For the analysis, hCaptcha evaluates various information (e.g. IP address, how long the visitor has been on the website or app, or mouse movements made by the user). The data collected during the analysis will be forwarded to IMI. Data processing is based on Art. 6(1)(f) of the GDPR (DSGVO): the website or mobile app operator has a legitimate interest in protecting its site from abusive automated crawling and spam. IMI acts as a "data processor" acting on behalf of its customers as defined under the GDPR, and a "service provider" for the purposes of the California Consumer Privacy Act (CCPA). For more information about hCaptcha and IMI's privacy policy and terms of use, please visit the following links: <a href="https://www.hcaptcha.com/privacy" target="_blank" rel="noopener noreferrer">https://www.hcaptcha.com/privacy</a> and <a href="https://www.hcaptcha.com/terms" target="_blank" rel="noopener noreferrer">https://www.hcaptcha.com/terms</a>.
-<h4>Hinweise</h4>
-<p>
-  Die Tatsache, dass ein Begriff oder eine Bezeichnung auf dieser Website nicht als Marke oder Warenzeichen gekennzeichnet ist, lässt nicht den Schluss zu, dass es sich nicht evtl. doch um eine Marke oder ein Warenzeichen handelt. Gleiches gilt für Patente und andere Schutzformen.
-</p><p>
-  Die Professur für Hydrologie und der Autor behalten sich ausdrücklich vor, jederzeit Inhalte ohne Ankündigung ganz oder teilweise zu ändern, zu löschen oder zeitweise nicht zu veröffentlichen.
-</p><p>
-  Die Kontaktdaten im Impressum sind nicht zu Werbezwecken zu verwenden. Eine kommerzielle Nutzung und Weitergabe dieser Daten ist nicht erlaubt.
-</p>
+<h5>hCaptcha</h5>
+  <p>{% blocktrans %}We use the hCaptcha anti-bot service (hereinafter "hCaptcha") on our website. This service is provided by Intuition Machines, Inc., a Delaware US Corporation ("IMI"). hCaptcha is used to check whether the data entered on our website (such as on a login page or contact form) has been entered by a human or by an automated program. To do this, hCaptcha analyzes the behavior of the website or mobile app visitor based on various characteristics. This analysis starts automatically as soon as the website or mobile app visitor enters a part of the website or app with hCaptcha enabled. For the analysis, hCaptcha evaluates various information (e.g. IP address, how long the visitor has been on the website or app, or mouse movements made by the user). The data collected during the analysis will be forwarded to IMI. Data processing is based on Art. 6(1)(f) of the GDPR (DSGVO): the website or mobile app operator has a legitimate interest in protecting its site from abusive automated crawling and spam. IMI acts as a "data processor" acting on behalf of its customers as defined under the GDPR, and a "service provider" for the purposes of the California Consumer Privacy Act (CCPA). For more information about hCaptcha and IMI's privacy policy and terms of use, please visit the following links: {% endblocktrans %}<a href="https://www.hcaptcha.com/privacy" target="_blank" rel="noopener noreferrer">https://www.hcaptcha.com/privacy</a> {% trans "and" %} <a href="https://www.hcaptcha.com/terms" target="_blank" rel="noopener noreferrer">https://www.hcaptcha.com/terms</a>.
+  </p> 
+<h4>{% trans "Notes" %}</h4>
+<p>{% blocktrans %}
+  The fact that a term or designation on this website is not identified as a brand or trademark does not allow the conclusion that it may not be a brand or trademark after all. The same applies to patents and other forms of protection.
+{% endblocktrans %}</p><p>{% blocktrans %}
+  The Professorship of Hydrology and the author expressly reserve the right to change, delete or temporarily not publish contents in whole or in part at any time without prior notice.
+{% endblocktrans %}</p><p>{% blocktrans %}
+  The contact data in the imprint are not to be used for advertising purposes. Commercial use and distribution of this data is not permitted. 
+{% endblocktrans %}</p>
 
 {% endblock %}

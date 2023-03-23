@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block head_first %}
+  <title>ASG-II</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'asgII/img/favicon.ico'%}">
+  <meta name="description" content='{% trans "A presentation of climate forecasts for individual weather stations. Results from the ASG-II project." %}'>
+{% endblock %}
+
+{% block navbar_brand %}
+  <img type="image/png" src="{% static "asgII/img/logo-128.png" %}" alt="asgII-Logo" class="d-none d-sm-inline">
+{% endblock %}
+
+{% block navbar_appname %}ASG-II{% endblock %}
+
+{% block navbar_app %}
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item "><a href="{% url 'asgII:home' %}" class="nav-link">{% trans "Home" %}</a></li>
+    <li class="nav-item "><a href="{% url 'asgII:method' %}" class="nav-link">{% trans "Method" %}</a></li>
+    <li class="nav-item "><a href="{% url 'asgII:map' %}" class="nav-link">{% trans "Map" %}</a></li>
+  </ul>
+{% endblock %}
+
+{% block body_all %}
+  {% firstof "asgII" as active_app %}
+  {{ block.super }}
+{% endblock %}
+
+{% block unrelease_message %}
+  <div class="container-fluid alert alert-warning" role "alert">
+    <h3>
+      !!! This Application did not yet get released. You can see it, because you are a Test-User !!!
+    </h3>
+  </div>
+{% endblock %}

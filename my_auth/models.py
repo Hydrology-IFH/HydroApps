@@ -30,7 +30,7 @@ class AccountManager(BaseUserManager):
                 UNION (SELECT usename FROM pg_catalog.pg_user);""")
             db_users = [row[0] for row in cursor.fetchall()]
         if username in db_users:
-            raise ValueError(_("This username is already a database user for the weather database."))
+            raise ValueError(_("This username is already a database user for the weatherDB database."))
         email=self.normalize_email(email)
         user=self.model(email=email,username=username,first_name=first_name, last_name=last_name, **other_fields)
         user.set_password(password)

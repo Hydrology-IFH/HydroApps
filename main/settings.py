@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import sys, os
 from urllib.parse import urlparse
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,7 +51,7 @@ INSTALLED_APPS = [
     # own
     'weatherDB',
     'my_auth',
-    'klimzuk',
+    'asgII',
     "HydroApps",
     # django
     'django.contrib.admin',
@@ -78,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # added
+    'django.middleware.locale.LocaleMiddleware'
     # 'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
@@ -97,6 +99,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.utils.utils.get_context_extra',# add default context, todo: delete from all the other views
             ],
         },
     },
@@ -115,6 +118,8 @@ DATABASES = {
         'PASSWORD': secrets.DB_DJ_PWD,
         'HOST': secrets.DB_DJ_HOST,
         'PORT': secrets.DB_DJ_PORT,
+        'CONN_MAX_AGE': 120,
+        'CONN_HEALTH_CHECKS': True
     },
     'weather': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -123,14 +128,8 @@ DATABASES = {
         'PASSWORD': secrets.DB_WEA_PWD,
         'HOST': secrets.DB_WEA_HOST,
         'PORT': secrets.DB_WEA_PORT,
-    },
-    'weather_django_q': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': secrets.DB_WEA_DJQ_NAME,
-        'USER': secrets.DB_WEA_DJQ_USER,
-        'PASSWORD': secrets.DB_WEA_DJQ_PWD,
-        'HOST': secrets.DB_WEA_DJQ_HOST,
-        'PORT': secrets.DB_WEA_DJQ_PORT,
+        'CONN_MAX_AGE': 120,
+        'CONN_HEALTH_CHECKS': True
     }
 }
 
@@ -161,6 +160,7 @@ AUTHENTICATION_BACKENDS = [
 
 #LOGOUT_REDIRECT_URL = 'home'
 LOGIN_REDIRECT_URL = "user_profile"
+LOGOUT_REDIRECT_URL = "home"
 
 # HCAPTCHA
 HCAPTCHA_SITEKEY = secrets.HCAPTCHA_SITEKEY
@@ -214,16 +214,20 @@ LOGGING = {
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
 USE_TZ = True
 
+# setup of translations
+LANGUAGES = [
+    ('de', _('German')),
+    ('en', _('English')),
+]
+LANGUAGE_CODE = 'en'
+USE_I18N = True
+USE_L10N = True
+LOCALE_PATHS = [
+    BASE_DIR / "main/locale"
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -236,13 +240,8 @@ else:
     STATIC_URL = "/static/"
 STATIC_ROOT = secrets.STATIC_DIR
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath("main/static"),
-    # ("weatherDB", BASE_DIR.joinpath("weatherDB/static")),
-    # ("klimzuk", BASE_DIR.joinpath("klimzuk/static"))
+    BASE_DIR.joinpath("main/static")
 ]
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-# )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -254,13 +253,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 Q_CLUSTER = {
     'retry': 60*60*24*2+2, # in seconds
     'workers': 4,
-    'orm': 'weather_django_q',
+    'orm': 'default',
     "timeout": 60*60*24*2, # in seconds
     "max_attempts": 4,
     'has_replica': True,
     'name':'django_q_weatherdb',
     'max_attempts':1
-    #'django_redis': 'default'
 }
 
 # for user statistics request
@@ -280,13 +278,15 @@ REQUEST_IGNORE_AJAX=True
 # GDAL
 if "GDAL_LIBRARY_PATH" in os.environ:
     GDAL_LIBRARY_PATH = os.environ["GDAL_LIBRARY_PATH"]
+if "GEOS_LIBRARY_PATH" in os.environ:
+    GEOS_LIBRARY_PATH = os.environ["GEOS_LIBRARY_PATH"]
 
 # temporary folder
 CACHE_DIR = Path(secrets.CACHE_DIR)
 if not CACHE_DIR.is_dir(): 
     CACHE_DIR = BASE_DIR.parent.joinpath("Cache")
 if not CACHE_DIR.is_dir(): CACHE_DIR.mkdir()
-CACHE_URL = secrets.BASE_URL + "/downloads/"
+CACHE_URL = secrets.BASE_URL + "/weatherdb/downloads/"
 
 # allow website to be loaded in iframe for CMS
 X_FRAME_OPTIONS = 'allow-from https://uni-freiburg.de/'

@@ -1,0 +1,243 @@
+{% extends 'asgII/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block head %}
+  <!-- bootsrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <!-- leaflet main -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
+
+  <!-- leaflet cluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+    integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+" crossorigin="anonymous">
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster-src.js"
+    integrity="sha384-xLgzMQOvDhPE6lQoFpJJOFU2aMYsKD5eSSt9q3aR1RREx3Y+XsnqtSDZd+PhAcob" crossorigin="anonymous"></script>
+
+  <!-- font-awesome -->
+  <link rel="stylesheet" href={% static "asgII/css/leaflet.awesome-markers.css" %}>
+  <script src={% static "asgII/js/leaflet/leaflet.awesome-markers.min.js" %}></script>
+
+  <!-- own stylesheets -->
+  <link rel="stylesheet" href="{% static "asgII/css/map.css" %}">
+
+{% endblock %}
+
+{% block content %}
+
+  <h1>{% trans "Map of the Stations" %}</h1>
+  <p>{% trans "To see the bias corrected climate ensembles/projections of a station you can select the station in the map below." %}</p>
+  <p>{% trans "There you will be able to download all the plots for this station or add the station the the selection form. By filling out the form and clicking on 'add plots' you will be able to see the plots here and compare them." %}</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-12">
+        <div id="map" style="height: 80vh"></div>
+      </div>
+      <div class="col-md-5 col-12">
+        <div class="container">
+          <form id="select_stations_form" class="form-horizontal" action="javascript:void(0);">
+            <div class="d-flex col-auto"> 
+              <h3>{% trans "Select plots to show" %}</h3>
+              <span class="ms-auto mb-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+              data-bs-html="true" data-bs-title='{% trans "Show me an explanation of the plots." %}'>
+                <button class="btn btn-primary btn btn-primary ms-auto mb-2" data-bs-toggle="modal" data-bs-target="#explanationModal" >
+                  <i class="bi bi-question-circle"></i>
+                </button>
+              </span>
+            </div>
+            
+            
+            <div class="form-group input-group mb-3">
+              <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+              data-bs-html="true" data-bs-title='{% trans "Choose the Parameters you would like to see.<br>select multiple values with Ctrl" %}'>Parameter</span>
+              <select class="form-select" id="parameter" name="parameter" multiple>
+                <option value="pr" selected>{% trans "precipitation" %}</option>
+                <option value="tas">{% trans "temperature" %}</option>
+                <option value="td">{% trans "dew point temperature" %}</option>
+                <option value="ET">{% trans "potential evapotranspiration" %}</option>
+                <option value="rsds">{% trans "radiation" %}</option>
+                <option value="rh">{% trans "relative air moisture" %}</option>
+                <option value="snow">{% trans "snowfall" %}</option>
+              </select>
+              <div class="bs-component" id="agg_alert_box"></div>
+            </div>
+
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="label_period" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-html="true" data-bs-title='{% trans "Which period do you want to see?<br>select multiple values with Ctrl." %}'>{% trans "Period" %}</span>
+              <select class="form-select" id="period" name="period" multiple>
+                <option value="a" selected>{% trans "Year" %}</option>
+                <option value="W">{% trans "Winter" %} (12-2)</option>
+                <option value="f">{% trans "Spring" %} (3-5)</option>
+                <option value="s">{% trans "Summer" %} (6-8)</option>
+                <option value="h">{% trans "Fall" %} (9-11)</option>
+                <option value="m">{% trans "daily maximums" %}</option>
+              </select>
+            </div>
+
+            <div id="station_ids_div" class="input-group mb-3">
+              <span class="input-group-text" id="label_station_ids"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+              data-bs-html="true" data-bs-title='{% trans "Enter the station IDs you would like to see as a comma separated list.<br>The easier way to select a station is by clicking on it on the map." %}'>{% trans "selected station IDs" %}</span>
+              <textarea class="form-control" rows="1" id="station_ids" name="station_ids" value=""
+                label='{% trans "selected station IDs" %}' required=""></textarea>
+              <div class="invalid-feedback" id="invalid-feedback-station_ids">
+                <ul></ul>
+              </div>
+            </div>
+
+            <div class="accordion" id="accordion" class="mb-3">
+              <div class="accordion-item">
+                <div class="accordion-header" id="headingAccMap">
+                  <h5 class="mb-0">
+                    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseAccMap" id="btn_collapse_accordion_accmap">
+                      {% trans "Show selection on map" %}
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseAccMap" class="collapse" aria-labelledby="headingAccMap" data-parent="#accordion">
+                  <div class="accordion-body">
+                    <div class="row pb-1">
+                      <button type="button" class="btn btn-primary me-1 col" id="btn_color_selection">{% trans "Color Selection" %}</button>
+                      <button type="button" class="btn btn-primary col invisible" id="btn_remove_coloring">{% trans "Remove Coloring" %}</button>
+                    </div>
+                    <div class="row">
+                      <button type="button" class="btn btn-primary me-1 col" id="btn_filter_stations">{% trans "Filter Selection" %}</button>
+                      <button type="button" class="btn btn-primary col invisible" id="btn_remove_filter">{% trans "Remove Filters" %}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col d-inline-flex justify-content-end pr-0 mr-0 mt-2">
+              <input type="submit" value="{% trans "show plots" %}" name="add_plots" class="btn btn-primary"
+                style="font-size: 20px; font-weight: 600;" id="btn_add_plots">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" tabindex="-1" id="explanationModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{% trans "Plot explanation" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0 m-2">
+          
+          <div class="d-flex justify-content-end" style="position:relative;z-index: 2;">
+            <p class="mb-0 me-auto">{% trans "<b>Dots</b> mark the annual data." %}<br>
+               {% trans "<b>Lines</b> mark the 11-year moving means. (The average of a window of 11 years around a point)" %}</p>
+            <div>
+              <script type="text/javascript">
+                switch_explanation = () =>{
+                  document.querySelectorAll("div.explanation-plot").forEach((el)=>{
+                    el.classList.toggle("d-none");
+                  })
+                }
+              </script>
+              <button style="position:relative" onclick="switch_explanation()" class="btn btn-primary"
+                      data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover"
+                      data-bs-title='{% trans "Switch between the plot explanation of the project synthesis or the online explanation" %}'>
+                <i class="bi bi-arrow-left-right"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="explanation-plot d-none">
+            {% get_static_prefix as STATIC_PREFIX %}
+            <figure class="figure mt-3">
+              <img class="plot_img figure-img" src="{{STATIC_PREFIX}}asgII/img/ASG-II-S12-Box_ensemble-visualization_{{ LANGUAGE_CODE.upper }}.png" alt="...">
+              <figcaption class="figure-caption"><h5>{% trans "This is the plot explanation from the" %} <a target="_blank" rel="noopener" href="https://www.chr-khr.org/sites/default/files/chrpublications/ASG-II_Synthese_{{ LANGUAGE_CODE.upper }}_mit-Links.pdf">{% trans "ASG-II project synthesis" %}</a>.</h5></figcaption>
+            </figure>
+          </div>
+
+          <div class="explanation-plot" style="margin-top:-30px">
+            <img class="plot_img" src="{% static 'asgII/img/A4_Ann_Trends_DWD_2965_tas_f_example.png' %}">
+            <div style="top:12%; left:1%; width:18%; height:6.7%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "Parameter of this plot described on the y-Axis" %}'></div>
+            <div style="top:4%; left:40%; width:16%; height:7%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "The Station ID" %}'></div>
+            <div style="top:4%; left:56%; width:10%; height:7%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "The stations height above the sea." %}'></div>
+            <div style="top:11%; left:47.8%; width:11%; height:7%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "The time period of this plot, here spring. This means that on this plot only the mean of the spring is shown." %}'></div>
+            
+            <div style="top:25%; left:9.4%; width:88%; height:55%;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true"
+              data-bs-title='{% trans "The <b>blue dots</b> mark the individual RCM ensemble members.<br>The <b>light blue lines</b> mark the moving average for each of the members. The bandwidth (min-max) of these averages is represented by the <b>light blue area</b> and the ensemble mean of those by <br>the <b>thick blue line</b>." %}'></div>
+            <div style="top:46%; left:9.4%; width:30%; height:25%;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true"
+              data-bs-title='{% trans "The <b>red dots</b> mark the measurements of this station. So here are the mean spring temperatures for every year.<br>The <b>thick red line</b> marks a moving average (The average of a window of 11 years around a point) of those measurements." %}'></div>
+
+            <div style="top:19%; left:16.3%; width:20%; height:3%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "The reference climate period (1981-2010) taken." %}'></div>
+            <div style="top:55%; left:16%; width:21%; height:5%;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true"
+              data-bs-title='{% trans "A Boxplot of the reference climate period." %} {% trans "Showing the min, max and mean of the ensemble collection for this climate period." %}'></div>
+            <div style="top:19%; left:50%; width:20%; height:7%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "The near future climate period (2031-2060) and the difference of the ensemble mean compared to the reference period." %}'></div>
+            <div style="top:45%; left:49.6%; width:21.2%; height:8.5%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "A Boxplot of the near future climate period." %} {% trans "Showing the min, max and mean of the ensemble collection for this climate period." %}'></div>
+            <div style="top:19%; left:77%; width:20%; height:7%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "The far future climate period (2071-2100) and the difference of the ensemble mean compared to the reference period." %}'></div>
+            <div style="top:36.5%; left:76.6%; width:21.2%; height:10.1%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "A Boxplot of the far future climate period." %} {% trans "Showing the min, max and mean of the ensemble collection for this climate period." %}'></div>
+            
+            <div style="top:81%; left:84%; width:14%; height:5%;" data-bs-toggle="tooltip" data-bs-placement="top" 
+              data-bs-title='{% trans "The moving window size in years" %}'>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pt-2 col-12">
+    <div id="plot_area">
+      <div class="card" style="{width: '100%'}" v-if="plots_data.length>0">
+        <div class="card-body">
+          <h2 class="card-title">{% trans "Plots" %}</h2>
+          <div class="plot-area-buttons">
+            <button class="btn btn-primary" @click="clear_plot_area">{% trans "clear plots" %}</button>
+            <span class="ms-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+              data-bs-title='{% trans "Show me an explanation of the plots." %}'>
+              <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#explanationModal" >
+                <i class="bi bi-question-circle"></i>
+              </button>
+            </span>
+          </div>
+          <plot-card v-for="(el, index) in plots_data" v-bind:key="el.key" v-bind:station_id="el.station_id" v-bind:para="el.para" v-bind:period="el.period" v-bind:n="index"></plot-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block scripts %}
+  {{ meta_n|json_script:"stations_meta" }}
+  <script src="{% url 'asgII:javascript-catalog' %}"></script>
+  {% if debug %}
+    <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <script src={% static "asgII/js/plot_area.js" %} defer></script>
+    <script src={% static "asgII/js/map.js" %} defer></script> 
+  {%else%}
+    <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <script src={% static "asgII/js/plot_area.min.js" %} defer></script>
+    <script src={% static "asgII/js/map.min.js" %} defer></script>
+  {% endif%}
+
+{% endblock %}

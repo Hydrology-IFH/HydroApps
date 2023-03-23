@@ -20,11 +20,13 @@ from django.contrib.auth.views import (
     LoginView, LogoutView
 )
 from main.utils.utils import get_context_extra
+from main import settings
 
 # Create your views here.
 @csrf_protect
 def register(request, **kwargs):
     context = get_context_extra(request, **kwargs)
+    context.update({"HCAPTCHA_SITEKEY": settings.HCAPTCHA_SITEKEY})
 
     if request.method == "GET":
         context.update({"form": CustomUserCreationForm})
@@ -106,6 +108,7 @@ def confirm_user(request, uidb64, token, **kwargs):
 
 def request_reset_password(request, **kwargs):
     context = get_context_extra(request, **kwargs)
+    context.update({"HCAPTCHA_SITEKEY": settings.HCAPTCHA_SITEKEY})
     if request.method == 'POST':
         form = CustomPasswordResetForm(request.POST)
         if form.is_valid():
@@ -179,10 +182,4 @@ class MyLoginView(LoginView):
     
     def get_default_redirect_url(self):
         active_app = get_context_extra(self.request)["active_app"]
-        return f"/{active_app}/auth/accounts/profile/"
-
-
-class MyLogoutView(LogoutView):
-    def get_next_page(self):
-        active_app = get_context_extra(self.request)["active_app"]
-        return f"/{active_app}/"
+        return f"/{self.request.LANGUAGE_CODE}/{active_app}/auth/accounts/profile/"

@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-09 15:29+0100\n"
+"PO-Revision-Date: 2023-02-09 15:29+0100\n"
+"Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:123
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "legend"
+msgstr "Legende"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:126
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "selected"
+msgstr "ausgewählt"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:127
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "selected, but not in date range"
+msgstr "ausgewählt, aber außerhalb der Zeitspanne"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:128
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "not select"
+msgstr "nicht gewählt"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:160
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Update Coloring"
+msgstr "Einfärbung aktualisieren"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:167
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Color Selection on map"
+msgstr "Auswahl einfärben"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:174
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Update Filter"
+msgstr "Filter aktualisieren"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:181
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Filter Selection on map"
+msgstr "Auswahl filtern"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:190
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Please check the input for errors."
+msgstr "Bitte überprüfen Sie Ihre Eingabe auf Fehler."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:206
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"There was an Error, while creating the timeseries. \n"
+"Probably your window was opened for too long.\n"
+"Please reload the page and try again."
+msgstr ""
+"Bei der Erstellung der Zeitreihe ist ein Fehler aufgetreten. \n"
+"Wahrscheinlich haben Sie die Seite bereits zu lange geöffnet.\n"
+"Bitte laden Sie die Seite neu und versuchen Sie es erneut."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:208
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "There was an Error, while creating the timeseries. Sorry!"
+msgstr "There was an Error, while creating the timeseries. Sorry!"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:317
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Station ID"
+msgstr "Stations ID"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:318
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:719
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:724
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "select"
+msgstr "auswählen"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:319
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "available period of own raw data"
+msgstr "verfügbarer Zeitraum der eigenen Rohdaten"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:322
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "available period of filled data"
+msgstr "verfügbarer Zeitraum der gefüllten Daten"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:325
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "exposition class"
+msgstr "Expositionsklasse"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:326
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "factors"
+msgstr "Faktoren"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:327
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "corrected"
+msgstr "korrigiert"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:327
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:328
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:329
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "filled"
+msgstr "gefüllt"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:328
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:329
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "multi_annual"
+msgstr "langjährig"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:721
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "unselect"
+msgstr "abwählen"
+
+#~ msgid "verfügbarer Zeitraum der eigenen Rohdaten"
+#~ msgstr "verfügbarer Zeitraum der eigenen Rohdaten"
+
+#~ msgid "verfügbarer Zeitraum der gefüllten Daten"
+#~ msgstr "verfügbarer Zeitraum der gefüllten Daten"
+
+#~ msgid "Faktoren"
+#~ msgstr "Faktoren"

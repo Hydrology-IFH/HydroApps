@@ -120,9 +120,12 @@ class Form{
         this.legend = new (L.Control.extend({
             onAdd: (map)=>{
                 let div = L.DomUtil.create('div', 'legend container-fluid');
-                div.innerHTML = "<h3>Legend</h3>"
+                div.innerHTML = `<h3>${gettext("legend")}</h3>`
                 let icons = [this.IconSelect, this.IconSelectOutPeriod, this.IconUnselect]
-                let names = ["selected", "selected, but not in date range", "not select"];
+                let names = [
+                    gettext("selected"), 
+                    gettext("selected, but not in date range"), 
+                    gettext("not select")];
                 for (let i=0; i <3; i++){
                     let row = L.DomUtil.create('div', "row justify-content-right");
                     let col_icon = L.DomUtil.create('div', "col-auto pr-0");
@@ -154,28 +157,28 @@ class Form{
             "click",
             (event) => {
                 this.apply_coloring();
-                event.target.textContent = "Update Coloring";
+                event.target.textContent = gettext("Update Coloring");
                 this.buttons.remove_coloring.classList.remove("invisible");
             });
         this.buttons.remove_coloring.addEventListener(
             "click",
             (event) => {
                 this.remove_coloring();
-                this.buttons.color_selection.textContent = "Color Selection on map";
+                this.buttons.color_selection.textContent = gettext("Color Selection on map");
                 event.target.classList.add("invisible");
             });
         this.buttons.filter_stations.addEventListener(
             "click",
             (event) => {
                 this.apply_filter();
-                event.target.textContent = "Update Filter";
+                event.target.textContent = gettext("Update Filter");
                 this.buttons.remove_filter.classList.remove("invisible");
             });
         this.buttons.remove_filter.addEventListener(
             "click",
             (event) => {
                 this.remove_filter();
-                this.buttons.filter_stations.textContent = "Filter Selection on map";
+                this.buttons.filter_stations.textContent = gettext("Filter Selection on map");
                 event.target.classList.add("invisible");
             });
         this.buttons.download_ts.addEventListener(
@@ -184,7 +187,7 @@ class Form{
                 event.stopPropagation();
                 event.preventDefault();
                 if (!this.check_form()) {
-                    alert("Please check the input for errors.");
+                    alert(gettext("Please check the input for errors."));
                 } else {
                     form.loading_dom.style.display = "block";
                     $.ajax({type: "POST",
@@ -200,9 +203,9 @@ class Form{
                             console.log("ERROR:");
                             console.log(errorThrown);console.log(textStatus);console.log(jqXHR);
                             if (jqXHR.responseText.search("CSRF verification failed")>=0) {
-                                alert("There was an Error, while creating the timeseries. \nProbably your window was opened for too long.\nPlease reload the page and try again.")
+                                alert(gettext("There was an Error, while creating the timeseries. \nProbably your window was opened for too long.\nPlease reload the page and try again."))
                             } else {
-                                alert("There was an Error, while creating the timeseries. Sorry!")
+                                alert(gettext("There was an Error, while creating the timeseries. Sorry!"))
                             }
                             
                             form.loading_dom.style.display = "none";
@@ -289,10 +292,6 @@ class Form{
     }
 
     load_stations_to_map(filter=(feature) => {return true;}){
-        // check if filter was given or set default
-        // if (filter == undefined){
-        //     filter = (feature) => {return true;}
-        // }
         if (this.lmarkers != undefined){
             this.lmarkers.clearLayers();
         }
@@ -312,22 +311,23 @@ class Form{
                 let quot_regnie_filled = Math.round(100/layer.feature.properties.quot_filled_regnie*1000)/10;
                 let quot_hyras_filled = Math.round(100/layer.feature.properties.quot_filled_hyras*1000)/10;
                 let quot_corr_filled = Math.round(layer.feature.properties.quot_corr_filled*10)/10;
+                let label_btn_select = this.is_selected(stid)? gettext("unselect"):gettext("select");
                 let date_options = {
                     year:'numeric', month:'numeric', day:'numeric',
                     hour:'numeric', minute:'2-digit'};
-                let str = `<div class="container pl-0"><div class="row"><div class="col"><h6 style="float: left">Station ID: ${stid}</h6>\
-                    <button class="btn btn-primary pr-3" style="float:right" type="button" onclick="button_select_station('${stid}', event)">select</button></div></div></div>\
-                    <b>verfügbarer Zeitraum der eigenen Rohdaten:</b>\
+                let str = `<div class="container pl-0"><div class="row"><div class="col"><h6 style="float: left">${gettext("Station ID")}: ${stid}</h6>\
+                    <button class="btn btn-primary pr-3" style="float:right" type="button" onclick="button_select_station('${stid}', event)">${label_btn_select}</button></div></div></div>\
+                    <b>${gettext("available period of own raw data")}:</b>\
                     <br>${raw_from.toLocaleString("de-DE", date_options)} - \
                     ${raw_until.toLocaleString("de-DE", date_options)}\
-                    <br><b>verfügbarer Zeitraum der gefüllten Daten:</b>\
+                    <br><b>${gettext("available period of filled data")}:</b>\
                     <br>${filled_from.toLocaleString("de-DE", date_options)} - \
                     ${filled_until.toLocaleString("de-DE", date_options)}
-                    <br><b>Expositionsklasse:</b> ${richter_class}
-                    <br><b>Faktoren:</b><br>
-                    N<sub>corrected</sub> = ${quot_corr_filled}% &#8226; N<sub>filled</sub> <br>
-                    N<sub>filled</sub> = ${quot_hyras_filled}% &#8226; N<sub>multi_annual, HYRAS</sub><br>
-                    N<sub>filled</sub> = ${quot_regnie_filled}% &#8226; N<sub>multi_annual, REGNIE</sub><br>`
+                    <br><b>${gettext("exposition class")}:</b> ${richter_class}
+                    <br><b>${gettext("factors")}:</b><br>
+                    N<sub>${gettext("corrected")}</sub> = ${quot_corr_filled}% &#8226; N<sub>${gettext("filled")}</sub> <br>
+                    N<sub>${gettext("filled")}</sub> = ${quot_hyras_filled}% &#8226; N<sub>${gettext("multi_annual")}, HYRAS</sub><br>
+                    N<sub>${gettext("filled")}</sub> = ${quot_regnie_filled}% &#8226; N<sub>${gettext("multi_annual")}, REGNIE</sub><br>`
                     ;
                 return str
             }
@@ -446,6 +446,10 @@ class Form{
 
     get_kind(){
         return this.input_kind.get_value();
+    }
+
+    is_selected(stid){
+        return this.get_selected_stations().includes(String(stid));
     }
 
     apply_filter(){
@@ -687,13 +691,17 @@ class Form{
             console.log(`The station id ${stid} is not a valid ID`);
         }
         this.check_stations_input();
+        this.update_coloring();
+        this.update_filter();
     }
 
     unselect_station(stid){
         let selected_stids = this.get_selected_stations();
         if (selected_stids.includes(stid)){
-            selected_stids.pop(stid);
-            this.input_stids.dom_input.value = ", ".join(selected_stids); 
+            selected_stids.splice(selected_stids.indexOf(stid),1);
+            this.input_stids.dom_input.value = selected_stids.join(", "); 
+            this.update_coloring();
+            this.update_filter();
         }
     }
 
@@ -717,12 +725,12 @@ const form = new Form();
 // })
 
 let button_select_station = (stid, event) => {
-    if (event.target.innerText == "select") {
+    if (event.target.innerText == gettext("select")) {
         form.select_station(stid);
-        event.target.innerText = "unselect";
+        event.target.innerText = gettext("unselect");
     } else {
         form.unselect_station(stid);
-        event.target.innerText = "select";
+        event.target.innerText = gettext("select");
     }
 }
 
