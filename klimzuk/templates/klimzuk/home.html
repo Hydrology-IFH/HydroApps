@@ -1,7 +1,9 @@
 {% extends 'klimzuk/base.html' %}
+{% load i18n %}
+
 {% block content %}
 
-  <h1>Home</h1>
-  <p>KlimZuk steht für <b>Klim</b>a <b>Zuk</b>unft. Hier werden die im ASGII-Projekt entstandene Klima-Projektionen der einzelnen Wetterstationen dargestellt.</p>
+  <h1>{% trans "Home" %}</h1>
+  <p>{% trans "KlimZuk is an abbreviation for climate future (<b>Klim</b>a <b>Zuk</b>unft). Here you will find climate projection data for different weather stations that got created during the ASG-II project." %}</p>
   
 {% endblock %}

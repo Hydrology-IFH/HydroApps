@@ -1,8 +1,9 @@
 {% extends base_template %}
+{% load i18n %}
 
 {% block content %}
-<h2>unreleased</h2>
+<h2>{% trans "unreleased" %}</h2>
 <p>
- This Application didn't get released yet. If you want to test it, you need to login and apply for a test User account.
+ {% trans "This Application didn't get released yet. If you want to test it, you need to login and apply for a test User account." %}
 </p>
 {% endblock %}

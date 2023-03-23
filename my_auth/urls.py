@@ -30,7 +30,6 @@ urlpatterns = [
     path('accounts/request_db_access/', request_db_access, name='request_db_access'),
     path('confirm_user/<uidb64>/<token>/', confirm_user, name='confirm_user'),
     path('accounts/resend_email_confirmation/', resend_email_confirmation, name="resend_email_confirmation"),
-
     path("accounts/login/", MyLoginView.as_view(), name="login"),
     path("accounts/logout/", MyLogoutView.as_view(), name="logout"),
     # path("accounts/", include("django.contrib.auth.urls")),
