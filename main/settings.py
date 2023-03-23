@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     "django_bootstrap5", # django-bootstrap5
     'hcaptcha', # pip install django-hCaptcha
     'rest_framework', #  djangorestframework
+    'google_site_verification', 
 ]
 
 MIDDLEWARE = [
@@ -292,6 +293,10 @@ CACHE_URL = secrets.BASE_URL + "/downloads/"
 
 # allow website to be loaded in iframe for CMS
 X_FRAME_OPTIONS = 'allow-from https://uni-freiburg.de/'
+
+# Google SIte Verification
+if hasattr(secrets, "HYDROAPPS_GOOGLE_VERIFICATION"):
+    GOOGLE_SITE_VERIFICATION_FILE = secrets.HYDROAPPS_GOOGLE_VERIFICATION
 
 # clean secrets
 del secrets
