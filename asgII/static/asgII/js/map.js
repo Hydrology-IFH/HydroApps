@@ -454,12 +454,12 @@ const asgIImap = new asgIIMap();
 // form.input_stids.addEventListener("change", check_stations_input)
 
 let button_select_station = (stid, event) => {
-    if (event.target.innerText == "select") {
+    if (event.target.innerText == gettext("select")) {
         asgIImap.select_station(stid);
-        event.target.innerText = "unselect";
+        event.target.innerText = gettext("unselect");
     } else {
         asgIImap.unselect_station(stid);
-        event.target.innerText = "select";
+        event.target.innerText = gettext("select");
     }
 }
 
