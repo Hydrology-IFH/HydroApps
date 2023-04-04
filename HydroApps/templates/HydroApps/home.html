@@ -9,12 +9,12 @@
   }
   img.card-img-top{
     width: 15rem;
+    margin-top: 0.5rem;
   }
-  div.card > i.bi-box-arrow-up-right
-  {
+  div.card > i.bi-box-arrow-up-right{
     position: absolute;
     align-self: end;
-    margin-right: 1rem !important;
+    margin-right: 0.8rem !important;
     margin-top: 0.5rem !important;
     font-size: 1.5rem;
     align-self: flex-end !important;
@@ -76,6 +76,17 @@
           </div>
         </div>
       </div>
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.biozidauswaschung.de/" class="stretched-link"></a>
+          <img src="{% static 'logos_other_sites/Logo_FReWaB-PLUS.png' %}" class="card-img-top mx-auto" alt="Logo of FReWaB-Plus" >
+          <i class="bi bi-box-arrow-up-right"></i>
+          <div class="card-body">
+            <h5 class="card-title">FReWaB-Plus</h5>
+            <p class="card-text">{% trans "This application simulates the mobilization of biocides from facades in cities and shows a potential risk to groundwater." %} </p>
+          </div>
+        </div>
+      </div>
       {% comment %} Measurement links {% endcomment %}
       <div class="accordion" id="accordionAdditionals">
         <div class="accordion-item">
@@ -89,7 +100,7 @@
               <ul class="list-group d-inline-flex">
                 <a class="list-group-item list-group-item-action d-flex justify-content-between"  target="_blank" rel="noopener noreferrer" 
                    href="http://www.hydrology.uni-freiburg.de/aktuell/dreisam/index.html">
-                  {% trans "Pegel Dreisam" %}
+                  {% trans "Water level Dreisam" %}
                   <i class="bi bi-box-arrow-up-right ms-4"></i>
                 </a>
                 <a class="list-group-item list-group-item-action d-flex justify-content-between" target="_blank" rel="noopener noreferrer" 
