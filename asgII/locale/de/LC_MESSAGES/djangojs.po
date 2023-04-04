@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 15:29+0100\n"
+"POT-Creation-Date: 2023-04-04 15:53+0200\n"
 "PO-Revision-Date: 2023-02-23 12:16+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -50,11 +50,13 @@ msgstr "auf Auswahl filtern"
 msgid "add new plots"
 msgstr "Füge Abbildungen hinzu"
 
-#: .\asgII\static\asgII\js\map.js:204 .\asgII\static\asgII\js\map.min.js:1
+#: .\asgII\static\asgII\js\map.js:204 .\asgII\static\asgII\js\map.js:459
+#: .\asgII\static\asgII\js\map.min.js:1
 msgid "unselect"
 msgstr "abwählen"
 
-#: .\asgII\static\asgII\js\map.js:204 .\asgII\static\asgII\js\map.min.js:1
+#: .\asgII\static\asgII\js\map.js:204 .\asgII\static\asgII\js\map.js:457
+#: .\asgII\static\asgII\js\map.js:462 .\asgII\static\asgII\js\map.min.js:1
 msgid "select"
 msgstr "auswählen"
 
