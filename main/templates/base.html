@@ -165,7 +165,13 @@
           </h3>
         </div>
       {% endif%}
-      {% block unrelease_message %}{% endblock %}
+      {% comment %} This is not implemented yet {% if app_unreleased %}
+        <div class="container-fluid alert alert-warning" role "alert">
+          <h3>
+            !!! This Application did not yet get released. You can see it, because you are a Test-User !!!
+          </h3>
+        </div>
+      {% endif %} {% endcomment %}
       {% block content %}{% endblock %}
     </div>
 
