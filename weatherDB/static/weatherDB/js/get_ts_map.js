@@ -128,10 +128,10 @@ class Form{
                     gettext("not select")];
                 for (let i=0; i <3; i++){
                     let row = L.DomUtil.create('div', "row justify-content-right");
-                    let col_icon = L.DomUtil.create('div', "col-auto pr-0");
+                    let col_icon = L.DomUtil.create('div', "col-auto pe-0 ps-0");
                     let icon_img = (new icons[i]).createIcon();
                     icon_img.style="";
-                    icon_img.classList += "img-fluid";
+                    icon_img.classList = "";
                     col_icon.appendChild(icon_img);
                     row.appendChild(col_icon);
                     let col_text = L.DomUtil.create('div', "col");
