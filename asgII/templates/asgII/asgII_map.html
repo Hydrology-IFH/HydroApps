@@ -35,7 +35,7 @@
 
   <h1>{% trans "Map of the Stations" %}</h1>
   <p>{% trans "To see the bias corrected climate ensembles/projections of a station you can select the station in the map below." %}</p>
-  <p>{% trans "There you will be able to download all the plots for this station or add the station the the selection form. By filling out the form and clicking on 'add plots' you will be able to see the plots here and compare them." %}</p>
+  <p>{% trans "There you will be able to download all the plots for this station or add the station the the selection form. By filling out the form and clicking on 'add plots' you will be able to see the plots here and compare them. Your selected plots will apear at the bottom of this page." %}</p>
   <div class="container">
     <div class="row">
       <div class="col-md-7 col-12">
@@ -228,14 +228,12 @@
 {% block scripts %}
   {{ meta_n|json_script:"stations_meta" }}
   <script src="{% url 'asgII:javascript-catalog' %}"></script>
+  <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
   {% if debug %}
-    <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.js"></script>
-    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
     <script src={% static "asgII/js/plot_area.js" %} defer></script>
     <script src={% static "asgII/js/map.js" %} defer></script> 
   {%else%}
-    <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.prod.js"></script>
-    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
     <script src={% static "asgII/js/plot_area.min.js" %} defer></script>
     <script src={% static "asgII/js/map.min.js" %} defer></script>
   {% endif%}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 15:29+0100\n"
+"POT-Creation-Date: 2023-04-04 15:53+0200\n"
 "PO-Revision-Date: 2023-02-09 15:29+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -79,60 +79,61 @@ msgstr ""
 msgid "There was an Error, while creating the timeseries. Sorry!"
 msgstr "There was an Error, while creating the timeseries. Sorry!"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:317
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:314
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:730
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
-msgid "Station ID"
-msgstr "Stations ID"
+msgid "unselect"
+msgstr "abwählen"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:318
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:719
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:724
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:314
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:728
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:733
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "select"
 msgstr "auswählen"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:319
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:318
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Station ID"
+msgstr "Stations ID"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:320
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "available period of own raw data"
 msgstr "verfügbarer Zeitraum der eigenen Rohdaten"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:322
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:323
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "available period of filled data"
 msgstr "verfügbarer Zeitraum der gefüllten Daten"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:325
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:326
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "exposition class"
 msgstr "Expositionsklasse"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:326
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:327
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "factors"
 msgstr "Faktoren"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:327
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:328
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "corrected"
 msgstr "korrigiert"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:327
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:328
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:329
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:330
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "filled"
 msgstr "gefüllt"
 
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:328
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:329
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:330
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "multi_annual"
 msgstr "langjährig"
-
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:721
-#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
-msgid "unselect"
-msgstr "abwählen"
 
 #~ msgid "verfügbarer Zeitraum der eigenen Rohdaten"
 #~ msgstr "verfügbarer Zeitraum der eigenen Rohdaten"

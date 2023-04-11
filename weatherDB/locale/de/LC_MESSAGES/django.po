@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-20 08:05+0100\n"
+"POT-Creation-Date: 2023-04-04 15:53+0200\n"
 "PO-Revision-Date: 2023-03-02 09:45+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\django\weatherDB\templates\weatherDB\base.html:8
+#: .\weatherDB\templates\weatherDB\base.html:8
 msgid ""
 "An application to download quality checked, filled and corrected weather "
 "timeseries for all of germany."
@@ -26,24 +26,24 @@ msgstr ""
 "Eine Applikation mit der aufbereitete, gefüllte und korrigierte Wetter-"
 "Zeitreihen für ganz Deutschland heruntergeladen werden können."
 
-#: .\django\weatherDB\templates\weatherDB\base.html:19
-#: .\django\weatherDB\templates\weatherDB\home.html:5
+#: .\weatherDB\templates\weatherDB\base.html:19
+#: .\weatherDB\templates\weatherDB\home.html:5
 msgid "Home"
 msgstr "Home"
 
-#: .\django\weatherDB\templates\weatherDB\base.html:20
+#: .\weatherDB\templates\weatherDB\base.html:20
 msgid "Method"
 msgstr "Methode"
 
-#: .\django\weatherDB\templates\weatherDB\base.html:21
+#: .\weatherDB\templates\weatherDB\base.html:21
 msgid "Download"
 msgstr "Herunterladen"
 
-#: .\django\weatherDB\templates\weatherDB\base.html:22
+#: .\weatherDB\templates\weatherDB\base.html:22
 msgid "Package"
 msgstr "Paket"
 
-#: .\django\weatherDB\templates\weatherDB\db_not_available.html:8
+#: .\weatherDB\templates\weatherDB\db_not_available.html:8
 msgid ""
 "We are sorry. The WeatherDB Database Server is not available at the moment, "
 "please come back in some minutes."
@@ -51,91 +51,91 @@ msgstr ""
 "Es tut uns leid. Der WeatherDB Datenbank Server ist im Moment nicht "
 "verfügbar. Bitte kommen Sie in einigen Minuten wieder."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:47
+#: .\weatherDB\templates\weatherDB\get_ts.html:47
 msgid "Get a timeserie"
 msgstr "Zeitreihe herunterladen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:48
+#: .\weatherDB\templates\weatherDB\get_ts.html:48
 msgid ""
 "To download a timeserie you can select the stations from the following map."
 msgstr ""
 "Um eine Zeitreihe herunterzuladen, können Sie die Stationen auf der "
 "folgenden Karte auswählen."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:58
+#: .\weatherDB\templates\weatherDB\get_ts.html:58
 msgid "Set the starting date of your timeserie"
 msgstr "Legen Sie das Startdatum Ihrer Zeitreihe fest"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:58
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:64
+#: .\weatherDB\templates\weatherDB\get_ts.html:58
+#: .\weatherDB\templates\weatherDB\get_ts.html:64
 msgid "The timeseries timestamp will be in UTC."
 msgstr "Der Zeitstempel für die Zeitreihe wird in UTC angegeben."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:58
+#: .\weatherDB\templates\weatherDB\get_ts.html:58
 msgid "From"
 msgstr "Von"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:64
+#: .\weatherDB\templates\weatherDB\get_ts.html:64
 msgid "Set the ending date of your timeserie."
 msgstr "Legen Sie das Enddatum Ihrer Zeitreihe fest."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:64
+#: .\weatherDB\templates\weatherDB\get_ts.html:64
 msgid "Until"
 msgstr "Bis"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:73
+#: .\weatherDB\templates\weatherDB\get_ts.html:73
 msgid "Choose the aggregation step you like to have."
 msgstr "Wählen Sie die gewünschte Aggregationsstufe."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:73
+#: .\weatherDB\templates\weatherDB\get_ts.html:73
 msgid "Aggregation Step"
 msgstr "Aggregationsstufe"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:75
+#: .\weatherDB\templates\weatherDB\get_ts.html:75
 msgid "10 minutes"
 msgstr "10 minütig"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:76
+#: .\weatherDB\templates\weatherDB\get_ts.html:76
 msgid "hourly"
 msgstr "stündlich"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:77
+#: .\weatherDB\templates\weatherDB\get_ts.html:77
 msgid "daily"
 msgstr "täglich"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:78
+#: .\weatherDB\templates\weatherDB\get_ts.html:78
 msgid "monthly"
 msgstr "monatlich"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:79
+#: .\weatherDB\templates\weatherDB\get_ts.html:79
 msgid "year"
 msgstr "jährlich"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:87
+#: .\weatherDB\templates\weatherDB\get_ts.html:87
 msgid "Which format should the timestamp column have?"
 msgstr "Welches Format sollte der Zeitstempel haben?"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:87
+#: .\weatherDB\templates\weatherDB\get_ts.html:87
 msgid "RoGeR format is one column per date part(year, month...)"
 msgstr "RoGeR-Format ist eine Spalte pro Datumsteil (Jahr, Monat...)"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:87
+#: .\weatherDB\templates\weatherDB\get_ts.html:87
 msgid "string representation is one timestamp column as string"
 msgstr "String-Format ist eine Zeitstempelspalte als String"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:87
+#: .\weatherDB\templates\weatherDB\get_ts.html:87
 msgid "timestamp format"
 msgstr "Zeitstempel-Format"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:89
+#: .\weatherDB\templates\weatherDB\get_ts.html:89
 msgid "RoGeR format"
 msgstr "RoGeR Format"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:90
+#: .\weatherDB\templates\weatherDB\get_ts.html:90
 msgid "string representation"
 msgstr "String-Format"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:96
+#: .\weatherDB\templates\weatherDB\get_ts.html:96
 msgid ""
 "There are different steps of timeseries creation that can get downloaded. "
 "Choose the step you would like. For more information read the method section."
@@ -144,64 +144,64 @@ msgstr ""
 "heruntergeladen werden können. Wählen Sie den gewünschten Schritt. Für "
 "weitere Informationen lesen Sie die Seite der Methode."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:96
+#: .\weatherDB\templates\weatherDB\get_ts.html:96
 msgid "data kind"
 msgstr "Datenart"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:99
+#: .\weatherDB\templates\weatherDB\get_ts.html:99
 msgid "4. Richter corrected and filled"
 msgstr "4. Richter korrigiert und gefüllt"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:100
+#: .\weatherDB\templates\weatherDB\get_ts.html:100
 msgid "3. filled"
 msgstr "3. Gefüllt"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:101
+#: .\weatherDB\templates\weatherDB\get_ts.html:101
 msgid "2. quality checked"
 msgstr "2. Qualitätsgeprüft"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:102
+#: .\weatherDB\templates\weatherDB\get_ts.html:102
 msgid "1. raw"
 msgstr "1. Roh"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:108
+#: .\weatherDB\templates\weatherDB\get_ts.html:108
 msgid "Enter the station IDs you like as comma separated list"
 msgstr "Geben Sie die gewünschten Stations-IDs als kommagetrennte Liste ein"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:108
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:111
+#: .\weatherDB\templates\weatherDB\get_ts.html:108
+#: .\weatherDB\templates\weatherDB\get_ts.html:111
 msgid "selected Station IDs"
 msgstr "gewählte Stations-IDs"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:120
+#: .\weatherDB\templates\weatherDB\get_ts.html:120
 msgid "Show selection on map"
 msgstr "Zeige Auswahl auf der Karte"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:127
+#: .\weatherDB\templates\weatherDB\get_ts.html:127
 msgid "Color Selection"
 msgstr "Auswahl einfärben"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:128
+#: .\weatherDB\templates\weatherDB\get_ts.html:128
 msgid "Remove Coloring"
 msgstr "Einfärbung entfernen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:131
+#: .\weatherDB\templates\weatherDB\get_ts.html:131
 msgid "Filter Selection"
 msgstr "Auswahl filtern"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:132
+#: .\weatherDB\templates\weatherDB\get_ts.html:132
 msgid "Remove Filters"
 msgstr "Filter entfernen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:142
+#: .\weatherDB\templates\weatherDB\get_ts.html:142
 msgid "Additional options"
 msgstr "Zusätzliche Optionen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:153
+#: .\weatherDB\templates\weatherDB\get_ts.html:153
 msgid "Should the information about the filling step be added."
 msgstr "Sollen die Informationen über den Füll-Schritt hinzugefügt werden."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:153
+#: .\weatherDB\templates\weatherDB\get_ts.html:153
 msgid ""
 "If no aggregation is done, a ''filled_by'' column is added to the output, to "
 "show the Station ID from which the data was taken to fill the gap."
@@ -210,12 +210,12 @@ msgstr ""
 "\"filled_by\" hinzugefügt. Diese gibt die Stations-ID an, deren Daten zum "
 "Füllen der Lücke genutzt wurden."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:153
+#: .\weatherDB\templates\weatherDB\get_ts.html:153
 msgid "No data in this column means the measurement is a real measurement."
 msgstr ""
 "Keine Daten in dieser Spalte bedeutet, dass der Wert eine echte Messung ist."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:153
+#: .\weatherDB\templates\weatherDB\get_ts.html:153
 msgid ""
 "If the data got aggregated a filled_share column is added, giving the share "
 "of gap filled values in the aggregation group in percent."
@@ -224,11 +224,11 @@ msgstr ""
 "die den Anteil der mit Lücken gefüllten Werte in der Aggregationsgruppe in "
 "Prozent angibt."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:156
+#: .\weatherDB\templates\weatherDB\get_ts.html:156
 msgid "add gap filling information"
 msgstr "Informationen zum Füllen der Lücken hinzufügen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:166
+#: .\weatherDB\templates\weatherDB\get_ts.html:166
 msgid ""
 "Should the share of NAs be added, when the value got aggregated.<br>This "
 "adds a column with the share of NA values that where in the aggregation step "
@@ -238,36 +238,36 @@ msgstr ""
 "<br>Dies fügt eine Spalte mit dem Anteil in Prozent der NA-Werte hinzu, die "
 "in der Aggregierungsgruppe enthalten waren."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:169
+#: .\weatherDB\templates\weatherDB\get_ts.html:169
 msgid "add the share of NAs in the original data (only for aggregated values)"
 msgstr ""
 "den Anteil der NAs in den Originaldaten hinzufügen (nur für aggregierte "
 "Werte)"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:179
+#: .\weatherDB\templates\weatherDB\get_ts.html:179
 msgid "Should the minimal daily temperature value be added to the timeserie."
 msgstr ""
 "Sollte der minimale tägliche Temperaturwert zur Zeitreihe hinzugefügt werden."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:182
+#: .\weatherDB\templates\weatherDB\get_ts.html:182
 msgid "add minimal daily Temperature"
 msgstr "minimale tägliche Temperatur hinzufügen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:191
+#: .\weatherDB\templates\weatherDB\get_ts.html:191
 msgid "Should the maximal daily temperature value be added to the timeserie."
 msgstr ""
 "Sollte der maximale  tägliche Temperaturwert zur Zeitreihe hinzugefügt "
 "werden."
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:194
+#: .\weatherDB\templates\weatherDB\get_ts.html:194
 msgid "add maximal daily Temperature"
 msgstr "maximale tägliche Temperatur hinzufügen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:215
+#: .\weatherDB\templates\weatherDB\get_ts.html:215
 msgid "download"
 msgstr "Herunterladen"
 
-#: .\django\weatherDB\templates\weatherDB\home.html:6
+#: .\weatherDB\templates\weatherDB\home.html:6
 msgid ""
 "This is the Web interface for the WeatherDB. The WeatherDB is a Database "
 "that automatically downloads the weather station data from the DWD-CDC "
@@ -283,11 +283,11 @@ msgstr ""
 "Weboberfläche können Sie die rohen, geprüften, gefüllten und Richter-"
 "korrigierten Zeitreihen für Ihre Simulationen herunterladen."
 
-#: .\django\weatherDB\templates\weatherDB\package.html:6
+#: .\weatherDB\templates\weatherDB\package.html:6
 msgid "Python Package"
 msgstr "Python Paket"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:7
+#: .\weatherDB\templates\weatherDB\package.html:7
 msgid ""
 "To download the timeseries, there is a python package available on GitHub. "
 "For more information on the package please refer to"
@@ -295,15 +295,15 @@ msgstr ""
 "Um die Zeitreihen herunterzuladen, gibt es ein Python-Paket auf GitHub. "
 "Weitere Informationen zu diesem Paket finden Sie unter"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:7
+#: .\weatherDB\templates\weatherDB\package.html:7
 msgid "and the"
 msgstr "und die"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:7
+#: .\weatherDB\templates\weatherDB\package.html:7
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:9
+#: .\weatherDB\templates\weatherDB\package.html:9
 msgid ""
 "To use the package you need login credentials, that are saved in a "
 "secretSettings_weatherDB.py file and have to be inside of the UNI Freiburg "
@@ -313,33 +313,33 @@ msgstr ""
 "secretSettings_weatherDB.py gespeichert sind und müssen sich innerhalb des "
 "UNI Freiburg Netzwerks befinden."
 
-#: .\django\weatherDB\templates\weatherDB\package.html:11
+#: .\weatherDB\templates\weatherDB\package.html:11
 msgid ""
 "You can download your personal secretSettings_weatherDB.py file from your"
 msgstr ""
 "Sie können Ihre persönliche Datei secretSettings_weatherDB.py von Ihrer"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:11
+#: .\weatherDB\templates\weatherDB\package.html:11
 msgid "Profile page"
 msgstr "Profilseite"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:11
+#: .\weatherDB\templates\weatherDB\package.html:11
 msgid "after_profile_page"
 msgstr "herunterladen"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:13
+#: .\weatherDB\templates\weatherDB\package.html:13
 msgid "You can get those credentials by"
 msgstr "Sie können diese Zugangsdaten erhalten, indem Sie auf dieser Seite"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:13
+#: .\weatherDB\templates\weatherDB\package.html:13
 msgid "requesting an account"
 msgstr "ein Konto anlegen"
 
-#: .\django\weatherDB\templates\weatherDB\package.html:13
+#: .\weatherDB\templates\weatherDB\package.html:13
 msgid "on this page."
 msgstr "."
 
-#: .\django\weatherDB\templates\weatherDB\package.html:14
+#: .\weatherDB\templates\weatherDB\package.html:14
 msgid ""
 "If your account was activated you can download your secretSettings_weatherDB."
 "py file from your Profile page."
