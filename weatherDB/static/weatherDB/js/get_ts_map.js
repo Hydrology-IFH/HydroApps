@@ -76,13 +76,25 @@ class Form{
         }
         L.Icon.Default.prototype.options.shadowUrl = "static/weatherDB/img/Leaflet-Marker-shadow.png"; 
         this.IconDefault = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-blue.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-blue.png", 
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-blue.png"
+            }});
         this.IconUnselect = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-red.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-red.png",
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-red.png"
+            }});
         this.IconSelect = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-green.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-green.png",
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-green.png"
+            }});
         this.IconSelectOutPeriod = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-orange.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-orange.png",
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-orange.png"
+            }});
 
         // min and max date
         this.min_tstp = this.geojson_data.features[0].properties.filled_from;
@@ -509,13 +521,13 @@ class Form{
         let in_text = this.input_stids.dom_input.value;
         if (in_text.length == 0) {
             this.input_stids.make_invalid(
-                "You didn't select any station. Please enter a comma-seperated list of station IDs.");
+                gettext("You didn't select any station. Please enter a comma-seperated list of station IDs."));
             return false;
         } else {
             // check if input has right pattern
             if (!(/^\s*(\d{1,5})+(\s*[,;]{1}\s*\d{1,5})*[\s,;]*$/.test(in_text))){
                 this.input_stids.make_invalid(
-                    "The given list of stations is not in the right pattern.<br>The Station Ids must be provided as a comma or semmicolon seperated list of numbers.");
+                    gettext("The given list of stations is not in the right pattern.<br>The Station Ids must be provided as a comma or semmicolon seperated list of numbers."));
                 return false;
             }
         }
@@ -533,14 +545,14 @@ class Form{
             }
         }
         if (invalid_stids.length > 0){
-            this.input_stids.make_invalid("The following Station Ids are not valid and should get removed: <br>" + invalid_stids.join(", "));
+            this.input_stids.make_invalid(gettext("The following Station Ids are not valid and should get removed:") + "<br>" + invalid_stids.join(", "));
         }
 
         this.input_stids.dom_input.value = in_stids.join(", ");
 
         // block ammount of stations to 10
         if (this.get_selected_stations().length > this.max_downloads){
-            this.input_stids.make_invalid(`You are only able to download ${this.max_downloads} stations at once. <br>If you want to download more stations please use the <a href='{% url 'package'%}'>Python package</a><br>or register for an account and make an E-mail to request a higher limit.`);
+            this.input_stids.make_invalid(`${gettext("You are only able to download")} ${this.max_downloads} ${gettext("stations at once")}. <br>${gettext("If you want to download more stations please use the")} <a href='weatherdb/package'>${gettext("Python package")}</a> <br>${gettext("or register for an account and make an E-mail to request a higher limit.")}`);
         }
         return this.input_stids.is_valid();
     }
@@ -568,7 +580,7 @@ class Form{
             min_tstp = new Date(min_tstp);
             max_tstp = new Date(max_tstp.split("T")[0] + "T23:59:59");
             // check fields to be in the range
-            let msg_invalid_period = `The date must be between ${min_tstp.toLocaleDateString()} and ${max_tstp.toLocaleDateString()} for the selected stations and data kind.`
+            let msg_invalid_period = `${gettext("The date must be between")} ${min_tstp.toLocaleDateString()} ${gettext("and")} ${max_tstp.toLocaleDateString()} ${gettext("for the selected stations and data kind")}.`
             if (this.get_period_start()<min_tstp){
                 this.input_period_start.make_invalid(msg_invalid_period)
             } 
@@ -586,7 +598,7 @@ class Form{
             let alert_box = document.getElementById("agg_alert_box");
             if (alert_aggregations.includes(this.get_aggregation())){
                 this.agg_to_alerted=true;
-                alert_box.innerHTML = '<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">The temperature and evapotranspiration data are only downloaded as daily values.<br>Therefor only the Precipitation values will be in this frequency.</p></div></div>';
+                alert_box.innerHTML = '<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">' + gettext('The temperature and evapotranspiration data are only downloaded as daily values.<br>Therefor only the Precipitation values will be in this frequency.') + '</p></div></div>';
             } else {
                 alert_box.innerHTML = "";
             }
@@ -601,7 +613,7 @@ class Form{
             let kind = this.input_kind.get_value();
             if (add_filled_by){
                 if (["raw", "qc"].includes(kind)){
-                    alert_box.innerHTML =  '<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">The temperature and evapotranspiration data are only downloaded as daily values.<br>Therefor it is not possible to add a filling information.</p></div></div>';
+                    alert_box.innerHTML =  '<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">' + gettext('You selected to download unfilled data, therefor it is not possible to add filling informations.') + '</p></div></div>';
                     this.add_filled_by_alerted = true;
                     return false;
                 } else {
@@ -623,9 +635,9 @@ class Form{
                 let agg_to = this.input_aggregation.get_value();
                 let msg = "";
                 if ("10 min" == agg_to){
-                    msg = "You selected to download the data in 10 minutes resolution.<br>Therefor no column is added, as this column is only added, when the data gets aggregated."
+                    msg = gettext("You selected to download the data in 10 minutes resolution.<br>Therefor no column is added, as this column is only added, when the data gets aggregated.")
                 } else if ("day" == agg_to){
-                    msg = "You selected to download the data in daily resolution.<br>Therefor no column is added for T and ET, as this column is only added, when the data gets aggregated."
+                    msg = gettext("You selected to download the data in daily resolution.<br>Therefor no column is added for T and ET, as this column is only added, when the data gets aggregated.")
                 } 
                 if (msg !=""){
                     alert_box.innerHTML =  `<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">${msg}</p></div></div>`;
@@ -651,7 +663,7 @@ class Form{
                     hcaptcha.reset();
                     this.captcha_active_since = undefined;
                     dom_invalid_feedback.style.display = "block";
-                    dom_invalid_feedback.innerHTML = "Your last HCaptcha test was more than 10 minutes ago. Please redo this hCaptcha test.";
+                    dom_invalid_feedback.innerHTML = gettext("Your last HCaptcha test was more than 10 minutes ago. Please redo this hCaptcha test.");
                     dom_input.classList.add('border', 'border-danger');
                     return false;
                 } else {
@@ -664,7 +676,7 @@ class Form{
                 
             } else {
                 dom_invalid_feedback.style.display = "block";
-                dom_invalid_feedback.innerHTML = "Please do this hCaptcha test!";
+                dom_invalid_feedback.innerHTML = gettext("Please do this hCaptcha test!");
                 dom_input.classList.add('border', 'border-danger');
                 return false;
             }
@@ -712,17 +724,6 @@ class Form{
 
 
 const form = new Form();
-
-// button functions
-// let check_stations_input = function(event){
-//     event.stopPropagation();
-//     form.check_stations_input()
-// }
-// form.input_stids.addEventListener("change", check_stations_input)
-// document.querySelector("form[name=download_ts]").addEventListener("submit", (event) => {
-//     form.check_stations_input()
-//     form.input_stids.blur()
-// })
 
 let button_select_station = (stid, event) => {
     if (event.target.innerText == gettext("select")) {
