@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 15:53+0200\n"
-"PO-Revision-Date: 2023-02-09 15:29+0100\n"
+"POT-Creation-Date: 2023-04-17 16:35+0200\n"
+"PO-Revision-Date: 2023-04-17 16:39+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -80,14 +80,14 @@ msgid "There was an Error, while creating the timeseries. Sorry!"
 msgstr "There was an Error, while creating the timeseries. Sorry!"
 
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:314
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:730
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:719
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "unselect"
 msgstr "abwählen"
 
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:314
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:728
-#: .\weatherDB\static\weatherDB\js\get_ts_map.js:733
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:717
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:722
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "select"
 msgstr "auswählen"
@@ -134,6 +134,128 @@ msgstr "gefüllt"
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "multi_annual"
 msgstr "langjährig"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:512
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"You didn't select any station. Please enter a comma-seperated list of "
+"station IDs."
+msgstr ""
+"Sie haben keine Station ausgewählt. Bitte geben Sie eine durch Komma "
+"getrennte Liste an Stations-IDs ein."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:518
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"The given list of stations is not in the right pattern.<br>The Station Ids "
+"must be provided as a comma or semmicolon seperated list of numbers."
+msgstr ""
+"Die angegebene Liste an Stationen entspricht nicht dem richtigen Muster."
+"<br>Die Stations-IDs müssen als Komma oder Semikolon getrennte Liste von "
+"Nummern angegeben werden."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:536
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "The following Station Ids are not valid and should get removed:"
+msgstr "Die folgenden Stations-IDs sind ungültig und sollten entfernt werden:"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:543
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "You are only able to download"
+msgstr "Sie können nur"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:543
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "stations at once"
+msgstr "Stationen auf einmal herunterladen"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:543
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "If you want to download more stations please use the"
+msgstr ""
+"Wenn Sie weitere Stationen herunterladen möchten, verwenden Sie bitte das"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:543
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Python package"
+msgstr "Python Paket"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:543
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"or register for an account and make an E-mail to request a higher limit."
+msgstr ""
+"oder registrieren Sie sich für ein Konto und beantragen Sie per E-Mail ein "
+"höheres Limit."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:571
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "The date must be between"
+msgstr "Für die gewählte Datenart, muss das Datum zwischen dem "
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:571
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "and"
+msgstr "und dem"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:571
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "for the selected stations and data kind"
+msgstr "liegen"
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:589
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"The temperature and evapotranspiration data are only downloaded as daily "
+"values.<br>Therefor only the Precipitation values will be in this frequency."
+msgstr ""
+"Die Temperatur- und Evapotranspirationsdaten werden nur als Tageswerte vom "
+"DWD heruntergeladen.<br>Daher werden nur die Niederschlagswerte in dieser "
+"Auflösung sein."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:604
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"You selected to download unfilled data, therefor it is not possible to add "
+"filling informations."
+msgstr ""
+"Sie haben ungefüllte Zeitreihen zum herunterladen ausgewählt, daher ist es "
+"nicht möglich Informationen zu deren Füll-Status hinzuzufügen."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:626
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"You selected to download the data in 10 minutes resolution.<br>Therefor no "
+"column is added, as this column is only added, when the data gets aggregated."
+msgstr ""
+"Sie haben ausgewählt, die Daten mit einer Auflösung von 10 Minuten "
+"herunterzuladen.<br>Daher wird keine Spalte hinzugefügt, da diese Spalte "
+"erst hinzugefügt wird, wenn die Daten aggregiert werden."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:628
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"You selected to download the data in daily resolution.<br>Therefor no column "
+"is added for T and ET, as this column is only added, when the data gets "
+"aggregated."
+msgstr ""
+"Sie haben ausgewählt, die Daten in täglicher Auflösung herunterzuladen."
+"<br>Daher wird keine Spalte für T und ET hinzugefügt, da diese Spalte nur "
+"hinzugefügt wird, wenn die Daten aggregiert werden."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:654
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid ""
+"Your last HCaptcha test was more than 10 minutes ago. Please redo this "
+"hCaptcha test."
+msgstr ""
+"Ihr letzter HCaptcha-Test ist mehr als 10 Minuten her. Bitte wiederholen Sie "
+"diesen hCaptcha-Test."
+
+#: .\weatherDB\static\weatherDB\js\get_ts_map.js:667
+#: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
+msgid "Please do this hCaptcha test!"
+msgstr "Bitte machen Sie diesen hCaptcha-Test!"
 
 #~ msgid "verfügbarer Zeitraum der eigenen Rohdaten"
 #~ msgstr "verfügbarer Zeitraum der eigenen Rohdaten"
