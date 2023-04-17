@@ -76,13 +76,25 @@ class Form{
         }
         L.Icon.Default.prototype.options.shadowUrl = "static/weatherDB/img/Leaflet-Marker-shadow.png"; 
         this.IconDefault = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-blue.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-blue.png", 
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-blue.png"
+            }});
         this.IconUnselect = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-red.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-red.png",
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-red.png"
+            }});
         this.IconSelect = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-green.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-green.png",
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-green.png"
+            }});
         this.IconSelectOutPeriod = L.Icon.Default.extend(
-            {options:{iconUrl:"static/weatherDB/img/marker-icon-orange.png"}});
+            {options:{
+                iconUrl:"static/weatherDB/img/marker-icon-orange.png",
+                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-orange.png"
+            }});
 
         // min and max date
         this.min_tstp = this.geojson_data.features[0].properties.filled_from;

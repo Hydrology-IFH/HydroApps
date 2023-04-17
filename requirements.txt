@@ -1,11 +1,19 @@
 # run: pip install -i requirements.txt
+progressbar2
+pandas
+geopandas
+rasterio
+shapely
+django
 django-bootstrap5
-psycopg2
+sqlalchemy
+psycopg2-binary
+pyproj
 django-hCaptcha
 djangorestframework
 django-q2
 django-request
-progressbar2
+
 
 # maybee not needed anymore
 django-npm
