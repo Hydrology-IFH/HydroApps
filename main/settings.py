@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     "django_bootstrap5", # django-bootstrap5
     'hcaptcha', # pip install django-hCaptcha
     'rest_framework', #  djangorestframework
-    'google_site_verification', 
 ]
 
 MIDDLEWARE = [
