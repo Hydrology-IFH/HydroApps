@@ -35,14 +35,7 @@ else:
 
 ALLOWED_HOSTS = [
     "localhost",
-    "127.0.0.1",
-    "fuhys011",
-    "fuhys011.public.ads.uni-freiburg.de",
-    "weather.hydro.intra.uni-freiburg.de",
-    "fuhys004.vm.uni-freiburg.de",
-    "fuhys004.hydro.uni-freiburg.de",
-    "apps.hydro.uni-freiburg.de",
-    "fuhy1087.public.ads.uni-freiburg.de"]
+    "127.0.0.1"]
 # to allow debug connection through VPN connection:
 # ufw allow from 10.23.0.132 to any port 8000 comment 'once a VPN address'
 # Application definition
