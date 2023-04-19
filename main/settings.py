@@ -35,7 +35,8 @@ else:
 
 ALLOWED_HOSTS = [
     "localhost",
-    "127.0.0.1"]
+    "127.0.0.1",
+    *secrets.ALLOWED_HOSTS]
 # to allow debug connection through VPN connection:
 # ufw allow from 10.23.0.132 to any port 8000 comment 'once a VPN address'
 # Application definition
