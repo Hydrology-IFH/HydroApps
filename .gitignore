@@ -7,7 +7,6 @@ garbage
 sync.ffs_db
 asgII/static/asgII/PDF
 asgII/static/asgII/PNG
-*.pdf
 *.log
 logs/
 TODO
