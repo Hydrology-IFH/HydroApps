@@ -3,7 +3,6 @@ This submodule has only one class Broker. This one is used to do actions on all 
 """
 # libraries
 import logging
-from sqlalchemy import text as sqltxt
 from .lib.connections import DB_ENG
 from .stations import StationsN, StationsND, StationsT, StationsET
 
@@ -253,4 +252,4 @@ class Broker(object):
         sql = "VACUUM {anlyze};".format(
             analyze="ANALYZE" if do_analyze else "")
         with DB_ENG.connect() as con:
-            con.execute(sqltxt(sql))
+            con.execute(sql)

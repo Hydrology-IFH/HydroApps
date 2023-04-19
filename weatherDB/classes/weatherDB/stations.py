@@ -19,7 +19,6 @@ import datetime
 import socket
 import zipfile
 from pathlib import Path
-from sqlalchemy import text as sqltxt
 
 from .lib.connections import DB_ENG, check_superuser
 from .lib.utils import TimestampPeriod, get_cdc_file_list
@@ -119,7 +118,7 @@ class StationsBase:
             WHERE para ='{para}';
         """.format(para=self._para)
         with DB_ENG.connect() as con:
-            droped_stids = con.execute(sqltxt(sql_get_droped)).all()
+            droped_stids = con.execute(sql_get_droped).all()
         droped_stids = [row[0] for row in droped_stids
                         if row[0] in meta.index]
         meta.drop(droped_stids, inplace=True)
@@ -152,13 +151,13 @@ class StationsBase:
 
         # check if columns are initiated in DB
         with DB_ENG.connect() as con:
-            columns_db = con.execute(sqltxt(
+            columns_db = con.execute(
                 """
                 SELECT column_name
                 FROM information_schema.columns
                 WHERE table_name='meta_{para}';
                 """.format(para=self._para)
-                )).all()
+                ).all()
             columns_db = [col[0] for col in columns_db]
 
         col_mask = [col in columns_db for col in columns]
@@ -211,7 +210,7 @@ class StationsBase:
 
         # run sql command
         with DB_ENG.connect() as con:
-            con.execute(sqltxt(sql))
+            con.execute(sql)
 
     @check_superuser
     def update_period_meta(self, stids="all"):
@@ -646,14 +645,14 @@ class StationsBase:
         # save start time as variable to db
         if (type(stids) == str) and (stids == "all"):
             with DB_ENG.connect() as con:
-                con.execute(sqltxt("""
+                con.execute("""
                     UPDATE para_variables
                     SET start_tstp_last_imp='{start_tstp}'::timestamp,
                     max_tstp_last_imp=(SELECT max(raw_until) FROM meta_{para})
                     WHERE para='{para}';
                 """.format(
                     para=self._para,
-                    start_tstp=start_tstp.strftime("%Y%m%d %H:%M"))))
+                    start_tstp=start_tstp.strftime("%Y%m%d %H:%M")))
 
     @check_superuser
     def last_imp_quality_check(self, stids="all", do_mp=False, **kwargs):
@@ -1046,7 +1045,7 @@ class GroupStations(object):
             sql ="""
             SELECT station_id FROM meta_n"""
             with DB_ENG.connect() as con:
-                res = con.execute(sqltxt(sql))
+                res = con.execute(sql)
             self._valid_stids = [el[0] for el in res.all()]
         return self._valid_stids
 
@@ -1303,7 +1302,7 @@ class GroupStations(object):
     def create_ts(self, dir, period=(None, None), kinds="best",
                   stids="all", agg_to="10 min", r_r0=None, split_date=False, 
                   nas_allowed=True, add_na_share=False, 
-                  add_t_min=False, add_t_max=False, **kwargs):
+                  add_t_min=False, add_t_max=False):
         """Download and create the weather tables as csv files.
 
         Parameters
@@ -1360,8 +1359,6 @@ class GroupStations(object):
         add_t_max : bool, optional
             Should the maximal temperature value get added?
             The default is False.
-        **kwargs: 
-            additional parameters for GroupStation.create_ts
         """
         start_time = datetime.datetime.now()
         # check directory and stids
@@ -1379,7 +1376,7 @@ class GroupStations(object):
         gstats = self.get_group_stations(stids=stids)
         pbar = StationsBase._get_progressbar(
             max_value=len(gstats),
-            name="create TS")
+            name="create RoGeR-TS")
         pbar.update(0)
 
         if dir.suffix == ".zip":
@@ -1398,8 +1395,7 @@ class GroupStations(object):
                         nas_allowed=nas_allowed,
                         add_na_share=add_na_share,
                         add_t_min=add_t_min,
-                        add_t_max=add_t_max, 
-                        **kwargs)
+                        add_t_max=add_t_max)
                     pbar.variables["last_station"] = stat.id
                     pbar.update(pbar.value + 1)
         else:
@@ -1414,8 +1410,7 @@ class GroupStations(object):
                     nas_allowed=nas_allowed,
                     add_na_share=add_na_share,
                     add_t_min=add_t_min,
-                    add_t_max=add_t_max,
-                    **kwargs)
+                    add_t_max=add_t_max)
                 pbar.variables["last_station"] = stat.id
                 pbar.update(pbar.value + 1)
 
@@ -1439,7 +1434,7 @@ class GroupStations(object):
             pc=socket.gethostname(),
             out_size=out_size)
         with DB_ENG.connect() as con:
-            con.execute(sqltxt(sql_save_time))
+            con.execute(sql_save_time)
 
         # create log message
         log.debug(
@@ -1448,7 +1443,7 @@ class GroupStations(object):
 
     def create_roger_ts(self, dir, period=(None, None), stids="all",
                         kind="best", r_r0=1, 
-                        add_t_min=False, add_t_max=False, **kwargs):
+                        add_t_min=False, add_t_max=False):
         """Create the timeserie files for roger as csv.
 
         This is only a wrapper function for create_ts with some standard settings.
@@ -1487,8 +1482,6 @@ class GroupStations(object):
         add_t_max : bool, optional
             Should the maximal temperature value get added?
             The default is False.
-        **kwargs: 
-            additional parameters for GroupStation.create_ts
 
         Raises
         ------
@@ -1497,9 +1490,7 @@ class GroupStations(object):
         """
         return self.create_ts(dir=dir, period=period, kinds=kind,
                               agg_to="10 min", r_r0=r_r0, stids=stids,
-                              split_date=True, nas_allowed=False,
-                              add_t_min=add_t_min, add_t_max=add_t_max,
-                              **kwargs)
+                              split_date=True, nas_allowed=False)
 
 # clean station
 del StationN, StationND, StationT, StationET, GroupStation, StationBase
