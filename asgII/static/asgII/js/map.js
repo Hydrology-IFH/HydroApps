@@ -59,11 +59,17 @@ class asgIIMap{
         L.Icon.Default.prototype.options.imagePath = location.origin;
         L.Icon.Default.prototype.options.shadowUrl = "/static/asgII/img/Leaflet-Marker-shadow.png"; 
         this.IconDefault = L.Icon.Default.extend(
-            {options:{iconUrl:"/static/asgII/img/marker-icon-blue.png"}});
+            {options:{
+                iconUrl:"/static/asgII/img/marker-icon-blue.png", 
+                iconRetinaUrl:"/static/asgII/img/marker-icon-2x-blue.png"}});
         this.IconUnselect = L.Icon.Default.extend(
-            {options:{iconUrl:"/static/asgII/img/marker-icon-red.png"}});
+            {options:{
+                iconUrl:"/static/asgII/img/marker-icon-red.png", 
+                iconRetinaUrl:"/static/asgII/img/marker-icon-2x-red.png"}});
         this.IconSelect = L.Icon.Default.extend(
-            {options:{iconUrl:"/static/asgII/img/marker-icon-green.png"}});
+            {options:{
+                iconUrl:"/static/asgII/img/marker-icon-green.png", 
+                iconRetinaUrl:"/static/asgII/img/marker-icon-2x-green.png"}});
 
         // set variables
         this.coloring_active = false;
