@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
-from .views import impressum_view, datenschutz_view
+from .views import impressum_view, datenschutz_view, google_site_verification_view
 from django.conf.urls.i18n import i18n_patterns
+from django.conf import settings
 
 
 #from weatherDB.urls import urlpatterns as weatherDB_urls
@@ -40,3 +41,9 @@ urlpatterns = [
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
     )
 ]
+
+if hasattr(settings, "GOOGLE_SITE_VERIFICATION_FILE"):
+    urlpatterns.append(
+        path(settings.GOOGLE_SITE_VERIFICATION_FILE, 
+             google_site_verification_view, 
+             name='google_site_verification'))
