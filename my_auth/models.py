@@ -181,7 +181,7 @@ def update_db_user(instance, created, **kwargs):
     with connections["weatherdb"].cursor() as cursor:
         if instance.wdb_is_db_user:
             if created or instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
-                if instance.db_password is None:
+                if instance.db_password is None or instance.db_password == "":
                     db_password = Account.objects.make_random_password(30)
                 else:
                     db_password = instance.db_password
