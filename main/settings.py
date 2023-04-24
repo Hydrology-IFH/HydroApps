@@ -114,7 +114,7 @@ DATABASES = {
         'CONN_MAX_AGE': 120,
         'CONN_HEALTH_CHECKS': True
     },
-    'weather': {
+    'weatherdb': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': secrets.DB_WEA_NAME,
         'USER': secrets.DB_WEA_USER,

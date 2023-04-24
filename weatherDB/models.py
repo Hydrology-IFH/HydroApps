@@ -6,7 +6,7 @@ from main.settings import CACHE_DIR, CACHE_URL
 
 
 class MetaN(models.Model):
-    using = 'weather'
+    using = 'weatherdb'
     station_id = models.IntegerField(unique=True, primary_key=True)
     is_real = models.BooleanField()
     geometry = models.PointField(srid=4326, blank=True, null=True)
