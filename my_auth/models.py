@@ -95,10 +95,11 @@ class Account(AbstractBaseUser,PermissionsMixin):
         self.save()
 
     def remove(self, **kwargs):
-        if self.is_active and self.is_confirmed:
+        if self.is_active and self.wdb_is_db_user:
             with connections["weatherdb"].cursor() as cursor:
                 cursor.execute(
                     f"DROP USER IF EXISTS \"{self.username}\";")
+
     @staticmethod
     def _get_domain(request):
         if request is None:
