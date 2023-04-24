@@ -72,7 +72,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # added
-    'django.middleware.locale.LocaleMiddleware'
+    'django.middleware.locale.LocaleMiddleware',
+    "request.middleware.RequestMiddleware"
     # 'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
@@ -114,7 +115,7 @@ DATABASES = {
         'CONN_MAX_AGE': 120,
         'CONN_HEALTH_CHECKS': True
     },
-    'weather': {
+    'weatherdb': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': secrets.DB_WEA_NAME,
         'USER': secrets.DB_WEA_USER,
@@ -255,6 +256,7 @@ Q_CLUSTER = {
 }
 
 # for user statistics request
+REQUEST_BASE_URL = secrets.BASE_URL
 REQUEST_LOG_IP=True
 REQUEST_LOG_USER=False
 REQUEST_IGNORE_PATHS = (
