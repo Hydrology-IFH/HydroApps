@@ -72,7 +72,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # added
-    'django.middleware.locale.LocaleMiddleware'
+    'django.middleware.locale.LocaleMiddleware',
+    "request.middleware.RequestMiddleware"
     # 'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
@@ -255,6 +256,7 @@ Q_CLUSTER = {
 }
 
 # for user statistics request
+REQUEST_BASE_URL = secrets.BASE_URL
 REQUEST_LOG_IP=True
 REQUEST_LOG_USER=False
 REQUEST_IGNORE_PATHS = (
