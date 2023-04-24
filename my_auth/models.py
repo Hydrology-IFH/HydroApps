@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.db import models
-from django.db import connection
+from django.db import connections
 from django.db.models.signals import post_save, post_init
 from django.dispatch import receiver
 from django.contrib.sites.shortcuts import get_current_site
@@ -23,7 +23,7 @@ class AccountManager(BaseUserManager):
         if not username:
             raise ValueError(_("Users must have an unique username"))
         # check against database users
-        with connection.cursor() as cursor:
+        with connections["weatherdb"].cursor() as cursor:
             cursor.execute(sqltxt("""
                 SELECT groname AS username
                 FROM pg_catalog.pg_group pg 
@@ -97,7 +97,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
 
     def remove(self, **kwargs):
         if self.is_active and self.is_confirmed:
-            with connection.cursor() as cursor:
+            with connections["weatherdb"].cursor() as cursor:
                 cursor.execute(sqltxt(
                     f"DROP USER IF EXISTS \"{self.username}\";"))
     @staticmethod
@@ -178,7 +178,7 @@ def save_old_values(instance,**kwargs):
 
 @receiver(post_save, sender=Account, dispatch_uid="update_db_user")
 def update_db_user(instance, created, **kwargs):
-    with connection.cursor() as cursor:
+    with connections["weatherdb"].cursor() as cursor:
         if instance.wdb_is_db_user:
             if created or instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
                 if instance.db_password is None:
