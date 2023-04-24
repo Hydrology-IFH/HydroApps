@@ -12,7 +12,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes
 from django.conf import settings
-
+from sqlalchemy import text as sqltxt
 from .token import account_activation_token
 
 # Create your models here.
@@ -24,10 +24,10 @@ class AccountManager(BaseUserManager):
             raise ValueError(_("Users must have an unique username"))
         # check against database users
         with connection.cursor() as cursor:
-            cursor.execute("""
+            cursor.execute(sqltxt("""
                 SELECT groname AS username
                 FROM pg_catalog.pg_group pg 
-                UNION (SELECT usename FROM pg_catalog.pg_user);""")
+                UNION (SELECT usename FROM pg_catalog.pg_user);"""))
             db_users = [row[0] for row in cursor.fetchall()]
         if username in db_users:
             raise ValueError(_("This username is already a database user for the weatherDB database."))
@@ -98,9 +98,8 @@ class Account(AbstractBaseUser,PermissionsMixin):
     def remove(self, **kwargs):
         if self.is_active and self.is_confirmed:
             with connection.cursor() as cursor:
-                cursor.execute(
-                    "DROP USER IF EXISTS \"{username}\";".format(
-                        username=self.username))
+                cursor.execute(sqltxt(
+                    f"DROP USER IF EXISTS \"{self.username}\";"))
     @staticmethod
     def _get_domain(request):
         if request is None:
@@ -186,36 +185,26 @@ def update_db_user(instance, created, **kwargs):
                     db_password = Account.objects.make_random_password(30)
                 else:
                     db_password = instance.db_password
-                cursor.execute("""
-                    CREATE USER "{username}" 
+                cursor.execute(sqltxt(f"""
+                    CREATE USER "{instance.username}" 
                     NOSUPERUSER NOCREATEDB NOCREATEROLE 
                     INHERIT IN ROLE "weather_users" 
-                    LOGIN PASSWORD '{password}';""".format(
-                        username=instance.username,
-                        password=db_password
-                    ))
+                    LOGIN PASSWORD '{db_password}';"""))
                 instance.db_password = db_password
                 instance._old_db_password = db_password
                 instance._old_wdb_is_db_user = instance.wdb_is_db_user
                 instance.save()
             elif instance._old_username!=instance.username:
-                cursor.execute("""
-                    ALTER USER "{username_old}"
-                    RENAME TO "{username}";""".format(
-                        username_old=instance._old_username,
-                        username=instance.username
-                    ))
+                cursor.execute(sqltxt(f"""
+                    ALTER USER "{instance._old_username}"
+                    RENAME TO "{instance.username}";"""))
             elif instance._old_db_password!=instance.db_password:
-                cursor.execute("""
-                    ALTER USER "{username}"  
-                    WITH PASSWORD '{password}';""".format(
-                        username=instance.username,
-                        password=instance.db_password
-                    ))
+                cursor.execute(sqltxt(f"""
+                    ALTER USER "{instance.username}"  
+                    WITH PASSWORD '{instance.db_password}';"""))
         elif instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
-            cursor.execute(
-                "DROP USER IF EXISTS \"{username}\";".format(
-                    username=instance.username))
+            cursor.execute(sqltxt(
+                f"DROP USER IF EXISTS \"{instance.username}\";"))
         
         if instance.email!=instance._old_email and instance.is_email_confirmed:
             instance.is_email_confirmed = False
