@@ -1774,7 +1774,7 @@ class StationBase:
             """.format(**sql_format_dict)
 
         with DB_ENG.connect() as con:
-            res = con.execute(sql)
+            res = con.execute(sqltxt(sql))
 
         return TimestampPeriod(*res.first())
 
