@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 11:12+0200\n"
+"POT-Creation-Date: 2023-05-15 16:57+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\asgII\templates\asgII\asgII_map.html:36
+#: .\django\asgII\templates\asgII\asgII_map.html:36
 msgid "Map of the Stations"
 msgstr "Karte der Stationen"
 
-#: .\asgII\templates\asgII\asgII_map.html:37
+#: .\django\asgII\templates\asgII\asgII_map.html:37
 msgid ""
 "To see the bias corrected climate ensembles/projections of a station you can "
 "select the station in the map below."
@@ -30,7 +30,7 @@ msgstr ""
 "Um die biaskorrigierten Ensembles/Klimaprojektionen an einer Station zu "
 "sehen, können Sie die Station auf der Karte unten auswählen."
 
-#: .\asgII\templates\asgII\asgII_map.html:38
+#: .\django\asgII\templates\asgII\asgII_map.html:38
 msgid ""
 "There you will be able to download all the plots for this station or add the "
 "station the the selection form. By filling out the form and clicking on 'add "
@@ -43,16 +43,16 @@ msgstr ""
 "angezeigt zu kriegen und sie vergleichen zu können. Die ausgewählten "
 "Abbildungen werden unten auf dieser Seite angezeigt."
 
-#: .\asgII\templates\asgII\asgII_map.html:48
+#: .\django\asgII\templates\asgII\asgII_map.html:48
 msgid "Select plots to show"
 msgstr "Abbildungen auswählen"
 
-#: .\asgII\templates\asgII\asgII_map.html:50
-#: .\asgII\templates\asgII\asgII_map.html:214
+#: .\django\asgII\templates\asgII\asgII_map.html:50
+#: .\django\asgII\templates\asgII\asgII_map.html:214
 msgid "Show me an explanation of the plots."
 msgstr "Zeigen Sie mir eine Erklärung der Abbildungen."
 
-#: .\asgII\templates\asgII\asgII_map.html:60
+#: .\django\asgII\templates\asgII\asgII_map.html:60
 msgid ""
 "Choose the Parameters you would like to see.<br>select multiple values with "
 "Ctrl"
@@ -60,68 +60,68 @@ msgstr ""
 "Wählen Sie die Parameter, die Sie sehen möchten.<br>Mehrere Werte mit Strg "
 "auswählen"
 
-#: .\asgII\templates\asgII\asgII_map.html:62
+#: .\django\asgII\templates\asgII\asgII_map.html:62
 msgid "precipitation"
 msgstr "Niederschlag"
 
-#: .\asgII\templates\asgII\asgII_map.html:63
+#: .\django\asgII\templates\asgII\asgII_map.html:63
 msgid "temperature"
 msgstr "Temperatur"
 
-#: .\asgII\templates\asgII\asgII_map.html:64
+#: .\django\asgII\templates\asgII\asgII_map.html:64
 msgid "dew point temperature"
 msgstr "Taupunkttemperatur"
 
-#: .\asgII\templates\asgII\asgII_map.html:65
+#: .\django\asgII\templates\asgII\asgII_map.html:65
 msgid "potential evapotranspiration"
 msgstr "potentiale Evapotranspiration"
 
-#: .\asgII\templates\asgII\asgII_map.html:66
+#: .\django\asgII\templates\asgII\asgII_map.html:66
 msgid "radiation"
 msgstr "Strahlung"
 
-#: .\asgII\templates\asgII\asgII_map.html:67
+#: .\django\asgII\templates\asgII\asgII_map.html:67
 msgid "relative air moisture"
 msgstr "relative Luftfeuchtigkeit"
 
-#: .\asgII\templates\asgII\asgII_map.html:68
+#: .\django\asgII\templates\asgII\asgII_map.html:68
 msgid "snowfall"
 msgstr "Schneefall"
 
-#: .\asgII\templates\asgII\asgII_map.html:75
+#: .\django\asgII\templates\asgII\asgII_map.html:75
 msgid "Which period do you want to see?<br>select multiple values with Ctrl."
 msgstr ""
 "Welchen Zeitraum wollen Sie sehen?<br>Wählen Sie mehrere Werte mit Strg."
 
-#: .\asgII\templates\asgII\asgII_map.html:75
+#: .\django\asgII\templates\asgII\asgII_map.html:75
 msgid "Period"
 msgstr "Zeitraum"
 
-#: .\asgII\templates\asgII\asgII_map.html:77
+#: .\django\asgII\templates\asgII\asgII_map.html:77
 msgid "Year"
 msgstr "Jahr"
 
-#: .\asgII\templates\asgII\asgII_map.html:78
+#: .\django\asgII\templates\asgII\asgII_map.html:78
 msgid "Winter"
 msgstr "Winter"
 
-#: .\asgII\templates\asgII\asgII_map.html:79
+#: .\django\asgII\templates\asgII\asgII_map.html:79
 msgid "Spring"
 msgstr "Frühling"
 
-#: .\asgII\templates\asgII\asgII_map.html:80
+#: .\django\asgII\templates\asgII\asgII_map.html:80
 msgid "Summer"
 msgstr "Sommer"
 
-#: .\asgII\templates\asgII\asgII_map.html:81
+#: .\django\asgII\templates\asgII\asgII_map.html:81
 msgid "Fall"
 msgstr "Herbst"
 
-#: .\asgII\templates\asgII\asgII_map.html:82
+#: .\django\asgII\templates\asgII\asgII_map.html:82
 msgid "daily maximums"
 msgstr "tägliche Maximas"
 
-#: .\asgII\templates\asgII\asgII_map.html:88
+#: .\django\asgII\templates\asgII\asgII_map.html:88
 msgid ""
 "Enter the station IDs you would like to see as a comma separated list."
 "<br>The easier way to select a station is by clicking on it on the map."
@@ -130,44 +130,44 @@ msgstr ""
 "Liste ein.<br>Die einfachste Möglichkeit, eine Station auszuwählen, ist, sie "
 "auf der Karte anzuklicken."
 
-#: .\asgII\templates\asgII\asgII_map.html:88
-#: .\asgII\templates\asgII\asgII_map.html:90
+#: .\django\asgII\templates\asgII\asgII_map.html:88
+#: .\django\asgII\templates\asgII\asgII_map.html:90
 msgid "selected station IDs"
 msgstr "gewählte Stations-IDs"
 
-#: .\asgII\templates\asgII\asgII_map.html:101
+#: .\django\asgII\templates\asgII\asgII_map.html:101
 msgid "Show selection on map"
 msgstr "Zeige Auswahl auf der Karte"
 
-#: .\asgII\templates\asgII\asgII_map.html:108
+#: .\django\asgII\templates\asgII\asgII_map.html:108
 msgid "Color Selection"
 msgstr "Auswahl einfärben"
 
-#: .\asgII\templates\asgII\asgII_map.html:109
+#: .\django\asgII\templates\asgII\asgII_map.html:109
 msgid "Remove Coloring"
 msgstr "Einfärbung entfernen"
 
-#: .\asgII\templates\asgII\asgII_map.html:112
+#: .\django\asgII\templates\asgII\asgII_map.html:112
 msgid "Filter Selection"
 msgstr "auf Auswahl filtern"
 
-#: .\asgII\templates\asgII\asgII_map.html:113
+#: .\django\asgII\templates\asgII\asgII_map.html:113
 msgid "Remove Filters"
 msgstr "Filter entfernen"
 
-#: .\asgII\templates\asgII\asgII_map.html:121
+#: .\django\asgII\templates\asgII\asgII_map.html:121
 msgid "show plots"
 msgstr "Abbildungen anzeigen"
 
-#: .\asgII\templates\asgII\asgII_map.html:134
+#: .\django\asgII\templates\asgII\asgII_map.html:134
 msgid "Plot explanation"
 msgstr "Erläuterung der Abbildung"
 
-#: .\asgII\templates\asgII\asgII_map.html:140
+#: .\django\asgII\templates\asgII\asgII_map.html:140
 msgid "<b>Dots</b> mark the annual data."
 msgstr "<b>Punkte</b> markieren jährliche Werte."
 
-#: .\asgII\templates\asgII\asgII_map.html:141
+#: .\django\asgII\templates\asgII\asgII_map.html:141
 msgid ""
 "<b>Lines</b> mark the 11-year moving means. (The average of a window of 11 "
 "years around a point)"
@@ -175,7 +175,7 @@ msgstr ""
 "<b>Linien</b> markieren das 11 jährige gleitende Mittel. (Der Mittelwert "
 "eines 11 jährigen Zeitraums um einen Punkt)"
 
-#: .\asgII\templates\asgII\asgII_map.html:152
+#: .\django\asgII\templates\asgII\asgII_map.html:152
 msgid ""
 "Switch between the plot explanation of the project synthesis or the online "
 "explanation"
@@ -183,27 +183,27 @@ msgstr ""
 "Wechseln Sie zwischen der Beschreibung der Abbildung des Projektberichts und "
 "der Online-Erklärung"
 
-#: .\asgII\templates\asgII\asgII_map.html:162
+#: .\django\asgII\templates\asgII\asgII_map.html:162
 msgid "This is the plot explanation from the"
 msgstr "Dies ist die Erklärung der Abbildung aus dem"
 
-#: .\asgII\templates\asgII\asgII_map.html:162
+#: .\django\asgII\templates\asgII\asgII_map.html:162
 msgid "ASG-II project synthesis"
 msgstr "ASG-II Projektbericht"
 
-#: .\asgII\templates\asgII\asgII_map.html:169
+#: .\django\asgII\templates\asgII\asgII_map.html:169
 msgid "Parameter of this plot described on the y-Axis"
 msgstr "Parameter dieses Diagramms der auf y-Achse angezeigt wird"
 
-#: .\asgII\templates\asgII\asgII_map.html:171
+#: .\django\asgII\templates\asgII\asgII_map.html:171
 msgid "The Station ID"
 msgstr "Die Stations-ID"
 
-#: .\asgII\templates\asgII\asgII_map.html:173
+#: .\django\asgII\templates\asgII\asgII_map.html:173
 msgid "The stations height above the sea."
 msgstr "Die Stationshöhe über dem Meeresspiegel."
 
-#: .\asgII\templates\asgII\asgII_map.html:175
+#: .\django\asgII\templates\asgII\asgII_map.html:175
 msgid ""
 "The time period of this plot, here spring. This means that on this plot only "
 "the mean of the spring is shown."
@@ -211,7 +211,7 @@ msgstr ""
 "Der Zeitraum dieser Abbildung ist hier das Frühjahr. Das bedeutet, dass in "
 "dieser Grafik nur der Mittelwert des Frühjahrs angezeigt wird."
 
-#: .\asgII\templates\asgII\asgII_map.html:178
+#: .\django\asgII\templates\asgII\asgII_map.html:178
 msgid ""
 "The <b>blue dots</b> mark the individual RCM ensemble members.<br>The "
 "<b>light blue lines</b> mark the moving average for each of the members. The "
@@ -224,7 +224,7 @@ msgstr ""
 "7 Linien ist durch die <b>hellblaue Fläche</b> markiert und deren Ensemble-"
 "Mittelwert durch die <b>dicke blaue Linie</b>."
 
-#: .\asgII\templates\asgII\asgII_map.html:180
+#: .\django\asgII\templates\asgII\asgII_map.html:180
 msgid ""
 "The <b>red dots</b> mark the measurements of this station. So here are the "
 "mean spring temperatures for every year.<br>The <b>thick red line</b> marks "
@@ -236,17 +236,17 @@ msgstr ""
 "rote Linie</b> markiert einen gleitenden Durchschnitt (der Durchschnitt "
 "eines Zeitfensters von 11 Jahren um einen Punkt) dieser Werte."
 
-#: .\asgII\templates\asgII\asgII_map.html:183
+#: .\django\asgII\templates\asgII\asgII_map.html:183
 msgid "The reference climate period (1981-2010) taken."
 msgstr "Der gewählte Referenz-Klimaperiode (1981-2010)."
 
-#: .\asgII\templates\asgII\asgII_map.html:185
+#: .\django\asgII\templates\asgII\asgII_map.html:185
 msgid "A Boxplot of the reference climate period."
 msgstr "Ein Boxplot der Klimareferenzperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:185
-#: .\asgII\templates\asgII\asgII_map.html:189
-#: .\asgII\templates\asgII\asgII_map.html:193
+#: .\django\asgII\templates\asgII\asgII_map.html:185
+#: .\django\asgII\templates\asgII\asgII_map.html:189
+#: .\django\asgII\templates\asgII\asgII_map.html:193
 msgid ""
 "Showing the min, max and mean of the ensemble collections mean value for "
 "this climate period."
@@ -254,7 +254,7 @@ msgstr ""
 "Zeigt den Minimal-, Maximal- und Mittelwert der Mittelwerte der 7 "
 "verschiedenen Ensemble-Member für diese Klimaperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:187
+#: .\django\asgII\templates\asgII\asgII_map.html:187
 msgid ""
 "The near future climate period (2031-2060) and the difference of the "
 "ensemble mean compared to the reference period."
@@ -262,11 +262,11 @@ msgstr ""
 "Die Klimaperiode der fernen Zukunft (2071-2100) und die Differenz des "
 "Ensemble-Means im Vergleich zur Referenzperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:189
+#: .\django\asgII\templates\asgII\asgII_map.html:189
 msgid "A Boxplot of the near future climate period."
 msgstr "Ein Boxplot der Klimaperiode der nahen Zukunft ."
 
-#: .\asgII\templates\asgII\asgII_map.html:191
+#: .\django\asgII\templates\asgII\asgII_map.html:191
 msgid ""
 "The far future climate period (2071-2100) and the difference of the ensemble "
 "mean compared to the reference period."
@@ -274,27 +274,27 @@ msgstr ""
 "Die Klimaperiode der fernen Zukunft (2071-2100) und die Differenz des "
 "Ensemble-Means im Vergleich zur Referenzperiode."
 
-#: .\asgII\templates\asgII\asgII_map.html:193
+#: .\django\asgII\templates\asgII\asgII_map.html:193
 msgid "A Boxplot of the far future climate period."
 msgstr "Ein Boxplot der Klimaperiode der fernen Zukunft."
 
-#: .\asgII\templates\asgII\asgII_map.html:196
+#: .\django\asgII\templates\asgII\asgII_map.html:196
 msgid "The moving window size in years"
 msgstr "Die Größe des gleitenden Fensters in Jahren"
 
-#: .\asgII\templates\asgII\asgII_map.html:201
+#: .\django\asgII\templates\asgII\asgII_map.html:201
 msgid "Close"
 msgstr "Schließen"
 
-#: .\asgII\templates\asgII\asgII_map.html:210
+#: .\django\asgII\templates\asgII\asgII_map.html:210
 msgid "Plots"
 msgstr "Abbildungen"
 
-#: .\asgII\templates\asgII\asgII_map.html:212
+#: .\django\asgII\templates\asgII\asgII_map.html:212
 msgid "clear plots"
 msgstr "Abbildungen entfernen"
 
-#: .\asgII\templates\asgII\base.html:8
+#: .\django\asgII\templates\asgII\base.html:8
 msgid ""
 "A presentation of climate forecasts for individual weather stations. Results "
 "from the ASG-II project."
@@ -302,45 +302,69 @@ msgstr ""
 "Eine Darstellung der Klima-Prognosen für einzelne Wetter-Stationen. "
 "Ergebnisse des ASG-II Projekts."
 
-#: .\asgII\templates\asgII\base.html:19 .\asgII\templates\asgII\home.html:6
+#: .\django\asgII\templates\asgII\base.html:19
+#: .\django\asgII\templates\asgII\home.html:6
 msgid "Home"
 msgstr "Home"
 
-#: .\asgII\templates\asgII\base.html:20 .\asgII\templates\asgII\method.html:11
+#: .\django\asgII\templates\asgII\base.html:20
+#: .\django\asgII\templates\asgII\method.html:11
 msgid "Method"
 msgstr "Method"
 
-#: .\asgII\templates\asgII\base.html:21
+#: .\django\asgII\templates\asgII\base.html:21
 msgid "Map"
 msgstr "Karte"
 
-#: .\asgII\templates\asgII\home.html:8
+#: .\django\asgII\templates\asgII\home.html:8
 msgid ""
 "This tool presents bias corrected projections of regional climate models for "
-"climate stations in the Rhine catchment area. Those were created within the "
-"&quot;Impact of climate change on the rain, snow and glacier melt components "
-"of streamflow of the river Rhine and its tributaries&quot; project, "
-"abbreviated as ASG-II. You can find detailed informations about the project "
-"in the"
+"climate stations in the Rhine catchment area. Those were created within a "
+"project funded by the International Commission for the Hydrology of the "
+"Rhine basin (KHR/CHR) (www.chr-khr.org): &quot;Impact of climate change on "
+"the rain, snow and glacier melt components of streamflow of the river Rhine "
+"and its tributaries&quot; project, abbreviated as ASG-II. You can find "
+"detailed informations about the project on "
 msgstr ""
 "Dieses Tool präsentiert Bias-korrigierte Projektionen regionaler "
 "Klimamodelle an den Klimastationen im Rheineinzugsgebiet. Diese wurden im "
-"Rahmen des Projekts &quot;Auswirkungen des Klimawandels auf die "
-"Abflussanteile aus Regen, Schnee und Gletscherschmelze im Rhein und seinen "
-"Zuflüssen&quot;, kurz ASG-II, erstellt. Ausführliche Informationen über das "
-"Projekt finden Sie im"
+"Rahmen des von der Internationalen Kommission für die Hydrologie des "
+"Rheingebietes (KHR) geförderten Projekts &quot;Auswirkungen des Klimawandels "
+"auf die Abflussanteile aus Regen, Schnee und Gletscherschmelze im Rhein und "
+"seinen Zuflüssen&quot;, kurz ASG-II, erstellt. Ausführliche Informationen "
+"über das Projekt finden Sie auf "
 
-#: .\asgII\templates\asgII\home.html:9 .\asgII\templates\asgII\method.html:13
-msgid "project synthesis"
-msgstr "Projektbericht"
+#: .\django\asgII\templates\asgII\home.html:9
+msgid "this related page "
+msgstr "dieser verwandten Seite "
 
-#: .\asgII\templates\asgII\method.html:12
+#: .\django\asgII\templates\asgII\home.html:9
+msgid "and particularly in "
+msgstr "und insbesondere im "
+
+#: .\django\asgII\templates\asgII\home.html:10
+msgid "this final project report "
+msgstr "Projektabschlussbericht "
+
+#: .\django\asgII\templates\asgII\home.html:10
+msgid ""
+"published through CHR, which also lists the underlying meteorological data "
+"sources."
+msgstr ""
+"der über die KHR veröffentlicht wurde und in dem auch die zugrunde liegenden "
+"meteorologischen Datenquellen aufgeführt werden."
+
+#: .\django\asgII\templates\asgII\method.html:12
 msgid ""
 "To explain the method how the hereby presented data got created we refer to "
 "chapter 2.3 and 3 of the "
 msgstr ""
 "Zur Erläuterung der Methode, wie die hier vorgestellten Daten entstanden "
 "sind, verweisen wir auf Kapitel 2.3 und 3 vom "
+
+#: .\django\asgII\templates\asgII\method.html:13
+msgid "project synthesis"
+msgstr "Projektbericht"
 
 #~ msgid ""
 #~ "Then fill out the form, to select the plots of your interest. After "
