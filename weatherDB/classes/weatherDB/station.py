@@ -74,10 +74,10 @@ RASTERS = {
         "abbreviation": "hyras"
     },
     "local":{
-        "dgm25": {
+        "dgm1": {
             "fp": DATA_DIR.joinpath("dgms/DGM25.tif"),
             "crs":pyproj.CRS.from_epsg(3035)},
-        "dgm80": {
+        "dgm2": {
             "fp": DATA_DIR.joinpath("dgms/dgm80.tif"),
             "crs":pyproj.CRS.from_epsg(25832)}
     }
@@ -1221,10 +1221,20 @@ class StationBase:
         """.format(
             sql_new_qc=self._get_sql_new_qc(period=period),
             stid=self.id, para=self._para)
+        
+        # calculate the percentage of droped values
+        sql_qc += f"""
+            UPDATE meta_{self._para}
+            SET "qc_droped" = ts."qc_droped"
+            FROM (
+                SELECT ROUND(((count("raw")-count("qc"))::numeric/count("raw")), 4)*100 as qc_droped
+                FROM timeseries."{self.id}_{self._para}"
+            ) ts
+            WHERE station_id = {self.id};"""
 
         # run commands
         if "return_sql" in kwargs and kwargs["return_sql"]:
-            return sql_qc.replace("%%", "%")
+            return sql_qc
         self._execute_long_sql(
             sql=sql_qc,
             description="quality checked for the period {min_tstp} to {max_tstp}.".format(
@@ -1287,7 +1297,7 @@ class StationBase:
                     ma_col=self._ma_cols[0],
                     coef_sign=self._coef_sign),
                 coef_format="i.coef",
-                filled_calc="round(nb.{base_col} {coef_sign[1]} %%3$s, 0)::int"
+                filled_calc="round(nb.{base_col} {coef_sign[1]} %3$s, 0)::int"
                 .format(**sql_format_dict)
             ))
         elif len(self._ma_cols) == 2:
@@ -1306,8 +1316,8 @@ class StationBase:
                 coef_format="i.coef_wi, \n" + " " * 24 + "i.coef_so",
                 filled_calc="""
                     CASE WHEN nf.is_winter
-                        THEN round(nb.{base_col} {coef_sign[1]} %%3$s, 0)::int
-                        ELSE round(nb.{base_col} {coef_sign[1]} %%4$s, 0)::int
+                        THEN round(nb.{base_col} {coef_sign[1]} %3$s, 0)::int
+                        ELSE round(nb.{base_col} {coef_sign[1]} %4$s, 0)::int
                     END""".format(**sql_format_dict)
             ))
         else:
@@ -1348,7 +1358,7 @@ class StationBase:
                                 SELECT tablename
                                 FROM pg_catalog.pg_tables
                                 WHERE schemaname ='timeseries'
-                                    AND tablename LIKE '%%_{para}')
+                                    AND tablename LIKE '%_{para}')
                                 AND ({cond_mas_not_null})
                         ORDER BY ST_DISTANCE(
                             geometry_utm,
@@ -1362,8 +1372,8 @@ class StationBase:
                         $$
                         UPDATE new_filled_{stid}_{para} nf
                         SET filled={filled_calc}, {extra_cols_fillup_calc}
-                            filled_by=%%1$s
-                        FROM timeseries.%%2$I nb
+                            filled_by=%1$s
+                        FROM timeseries.%2$I nb
                         WHERE nf.filled IS NULL AND nb.{base_col} IS NOT NULL
                             AND nf.timestamp = nb.timestamp;
                         $$,
@@ -1392,7 +1402,7 @@ class StationBase:
 
         # execute
         if "return_sql" in kwargs and kwargs["return_sql"]:
-            return sql.replace("%%", "%")
+            return sql
         self._execute_long_sql(
             sql=sql,
             description="filled for the period {min_tstp} - {max_tstp}".format(
@@ -1717,7 +1727,7 @@ class StationBase:
 
         # get response from server
         if "return_sql" in kwargs:
-            return sql.replace("%%", "%")
+            return sql
         res = pd.read_sql(sql, DB_ENG)
 
         # set index
@@ -1774,7 +1784,7 @@ class StationBase:
             """.format(**sql_format_dict)
 
         with DB_ENG.connect() as con:
-            res = con.execute(sqltxt(sql))
+            res = con.execute(sql)
 
         return TimestampPeriod(*res.first())
 
@@ -2436,9 +2446,9 @@ and not in the precipitation meta table in the DB""")
             """.format(stid=self.id)))
         return result.first()[0]
 
-    def quality_check(self, period=(None, None)):
+    def quality_check(self, period=(None, None), **kwargs):
         if not self.is_virtual():
-            super().quality_check(period=period)
+            return super().quality_check(period=period, **kwargs)
 
 
 class StationTETBase(StationCanVirtualBase):
@@ -2666,7 +2676,7 @@ class StationN(StationNBase):
                 "For the {para_long} station with ID {stid} there is no timeserie with daily values. " +
                 "Therefor the quality check for daily values equal to 0 is not done.\n" +
                 "Please consider updating the daily stations with:\n" +
-                "stats = stations.StationNDs()\n" +
+                "stats = stations.StationsND()\n" +
                 "stats.update_meta()\nstats.update_raw()"
             ).format(**sql_format_dict))
             sql_dates_failed = """
@@ -2795,7 +2805,7 @@ class StationN(StationNBase):
                 return horizon
 
         # check if files are available
-        for dgm_name in ["dgm25", "dgm80"]:
+        for dgm_name in ["dgm1", "dgm2"]:
             if not RASTERS["local"][dgm_name]["fp"].is_file():
                 raise ValueError(
                     "The {dgm_name} was not found in the data directory under: \n{fp}".format(
@@ -2806,101 +2816,128 @@ class StationN(StationNBase):
 
         # get the horizon value
         radius = 75000 # this value got defined because the maximum height is around 4000m for germany
-        dgm25_crs = RASTERS["local"]["dgm25"]["crs"]
-        dgm80_crs = RASTERS["local"]["dgm80"]["crs"]
-        with rio.open(RASTERS["local"]["dgm25"]["fp"]) as dgm25,\
-             rio.open(RASTERS["local"]["dgm80"]["fp"]) as dgm80:
-                geom = self.get_geom_shp(crs=dgm25_crs.to_epsg())
-                xy = [geom.x, geom.y]
-                # sample station heght
-                stat_h = list(dgm25.sample(
-                    xy=[xy],
-                    indexes=1,
-                    masked=True))[0]
-                if stat_h.mask[0]:
-                    log.error("update_horizon(): No height was found for {para_long} Station {stid}. Therefor the horizon angle could not get updated.".format(
-                        stid=self.id, para_long=self._para_long))
-                    return None
-                else:
-                    stat_h = stat_h[0]
 
-                # sample dgm for horizon angle
-                hab = pd.Series(
-                    index=pd.Index([], name="angle", dtype=int),
-                    name="horizon")
-                for angle in range(90, 271, 3):
-                    dgm25_mask = polar_line(xy, radius, angle)
-                    dgm25_np, dgm25_tr = rasterio.mask.mask(
-                        dgm25, [dgm25_mask], crop=True)
-                    dgm25_np[dgm25_np==dgm25.profile["nodata"]] = np.nan
-                    dgm_gpd = raster2points(dgm25_np, dgm25_tr, crs=dgm25_crs)
-                    dgm_gpd["dist"] = dgm_gpd.distance(Point(xy))
+        with rio.open(RASTERS["local"]["dgm1"]["fp"]) as dgm1,\
+            rio.open(RASTERS["local"]["dgm2"]["fp"]) as dgm2:
+            # sample station heights from the first DGM
+            geom1 = self.get_geom_shp(crs=dgm1.crs.to_epsg())
+            xy = [geom1.x, geom1.y]
+            stat_h1 = list(dgm1.sample(
+                xy=[xy],
+                indexes=1,
+                masked=True))[0]
+            if stat_h1.mask[0]:
+                log.error(
+                    f"update_horizon(): No height was found in the first DGM for {self._para_long} Station {self.id}. " +
+                    "Therefor the horizon angle could not get updated.")
+                raise ValueError()
+            else:
+                stat_h1 = stat_h1[0]
 
-                    # check if parts are missing and fill
-                    #####################################
-                    dgm_gpd = dgm_gpd.sort_values("dist").reset_index(drop=True)
-                    line_parts = pd.DataFrame(
-                        columns=["Start_point", "radius", "line"])
-                    # look for holes inside the line
-                    for i, j in enumerate(dgm_gpd[dgm_gpd["dist"].diff() > 10].index):
-                        line_parts = pd.concat(
-                            [line_parts,
-                             pd.DataFrame(
-                                {"Start_point": dgm_gpd.loc[j-1, "geometry"],
-                                 "radius": dgm_gpd.loc[j, "dist"] - dgm_gpd.loc[j-1, "dist"]},
-                                index=[i])])
+            # sample dgm for horizon angle
+            hab = pd.Series(
+                index=pd.Index([], name="angle", dtype=int),
+                name="horizon", 
+                dtype=float)
+            
+            for angle in range(90, 271, 3):
+                dgm1_mask = polar_line(xy, radius, angle)
+                dgm1_np, dgm1_tr = rasterio.mask.mask(
+                    dgm1, [dgm1_mask], crop=True)
+                dgm1_np[dgm1_np==dgm1.profile["nodata"]] = np.nan
+                dgm_gpd = raster2points(dgm1_np, dgm1_tr, crs=dgm1.crs)
+                idx_min = dgm_gpd.distance(geom1).idxmin()
+                geom_dgm1 = dgm_gpd.loc[idx_min, "geometry"]
+                dgm_gpd.drop(idx_min, inplace=True)
+                dgm_gpd["dist"] = dgm_gpd.distance(geom_dgm1)
+                dgm_gpd = dgm_gpd.sort_values("dist").reset_index(drop=True)
+                dgm_gpd["horizon"] = np.degrees(np.arctan(
+                        (dgm_gpd["data"]-stat_h1) / dgm_gpd["dist"]))
 
-                    # look for missing values at the end
-                    dgm25_max_dist = dgm_gpd.iloc[-1]["dist"]
-                    if dgm25_max_dist < (radius - 5):
-                            line_parts = pd.concat(
-                                [line_parts,
-                                 pd.DataFrame(
-                                    {"Start_point":  dgm_gpd.iloc[-1]["geometry"],
-                                     "radius": radius - dgm25_max_dist},
-                                    index=[line_parts.index.max()+1])])
+                # check if parts are missing and fill
+                #####################################
+                line_parts = pd.DataFrame(
+                    columns=["Start_point", "radius", "line"])
+                
+                # look for holes inside the line
+                for i, j in enumerate(dgm_gpd[dgm_gpd["dist"].diff() > dgm1_tr[0]*np.sqrt(2)].index):
+                    line_parts = pd.concat(
+                        [line_parts,
+                        pd.DataFrame(
+                            {"Start_point": dgm_gpd.loc[j-1, "geometry"],
+                            "radius": dgm_gpd.loc[j, "dist"] - dgm_gpd.loc[j-1, "dist"]},
+                            index=[i])])
+                
+                # look for missing values at the end
+                dgm1_max_dist = dgm_gpd.iloc[-1]["dist"]
+                if dgm1_max_dist < (radius - dgm1_tr[0]/2*np.sqrt(2)):
+                    line_parts = pd.concat(
+                        [line_parts,
+                        pd.DataFrame(
+                            {"Start_point":  dgm_gpd.iloc[-1]["geometry"],
+                            "radius": radius - dgm1_max_dist},
+                            index=[line_parts.index.max()+1])])
 
-                    # check if parts are missing and fill
-                    if len(line_parts) > 0:
-                            # create the lines
-                            for i, row in line_parts.iterrows():
-                                line_parts.loc[i, "line"] = polar_line(
-                                    [el[0] for el in row["Start_point"].xy],
-                                    row["radius"],
-                                    angle
-                                )
-                            line_parts = gpd.GeoDataFrame(
-                                line_parts, geometry="line", crs=dgm25_crs
-                                ).to_crs(dgm80_crs)
-                            dgm80_mask = MultiLineString(
-                                line_parts["line"].tolist())
-                            dgm80_np, dgm80_tr = rasterio.mask.mask(
-                                dgm80, [dgm80_mask], crop=True)
-                            dgm80_np[dgm80_np==dgm80.profile["nodata"]] = np.nan
-                            dgm80_gpd = raster2points(
-                                dgm80_np, dgm80_tr, crs=dgm80_crs
-                                ).to_crs(dgm25_crs)
-                            dgm80_gpd["dist"] = dgm80_gpd.distance(Point(xy))
-                            dgm_gpd = pd.concat(
-                                [dgm_gpd, dgm80_gpd], ignore_index=True)
+                # check if parts are missing and fill
+                if len(line_parts) > 0:
+                    # sample station heights from the second DGM
+                    geom2 = self.get_geom_shp(crs=dgm2.crs.to_epsg())
+                    stat_h2 = list(dgm2.sample(
+                        xy=[(geom2.x, geom2.y)],
+                        indexes=1,
+                        masked=True))[0]
+                    if stat_h2.mask[0]:
+                        log.error(
+                            f"update_horizon(): No height was found in the second DGM for {self._para_long} Station {self.id}. " +
+                            "Therefor the height from the first DGM is taken also for the second.")
+                        stat_h2 = stat_h1
+                    else:
+                        stat_h2 = stat_h2[0]
 
-                    hab[angle] = np.max(np.degrees(np.arctan(
-                            (dgm_gpd["data"]-stat_h) / dgm_gpd["dist"])))
+                    # create the lines
+                    for i, row in line_parts.iterrows():
+                        line_parts.loc[i, "line"] = polar_line(
+                            [el[0] for el in row["Start_point"].xy],
+                            row["radius"],
+                            angle
+                        )
+                    line_parts = gpd.GeoDataFrame(
+                        line_parts, geometry="line", crs=dgm1.crs
+                        ).to_crs(dgm2.crs)
+                    dgm2_mask = MultiLineString(
+                        line_parts["line"].tolist())
+                    dgm2_np, dgm2_tr = rasterio.mask.mask(
+                        dgm2, [geom2, dgm2_mask], crop=True)
+                    dgm2_np[dgm2_np==dgm2.profile["nodata"]] = np.nan
+                    dgm2_gpd = raster2points(
+                        dgm2_np, dgm2_tr, crs=dgm2.crs
+                        )
+                    idx_min = dgm2_gpd.distance(geom2).idxmin()
+                    geom_dgm2 = dgm2_gpd.loc[idx_min, "geometry"]
+                    dgm2_gpd.drop(idx_min, inplace=True)
 
-                # calculate the mean "horizontabschimung"
-                # Richter: H’=0,15H(S-SW) +0,35H(SW-W) +0,35H(W-NW) +0, 15H(NW-N)
-                horizon = max(0,
-                    0.15*hab[(hab.index>225) & (hab.index<=270)].mean()
-                    + 0.35*hab[(hab.index>=180) & (hab.index<=225)].mean()
-                    + 0.35*hab[(hab.index>=135) & (hab.index<180)].mean()
-                    + 0.15*hab[(hab.index>=90) & (hab.index<135)].mean())
+                    dgm2_gpd["dist"] = dgm2_gpd.distance(geom_dgm2)
+                    dgm2_gpd["horizon"] = np.degrees(np.arctan(
+                        (dgm2_gpd["data"]-stat_h2) / dgm2_gpd["dist"]))
+                    dgm_gpd = pd.concat(
+                        [dgm_gpd[["horizon"]], dgm2_gpd[["horizon"]]], ignore_index=True)
 
-                # insert to meta table in db
-                self._update_meta(
-                    cols=["horizon"],
-                    values=[horizon])
+                hab[angle] = dgm_gpd["horizon"].max()
+                
+        # calculate the mean "horizontabschimung"
+        # Richter: H’=0,15H(S-SW) +0,35H(SW-W) +0,35H(W-NW) +0, 15H(NW-N)
+        horizon = max(0,
+            0.15*hab[(hab.index>225) & (hab.index<=270)].mean()
+            + 0.35*hab[(hab.index>=180) & (hab.index<=225)].mean()
+            + 0.35*hab[(hab.index>=135) & (hab.index<180)].mean()
+            + 0.15*hab[(hab.index>=90) & (hab.index<135)].mean())
 
-                return horizon
+        # insert to meta table in db
+        self._update_meta(
+            cols=["horizon"],
+            values=[horizon])
+
+        return horizon
 
     @check_superuser
     def update_richter_class(self, skip_if_exist=True):
@@ -3073,7 +3110,7 @@ class StationN(StationNBase):
 
         # run commands
         if "return_sql" in kwargs and kwargs["return_sql"]:
-            return sql_update.replace("%%", "%")
+            return sql_update
 
         self._execute_long_sql(
             sql_update,
@@ -3207,7 +3244,7 @@ class StationN(StationNBase):
 
             #execute sql or return
             if "return_sql" in kwargs and kwargs["return_sql"]:
-                return (str(super_ret) + "\n" + sql_diff_ma).replace("%%", "%")
+                return (str(super_ret) + "\n" + sql_diff_ma)
             with DB_ENG.connect() as con:
                 con.execute(sqltxt(sql_diff_ma))
 
@@ -3373,16 +3410,15 @@ class StationT(StationTETBase):
 
     def _get_sql_new_qc(self, period):
         # create sql for new qc
-        sql_new_qc = """
-            WITH nears AS ({sql_near_mean})
+        sql_new_qc = f"""
+            WITH nears AS ({self._get_sql_near_mean(period=period, only_real=True)})
             SELECT
                 timestamp,
-                (CASE WHEN (ABS(nears.raw - nears.mean) > 5)
+                (CASE WHEN (ABS(nears.raw - nears.mean) > 5 * {self._decimals})
                     THEN NULL
                     ELSE nears."raw" END) as qc
             FROM nears
-        """ .format(
-            sql_near_mean=self._get_sql_near_mean(period=period, only_real=True))
+        """
 
         return sql_new_qc
 
@@ -3392,8 +3428,8 @@ class StationT(StationTETBase):
         fillup_extra_dict = super()._sql_fillup_extra()
         fillup_extra_dict.update({
             "extra_new_temp_cols": "raw_min AS filled_min, raw_max AS filled_max,",
-            "extra_cols_fillup_calc": "filled_min=round(nb.raw_min + %%3$s, 0)::int, " +
-                                      "filled_max=round(nb.raw_max + %%3$s, 0)::int, ",
+            "extra_cols_fillup_calc": "filled_min=round(nb.raw_min + %3$s, 0)::int, " +
+                                      "filled_max=round(nb.raw_max + %3$s, 0)::int, ",
             "extra_cols_fillup": "filled_min = new.filled_min, " +
                                  "filled_max = new.filled_max, ",
             "extra_fillup_where": ' OR ts."filled_min" IS DISTINCT FROM new."filled_min"' +
@@ -3451,19 +3487,16 @@ class StationET(StationTETBase):
 
     def _get_sql_new_qc(self, period):
         # create sql for new qc
-        sql_new_qc = """
-            WITH nears AS ({sql_near_mean})
+        sql_new_qc = f"""
+            WITH nears AS ({self._get_sql_near_mean(period=period, only_real=True)})
             SELECT
                 timestamp,
-                (CASE WHEN ((nears.raw > (nears.mean * 2) AND nears.raw > 3)
-                            OR (nears.raw < (nears.mean * 0.5) AND nears.raw > 2))
+                (CASE WHEN ((nears.raw > (nears.mean * 2) AND nears.raw > {3*self._decimals})
+                            OR ((nears.raw * 4) < nears.mean AND nears.raw > {2*self._decimals}))
                     THEN NULL
                     ELSE nears."raw" END) as qc
             FROM nears
-        """ .format(
-            sql_near_mean=self._get_sql_near_mean(
-                period=period, only_real=True)
-        )
+        """
 
         return sql_new_qc
 

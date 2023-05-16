@@ -33,7 +33,6 @@
 {% endblock %}
 
 {% block content %}
-{% comment %} <iframe style="border:none;" > {% endcomment %}
-{{ method|safe }}
-{% comment %} </iframe> {% endcomment %}
+  {{ block.super}}
+  {{ method|safe }}
 {% endblock %}
