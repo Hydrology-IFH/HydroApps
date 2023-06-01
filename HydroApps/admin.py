@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HydroApps 
+from .models import HydroApp 
 
 # Register your models here.
-admin.site.register(HydroApps)
+admin.site.register(HydroApp)
