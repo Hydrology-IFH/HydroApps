@@ -37,8 +37,7 @@ urlpatterns = [
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
         path("asgII/", include("asgII.urls")),
         path("<str:app_name>/auth/", include("my_auth.urls")),
-        path("<str:app_name>/impressum/", impressum_view, name="impressum"),
-        path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
+        path("KombStRA/", include("kombStRA.urls")),
     )
 ]
 
