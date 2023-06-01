@@ -58,6 +58,5 @@ class HydroLink(models.Model):
         default=1,
         help_text="A number to set the ordering on the front page.")
     
-    
     class Meta:
         ordering=["order", "name"]
