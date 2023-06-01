@@ -28,18 +28,36 @@ class HydroApps(models.Model):
     class Meta:
         ordering=["order", "name"]
 
-class HydroLinks(models.Model):
+class HydroLinkGroup(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(
         max_length=20, 
-        unique=True, 
-        primary_key=True, 
-        help_text="The URL to the welcome page of this app.")
+        unique=True,
+        help_text="The Name of this Link Group")
     order = models.IntegerField(
         default=1,
         help_text="A number to set the ordering on the front page.")
+    
+    class Meta:
+        ordering=["order", "name"]
+
+class HydroLink(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(
+        max_length=20, 
+        unique=True, 
+        help_text="The Name of this Link")
     url = models.CharField(
         max_length=100, 
-        help_text="The URL to this measurement Application")
+        help_text="The URL for this Link")
+    group = models.ForeignKey(
+        HydroLinkGroup,
+        on_delete=models.DO_NOTHING,
+    )
+    order = models.IntegerField(
+        default=1,
+        help_text="A number to set the ordering on the front page.")
+    
     
     class Meta:
         ordering=["order", "name"]
