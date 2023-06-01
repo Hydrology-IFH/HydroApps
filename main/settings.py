@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'my_auth',
     'asgII',
     "HydroApps",
+    "kombStRA",
     # django
     'django.contrib.admin',
     'django.contrib.auth',

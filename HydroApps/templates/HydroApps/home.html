@@ -54,6 +54,16 @@
       </div>
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
+          <a href="{% url 'KombStRA:home' %}" class="stretched-link"></a>
+          <img src="{% static 'KombStRA/img/logo-520.png' %}" class="card-img-top mx-auto" alt="Logo of KombStRA">
+          <div class="card-body">
+            <h5 class="card-title">KombStRA</h5>
+            <p class="card-text">{% trans "Classification of heavy rain events." %} </p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
           <a target="_blank" rel="noopener noreferrer" href="https://naturwb.de" class="stretched-link"></a>
           <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of NatUrWB" >
           <i class="bi bi-box-arrow-up-right"></i>
