@@ -1360,6 +1360,7 @@ class StationBase:
                                 WHERE schemaname ='timeseries'
                                     AND tablename LIKE '%_{para}')
                                 AND ({cond_mas_not_null})
+                                AND (meta.raw_from IS NOT NULL AND meta.raw_until IS NOT NULL)
                         ORDER BY ST_DISTANCE(
                             geometry_utm,
                             (SELECT geometry_utm
@@ -1367,7 +1368,8 @@ class StationBase:
                             WHERE station_id={stid})) ASC)
                     LOOP
                         CONTINUE WHEN i.raw_from > unfilled_period.max
-                                      OR i.raw_until < unfilled_period.min;
+                                      OR i.raw_until < unfilled_period.min
+                                      OR (i.raw_from IS NULL AND i.raw_until IS NULL);
                         EXECUTE FORMAT(
                         $$
                         UPDATE new_filled_{stid}_{para} nf
@@ -1949,6 +1951,7 @@ class StationBase:
             The corresponding multi annual value.
             For T en ET the yearly value is returned.
             For N the winter and summer half yearly sum is returned in tuple.
+            The returned unit is mm or °C.
         """
         sql = """
             SELECT {ma_cols}
@@ -2000,7 +2003,7 @@ class StationBase:
 
         return raster["dtype"](value)
 
-    def get_coef(self, other_stid):
+    def get_coef(self, other_stid, in_db_unit=False):
         """Get the regionalisation coefficients due to the height.
 
         Those are the values from the dwd grid, HYRAS or REGNIE grids.
@@ -2009,6 +2012,10 @@ class StationBase:
         ----------
         other_stid : int
             The Station Id of the other station from wich to regionalise for own station.
+        in_db_unit : bool, optional
+            Should the coefficients be returned in the unit as stored in the database?
+            This is only relevant for the temperature.
+            The default is False.
 
         Returns
         -------
@@ -2028,7 +2035,11 @@ class StationBase:
             if self._coef_sign[0] == "/":
                 return [own/other for own, other in zip(ma_values, other_ma_values)]
             elif self._coef_sign[0] == "-":
-                return [own-other for own, other in zip(ma_values, other_ma_values)]
+                if in_db_unit:
+                    return [int(np.round((own-other)*self._decimals)) 
+                            for own, other in zip(ma_values, other_ma_values)]
+                else: 
+                    return [own-other for own, other in zip(ma_values, other_ma_values)]
             else:
                 return None
 
@@ -2482,7 +2493,7 @@ class StationTETBase(StationCanVirtualBase):
             SQL statement for the regionalised mean of the 5 nearest stations.
         """
         near_stids = self.get_neighboor_stids(n=5, only_real=only_real)
-        coefs = [self.get_coef(other_stid=near_stid)[0]
+        coefs = [self.get_coef(other_stid=near_stid, in_db_unit=True)[0]
                  for near_stid in near_stids]
         coefs = ["NULL" if coef is None else coef for coef in coefs]
 
@@ -2494,12 +2505,14 @@ class StationTETBase(StationCanVirtualBase):
                  COALESCE(ts3.qc {coef_sign[1]} {coefs[2]}, 0) +
                  COALESCE(ts4.qc {coef_sign[1]} {coefs[3]}, 0) +
                  COALESCE(ts5.qc {coef_sign[1]} {coefs[4]}, 0) )
-                 / (NULLIF(5 - (
+                 / (NULLIF(NULLIF(
+                        5 - (
                         (ts1.qc IS NULL OR {coefs[0]} is NULL)::int +
                         (ts2.qc IS NULL OR {coefs[1]} is NULL)::int +
                         (ts3.qc IS NULL OR {coefs[2]} is NULL)::int +
                         (ts4.qc IS NULL OR {coefs[3]} is NULL)::int +
-                        (ts5.qc IS NULL OR {coefs[4]} is NULL)::int ) , 0)
+                        (ts5.qc IS NULL OR {coefs[4]} is NULL)::int ),
+                    0), 1)
                  ) AS mean,
                 ts."raw" as raw
             FROM timeseries."{stid}_{para}" AS ts
