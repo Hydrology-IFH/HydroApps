@@ -133,8 +133,6 @@ class StationBase:
     _date_col = None  # The name of the date column on the CDC server
     _para = None  # The parameter string "n", "t", or "et"
     _para_long = None  # The parameter as a long descriptive string
-    # the name of the CDC column that has the raw data and gets multiplied by the decimals
-    _cdc_col_name_raw = None
     # the names of the CDC columns that get imported
     _cdc_col_names_imp = [None]
     # the corresponding column name in the DB of the raw import
@@ -158,6 +156,8 @@ class StationBase:
     _interval = None  # The interval of the timeseries e.g. "1 day" or "10 min"
     _min_agg_to = None # Similar to the interval, but same format ass in AGG_TO
     _agg_fun = "sum" # the sql aggregating function to use
+    _filled_by_n = 1 # How many neighboring stations are used for the fillup procedure
+    _fillup_max_dist = None # The maximal distance in meters to use to get neighbor stations for the fillup. Only relevant if multiple stations are considered for fillup.
 
     def __init__(self, id, _skip_meta_check=False):
         """Create a Station object.
@@ -539,7 +539,7 @@ class StationBase:
             stid=self.id, para=self._para,
             why=why.replace("'", "''"))
 
-        with DB_ENG.connect() as con:
+        with DB_ENG.connect().execution_options(isolation_level="AUTOCOMMIT") as con:
             con.execute(sqltxt(sql))
         log.debug(
             "The {para_long} Station with ID {stid} got droped from the database."
@@ -890,7 +890,7 @@ class StationBase:
         # get last_imp valid kinds that are in the meta file
         last_imp_valid_kinds = self._valid_kinds.copy()
         last_imp_valid_kinds.remove("raw")
-        for name in ["qn", "filled_by", 
+        for name in ["qn", "filled_by",
                      "raw_min", "raw_max", "filled_min", "filled_max"]:
             if name in last_imp_valid_kinds:
                 last_imp_valid_kinds.remove(name)
@@ -1022,7 +1022,7 @@ class StationBase:
                     zipfiles.index,
                     zipfiles["modtime"].dt.strftime("%Y%m%d %H:%M").values)]
             )
-        with DB_ENG.connect() as con:
+        with DB_ENG.connect().execution_options(isolation_level="AUTOCOMMIT") as con:
             con.execute(sqltxt(f'''
                 INSERT INTO raw_files(para, filepath, modtime)
                 VALUES {update_values}
@@ -1221,7 +1221,7 @@ class StationBase:
         """.format(
             sql_new_qc=self._get_sql_new_qc(period=period),
             stid=self.id, para=self._para)
-        
+
         # calculate the percentage of droped values
         sql_qc += f"""
             UPDATE meta_{self._para}
@@ -1241,7 +1241,7 @@ class StationBase:
                 **period.get_sql_format_dict(
                     format=self._tstp_format_human)
                 ))
-        
+
         # update timespan in meta table
         self.update_period_meta(kind="qc")
 
@@ -1260,6 +1260,9 @@ class StationBase:
             The minimum and maximum Timestamp for which to gap fill the timeseries.
             If None is given, the maximum or minimal possible Timestamp is taken.
             The default is (None, None).
+        kwargs : dict, optional
+            Additional arguments for the fillup function.
+            e.g. p_elev to consider the elevation to select nearest stations. (only for T and ET)
         """
         self._expand_timeserie_to_period()
         self._check_ma()
@@ -1272,7 +1275,11 @@ class StationBase:
             cond_mas_not_null=" OR ".join([
                 "ma_other.{ma_col} IS NOT NULL".format(ma_col=ma_col)
                     for ma_col in self._ma_cols]),
-            **self._sql_fillup_extra()
+            filled_by_col="NULL::smallint AS filled_by",
+            exit_cond="SUM((filled IS NULL)::int) = 0",
+            extra_unfilled_period_where="",
+            add_meta_col="",
+            **self._sql_fillup_extra_dict(**kwargs)
         )
 
         # make condition for period
@@ -1324,12 +1331,71 @@ class StationBase:
             raise ValueError(
                 "There were too many multi annual columns selected. The fillup method is only implemented for yearly or half yearly regionalisations")
 
+        # check if filled_by column is ARRAY or smallint
+        if self._filled_by_n>1:
+            sql_array_init = "ARRAY[{0}]".format(
+                ", ".join(["NULL::smallint"] * self._filled_by_n))
+
+            # create execute sql command
+            sql_exec_fillup=""
+            prev_check = ""
+            for i in range(1, self._filled_by_n+1):
+                sql_exec_fillup += f"""
+                UPDATE new_filled_{self.id}_{self._para} nf
+                SET nb_mean[{i}]=round(nb.qc + %3$s, 0)::int,
+                    {sql_format_dict["extra_exec_cols"].format(i=i)}
+                    filled_by[{i}]=%1$s
+                FROM timeseries.%2$I nb
+                WHERE nf.filled IS NULL AND nf.nb_mean[{i}] IS NULL {prev_check}
+                    AND nf.timestamp = nb.timestamp;"""
+                prev_check += f" AND nf.nb_mean[{i}] IS NOT NULL AND nf.filled_by[{i}] != %1$s"
+
+            sql_format_dict.update(dict(
+                filled_by_col = f"NULL::smallint[] AS filled_by",
+                extra_new_temp_cols = sql_format_dict["extra_new_temp_cols"] +
+                    f"{sql_array_init} AS nb_mean,",
+                sql_exec_fillup=sql_exec_fillup,
+                extra_unfilled_period_where="AND nb_mean[3] is NULL",
+                extra_fillup_where=sql_format_dict["extra_fillup_where"] +\
+                    ' OR NOT (ts."filled_by" @> new."filled_by" AND ts."filled_by" <@ new."filled_by")'
+                ))
+
+            # create exit condition
+            sql_format_dict.update(dict(
+                exit_cond=f"SUM((filled IS NULL AND nb_mean[{self._filled_by_n}] is NULL)::int) = 0 "))
+            if self._fillup_max_dist is not None:
+                sql_format_dict.update(dict(
+                    add_meta_col=", ST_DISTANCE(geometry_utm,(SELECT geometry_utm FROM stat_row)) as dist",
+                    exit_cond=sql_format_dict["exit_cond"]\
+                        +f"OR ((i.dist > {self._fillup_max_dist}) AND SUM((filled IS NULL AND nb_mean[1] is NULL)::int) = 0)"
+                    ))
+
+            # create sql after loop, to calculate the median of the regionalised neighbors
+            sql_format_dict.update(dict(
+                sql_extra_after_loop = """UPDATE new_filled_{stid}_{para} SET
+                        filled=(SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY v)
+                                FROM unnest(nb_mean) as T(v)) {extra_after_loop_extra_col}
+                    WHERE filled is NULL;
+                    {sql_extra_after_loop}""".format(**sql_format_dict)))
+        else:
+            # create execute command if only 1 neighbor is considered
+            sql_format_dict.update(dict(
+                sql_exec_fillup="""
+                    UPDATE new_filled_{stid}_{para} nf
+                    SET filled={filled_calc}, {extra_cols_fillup_calc}
+                        filled_by=%1$s
+                    FROM timeseries.%2$I nb
+                    WHERE nf.filled IS NULL AND nb.{base_col} IS NOT NULL
+                        AND nf.timestamp = nb.timestamp;""".format(**sql_format_dict),
+                extra_fillup_where=sql_format_dict["extra_fillup_where"] +\
+                    ' OR ts."filled_by" IS DISTINCT FROM new."filled_by"'))
+
         # Make SQL statement to fill the missing values with values from nearby stations
         sql = """
             CREATE TEMP TABLE new_filled_{stid}_{para}
                 ON COMMIT DROP
-                AS (SELECT timestamp, {base_col} AS filled, {extra_new_temp_cols}
-                        NULL::int AS filled_by {is_winter_col}
+                AS (SELECT timestamp, {base_col} AS filled,
+                        {extra_new_temp_cols}{filled_by_col}{is_winter_col}
                     FROM timeseries."{stid}_{para}" ts {cond_period});
             ALTER TABLE new_filled_{stid}_{para} ADD PRIMARY KEY (timestamp);
             DO
@@ -1342,10 +1408,12 @@ class StationBase:
                     FROM new_filled_{stid}_{para}
                     WHERE "filled" IS NULL;
                     FOR i IN (
+                        WITH stat_row AS (
+                            SELECT * FROM meta_{para} WHERE station_id={stid})
                         SELECT meta.station_id,
                             meta.raw_from, meta.raw_until,
                             meta.station_id || '_{para}' AS tablename,
-                            {coef_calc}
+                            {coef_calc}{add_meta_col}
                         FROM meta_{para} meta
                         LEFT JOIN stations_raster_values ma_other
                             ON ma_other.station_id=meta.station_id
@@ -1358,37 +1426,30 @@ class StationBase:
                                 SELECT tablename
                                 FROM pg_catalog.pg_tables
                                 WHERE schemaname ='timeseries'
-                                    AND tablename LIKE '%_{para}')
+                                    AND tablename LIKE '%\_{para}')
                                 AND ({cond_mas_not_null})
                                 AND (meta.raw_from IS NOT NULL AND meta.raw_until IS NOT NULL)
                         ORDER BY ST_DISTANCE(
                             geometry_utm,
-                            (SELECT geometry_utm
-                            FROM meta_{para}
-                            WHERE station_id={stid})) ASC)
+                            (SELECT geometry_utm FROM stat_row)) {mul_elev_order} ASC)
                     LOOP
                         CONTINUE WHEN i.raw_from > unfilled_period.max
                                       OR i.raw_until < unfilled_period.min
                                       OR (i.raw_from IS NULL AND i.raw_until IS NULL);
                         EXECUTE FORMAT(
                         $$
-                        UPDATE new_filled_{stid}_{para} nf
-                        SET filled={filled_calc}, {extra_cols_fillup_calc}
-                            filled_by=%1$s
-                        FROM timeseries.%2$I nb
-                        WHERE nf.filled IS NULL AND nb.{base_col} IS NOT NULL
-                            AND nf.timestamp = nb.timestamp;
+                        {sql_exec_fillup}
                         $$,
                         i.station_id,
                         i.tablename,
                         {coef_format}
                         );
-                        EXIT WHEN (SELECT SUM((filled IS NULL)::int) = 0
+                        EXIT WHEN (SELECT {exit_cond}
                                    FROM new_filled_{stid}_{para});
                         SELECT min(timestamp) AS min, max(timestamp) AS max
                         INTO unfilled_period
                         FROM new_filled_{stid}_{para}
-                        WHERE "filled" IS NULL;
+                        WHERE "filled" IS NULL {extra_unfilled_period_where};
                     END LOOP;
                     {sql_extra_after_loop}
                     UPDATE timeseries."{stid}_{para}" ts
@@ -1396,8 +1457,7 @@ class StationBase:
                         filled_by = new.filled_by
                     FROM new_filled_{stid}_{para} new
                     WHERE ts.timestamp = new.timestamp
-                        AND (ts."filled" IS DISTINCT FROM new."filled" {extra_fillup_where}
-                             OR ts."filled_by" IS DISTINCT FROM new."filled_by") ;
+                        AND (ts."filled" IS DISTINCT FROM new."filled" {extra_fillup_where}) ;
                 END
             $do$;
         """.format(**sql_format_dict)
@@ -1422,12 +1482,12 @@ class StationBase:
                 self._mark_last_imp_done(kind="filled")
 
     @check_superuser
-    def _sql_fillup_extra(self):
+    def _sql_fillup_extra_dict(self, **kwargs):
         """Get the sql statement for the fill to calculate the filling of additional columns.
 
-        This is mainly for the temperature Station to fillup max and min 
+        This is mainly for the temperature Station to fillup max and min
         and returns an empty string for the other stations.
-        
+
         And for the precipitation Station and returns an empty string for the other stations.
 
         Returns
@@ -1439,7 +1499,10 @@ class StationBase:
                 "extra_new_temp_cols": "",
                 "extra_cols_fillup": "",
                 "extra_cols_fillup_calc": "",
-                "extra_fillup_where": ""}
+                "extra_fillup_where": "",
+                "mul_elev_order": "",
+                "extra_exec_cols": "",
+                "extra_after_loop_extra_col": ""}
 
     @check_superuser
     def _mark_last_imp_done(self, kind):
@@ -1840,7 +1903,7 @@ class StationBase:
         else:
             return TimestampPeriod(None, None)
 
-    def get_max_period(self, kinds, nas_allowed=False):
+    def get_max_period(self, kinds, nas_allowed=False, **kwargs):
         """Get the maximum available period for this stations timeseries.
 
         If nas_allowed is True, then the maximum range of the timeserie is returned.
@@ -1876,10 +1939,10 @@ class StationBase:
         else:
             kinds = self._check_kinds(kinds)
             if len(kinds)>0:
-                max_period = self.get_filled_period(kind=kinds[0])
+                max_period = self.get_filled_period(kind=kinds[0], **kwargs)
                 for kind in kinds[1:]:
                     max_period = max_period.union(
-                        self.get_filled_period(kind=kind),
+                        self.get_filled_period(kind=kind, **kwargs),
                         how="outer" if nas_allowed else "inner")
             else:
                 max_period = TimestampPeriod(None, None)
@@ -1903,7 +1966,22 @@ class StationBase:
         """
         return self.get_period_meta(kind="last_imp", all=all)
 
-    def get_neighboor_stids(self, n=5, only_real=True):
+    def _get_sql_nbs_elev_order(self, p_elev=None):
+        """Get the sql part for the elevation order.
+        Needs to have stat_row defined. e.g with the following statement:
+        WITH stat_row AS (SELECT * FROM meta_{para} WHERE station_id={stid})
+        """
+        if p_elev is not None:
+            if len(p_elev) != 2:
+                raise ValueError("p_elev must be a tuple of length 2 or None")
+            return f"""*(1+power(
+                        abs(stationshoehe - (SELECT stationshoehe FROM stat_row))
+                        /{p_elev[0]}::float,
+                        {p_elev[1]}::float))"""
+        else:
+            return ""
+
+    def get_neighboor_stids(self, n=5, only_real=True, p_elev=None, period=None, **kwargs):
         """Get a list with Station Ids of the nearest neighboor stations.
 
         Parameters
@@ -1916,6 +1994,19 @@ class StationBase:
             Should only real station get considered?
             If false also virtual stations are part of the result.
             The default is True.
+        p_elev : tuple of float or None, optional
+            The parameters (P_1, P_2) to weight the height differences between stations.
+            The elevation difference is considered with the formula from LARSIM (equation 3-18 & 3-19 from the LARSIM manual):
+            $L_{gewichtet} = L_{horizontal} * (1 + (\frac{|\delta H|}{P_1})^{P_2})$
+            If None, then the height difference is not considered and only the nearest stations are returned.
+            literature:
+                - LARSIM Dokumentation, Stand 06.04.2023, online unter https://www.larsim.info/dokumentation/LARSIM-Dokumentation.pdf
+            The default is None.
+        period : utils.TimestampPeriod or None, optional
+            The period for which the nearest neighboors are returned.
+            The neighboor station needs to have raw data for at least one half of the period.
+            If None, then the availability of the data is not checked.
+            The default is None.
 
         Returns
         -------
@@ -1925,18 +2016,49 @@ class StationBase:
         """
         self._check_isin_meta()
 
-        sql_nearest_stids = """
-                SELECT station_id
-                FROM meta_{para}
-                WHERE station_id != {stid} {cond_only_real}
-                ORDER BY ST_DISTANCE(
-                    geometry_utm,
-                    (SELECT geometry_utm FROM meta_{para}
-                     WHERE station_id={stid}))
-                LIMIT {n}
-            """.format(
+        sql_dict = dict(
             cond_only_real="AND is_real" if only_real else "",
-            stid=self.id, para=self._para, n=n)
+            stid=self.id, para=self._para, n=n,
+            add_meta_rows="", cond_period="", mul_elev_order="")
+
+        # Elevation parts
+        if p_elev is not None:
+            if len(p_elev) != 2:
+                raise ValueError("p_elev must be a tuple of length 2 or None")
+            sql_dict.update(dict(
+                add_meta_rows=", stationshoehe",
+                mul_elev_order = self._get_sql_nbs_elev_order(p_elev=p_elev)
+                ))
+
+        # period parts
+        if period is not None:
+            if not isinstance(period, TimestampPeriod):
+                period = TimestampPeriod(*period)
+            days = period.get_interval().days
+            tmstp_mid = period.get_middle()
+            sql_dict.update(dict(
+                cond_period=f""" AND (raw_until - raw_from > '{np.round(days/2)} days'::INTERVAL
+                    AND (raw_from <= '{tmstp_mid.strftime("%Y%m%d")}'::timestamp
+                        AND raw_until >= '{tmstp_mid.strftime("%Y%m%d")}'::timestamp)) """
+            ))
+
+        # create sql statement
+        sql_nearest_stids = """
+            WITH stat_row AS (
+                SELECT geometry_utm {add_meta_rows}
+                FROM meta_{para} WHERE station_id={stid}
+            )
+            SELECT station_id
+            FROM meta_{para}
+            WHERE station_id != {stid} {cond_only_real} {cond_period}
+            ORDER BY ST_DISTANCE(geometry_utm,(SELECT geometry_utm FROM stat_row))
+                {mul_elev_order}
+            LIMIT {n};
+            """.format(**sql_dict)
+
+        if "return_sql" in kwargs and kwargs["return_sql"]:
+            return sql_nearest_stids
+
         with DB_ENG.connect() as con:
             result = con.execute(sqltxt(sql_nearest_stids))
             nearest_stids = [res[0] for res in result.all()]
@@ -1971,7 +2093,7 @@ class StationBase:
             with DB_ENG.connect() as con:
                 res = con.execute(sqltxt(sql)).first()
 
-        if res is None:
+        if res[0] is None:
             return None
         else:
             return list(res)
@@ -2036,16 +2158,16 @@ class StationBase:
                 return [own/other for own, other in zip(ma_values, other_ma_values)]
             elif self._coef_sign[0] == "-":
                 if in_db_unit:
-                    return [int(np.round((own-other)*self._decimals)) 
+                    return [int(np.round((own-other)*self._decimals))
                             for own, other in zip(ma_values, other_ma_values)]
-                else: 
+                else:
                     return [own-other for own, other in zip(ma_values, other_ma_values)]
             else:
                 return None
 
     def get_df(self, kinds, period=(None, None), agg_to=None,
-               nas_allowed=True, add_na_share=False, db_unit=False, 
-               sql_add_where=None):
+               nas_allowed=True, add_na_share=False, db_unit=False,
+               sql_add_where=None, **kwargs):
         """Get a timeseries DataFrame from the database.
 
         Parameters
@@ -2063,6 +2185,7 @@ class StationBase:
             The default is (None, None).
         agg_to : str or None, optional
             Aggregate to a given timespan.
+            If more than 20% of missing values in the aggregation group, the aggregated value will be None.
             Can be anything smaller than the maximum timespan of the saved data.
             If a Timeperiod smaller than the saved data is given, than the maximum possible timeperiod is returned.
             For T and ET it can be "month", "year".
@@ -2116,8 +2239,9 @@ class StationBase:
         else:
             add_filled_share = False
         kinds = self._check_kinds(kinds=kinds)
-        period = self._check_period(
-            period=period, kinds=kinds, nas_allowed=nas_allowed)
+        if not ("_skip_period_check" in kwargs and kwargs["_skip_period_check"]):
+            period = self._check_period(
+                period=period, kinds=kinds, nas_allowed=nas_allowed)
 
         if period.is_empty() and not nas_allowed:
             return None
@@ -2144,7 +2268,9 @@ class StationBase:
                     agg_fun = "MIN" if re.search(r".*_min", kind) else "MAX"
                 else:
                     agg_fun = self._agg_fun
-                kinds.append(f"ROUND({agg_fun}({kind}), 0) AS {kind}")
+                kinds.append(
+                    f"CASE WHEN (COUNT(\"{kind}\")/COUNT(*)::float)>0.8 "+
+                    f"THEN ROUND({agg_fun}({kind}), 0) ELSE NULL END AS {kind}")
 
             timestamp_col = "date_trunc('{agg_to}', timestamp)".format(
                 agg_to=agg_to)
@@ -2194,10 +2320,13 @@ class StationBase:
                     format="'{}'".format(self._tstp_format_db))
             )
 
+        if "return_sql" in kwargs and kwargs["return_sql"]:
+            return sql
+
         df = pd.read_sql(sql, con=DB_ENG, index_col="timestamp")
 
         # convert filled_by to Int16, pandas Integer with NA support
-        if "filled_by" in kinds:
+        if "filled_by" in kinds and df["filled_by"].dtype != object:
             df["filled_by"] = df["filled_by"].astype("Int16")
 
         # change index to pandas DatetimeIndex if necessary
@@ -2301,7 +2430,7 @@ class StationBase:
 
         return df
 
-    def get_filled(self, period=(None, None), with_dist=False):
+    def get_filled(self, period=(None, None), with_dist=False, **kwargs):
         """Get the filled timeserie.
 
         Either only the timeserie is returned or also the id of the station from which the station data got filled, together with the distance to this station in m.
@@ -2321,7 +2450,7 @@ class StationBase:
         pd.DataFrame
             The filled timeserie for this station and the given period.
         """
-        df = self.get_df(period=period, kinds="filled")
+        df = self.get_df(period=period, kinds="filled", **kwargs)
 
         # should the distance information get added
         if with_dist:
@@ -2414,7 +2543,7 @@ class StationCanVirtualBase(StationBase):
         if self.isin_meta():
             if self.isin_db():
                 return True
-            elif self.isin_meta_n():
+            else:
                 self._create_timeseries_table()
                 return True
         elif self.isin_meta_n():
@@ -2473,7 +2602,30 @@ class StationTETBase(StationCanVirtualBase):
     _tstp_format_db = "%Y%m%d"
     _tstp_format_human = "%Y-%m-%d"
 
-    def _get_sql_near_mean(self, period, only_real=True):
+    def get_neighboor_stids(self, p_elev=(250, 1.5), **kwargs):
+        """Get the 5 nearest stations to this station.
+
+        Parameters
+        ----------
+        p_elev : tuple, optional
+            In Larsim those parameters are defined as $P_1 = 500$ and $P_2 = 1$.
+            Stoelzle et al. (2016) found that $P_1 = 100$ and $P_2 = 4$ is better for Baden-Würtemberg to consider the quick changes in topographie.
+            For all of germany, those parameter values are giving too much weight to the elevation difference, which can result in getting neighboor stations from the border of the Tschec Republic for the Feldberg station. Therefor the values $P_1 = 250$ and $P_2 = 1.5$ are used as default values.
+            literature:
+                - Stoelzle, Michael & Weiler, Markus & Steinbrich, Andreas. (2016) Starkregengefährdung in Baden-Württemberg – von der Methodenentwicklung zur Starkregenkartierung. Tag der Hydrologie.
+                - LARSIM Dokumentation, Stand 06.04.2023, online unter https://www.larsim.info/dokumentation/LARSIM-Dokumentation.pdf
+            The default is (250, 1.5).
+
+        Returns
+        -------
+        _type_
+            _description_
+        """
+        # define the P1 and P2 default values for T and ET
+        return super().get_neighboor_stids(p_elev=p_elev, **kwargs)
+
+    def _get_sql_near_median(self, period, only_real=True,
+                             extra_cols=None, add_is_winter=False):
         """Get the SQL statement for the mean of the 5 nearest stations.
 
         Needs to have one column timestamp, mean and raw(original raw value).
@@ -2486,57 +2638,142 @@ class StationTETBase(StationCanVirtualBase):
             Should only real station get considered?
             If false also virtual stations are part of the result.
             The default is True.
+        extra_cols : str or None, optional
+            Should there bae additional columns in the result?
+            Should be a sql-string for the SELECT part.
+            If None then there are no additional columns.
+            The default is None.
+        add_is_winter : bool, optional
+            Should there be a column ("winter") that indicates if the value is in winter?
+            The default is False.
 
         Returns
         -------
         str
             SQL statement for the regionalised mean of the 5 nearest stations.
         """
-        near_stids = self.get_neighboor_stids(n=5, only_real=only_real)
-        coefs = [self.get_coef(other_stid=near_stid, in_db_unit=True)[0]
-                 for near_stid in near_stids]
-        coefs = ["NULL" if coef is None else coef for coef in coefs]
+        # get neighboring station for every year
+        start_year = period.start.year
+        end_year = period.end.year
+        nbs = pd.DataFrame(
+            index=pd.Index(range(start_year, end_year+1), name="years"),
+            columns=["near_stids"], dtype=object)
+        nbs_stids_all = set()
+        now = pd.Timestamp.now()
+        for year in nbs.index:
+            if year == now.year:
+                y_period = TimestampPeriod(f"{year}-01-01", now.date())
+            else:
+                y_period = TimestampPeriod(f"{year}-01-01", f"{year}-12-31")
+            nbs_i = self.get_neighboor_stids(period=y_period, only_real=only_real)
+            nbs_stids_all = nbs_stids_all.union(nbs_i)
+            nbs.loc[year, "near_stids"] = nbs_i
 
-        # create sql for mean of the near stations and the raw value itself
-        sql_near_mean = """
-            SELECT ts.timestamp,
-                (COALESCE(ts1.qc {coef_sign[1]} {coefs[0]}, 0) +
-                 COALESCE(ts2.qc {coef_sign[1]} {coefs[1]}, 0) +
-                 COALESCE(ts3.qc {coef_sign[1]} {coefs[2]}, 0) +
-                 COALESCE(ts4.qc {coef_sign[1]} {coefs[3]}, 0) +
-                 COALESCE(ts5.qc {coef_sign[1]} {coefs[4]}, 0) )
-                 / (NULLIF(NULLIF(
-                        5 - (
-                        (ts1.qc IS NULL OR {coefs[0]} is NULL)::int +
-                        (ts2.qc IS NULL OR {coefs[1]} is NULL)::int +
-                        (ts3.qc IS NULL OR {coefs[2]} is NULL)::int +
-                        (ts4.qc IS NULL OR {coefs[3]} is NULL)::int +
-                        (ts5.qc IS NULL OR {coefs[4]} is NULL)::int ),
-                    0), 1)
-                 ) AS mean,
-                ts."raw" as raw
+        # add a grouping column if stids of year before is the same
+        before = None
+        group_i = 1
+        for year, row in nbs.iterrows():
+            if before is None:
+                before = row["near_stids"]
+            if before != row["near_stids"]:
+                group_i += 1
+                before = row["near_stids"]
+            nbs.loc[year, "group"] = group_i
+
+
+        # aggregate if neighboors are the same
+        nbs["start"] = nbs.index
+        nbs["end"] = nbs.index
+        nbs = nbs.groupby(nbs["group"])\
+            .agg({"near_stids":"first", "start": "min", "end": "max"})\
+            .set_index(["start", "end"])
+
+        # get coefs for regionalisation from neighbor stations
+        coefs = pd.Series(
+            index=nbs_stids_all,
+            data=[self.get_coef(other_stid=near_stid, in_db_unit=True)
+                        for near_stid in nbs_stids_all]
+            ).fillna("NULL")\
+            .apply(lambda x: x[0] if isinstance(x, list) else x)\
+            .astype(str)
+
+        # check extra cols to be in the right format
+        if extra_cols and len(extra_cols) > 0:
+            if extra_cols[0] != ",":
+                extra_cols = ", " + extra_cols
+        else:
+            extra_cols = ""
+
+        # create sql for winter
+        if add_is_winter:
+            sql_is_winter_col = ", EXTRACT(MONTH FROM ts.timestamp) in (1,2,3,10,11,12) AS winter"
+        else:
+            sql_is_winter_col = ""
+
+        # create year subqueries for near stations mean
+        sql_near_median_parts = []
+        for (start, end), row in nbs.iterrows():
+            period_part = TimestampPeriod(f"{start}-01-01", f"{end}-12-31")
+
+            # create sql for mean of the near stations and the raw value itself
+            sql_near_median_parts.append("""
+                SELECT timestamp,
+                    (SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY T.c)
+                     FROM (VALUES (ts1.raw{coef_sign[1]}{coefs[0]}),
+                                  (ts2.raw{coef_sign[1]}{coefs[1]}),
+                                  (ts3.raw{coef_sign[1]}{coefs[2]}),
+                                  (ts4.raw{coef_sign[1]}{coefs[3]}),
+                                  (ts5.raw{coef_sign[1]}{coefs[4]})) T (c)
+                    ) as nbs_median
+                FROM timeseries."{near_stids[0]}_{para}" ts1
+                FULL OUTER JOIN timeseries."{near_stids[1]}_{para}" ts2 USING (timestamp)
+                FULL OUTER JOIN timeseries."{near_stids[2]}_{para}" ts3 USING (timestamp)
+                FULL OUTER JOIN timeseries."{near_stids[3]}_{para}" ts4 USING (timestamp)
+                FULL OUTER JOIN timeseries."{near_stids[4]}_{para}" ts5 USING (timestamp)
+                WHERE timestamp BETWEEN {min_tstp}::{tstp_dtype} AND {max_tstp}::{tstp_dtype}
+                """.format(
+                    para=self._para,
+                    near_stids=row["near_stids"],
+                    coefs=coefs[row["near_stids"]].to_list(),
+                    coef_sign=self._coef_sign,
+                    tstp_dtype=self._tstp_dtype,
+                    **period_part.get_sql_format_dict()))
+
+        # create sql for mean of the near stations and the raw value itself for total period
+        sql_near_median = """SELECT ts.timestamp, nbs_median, ts.raw as raw {extra_cols}{is_winter_col}
             FROM timeseries."{stid}_{para}" AS ts
-            LEFT JOIN timeseries."{near_stids[0]}_{para}" ts1
-                ON ts.timestamp=ts1.timestamp
-            LEFT JOIN timeseries."{near_stids[1]}_{para}" ts2
-                ON ts.timestamp=ts2.timestamp
-            LEFT JOIN timeseries."{near_stids[2]}_{para}" ts3
-                ON ts.timestamp=ts3.timestamp
-            LEFT JOIN timeseries."{near_stids[3]}_{para}" ts4
-                ON ts.timestamp=ts4.timestamp
-            LEFT JOIN timeseries."{near_stids[4]}_{para}" ts5
-                ON ts.timestamp=ts5.timestamp
-            WHERE ts.timestamp BETWEEN {min_tstp} AND {max_tstp}
-            """.format(
-            stid=self.id,
-            para=self._para,
-            near_stids=near_stids,
-            coefs=coefs,
-            coef_sign=self._coef_sign,
-            **period.get_sql_format_dict()
-        )
+            LEFT JOIN ({sql_near_parts}) nbs
+                ON ts.timestamp=nbs.timestamp
+            WHERE ts.timestamp BETWEEN {min_tstp}::{tstp_dtype} AND {max_tstp}::{tstp_dtype}
+            ORDER BY timestamp ASC"""\
+                .format(
+                    stid = self.id,
+                    para = self._para,
+                    sql_near_parts = " UNION ".join(sql_near_median_parts),
+                    tstp_dtype=self._tstp_dtype,
+                    extra_cols=extra_cols,
+                    is_winter_col=sql_is_winter_col,
+                    **period.get_sql_format_dict())
 
-        return sql_near_mean
+        return sql_near_median
+
+    def _get_sql_nbs_elev_order(self, p_elev=(250, 1.5)):
+        """Set the default P values. See _get_sql_near_median for more informations."""
+        return super()._get_sql_nbs_elev_order(p_elev=p_elev)
+
+    def fillup(self, p_elev=(250, 1.5), **kwargs):
+        """Set the default P values. See _get_sql_near_median for more informations."""
+        return super().fillup(p_elev=p_elev, **kwargs)
+
+    def _sql_fillup_extra_dict(self, **kwargs):
+        sql_extra_dict = super()._sql_fillup_extra_dict(**kwargs)
+        if "p_elev" in kwargs:
+            sql_extra_dict.update(dict(
+                mul_elev_order=self._get_sql_nbs_elev_order(p_elev=kwargs["p_elev"])))
+        else:
+            sql_extra_dict.update(dict(
+                mul_elev_order=self._get_sql_nbs_elev_order()))
+        return sql_extra_dict
 
     def get_adj(self, **kwargs):
         """Get the adjusted timeserie.
@@ -2850,9 +3087,9 @@ class StationN(StationNBase):
             # sample dgm for horizon angle
             hab = pd.Series(
                 index=pd.Index([], name="angle", dtype=int),
-                name="horizon", 
+                name="horizon",
                 dtype=float)
-            
+
             for angle in range(90, 271, 3):
                 dgm1_mask = polar_line(xy, radius, angle)
                 dgm1_np, dgm1_tr = rasterio.mask.mask(
@@ -2871,7 +3108,7 @@ class StationN(StationNBase):
                 #####################################
                 line_parts = pd.DataFrame(
                     columns=["Start_point", "radius", "line"])
-                
+
                 # look for holes inside the line
                 for i, j in enumerate(dgm_gpd[dgm_gpd["dist"].diff() > dgm1_tr[0]*np.sqrt(2)].index):
                     line_parts = pd.concat(
@@ -2880,7 +3117,7 @@ class StationN(StationNBase):
                             {"Start_point": dgm_gpd.loc[j-1, "geometry"],
                             "radius": dgm_gpd.loc[j, "dist"] - dgm_gpd.loc[j-1, "dist"]},
                             index=[i])])
-                
+
                 # look for missing values at the end
                 dgm1_max_dist = dgm_gpd.iloc[-1]["dist"]
                 if dgm1_max_dist < (radius - dgm1_tr[0]/2*np.sqrt(2)):
@@ -2936,7 +3173,7 @@ class StationN(StationNBase):
                         [dgm_gpd[["horizon"]], dgm2_gpd[["horizon"]]], ignore_index=True)
 
                 hab[angle] = dgm_gpd["horizon"].max()
-                
+
         # calculate the mean "horizontabschimung"
         # Richter: H’=0,15H(S-SW) +0,35H(SW-W) +0,35H(W-NW) +0, 15H(NW-N)
         horizon = max(0,
@@ -3006,9 +3243,9 @@ class StationN(StationNBase):
         if type(period) != TimestampPeriod:
             period = TimestampPeriod(*period)
         period_in = period.copy()
-        if not period.is_empty():
-            period = self._check_period(
+        period = self._check_period(
                 period=period, kinds=["filled"])
+        if not period_in.is_empty():
             sql_period_clause = """
                 WHERE timestamp BETWEEN {min_tstp} AND {max_tstp}
             """.format(
@@ -3022,17 +3259,16 @@ class StationN(StationNBase):
         # check if temperature station is filled
         stat_t = StationT(self.id)
         stat_t_period = stat_t.get_filled_period(kind="filled")
-        stat_n_period = self.get_filled_period(kind="filled")
         delta = timedelta(hours=5, minutes=50)
         min_date = pd.Timestamp(MIN_TSTP).date()
         stat_t_min = stat_t_period[0].date()
         stat_t_max = stat_t_period[1].date()
-        stat_n_min = (stat_n_period[0] - delta).date()
-        stat_n_max = (stat_n_period[1] - delta).date()
+        stat_n_min = (period[0] - delta).date()
+        stat_n_max = (period[1] - delta).date()
         if stat_t_period.is_empty()\
                 or (stat_t_min > stat_n_min
                     and not (stat_n_min < min_date)
-                            and (stat_t_min == min_date)) \
+                             and (stat_t_min == min_date)) \
                 or (stat_t_max  < stat_n_max)\
                 and not stat_t.is_last_imp_done(kind="filled"):
             stat_t.fillup(period=period)
@@ -3115,7 +3351,9 @@ class StationN(StationNBase):
                             ELSE ts."filled"
                             END
             FROM ({sql_delta_n}) ts_delta_n
-            WHERE (ts.timestamp)::date = ts_delta_n.date;
+            WHERE (ts.timestamp)::date = ts_delta_n.date 
+                AND ((ts.filled>0 AND ts.corr!=(ts."filled" + ts_delta_n."delta_10min"))
+                     OR (ts.filled IS NULL AND ts.corr IS DISTINCT FROM NULL));
         """.format(
             sql_delta_n=sql_delta_n,
             **sql_format_dict
@@ -3192,32 +3430,39 @@ class StationN(StationNBase):
         return self.last_imp_richter_correct(_last_imp_period=_last_imp_period)
 
     @check_superuser
-    def _sql_fillup_extra(self):
-        # adjust 10 minutes sum to match measured daily value
-        sql_extra = """
-            UPDATE new_filled_{stid}_{para} ts
-            SET filled = filled * coef
-            FROM (
-                SELECT
-                    date,
-                    ts_d."raw"/ts_10."filled"::float AS coef
+    def _sql_fillup_extra_dict(self, **kwargs):
+        fillup_extra_dict = super()._sql_fillup_extra_dict(**kwargs)
+
+        stat_nd = StationND(self.id)
+        if stat_nd.isin_db() and \
+                not stat_nd.get_filled_period(kind="filled", from_meta=True).is_empty():
+            # adjust 10 minutes sum to match measured daily value
+            sql_extra = """
+                UPDATE new_filled_{stid}_{para} ts
+                SET filled = filled * coef
                 FROM (
                     SELECT
-                        date(timestamp - '5h 50min'::INTERVAL),
-                        sum(filled) AS filled
-                    FROM new_filled_{stid}_{para}
-                    GROUP BY date(timestamp - '5h 50min'::INTERVAL)
-                    ) ts_10
-                LEFT JOIN timeseries."{stid}_n_d" ts_d
-                    ON ts_10.date=ts_d.timestamp
-                WHERE ts_d."raw" IS NOT NULL
-                      AND ts_10.filled > 0
-                ) df_coef
-            WHERE (ts.timestamp - '5h 50min'::INTERVAL)::date = df_coef.date
-                AND coef != 1;
-        """.format(stid=self.id, para=self._para)
-        fillup_extra_dict = super()._sql_fillup_extra()
-        fillup_extra_dict.update(dict(sql_extra_after_loop=sql_extra))
+                        date,
+                        ts_d."raw"/ts_10."filled"::float AS coef
+                    FROM (
+                        SELECT
+                            date(timestamp - '5h 50min'::INTERVAL),
+                            sum(filled) AS filled
+                        FROM new_filled_{stid}_{para}
+                        GROUP BY date(timestamp - '5h 50min'::INTERVAL)
+                        ) ts_10
+                    LEFT JOIN timeseries."{stid}_n_d" ts_d
+                        ON ts_10.date=ts_d.timestamp
+                    WHERE ts_d."raw" IS NOT NULL
+                        AND ts_10.filled > 0
+                    ) df_coef
+                WHERE (ts.timestamp - '5h 50min'::INTERVAL)::date = df_coef.date
+                    AND coef != 1;
+            """.format(stid=self.id, para=self._para)
+            fillup_extra_dict.update(dict(sql_extra_after_loop=sql_extra))
+        else:
+            log.warn("Station_N({stid}).fillup: There is no daily timeserie in the database, "+
+                     "therefor the 10 minutes values are not getting adjusted to daily values")
         return fillup_extra_dict
 
     @check_superuser
@@ -3396,8 +3641,10 @@ class StationT(StationTETBase):
     _ma_cols = ["t_dwd_year"]
     _coef_sign = ["-", "+"]
     _agg_fun = "avg"
-    _valid_kinds = ["raw", "raw_min", "raw_max", "qc", 
+    _valid_kinds = ["raw", "raw_min", "raw_max", "qc",
                     "filled", "filled_min", "filled_max", "filled_by"]
+    _filled_by_n = 5
+    _fillup_max_dist = 100e3
 
     def __init__(self, id, **kwargs):
         super().__init__(id, **kwargs)
@@ -3405,8 +3652,8 @@ class StationT(StationTETBase):
 
     def _create_timeseries_table(self):
         """Create the timeseries table in the DB if it is not yet existing."""
-        sql_add_table = '''
-            CREATE TABLE IF NOT EXISTS timeseries."{stid}_{para}"  (
+        sql_add_table = f'''
+            CREATE TABLE IF NOT EXISTS timeseries."{self.id}_{self._para}"  (
                 timestamp date PRIMARY KEY,
                 raw integer NULL DEFAULT NULL,
                 raw_min integer NULL DEFAULT NULL,
@@ -3415,40 +3662,68 @@ class StationT(StationTETBase):
                 filled integer NULL DEFAULT NULL,
                 filled_min integer NULL DEFAULT NULL,
                 filled_max integer NULL DEFAULT NULL,
-                filled_by smallint NULL DEFAULT NULL
+                filled_by smallint[{self._filled_by_n}] NULL DEFAULT NULL
                 );
-        '''.format(stid=self.id, para=self._para)
+        '''
         with DB_ENG.connect() as con:
             con.execute(sqltxt(sql_add_table))
 
     def _get_sql_new_qc(self, period):
+        # inversion possible?
+        do_invers = self.get_meta(infos=["stationshoehe"])>800
+
+        sql_nears = self._get_sql_near_median(
+            period=period, only_real=False, add_is_winter=do_invers,
+            extra_cols="raw-nbs_median AS diff")
+
+        if do_invers:
+            # without inversion
+            sql_null_case = f"CASE WHEN (winter) THEN "+\
+                f"diff < {-5 * self._decimals} ELSE "+\
+                f"ABS(diff) > {5 * self._decimals} END "+\
+                f"OR raw < {-50 * self._decimals} OR raw > {50 * self._decimals}"
+        else:
+            # with inversion
+            sql_null_case = f"ABS(diff) > (5 * {self._decimals})"
+
         # create sql for new qc
         sql_new_qc = f"""
-            WITH nears AS ({self._get_sql_near_mean(period=period, only_real=True)})
+            WITH nears AS ({sql_nears})
             SELECT
                 timestamp,
-                (CASE WHEN (ABS(nears.raw - nears.mean) > 5 * {self._decimals})
+                (CASE WHEN ({sql_null_case})
                     THEN NULL
-                    ELSE nears."raw" END) as qc
+                    ELSE nears."raw"
+                    END) as qc
             FROM nears
         """
 
         return sql_new_qc
 
     @check_superuser
-    def _sql_fillup_extra(self):
+    def _sql_fillup_extra_dict(self, **kwargs):
         # additional parts to calculate the filling of min and max
-        fillup_extra_dict = super()._sql_fillup_extra()
+        fillup_extra_dict = super()._sql_fillup_extra_dict(**kwargs)
+        sql_array_init = "ARRAY[{0}]".format(
+            ", ".join(["NULL::smallint"] * self._filled_by_n))
         fillup_extra_dict.update({
-            "extra_new_temp_cols": "raw_min AS filled_min, raw_max AS filled_max,",
+            "extra_new_temp_cols": "raw_min AS filled_min, raw_max AS filled_max," +
+                        f"{sql_array_init} AS nb_min, {sql_array_init} AS nb_max,",
             "extra_cols_fillup_calc": "filled_min=round(nb.raw_min + %3$s, 0)::int, " +
                                       "filled_max=round(nb.raw_max + %3$s, 0)::int, ",
             "extra_cols_fillup": "filled_min = new.filled_min, " +
                                  "filled_max = new.filled_max, ",
             "extra_fillup_where": ' OR ts."filled_min" IS DISTINCT FROM new."filled_min"' +
-                                  ' OR ts."filled_max" IS DISTINCT FROM new."filled_max"'})
+                                  ' OR ts."filled_max" IS DISTINCT FROM new."filled_max"',
+            "extra_exec_cols": "nb_max[{i}]=round(nb.raw_max + %3$s, 0)::int,"+
+                               "nb_min[{i}]=round(nb.raw_min + %3$s, 0)::int,",
+            "extra_after_loop_extra_col": """,
+                filled_min=(SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY v)
+                            FROM unnest(nb_min) as T(v)),
+                filled_max=(SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY v)
+                            FROM unnest(nb_max) as T(v))"""})
         return fillup_extra_dict
-    
+
     def get_multi_annual(self):
         mas = super().get_multi_annual()
         if mas is not None:
@@ -3479,11 +3754,12 @@ class StationET(StationTETBase):
     _decimals = 10
     _ma_cols = ["et_dwd_year"]
     _sql_add_coef_calc = "* ma.exp_fact::float/ma_stat.exp_fact::float"
+    _fillup_max_dist = 100000
 
     def __init__(self, id, **kwargs):
         super().__init__(id, **kwargs)
         self.id_str = str(id)
-    
+
     def _create_timeseries_table(self):
         """Create the timeseries table in the DB if it is not yet existing."""
         sql_add_table = '''
@@ -3499,13 +3775,29 @@ class StationET(StationTETBase):
             con.execute(sqltxt(sql_add_table))
 
     def _get_sql_new_qc(self, period):
+        # inversion possible?
+        do_invers = self.get_meta(infos=["stationshoehe"])>800
+
+        sql_nears = self._get_sql_near_median(
+            period=period, only_real=False, add_is_winter=do_invers,
+            extra_cols="raw-nbs_median AS diff")
+
+        sql_null_case = f"""(nears.raw > (nears.nbs_median * 2) AND nears.raw > {3*self._decimals})
+                            OR ((nears.raw * 4) < nears.nbs_median AND nears.raw > {2*self._decimals})"""
+        if do_invers:
+            # without inversion
+            sql_null_case = f"CASE WHEN (winter) THEN "+\
+                f"((nears.raw * 4) < nears.nbs_median AND nears.raw > {2*self._decimals}) ELSE "+\
+                f"{sql_null_case} END"
+
         # create sql for new qc
         sql_new_qc = f"""
-            WITH nears AS ({self._get_sql_near_mean(period=period, only_real=True)})
+            WITH nears AS ({sql_nears})
             SELECT
                 timestamp,
-                (CASE WHEN ((nears.raw > (nears.mean * 2) AND nears.raw > {3*self._decimals})
-                            OR ((nears.raw * 4) < nears.mean AND nears.raw > {2*self._decimals}))
+                (CASE WHEN ({sql_null_case} 
+                            OR (nears.raw < 0) 
+                            OR (nears.raw > {20*self._decimals}))
                     THEN NULL
                     ELSE nears."raw" END) as qc
             FROM nears
@@ -3641,7 +3933,7 @@ class GroupStation(object):
         return filled_period
 
     def get_df(self, period=(None, None), kinds="best", paras="all",
-               agg_to="day", nas_allowed=True, add_na_share=False, 
+               agg_to="day", nas_allowed=True, add_na_share=False,
                add_t_min=False, add_t_max=False, **kwargs):
         """Get a DataFrame with the corresponding data.
 
@@ -3723,7 +4015,7 @@ class GroupStation(object):
                     kinds=use_kinds,
                     agg_to=agg_to,
                     nas_allowed=nas_allowed,
-                    add_na_share=add_na_share, 
+                    add_na_share=add_na_share,
                     **kwargs)
                 df = df.rename(dict(zip(
                     df.columns,
@@ -3871,7 +4163,7 @@ class GroupStation(object):
         add_t_max=False : bool, optional
             Schould the maximal temperature value get added?
             The default is False.
-        **kwargs: 
+        **kwargs:
             additional parameters for Station.get_df
 
         Raises
@@ -3881,13 +4173,13 @@ class GroupStation(object):
         """
         return self.create_ts(dir=dir, period=period, kinds=kind,
                               agg_to="10 min", r_r0=r_r0, split_date=True,
-                              nas_allowed=False, 
+                              nas_allowed=False,
                               add_t_min=add_t_min, add_t_max=add_t_max)
 
     def create_ts(self, dir, period=(None, None), kinds="best", paras="all",
                   agg_to="10 min", r_r0=None, split_date=False,
-                  nas_allowed=True, add_na_share=False, 
-                  add_t_min=False, add_t_max=False, 
+                  nas_allowed=True, add_na_share=False,
+                  add_t_min=False, add_t_max=False,
                   **kwargs):
         """Create the timeserie files as csv.
 
@@ -3946,7 +4238,7 @@ class GroupStation(object):
         add_t_max=False : bool, optional
             Schould the maximal temperature value get added?
             The default is False.
-        **kwargs: 
+        **kwargs:
             additional parameters for Station.get_df
 
         Raises
@@ -3963,24 +4255,27 @@ class GroupStation(object):
         paras = self._check_paras(paras)
 
         # get the period
-        join_how = "outer" if nas_allowed else "inner"
+        if not ("_skip_period_check" in kwargs and kwargs["_skip_period_check"]):
+            period = TimestampPeriod._check_period(period).expand_to_timestamp()
+            period_filled = self.get_filled_period(
+                kinds=kinds, 
+                join_how="outer" if nas_allowed else "inner")
 
-        period = TimestampPeriod._check_period(period)
-        period_filled = self.get_filled_period(kinds=kinds, join_how=join_how)
-
-        if period.is_empty():
-            period = period_filled
-        else:
-            period_new = period_filled.union(
-                period,
-                how="inner")
-            if period_new != period:
-                warnings.warn(
-                    "The Period for Station {stid} got changed from {period} to {period_filled}.".format(
-                        stid=self.id,
-                        period=str(period),
-                        period_filled=str(period_filled)))
-                period = period_new
+            if period.is_empty():
+                period = period_filled
+            else:
+                period_new = period_filled.union(
+                    period,
+                    how="inner")
+                if period_new != period:
+                    warnings.warn(
+                        "The Period for Station {stid} got changed from {period} to {period_filled}.".format(
+                            stid=self.id,
+                            period=str(period),
+                            period_filled=str(period_filled)))
+                    period = period_new
+        if "_skip_period_check" in kwargs:
+            del kwargs["_skip_period_check"]
 
         # prepare loop
         name_suffix = "_{stid:0>5}.txt".format(stid=self.id)
@@ -3996,8 +4291,9 @@ class GroupStation(object):
                 period=period, kinds=kinds,
                 paras=[para], agg_to=agg_to,
                 nas_allowed=nas_allowed,
-                add_na_share=add_na_share, 
-                add_t_min=add_t_min, add_t_max=add_t_max, 
+                add_na_share=add_na_share,
+                add_t_min=add_t_min, add_t_max=add_t_max,
+                _skip_period_check=True,
                 **kwargs)
 
             # rename columns
@@ -4008,7 +4304,7 @@ class GroupStation(object):
                     colname_base = f"{para.upper()}_" + kinds[1-(kinds.index("filled_by"))]
                 df.rename(
                     {colname_base: para.upper(),
-                     f"{colname_base}_min": f"{para.upper()}_min", 
+                     f"{colname_base}_min": f"{para.upper()}_min",
                      f"{colname_base}_max": f"{para.upper()}_max",},
                     axis=1, inplace=True)
             else:
