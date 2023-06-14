@@ -210,7 +210,7 @@ class StationsBase:
         sql = sql[:-2] + ";"
 
         # run sql command
-        with DB_ENG.connect() as con:
+        with DB_ENG.connect().execution_options(isolation_level="AUTOCOMMIT") as con:
             con.execute(sqltxt(sql))
 
     @check_superuser
@@ -252,7 +252,7 @@ class StationsBase:
         -------
         pd.Series
             a pandas Series with the information names as index and the explanation as values.
-        """    
+        """
         return cls._StationClass.get_meta_explanation(infos=infos)
 
     def get_meta(self,
@@ -335,6 +335,13 @@ class StationsBase:
                 meta[geom_col] = meta[geom_col].apply(wkt.loads)
                 meta = gpd.GeoDataFrame(
                     meta, crs="EPSG:" + srid, geometry=geom_col)
+                
+        # strip whitespaces in string columns
+        for col in meta.columns[meta.dtypes == object]:
+            try:
+                meta[col] = meta[col].str.strip()
+            except:
+                pass
 
         return meta
 
@@ -368,13 +375,13 @@ class StationsBase:
 
         if (type(stids) == str) and (stids == "all"):
             stations = [
-                self._StationClass(stid, _skip_meta_check=True) 
+                self._StationClass(stid, _skip_meta_check=True)
                 for stid in meta.index]
         else:
             stids = list(stids)
             stations = [
-                self._StationClass(stid, _skip_meta_check=True) 
-                for stid in meta.index 
+                self._StationClass(stid, _skip_meta_check=True)
+                for stid in meta.index
                 if stid in stids]
             stations_ids = [stat.id for stat in stations]
             if len(stations) != len(stids):
@@ -400,12 +407,12 @@ class StationsBase:
             This is a list of parameters, that is supported by the StationBase.count_holes method.
             E.G.:
             weeks : list, optional
-                A list of hole length to count. 
+                A list of hole length to count.
                 Every hole longer than the duration of weeks specified is counted.
                 The default is [2, 4, 8, 12, 16, 20, 24]
             kind : str
                 The kind of the timeserie to analyze.
-                Should be one of ['raw', 'qc', 'filled']. 
+                Should be one of ['raw', 'qc', 'filled'].
                 For N also "corr" is possible.
                 Normally only "raw" and "qc" make sense, because the other timeseries should not have holes.
             period : TimestampPeriod or (tuple or list of datetime.datetime or None), optional
@@ -432,10 +439,10 @@ class StationsBase:
         ------
         ValueError
             If the input parameters were not correct.
-        """   
+        """
         # check input parameters
         stations = self.get_stations(stids=stids, only_real=True)
-            
+
         # iter stations
         first = True
         for station in pb.progressbar(stations, line_breaks=False):
@@ -445,8 +452,8 @@ class StationsBase:
                 first = False
             else:
                 meta = pd.concat([meta, new_count], axis=0)
-        
-        return meta       
+
+        return meta
 
     @staticmethod
     def _get_progressbar(max_value, name):
@@ -474,7 +481,7 @@ class StationsBase:
 
         return pbar
 
-    def _run_method(self, stations, method, name, kwds=dict(), 
+    def _run_method(self, stations, method, name, kwds=dict(),
             do_mp=True, processes=mp.cpu_count()-1):
         """Run methods of the given stations objects in multiprocessing/threading mode.
 
@@ -586,7 +593,7 @@ class StationsBase:
             pbar.update(pbar.value + 1)
 
     @check_superuser
-    def update_raw(self, only_new=True, only_real=True, stids="all", 
+    def update_raw(self, only_new=True, only_real=True, stids="all",
             remove_nas=True, do_mp=True, **kwargs):
         """Download all stations data from CDC and upload to database.
 
@@ -604,17 +611,17 @@ class StationsBase:
             The Stations to return.
             Can either be "all", for all possible stations
             or a list with the Station IDs.
-            The default is "all".  
+            The default is "all".
         do_mp : bool, optional
             Should the method be done in multiprocessing mode?
             If False the methods will be called in threading mode.
             Multiprocessing needs more memory and a bit more initiating time. Therefor it is only usefull for methods with a lot of computation effort in the python code.
             If the most computation of a method is done in the postgresql database, then threading is enough to speed the process up.
-            The default is True.  
+            The default is True.
         remove_nas : bool, optional
-            Remove the NAs from the downloaded data before updating it to the database. 
+            Remove the NAs from the downloaded data before updating it to the database.
             This has computational advantages.
-            The default is True.    
+            The default is True.
         kwargs : dict, optional
             The additional keyword arguments for the _run_method method
 
@@ -814,7 +821,7 @@ class StationsBase:
             method="fillup",
             name="fillup {para} data".format(para=self._para.upper()),
             do_mp=do_mp, **kwargs)
-    
+
     @check_superuser
     def update(self, only_new=True, **kwargs):
         """Make a complete update of the stations.
@@ -828,7 +835,7 @@ class StationsBase:
             If False: The stations are updated for the whole possible period.
             If True, the stations are only updated for new values.
             The default is True.
-        """        
+        """
         self.update_raw(only_new=only_new, **kwargs)
         if only_new:
             self.last_imp_quality_check(**kwargs)
@@ -837,7 +844,7 @@ class StationsBase:
             self.quality_check(**kwargs)
             self.fillup(**kwargs)
 
-    def get_df(self, stids, kind, **kwargs):
+    def get_df(self, stids, **kwargs):
         """Get a DataFrame with the corresponding data.
 
         Parameters
@@ -854,22 +861,31 @@ class StationsBase:
         Returns
         -------
         pd.Dataframe
-            A DataFrame with the timeseries for this station and the given period.
+            A DataFrame with the timeseries for the selected stations, kind(s) and the given period.
+            If multiple columns are selected, the columns in this DataFrame is a MultiIndex with the station IDs as first level and the kind as second level.
         """
-        if "kinds" in kwargs:
-            raise ValueError("The kinds parameter is not supported for stations objects. Please use kind instead.")
+        if "kinds" in kwargs and "kind" in kwargs:
+            raise ValueError("Either enter kind or kinds, not both.")
+        if "kind" in kwargs:
+            kinds=[kwargs.pop("kind")]
+        else:
+            kinds=kwargs.pop("kinds")
         stats = self.get_stations(only_real=False, stids=stids)
         for stat in pb.progressbar(stats, line_breaks=False):
-            df = stat.get_df(kinds=[kind], **kwargs)
+            df = stat.get_df(kinds=kinds, **kwargs)
             if df is None:
                 warnings.warn(
                     f"There was no data for {stat._para_long} station {stat.id}!")
                 continue
-            df.rename(
-                dict(zip(
-                    df.columns, 
-                    [str(stat.id) for col in df.columns])), 
-                axis=1, inplace=True)
+            if len(df.columns) == 1:
+                df.rename(
+                    dict(zip(df.columns,
+                             [str(stat.id) for col in df.columns])),
+                    axis=1, inplace=True)
+            else:
+                df.columns = pd.MultiIndex.from_product(
+                    [[stat.id], df.columns], 
+                    names=["Station ID", "kind"])
             if "df_all" in locals():
                 df_all = df_all.join(df)
             else:
@@ -1006,8 +1022,8 @@ class StationsN(StationsBase):
             If False: The stations are updated for the whole possible period.
             If True, the stations are only updated for new values.
             The default is True.
-        """    
-        super().update(only_new=only_new, **kwargs)    
+        """
+        super().update(only_new=only_new, **kwargs)
         if only_new:
             self.last_imp_richter_correct(**kwargs)
         else:
@@ -1015,7 +1031,7 @@ class StationsN(StationsBase):
 
 class StationsND(StationsBase):
     """A class to work with and download daily precipitation data for several stations.
-    
+
     Those stations data are only downloaded to do some quality checks on the 10 minutes data.
     Therefor there is no special quality check and richter correction done on this data.
     If you want daily precipitation data, better use the 10 minutes station class (StationN) and aggregate to daily values.
@@ -1059,7 +1075,7 @@ class GroupStations(object):
     def _check_paras(self, paras):
         if type(paras)==str and paras != "all":
             paras = [paras,]
-        
+
         valid_paras=["n", "t", "et"]
         if (type(paras) == str) and (paras == "all"):
             return valid_paras
@@ -1080,12 +1096,12 @@ class GroupStations(object):
                 kinds=kinds, nas_allowed=nas_allowed)
             if "max_period" in locals():
                 max_period = max_period.union(
-                    max_period_i, 
+                    max_period_i,
                     how="outer" if nas_allowed else "inner"
                 )
             else:
                 max_period=max_period_i
-        
+
         if type(period) != TimestampPeriod:
             period = TimestampPeriod(*period)
         if period.is_empty():
@@ -1180,7 +1196,7 @@ class GroupStations(object):
         -------
         pd.Series
             a pandas Series with the information names as index and the explanation as values.
-        """    
+        """
         return cls._GroupStation.get_meta_explanation(infos=infos)
 
     def get_meta(self, paras="all", stids="all", **kwargs):
@@ -1204,7 +1220,7 @@ class GroupStations(object):
 
         Returns
         -------
-        dict of pandas.DataFrame or geopandas.GeoDataFrame 
+        dict of pandas.DataFrame or geopandas.GeoDataFrame
         or pandas.DataFrame or geopandas.GeoDataFrame
             The meta DataFrame.
             If several parameters are asked for, then a dict with an entry per parameter is returned.
@@ -1218,7 +1234,7 @@ class GroupStations(object):
         """
         paras = self._check_paras(paras)
         stats = self.get_para_stations(paras=paras)
-        
+
         for stat in stats:
             meta_para = stat.get_meta(stids=stids, **kwargs)
             meta_para["para"] = stat._para
@@ -1228,7 +1244,7 @@ class GroupStations(object):
                 meta_all = pd.concat([meta_all, meta_para], axis=0)
                 if type(meta_para)==gpd.GeoDataFrame:
                     meta_all = gpd.GeoDataFrame(meta_all, crs=meta_para.crs)
-        
+
         if len(paras)==1:
             return meta_all.drop("para", axis=1)
         else:
@@ -1290,11 +1306,11 @@ class GroupStations(object):
 
         if (type(stids) == str) and (stids == "all"):
             stations = [
-                self._GroupStation(stid, **kwargs) 
+                self._GroupStation(stid, **kwargs)
                 for stid in valid_stids]
         else:
             stids = list(stids)
-            stations = [self._GroupStation(stid, **kwargs) 
+            stations = [self._GroupStation(stid, **kwargs)
                         for stid in valid_stids if stid in stids]
             stations_ids = [stat.id for stat in stations]
             if len(stations) != len(stids):
@@ -1307,8 +1323,8 @@ class GroupStations(object):
         return stations
 
     def create_ts(self, dir, period=(None, None), kinds="best",
-                  stids="all", agg_to="10 min", r_r0=None, split_date=False, 
-                  nas_allowed=True, add_na_share=False, 
+                  stids="all", agg_to="10 min", r_r0=None, split_date=False,
+                  nas_allowed=True, add_na_share=False,
                   add_t_min=False, add_t_max=False, **kwargs):
         """Download and create the weather tables as csv files.
 
@@ -1366,7 +1382,7 @@ class GroupStations(object):
         add_t_max : bool, optional
             Should the maximal temperature value get added?
             The default is False.
-        **kwargs: 
+        **kwargs:
             additional parameters for GroupStation.create_ts
         """
         start_time = datetime.datetime.now()
@@ -1404,7 +1420,8 @@ class GroupStations(object):
                         nas_allowed=nas_allowed,
                         add_na_share=add_na_share,
                         add_t_min=add_t_min,
-                        add_t_max=add_t_max, 
+                        add_t_max=add_t_max,
+                        _skip_period_check=True,
                         **kwargs)
                     pbar.variables["last_station"] = stat.id
                     pbar.update(pbar.value + 1)
@@ -1444,7 +1461,7 @@ class GroupStations(object):
             zip="true" if dir.suffix ==".zip" else "false",
             pc=socket.gethostname(),
             out_size=out_size)
-        with DB_ENG.connect() as con:
+        with DB_ENG.connect().execution_options(isolation_level="AUTOCOMMIT") as con:
             con.execute(sqltxt(sql_save_time))
 
         # create log message
@@ -1453,7 +1470,7 @@ class GroupStations(object):
                 quantity=len(stids), dir=dir))
 
     def create_roger_ts(self, dir, period=(None, None), stids="all",
-                        kind="best", r_r0=1, 
+                        kind="best", r_r0=1,
                         add_t_min=False, add_t_max=False, **kwargs):
         """Create the timeserie files for roger as csv.
 
@@ -1493,7 +1510,7 @@ class GroupStations(object):
         add_t_max : bool, optional
             Should the maximal temperature value get added?
             The default is False.
-        **kwargs: 
+        **kwargs:
             additional parameters for GroupStation.create_ts
 
         Raises
