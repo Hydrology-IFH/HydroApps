@@ -6,6 +6,7 @@ from django.core.serializers import serialize
 from django.http import Http404, HttpResponse
 from .classes.weatherDB.stations import GroupStations
 from .classes.weatherDB.lib.utils import TimestampPeriod
+from .classes.weatherDB.broker import Broker
 from .forms import HCaptchaForm
 from main.utils.utils import get_context_base
 from main.settings import DEBUG
@@ -21,6 +22,7 @@ from django.utils import timezone
 from django.db import OperationalError
 
 app_dir = Path(__file__).parent
+wdb_broker = Broker()
 
 # get method html
 # create html from Markdown 
@@ -50,7 +52,8 @@ def get_ts(request, *args, **kwargs):
     try:
         context.update({
             'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
-            "wdb_max_downloads": get_wdb_max_downloads(request)
+            "wdb_max_downloads": get_wdb_max_downloads(request),
+            "db_version": wdb_broker.get_db_version()
             })
     except OperationalError: 
         # when database is down
