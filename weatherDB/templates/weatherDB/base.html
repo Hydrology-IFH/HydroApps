@@ -28,7 +28,7 @@
   {{ block.super}}
 {% endblock %}
 
-{% block content %}
+{% comment %} {% block content %}
   <div class="container-fluid alert alert-warning" role "alert">
     <h3>Major error notification</h3>
     There were major errors in the previous data of the WeatherDB App.
@@ -36,6 +36,6 @@
     Furthermore the Richter correction had false exposition classes for many stations. Those errors got resolved on the 17.5.2023.
     For further information see the <a target="_blank" href="https://weatherdb.readthedocs.io/en/stable/CHANGES.html">Change-log</a> for Version 0.0.27-0.0.29.
   </div>
-{% endblock %}
+{% endblock %} {% endcomment %}
 
 {% block copyright%}HyFr - Max Schmit (2023){%endblock%}
