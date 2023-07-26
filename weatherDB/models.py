@@ -48,6 +48,7 @@ class TSDownloads(models.Model):
     add_na_share = models.BooleanField(blank=True, null=True)
     add_t_min = models.BooleanField(blank=True, null=True)
     add_t_max = models.BooleanField(blank=True, null=True)
+    toolbox_format = models.BooleanField(blank=True, null=True)
 
     def delete(self):
         file = Path(self.filepath)

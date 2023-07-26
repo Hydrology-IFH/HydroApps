@@ -140,6 +140,11 @@ def download_ts(request, *args, **kwargs):
     else:
         add_t_max=False
 
+    if "toolbox_format" in request.POST:
+        toolbox_format=bool(strtobool(request.POST["toolbox_format"]))
+    else:
+        toolbox_format=False
+
     # set kinds
     if add_filled_by:
         kinds = [kind]+["filled_by"]
@@ -157,7 +162,20 @@ def download_ts(request, *args, **kwargs):
         aggregation=agg_to,
         add_na_share=add_na_share,
         add_t_min=add_t_min,
-        add_t_max=add_t_max)
+        add_t_max=add_t_max,
+        toolbox_format=toolbox_format)
+    
+    if toolbox_format:
+        file_names={"N":"PREC.txt", "T":"TEMP.txt", "ET":"PET.txt"},
+        col_names={"N":"PREC", "ET":"PET", 
+                    "T":"TA", "T_min":"TA_min", "T_max":"TA_max", 
+                    "Jahr":"YYYY", "Monat":"MM", "Tag":"DD", 
+                    "Stunde":"hh", "Minute":"mm"}
+        add_header=False
+    else:
+        file_names={}
+        col_names={}
+        add_header=True
 
     # create a temporary zip folder with timeseries
     existing_url = TSDownloads.get_cached_file(**para_dict)
@@ -167,17 +185,20 @@ def download_ts(request, *args, **kwargs):
         temp_zf = TSDownloads.create_file(request=request, **para_dict)
         warnings.simplefilter("ignore")
         gstats.create_ts(
-                dir=temp_zf.get_fp(),
-                period=period,
-                kinds=kinds,
-                stids=stids,
-                agg_to=agg_to,
-                r_r0=None,
-                split_date=split_date, 
-                add_na_share=add_na_share, 
-                nas_allowed=nas_allowed,
-                add_t_min=add_t_min,
-                add_t_max=add_t_max)
+            dir=temp_zf.get_fp(),
+            period=period,
+            kinds=kinds,
+            stids=stids,
+            agg_to=agg_to,
+            r_r0=None,
+            split_date=split_date, 
+            add_na_share=add_na_share, 
+            nas_allowed=nas_allowed,
+            add_t_min=add_t_min,
+            add_t_max=add_t_max,
+            file_names=file_names,
+            col_names=col_names,
+            add_header=add_header)
 
     return HttpResponse(temp_zf.get_url())
 
