@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 08:54+0200\n"
-"PO-Revision-Date: 2023-06-15 08:57+0200\n"
+"POT-Creation-Date: 2023-07-26 17:19+0200\n"
+"PO-Revision-Date: 2023-07-26 17:20+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -276,7 +276,19 @@ msgstr ""
 msgid "add maximal daily Temperature"
 msgstr "maximale tägliche Temperatur hinzufügen"
 
-#: .\django\weatherDB\templates\weatherDB\get_ts.html:228
+#: .\django\weatherDB\templates\weatherDB\get_ts.html:216
+msgid ""
+"Should the output format be the RoGeR-toolbox format. This will rename the "
+"file and columns. Have a look at the examples in the "
+msgstr ""
+"Sollen die Zeitreihen im RoGeR-Toolbox-Format sein. Dies ändert die Namen "
+"der Dateien und der Spalten. Schauen Sie sich die Beispiele im "
+
+#: .\django\weatherDB\templates\weatherDB\get_ts.html:219
+msgid "RoGeR toolbox format"
+msgstr "RoGeR Toolbox Format"
+
+#: .\django\weatherDB\templates\weatherDB\get_ts.html:240
 msgid "download"
 msgstr "Herunterladen"
 

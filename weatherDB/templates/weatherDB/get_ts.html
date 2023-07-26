@@ -210,6 +210,18 @@
                         <div class="bs-component" id="add_t_max_alert_box"></div>
                       </div>
                     </div>
+                    <div class="form-group input-group">
+                      <div class="form-check" 
+                          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-container="body" data-bs-trigger="hover"
+                          title='{% trans "Should the output format be the RoGeR-toolbox format. This will rename the file and columns. Have a look at the examples in the " %}<a href="https://github.com/Hydrology-IFH/roger" target="_blank" rel="noopener noreferrer">GitHub-repository</a>'>
+                        <input class="form-check-input" type="checkbox" value="true" id="toolbox_format" name="toolbox_format">
+                        <label class="form-check-label" for="toolbox_format" autocomplete=off>
+                          {% trans "RoGeR toolbox format" %}
+                        </label>
+                        <div class="invalid-feedback" id="invalid-feedback-toolbox_format"><ul></ul></div>
+                        <div class="bs-component" id="toolbox_format_alert_box"></div>
+                      </div>
+                    </div>
 
                   </div>
                 </div>
