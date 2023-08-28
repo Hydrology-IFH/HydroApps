@@ -166,16 +166,18 @@ def download_ts(request, *args, **kwargs):
         toolbox_format=toolbox_format)
     
     if toolbox_format:
-        file_names={"N":"PREC.txt", "T":"TEMP.txt", "ET":"PET.txt"},
-        col_names={"N":"PREC", "ET":"PET", 
+        file_names = {"N":"PREC.txt", "T":"TA.txt", "ET":"PET.txt"},
+        col_names = {"N":"PREC", "ET":"PET", 
                     "T":"TA", "T_min":"TA_min", "T_max":"TA_max", 
                     "Jahr":"YYYY", "Monat":"MM", "Tag":"DD", 
                     "Stunde":"hh", "Minute":"mm"}
-        add_header=False
+        add_header = False
+        keep_date_parts = True
     else:
-        file_names={}
-        col_names={}
-        add_header=True
+        file_names = {}
+        col_names = {}
+        add_header = True
+        keep_date_parts = False
 
     # create a temporary zip folder with timeseries
     existing_url = TSDownloads.get_cached_file(**para_dict)
@@ -198,7 +200,8 @@ def download_ts(request, *args, **kwargs):
             add_t_max=add_t_max,
             file_names=file_names,
             col_names=col_names,
-            add_header=add_header)
+            add_header=add_header,
+            keep_date_parts=keep_date_parts,)
 
     return HttpResponse(temp_zf.get_url())
 
