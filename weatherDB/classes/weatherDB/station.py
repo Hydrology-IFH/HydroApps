@@ -51,17 +51,6 @@ RASTERS = {
         "dtype": int,
         "abbreviation": "dwd"
     },
-    "regnie_grid": { # kept for now
-        "srid": 3035,
-        "db_table": "regnie_grid_1991_2020",
-        "bands": {
-            1: "n_regnie_wihj",
-            2: "n_regnie_sohj",
-            3: "n_regnie_year"
-        },
-        "dtype": int,
-        "abbreviation": "regnie"
-    },
     "hyras_grid": {
         "srid": 3035,
         "db_table": "hyras_grid_1991_2020",
@@ -1208,7 +1197,7 @@ class StationBase:
             If None is given, the maximum or minimal possible Timestamp is taken.
             The default is (None, None).
         """
-        period = self._check_period(period=period, kinds=["raw"])
+        period = self._check_period(period=period, kinds=["raw"], nas_allowed=True)
 
         # create update sql
         sql_qc = """
@@ -2942,6 +2931,18 @@ class StationN(StationNBase):
                 SELECT NULL::date as date
             """
 
+        # remove single peaks above 5mm/10min
+        sql_single_peaks = """
+            SELECT ts.timestamp
+            FROM timeseries."{stid}_{para}" ts
+            INNER JOIN timeseries."{stid}_{para}" tsb
+                ON ts.timestamp = tsb.timestamp - INTERVAL '10 min'
+            INNER JOIN timeseries."{stid}_{para}" tsa
+                ON ts.timestamp = tsa.timestamp + INTERVAL '10 min'
+            WHERE ts.raw > (5*{decim}) AND tsb.raw = 0 AND tsa.raw = 0
+                AND ts.timestamp BETWEEN {min_tstp} AND {max_tstp}
+        """.format(**sql_format_dict)
+
         # make sql for timestamps where 3 times same value in a row
         sql_tstps_failed = """
             WITH tstps_df as (
@@ -2962,16 +2963,20 @@ class StationN(StationNBase):
             SELECT tstp_1 AS timestamp FROM tstps_df
             UNION SELECT tstp_2 FROM tstps_df
             UNION SELECT tstp_3 FROM tstps_df
-        """.format(**sql_format_dict)
+            UNION ({sql_single_peaks})
+        """.format(sql_single_peaks=sql_single_peaks,
+                   **sql_format_dict)
 
+        # create sql for new qc values
         sql_new_qc = """
             WITH tstps_failed as ({sql_tstps_failed}),
-                    dates_failed AS ({sql_dates_failed})
+                 dates_failed AS ({sql_dates_failed})
             SELECT ts.timestamp,
                 (CASE WHEN ((ts.timestamp IN (SELECT timestamp FROM tstps_failed))
                         OR ((ts.timestamp - INTERVAL '6h')::date IN (
                             SELECT date FROM dates_failed))
-                        OR ts."raw" < 0)
+                        OR ts."raw" < 0
+                        OR ts."raw" >= 50*{decim})
                     THEN NULL
                     ELSE ts."raw" END) as qc
             FROM timeseries."{stid}_{para}" ts
@@ -3453,33 +3458,52 @@ class StationN(StationNBase):
         stat_nd = StationND(self.id)
         if stat_nd.isin_db() and \
                 not stat_nd.get_filled_period(kind="filled", from_meta=True).is_empty():
-            # adjust 10 minutes sum to match measured daily value
+            # adjust 10 minutes sum to match measured daily value,
+            # but don't add more than 10mm/10min and don't create single peaks with more than 5mm/min
             sql_extra = """
                 UPDATE new_filled_{stid}_{para} ts
-                SET filled = filled * coef
+                SET filled = tsnew.filled
                 FROM (
-                    SELECT
-                        date,
-                        ts_d."raw"/ts_10."filled"::float AS coef
-                    FROM (
+                    SELECT ts.timestamp,
+                        CASE WHEN tsb.filled = 0 AND tsa.filled = 0
+                             THEN LEAST(ts.filled * coef, 5*{decim})
+                             ELSE CASE WHEN ((ts.filled * coef) - ts.filled) <= (10 * {decim})
+                                       THEN LEAST(ts.filled * coef, 50*{decim})
+                                       ELSE LEAST(ts.filled + (10 * {decim}), 50*{decim})
+                                  END
+                             END as filled
+                    FROM new_filled_{stid}_{para} ts
+                    INNER JOIN (
                         SELECT
-                            date(timestamp - '5h 50min'::INTERVAL),
-                            sum(filled) AS filled
-                        FROM new_filled_{stid}_{para}
-                        GROUP BY date(timestamp - '5h 50min'::INTERVAL)
-                        ) ts_10
-                    LEFT JOIN timeseries."{stid}_n_d" ts_d
-                        ON ts_10.date=ts_d.timestamp
-                    WHERE ts_d."raw" IS NOT NULL
-                        AND ts_10.filled > 0
-                    ) df_coef
-                WHERE (ts.timestamp - '5h 50min'::INTERVAL)::date = df_coef.date
-                    AND coef != 1;
-            """.format(stid=self.id, para=self._para)
+                            date,
+                            ts_d."raw"/ts_10."filled"::float AS coef
+                        FROM (
+                            SELECT
+                                date(timestamp - '5h 50min'::INTERVAL),
+                                sum(filled) AS filled
+                            FROM new_filled_{stid}_{para}
+                            GROUP BY date(timestamp - '5h 50min'::INTERVAL)
+                            ) ts_10
+                        LEFT JOIN timeseries."{stid}_n_d" ts_d
+                            ON ts_10.date=ts_d.timestamp
+                        WHERE ts_d."raw" IS NOT NULL
+                            AND ts_10.filled > 0
+                        ) df_coef
+                        ON (ts.timestamp - '5h 50min'::INTERVAL)::date = df_coef.date
+                           AND coef != 1
+                    LEFT JOIN timeseries."{stid}_{para}" tsb
+                        ON ts.timestamp = tsb.timestamp - INTERVAL '10 min'
+                    LEFT JOIN timeseries."{stid}_{para}" tsa
+                        ON ts.timestamp = tsa.timestamp + INTERVAL '10 min'
+                ) tsnew
+                WHERE tsnew.timestamp = ts.timestamp;
+            """.format(stid=self.id, para=self._para, decim=self._decimals)
+
             fillup_extra_dict.update(dict(sql_extra_after_loop=sql_extra))
         else:
             log.warn("Station_N({stid}).fillup: There is no daily timeserie in the database, "+
                      "therefor the 10 minutes values are not getting adjusted to daily values")
+
         return fillup_extra_dict
 
     @check_superuser
@@ -3490,16 +3514,14 @@ class StationN(StationNBase):
         if type(period) != TimestampPeriod:
             period= TimestampPeriod(*period)
 
-        # update difference to regnie and hyras
+        # update difference to dwd_grid and hyras
         if period.is_empty() or period[0].year < pd.Timestamp.now().year:
             sql_diff_ma = """
                 UPDATE meta_n
-                SET quot_filled_regnie = quots.quot_regnie*100,
-                    quot_filled_dwd_grid = quots.quot_dwd*100,
+                SET quot_filled_dwd_grid = quots.quot_dwd*100,
                     quot_filled_hyras = quots.quot_hyras*100
                 FROM (
-                    SELECT df_ma.ys / (srv.n_regnie_year*{decimals}) AS quot_regnie,
-                        df_ma.ys / (srv.n_dwd_year*{decimals}) AS quot_dwd,
+                    SELECT df_ma.ys / (srv.n_dwd_year*{decimals}) AS quot_dwd,
                         df_ma.ys / (srv.n_hyras_year*{decimals}) AS quot_hyras
                     FROM (
                         SELECT avg(df_a.yearly_sum) as ys

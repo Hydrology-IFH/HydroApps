@@ -24,7 +24,6 @@ class MetaN(models.Model):
     # stationsname = models.TextField(blank=True, null=True)
     # bundesland = models.TextField(blank=True, null=True)
     quot_corr_filled = models.FloatField(null=True, blank=True)
-    quot_filled_regnie = models.FloatField(null=True, blank=True)
     quot_filled_hyras = models.FloatField(null=True, blank=True)
     richter_class = models.TextField(blank=True, null=True)
 
@@ -58,7 +57,7 @@ class TSDownloads(models.Model):
 
     @classmethod
     def create_file(cls, stids, period_start, period_end, split_date, kinds,
-                    aggregation, add_na_share, add_t_min, add_t_max, 
+                    aggregation, add_na_share, add_t_min, add_t_max,
                     toolbox_format, request):
         temp_zf = CACHE_DIR.joinpath(
             "ts_produkt_" + datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")+".zip")
@@ -86,7 +85,7 @@ class TSDownloads(models.Model):
         return obj
 
     @classmethod
-    def get_cached_file(cls, stids, period_start, period_end, split_date, kinds, 
+    def get_cached_file(cls, stids, period_start, period_end, split_date, kinds,
                         aggregation, add_na_share, add_t_min, add_t_max, toolbox_format):
         objs = cls.objects.filter(
             stids=stids,

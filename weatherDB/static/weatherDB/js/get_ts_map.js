@@ -5,7 +5,7 @@ class InputField{
         this.dom_input = document.querySelector(type + "#" + name);
         this.dom_form = document.getElementById("download_form");
     }
-    
+
     make_valid(){
         this.dom_input.setCustomValidity('');
         this.dom_invalid_feedback.display = "none";
@@ -74,10 +74,10 @@ class Form{
         }else{
             L.Icon.Default.prototype.options.imagePath = location.origin + "/";
         }
-        L.Icon.Default.prototype.options.shadowUrl = "static/weatherDB/img/Leaflet-Marker-shadow.png"; 
+        L.Icon.Default.prototype.options.shadowUrl = "static/weatherDB/img/Leaflet-Marker-shadow.png";
         this.IconDefault = L.Icon.Default.extend(
             {options:{
-                iconUrl:"static/weatherDB/img/marker-icon-blue.png", 
+                iconUrl:"static/weatherDB/img/marker-icon-blue.png",
                 iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-blue.png"
             }});
         this.IconUnselect = L.Icon.Default.extend(
@@ -135,8 +135,8 @@ class Form{
                 div.innerHTML = `<h3>${gettext("legend")}</h3>`
                 let icons = [this.IconSelect, this.IconSelectOutPeriod, this.IconUnselect]
                 let names = [
-                    gettext("selected"), 
-                    gettext("selected, but not in date range"), 
+                    gettext("selected"),
+                    gettext("selected, but not in date range"),
                     gettext("not select")];
                 for (let i=0; i <3; i++){
                     let row = L.DomUtil.create('div', "row justify-content-right");
@@ -219,7 +219,7 @@ class Form{
                             } else {
                                 alert(gettext("There was an Error, while creating the timeseries. Sorry!"))
                             }
-                            
+
                             form.loading_dom.style.display = "none";
                     }})
                 }
@@ -320,7 +320,6 @@ class Form{
                 let filled_from = new Date(layer.feature.properties.filled_from);
                 let filled_until = new Date(layer.feature.properties.filled_until);
                 let richter_class = layer.feature.properties.richter_class;
-                let quot_regnie_filled = Math.round(100/layer.feature.properties.quot_filled_regnie*1000)/10;
                 let quot_hyras_filled = Math.round(100/layer.feature.properties.quot_filled_hyras*1000)/10;
                 let quot_corr_filled = Math.round(layer.feature.properties.quot_corr_filled*10)/10;
                 let label_btn_select = this.is_selected(stid)? gettext("unselect"):gettext("select");
@@ -338,8 +337,7 @@ class Form{
                     <br><b>${gettext("exposition class")}:</b> ${richter_class}
                     <br><b>${gettext("factors")}:</b><br>
                     N<sub>${gettext("corrected")}</sub> = ${quot_corr_filled}% &#8226; N<sub>${gettext("filled")}</sub> <br>
-                    N<sub>${gettext("filled")}</sub> = ${quot_hyras_filled}% &#8226; N<sub>${gettext("multi_annual")}, HYRAS</sub><br>
-                    N<sub>${gettext("filled")}</sub> = ${quot_regnie_filled}% &#8226; N<sub>${gettext("multi_annual")}, REGNIE</sub><br>`
+                    N<sub>${gettext("filled")}</sub> = ${quot_hyras_filled}% &#8226; N<sub>${gettext("multi_annual")}, HYRAS</sub><br>`
                     ;
                 return str
             }
@@ -515,7 +513,7 @@ class Form{
     }
 
     check_stations_input(){
-        this.input_stids.make_valid();        
+        this.input_stids.make_valid();
         this.form_dom.classList.add("was-validated");
 
         let in_text = this.input_stids.dom_input.value;
@@ -531,7 +529,7 @@ class Form{
                 return false;
             }
         }
-        
+
         // check if given stids are in the meta file
         let in_stids = in_text.trim().replaceAll(";", ",").replaceAll(/[,\s]+$/gm, "").split(",").map((el) => el.trim());
         in_stids = Array.from(new Set(in_stids));
@@ -583,12 +581,12 @@ class Form{
             let msg_invalid_period = `${gettext("The date must be between")} ${min_tstp.toLocaleDateString()} ${gettext("and")} ${max_tstp.toLocaleDateString()} ${gettext("for the selected stations and data kind")}.`
             if (this.get_period_start()<min_tstp){
                 this.input_period_start.make_invalid(msg_invalid_period)
-            } 
+            }
             if (this.get_period_end()>max_tstp){
                 this.input_period_end.make_invalid(msg_invalid_period)
-            } 
+            }
         }
-        
+
         return this.input_period_start.is_valid() & this.input_period_end.is_valid();
     }
 
@@ -638,7 +636,7 @@ class Form{
                     msg = gettext("You selected to download the data in 10 minutes resolution.<br>Therefor no column is added, as this column is only added, when the data gets aggregated.")
                 } else if ("day" == agg_to){
                     msg = gettext("You selected to download the data in daily resolution.<br>Therefor no column is added for T and ET, as this column is only added, when the data gets aggregated.")
-                } 
+                }
                 if (msg !=""){
                     alert_box.innerHTML =  `<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">${msg}</p></div></div>`;
                     this.add_na_share_alerted = true;
@@ -673,7 +671,7 @@ class Form{
                     dom_input.classList.remove('border', 'border-danger');
                     return true;
                 }
-                
+
             } else {
                 dom_invalid_feedback.style.display = "block";
                 dom_invalid_feedback.innerHTML = gettext("Please do this hCaptcha test!");
@@ -697,7 +695,7 @@ class Form{
                 this.input_stids.dom_input.value += ", " + stid;
             } else {
                 this.input_stids.dom_input.value += stid;
-            } 
+            }
             this.input_stids.dom_input.dispatchEvent(new Event('change'));
         } else {
             console.log(`The station id ${stid} is not a valid ID`);
@@ -711,7 +709,7 @@ class Form{
         let selected_stids = this.get_selected_stations();
         if (selected_stids.includes(stid)){
             selected_stids.splice(selected_stids.indexOf(stid),1);
-            this.input_stids.dom_input.value = selected_stids.join(", "); 
+            this.input_stids.dom_input.value = selected_stids.join(", ");
             this.update_coloring();
             this.update_filter();
         }
