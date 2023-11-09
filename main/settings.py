@@ -28,10 +28,15 @@ import secretSettings_HydroApps as secrets
 SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if "DJ_DEBUG" in os.environ:
-    DEBUG = os.environ["DJ_DEBUG"].upper()=="TRUE"
+if "HydroApps_Debug" in os.environ:
+    DEBUG = os.environ["HydroApps_Debug"].upper()=="TRUE"
 else:
     DEBUG = True
+
+# set secret debug settings
+if DEBUG and hasattr(secrets, "DEBUG_SETTINGS"):
+    for name in secrets.DEBUG_SETTINGS:
+        setattr(secrets, name, secrets.DEBUG_SETTINGS[name])
 
 ALLOWED_HOSTS = [
     "localhost",
