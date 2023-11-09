@@ -9,13 +9,17 @@ class KombStRAGrid(models.Model):
         db_table = 'KombStRA_grid'
 
 class KombStRAData(models.Model):
+    data_id = models.BigAutoField(
+        primary_key=True,
+        help_text=_("ID of the event"))
     grid_id = models.ForeignKey( # ID
-        KombStRAGrid, 
+        KombStRAGrid,
         models.DO_NOTHING,
         blank=False, null=False,
-        help_text=_("ID to link to the Grid-Cell"))
+        help_text=_("ID to link to the Grid-Cell"),
+        db_column='grid_id')
     duration = models.IntegerField( # ND
-        blank=False, null=False, 
+        blank=False, null=False,
         help_text=_("Duration class of the event (Dauerstufe) in minutes"))
     pval = models.FloatField(
         blank=False, null=False,
@@ -29,6 +33,9 @@ class KombStRAData(models.Model):
     event_rank = models.IntegerField( # FEvNR
         blank=False, null=False,
         help_text=_("Rank of the event in the grid-cell"))
+    percentile = models.IntegerField(
+        blank=False, null=False,
+        help_text=_("Percentile of the event in the grid-cell"))
 
     class Meta:
         db_table = 'KombStRA_data'

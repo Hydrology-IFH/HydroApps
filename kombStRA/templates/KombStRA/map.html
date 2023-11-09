@@ -27,7 +27,7 @@
 
   <h1>{% trans "Map of the heavy rain events" %}</h1>
   <form id="select_stations_form" class="form-horizontal" action="javascript:void(0);">
-    <div class="d-flex col-auto"> 
+    <div class="d-flex col-auto">
       <h3>{% trans "Select plots to show" %}</h3>
       <span class="ms-auto mb-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
       data-bs-html="true" data-bs-title='{% trans "Show me an explanation of the plots." %}'>
@@ -36,7 +36,7 @@
         </button>
       </span>
     </div>
-  
+
     <div class="col d-inline-flex justify-content-end pr-0 mr-0 mt-2">
       <input type="submit" value="{% trans "show plots" %}" name="add_plots" class="btn btn-primary"
         style="font-size: 20px; font-weight: 600;" id="btn_add_plots">
@@ -47,12 +47,12 @@
 {% endblock content %}
 
 {% block scripts %}
-  {{ base_grid|json_script:"base_grid" }}
+  {% comment %} {{ base_grid|json_script:"base_grid" }} {% endcomment %}
   <script src="{% url 'KombStRA:javascript-catalog' %}"></script>
   <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
   <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
   {% if debug %}
-    <script src={% static "KombStRA/js/map.js" %} defer></script> 
+    <script src={% static "KombStRA/js/map.js" %} defer></script>
   {%else%}
     <script src={% static "KombStRA/js/map.min.js" %} defer></script>
   {% endif%}

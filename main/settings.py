@@ -67,6 +67,9 @@ INSTALLED_APPS = [
     "django_bootstrap5", # django-bootstrap5
     'hcaptcha', # pip install django-hCaptcha
     'rest_framework', #  djangorestframework
+    'rest_framework_gis', # djangorestframework-gis
+    'django_filters', # django-filter
+    "rest_framework_msgpack"
 ]
 
 MIDDLEWARE = [
@@ -255,10 +258,9 @@ Q_CLUSTER = {
     'workers': 4,
     'orm': 'default',
     "timeout": 60*60*24*2, # in seconds
-    "max_attempts": 4,
+    "max_attempts": 1,
     'has_replica': True,
-    'name':'django_q_weatherdb',
-    'max_attempts':1
+    'name':'django_q_weatherdb'
 }
 
 # for user statistics request
@@ -276,6 +278,17 @@ REQUEST_IGNORE_USER_AGENTS = (
 )
 REQUEST_IGNORE_AJAX=True
 
+# django rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'],
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+        "rest_framework_msgpack.renderers.MessagePackRenderer",
+    ],
+}
+
 # GDAL
 if "GDAL_LIBRARY_PATH" in os.environ:
     GDAL_LIBRARY_PATH = os.environ["GDAL_LIBRARY_PATH"]
@@ -284,7 +297,7 @@ if "GEOS_LIBRARY_PATH" in os.environ:
 
 # temporary folder
 CACHE_DIR = Path(secrets.CACHE_DIR)
-if not CACHE_DIR.is_dir(): 
+if not CACHE_DIR.is_dir():
     CACHE_DIR = BASE_DIR.parent.joinpath("Cache")
 if not CACHE_DIR.is_dir(): CACHE_DIR.mkdir()
 CACHE_URL = secrets.BASE_URL + "/weatherdb/downloads/"

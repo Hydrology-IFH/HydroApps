@@ -13,11 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, include
 from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.cache import cache_page
+from rest_framework.routers import DefaultRouter
 
 from .views import (home_view, map_view, method_view)
+from .apis import KombStRADataViewSet, KombStRAGridViewSet
+
+router = DefaultRouter()
+router.register(r'kombstra_data', KombStRADataViewSet)
+router.register(r'kombstra_grid', KombStRAGridViewSet)
 
 app_name = 'KombStRA'
 urlpatterns = [
@@ -28,4 +34,5 @@ urlpatterns = [
          cache_page(86400, key_prefix='jsi18n')(
             JavaScriptCatalog.as_view(packages=['KombStRA'])),
          name='javascript-catalog'),
+    path('api/', include(router.urls)),
 ]

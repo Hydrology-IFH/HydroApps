@@ -11,8 +11,11 @@ psycopg2-binary
 pyproj
 django-hCaptcha
 djangorestframework
+djangorestframework-gis
 django-q2
 django-request
+django-filter
+djangorestframework-msgpack
 
 
 # maybee not needed anymore
