@@ -39,4 +39,15 @@ class Migration(migrations.Migration):
                 'db_table': 'KombStRA_data',
             },
         ),
+        # RADOLAN SRID
+        # found on https://www.spatialreference.org/ref/sr-org/7019/postgis/
+        migrations.RunSQL("""
+            INSERT into spatial_ref_sys (srid, auth_name, auth_srid, proj4text, srtext)
+                VALUES (97019, 'sr-org', 7019, '',
+                        'PROJCS["DWD (RADOLAN)",GEOGCS["RADOLAN Datum",DATUM["<custom>",SPHEROID["<custom>",6370040.0,0.0],TOWGS84[25591.76817,5069.58491,-235.15960,-2.7433219230851,0.0,0.0,0.99598248]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Stereographic_North_Pole"],PARAMETER["False_Easting",0.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",10.0],PARAMETER["Scale_Factor",1.0],PARAMETER["Standard_Parallel_1",60.0],UNIT["Kilometer",1000.0]]')
+            ON CONFLICT (srid) DO UPDATE SET
+                          auth_name = EXCLUDED.auth_name,
+                          auth_srid = EXCLUDED.auth_srid,
+                          proj4text = EXCLUDED.proj4text,
+                          srtext = EXCLUDED.srtext;""")
     ]
