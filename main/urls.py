@@ -37,12 +37,12 @@ urlpatterns = [
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
         path("asgII/", include("asgII.urls")),
         path("<str:app_name>/auth/", include("my_auth.urls")),
-        path("KombStRA/", include("kombStRA.urls")),
+        path("kombstra/", include("kombstra.urls")),
     )
 ]
 
 if hasattr(settings, "GOOGLE_SITE_VERIFICATION_FILE"):
     urlpatterns.append(
-        path(settings.GOOGLE_SITE_VERIFICATION_FILE, 
-             google_site_verification_view, 
+        path(settings.GOOGLE_SITE_VERIFICATION_FILE,
+             google_site_verification_view,
              name='google_site_verification'))

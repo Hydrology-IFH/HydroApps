@@ -25,14 +25,14 @@ router = DefaultRouter()
 router.register(r'kombstra_data', KombStRADataViewSet)
 router.register(r'kombstra_grid', KombStRAGridViewSet)
 
-app_name = 'KombStRA'
+app_name = 'kombstra'
 urlpatterns = [
     path('', home_view, name="home"),
     path('map', map_view, name="map"),
     path('method', method_view, name="method"),
     path('jsi18n',
          cache_page(86400, key_prefix='jsi18n')(
-            JavaScriptCatalog.as_view(packages=['KombStRA'])),
+            JavaScriptCatalog.as_view(packages=['kombstra'])),
          name='javascript-catalog'),
     path('api/', include(router.urls)),
 ]

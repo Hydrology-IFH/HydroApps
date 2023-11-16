@@ -47,7 +47,7 @@
 {% endblock content %}
 
 {% block scripts %}
-  {% comment %} {{ base_grid|json_script:"base_grid" }} {% endcomment %}
+  {{ base_grid|json_script:"base_grid" }}
   <script src="{% url 'KombStRA:javascript-catalog' %}"></script>
   <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
   <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
