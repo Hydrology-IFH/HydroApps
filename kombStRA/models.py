@@ -1,19 +1,21 @@
 from django.contrib.gis.db import models
+import pyproj
+from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 
-class KombStRAGrid(models.Model):
+class KombStRAPolygons(models.Model):
     grid_id = models.IntegerField(unique=True, primary_key=True)
     geometry = models.PolygonField(srid=4326, blank=True, null=True)
 
     class Meta:
-        db_table = 'KombStRA_grid'
+        db_table = 'kombstra_polygons'
 
 class KombStRAData(models.Model):
     data_id = models.BigAutoField(
         primary_key=True,
         help_text=_("ID of the event"))
     grid_id = models.ForeignKey( # ID
-        KombStRAGrid,
+        KombStRAPolygons,
         models.DO_NOTHING,
         blank=False, null=False,
         help_text=_("ID to link to the Grid-Cell"),
@@ -38,4 +40,25 @@ class KombStRAData(models.Model):
         help_text=_("Percentile of the event in the grid-cell"))
 
     class Meta:
-        db_table = 'KombStRA_data'
+        db_table = 'kombstra_data'
+
+class KombStRAGrids(models.Model):
+    class Paras(models.TextChoices):
+        DURATION="DUR", _("Duration")
+        PVAL="PVAL", _("Precipitation amount")
+        SRI="SRI", _("Starkregen-Index")
+        YEAR="YEAR", _("Year")
+        MONTH="MONTH", _("Month")
+        EVENT_RANK="FEvNR", _("Event rank")
+
+    rid = models.IntegerField(primary_key=True)
+    percentile = models.IntegerField(db_index=True)
+    event_rank = models.IntegerField(db_index=True)
+    para = models.CharField(
+        max_length=5,
+        db_index=True,
+        choices=Paras.choices)
+    rast = models.RasterField(srid=97019,)
+
+    class Meta:
+        db_table = 'kombstra_grids'

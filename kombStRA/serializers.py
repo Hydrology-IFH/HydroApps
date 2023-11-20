@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import KombStRAData, KombStRAGrid
+from .models import KombStRAData, KombStRAPolygons
 
 
 class KombStRADataSerializer(serializers.ModelSerializer):
@@ -7,8 +7,8 @@ class KombStRADataSerializer(serializers.ModelSerializer):
         model = KombStRAData
         fields = '__all__'  # replace this with the fields you want to expose
 
-class KombStRAGridSerializer(serializers.ModelSerializer):
+class KombStRAPolygonsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = KombStRAGrid
+        model = KombStRAPolygons
         fields = '__all__'  # replace this with the fields you want to expose
 

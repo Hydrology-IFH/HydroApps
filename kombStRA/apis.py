@@ -1,12 +1,12 @@
 from rest_framework import viewsets
 from rest_framework import generics
-from .models import KombStRAData, KombStRAGrid
-from .serializers import KombStRADataSerializer, KombStRAGridSerializer
+from .models import KombStRAData, KombStRAPolygons
+from .serializers import KombStRADataSerializer, KombStRAPolygonsSerializer
 from django_filters import rest_framework as filters
 
-class KombStRAGridViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = KombStRAGrid.objects.all()
-    serializer_class = KombStRAGridSerializer
+class KombStRAPolygonsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = KombStRAPolygons.objects.all()
+    serializer_class = KombStRAPolygonsSerializer
 
 class KombStRADataViewSet(generics.ListAPIView, viewsets.GenericViewSet):
     queryset = KombStRAData.objects.all()
