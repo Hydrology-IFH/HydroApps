@@ -1,4 +1,4 @@
-{% extends 'KombStRA/base.html' %}
+{% extends 'kombstra/base.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -15,11 +15,11 @@
     crossorigin=""></script>
 
   <!-- font-awesome -->
-  <link rel="stylesheet" href={% static "KombStRA/css/leaflet.awesome-markers.css" %}>
-  <script src={% static "KombStRA/js/leaflet/leaflet.awesome-markers.min.js" %}></script>
+  <link rel="stylesheet" href={% static "kombstra/css/leaflet.awesome-markers.css" %}>
+  <script src={% static "kombstra/js/leaflet/leaflet.awesome-markers.min.js" %}></script>
 
   <!-- own stylesheets -->
-  <link rel="stylesheet" href="{% static "KombStRA/css/map.css" %}">
+  <link rel="stylesheet" href="{% static "kombstra/css/map.css" %}">
 
 {% endblock %}
 
@@ -48,13 +48,13 @@
 
 {% block scripts %}
   {{ base_grid|json_script:"base_grid" }}
-  <script src="{% url 'KombStRA:javascript-catalog' %}"></script>
+  <script src="{% url 'kombstra:javascript-catalog' %}"></script>
   <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
   <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
   {% if debug %}
-    <script src={% static "KombStRA/js/map.js" %} defer></script>
+    <script src={% static "kombstra/js/map.js" %} defer></script>
   {%else%}
-    <script src={% static "KombStRA/js/map.min.js" %} defer></script>
+    <script src={% static "kombstra/js/map.min.js" %} defer></script>
   {% endif%}
 
 {% endblock %}
