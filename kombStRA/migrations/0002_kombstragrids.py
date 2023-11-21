@@ -2,6 +2,20 @@
 
 import django.contrib.gis.db.models.fields
 from django.db import migrations, models
+from django.contrib.gis.gdal import SpatialReference
+from django.contrib.gis.utils.srs import add_srs_entry
+from pathlib import Path
+
+def add_radolan_srs(*args, **kwargs):
+    # combined spatialreference.org with DWD .prj file of radolan shape
+    # siource: https://www.spatialreference.org/ref/sr-org/7019/
+    with open(Path(__file__).parents[1] / "lib" / "radolan.prj", "r") as f:
+        wkt_str = f.read()
+    srs = SpatialReference(wkt_str, srs_type="wkt")
+    add_srs_entry(srs, auth_name="SR-ORG", auth_srid=97019)
+
+def remove_radolan_srs(*args, **kwargs):
+    pass
 
 
 class Migration(migrations.Migration):
@@ -11,6 +25,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(
+            add_radolan_srs,
+            remove_radolan_srs
+        ),
         migrations.CreateModel(
             name='KombStRAGrids',
             fields=[
@@ -29,5 +47,5 @@ class Migration(migrations.Migration):
                 CREATE SEQUENCE kombstra_grids_rid_seq MINVALUE 1;
                 ALTER TABLE public.kombstra_grids ALTER rid SET DEFAULT nextval('kombstra_grids_rid_seq');
                 ALTER SEQUENCE kombstra_grids_rid_seq OWNED BY kombstra_grids.rid;""",
-            reverse_sql="DROP SEQUENCE kombstra_grids_rid_seq;")
+            reverse_sql="DROP SEQUENCE IF EXISTS kombstra_grids_rid_seq CASCADE;")
     ]
