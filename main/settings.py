@@ -243,7 +243,9 @@ else:
     STATIC_URL = "/static/"
 STATIC_ROOT = secrets.STATIC_DIR
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath("main/static")
+    BASE_DIR.joinpath("main/static"),
+    BASE_DIR.joinpath("static_data"), # for big static files, that should not get synced in the git repository
+    ('node', os.path.join(BASE_DIR, 'node/dist'))
 ]
 
 # Default primary key field type
@@ -314,3 +316,13 @@ del secrets
 
 # # for redirect and sites
 # SITE_ID = 1
+
+# Cors Headers in debug
+if DEBUG:
+    INSTALLED_APPS.append("corsheaders")
+    MIDDLEWARE.insert(
+        MIDDLEWARE.index("django.middleware.common.CommonMiddleware"),
+        "corsheaders.middleware.CorsMiddleware")
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:8080",
+        "http://localhost:5173"]
