@@ -245,7 +245,7 @@ STATIC_ROOT = secrets.STATIC_DIR
 STATICFILES_DIRS = [
     BASE_DIR.joinpath("main/static"),
     BASE_DIR.joinpath("static_data"), # for big static files, that should not get synced in the git repository
-    ('node', os.path.join(BASE_DIR, 'node/dist'))
+    ('front-end', BASE_DIR.joinpath('front-end/dist'))
 ]
 
 # Default primary key field type

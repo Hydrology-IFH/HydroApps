@@ -14,4 +14,5 @@ TODO
 static_data/
 
 node_modules/
-node/
+/front-end/src/test*
+front-end/dist
