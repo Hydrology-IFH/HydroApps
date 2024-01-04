@@ -4,57 +4,102 @@
 
 {% block head %}
   <!-- bootsrap icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"> {% endcomment %}
 
   <!-- leaflet main -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  {% comment %} <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
     integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
     crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
     integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-    crossorigin=""></script>
+    crossorigin=""></script> {% endcomment %}
+
+  <!-- leaflet plugins -->
+  {% comment %} <script src="https://unpkg.com/georaster"></script>
+  <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script> {% endcomment %}
+  {% comment %} <script src="leaflet-geotiff.js"></script> {% endcomment %}
 
   <!-- font-awesome -->
-  <link rel="stylesheet" href={% static "kombstra/css/leaflet.awesome-markers.css" %}>
-  <script src={% static "kombstra/js/leaflet/leaflet.awesome-markers.min.js" %}></script>
+  {% comment %} <link rel="stylesheet" href={% static "kombstra/css/leaflet.awesome-markers.css" %}>
+  <script src={% static "kombstra/js/leaflet/leaflet.awesome-markers.min.js" %}></script> {% endcomment %}
 
   <!-- own stylesheets -->
-  <link rel="stylesheet" href="{% static "kombstra/css/map.css" %}">
-
+  {% comment %} <link rel="stylesheet" href="{% static "kombstra/css/map.css" %}"> {% endcomment %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 {% endblock %}
 
 {% block content %}
 
-  <h1>{% trans "Map of the heavy rain events" %}</h1>
-  <form id="select_stations_form" class="form-horizontal" action="javascript:void(0);">
-    <div class="d-flex col-auto">
-      <h3>{% trans "Select plots to show" %}</h3>
-      <span class="ms-auto mb-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-      data-bs-html="true" data-bs-title='{% trans "Show me an explanation of the plots." %}'>
-        <button class="btn btn-primary btn btn-primary ms-auto mb-2" data-bs-toggle="modal" data-bs-target="#explanationModal" >
-          <i class="bi bi-question-circle"></i>
-        </button>
-      </span>
-    </div>
+  <h1>{% trans "KombStRA map" %}</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-12" >
+        <div id="map" style="height: 80vh"></div>
+      </div>
+      <div class="col-md-5 col-12">
+        <div class="container">
+          <form id="form_select_grid" class="form-horizontal" action="javascript:void(0);">
+            <div class="d-flex col-12">
+              <p>{% trans "Select the KombStRA data to show on the map. To get more information on single fields, just click on the raster cell on the map." %}</p>
+            </div>
 
-    <div class="col d-inline-flex justify-content-end pr-0 mr-0 mt-2">
-      <input type="submit" value="{% trans "show plots" %}" name="add_plots" class="btn btn-primary"
-        style="font-size: 20px; font-weight: 600;" id="btn_add_plots">
+            <div class="form-group input-group mb-3">
+              <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+              data-bs-html="true" data-bs-title='{% trans "Choose the Parameters you would like to see on the map." %}'>{% trans "Parameter" %}</span>
+              <select class="form-select" id="parameter" name="parameter" >
+                <option value="duration" selected>{% trans "duration" %}</option>
+                <option value="pval">{% trans "rain intensity" %}</option>
+                <option value="sri">{% trans "heavy rain index (SRI)" %}</option>
+                <option value="year">{% trans "year" %}</option>
+                <option value="month">{% trans "month" %}</option>
+              </select>
+              <div class="bs-component" id="agg_alert_box"></div>
+            </div>
+
+
+            <div class="form-group input-group mb-3">
+              <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+              data-bs-html="true" data-bs-title='{% trans "Choose the Parameters you would like to see on the map." %}'>{% trans "Percentile" %}</span>
+              <select class="form-select" id="percentile" name="percentile">
+                <option value="10">10 %</option>
+                <option value="50" selected>50 %</option>
+                <option value="90">90 %</option>
+              </select>
+            </div>
+
+            <div class="form-group input-group mb-3">
+              <span class="input-group-text" id="label_eventRank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+              data-bs-html="true" data-bs-title='{% trans "Choose the rank of the event. E.g. the Top 1 event per grid cell." %}'>{% trans "event rank" %}</span>
+              <span class="form-control">
+                <input type="range" class="form-range" name="eventRankRange" id="eventRank" min="1" max="20" value="1" oninput="this.form.eventRankNumber.value=this.value" />
+              </span>
+              <input type="number" class="form-control" name="eventRankNumber" min="1" max="20" value="1" oninput="this.form.eventRankRange.value=this.value" style="max-width:70px" />
+            </div>
+
+            <div class="col d-inline-flex justify-content-end pr-0 mr-0 mt-2">
+              <input type="submit" value="{% trans "load grid" %}" name="load_grids" class="btn btn-primary"
+                style="font-size: 20px; font-weight: 600;" id="btn_update_grid">
+            </div>
+
+          </form>
+        </div>
+      </div>
     </div>
-  </form>
-  <div id="map" style="height: 80vh"></div>
+  </div>
+  {% comment %} <div id="map" style="height: 80vh"></div> {% endcomment %}
 
 {% endblock content %}
 
 {% block scripts %}
-  {{ base_grid|json_script:"base_grid" }}
+  {% comment %} {{ base_grid|json_script:"base_grid" }} {% endcomment %}
   <script src="{% url 'kombstra:javascript-catalog' %}"></script>
-  <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
-  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
-  {% if debug %}
+  {% comment %} <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script> {% endcomment %}
+  {% comment %} {% if debug %}
     <script src={% static "kombstra/js/map.js" %} defer></script>
   {%else%}
     <script src={% static "kombstra/js/map.min.js" %} defer></script>
-  {% endif%}
+  {% endif%} {% endcomment %}
+  <script src={% static "front-end/kombstra.js" %} type="module" ></script>
 
 {% endblock %}

@@ -1,7 +1,11 @@
+from typing import Any
 from django.contrib.gis.db import models
 import pyproj
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
+from .lib.radolan_crs import radolan_srs
+from django.db.models import Func
+
 
 class KombStRAPolygons(models.Model):
     grid_id = models.IntegerField(unique=True, primary_key=True)
@@ -42,23 +46,10 @@ class KombStRAData(models.Model):
     class Meta:
         db_table = 'kombstra_data'
 
-class KombStRAGrids(models.Model):
-    class Paras(models.TextChoices):
-        DURATION="DUR", _("Duration")
-        PVAL="PVAL", _("Precipitation amount")
-        SRI="SRI", _("Starkregen-Index")
-        YEAR="YEAR", _("Year")
-        MONTH="MONTH", _("Month")
-        EVENT_RANK="FEvNR", _("Event rank")
 
+class KombStRAGrid(models.Model):
     rid = models.IntegerField(primary_key=True)
-    percentile = models.IntegerField(db_index=True)
-    event_rank = models.IntegerField(db_index=True)
-    para = models.CharField(
-        max_length=5,
-        db_index=True,
-        choices=Paras.choices)
-    rast = models.RasterField(srid=97019,)
+    rast = models.RasterField(srid=97019)
 
     class Meta:
-        db_table = 'kombstra_grids'
+        db_table = 'kombstra_grid'
