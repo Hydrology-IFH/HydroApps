@@ -12,3 +12,6 @@ logs/
 TODO
 */django.mo
 *.mo
+static_data/*
+front-end/dist
+front-end/node_modules
