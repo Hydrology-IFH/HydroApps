@@ -50,7 +50,7 @@
       <h1>{% trans "Get a timeserie" %}</h1>
     </div>
     <div class="col-auto ms-auto">
-      <a type="button" class="btn btn-outline-primary" target="_blank" 
+      <a type="button" class="btn btn-outline-primary" target="_blank"
          href="https://weatherdb.readthedocs.io/en/stable/CHANGES.html"
          data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true"
          title='{% trans "This is the Version of the WeatherDB-module that created the data in the database." %}<br>{% trans "Click to see all the Changes made in the module." %} <i class="bi bi-box-arrow-up-right"></i>'>
@@ -161,9 +161,9 @@
                   <div class="row pb-1">
 
                     <div class="form-group input-group">
-                      <div class="form-check" 
+                      <div class="form-check"
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-container="body" data-bs-trigger="hover"
-                          title='{% trans "Should the information about the filling step be added." %}<ul><li>{% trans "If no aggregation is done, a ''filled_by'' column is added to the output, to show the Station ID from which the data was taken to fill the gap." %}<br>{% trans "No data in this column means the measurement is a real measurement." %}</li><li>{% trans "If the data got aggregated a filled_share column is added, giving the share of gap filled values in the aggregation group in percent." %}</li></ul>'>
+                          title='{% trans "Should the information about the filling step be added." %}<ul><li>{% trans "If no aggregation is done, a &quot;filled_by&quot; column is added to the output, to show the Station ID from which the data was taken to fill the gap." %}<br>{% trans "No data in this column means the measurement is a real measurement." %}</li><li>{% trans "If the data got aggregated a filled_share column is added, giving the share of gap filled values in the aggregation group in percent." %}</li></ul>'>
                         <input class="form-check-input" type="checkbox" value="true" id="add_filled_by" name="add_filled_by">
                         <label class="form-check-label" for="add_filled_by" autocomplete=off>
                           {% trans "add gap filling information" %}
@@ -174,12 +174,12 @@
                     </div>
 
                     <div class="form-group input-group">
-                      <div class="form-check" 
+                      <div class="form-check"
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-container="body" data-bs-trigger="hover"
                           title='{% trans "Should the share of NAs be added, when the value got aggregated.<br>This adds a column with the share of NA values that where in the aggregation step in percent." %}'>
                         <input class="form-check-input" type="checkbox" value="true" id="add_na_share" name="add_na_share">
                         <label class="form-check-label" for="add_na_share" >
-                          {% trans "add the share of NAs in the original data (only for aggregated values)" %} 
+                          {% trans "add the share of NAs in the original data (only for aggregated values)" %}
                         </label>
                         <div class="invalid-feedback" id="invalid-feedback-add_na_share"><ul></ul></div>
                         <div class="bs-component" id="add_na_share_alert_box"></div>
@@ -187,7 +187,7 @@
                     </div>
 
                     <div class="form-group input-group">
-                      <div class="form-check" 
+                      <div class="form-check"
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-container="body" data-bs-trigger="hover"
                           title='{% trans "Should the minimal daily temperature value be added to the timeserie." %}'>
                         <input class="form-check-input" type="checkbox" value="true" id="add_t_min" name="add_t_min">
@@ -199,7 +199,7 @@
                       </div>
                     </div>
                     <div class="form-group input-group">
-                      <div class="form-check" 
+                      <div class="form-check"
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-container="body" data-bs-trigger="hover"
                           title='{% trans "Should the maximal daily temperature value be added to the timeserie." %}'>
                         <input class="form-check-input" type="checkbox" value="true" id="add_t_max" name="add_t_max">
@@ -211,7 +211,7 @@
                       </div>
                     </div>
                     <div class="form-group input-group">
-                      <div class="form-check" 
+                      <div class="form-check"
                           data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-container="body" data-bs-trigger="hover"
                           title='{% trans "Should the output format be the RoGeR-toolbox format. This will rename the file and columns. Have a look at the examples in the " %}<a href="https://github.com/Hydrology-IFH/roger" target="_blank" rel="noopener noreferrer">GitHub-repository</a>'>
                         <input class="form-check-input" type="checkbox" value="true" id="toolbox_format" name="toolbox_format">
@@ -240,7 +240,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-sm-7 col-12">
         <div id="map" style="height: 80vh"></div>
       </div>
@@ -260,7 +260,7 @@
   {{ meta_n|json_script:"meta_n-data" }}
   {% comment %} {{ needs_captcha|script:"needs_captcha" }}
   {{ wdb_max_downloads|script:"wdb_max_downloads" }} {% endcomment %}
-  {% if debug %} 
+  {% if debug %}
     <script src={% static "weatherDB/js/get_ts_map.js" %} defer></script>
   {% else %}
     <script src={% static "weatherDB/js/get_ts_map.min.js" %} defer></script>
