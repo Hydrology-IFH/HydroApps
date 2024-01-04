@@ -596,7 +596,7 @@ class Form{
             let alert_box = document.getElementById("agg_alert_box");
             if (alert_aggregations.includes(this.get_aggregation())){
                 this.agg_to_alerted=true;
-                alert_box.innerHTML = '<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">' + gettext('The temperature and evapotranspiration data are only downloaded as daily values.<br>Therefor only the Precipitation values will be in this frequency.') + '</p></div></div>';
+                alert_box.innerHTML = '<div class="alert alert-dismissible alert-info"><button type="button" class="btn-close" data-bs-dismiss="alert"></button><p class="mb-0">' + gettext('The temperature and evapotranspiration data are only downloaded as daily values.<br>Therefor only the Precipitation values will be in this frequency.') + '</p></div></div>';
             } else {
                 alert_box.innerHTML = "";
             }
@@ -611,7 +611,7 @@ class Form{
             let kind = this.input_kind.get_value();
             if (add_filled_by){
                 if (["raw", "qc"].includes(kind)){
-                    alert_box.innerHTML =  '<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">' + gettext('You selected to download unfilled data, therefor it is not possible to add filling informations.') + '</p></div></div>';
+                    alert_box.innerHTML =  '<div class="alert alert-dismissible alert-info"><button type="button" class="btn-close" data-bs-dismiss="alert"></button><p class="mb-0">' + gettext('You selected to download unfilled data, therefor it is not possible to add filling informations.') + '</p></div></div>';
                     this.add_filled_by_alerted = true;
                     return false;
                 } else {
@@ -638,7 +638,7 @@ class Form{
                     msg = gettext("You selected to download the data in daily resolution.<br>Therefor no column is added for T and ET, as this column is only added, when the data gets aggregated.")
                 }
                 if (msg !=""){
-                    alert_box.innerHTML =  `<div class="alert alert-dismissible alert-info"><button type="button" class="close" data-dismiss="alert">×</button><p class="mb-0">${msg}</p></div></div>`;
+                    alert_box.innerHTML =  `<div class="alert alert-dismissible alert-info"><button type="button" class="btn-close" data-bs-dismiss="alert"></button><p class="mb-0">${msg}</p></div></div>`;
                     this.add_na_share_alerted = true;
                 } else {
                     alert_box.innerHTML = "";
