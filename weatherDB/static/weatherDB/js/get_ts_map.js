@@ -321,7 +321,8 @@ class Form{
                 let filled_until = new Date(layer.feature.properties.filled_until);
                 let richter_class = layer.feature.properties.richter_class;
                 let quot_hyras_filled = Math.round(100/layer.feature.properties.quot_filled_hyras*1000)/10;
-                let quot_corr_filled = Math.round(layer.feature.properties.quot_corr_filled*10)/10;
+                let quot_corr_filled = Math.round(layer.feature.properties.quot_corr_filled * 10) / 10;
+                let qc_droped = Math.round(layer.feature.properties.qc_droped, 2);
                 let label_btn_select = this.is_selected(stid)? gettext("unselect"):gettext("select");
                 let date_options = {
                     year:'numeric', month:'numeric', day:'numeric',
@@ -329,15 +330,22 @@ class Form{
                 let str = `<div class="container pl-0"><div class="row"><div class="col"><h6 style="float: left">${gettext("Station ID")}: ${stid}</h6>\
                     <button class="btn btn-primary pr-3" style="float:right" type="button" onclick="button_select_station('${stid}', event)">${label_btn_select}</button></div></div></div>\
                     <b>${gettext("available period of own raw data")}:</b>\
-                    <br>${raw_from.toLocaleString("de-DE", date_options)} - \
-                    ${raw_until.toLocaleString("de-DE", date_options)}\
-                    <br><b>${gettext("available period of filled data")}:</b>\
-                    <br>${filled_from.toLocaleString("de-DE", date_options)} - \
-                    ${filled_until.toLocaleString("de-DE", date_options)}
-                    <br><b>${gettext("exposition class")}:</b> ${richter_class}
-                    <br><b>${gettext("factors")}:</b><br>
-                    N<sub>${gettext("corrected")}</sub> = ${quot_corr_filled}% &#8226; N<sub>${gettext("filled")}</sub> <br>
-                    N<sub>${gettext("filled")}</sub> = ${quot_hyras_filled}% &#8226; N<sub>${gettext("multi_annual")}, HYRAS</sub><br>`
+                    <br><div class="leaf-pop-indent">\
+                        ${raw_from.toLocaleString("de-DE", date_options)} - \
+                        ${raw_until.toLocaleString("de-DE", date_options)}\
+                    </div>\
+                    <b>${gettext("available period of filled data")}:</b>\
+                    <br><div class="leaf-pop-indent">
+                        ${filled_from.toLocaleString("de-DE", date_options)} - \
+                        ${filled_until.toLocaleString("de-DE", date_options)}\
+                    </div>\
+                    <b>${gettext("exposition class")}:</b> ${richter_class} \
+                    <br><b>${gettext("factors")}:</b><br>\
+                    <div class="leaf-pop-indent">\
+                        N<sub>${gettext("corrected")}</sub> = ${quot_corr_filled}% &#8226; N<sub>${gettext("filled")}</sub> <br>\
+                        N<sub>${gettext("filled")}</sub> = ${quot_hyras_filled}% &#8226; N<sub>${gettext("multi_annual")}, HYRAS</sub><br>\
+                        Quality Check droped ${qc_droped}% of raw values.\
+                    </div>`
                     ;
                 return str
             }
@@ -347,15 +355,6 @@ class Form{
         })
 
         this.lmarkers.addTo(this.map);
-
-        // fit map boundaries
-        // if (this.lmarkers.getLayers().length > 1){
-        //     this.map.fitBounds(this.lmarkers.getBounds(), { padding: [1, 1] });
-        // } else if (this.lmarkers.getLayers().length == 1){
-
-        //     let markerBounds = L.latLngBounds([this.lmarkers.getLayers()[0].getLatLng()]);
-        //     this.map.fitBounds(markerBounds.pad(2), { padding: [1, 1] });
-        // }
 
         // create a dictionary with the markers and their Station Id as key
         this.markers = {};

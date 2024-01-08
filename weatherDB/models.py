@@ -26,6 +26,7 @@ class MetaN(models.Model):
     quot_corr_filled = models.FloatField(null=True, blank=True)
     quot_filled_hyras = models.FloatField(null=True, blank=True)
     richter_class = models.TextField(blank=True, null=True)
+    qc_droped = models.FloatField(null=True, blank=True)
 
     class Meta:
         managed = False
