@@ -19,3 +19,12 @@ img.marker-unselected {
     margin-left: 10px ;
     margin-top: 0px;
 }
+div.leaf-pop-indent {
+    margin-left: 1rem;
+}
+
+a.leaflet-popup-close-button {
+    margin: 6px 6px 0 0;
+    padding: 0!important;
+    font-size: 1.5rem!important;
+}
