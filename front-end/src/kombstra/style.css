@@ -1,5 +1,6 @@
 @import "ol/ol.css";
 @import "ol-ext/control/Legend.css";
+/* @import "ol-ext/control/"; */
 
 /* #map {
   position: relative;
@@ -8,3 +9,11 @@
   width: 100%;
   height: 100%;
 } */
+
+.ol-viewport canvas.ol-fixedoverlay {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%
+}

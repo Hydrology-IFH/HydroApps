@@ -5,8 +5,7 @@ export default {
   server: {
     proxy: {
       "/static": {
-        // target: "http://localhost:8000",
-        target: "file://../../../static_data",
+        target: "http://localhost:8000",
         changeOrigin: true,
         secure: false,
         // rewrite: (path) => path.replace(/^\/static/, ""),
