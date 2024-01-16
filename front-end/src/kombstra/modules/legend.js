@@ -2,6 +2,7 @@ import Legend from "ol-ext/legend/Legend";
 import LegendCtrl from "ol-ext/control/Legend";
 import { get_style } from "./styles.js";
 import { formPara } from "./form.js";
+import { map } from "./map.js";
 
 const labels = {
   duration: "Duration in minutes",
@@ -122,7 +123,7 @@ export function update_legend() {
   leg_div.querySelector("div.colorbar").replaceWith(create_colorbar());
 }
 
-export function create_legend(map) {
+export function create_legend() {
   // legend
   map.addControl(
     new LegendCtrl({

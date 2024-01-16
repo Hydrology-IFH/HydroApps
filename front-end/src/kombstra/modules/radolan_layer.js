@@ -5,7 +5,8 @@ import GeoTIFF from 'ol/source/GeoTIFF.js';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import { get_style } from './styles.js';
 
-import { formPara, formPerc, formRank } from './form.js';
+import { form, formPara, formPerc, formRank } from './form.js';
+import { update_legend } from './legend.js';
 
 let debug = false;
 
@@ -54,3 +55,13 @@ export const radolan_layer = new TileLayer({
   zIndex: 2,
   style: get_style(),
 });
+
+// update layer function
+export function create_radolan_updater() {
+  form.addEventListener(["submit"], () => {
+    let style = get_style();
+    radolan_layer.setSource(get_tif_source());
+    radolan_layer.setStyle(style);
+    update_legend();
+  });
+}
