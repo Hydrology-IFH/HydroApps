@@ -32,6 +32,8 @@
         </tr>
       </tbody></table>
     </div>
+
+    <!-- main content -->
     <div class="container shadow
               col-xl-9 col-lg-11 col-12
               pt-md-2
@@ -42,7 +44,8 @@
         <div class="container">
           <div class="row">
             <div class="col-md-7 col-12" >
-              <div id="map" style="height: 80vh"></div>
+              <div id="map" style="height: 80vh">
+              </div>
             </div>
             <div class="col-md-5 col-12">
               <div class="container">
@@ -54,7 +57,7 @@
                   <div class="form-group input-group mb-3">
                     <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
                     data-bs-html="true" data-bs-title='Choose the Parameters you would like to see on the map.'>Parameter</span>
-                    <select class="form-select" id="parameter" name="parameter" >
+                    <select class="form-select" id="parameter" name="parameter">
                       <option value="duration" selected>duration</option>
                       <option value="pval">rain intensity</option>
                       <option value="sri">heavy rain index (SRI)</option>
@@ -83,12 +86,6 @@
                     </span>
                     <input type="number" class="form-control" name="eventRankNumber" min="1" max="20" value="1" oninput="this.form.eventRankRange.value=this.value" style="max-width:70px" />
                   </div>
-
-                  <div class="col d-inline-flex justify-content-end pr-0 mr-0 mt-2">
-                    <input type="submit" value="load grid" name="load_grids" class="btn btn-primary"
-                      style="font-size: 20px; font-weight: 600;" id="btn_update_grid">
-                  </div>
-
                 </form>
               </div>
             </div>
