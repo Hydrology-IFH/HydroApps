@@ -1,4 +1,4 @@
-import {formPara} from './form.js';
+import {gridFormPara} from './forms.js';
 
 // styles
 let styles = {
@@ -161,5 +161,5 @@ let styles = {
 }
 
 export function get_style() {
-    return styles[formPara.value];
+    return styles[gridFormPara.value];
 }

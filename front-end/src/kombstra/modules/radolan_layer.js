@@ -5,7 +5,7 @@ import GeoTIFF from 'ol/source/GeoTIFF.js';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import { get_style } from './styles.js';
 
-import { form, formPara, formPerc, formRank } from './form.js';
+import { gridForm, gridFormPara, gridFormPerc, gridFormRank, mapForm, mapFormOpacity } from './forms.js';
 import { update_legend } from './legend.js';
 
 let debug = false;
@@ -19,9 +19,9 @@ const proj_radolan = getProjection("SR-ORG:97019");
 
 export function get_tif_source(){
   // get tiff url
-  let para = formPara.value;
-  let perc = formPerc.value;
-  let rank = formRank.value;
+  let para = gridFormPara.value;
+  let perc = gridFormPerc.value;
+  let rank = gridFormRank.value;
   let static_stem = "/static";
   let tif_url = `${static_stem}/kombstra/kombstra_views/${perc}_${rank}_${para}.tif`;
   let tif_blob;
@@ -54,15 +54,23 @@ export const radolan_layer = new TileLayer({
   source: tif_source,
   zIndex: 2,
   style: get_style(),
+  opacity: mapFormOpacity.value/100,
 });
 
+
+
 // update layer function
-export function create_radolan_updater() {
-  form.addEventListener(["submit"], () => {
+export function create_form_updaters() {
+  // grid updater
+  gridForm.addEventListener(["submit"], () => {
     let style = get_style();
     radolan_layer.setSource(get_tif_source());
     radolan_layer.setStyle(style);
     update_legend();
+  });
+  // opacity updater
+  mapForm.addEventListener(["submit"], () => {
+    radolan_layer.setOpacity(mapFormOpacity.value / 100);
   });
 }
 

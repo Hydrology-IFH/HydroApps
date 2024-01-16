@@ -1,7 +1,7 @@
 import Legend from "ol-ext/legend/Legend";
 import LegendCtrl from "ol-ext/control/Legend";
 import { get_style } from "./styles.js";
-import { formPara } from "./form.js";
+import { gridFormPara } from "./forms.js";
 import { map } from "./map.js";
 
 const labels = {
@@ -15,7 +15,7 @@ const labels = {
 function create_colorbar() {
   // get style parameters
   let style = get_style();
-  let label = labels[formPara.value];
+  let label = labels[gridFormPara.value];
 
   let cb_div = document.createElement("div");
 
