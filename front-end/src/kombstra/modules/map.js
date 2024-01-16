@@ -4,6 +4,7 @@ import TileLayer from 'ol/layer/WebGLTile.js';
 import OSM from 'ol/source/OSM';
 import { create_legend } from './legend.js';
 import { radolan_layer, create_radolan_updater } from './radolan_layer.js';
+import { create_hover } from './hover.js';
 
 export var map;
 
@@ -30,4 +31,5 @@ export async function create_map() {
 
   create_radolan_updater();
   create_legend();
+  create_hover();
 }

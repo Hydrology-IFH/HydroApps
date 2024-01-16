@@ -65,3 +65,5 @@ export function create_radolan_updater() {
     update_legend();
   });
 }
+
+window.radolan_layer = radolan_layer;

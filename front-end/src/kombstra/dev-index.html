@@ -45,11 +45,13 @@
           <div class="row">
             <div class="col-md-7 col-12" >
               <div id="map" style="height: 80vh">
+                <div id="info"></div>
               </div>
             </div>
             <div class="col-md-5 col-12">
               <div class="container">
                 <form id="form_select_grid" class="form-horizontal" action="javascript:void(0);">
+                  <h4>Select a KombStRA grid</h4>
                   <div class="d-flex col-12">
                     <p>Select the KombStRA data to show on the map. To get more information on single fields, just click on the raster cell on the map.</p>
                   </div>
@@ -80,13 +82,26 @@
 
                   <div class="form-group input-group mb-3">
                     <span class="input-group-text" id="label_eventRank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-                    data-bs-html="true" data-bs-title='Choose the rank of the event. E.g. the Top 1 event per grid cell.'>event rank"</span>
+                    data-bs-html="true" data-bs-title='Choose the rank of the event. E.g. the Top 1 event per grid cell.'>event rank</span>
                     <span class="form-control">
                       <input type="range" class="form-range" name="eventRankRange" id="eventRank" min="1" max="20" value="1" oninput="this.form.eventRankNumber.value=this.value" />
                     </span>
                     <input type="number" class="form-control" name="eventRankNumber" min="1" max="20" value="1" oninput="this.form.eventRankRange.value=this.value" style="max-width:70px" />
                   </div>
                 </form>
+
+                <form id="map_settings" class="form-horizontal" action="javascript:void(0);">
+                  <h4>Update map settings</h4>
+                  <div class="form-group input-group mb-3">
+                    <span class="input-group-text" id="label_opacity" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+                    data-bs-html="true" data-bs-title='Set the transperency of the layer'>Transparency</span>
+                    <span class="form-control">
+                      <input type="range" class="form-range" name="OpacityRange" id="eventRank" min="0" max="100" value="100" oninput="this.form.OpacityNumber.value=this.value"/>
+                    </span>
+                    <input type="number" class="form-control" name="OpacityNumber" min="1" max="20" value="1" oninput="this.form.OpacityRange.value=this.value" style="max-width:70px"/>
+                  </div>
+                </form>
+
               </div>
             </div>
           </div>
