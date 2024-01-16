@@ -40,12 +40,17 @@
               pb-md-2 mb-md-4
               ps-0 pe-0 ps-md-2 pe-md-2 ps-sm-1 pe-sm-1" style="background-color: #FFFFFF;" id="main_page">
       <div class="container-fluid">
+
         <h1>KombStRA map</h1>
         <div class="container">
           <div class="row">
             <div class="col-md-7 col-12" >
               <div id="map" style="height: 80vh">
                 <div id="info"></div>
+                <div id="popup" class="ol-popup">
+                  <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                  <div id="popup-content"></div>
+                </div>
               </div>
             </div>
             <div class="col-md-5 col-12">

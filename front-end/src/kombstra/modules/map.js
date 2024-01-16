@@ -5,6 +5,7 @@ import OSM from 'ol/source/OSM';
 import { create_legend } from './legend.js';
 import { radolan_layer, create_form_updaters } from './radolan_layer.js';
 import { create_hover } from './hover.js';
+import { create_popup } from './popup.js';
 
 export var map;
 
@@ -32,4 +33,5 @@ export async function create_map() {
   create_form_updaters();
   create_legend();
   create_hover();
+  create_popup();
 }
