@@ -17,3 +17,64 @@
   width:100%;
   height:100%
 }
+div.colorbar {
+  min-width: 100%;
+}
+
+/* Colorbar Legend */
+div.ol-legend.ol-control:not(.ol-collapsed){
+  height:81px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-left: 10px;
+  min-width: 90%;
+}
+div.colorbar-label{
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* continous colorbar */
+div.colorbar-con {
+  margin-top: 5px;
+}
+
+div.colorbar-con div.colorbar-bar {
+  height: 20px;
+  margin: 0px 1rem 0px 1rem;
+}
+
+div.colorbar-con div.colorbar-ticks {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 20px;
+  text-align: center;
+}
+div.colorbar-con div.colorbar-tick {
+  min-width: 2rem;
+}
+div.colorbar-con div.colorbar-label{
+  text-align: center;
+}
+
+/* discrete colorbar */
+div.colorbar-dis div.colorbar-label{
+  margin-bottom: 5px;
+}
+div.colorbar-dis > div.colorbar-elements{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+div.colorbar-dis div.colorbar-element > div.colorbar-color{
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 1px solid black;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+div.colorbar-dis div.colorbar-element > div.colorbar-tick{
+  text-align: center;
+}
