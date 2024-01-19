@@ -1,6 +1,7 @@
 import { radolan_layer } from "./radolan_layer";
 import { map } from "./map";
 import { gridForm, gridFormPara } from "./forms.js";
+import Overlay from 'ol/Overlay.js';
 
 // define variables
 const info_div = document.getElementById('info');
@@ -13,6 +14,15 @@ const units = {
 }
 var actual_unit;
 var hover_active = true;
+
+/**
+ * Create an overlay to anchor the popup to the map.
+ */
+const overlay = new Overlay({
+    element: info_div,
+    autoPan: false,
+    positioning: 'bottom-left'
+  });
 
 // define functions
 function update_hover_unit() {
@@ -27,30 +37,32 @@ export function toggle_hover(state) {
         hover_active = state;
     }
     if (!hover_active) {
-        info_div.style.visibility = 'hidden';
+        overlay.setPosition(undefined);
     }
 }
 
 // create hover
 export function create_hover() {
+    map.addOverlay(overlay);
+    info_div.style.visibility = 'visible';
     map.on('pointermove', function (evt) {
         if (evt.dragging) {
-            info_div.style.visibility = 'hidden';
+            overlay.setPosition(undefined);
             return;
         }
         let pixel = map.getEventPixel(evt.originalEvent)
         let pix_value = radolan_layer.getData(pixel);
 
         if (hover_active && (pix_value != null) && (pix_value[1] != 0)) {
-            info_div.style.left = pixel[0] + 'px';
-            info_div.style.top = pixel[1] + 'px';
-            info_div.style.visibility = 'visible';
+            overlay.setPosition(evt.coordinate);
             info_div.innerText = `${pix_value[0]} ${actual_unit}`;
         } else {
-            info_div.style.visibility = 'hidden';
+            overlay.setPosition(undefined);
         }
     });
 
     update_hover_unit();
     gridForm.addEventListener("submit", update_hover_unit);
 }
+
+window.hover_overlay = overlay;
