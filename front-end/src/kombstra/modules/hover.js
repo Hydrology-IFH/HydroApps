@@ -64,5 +64,3 @@ export function create_hover() {
     update_hover_unit();
     gridForm.addEventListener("submit", update_hover_unit);
 }
-
-window.hover_overlay = overlay;

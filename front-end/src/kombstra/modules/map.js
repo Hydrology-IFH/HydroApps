@@ -34,4 +34,5 @@ export async function create_map() {
   create_legend();
   create_hover();
   create_popup();
+  window.map = map;
 }

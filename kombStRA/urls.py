@@ -19,12 +19,12 @@ from django.views.decorators.cache import cache_page
 from rest_framework.routers import DefaultRouter
 
 from .views import (home_view, map_view, method_view)
-from .apis import KombStRADataViewSet, KombStRAPolygonsViewSet, KombStRAGridViewSet
+from .apis import KombStRADataViewSet, KombStRAPolygonsViewSet, KombStRADataAllViewSet
 
 router = DefaultRouter()
 router.register(r'kombstra_data', KombStRADataViewSet)
 router.register(r'kombstra_polygon', KombStRAPolygonsViewSet)
-router.register(r'kombstra_grid', KombStRAGridViewSet)
+router.register(r'kombstra_data_all', KombStRADataAllViewSet)
 
 app_name = 'kombstra'
 urlpatterns = [

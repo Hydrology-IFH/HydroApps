@@ -8,6 +8,9 @@
   height: 75vh;
 }
 
+.ol-viewport {
+  overflow: visible !important;
+}
 .ol-viewport canvas.ol-fixedoverlay {
   position:absolute;
   top:0;
@@ -80,17 +83,16 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 /* hover tooltip */
 #info {
   position: relative;
-  display: inline-block;
-  height: auto;
-  width: auto;
+  width: max-content;
   z-index: 100;
   background-color: #333;
   color: #fff;
   text-align: center;
   border-radius: 4px;
   padding: 5px;
-  left: 50%;
-  transform: translateX(3%);
+  margin: 2px;
+  box-shadow: 0px 0px 2px 2px rgba(255,255,255,0.62);
+
   visibility: hidden;
   pointer-events: none;
 }
@@ -105,14 +107,18 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   border: 1px solid #cccccc;
   bottom: 12px;
   left: -50px;
-  min-width: 280px;
+  /* min-width: 280px; */
+  max-height: 50vh;
+  height: max-content;
+  width: max-content;
+  z-index: 9999;
+  display:flex;
+  flex-direction: column;
 }
 .ol-popup:after, .ol-popup:before {
   top: 100%;
   border: solid transparent;
   content: " ";
-  height: 0;
-  width: 0;
   position: absolute;
   pointer-events: none;
 }
@@ -136,4 +142,32 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 }
 .ol-popup-closer:after {
   content: "✖";
+}
+
+.ol-popup div#popup-content {
+  /* height: 100%; */
+}
+.popup-data{
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  width: min-content;
+}
+.popup-data .popup-explanation {
+  width: 100%;
+  margin-bottom: 0.5rem;
+
+}
+.popup-data div.tab-content {
+  overflow-y: scroll;
+  max-height: 30vh;
+  width: 100%;
+  z-index:999;
+  flex-grow: 1;
+}
+
+.popup-data div.tab-content table thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
