@@ -1,5 +1,5 @@
-import Legend from "ol-ext/legend/Legend";
-import LegendCtrl from "ol-ext/control/Legend";
+import Legend from "ol-ext/legend/Legend.js";
+import LegendCtrl from "ol-ext/control/Legend.js";
 import { get_style } from "./styles.js";
 import { gridFormPara } from "./forms.js";
 import { map } from "./map.js";
@@ -37,20 +37,16 @@ function create_colorbar() {
     let tick_min = ticks[0];
     let tick_max = ticks.at(-1);
     let n_max = 8;
-    console.log(ticks);
     if (n_ticks > n_max) {
       let factor;
       let start_i = (n_ticks - (n_ticks % n_max) + n_max) / n_max;
-      console.log(start_i);
       for (let i = start_i; i <= n_ticks+1; i++) {
         if ((n_ticks+1) % i == 0) {
           factor = i;
           break;
         }
       }
-      console.log(factor);
       ticks = ticks.filter((el) => ((ticks.indexOf(el)+2) % factor == 0) | (ticks.indexOf(el) == 0));
-      console.log(ticks);
       n_ticks = ticks.length;
     }
     if ((n_ticks == 2) & ((tick_max - tick_min) % 2 == 0)) {

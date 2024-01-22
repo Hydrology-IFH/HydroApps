@@ -1,5 +1,5 @@
-import { radolan_layer } from "./radolan_layer";
-import { map } from "./map";
+import { radolan_layer } from "./radolan_layer.js";
+import { map } from "./map.js";
 import { gridForm, gridFormPara } from "./forms.js";
 import Overlay from 'ol/Overlay.js';
 

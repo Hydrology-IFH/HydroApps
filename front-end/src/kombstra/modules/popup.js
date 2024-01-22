@@ -1,12 +1,11 @@
 import Overlay from 'ol/Overlay.js';
 import { map } from './map.js';
 import { toggle_hover } from './hover.js';
-// import Polygon from 'ol/geom/Polygon.js';
 import VectorLayer from 'ol/layer/Vector.js';
 import VectorSource from 'ol/source/Vector.js';
 import { GeoJSON } from 'ol/format.js';
 import proj4 from 'proj4';
-import { defineComponent, createApp, ref } from 'vue';
+import { createApp } from 'vue';
 import PopupContent from './PopupContent.vue';
 import { cell_data } from './PopupContent.vue';
 
@@ -43,8 +42,8 @@ const popup_cell_layer = new VectorLayer({
 // create PopupContent component
 createApp(PopupContent).mount(content);
 
+// get kombstra data from api
 function get_kombstra_data(long, lat) {
-    console.log(long,lat);
     fetch("/kombstra/api/kombstra_polygon/?long=" + long + "&lat=" + lat)
         .then((res) => res.json())
         .then((data) => {
@@ -68,7 +67,7 @@ function remove_popup_cell_layer() {
     cell_data.value.length = 0;
 }
 
-
+// create popup and add to map
 export function create_popup() {
     map.addOverlay(overlay);
     map.addLayer(popup_cell_layer);
