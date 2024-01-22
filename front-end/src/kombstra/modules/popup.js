@@ -7,6 +7,8 @@ import VectorSource from 'ol/source/Vector.js';
 import { GeoJSON } from 'ol/format.js';
 import proj4 from 'proj4';
 import { defineComponent, createApp, ref } from 'vue';
+import PopupContent from './PopupContent.vue';
+import { cell_data } from './PopupContent.vue';
 
 /**
  * Elements that make up the popup.
@@ -38,39 +40,8 @@ const popup_cell_layer = new VectorLayer({
     zIndex: 1000,
 });
 
-// define apis
-const cell_data = ref([]);
-const PopupContent = defineComponent({
-    data: function () {
-        return {
-            cell_data: cell_data,
-            perc_tab_active: 50
-        }
-    },
-    computed: {
-        cell_data_empty: function () {
-            return this.cell_data.length === 0;
-        },
-        percs: function () {
-            let percs = [];
-            this.cell_data.forEach((el) => {
-                if (!percs.includes(el.percentile)) {
-                    percs.push(el.percentile)
-                }
-            });
-            return percs;
-        },
-        cell_data_regrouped: function () {
-            let data = {};
-            for (let perc of this.percs) {
-                data[perc] = this.cell_data.filter((el) => el.percentile === perc);
-            };
-            return data;
-        },
-    }
-})
-const popupApp = createApp(PopupContent);
-popupApp.mount(content);
+// create PopupContent component
+createApp(PopupContent).mount(content);
 
 function get_kombstra_data(long, lat) {
     console.log(long,lat);
@@ -88,17 +59,7 @@ function get_kombstra_data(long, lat) {
         .then((grid_id) => {
             fetch("/kombstra/api/kombstra_data_all/?grid_id=" + grid_id)
                 .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                    window.data = data;
-                    // window.cell_data = data;
-                    // cell_data.push(data);
-                    cell_data.value.push(...data);
-                    // popupApp.update_cell_data(data);
-                    // popupApp.cell_data_prop = data;
-
-                    // popupApp.mount(content);
-                })
+                .then((data) => {cell_data.value.push(...data)})
         })
 }
 
