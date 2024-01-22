@@ -29,10 +29,18 @@ export async function create_map() {
       zoom: 7
     }),
   });
+  map.on('loadstart', function () {
+    map.getTargetElement().classList.add('spinner');
+  });
+  map.on('loadend', function () {
+    map.getTargetElement().classList.remove('spinner');
+  });
+  map.getTargetElement().classList.add('spinner');
 
   create_form_updaters();
   create_legend();
   create_hover();
   create_popup();
   window.map = map;
+  map.getTargetElement().classList.remove('spinner');
 }
