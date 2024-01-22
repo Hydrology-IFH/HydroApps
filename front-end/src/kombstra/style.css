@@ -1,6 +1,5 @@
 @import "ol/ol.css";
 @import "ol-ext/control/Legend.css";
-/* @import "ol-ext/control/"; */
 
 #map {
   position: relative;
@@ -107,7 +106,6 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   border: 1px solid #cccccc;
   bottom: 12px;
   left: -50px;
-  /* min-width: 280px; */
   max-height: 50vh;
   height: max-content;
   width: max-content;
@@ -170,4 +168,7 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   position: sticky;
   top: 0;
   background-color: white;
+}
+.popup-data div.tab-content table {
+  margin-bottom: 0px;
 }

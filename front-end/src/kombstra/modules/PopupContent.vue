@@ -51,11 +51,13 @@ export default {
                 :class="{ active: perc_tab_active == perc, show: perc_tab_active == perc }">
                 <table class="table table-striped table-hover">
                     <thead>
-                        <th scope="col">Event rank</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Rain intensity</th>
-                        <th scope="col">SRI</th>
+                        <tr>
+                            <th scope="col">Event rank</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Rain intensity</th>
+                            <th scope="col">SRI</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr v-for="data in cell_data_regrouped[perc]" :key="data.data_id">
