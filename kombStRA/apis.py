@@ -1,14 +1,12 @@
 from rest_framework import viewsets
-from rest_framework import generics
+from django.contrib.gis.geos import Point
 
 from .serializers import (KombStRADataSerializer,
                           KombStRAPolygonsSerializer)
 from .models import (KombStRAData,KombStRAPolygons)
-from django_filters import rest_framework as filters
-from django.contrib.gis.geos import Point
+
 
 class KombStRAPolygonsViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = KombStRAPolygons.objects.all()
     serializer_class = KombStRAPolygonsSerializer
 
     def get_queryset(self, *args, **kwargs):
@@ -28,14 +26,7 @@ class KombStRAPolygonsViewSet(viewsets.ReadOnlyModelViewSet):
         else:
             return None
 
-class KombStRADataViewSet(generics.ListAPIView, viewsets.GenericViewSet):
-    queryset = KombStRAData.objects.all()
-    serializer_class = KombStRADataSerializer
-    filter_backends = [filters.DjangoFilterBackend]
-    filterset_fields = ['percentile', 'event_rank', "grid_id"]
-
-class KombStRADataAllViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = KombStRAData.objects.all()
+class KombStRADataViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = KombStRADataSerializer
 
     def get_queryset(self, *args, **kwargs):

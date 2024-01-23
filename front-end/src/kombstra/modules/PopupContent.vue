@@ -1,19 +1,20 @@
 <script>
 import { ref } from 'vue';
 
-export const cell_data = ref([]);
+// export const cell_data = ref([]);
+export const grid_id = ref(null);
 
 export default {
     data: function () {
         return {
-            cell_data: cell_data,
-            perc_tab_active: 50
+            cell_data: [],
+            grid_id: grid_id,
+            perc_tab_active: 50,
+            loading: true,
+            error_msg: false
         }
     },
     computed: {
-        cell_data_empty: function () {
-            return this.cell_data.length === 0;
-        },
         percs: function () {
             let percs = [];
             this.cell_data.forEach((el) => {
@@ -30,12 +31,49 @@ export default {
             };
             return data;
         },
-    }
+    },
+    watch: {
+        grid_id(new_grid_id, old_grid_id) {
+            this.loading = true;
+            if (((new_grid_id !== old_grid_id) && (new_grid_id !== undefined)) || (this.err_msg)) {
+                this.fetchData();
+            } else if (this.cell_data.length != 0){
+                this.loading = false;
+            }
+        }
+    },
+    methods: {
+        async fetchData() {
+            // this.cell_data = [];
+            fetch("/kombstra/api/kombstra_data/?grid_id=" + this.grid_id)
+                .then((res) => res.json())
+                .then((data) => {
+                        this.cell_data = data;
+                        this.loading = false;
+                    })
+                .catch((err) => {
+                        this.set_error_msg("We are sorry, there was a problem fetching the data for this cell.");
+                        console.log(err);
+                });
+        },
+        set_error_msg(msg) {
+            this.loading = false;
+            this.error_msg = msg;
+        }
+    },
 }
 </script>
 
 <template>
-    <div v-if="!cell_data_empty" class="popup-data">
+    <div class="spinner-border text-primary" role="status" v-if="loading">
+        <span class="sr-only"></span>
+    </div>
+    <div v-else-if="error_msg" class="alert alert-danger m-2" role="alert" style="max-width:300px;">
+        <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Error</h4>
+        <p>{{ error_msg }}</p>
+        <p>Please try again later.</p>
+    </div>
+    <div v-else class="popup-data">
         <div class="popup-explanation">These are the events for this cell that got categorized, depending on the percentile.
         </div>
         <ul class="nav nav-tabs" id="popupTabs" role="tablist">
@@ -71,9 +109,6 @@ export default {
                 </table>
             </div>
         </div>
-    </div>
-    <div class="spinner-border text-primary" role="status" v-else>
-        <span class="sr-only"></span>
     </div>
 </template>
 

@@ -7,7 +7,8 @@ import { GeoJSON } from 'ol/format.js';
 import proj4 from 'proj4';
 import { createApp } from 'vue';
 import PopupContent from './PopupContent.vue';
-import { cell_data } from './PopupContent.vue';
+// import { cell_data } from './PopupContent.vue';
+import { grid_id } from './PopupContent.vue';
 import { getCenter, containsCoordinate } from 'ol/extent.js';
 
 /**
@@ -40,6 +41,10 @@ const popup_cell_layer = new VectorLayer({
     zIndex: 9,
 });
 
+// create PopupContent component
+let popupApp = createApp(PopupContent);
+let popupAppInst = popupApp.mount(content);
+
 function set_overlay_position() {
     let ext = popup_cell_source.getExtent();
     overlay.setPosition([(ext[0] + ext[2])/2, ext[3]]);
@@ -55,19 +60,17 @@ function get_kombstra_data(long, lat) {
                     dataProjection: "EPSG:4326",
                     featureProjection: "SR-ORG:97019",
                 }));
+            grid_id.value = data[0].grid_id;
             set_overlay_position();
-            return data[0].grid_id;
         })
-        .then((grid_id) => {
-            fetch("/kombstra/api/kombstra_data_all/?grid_id=" + grid_id)
-                .then((res) => res.json())
-                .then((data) => {cell_data.value.push(...data)})
-        })
+        .catch((err) => {
+            console.log(err);
+            popupAppInst.set_error_msg("We are sorry, there was an error finding the data for this location.");
+        });
 }
 
 function remove_popup_cell_layer() {
     popup_cell_source.clear();
-    cell_data.value.length = 0;
 }
 
 // create popup and add to map
@@ -90,9 +93,7 @@ export function create_popup() {
         map.un('pointerdrag', dragging_listener)
     };
 
-    // create PopupContent component
-    createApp(PopupContent).mount(content);
-
+    //  add popup to map
     map.addOverlay(overlay);
     map.addLayer(popup_cell_layer);
     container.style.visibility = 'visible';
@@ -113,7 +114,7 @@ export function create_popup() {
         remove_popup_cell_layer();
 
         const coordinate = evt.coordinate;
-        overlay.setPosition(coordinate);
+
         const coordinate_wgs84 = proj4("SR-ORG:97019", "EPSG:4326", coordinate);
         get_kombstra_data(coordinate_wgs84[0], coordinate_wgs84[1]);
 
