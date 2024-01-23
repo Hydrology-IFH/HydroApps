@@ -14,12 +14,5 @@ djangorestframework
 djangorestframework-gis
 django-q2
 django-request
-django-filter
 djangorestframework-msgpack
-django-npm
 django-cors-headers
-
-
-# maybee not needed anymore
-django-npm
-geoip2

@@ -68,8 +68,6 @@ INSTALLED_APPS = [
     'hcaptcha', # pip install django-hCaptcha
     'rest_framework', #  djangorestframework
     'rest_framework_gis', # djangorestframework-gis
-    'django_filters', # django-filter
-    "rest_framework_msgpack"
 ]
 
 MIDDLEWARE = [
