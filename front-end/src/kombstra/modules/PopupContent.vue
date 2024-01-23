@@ -48,9 +48,9 @@ export default {
             fetch("/kombstra/api/kombstra_data/?grid_id=" + this.grid_id)
                 .then((res) => res.json())
                 .then((data) => {
-                        this.cell_data = data;
-                        this.loading = false;
-                    })
+                    this.cell_data = data;
+                    this.loading = false;
+                    this.error_msg = false;})
                 .catch((err) => {
                         this.set_error_msg("We are sorry, there was a problem fetching the data for this cell.");
                         console.log(err);

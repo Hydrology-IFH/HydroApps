@@ -51,7 +51,7 @@ function set_overlay_position() {
 };
 
 // get kombstra data from api
-function get_kombstra_data(long, lat) {
+function update_kombstra_data(long, lat) {
     fetch("/kombstra/api/kombstra_polygon/?long=" + long + "&lat=" + lat)
         .then((res) => res.json())
         .then((data) => {
@@ -111,12 +111,14 @@ export function create_popup() {
     // Add a click handler to the map to render the popup.
     map.on('singleclick', function (evt) {
         toggle_hover(false);
-        remove_popup_cell_layer();
 
         const coordinate = evt.coordinate;
-
-        const coordinate_wgs84 = proj4("SR-ORG:97019", "EPSG:4326", coordinate);
-        get_kombstra_data(coordinate_wgs84[0], coordinate_wgs84[1]);
+        let cell_features = popup_cell_source.getFeatures();
+        if (!((cell_features.length > 0) && cell_features[0].getGeometry().containsXY(...coordinate))) {
+            remove_popup_cell_layer();
+            const coordinate_wgs84 = proj4("SR-ORG:97019", "EPSG:4326", coordinate);
+            update_kombstra_data(coordinate_wgs84[0], coordinate_wgs84[1]);
+        }
 
         add_dragging_handler();
     });
