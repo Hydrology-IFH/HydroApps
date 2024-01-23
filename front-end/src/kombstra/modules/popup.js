@@ -112,11 +112,11 @@ export function create_popup() {
     map.on('singleclick', function (evt) {
         toggle_hover(false);
 
-        const coordinate = evt.coordinate;
+        let coordinate = evt.coordinate;
         let cell_features = popup_cell_source.getFeatures();
         if (!((cell_features.length > 0) && cell_features[0].getGeometry().containsXY(...coordinate))) {
             remove_popup_cell_layer();
-            const coordinate_wgs84 = proj4("SR-ORG:97019", "EPSG:4326", coordinate);
+            let coordinate_wgs84 = proj4("SR-ORG:97019", "EPSG:4326", coordinate);
             update_kombstra_data(coordinate_wgs84[0], coordinate_wgs84[1]);
         }
 

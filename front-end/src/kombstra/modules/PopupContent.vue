@@ -65,7 +65,7 @@ export default {
 </script>
 
 <template>
-    <div class="spinner-border text-primary" role="status" v-if="loading">
+    <div class="spinner-border text-primary m-2" role="status" v-if="loading">
         <span class="sr-only"></span>
     </div>
     <div v-else-if="error_msg" class="alert alert-danger m-2" role="alert" style="max-width:300px;">
