@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-23 15:42+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\kombstra\models.py:20
+msgid "ID of the event"
+msgstr ""
+
+#: .\kombstra\models.py:25
+msgid "ID to link to the Grid-Cell"
+msgstr ""
+
+#: .\kombstra\models.py:29
+msgid "Duration class of the event (Dauerstufe) in minutes"
+msgstr ""
+
+#: .\kombstra\models.py:32
+msgid "Precipitation amount of the event in mm"
+msgstr ""
+
+#: .\kombstra\models.py:35
+msgid "Starkregen-Index (SRI) of the event"
+msgstr ""
+
+#: .\kombstra\models.py:38
+msgid "Date of the event"
+msgstr ""
+
+#: .\kombstra\models.py:41
+msgid "Rank of the event in the grid-cell"
+msgstr ""
+
+#: .\kombstra\models.py:44
+msgid "Percentile of the event in the grid-cell"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\base.html:8
+msgid ""
+"A presentation of heavy rain events and there classification (SRI) out of "
+"radar measurements. Results from the AVOSS project."
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\base.html:19
+#: .\kombstra\templates\KombStRA\home.html:6
+msgid "Home"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\base.html:20
+#: .\kombstra\templates\KombStRA\method.html:11
+msgid "Method"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\base.html:21
+msgid "Map"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\home.html:8
+msgid ""
+"This tool presents heavy rain events and theire classification based on "
+"radar measurments from the DWD. This classification ..."
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:11
+msgid "KombStRA map"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:27
+msgid ""
+"Select the KombStRA data to show on the map. To get more information on "
+"single fields, just click on the raster cell on the map."
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:32
+msgid "Choose the Parameters you would like to see on the map."
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:32
+msgid "Parameter"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:34
+msgid "duration"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:35
+msgid "rain intensity"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:36
+msgid "heavy rain index (SRI)"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:37
+msgid "year"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:38
+msgid "month"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:46
+msgid "Choose the percentile you would like to see on the map."
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:46
+msgid "Percentile"
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:56
+msgid "Choose the rank of the event. E.g. the Top 1 event per grid cell."
+msgstr ""
+
+#: .\kombstra\templates\KombStRA\map.html:56
+msgid "Event rank"
+msgstr ""

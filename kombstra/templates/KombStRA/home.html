@@ -1,0 +1,10 @@
+{% extends 'kombstra/base.html' %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% block content %}
+
+  <h1>{% trans "Home" %}</h1>
+  <p>
+    {% trans "This tool presents heavy rain events and theire classification based on radar measurments from the DWD. This classification ..."%}
+  </p>
+{% endblock %}
