@@ -12,9 +12,6 @@ def home_view(request, *args, **kwargs):
 @unreleased
 def map_view(request, *args, **kwargs):
     context = get_context_base(request)
-    # context.update({
-    #     'base_grid': json.loads(serialize("geojson", KombStRAPolygons.objects.all()))
-    #     })
     return render(request, "kombstra/map.html", context)
 
 @unreleased
