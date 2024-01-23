@@ -3,7 +3,20 @@
 import django.contrib.gis.db.models.fields
 from django.db import migrations, models
 import django.db.models.deletion
+from django.contrib.gis.gdal import SpatialReference
+from django.contrib.gis.utils.srs import add_srs_entry
+from pathlib import Path
 
+def add_radolan_srs(*args, **kwargs):
+    # combined spatialreference.org with DWD .prj file of radolan shape
+    # siource: https://www.spatialreference.org/ref/sr-org/7019/
+    with open(Path(__file__).parents[1] / "lib" / "radolan.prj", "r") as f:
+        wkt_str = f.read()
+    srs = SpatialReference(wkt_str, srs_type="wkt")
+    add_srs_entry(srs, auth_name="SR-ORG", auth_srid=97019)
+
+def remove_radolan_srs(*args, **kwargs):
+    pass
 
 class Migration(migrations.Migration):
 
@@ -13,6 +26,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(
+            add_radolan_srs,
+            remove_radolan_srs
+        ),
         migrations.CreateModel(
             name='kombstraPolygons',
             fields=[
@@ -37,6 +54,16 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'kombstra_data',
+            },
+        ),
+        migrations.CreateModel(
+            name='KombStRAGrid',
+            fields=[
+                ('rid', models.IntegerField(primary_key=True, serialize=False)),
+                ('rast', django.contrib.gis.db.models.fields.RasterField(srid=97019)),
+            ],
+            options={
+                'db_table': 'kombstra_grid',
             },
         )
     ]
