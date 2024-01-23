@@ -16,3 +16,4 @@ static_data/
 node_modules/
 /front-end/src/test*
 front-end/dist
+.vite
