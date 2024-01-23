@@ -28,10 +28,15 @@ import secretSettings_HydroApps as secrets
 SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if "DJ_DEBUG" in os.environ:
-    DEBUG = os.environ["DJ_DEBUG"].upper()=="TRUE"
+if "HydroApps_Debug" in os.environ:
+    DEBUG = os.environ["HydroApps_Debug"].upper()=="TRUE"
 else:
     DEBUG = True
+
+# set secret debug settings
+if DEBUG and hasattr(secrets, "DEBUG_SETTINGS"):
+    for name in secrets.DEBUG_SETTINGS:
+        setattr(secrets, name, secrets.DEBUG_SETTINGS[name])
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -47,6 +52,7 @@ INSTALLED_APPS = [
     'my_auth',
     'asgII',
     "HydroApps",
+    "kombstra",
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,6 +67,9 @@ INSTALLED_APPS = [
     "django_bootstrap5", # django-bootstrap5
     'hcaptcha', # pip install django-hCaptcha
     'rest_framework', #  djangorestframework
+    'rest_framework_gis', # djangorestframework-gis
+    'django_filters', # django-filter
+    "rest_framework_msgpack"
 ]
 
 MIDDLEWARE = [
@@ -234,7 +243,9 @@ else:
     STATIC_URL = "/static/"
 STATIC_ROOT = secrets.STATIC_DIR
 STATICFILES_DIRS = [
-    BASE_DIR.joinpath("main/static")
+    BASE_DIR.joinpath("main/static"),
+    BASE_DIR.joinpath("static_data"), # for big static files, that should not get synced in the git repository
+    ('front-end', BASE_DIR.joinpath('front-end/dist'))
 ]
 
 # Default primary key field type
@@ -249,10 +260,9 @@ Q_CLUSTER = {
     'workers': 4,
     'orm': 'default',
     "timeout": 60*60*24*2, # in seconds
-    "max_attempts": 4,
+    "max_attempts": 1,
     'has_replica': True,
-    'name':'django_q_weatherdb',
-    'max_attempts':1
+    'name':'django_q_weatherdb'
 }
 
 # for user statistics request
@@ -270,6 +280,17 @@ REQUEST_IGNORE_USER_AGENTS = (
 )
 REQUEST_IGNORE_AJAX=True
 
+# django rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'],
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+        "rest_framework_msgpack.renderers.MessagePackRenderer",
+    ],
+}
+
 # GDAL
 if "GDAL_LIBRARY_PATH" in os.environ:
     GDAL_LIBRARY_PATH = os.environ["GDAL_LIBRARY_PATH"]
@@ -278,7 +299,7 @@ if "GEOS_LIBRARY_PATH" in os.environ:
 
 # temporary folder
 CACHE_DIR = Path(secrets.CACHE_DIR)
-if not CACHE_DIR.is_dir(): 
+if not CACHE_DIR.is_dir():
     CACHE_DIR = BASE_DIR.parent.joinpath("Cache")
 if not CACHE_DIR.is_dir(): CACHE_DIR.mkdir()
 CACHE_URL = secrets.BASE_URL + "/weatherdb/downloads/"
@@ -295,3 +316,13 @@ del secrets
 
 # # for redirect and sites
 # SITE_ID = 1
+
+# Cors Headers in debug
+if DEBUG:
+    INSTALLED_APPS.append("corsheaders")
+    MIDDLEWARE.insert(
+        MIDDLEWARE.index("django.middleware.common.CommonMiddleware"),
+        "corsheaders.middleware.CorsMiddleware")
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:8080",
+        "http://localhost:5173"]

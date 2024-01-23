@@ -28,15 +28,15 @@
   <!-- extra styles -->
   <link rel="stylesheet" href="{% static 'css/custom_base.css' %}">
   <link rel="stylesheet" href="{% static 'css/custom_bootstrap_primary.css' %}">
-  
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
   {% block head %}{% endblock %}
 </head>
 {% block body_all %}
-<body style="background-color: #F2F2F2;"> 
+<body style="background-color: #F2F2F2;">
   <!-- Navigation Pane -->
-  <div class="sticky-top">
+  <div class="sticky-top" style="z-index:10;">
     <table class="header">
       <tr>
         <td>
@@ -49,7 +49,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-toggler" style="z-index:100;">
               <div class="navbar-header">
                 <a class="navbar-brand" href="/">
-                  {% block navbar_brand %}{% endblock %} 
+                  {% block navbar_brand %}{% endblock %}
                 </a>
               </div>
               <!-- Mobile Menu -->
@@ -70,6 +70,9 @@
                       <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item"><b>Hydro-Apps</b></a></li>
                       <li><a href="{% url 'weatherDB:home' %}" class="dropdown-item">WeatherDB</a></li>
                       <li><a href="{% url 'asgII:home' %}" class="dropdown-item">ASG-II</a></li>
+                      {% if show_unreleased %}
+                      <li><a href="{% url 'kombstra:home' %}" class="dropdown-item">KombStRA</a></li>
+                      {% endif %}
                       <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
                         <div class="d-flex">
                           <span class="me-auto">NatUrWB</span>
@@ -93,7 +96,7 @@
                 </ul>
                 <!-- App specific Menu -->
                   {% block navbar_app %}{% endblock %}
-                <!-- Language switcher Menu --> 
+                <!-- Language switcher Menu -->
                 {% get_current_language as LANGUAGE_CODE %}
                 <ul class="nav navbar-nav ms-auto">
                   <li class="nav-item dropdown">
@@ -113,7 +116,7 @@
                     </form>
                   </div>
                 </ul>
-              <!-- Login Menu --> 
+              <!-- Login Menu -->
                 <ul class="nav navbar-nav">
                   <li class="nav-item dropdown">
                     {% block login_navbar %}
@@ -136,7 +139,7 @@
                 </ul>
               </div>
             </nav>
-  
+
           </div>
         </td><td>
           <a href="https://www.hydro.uni-freiburg.de/" target="_parent" class="d-none d-md-inline">
@@ -158,18 +161,18 @@
     <div class="container-fluid">
       {% if debug %}
         <div class="container-fluid alert alert-danger" role "alert">
-          <h3>
+          <h5>
             !!! This website is in debuging mode !!!
-          </h3>
+          </h5>
         </div>
-      {% endif%}
-      {% comment %} This is not implemented yet {% if app_unreleased %}
+      {% endif %}
+      {% if app_unreleased %}
         <div class="container-fluid alert alert-warning" role "alert">
-          <h3>
-            !!! This Application did not yet get released. You can see it, because you are a Test-User !!!
-          </h3>
+          <h5>
+            !!! This Application did not yet get released. You can see it, because you're a Test-User !!!
+          </h5>
         </div>
-      {% endif %} {% endcomment %}
+      {% endif %}
       {% block content %}{% endblock %}
     </div>
 
@@ -178,12 +181,12 @@
     <div class="col-auto d-inline-flex position-relative fixed-bottom"
           style="left:50%; transform: translate(-50%, 0%);">
       <a href="{% url 'impressum' app_name=active_app %}" class="me-2">{% trans "imprint" %}</a>
-      <a href="{% url 'datenschutz' app_name=active_app %}" class="me-2">{% trans "privacy agreement" %}</a> 
+      <a href="{% url 'datenschutz' app_name=active_app %}" class="me-2">{% trans "privacy agreement" %}</a>
     </div>
 
     <div class="col-auto position-sticky
                 d-inline-flex justify-content-end
-                fixed-bottom" 
+                fixed-bottom"
          style="left:100%">
       &#169; {% block copyright %}HyFr (2023){% endblock copyright %}
     </div>

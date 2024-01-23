@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from main.settings import DEBUG
 from .utils.utils import get_context_extra
 from django.conf import settings
 

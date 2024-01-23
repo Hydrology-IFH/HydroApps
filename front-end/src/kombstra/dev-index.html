@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KombStRa Vite development template</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/custom_base.css">
+    <link rel="stylesheet" href="/static/css/custom_bootstrap_primary.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <!-- ol-ext -->
+<link rel="stylesheet" href="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.css" />
+  </head>
+  <body>
+    <div class="sticky-top">
+      <table class="header">
+        <tbody><tr>
+          <td>
+            <a href="https://www.uni-freiburg.de/" target="_blank">
+              <img src="/static/ihf_header_left.gif" height="165" border="0" align="left">
+            </a>
+          </td><td height="165" width="100%" style="position:relative;">
+            <img src="/static/ihf_header_center.gif" width="100%" height="165" border="0" style="position:absolute;top:0;">
+            </div>
+          </td><td>
+            <a href="https://www.hydro.uni-freiburg.de/" target="_parent" class="d-none d-md-inline">
+              <img src="/static/ihf_header_right.gif" width="205" height="165" border="0" align="right">
+            </a>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+    <!-- main content -->
+    <div class="container shadow
+              col-xl-9 col-lg-11 col-12
+              pt-md-2
+              pb-md-2 mb-md-4
+              ps-0 pe-0 ps-md-2 pe-md-2 ps-sm-1 pe-sm-1" style="background-color: #FFFFFF;" id="main_page">
+      <div class="container-fluid">
+
+        <h1>KombStRA map</h1>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7 col-12" >
+              <div id="map">
+                <div id="info"></div>
+                <div id="popup" class="ol-popup" style="visibility:hidden">
+                  <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                  <div id="popup-content"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 col-12">
+              <div class="container">
+                <form id="form_select_grid" class="form-horizontal" action="javascript:void(0);">
+                  <h4>Select a KombStRA grid</h4>
+                  <div class="d-flex col-12">
+                    <p>Select the KombStRA data to show on the map. To get more information on single fields, just click on the raster cell on the map.</p>
+                  </div>
+
+                  <div class="form-group input-group mb-3">
+                    <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+                    data-bs-html="true" data-bs-title='Choose the Parameters you would like to see on the map.'>Parameter</span>
+                    <select class="form-select" id="parameter" name="parameter">
+                      <option value="duration" selected>duration</option>
+                      <option value="pval">rain intensity</option>
+                      <option value="sri">heavy rain index (SRI)</option>
+                      <option value="year">year</option>
+                      <option value="month">month</option>
+                    </select>
+                    <div class="bs-component" id="agg_alert_box"></div>
+                  </div>
+
+
+                  <div class="form-group input-group mb-3">
+                    <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+                    data-bs-html="true" data-bs-title='Choose the Percentile you would like to see on the map.'>Percentile</span>
+                    <select class="form-select" id="percentile" name="percentile">
+                      <option value="10">10 %</option>
+                      <option value="50" selected>50 %</option>
+                      <option value="90">90 %</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group input-group mb-3">
+                    <span class="input-group-text" id="label_eventRank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+                    data-bs-html="true" data-bs-title='Choose the rank of the event. E.g. the Top 1 event per grid cell.'>Event rank</span>
+                    <span class="form-control">
+                      <input type="range" class="form-range" name="eventRankRange" id="eventRank" min="1" max="20" value="1" oninput="this.form.eventRankNumber.value=this.value" />
+                    </span>
+                    <input type="number" class="form-control" name="eventRankNumber" min="1" max="20" value="1" oninput="this.form.eventRankRange.value=this.value" style="max-width:70px" />
+                  </div>
+                </form>
+
+                <form id="form_map_settings" class="form-horizontal" action="javascript:void(0);">
+                  <h4>Update map settings</h4>
+                  <div class="form-group input-group mb-3">
+                    <span class="input-group-text" id="label_opacity" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+                    data-bs-html="true" data-bs-title='Set the transperency of the layer'>Transparency</span>
+                    <span class="form-control">
+                      <input type="range" class="form-range" name="OpacityRange" id="Opacity" min="0" max="100" value="100" oninput="this.form.OpacityNumber.value=this.value"/>
+                    </span>
+                    <input type="number" class="form-control" name="OpacityNumber" min="1" max="100" value="100" oninput="this.form.OpacityRange.value=this.value" style="max-width:70px"/>
+                    <span class="input-group-text">%</span>
+                  </div>
+                </form>
+              <div id="test-vue"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
