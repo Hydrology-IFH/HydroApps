@@ -1,7 +1,7 @@
 from django.contrib import admin
 # from .models import ExtendedUser
 from django.contrib.auth.admin import UserAdmin
-from .models import Account 
+from .models import Account
 
 # Register your models here.
 # admin.site.register(ExtendedUser)
@@ -23,5 +23,6 @@ class UserAdminConfig(UserAdmin):
             'fields': ('email','first_name', 'password1', 'password2'),
         }),
     )
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'is_tester')
 
 admin.site.register(Account,UserAdminConfig)
