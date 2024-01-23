@@ -6,14 +6,17 @@ def get_base_template(request):
         return "weatherDB/base.html"
     elif first_url_part == "asgII":
         return "asgII/base.html"
+    elif first_url_part == "kombstra":
+        return "kombstra/base.html"
     else:
         return "HydroApps/base.html"
-    
+
 def check_show_release(request):
     return DEBUG or (request.user.is_authenticated and request.user.is_tester)
 
 def get_context_base(request, **kwargs):
     return {"debug": DEBUG,
+            "app_unreleased": request.app_unreleased if hasattr(request, "app_unreleased") else False,
             "show_unreleased": check_show_release(request)}
 
 def get_context_extra(request, **kwargs):
@@ -28,6 +31,8 @@ def get_context_extra(request, **kwargs):
             app_name = "weatherDB"
         elif first_url_part == "asgII":
             app_name = "asgII"
+        elif first_url_part == "kombstra":
+            app_name = "kombstra"
         else:
             app_name = "HydroApps"
     context.update({

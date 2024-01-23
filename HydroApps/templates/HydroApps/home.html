@@ -52,6 +52,7 @@
           </div>
         </div>
       </div>
+      {% if show_unreleased %}
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
           <a href="{% url 'kombstra:home' %}" class="stretched-link"></a>
@@ -62,6 +63,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
           <a target="_blank" rel="noopener noreferrer" href="https://naturwb.de" class="stretched-link"></a>
