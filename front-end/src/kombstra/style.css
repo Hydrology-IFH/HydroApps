@@ -98,7 +98,7 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 
 /* Popup */
 .ol-overlaycontainer-stopevent {
-  z-index: 10!important;
+  z-index: 1100!important;
 }
 .ol-popup {
   position: absolute;
@@ -112,8 +112,6 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   max-height: 50vh;
   height: max-content;
   width: max-content;
-  /* display: flex; */
-  /* flex-direction: column; */
 }
 .ol-popup:after, .ol-popup:before {
   top: 100%;
