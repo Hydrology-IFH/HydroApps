@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-04 12:13+0100\n"
+"POT-Creation-Date: 2024-01-23 15:42+0100\n"
 "PO-Revision-Date: 2023-02-22 11:19+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -44,12 +44,16 @@ msgstr ""
 "einzelne Wetterstationen auswirken."
 
 #: .\HydroApps\templates\HydroApps\home.html:62
+msgid "Classification of heavy rain events."
+msgstr ""
+
+#: .\HydroApps\templates\HydroApps\home.html:74
 msgid "This is an Application to get the near natural water balance of cities."
 msgstr ""
 "Dies ist eine Anwendung, um die naturnahe urbanen Wasserbilanz von Städten "
 "zu bestimmen."
 
-#: .\HydroApps\templates\HydroApps\home.html:73
+#: .\HydroApps\templates\HydroApps\home.html:85
 msgid ""
 "This is an Application to simulate the water balance of a small area in "
 "Freiburg and to show the effects near natural rainwater management can have "
@@ -59,7 +63,7 @@ msgstr ""
 "Freiburg zu simulieren und um zu zeigen, welche Auswirkungen eine naturnahe "
 "Regenwasserbewirtschaftung darauf haben kann."
 
-#: .\HydroApps\templates\HydroApps\home.html:84
+#: .\HydroApps\templates\HydroApps\home.html:96
 msgid ""
 "This application simulates the mobilization of biocides from facades in "
 "cities and shows a potential risk to groundwater."
@@ -67,18 +71,18 @@ msgstr ""
 "Diese Anwendung simuliert die Mobiliserung von Bioziden aus Fassaden in "
 "Städten und zeigt ein mögliches Risiko für das Grundwasser auf. "
 
-#: .\HydroApps\templates\HydroApps\home.html:94
+#: .\HydroApps\templates\HydroApps\home.html:106
 msgid "Measurments"
 msgstr "Messungen"
 
-#: .\HydroApps\templates\HydroApps\home.html:102
+#: .\HydroApps\templates\HydroApps\home.html:114
 msgid "Water level Dreisam"
 msgstr "Pegel Dreisam"
 
-#: .\HydroApps\templates\HydroApps\home.html:107
+#: .\HydroApps\templates\HydroApps\home.html:119
 msgid "Meteo Station Vauban"
 msgstr "Meteo-Station Vauban"
 
-#: .\HydroApps\templates\HydroApps\home.html:112
+#: .\HydroApps\templates\HydroApps\home.html:124
 msgid "Meteo Station Eichstetten"
 msgstr "Meteo-Station Eichstetten"

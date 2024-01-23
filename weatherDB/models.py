@@ -10,19 +10,10 @@ class MetaN(models.Model):
     station_id = models.IntegerField(unique=True, primary_key=True)
     is_real = models.BooleanField()
     geometry = models.PointField(srid=4326, blank=True, null=True)
-    # geometry_utm = models.PointField(srid=25832, blank=True, null=True)
     raw_from = models.DateTimeField(blank=True, null=True)
     raw_until = models.DateTimeField(blank=True, null=True)
     filled_from = models.DateTimeField(blank=True, null=True)
     filled_until = models.DateTimeField(blank=True, null=True)
-    # last_imp_von = models.DateTimeField(blank=True, null=True)
-    # last_imp_bis = models.DateTimeField(blank=True, null=True)
-    # last_imp_qc = models.BooleanField()
-    # last_imp_filled = models.BooleanField()
-    # last_imp_corr = models.BooleanField()
-    # stationshoehe = models.IntegerField(blank=True, null=True)
-    # stationsname = models.TextField(blank=True, null=True)
-    # bundesland = models.TextField(blank=True, null=True)
     quot_corr_filled = models.FloatField(null=True, blank=True)
     quot_filled_hyras = models.FloatField(null=True, blank=True)
     richter_class = models.TextField(blank=True, null=True)
@@ -36,7 +27,7 @@ class TSDownloads(models.Model):
     using = 'default'
     filepath = models.TextField(primary_key=True, unique=True)
     timestamp = models.DateTimeField(
-        auto_now_add=True)#lambda: datetime.datetime.utcnow().replace(tzinfo=timezone.utc))
+        auto_now_add=True)
     user = models.CharField(max_length=100, null=True, default=None)
     ip = models.GenericIPAddressField(blank=True, null=True)
     stids = models.TextField(blank=True, null=True)
@@ -108,7 +99,7 @@ class TSDownloads(models.Model):
                     obj.delete()
             return None
         else:
-            return None #temp_zf
+            return None
 
     @classmethod
     def delete_file(cls, filepath):
