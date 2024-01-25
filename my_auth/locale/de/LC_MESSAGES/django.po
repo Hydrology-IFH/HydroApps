@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-04 12:13+0100\n"
+"POT-Creation-Date: 2024-01-25 14:33+0100\n"
 "PO-Revision-Date: 2023-02-02 10:48+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\my_auth\forms.py:13
+#: .\my_auth\forms.py:12
 msgid ""
 "Why should you be granted access to the Hydro-Apps resources? Explain in "
 "your own words"
@@ -26,7 +26,7 @@ msgstr ""
 "Warum sollten Sie Zugang zu den Ressourcen von Hydro-Apps erhalten? "
 "Begründen Sie in Ihren eigenen Worten"
 
-#: .\my_auth\forms.py:14
+#: .\my_auth\forms.py:13
 msgid ""
 "This information will get used to decide whether you are granted access to "
 "the database. The information will only be visible to you and the admin of "
@@ -36,19 +36,19 @@ msgstr ""
 "Datenbank gewährt wird. Die Informationen sind nur für Sie und den "
 "Administrator der Webseite sichtbar."
 
-#: .\my_auth\forms.py:31
+#: .\my_auth\forms.py:30
 msgid "Privacy agreement"
 msgstr "Datenschutzerklärung"
 
-#: .\my_auth\forms.py:38 .\my_auth\forms.py:87
+#: .\my_auth\forms.py:37 .\my_auth\forms.py:86
 msgid "User Already Exist"
 msgstr "Nutzer*in existiert bereits"
 
-#: .\my_auth\forms.py:45 .\my_auth\forms.py:94
+#: .\my_auth\forms.py:44 .\my_auth\forms.py:93
 msgid "Email Already Exist"
 msgstr "E-Mail existiert bereits"
 
-#: .\my_auth\forms.py:66
+#: .\my_auth\forms.py:65
 msgid ""
 "This is the Password to log into the database. Please use this together with "
 "your username to use the python package."
@@ -56,14 +56,14 @@ msgstr ""
 "Dies ist das Passwort für die Anmeldung bei der Datenbank. Bitte verwenden "
 "Sie dieses zusammen mit Ihrem Benutzernamen, um das Python-Paket zu nutzen."
 
-#: .\my_auth\forms.py:73
+#: .\my_auth\forms.py:72
 msgid ""
 "This is the number of stations you can download at once from this Website."
 msgstr ""
 "Dies ist die Anzahl an Stationen die auf einmal heruntergeladen werden "
 "können."
 
-#: .\my_auth\forms.py:75
+#: .\my_auth\forms.py:74
 msgid "Maximum allowed Stations to download at once"
 msgstr "Maximal erlaubte Stationen je Download"
 
@@ -132,11 +132,11 @@ msgstr ""
 "Gibt die Anzahl an Stationen die ein*e Nutzer*in auf einmal von der "
 "WeatherDB-App herunterladen kann."
 
-#: .\my_auth\models.py:82
+#: .\my_auth\models.py:81
 msgid "Designates whether the user is superuser."
 msgstr "Gibt an ob der/die Nutzer*in super user Rechte hat."
 
-#: .\my_auth\models.py:84
+#: .\my_auth\models.py:83
 msgid "The Password for this user to log into the database."
 msgstr ""
 "Das Passwort für diese*n Nutzer*in um sich auf der WeatherDB-Datenbank "
@@ -145,7 +145,7 @@ msgstr ""
 #: .\my_auth\templates\emails\account_activation_email.html:2
 #: .\my_auth\templates\emails\confirm_email.html:2
 #: .\my_auth\templates\emails\db_access_granted.html:2
-#: .\my_auth\templates\registration\password_reset_email.html:2
+#: .\my_auth\templates\emails\password_reset_email.html:2
 msgid "Hello"
 msgstr "Hallo"
 
@@ -173,7 +173,7 @@ msgstr ""
 
 #: .\my_auth\templates\emails\confirm_email.html:8
 #: .\my_auth\templates\emails\db_access_granted.html:6
-#: .\my_auth\templates\registration\password_reset_email.html:9
+#: .\my_auth\templates\emails\password_reset_email.html:9
 msgid ""
 "If you think, it's not for you, then just ignore this email.\n"
 "This is an automatic generated E-mail, please don't answer it."
@@ -200,6 +200,23 @@ msgstr ""
 "unserer Seite einloggen und zu ihrer Profilseite gehen um die Zugangsdaten "
 "herunterzuladen"
 
+#: .\my_auth\templates\emails\password_reset_email.html:4
+msgid "Someone asked for password reset for email"
+msgstr ""
+"Jemand hat nach einer Zurückstellung des Passworts für die E-Mail Adresse"
+
+#: .\my_auth\templates\emails\password_reset_email.html:4
+msgid "on the Hydro-Apps website"
+msgstr "auf der Hydro-Apps Webseite"
+
+#: .\my_auth\templates\emails\password_reset_email.html:5
+msgid "Follow the link below"
+msgstr "Folgen Sie dem folgenden Link"
+
+#: .\my_auth\templates\emails\password_reset_subject.txt:2
+msgid "Password reset for Hydro-Apps"
+msgstr "Passwort wiederherstellen für Hydro-Apps"
+
 #: .\my_auth\templates\registration\login.html:6
 msgid "Login to Hydro-Apps"
 msgstr "Anmelden auf Hydro-Apps"
@@ -223,7 +240,7 @@ msgstr "Registrieren"
 
 #: .\my_auth\templates\registration\login.html:20
 #: .\my_auth\templates\registration\registration_form.html:10
-#: .\my_auth\templates\users\profile.html:52
+#: .\my_auth\templates\users\profile.html:50
 msgid "Username"
 msgstr "Nutzername"
 
@@ -258,32 +275,19 @@ msgstr "Ihr Passwort wurde erfolgreich geändert."
 msgid "Back to login"
 msgstr "Zurück zum Einloggen"
 
-#: .\my_auth\templates\registration\password_reset_confirm.html:6
+#: .\my_auth\templates\registration\password_reset_form.html:6
 msgid "Reset your password"
 msgstr "Passwort zurücksetzen"
 
-#: .\my_auth\templates\registration\password_reset_confirm.html:11
+#: .\my_auth\templates\registration\password_reset_form.html:11
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: .\my_auth\templates\registration\password_reset_email.html:4
-msgid "Someone asked for password reset for email"
-msgstr ""
-"Jemand hat nach einer Zurückstellung des Passworts für die E-Mail Adresse"
-
-#: .\my_auth\templates\registration\password_reset_email.html:4
-msgid "on the Hydro-Apps website"
-msgstr "auf der Hydro-Apps Webseite"
-
-#: .\my_auth\templates\registration\password_reset_email.html:5
-msgid "Follow the link below"
-msgstr "Folgen Sie dem folgenden Link"
-
-#: .\my_auth\templates\registration\password_reset_request_confirm.html:6
+#: .\my_auth\templates\registration\password_reset_request_done.html:6
 msgid "Link send"
 msgstr "Link verschickt"
 
-#: .\my_auth\templates\registration\password_reset_request_confirm.html:7
+#: .\my_auth\templates\registration\password_reset_request_done.html:7
 msgid ""
 "A link was send to your E-Mail Adress to reset your password. Please also "
 "check your spam folder."
@@ -295,13 +299,9 @@ msgstr ""
 msgid "Send password reset link"
 msgstr "Sende Passwort-Wiederherstellungs-Link"
 
-#: .\my_auth\templates\registration\password_reset_request_form.html:13
+#: .\my_auth\templates\registration\password_reset_request_form.html:12
 msgid "Reset"
 msgstr "Wiederherstellen"
-
-#: .\my_auth\templates\registration\password_reset_subject.txt:2
-msgid "Password reset for Hydro-Apps"
-msgstr "Passwort wiederherstellen für Hydro-Apps"
 
 #: .\my_auth\templates\registration\registration_done.html:5
 msgid "Account was set up and a confirmation E-Mail was send to your E-mail."
@@ -349,17 +349,17 @@ msgid "Register to Hydro-Apps"
 msgstr "Auf Hydro-Apps Registrieren"
 
 #: .\my_auth\templates\registration\registration_form.html:13
-#: .\my_auth\templates\users\profile.html:54
+#: .\my_auth\templates\users\profile.html:52
 msgid "First Name"
 msgstr "Vorname"
 
 #: .\my_auth\templates\registration\registration_form.html:15
-#: .\my_auth\templates\users\profile.html:56
+#: .\my_auth\templates\users\profile.html:54
 msgid "Last Name"
 msgstr "Nachname"
 
 #: .\my_auth\templates\registration\registration_form.html:18
-#: .\my_auth\templates\users\profile.html:60
+#: .\my_auth\templates\users\profile.html:58
 msgid "personal introduction"
 msgstr "persönliche Vorstellung"
 
@@ -477,7 +477,7 @@ msgid "New Password confirmation"
 msgstr "Neues Passwort bestätigen"
 
 #: .\my_auth\templates\users\password_change_form.html:15
-#: .\my_auth\templates\users\profile.html:97
+#: .\my_auth\templates\users\profile.html:93
 msgid "Save Changes"
 msgstr "Speichere Änderungen"
 
@@ -514,11 +514,11 @@ msgstr "zurück zu ihrem Profil"
 msgid "Send request"
 msgstr "Sende Anfrage"
 
-#: .\my_auth\templates\users\profile.html:48
+#: .\my_auth\templates\users\profile.html:47
 msgid "Change Password"
 msgstr "Ändere Passwort"
 
-#: .\my_auth\templates\users\profile.html:70
+#: .\my_auth\templates\users\profile.html:68
 msgid ""
 "This information will get used to decide whether you are granted access to "
 "some ressources like e.g. the WeatherDB database. The information will only "
@@ -532,45 +532,45 @@ msgstr ""
 "an der Uni Freiburg Hydrologie oder ich bin Student der Hydrologie in "
 "Freiburg..."
 
-#: .\my_auth\templates\users\profile.html:75
+#: .\my_auth\templates\users\profile.html:73
 msgid "WeatherDB"
 msgstr "WeatherDB"
 
-#: .\my_auth\templates\users\profile.html:76
+#: .\my_auth\templates\users\profile.html:74
 msgid "specific profile settings for the active app"
 msgstr "spezifische Profileigenschaften für die aktive App"
 
-#: .\my_auth\templates\users\profile.html:84
+#: .\my_auth\templates\users\profile.html:82
 msgid "Database access"
 msgstr "Datenbankzugang"
 
-#: .\my_auth\templates\users\profile.html:85
+#: .\my_auth\templates\users\profile.html:83
 msgid "You haven't yet been granted access to the WeatherDB database."
 msgstr "Ihnen wurde noch kein Zugang zur WeatherDB-Datenbank gewährt."
 
-#: .\my_auth\templates\users\profile.html:87
+#: .\my_auth\templates\users\profile.html:84
 msgid "request access"
 msgstr "Zugang anfragen"
 
-#: .\my_auth\templates\users\profile.html:92
+#: .\my_auth\templates\users\profile.html:88
 msgid "maximal Download"
 msgstr "maximaler Download"
 
-#: .\my_auth\templates\users\profile.html:119
+#: .\my_auth\templates\users\profile.html:115
 msgid "Your E-Mail adress got confirmed"
 msgstr "Ihre E-Mail-Adresse wurde bestätigt"
 
-#: .\my_auth\templates\users\profile.html:122
+#: .\my_auth\templates\users\profile.html:118
 msgid "You still have to confirm your E-Mail adress"
 msgstr "Sie müssen noch Ihre E-Mail-Adresse bestätigen"
 
-#: .\my_auth\templates\users\profile.html:131
-#: .\my_auth\templates\users\profile.html:144
-#: .\my_auth\templates\users\profile.html:156
+#: .\my_auth\templates\users\profile.html:127
+#: .\my_auth\templates\users\profile.html:140
+#: .\my_auth\templates\users\profile.html:152
 msgid "Resend an E-mail confirmation mail."
 msgstr "E-Mail Bestätigung erneut zuschicken."
 
-#: .\my_auth\templates\users\profile.html:159
+#: .\my_auth\templates\users\profile.html:155
 msgid ""
 "You Account still has to get activated. <br>If your E-Mail is confirmed and "
 "you waited for 2 ore more days and your account is still not active, please "
@@ -580,19 +580,19 @@ msgstr ""
 "Sie 2 oder mehr Tage gewartet haben und Ihr Konto immer noch nicht aktiv "
 "ist, schreiben Sie bitte an"
 
-#: .\my_auth\templates\users\profile.html:174
+#: .\my_auth\templates\users\profile.html:170
 msgid "Renew the API Password"
 msgstr "Erneure das API Passwort"
 
-#: .\my_auth\templates\users\profile.html:192
+#: .\my_auth\templates\users\profile.html:188
 msgid "Copy the API Password to your clipboard"
 msgstr "Kopiere das API Passwort"
 
-#: .\my_auth\templates\users\profile.html:203
+#: .\my_auth\templates\users\profile.html:199
 msgid "Download your personal secret settings file"
 msgstr "Laden Sie Ihre persönliche \"secret settings\" Datei herunter"
 
-#: .\my_auth\templates\users\profile.html:216
+#: .\my_auth\templates\users\profile.html:209
 msgid ""
 "Hello Admin, \\n\\nI need a higher download limit for the weatherDB website, "
 "because: \\n... fill out ...\\n\\nPlease update my Account.\\n\\nSincerely,"
@@ -602,8 +602,8 @@ msgstr ""
 "Anwendung, weil ich \\n... füllen Sie dies aus...\\n\\nBitte aktualisieren "
 "Sie mein Konto.\\n\\nMit freundlichen Grüßen,\\n"
 
-#: .\my_auth\templates\users\profile.html:217
-#: .\my_auth\templates\users\profile.html:221
+#: .\my_auth\templates\users\profile.html:210
+#: .\my_auth\templates\users\profile.html:214
 msgid "Request a higher download limit"
 msgstr "Beantrage ein höheres Download-Limit"
 

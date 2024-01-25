@@ -31,7 +31,7 @@ SECRET_KEY = secrets.SECRET_KEY
 if "HydroApps_Debug" in os.environ:
     DEBUG = os.environ["HydroApps_Debug"].upper()=="TRUE"
 else:
-    DEBUG = True
+    DEBUG = False
 
 # set secret debug settings
 if DEBUG and hasattr(secrets, "DEBUG_SETTINGS"):

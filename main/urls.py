@@ -21,9 +21,6 @@ from .views import impressum_view, datenschutz_view, google_site_verification_vi
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 
-
-#from weatherDB.urls import urlpatterns as weatherDB_urls
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("favicon.ico",

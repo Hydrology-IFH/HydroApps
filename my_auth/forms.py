@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordResetForm
 from django import forms
-from django.db import models
 from .models import Account
 from django.core.exceptions import ValidationError
 from hcaptcha.fields import hCaptchaField
@@ -8,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 personal_introduction_widget = forms.Textarea(
     attrs={
-        "rows":2, 
+        "rows":2,
         "class": "form-control",
         "placeholder": _("Why should you be granted access to the Hydro-Apps resources? Explain in your own words"),
         "title": _("This information will get used to decide whether you are granted access to the database. The information will only be visible to you and the admin of this site.")})
@@ -19,10 +18,10 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Account
         fields = UserCreationForm.Meta.fields + \
-            ("email", 
-             "first_name", 
-             "last_name", 
-             "personal_introduction", 
+            ("email",
+             "first_name",
+             "last_name",
+             "personal_introduction",
              "confirmed_data_policy")
         widgets = {
             "personal_introduction": personal_introduction_widget,
@@ -96,3 +95,11 @@ class CustomUserChangeForm(forms.ModelForm):
 
 class CustomPasswordResetForm(PasswordResetForm):
     hcaptcha = hCaptchaField()
+
+    def save(self,
+             email_template_name="emails/password_reset_email.html",
+             subject_template_name="emails/password_reset_subject.txt",
+             **kwargs):
+        return super().save(
+            email_template_name=email_template_name,
+            subject_template_name=subject_template_name, **kwargs)

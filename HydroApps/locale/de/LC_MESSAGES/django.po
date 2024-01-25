@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-23 15:42+0100\n"
-"PO-Revision-Date: 2023-02-22 11:19+0100\n"
+"PO-Revision-Date: 2024-01-25 14:42+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: .\HydroApps\templates\HydroApps\home.html:32
 msgid ""
@@ -45,7 +45,7 @@ msgstr ""
 
 #: .\HydroApps\templates\HydroApps\home.html:62
 msgid "Classification of heavy rain events."
-msgstr ""
+msgstr "Klassifizierung von Starkregenereignissen."
 
 #: .\HydroApps\templates\HydroApps\home.html:74
 msgid "This is an Application to get the near natural water balance of cities."
@@ -68,8 +68,8 @@ msgid ""
 "This application simulates the mobilization of biocides from facades in "
 "cities and shows a potential risk to groundwater."
 msgstr ""
-"Diese Anwendung simuliert die Mobiliserung von Bioziden aus Fassaden in "
-"Städten und zeigt ein mögliches Risiko für das Grundwasser auf. "
+"Diese Anwendung simuliert die Mobilisierung von Bioziden aus Fassaden in "
+"Städten und zeigt ein mögliches Risiko für das Grundwasser auf."
 
 #: .\HydroApps\templates\HydroApps\home.html:106
 msgid "Measurments"
