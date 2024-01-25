@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 14:33+0100\n"
-"PO-Revision-Date: 2023-02-02 10:48+0100\n"
+"POT-Creation-Date: 2024-01-25 15:26+0100\n"
+"PO-Revision-Date: 2024-01-25 15:28+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: .\my_auth\forms.py:12
 msgid ""
@@ -67,30 +67,30 @@ msgstr ""
 msgid "Maximum allowed Stations to download at once"
 msgstr "Maximal erlaubte Stationen je Download"
 
-#: .\my_auth\models.py:21
+#: .\my_auth\models.py:20
 msgid "Users must have an email address"
 msgstr "Nutzer*in benötigt eine E-Mail Adresse"
 
-#: .\my_auth\models.py:23
+#: .\my_auth\models.py:22
 msgid "Users must have an unique username"
 msgstr "Nutzer*in benötigt einen eindeutigen Nutzernamen"
 
-#: .\my_auth\models.py:32
+#: .\my_auth\models.py:31
 msgid "This username is already a database user for the weatherDB database."
 msgstr ""
 "Dieser Nutzername ist bereits ein Datenbank-Nutzer für die WeatherDB-"
 "Datenbank."
 
-#: .\my_auth\models.py:53
+#: .\my_auth\models.py:52
 msgid "email address"
 msgstr "E-Mail Adresse"
 
-#: .\my_auth\models.py:60
+#: .\my_auth\models.py:59
 msgid "Comment of the user why he/she should have access to the Hydro-Apps"
 msgstr ""
 "Begründung des/der Nutzer*in wieso Er/Sie Zugang zu Hydro-Apps haben sollte"
 
-#: .\my_auth\models.py:62
+#: .\my_auth\models.py:61
 msgid ""
 "I agree to the terms of usage of my data and I did read and agree to the "
 "policy agreement of this website."
@@ -98,33 +98,33 @@ msgstr ""
 "Ich habe die Datenschutzerklärung dieser Seite gelesen und stimme der "
 "Nutzung meiner Daten zu."
 
-#: .\my_auth\models.py:63
+#: .\my_auth\models.py:62
 msgid "Designates whether the user confirmed the data policy agreement."
 msgstr "Gibt an ob der/die Nutzer*in die Datenschutzerklärung bestätigt hat."
 
-#: .\my_auth\models.py:65
+#: .\my_auth\models.py:64
 msgid "Designates whether the user confirmed it's e-mail address."
 msgstr "Gibt an ob der/die Nutzer*in die E-Mail Adresse bestätigt hat."
 
-#: .\my_auth\models.py:67
+#: .\my_auth\models.py:66
 msgid "Designates whether the user got activated by a super user."
 msgstr ""
 "Gibt an ob der/die Nutzer*in durch einen Administrator bestätigt wurde."
 
-#: .\my_auth\models.py:69
+#: .\my_auth\models.py:68
 msgid "Designates whether the user can log into this admin site."
 msgstr "Gibt an ob der/die Nutzer*in sich ins Admin Portal einloggen kann."
 
-#: .\my_auth\models.py:72
+#: .\my_auth\models.py:71
 msgid ""
 "Designates whether the user can see features that didn't yet get released."
 msgstr "Gibt an ob der/die Nutzer*in unveröffentlichte Inhalte sehen kann."
 
-#: .\my_auth\models.py:75
+#: .\my_auth\models.py:74
 msgid "Designates whether the user can log into the WeatherDB-database."
 msgstr "Gibt an ob der/die Nutzer*in zugang zur WeatherDB-Datenbank hat."
 
-#: .\my_auth\models.py:78
+#: .\my_auth\models.py:77
 msgid ""
 "Designates the number of stations a user can download at once on the "
 "WeatherDB App."
@@ -132,11 +132,11 @@ msgstr ""
 "Gibt die Anzahl an Stationen die ein*e Nutzer*in auf einmal von der "
 "WeatherDB-App herunterladen kann."
 
-#: .\my_auth\models.py:81
+#: .\my_auth\models.py:80
 msgid "Designates whether the user is superuser."
 msgstr "Gibt an ob der/die Nutzer*in super user Rechte hat."
 
-#: .\my_auth\models.py:83
+#: .\my_auth\models.py:82
 msgid "The Password for this user to log into the database."
 msgstr ""
 "Das Passwort für diese*n Nutzer*in um sich auf der WeatherDB-Datenbank "
@@ -289,11 +289,11 @@ msgstr "Link verschickt"
 
 #: .\my_auth\templates\registration\password_reset_request_done.html:7
 msgid ""
-"A link was send to your E-Mail Adress to reset your password. Please also "
-"check your spam folder."
+"If you have an account a link was send to your E-Mail Adress to reset your "
+"password. Please also check your spam folder."
 msgstr ""
-"Ein Wiederherstellungs-Link wurde an Ihre E-Mail Adresse geschickt. Bitte "
-"überprüfen Sie auch Ihren Spam-Ordner."
+"Falls Sie ein Konto besitzen wurde Ihnen ein Wiederherstellungs-Link an Ihre "
+"E-Mail Adresse geschickt. Bitte überprüfen Sie auch Ihren Spam-Ordner."
 
 #: .\my_auth\templates\registration\password_reset_request_form.html:6
 msgid "Send password reset link"
