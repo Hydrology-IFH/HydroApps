@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-17 16:35+0200\n"
-"PO-Revision-Date: 2023-04-17 16:39+0200\n"
+"PO-Revision-Date: 2024-01-25 14:35+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:123
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
@@ -191,7 +191,7 @@ msgstr ""
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:571
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1
 msgid "The date must be between"
-msgstr "Für die gewählte Datenart, muss das Datum zwischen dem "
+msgstr "Für die gewählte Datenart, muss das Datum zwischen dem"
 
 #: .\weatherDB\static\weatherDB\js\get_ts_map.js:571
 #: .\weatherDB\static\weatherDB\js\get_ts_map.min.js:1

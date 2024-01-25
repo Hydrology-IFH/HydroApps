@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-23 15:42+0100\n"
+"POT-Creation-Date: 2024-01-25 14:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\main\settings.py:225
+#: .\main\settings.py:223
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:226
+#: .\main\settings.py:224
 msgid "English"
 msgstr "Englisch"
 
