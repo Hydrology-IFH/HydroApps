@@ -4,8 +4,6 @@ from django.contrib.auth.admin import UserAdmin
 from .models import Account
 
 # Register your models here.
-# admin.site.register(ExtendedUser)
-
 class UserAdminConfig(UserAdmin):
     list_display=['email','username','first_name', "last_name", "date_joined"]
     search_fields=['email','username']

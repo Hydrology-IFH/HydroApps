@@ -9,20 +9,24 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
-from main.settings import DEBUG
 from django.views.decorators.csrf import csrf_protect
 from distutils.util import strtobool
+from django.urls import reverse_lazy
 
 from .token import account_activation_token
-from .models import Account # ExtendedUser
+from .models import Account
 from .forms import CustomUserCreationForm, CustomUserChangeForm, CustomPasswordResetForm
 from django.contrib.auth.views import (
-    LoginView, LogoutView
+    LoginView, LogoutView,
+    PasswordResetView, PasswordResetDoneView,
+    PasswordResetConfirmView, PasswordResetCompleteView
 )
 from main.utils.utils import get_context_extra
 from main import settings
 
 # Create your views here.
+#########################
+# registration views
 @csrf_protect
 def register(request, **kwargs):
     context = get_context_extra(request, **kwargs)
@@ -54,7 +58,7 @@ def register(request, **kwargs):
                 context
             )
 
-@login_required 
+@login_required
 def resend_email_confirmation(request, **kwargs):
     request.user.send_email_confirmation(request=request)
     messages.success(request, "A new Email confirmation was send to " + request.user.email, extra_tags="alert-success")
@@ -70,7 +74,7 @@ def confirm_email(request, uidb64, token, **kwargs):
         user.is_email_confirmed = True
         user.save()
         if not user.is_active:
-            user.send_confirm_user(request)
+            user.send_admin_confirm_user(request)
         context = get_context_extra(request, **kwargs)
         context.update({'user': user})
         return render(
@@ -106,35 +110,28 @@ def confirm_user(request, uidb64, token, **kwargs):
     else:
         return HttpResponse('Activation link is invalid!')
 
-def request_reset_password(request, **kwargs):
-    context = get_context_extra(request, **kwargs)
-    context.update({"HCAPTCHA_SITEKEY": settings.HCAPTCHA_SITEKEY})
-    if request.method == 'POST':
-        form = CustomPasswordResetForm(request.POST)
-        if form.is_valid():
-            form.save(request=request)
-            return render(request, 'registration/password_reset_request_confirm.html', context)
-    else:
-        context.update(dict(form = CustomPasswordResetForm()))
-    return render(request, 'registration/password_reset_request_form.html', context)
+# Password reset views
+class MyPasswordResetView(PasswordResetView):
+    # View to request a password reset
+    success_url = reverse_lazy('password_reset_done', kwargs={"app_name": "HydroApps"})
+    template_name = "registration/password_reset_request_form.html"
+    email_template_name = "emails/password_reset_email.html"
+    form_class = CustomPasswordResetForm
 
-@login_required
-@csrf_protect
-def request_db_access(request, **kwargs):
-    context = get_context_extra(request, **kwargs)
-    if request.user.is_email_confirmed and request.user.is_active:
-        request.user.send_admin_request_db_access(request)
-        context.update({"email_send": True})
-    else:
-        context.update({"email_send": False})
-    return render(request, 'registration/request_db_access_send.html', context)
+class  MyPasswordResetDoneView(PasswordResetDoneView):
+    # after password request was send
+    template_name = "registration/password_reset_request_done.html"
 
-@login_required
-@csrf_protect
-def renew_db_password(request, **kwargs):
-    request.user.renew_db_password()
-    return redirect(to='user_profile')
+class MyPasswordResetConfirmView(PasswordResetConfirmView):
+    # View to reset password
+    success_url = reverse_lazy('password_reset_complete', kwargs={"app_name": "HydroApps"})
+    template_name = "registration/password_reset_form.html"
 
+class MyPasswordResetCompleteView(PasswordResetCompleteView):
+    # after password was reset
+    template_name = "registration/password_reset_complete.html"
+
+# Profile view
 @login_required
 @csrf_protect
 def profile(request, **kwargs):
@@ -157,6 +154,8 @@ def profile(request, **kwargs):
         context.update(dict(form = CustomUserChangeForm(instance=request.user)))
         return render(request, 'users/profile.html', context)
 
+
+# change password view
 @login_required
 @csrf_protect
 def change_password(request, **kwargs):
@@ -174,12 +173,35 @@ def change_password(request, **kwargs):
         context.update(dict(form = PasswordChangeForm(request.user)))
     return render(request, 'users/password_change_form.html', context)
 
+# login/logout views
 class MyLoginView(LoginView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(get_context_extra(self.request))
         return context
-    
+
     def get_default_redirect_url(self):
         active_app = get_context_extra(self.request)["active_app"]
         return f"/{self.request.LANGUAGE_CODE}/{active_app}/auth/accounts/profile/"
+
+class MyLogoutView(LogoutView):
+    pass
+
+
+# setting database password
+@login_required
+@csrf_protect
+def request_db_access(request, **kwargs):
+    context = get_context_extra(request, **kwargs)
+    if request.user.is_email_confirmed and request.user.is_active:
+        request.user.send_admin_request_db_access(request)
+        context.update({"email_send": True})
+    else:
+        context.update({"email_send": False})
+    return render(request, 'registration/request_db_access_send.html', context)
+
+@login_required
+@csrf_protect
+def renew_db_password(request, **kwargs):
+    request.user.renew_db_password()
+    return redirect(to='user_profile')

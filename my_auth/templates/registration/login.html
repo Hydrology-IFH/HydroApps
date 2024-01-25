@@ -20,7 +20,7 @@
     {% trans "Username" as user %} {% trans "E-Mail/Username" as ph_user %}
     {% bootstrap_field form.username show_label='skip' addon_before=user placeholder=ph_user %}
     {% trans "Password" as pass %}
-    {% bootstrap_field form.password show_label='skip' addon_before=pass addon_after_class=None addon_after='<a id="a_password_reset" class="btn btn-primary"></a>'%}
+    {% bootstrap_field form.password show_label='skip' addon_before=pass addon_after_class=None addon_after='<a id="a_password_reset" class="btn btn-outline-primary"></a>'%}
     <input class="btn btn-primary" type="submit" value='{% trans "Login" %}'>
   </form>
   <script>

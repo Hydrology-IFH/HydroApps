@@ -44,9 +44,7 @@
       <div class="input-group">
         <span class="input-group-text">{% trans "Password" %}</span>
         <input type="password" name="password" value="notarealpassword" maxlength="50" class="form-control" title="" disabled="" id="id_password">
-        <div class="input-group-append">
-          <a href="{% url 'password_change' app_name=active_app %}" class="btn btn-primary">{% trans "Change Password" %}</a>
-        </div>
+        <a href="{% url 'password_change' app_name=active_app %}" class="btn btn-outline-primary">{% trans "Change Password" %}</a>
       </div>
     </div>
     {% trans "Username" as un %}
@@ -69,13 +67,13 @@
       </div>
       <small class="form-text text-muted">{% trans "This information will get used to decide whether you are granted access to some ressources like e.g. the WeatherDB database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg..." %}</small>
     </div>
-    {% if active_app == "weatherDB" %}    
-      <div class="card" style="width: 100%;">
+    {% if active_app == "weatherDB" %}
+      <div class="card mb-3" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">{% trans "WeatherDB" %}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{% trans "specific profile settings for the active app" %}</h6>
 
-    
+
           {% if user.wdb_is_db_user %}
             {% bootstrap_field form.db_password show_label='skip' addon_before='API Password' addon_after_class=None addon_after='<div id="addon_after_api_pwd"></div>' %}
           {% else %}
@@ -83,14 +81,12 @@
               <div class="input-group">
                 <span class="input-group-text">{% trans "Database access" %}</span>
                 <input type="text" name="db_access" value="{% trans "You haven't yet been granted access to the WeatherDB database." %}" class="form-control" title="" disabled>
-                <div class="input-group-append">
-                  <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#requestDBAccessModal" id="requestDBAccessModalButton">{% trans "request access" %}</a>
-                </div>
+                <a class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#requestDBAccessModal" id="requestDBAccessModalButton">{% trans "request access" %}</a>
               </div>
             </div>
           {% endif %}
           {% trans "maximal Download" as md %}
-          {% bootstrap_field form.wdb_max_downloads show_label='skip' addon_before=md addon_after_class=None addon_after='<div id="addon_after_max_download"></div>' %}
+          {% bootstrap_field form.wdb_max_downloads show_label='skip' addon_before=md addon_after_class=None addon_after='<a id="addon_after_max_download"></a>' %}
         </div>
       </div>
     {% endif %}
@@ -143,7 +139,7 @@
       btn_resend.setAttribute("title", '{% trans "Resend an E-mail confirmation mail." %}');
       addon_after_email.parentElement.appendChild(btn_resend);
     }
-    
+
     // user account
     let addon_after_user = document.getElementById('addon_after_user');
     addon_after_user.className = 'input-group-text';
@@ -189,7 +185,7 @@
         btn_clipboard.setAttribute("data-bs-toggle", "tooltip");
         btn_clipboard.setAttribute("data-bs-placement", "top");
         btn_clipboard.setAttribute("title", '{% trans "Copy the API Password to your clipboard" %}')
-        addon_after_api.appendChild(btn_clipboard);   
+        addon_after_api.appendChild(btn_clipboard);
       }
 
       let btn_download = document.createElement("a");
@@ -199,17 +195,14 @@
       btn_download.innerHTML = "<i class='bi bi-download'>";
       btn_download.setAttribute("data-bs-toggle", "tooltip");
       btn_download.setAttribute("data-bs-placement", "top");
-      btn_download.setAttribute("title", '{% trans "Download your personal secret settings file" %}'); 
+      btn_download.setAttribute("title", '{% trans "Download your personal secret settings file" %}');
       addon_after_api.appendChild(btn_download);
-    }    
+    }
 
   })();
 
   // addon after max download
-  let addon_after_max_download = document.getElementById('addon_after_max_download');
-  addon_after_max_download.className = 'btn-group';
-    
-  let btn_request_more = document.createElement("a");
+  let btn_request_more = document.getElementById('addon_after_max_download');
   btn_request_more.id="btn_renew_max_download";
   btn_request_more.className = "btn btn-outline-primary";
   mail_body=encodeURIComponent('{% trans "Hello Admin, \n\nI need a higher download limit for the weatherDB website, because: \n... fill out ...\n\nPlease update my Account.\n\nSincerely,\n" %}')
@@ -218,7 +211,6 @@
   btn_request_more.setAttribute("data-bs-toggle", "tooltip");
   btn_request_more.setAttribute("data-bs-placement", "top");
   btn_request_more.setAttribute("title", '{% trans "Request a higher download limit" %}');
-  addon_after_max_download.appendChild(btn_request_more);
 
   // start bootstrap tooltip
   $(function () {
@@ -236,4 +228,3 @@
 {% endblock %}
 
 
-  

@@ -25,7 +25,7 @@ class AccountManager(BaseUserManager):
         with connections["weatherdb"].cursor() as cursor:
             cursor.execute("""
                 SELECT groname AS username
-                FROM pg_catalog.pg_group pg 
+                FROM pg_catalog.pg_group pg
                 UNION (SELECT usename FROM pg_catalog.pg_user);""")
             db_users = [row[0] for row in cursor.fetchall()]
         if username in db_users:
@@ -47,7 +47,7 @@ class AccountManager(BaseUserManager):
             raise ValueError('is_superuser is set to False')
         return self.create_user(email,username,first_name,password,**other_fields)
 
-        
+
 
 class Account(AbstractBaseUser,PermissionsMixin):
     email         = models.EmailField(_('email address'), max_length=60, unique=True)
@@ -56,7 +56,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
     last_name     = models.CharField(max_length=30, blank=False)
     date_joined   = models.DateTimeField(verbose_name='date_joined', auto_now_add=True)
     last_login    = models.DateTimeField(verbose_name='last login', auto_now=True)
-    personal_introduction = models.TextField(max_length=300, blank=False, 
+    personal_introduction = models.TextField(max_length=300, blank=False,
         help_text=_("Comment of the user why he/she should have access to the Hydro-Apps"))
     confirmed_data_policy = models.BooleanField(blank=False,
         verbose_name=_('I agree to the terms of usage of my data and I did read and agree to the policy agreement of this website.'),
@@ -77,14 +77,13 @@ class Account(AbstractBaseUser,PermissionsMixin):
     wdb_max_downloads = models.IntegerField(
         default=10, help_text=_('Designates the number of stations a user can download at once on the WeatherDB App.'))
 
-    # is_admin      = models.BooleanField(default=False)
     is_superuser  = models.BooleanField(default=False,
         help_text=_('Designates whether the user is superuser.'),)
     db_password = models.CharField(max_length=30, null=True, blank=True,
         help_text=_('The Password for this user to log into the database.'))
 
     objects = AccountManager()
-    USERNAME_FIELD = 'username'#'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'first_name', "last_name"]
 
     def __str__(self):
@@ -107,6 +106,11 @@ class Account(AbstractBaseUser,PermissionsMixin):
         else:
             return "https://" + get_current_site(request).domain
 
+    @staticmethod
+    def get_admin_emails():
+        return list(*Account.objects.filter(is_superuser=True)\
+                    .values_list("email", flat=False))
+
     def send_email_confirmation(self, request=None):
         message = render_to_string(
             'emails/confirm_email.html', {
@@ -116,13 +120,13 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'Activate your Hydro-Apps account', 
-            message, 
+            'Activate your Hydro-Apps account',
+            message,
             to=[self.email]
         )
         email.send()
 
-    def send_confirm_user(self, request=None):
+    def send_admin_confirm_user(self, request=None):
         message = render_to_string(
             'emails/confirm_user.html', {
                 'user': self,
@@ -131,9 +135,9 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'Confirm an account for Hydro-Apps', 
-            message, 
-            to=[self.email]
+            'Confirm an account for Hydro-Apps',
+            message,
+            to=self.get_admin_emails()
         )
         email.send()
 
@@ -146,12 +150,12 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'Hydro-Apps account got activated', 
-            message, 
+            'Hydro-Apps account got activated',
+            message,
             to=[self.email]
         )
         email.send()
-    
+
     def send_admin_request_db_access(self, request=None):
         message = render_to_string(
             'emails/request_db_access.html', {
@@ -161,9 +165,9 @@ class Account(AbstractBaseUser,PermissionsMixin):
                 'token': account_activation_token.make_token(self)
         })
         email = EmailMessage(
-            'Confirm a request for WeatherDB-access to database', 
-            message, 
-            to=[self.email]
+            'Confirm a request for WeatherDB-access to database',
+            message,
+            to=self.get_admin_emails()
         )
         email.send()
 
@@ -186,9 +190,9 @@ def update_db_user(instance, created, **kwargs):
                 else:
                     db_password = instance.db_password
                 cursor.execute(f"""
-                    CREATE USER "{instance.username}" 
-                    NOSUPERUSER NOCREATEDB NOCREATEROLE 
-                    INHERIT IN ROLE "weather_users" 
+                    CREATE USER "{instance.username}"
+                    NOSUPERUSER NOCREATEDB NOCREATEROLE
+                    INHERIT IN ROLE "weather_users"
                     LOGIN PASSWORD '{db_password}';""")
                 instance.db_password = db_password
                 instance._old_db_password = db_password
@@ -200,12 +204,12 @@ def update_db_user(instance, created, **kwargs):
                     RENAME TO "{instance.username}";""")
             elif instance._old_db_password!=instance.db_password:
                 cursor.execute(f"""
-                    ALTER USER "{instance.username}"  
+                    ALTER USER "{instance.username}"
                     WITH PASSWORD '{instance.db_password}';""")
         elif instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
             cursor.execute(
                 f"DROP USER IF EXISTS \"{instance.username}\";")
-    
+
         if instance.email!=instance._old_email and instance.is_email_confirmed:
             instance.is_email_confirmed = False
             instance._old_email = instance.email
