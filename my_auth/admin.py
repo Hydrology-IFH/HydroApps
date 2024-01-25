@@ -21,6 +21,6 @@ class UserAdminConfig(UserAdmin):
             'fields': ('email','first_name', 'password1', 'password2'),
         }),
     )
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'is_tester')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'is_tester', 'wdb_is_db_user')
 
 admin.site.register(Account,UserAdminConfig)
