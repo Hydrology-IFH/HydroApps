@@ -116,6 +116,7 @@ class MyPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('password_reset_done', kwargs={"app_name": "HydroApps"})
     template_name = "registration/password_reset_request_form.html"
     email_template_name = "emails/password_reset_email.html"
+    subject_template_name = "emails/password_reset_subject.txt"
     form_class = CustomPasswordResetForm
 
 class  MyPasswordResetDoneView(PasswordResetDoneView):
