@@ -57,7 +57,7 @@ function update_kombstra_data(long, lat) {
         .then((data) => {
             popup_cell_source.addFeatures(
                 new GeoJSON().readFeatures(data[0].geometry, {
-                    dataProjection: "EPSG:4326",
+                    dataProjection: "SR-ORG:97019",
                     featureProjection: "SR-ORG:97019",
                 }));
             grid_id.value = data[0].grid_id;
@@ -116,8 +116,7 @@ export function create_popup() {
         let cell_features = popup_cell_source.getFeatures();
         if (!((cell_features.length > 0) && cell_features[0].getGeometry().containsXY(...coordinate))) {
             remove_popup_cell_layer();
-            let coordinate_wgs84 = proj4("SR-ORG:97019", "EPSG:4326", coordinate);
-            update_kombstra_data(coordinate_wgs84[0], coordinate_wgs84[1]);
+            update_kombstra_data(coordinate[0], coordinate[1]);
         }
 
         add_dragging_handler();
