@@ -45,11 +45,3 @@ class KombStRAData(models.Model):
 
     class Meta:
         db_table = 'kombstra_data'
-
-
-class KombStRAGrid(models.Model):
-    rid = models.IntegerField(primary_key=True)
-    rast = models.RasterField(srid=97019)
-
-    class Meta:
-        db_table = 'kombstra_grid'
