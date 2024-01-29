@@ -1,21 +1,23 @@
 import Legend from "ol-ext/legend/Legend.js";
 import LegendCtrl from "ol-ext/control/Legend.js";
 import { get_style } from "./styles.js";
-import { gridFormPara } from "./forms.js";
+// import { gridFormPara } from "./forms.js";
+import { parameter, year, sri } from "./Form.vue"
 import { map } from "./map.js";
 
 const labels = {
-  duration: "Duration in minutes",
-  pval: "Precipitation in mm",
-  sri: "heavy rain index (SRI)",
-  month: "month of the event",
-  year: "year of the event"
+  duration: () => "Duration in minutes",
+  sri: () => "heavy rain index (SRI)",
+  month: () => "month of the event",
+  year: () => "year of the event",
+  NEvents_above_SRI: () => `number of events SRI > ${sri.value}`,
+  Top_SRI_year: () => `Top SRI of year ${year.value}`,
 }
 
 function create_colorbar() {
   // get style parameters
   let style = get_style();
-  let label = labels[gridFormPara.value];
+  let label = labels[parameter.value]();
 
   let cb_div = document.createElement("div");
 

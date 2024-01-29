@@ -1,4 +1,5 @@
-import {gridFormPara} from './forms.js';
+// import { gridFormPara } from './forms.js';
+import { parameter } from './Form.vue';
 
 // styles
 let styles = {
@@ -52,29 +53,6 @@ let styles = {
         ["color", 0,0,0,0]
       ]
     },
-    sri_num: {
-      color: [
-        "case",
-        [">", ["band", 2], 0],
-        [ 'interpolate',
-          ['linear'],
-          ["band", 1],
-          1, [161, 194, 31],
-          2, [178, 207, 129],
-          3, [222, 225, 14],
-          4, [255, 236, 1],
-          5, [241, 144, 6],
-          6, [233, 98, 25],
-          7, [229, 81, 26],
-          8, [226, 35, 35],
-          9, [227, 41, 64],
-          10, [228, 35, 95],
-          11, [224, 64, 141],
-          12, [160, 69, 144],
-        ],
-        ["color", 0,0,0,0]
-      ]
-    },
     month: {
       color: [
         "case",
@@ -94,30 +72,6 @@ let styles = {
           ["==", ["band", 1], 11], [141, 43, 80],
           ["==", ["band", 1], 12], [88, 22, 71],
           ["color", 0,0,0,0]
-        ],
-        ["color", 0,0,0,0]
-      ]
-    },
-    month_num: {
-      color: [
-        "case",
-        [">", ["band", 2], 0],
-        [ 'interpolate',
-          ['linear'],
-          ["band", 1],
-          // colorpalette from matplotlib "twilight_reversed -> cyclic"
-          1, [48, 20, 55],
-          2, [78, 24, 111],
-          3, [94, 69, 166],
-          4, [98, 118, 186],
-          5, [124, 162, 194],
-          6, [179, 198, 206],
-          7, [226, 217, 226],
-          8, [212, 188, 172],
-          9, [198, 137, 108],
-          10, [178, 86, 82],
-          11, [141, 43, 80],
-          12, [88, 22, 71],
         ],
         ["color", 0,0,0,0]
       ]
@@ -157,9 +111,23 @@ let styles = {
         ],
         ["color", 0,0,0,0]
       ]
-    },
+  },
+  NEvents_above_SRI: {
+    color: [
+      "case",
+        [">", ["band", 2], 0],
+        [ 'interpolate',
+          ['linear'],
+          ["band", 1],
+          0, [249, 253, 204],
+          20, [8, 29, 88],
+        ],
+        ["color", 0,0,0,0]
+      ]
+  }
 }
-
+styles.Top_SRI_year = styles.sri;
+window.styles = styles;
 export function get_style() {
-    return styles[gridFormPara.value];
+    return styles[parameter.value];
 }

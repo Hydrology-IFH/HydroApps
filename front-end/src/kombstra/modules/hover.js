@@ -1,6 +1,8 @@
 import { radolan_layer } from "./radolan_layer.js";
 import { map } from "./map.js";
-import { gridForm, gridFormPara } from "./forms.js";
+// import { gridForm, gridFormPara } from "./forms.js";
+import { parameter } from "./Form.vue";
+import { form } from "./forms.js";
 import Overlay from 'ol/Overlay.js';
 import {containsCoordinate} from 'ol/extent.js';
 
@@ -28,8 +30,8 @@ const overlay = new Overlay({
   });
 
 // define functions
-function update_hover_unit() {
-    actual_unit = units[gridFormPara.value];
+export function update_hover_unit() {
+    actual_unit = units[parameter.value];
 }
 
 // activate/deactivate hover
@@ -76,5 +78,6 @@ export function create_hover() {
     });
 
     update_hover_unit();
-    gridForm.addEventListener("submit", update_hover_unit);
+    form.inst.$watch('parameter', update_hover_unit);
+    // gridForm.addEventListener("submit", update_hover_unit);
 }

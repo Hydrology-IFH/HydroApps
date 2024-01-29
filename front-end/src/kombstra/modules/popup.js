@@ -1,15 +1,14 @@
 import Overlay from 'ol/Overlay.js';
-import { map } from './map.js';
-import { toggle_hover } from './hover.js';
 import VectorLayer from 'ol/layer/Vector.js';
 import VectorSource from 'ol/source/Vector.js';
 import { GeoJSON } from 'ol/format.js';
-import proj4 from 'proj4';
-import { createApp } from 'vue';
-import PopupContent from './PopupContent.vue';
-// import { cell_data } from './PopupContent.vue';
-import { grid_id } from './PopupContent.vue';
 import { getCenter, containsCoordinate } from 'ol/extent.js';
+import { createApp } from 'vue';
+
+import { map } from './map.js';
+import { toggle_hover } from './hover.js';
+import PopupContent from './PopupContent.vue';
+import { grid_id } from './PopupContent.vue';
 
 /**
  * Elements that make up the popup.
