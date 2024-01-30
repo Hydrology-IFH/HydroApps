@@ -6,7 +6,7 @@ let styles = {
     duration: {
       color: [
         "case",
-        [">", ["band", 2], 0],
+        ["!=", ["band", 2], 0],
         ['case',
           ["==", ["band", 1], 9998], [200, 200, 200],
           [
@@ -23,7 +23,7 @@ let styles = {
     sri: {
       color: [
         "case",
-        [">", ["band", 2], 0],
+        ["!=", ["band", 2], 0],
         [ 'case',
           ["==", ["band", 1], 1], [161, 194, 31],
           ["==", ["band", 1], 2], [178, 207, 129],
@@ -46,7 +46,7 @@ let styles = {
     month: {
       color: [
         "case",
-        [">", ["band", 2], 0],
+        ["!=", ["band", 2], 0],
         [ 'case',
           // colorpalette from matplotlib "twilight_reversed -> cyclic"
           ["==", ["band", 1], 1], [48, 20, 55],
@@ -70,7 +70,7 @@ let styles = {
     year: {
       color: [
         "case",
-        [">", ["band", 2], 0],
+        ["!=", ["band", 2], 0],
         ['case',
           ["==", ["band", 1], 9998], [200, 200, 200],
           [ 'interpolate',
@@ -109,22 +109,33 @@ let styles = {
   NEvents_above_SRI: {
     color: [
       "case",
-      [">", ["band", 2], 0],
+      ["!=", ['band', 2], 0],
       ['case',
-        ["==", ["band", 1], 9998], [200, 200, 200],
-        [ 'interpolate',
-          ['linear'],
-          ["band", 1],
-          0, [249, 253, 204],
-          20, [8, 29, 88],
-        ],
+        // colorpalette from matplotlib "inferno"
+        ["==", ["band", 1], 0], [0, 0, 4],
+        ["==", ["band", 1], 1], [12, 8, 38],
+        ["==", ["band", 1], 2], [36, 12, 79],
+        ["==", ["band", 1], 3], [66, 10, 104],
+        ["==", ["band", 1], 4], [93, 18, 110],
+        ["==", ["band", 1], 5], [120, 28, 109],
+        ["==", ["band", 1], 6], [147, 38, 103],
+        ["==", ["band", 1], 7], [174, 48, 92],
+        ["==", ["band", 1], 8], [199, 62, 76],
+        ["==", ["band", 1], 9], [221, 81, 58],
+        ["==", ["band", 1], 10], [237, 105, 37],
+        ["==", ["band", 1], 11], [248, 133, 15],
+        ["==", ["band", 1], 12], [252, 165, 10],
+        ["==", ["band", 1], 13], [250, 198, 45],
+        ["==", ["band", 1], 14], [242, 230, 97],
+        ["==", ["band", 1], 15], [252, 255, 164],
+        ["color", 0,0,0,0]
       ],
       ["color", 0,0,0,0]
     ]
   }
 }
 styles.Top_SRI_year = styles.sri;
-window.styles = styles;
+
 export function get_style() {
     return styles[parameter.value];
 }

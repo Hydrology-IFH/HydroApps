@@ -13,7 +13,9 @@ const units = {
     pval: "mm",
     sri: "",
     month: "",
-    year: ""
+    year: "",
+    NEvents_above_SRI: "",
+    Top_SRI_year: "",
 }
 var actual_unit;
 var hover_active = true;
@@ -66,7 +68,11 @@ export function create_hover() {
         let pix_value = radolan_layer.getData(pixel);
         if ((pix_value != null) && (pix_value[1] != 0)) {
             overlay.setPosition(evt.coordinate);
-            info_div.innerText = `${pix_value[0]} ${actual_unit}`;
+            if (pix_value[0] == 9998) {
+                info_div.innerText = `no event`;
+            } else {
+                info_div.innerText = `${pix_value[0]} ${actual_unit}`;
+            }
         } else {
             overlay.setPosition(undefined);
         }
@@ -79,5 +85,13 @@ export function create_hover() {
 
     update_hover_unit();
     form.inst.$watch('parameter', update_hover_unit);
-    // gridForm.addEventListener("submit", update_hover_unit);
+
+    // add debug hover
+    map.on('pointermove', function (evt) {
+        let pixel = map.getEventPixel(evt.originalEvent)
+        let pix_value = radolan_layer.getData(pixel);
+        if (pix_value != null) {
+            console.log(pix_value);
+        }
+    });
 }
