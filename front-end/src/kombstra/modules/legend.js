@@ -71,7 +71,7 @@ function add_linear_colorbar(styleColorLin, cb_div, label) {
   cb_div.className = "colorbar colorbar-con ol-legend";
   let cb_bar = document.createElement("div");
   cb_bar.className = "colorbar-bar";
-  cb_bar.style.background = `linear-gradient(to left, rgb(${colors.join("), rgb(")})`;
+  cb_bar.style.background = `linear-gradient(to right, rgb(${colors.join("), rgb(")})`;
   cb_div.appendChild(cb_bar);
 
   // calculate amount of ticks
@@ -148,7 +148,6 @@ function create_colorbar() {
 
   return cb_div
 }
-window.get_style = get_style;
 
 export function update_legend() {
   let leg_div = document.querySelector("div.ol-legend");
