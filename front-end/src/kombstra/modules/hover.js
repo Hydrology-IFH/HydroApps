@@ -85,13 +85,4 @@ export function create_hover() {
 
     update_hover_unit();
     form.inst.$watch('parameter', update_hover_unit);
-
-    // add debug hover
-    map.on('pointermove', function (evt) {
-        let pixel = map.getEventPixel(evt.originalEvent)
-        let pix_value = radolan_layer.getData(pixel);
-        if (pix_value != null) {
-            console.log(pix_value);
-        }
-    });
 }

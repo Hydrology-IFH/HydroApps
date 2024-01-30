@@ -61,8 +61,6 @@ export const radolan_layer = new TileLayer({
   opacity: opacity.value/100,
 });
 
-window.get_tif_source = get_tif_source;
-
 // update layer function
 export function create_form_updaters() {
   // grid updater
@@ -70,7 +68,6 @@ export function create_form_updaters() {
     radolan_layer.setSource(get_tif_source());
     radolan_layer.once("sourceready", () => radolan_layer.setStyle(get_style()));
     update_legend();
-    console.log("layer updated")
   }
   for (let vari of ["parameter", "year", "event_rank", "sri"]) {
     form.inst.$watch(vari, layer_updater);
@@ -80,5 +77,3 @@ export function create_form_updaters() {
     radolan_layer.setOpacity(opacity.value / 100);
   });
 }
-
-window.radolan_layer = radolan_layer;
