@@ -18,8 +18,7 @@ class KombStRAPolygonsViewSet(viewsets.ReadOnlyModelViewSet):
             return KombStRAPolygons.objects.filter(
                 geometry__contains=Point(
                     float(self.request.GET["long"]),
-                    float(self.request.GET["lat"]),
-                    srid=97019))
+                    float(self.request.GET["lat"]))) # srid 97019
         elif "geometry" in self.request.GET:
             return KombStRAPolygons.objects.filter(
                 geometry__contains=self.request.GET["geometry"])
