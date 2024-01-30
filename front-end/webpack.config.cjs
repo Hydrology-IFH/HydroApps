@@ -30,9 +30,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        // options: {
-        //   reactivityTransform: true
-        // }
       }
     ]
   },
@@ -43,5 +40,9 @@ module.exports = {
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false'
     }),
     new VueLoaderPlugin()
-  ]
+  ],
+  performance: {
+    maxAssetSize: 800000,
+    maxEntrypointSize: 800000,
+  },
 }
