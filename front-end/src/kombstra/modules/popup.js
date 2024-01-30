@@ -8,7 +8,7 @@ import { createApp } from 'vue';
 import { map } from './map.js';
 import { toggle_hover } from './hover.js';
 import PopupContent from './PopupContent.vue';
-import { grid_id } from './PopupContent.vue';
+import { grid_id, cell_lat, cell_lon } from './PopupContent.vue';
 
 /**
  * Elements that make up the popup.
@@ -46,7 +46,9 @@ let popupAppInst = popupApp.mount(content);
 
 function set_overlay_position() {
     let ext = popup_cell_source.getExtent();
-    overlay.setPosition([(ext[0] + ext[2])/2, ext[3]]);
+    overlay.setPosition([(ext[0] + ext[2]) / 2, ext[3]]);
+    cell_lat.value = (ext[0] + ext[2]) / 2;
+    cell_lon.value = (ext[1] + ext[3]) / 2;
 };
 
 // get kombstra data from api

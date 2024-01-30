@@ -1,7 +1,8 @@
 <script>
 import { ref } from 'vue';
 
-// export const cell_data = ref([]);
+export const cell_lat = ref(null);
+export const cell_lon = ref(null);
 export const grid_id = ref(null);
 
 export default {
@@ -9,28 +10,11 @@ export default {
         return {
             cell_data: [],
             grid_id: grid_id,
-            perc_tab_active: 50,
             loading: true,
-            error_msg: false
+            error_msg: false,
+            cell_lat: cell_lat,
+            cell_lon: cell_lon
         }
-    },
-    computed: {
-        percs: function () {
-            let percs = [];
-            this.cell_data.forEach((el) => {
-                if (!percs.includes(el.percentile)) {
-                    percs.push(el.percentile)
-                }
-            });
-            return percs;
-        },
-        cell_data_regrouped: function () {
-            let data = {};
-            for (let perc of this.percs) {
-                data[perc] = this.cell_data.filter((el) => el.percentile === perc);
-            };
-            return data;
-        },
     },
     watch: {
         grid_id(new_grid_id, old_grid_id) {
@@ -59,8 +43,41 @@ export default {
         set_error_msg(msg) {
             this.loading = false;
             this.error_msg = msg;
+        },
+        download_data() {
+            // create the csv content
+            let header = [
+                `This is the KombStRA data for the raster cell with the ID ${this.grid_id}`,
+                `The cells center is located at ${this.cell_lat}, ${this.cell_lon}.`,
+                "The columns are:",
+                "event_rank : The ranking of the event",
+                "date: The date of the event",
+                "duration: The duration of the event in minutes",
+                "pval: The rain amount in mm",
+                "pint: The rain intensity in mm/h",
+                "sri: The 'Starkregenindex' (SRI) of the event",
+                ""
+            ];
+            let items = this.cell_data;
+            let col_names = Object.keys(items[0]);
+            let csv = [
+                ...header,
+                col_names.join(','),
+                ...items.map(row => {
+                    return col_names.map(fieldName => {
+                        return JSON.stringify(row[fieldName])
+                    }).join(',')
+                })
+            ].join('\r\n')
+
+            // create a hidden element and download the csv file
+            let hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = `kombstra_data_${this.grid_id}.csv`;
+            hiddenElement.click();
         }
-    },
+    }
 }
 </script>
 
@@ -74,8 +91,12 @@ export default {
         <p>Please try again later.</p>
     </div>
     <div v-else class="popup-data">
-        <div class="popup-explanation">
-            These are the events for this cell that got categorized, depending on the percentile.
+
+        <div class="popup-header">
+            <p>These are the events for this cell that got categorized.</p>
+            <button class="btn btn-primary"
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+                data-bs-title='Download the data for this cell as csv.'><i class="bi bi-download" @click="download_data"></i></button>
         </div>
         <div class="tab-content">
             <table class="table table-striped table-hover">
@@ -98,7 +119,7 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="data in cell_data_regrouped[perc]" :key="data.data_id">
+                    <tr v-for="data in cell_data" :key="data.data_id">
                         <td>{{ data.event_rank }}</td>
                         <td>{{ data.date }}</td>
                         <td>{{ data.duration }}</td>

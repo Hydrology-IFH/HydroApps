@@ -171,9 +171,13 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   flex-direction: column;
   width: min-content;
 }
-.popup-data .popup-explanation {
+.popup-data .popup-header {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 0.5rem;
+  padding-right: 1rem;
 }
 .popup-data div.tab-content {
   overflow-y: scroll;
