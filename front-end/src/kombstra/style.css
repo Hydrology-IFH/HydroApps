@@ -4,7 +4,7 @@
 #map {
   position: relative;
   width: 100%;
-  height: 75vh;
+  height: 70vh;
 }
 
 .ol-viewport {
@@ -32,6 +32,25 @@ div.ol-legend.ol-control:not(.ol-collapsed){
 div.colorbar-label{
   font-weight: 600;
   font-size: 1rem;
+}
+
+/* continous and discret colorbar mixed */
+div.colorbar-con-dis{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+div.colorbar-con-dis > div.colorbar-con{
+  width: -moz-available;
+  width: -webkit-fill-available;
+}
+div.colorbar-con-dis > div.colorbar-dis{
+  margin-top: 5px;
+  margin-left: 10px;
+  width: fit-content;
+}
+div.colorbar-con-dis > div.colorbar-dis .colorbar-tick{
+  width: max-content;
 }
 
 /* continous colorbar */
@@ -62,11 +81,15 @@ div.colorbar-con div.colorbar-label{
 div.colorbar-dis div.colorbar-label{
   margin-bottom: 5px;
 }
-div.colorbar-dis > div.colorbar-elements{
+div.colorbar-elements{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-between;
+}
+div.colorbar-dis div.colorbar-element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 div.colorbar-dis div.colorbar-element > div.colorbar-color{
   width: 1.3rem;
@@ -142,23 +165,23 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   content: "✖";
 }
 
-.ol-popup div#popup-content {
-  /* height: 100%; */
-}
 .popup-data{
   height: 100%;
   display:flex;
   flex-direction: column;
   width: min-content;
 }
-.popup-data .popup-explanation {
+.popup-data .popup-header {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 0.5rem;
-
+  padding-right: 1rem;
 }
 .popup-data div.tab-content {
   overflow-y: scroll;
-  max-height: 30vh;
+  max-height: 40vh;
   width: 100%;
   z-index:999;
   flex-grow: 1;
@@ -171,6 +194,12 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 }
 .popup-data div.tab-content table {
   margin-bottom: 0px;
+}
+.popup-data div.tab-content table tr.th-units th{
+  padding-top: 0px;
+}
+.popup-data div.tab-content table th{
+  padding-bottom: 3px;
 }
 
 /* spinner */

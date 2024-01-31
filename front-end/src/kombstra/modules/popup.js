@@ -1,15 +1,14 @@
 import Overlay from 'ol/Overlay.js';
-import { map } from './map.js';
-import { toggle_hover } from './hover.js';
 import VectorLayer from 'ol/layer/Vector.js';
 import VectorSource from 'ol/source/Vector.js';
 import { GeoJSON } from 'ol/format.js';
-import proj4 from 'proj4';
-import { createApp } from 'vue';
-import PopupContent from './PopupContent.vue';
-// import { cell_data } from './PopupContent.vue';
-import { grid_id } from './PopupContent.vue';
 import { getCenter, containsCoordinate } from 'ol/extent.js';
+import { createApp } from 'vue';
+
+import { map } from './map.js';
+import { toggle_hover } from './hover.js';
+import PopupContent from './PopupContent.vue';
+import { grid_id, cell_lat, cell_lon } from './PopupContent.vue';
 
 /**
  * Elements that make up the popup.
@@ -47,7 +46,9 @@ let popupAppInst = popupApp.mount(content);
 
 function set_overlay_position() {
     let ext = popup_cell_source.getExtent();
-    overlay.setPosition([(ext[0] + ext[2])/2, ext[3]]);
+    overlay.setPosition([(ext[0] + ext[2]) / 2, ext[3]]);
+    cell_lat.value = (ext[0] + ext[2]) / 2;
+    cell_lon.value = (ext[1] + ext[3]) / 2;
 };
 
 // get kombstra data from api
@@ -57,7 +58,7 @@ function update_kombstra_data(long, lat) {
         .then((data) => {
             popup_cell_source.addFeatures(
                 new GeoJSON().readFeatures(data[0].geometry, {
-                    dataProjection: "EPSG:4326",
+                    dataProjection: "SR-ORG:97019",
                     featureProjection: "SR-ORG:97019",
                 }));
             grid_id.value = data[0].grid_id;
@@ -116,8 +117,7 @@ export function create_popup() {
         let cell_features = popup_cell_source.getFeatures();
         if (!((cell_features.length > 0) && cell_features[0].getGeometry().containsXY(...coordinate))) {
             remove_popup_cell_layer();
-            let coordinate_wgs84 = proj4("SR-ORG:97019", "EPSG:4326", coordinate);
-            update_kombstra_data(coordinate_wgs84[0], coordinate_wgs84[1]);
+            update_kombstra_data(coordinate[0], coordinate[1]);
         }
 
         add_dragging_handler();

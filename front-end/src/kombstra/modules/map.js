@@ -1,7 +1,7 @@
 import {Map, View} from 'ol';
 import TileLayer from 'ol/layer/WebGLTile.js';
-
 import OSM from 'ol/source/OSM.js';
+
 import { create_legend } from './legend.js';
 import { radolan_layer, create_form_updaters } from './radolan_layer.js';
 import { create_hover } from './hover.js';
@@ -41,6 +41,5 @@ export async function create_map() {
   create_legend();
   create_hover();
   create_popup();
-  window.map = map;
   map.getTargetElement().classList.remove('spinner');
 }

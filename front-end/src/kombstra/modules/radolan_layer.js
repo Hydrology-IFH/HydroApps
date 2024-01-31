@@ -5,10 +5,10 @@ import GeoTIFF from 'ol/source/GeoTIFF.js';
 import TileLayer from 'ol/layer/WebGLTile.js';
 import { get_style } from './styles.js';
 
-import { gridForm, gridFormPara, gridFormPerc, gridFormRank, mapForm, mapFormOpacity } from './forms.js';
+// import { gridForm, gridFormPara, gridFormPerc, gridFormRank, mapForm, mapFormOpacity } from './forms.js';
+import { form } from './forms.js';
+import { parameter, opacity, year, event_rank, sri } from './Form.vue';
 import { update_legend } from './legend.js';
-
-let debug = false;
 
 // found on https://www.spatialreference.org/ref/sr-org/7019/
 // and adjusted for proj4js: https://github.com/proj4js/proj4js/issues/456
@@ -19,22 +19,26 @@ const proj_radolan = getProjection("SR-ORG:97019");
 
 export function get_tif_source(){
   // get tiff url
-  let para = gridFormPara.value;
-  let perc = gridFormPerc.value;
-  let rank = gridFormRank.value;
-  let static_stem = "/static";
-  let tif_url = `${static_stem}/kombstra/kombstra_views/${perc}_${rank}_${para}.tif`;
-  let tif_blob;
-  if (debug){
-    tif_blob = fetch(tif_url).then(response => response.blob());
+  let slider_value;
+  switch (parameter.value) {
+    case 'Top_SRI_year':
+      slider_value = year;
+      break;
+    case 'NEvents_above_SRI':
+      slider_value = sri;
+      break;
+    default:
+      slider_value = event_rank;
   }
+
+  let tif_url = `/static/kombstra/kombstra_views/${parameter.value}_${slider_value.value}.tif`;
 
   // create source
   let source = new GeoTIFF({
     sources: [
       {
         bands: [1],
-        ...(debug? {blob:tif_blob}:{url:tif_url})
+        url: tif_url
       }
     ],
     sourceOptions: {
@@ -54,24 +58,22 @@ export const radolan_layer = new TileLayer({
   source: tif_source,
   zIndex: 2,
   style: get_style(),
-  opacity: mapFormOpacity.value/100,
+  opacity: opacity.value/100,
 });
-
-
 
 // update layer function
 export function create_form_updaters() {
   // grid updater
-  gridForm.addEventListener(["submit"], () => {
-    let style = get_style();
+  function layer_updater() {
     radolan_layer.setSource(get_tif_source());
-    radolan_layer.setStyle(style);
+    radolan_layer.once("sourceready", () => radolan_layer.setStyle(get_style()));
     update_legend();
-  });
+  }
+  for (let vari of ["parameter", "year", "event_rank", "sri"]) {
+    form.inst.$watch(vari, layer_updater);
+  }
   // opacity updater
-  mapForm.addEventListener(["submit"], () => {
-    radolan_layer.setOpacity(mapFormOpacity.value / 100);
+  form.inst.$watch('opacity', () => {
+    radolan_layer.setOpacity(opacity.value / 100);
   });
 }
-
-window.radolan_layer = radolan_layer;

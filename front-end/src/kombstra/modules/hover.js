@@ -1,6 +1,8 @@
 import { radolan_layer } from "./radolan_layer.js";
 import { map } from "./map.js";
-import { gridForm, gridFormPara } from "./forms.js";
+// import { gridForm, gridFormPara } from "./forms.js";
+import { parameter } from "./Form.vue";
+import { form } from "./forms.js";
 import Overlay from 'ol/Overlay.js';
 import {containsCoordinate} from 'ol/extent.js';
 
@@ -11,7 +13,9 @@ const units = {
     pval: "mm",
     sri: "",
     month: "",
-    year: ""
+    year: "",
+    NEvents_above_SRI: "",
+    Top_SRI_year: "",
 }
 var actual_unit;
 var hover_active = true;
@@ -28,8 +32,8 @@ const overlay = new Overlay({
   });
 
 // define functions
-function update_hover_unit() {
-    actual_unit = units[gridFormPara.value];
+export function update_hover_unit() {
+    actual_unit = units[parameter.value];
 }
 
 // activate/deactivate hover
@@ -64,7 +68,11 @@ export function create_hover() {
         let pix_value = radolan_layer.getData(pixel);
         if ((pix_value != null) && (pix_value[1] != 0)) {
             overlay.setPosition(evt.coordinate);
-            info_div.innerText = `${pix_value[0]} ${actual_unit}`;
+            if (pix_value[0] == 9998) {
+                info_div.innerText = `no event`;
+            } else {
+                info_div.innerText = `${pix_value[0]} ${actual_unit}`;
+            }
         } else {
             overlay.setPosition(undefined);
         }
@@ -76,5 +84,5 @@ export function create_hover() {
     });
 
     update_hover_unit();
-    gridForm.addEventListener("submit", update_hover_unit);
+    form.inst.$watch('parameter', update_hover_unit);
 }
