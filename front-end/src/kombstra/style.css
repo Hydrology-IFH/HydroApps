@@ -121,7 +121,10 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 
 /* Popup */
 .ol-overlaycontainer-stopevent {
-  z-index: 1100!important;
+  z-index: revert!important;
+}
+.ol-overlay-popup {
+  z-index: 1100;
 }
 .ol-popup {
   position: absolute;

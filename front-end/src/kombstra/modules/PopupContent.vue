@@ -1,43 +1,38 @@
 <script>
-import { ref } from 'vue';
-
-export const cell_lat = ref(null);
-export const cell_lon = ref(null);
-export const grid_id = ref(null);
-
 export default {
     data: function () {
         return {
             cell_data: [],
-            grid_id: grid_id,
+            grid_id: null,
             loading: true,
             error_msg: false,
-            cell_lat: cell_lat,
-            cell_lon: cell_lon
+            cell_lat: null,
+            cell_lon: null
         }
     },
     watch: {
         grid_id(new_grid_id, old_grid_id) {
-            this.loading = true;
-            if (((new_grid_id !== old_grid_id) && (new_grid_id !== undefined)) || (this.err_msg)) {
+            if (((new_grid_id !== old_grid_id) && (new_grid_id !== undefined)) || (this.error_msg) || (this.cell_data.length != 0)) {
                 this.fetchData();
-            } else if (this.cell_data.length != 0){
-                this.loading = false;
             }
         }
     },
     methods: {
+        update_popup_data(grid_id, lat, long) {
+            this.cell_lat = lat;
+            this.cell_lon = long;
+            this.grid_id = grid_id;
+        },
         async fetchData() {
-            // this.cell_data = [];
-            fetch("/kombstra/api/kombstra_data/?grid_id=" + this.grid_id)
+            this.loading = true;
+            fetch("/en/kombstra/api/kombstra_data/?grid_id=" + this.grid_id)
                 .then((res) => res.json())
                 .then((data) => {
                     this.cell_data = data;
-                    this.loading = false;
-                    this.error_msg = false;})
+                    this.loading = false;})
                 .catch((err) => {
-                        this.set_error_msg("We are sorry, there was a problem fetching the data for this cell.");
-                        console.log(err);
+                    this.set_error_msg("We are sorry, there was a problem fetching the data for this cell.");
+                    console.log(err);
                 });
         },
         set_error_msg(msg) {

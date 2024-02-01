@@ -8,7 +8,6 @@ import { createApp } from 'vue';
 import { map } from './map.js';
 import { toggle_hover } from './hover.js';
 import PopupContent from './PopupContent.vue';
-import { grid_id, cell_lat, cell_lon } from './PopupContent.vue';
 
 /**
  * Elements that make up the popup.
@@ -27,6 +26,7 @@ const overlay = new Overlay({
         duration: 250,
         },
     },
+    className: 'ol-overlay-popup',
 });
 
 const popup_cell_source = new VectorSource({});
@@ -44,16 +44,18 @@ const popup_cell_layer = new VectorLayer({
 let popupApp = createApp(PopupContent);
 let popupAppInst = popupApp.mount(content);
 
+// functions to set popup position
 function set_overlay_position() {
     let ext = popup_cell_source.getExtent();
     overlay.setPosition([(ext[0] + ext[2]) / 2, ext[3]]);
-    cell_lat.value = (ext[0] + ext[2]) / 2;
-    cell_lon.value = (ext[1] + ext[3]) / 2;
+};
+function set_overlay_position_error(long, lat) {
+    overlay.setPosition([long, lat]);
 };
 
 // get kombstra data from api
 function update_kombstra_data(long, lat) {
-    fetch("/kombstra/api/kombstra_polygon/?long=" + long + "&lat=" + lat)
+    fetch("/en/kombstra/api/kombstra_polygon/?long=" + long + "&lat=" + lat)
         .then((res) => res.json())
         .then((data) => {
             popup_cell_source.addFeatures(
@@ -61,12 +63,13 @@ function update_kombstra_data(long, lat) {
                     dataProjection: "SR-ORG:97019",
                     featureProjection: "SR-ORG:97019",
                 }));
-            grid_id.value = data[0].grid_id;
+            popupAppInst.update_popup_data(data[0].grid_id, lat, long);
             set_overlay_position();
         })
         .catch((err) => {
             console.log(err);
             popupAppInst.set_error_msg("We are sorry, there was an error finding the data for this location.");
+            set_overlay_position_error(long, lat);
         });
 }
 
@@ -100,7 +103,7 @@ export function create_popup() {
     container.style.visibility = 'visible';
 
     // add a click handler to hide the popup.
-    closer.onclick = function () {
+    closer.onclick = () => {
         overlay.setPosition(undefined);
         closer.blur();
         toggle_hover(true);
@@ -110,7 +113,7 @@ export function create_popup() {
     };
 
     // Add a click handler to the map to render the popup.
-    map.on('singleclick', function (evt) {
+    map.on('singleclick', (evt) => {
         toggle_hover(false);
 
         let coordinate = evt.coordinate;
