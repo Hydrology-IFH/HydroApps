@@ -16,3 +16,4 @@ django-q2
 django-request
 djangorestframework-msgpack
 django-cors-headers
+django-vite

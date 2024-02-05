@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'hcaptcha', # pip install django-hCaptcha
     'rest_framework', #  djangorestframework
     'rest_framework_gis', # djangorestframework-gis
+    "django_vite", # django-vite
 ]
 
 MIDDLEWARE = [
@@ -309,11 +310,17 @@ if hasattr(secrets, "HYDROAPPS_GOOGLE_VERIFICATION"):
 # clean secrets
 del secrets
 
-# # for redirect and sites
-# SITE_ID = 1
+# Vite settings
+DJANGO_VITE = {
+    "default": {
+        "static_url_prefix": "front-end/",
+        "manifest_path": f"{STATIC_ROOT}/front-end/manifest.json",
+    },
+}
 
-# Cors Headers in debug
+# Debug Settings
 if DEBUG:
+    # Cors Headers in debug
     INSTALLED_APPS.append("corsheaders")
     MIDDLEWARE.insert(
         MIDDLEWARE.index("django.middleware.common.CommonMiddleware"),
@@ -321,3 +328,8 @@ if DEBUG:
     CORS_ALLOWED_ORIGINS = [
         "http://localhost:8080",
         "http://localhost:5173"]
+
+    # Vite settings
+    DJANGO_VITE["default"].update({
+        "dev_mode": True
+    })

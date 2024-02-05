@@ -5,4 +5,3 @@ import { create_map } from './modules/map.js';
 
 createForm();
 create_map();
-

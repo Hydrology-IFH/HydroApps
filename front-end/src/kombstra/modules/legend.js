@@ -11,7 +11,7 @@ const labels = {
   sri: () => "heavy rain index (SRI)",
   month: () => "month of the event",
   year: () => "year of the event",
-  NEvents_above_SRI: () => `number of events SRI > ${sri.value}`,
+  NEvents_above_SRI: () => `number of events SRI >= ${sri.value}`,
   Top_SRI_year: () => `Top SRI of year ${year.value}`,
 }
 

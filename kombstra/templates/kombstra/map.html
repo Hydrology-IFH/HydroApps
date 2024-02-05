@@ -1,9 +1,11 @@
 {% extends 'kombstra/base.html' %}
 {% load static %}
 {% load i18n %}
+{% load django_vite %}
 
 {% block head %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% vite_hmr_client %}
 {% endblock %}
 
 {% block content %}
@@ -29,15 +31,9 @@
 {% endblock content %}
 
 {% block scripts %}
-  {% comment %} {{ base_grid|json_script:"base_grid" }} {% endcomment %}
-  <script src="{% url 'kombstra:javascript-catalog' %}"></script>
-  {% comment %} <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
-  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script> {% endcomment %}
-  {% comment %} {% if debug %}
-    <script src={% static "kombstra/js/map.js" %} defer></script>
-  {%else%}
-    <script src={% static "kombstra/js/map.min.js" %} defer></script>
-  {% endif%} {% endcomment %}
-  <script src={% static "front-end/kombstra.js" %} type="module" ></script>
-
+  {% vite_asset 'src/kombstra/main.js' %}
+  {% comment %} <script src={% static "front-end/kombstra.js" %} type="module" ></script> {% endcomment %}
+  {% comment %} <link rel="stylesheet" href="/front-end/assets/{{ manifest['main.js'].css }}" /> {% endcomment %}
+  {% comment %} <script type="module" src="/front-end/assets/{{ manifest['src/kombstra/main.js'].file }}"></script> {% endcomment %}
+  {% vite_legacy_polyfills %}
 {% endblock %}
