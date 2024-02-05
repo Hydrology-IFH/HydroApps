@@ -1,6 +1,5 @@
 <script>
 import { ref } from 'vue';
-// import { update_hover_unit } from './hover.js';
 
 export const parameter = ref('sri');
 export const year = ref(2010);
@@ -15,40 +14,9 @@ export default {
             year: year,
             sri: sri,
             event_rank: event_rank,
-            // slider_value: slider_value,
             opacity: opacity,
         }
-    },
-    // mounted() {
-    //     update_hover_unit(this.parameter)
-    // },
-    // watch: {
-    //     parameter: function (newVal, oldVal) {
-    //         // update_hover_unit(newVal);
-    //         this.update_slider_value();
-    //     },
-    //     year: function (newVal, oldVal) {
-    //         this.update_slider_value();
-    //     },
-    //     sri: function (newVal, oldVal) {
-    //         this.update_slider_value();
-    //     },
-    //     event_rank: function (newVal, oldVal) {
-    //         this.update_slider_value();
-    //     },
-    // },
-    // methods: {
-    //     update_slider_value: function () {
-    //         switch (this.parameter) {
-    //             case 'Top_SRI_year':
-    //                 this.slider_value = this.year;
-    //             case 'NEvents_above_SRI':
-    //                 this.slider_value = this.sri;
-    //             default:
-    //                 this.slider_value = this.event_rank;
-    //         }
-    //     },
-    // },
+    }
 }
 </script>
 
@@ -64,7 +32,7 @@ export default {
                 data-bs-container="body" data-bs-html="true"
                 data-bs-title='Choose the Parameters you would like to see on the map.'>Parameter</span>
             <select class="form-select" id="parameter" name="parameter" v-model="parameter">
-                <option value="sri" selected>heavy rain index (SRI)</option>
+                <option value="sri" selected>{{ $t("heavy rain index (SRI)") }} </option>
                 <option value="duration" selected>duration</option>
                 <option value="year">year</option>
                 <option value="month">month</option>

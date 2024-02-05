@@ -1,0 +1,13 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2024-02-05T17:39:40.373Z\n"
+"PO-Revision-Date: 2024-02-05T17:39:40.374Z\n"
+"Language: de\n"
+
+msgid "heavy rain index (SRI)"
+msgstr ""
