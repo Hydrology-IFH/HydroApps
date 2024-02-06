@@ -5,15 +5,15 @@ import { get_style } from "./styles.js";
 import { parameter, year, sri } from "./Form.vue"
 import { map } from "./map.js";
 import { get } from "ol/proj.js";
-import i18n from './i18n.js';
+import { i18n } from './i18n.js';
 
 const labels = {
-  duration: () => "Duration in minutes",
-  sri: () => "heavy rain index (SRI)",
-  month: () => "month of the event",
-  year: () => "year of the event",
-  NEvents_above_SRI: () => `number of events SRI >= ${sri.value}`,
-  Top_SRI_year: () => `Top SRI of year ${year.value}`,
+  duration: () => i18n.t('legend_label_duration'),
+  sri: () => i18n.t('legend_label_sri'),
+  month: () => i18n.t('legend_label_month'),
+  year: () => i18n.t('legend_label_year'),
+  NEvents_above_SRI: () => `${i18n.t('legend_label_NEvents_above')} SRI >= ${sri.value}`,
+  Top_SRI_year: () => `${i18n.t('legend_label_top_sri')} ${year.value}`,
 }
 
 function get_discrete_element(color, value) {

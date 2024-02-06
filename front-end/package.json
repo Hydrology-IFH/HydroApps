@@ -9,9 +9,9 @@
     "clean": "rm -rf node_modules",
     "dev": "vite",
     "i18n-scan": "i18next-scanner --config i18next-scanner.config.cjs",
-    "i18n-js-to-po": "i18next-conv -l de -s src/kombstra/locales/de/locale.json -t src/kombstra/locales/de/locale.po",
-    "i18n-po-to-js": "if exist src/kombstra/locales/de/locale.po (npx i18next-conv -s src/kombstra/locales/de/locale.po -t src/kombstra/locales/de/locale.json -l de)",
-    "i18n": "npm run i18n-po-to-js && npm run i18n-scan && npm run i18n-js-to-po"
+    "i18n-js-to-po": "i18next-conv -l de -s src/kombstra/locales/de.json -t src/kombstra/locales/de.po && i18next-conv -l en -s src/kombstra/locales/en.json -t src/kombstra/locales/en.po",
+    "i18n-po-to-js": "if exist src/kombstra/locales/de.po (npx i18next-conv -s src/kombstra/locales/de.po -t src/kombstra/locales/de.json -l de) & if exist src/kombstra/locales/en.po (npx i18next-conv -s src/kombstra/locales/en.po -t src/kombstra/locales/en.json -l en)",
+    "i18n": "npm run i18n-scan"
   },
   "repository": {
     "type": "git",

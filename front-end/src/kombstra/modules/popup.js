@@ -8,6 +8,7 @@ import { createApp } from 'vue';
 import { map } from './map.js';
 import { toggle_hover } from './hover.js';
 import PopupContent from './PopupContent.vue';
+import { i13nVue, i18n } from './i18n.js';
 
 /**
  * Elements that make up the popup.
@@ -41,7 +42,7 @@ const popup_cell_layer = new VectorLayer({
 });
 
 // create PopupContent component
-let popupApp = createApp(PopupContent);
+let popupApp = i13nVue(createApp(PopupContent));
 let popupAppInst = popupApp.mount(content);
 
 // functions to set popup position
@@ -68,7 +69,7 @@ function update_kombstra_data(long, lat) {
     })
     .catch((err) => {
       console.log(err);
-      popupAppInst.set_error_msg("We are sorry, there was an error finding the data for this location.");
+      popupAppInst.set_error_msg(i18n.t('popup_error_msg_position'));
       set_overlay_position_error(long, lat);
     });
 }

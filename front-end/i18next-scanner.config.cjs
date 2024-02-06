@@ -1,11 +1,11 @@
 module.exports = {
     input: ['src/kombstra/**/*.{js,vue}'],
     options: {
-        lngs: ['de'],
+        lngs: ['de', 'en'],
         defaultLng: 'en',
         resource: {
-            loadPath: 'src/kombstra/locales/{{lng}}/{{ns}}.json',
-            savePath: 'src/kombstra/locales/{{lng}}/{{ns}}.json',
+            loadPath: 'src/kombstra/locales/{{lng}}.json',
+            savePath: 'src/kombstra/locales/{{lng}}.json',
             jsonIndent: 2,
             lineEnding: '\n'
         },
@@ -17,6 +17,6 @@ module.exports = {
         pluralSeparator: 'xacy_never-happens-ß?876',
         nsSeparator: false, // namespace separator
         keySeparator: false, // key separator
-        defaultNs: 'locale',
+        removeUnusedKeys: true,
     }
 }

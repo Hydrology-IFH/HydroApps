@@ -32,7 +32,7 @@ export default {
           this.loading = false;
         })
         .catch((err) => {
-          this.set_error_msg("We are sorry, there was a problem fetching the data for this cell.");
+          this.set_error_msg(this.$t('popup_error_msg_data'));
           console.log(err);
         });
     },
@@ -82,27 +82,27 @@ export default {
     <span class="sr-only"></span>
   </div>
   <div v-else-if="error_msg" class="alert alert-danger m-2" role="alert" style="max-width:300px;">
-    <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> Error</h4>
+    <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> {{ $t('popup_error_header') }}</h4>
     <p>{{ error_msg }}</p>
-    <p>Please try again later.</p>
+    <p>{{ $t('popup_error_footer') }}</p>
   </div>
   <div v-else class="popup-data">
 
     <div class="popup-header">
-      <p>These are the events for this cell that got categorized.</p>
+      <p>{{ $t('popup_explanation') }}</p>
       <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-        data-bs-title='Download the data for this cell as csv.'><i class="bi bi-download"
+        data-bs-title="{{ $t('popup_download_tooltip') }}"><i class="bi bi-download"
           @click="download_data"></i></button>
     </div>
     <div class="tab-content">
       <table class="table table-striped table-hover">
         <thead class="table-light ">
           <tr>
-            <th scope="col">Event rank</th>
-            <th scope="col">Date</th>
-            <th scope="col">Duration</th>
-            <th scope="col">Rain amount</th>
-            <th scope="col">Rain intensity</th>
+            <th scope="col">{{ $t('popup_table_header_event_rank') }}</th>
+            <th scope="col">{{ $t('popup_table_header_date') }}</th>
+            <th scope="col">{{ $t('popup_table_header_duration') }}</th>
+            <th scope="col">{{ $t('popup_table_header_pval') }}</th>
+            <th scope="col">{{ $t('popup_table_header_pint') }}</th>
             <th scope="col">SRI</th>
           </tr>
           <tr class="th-units">
