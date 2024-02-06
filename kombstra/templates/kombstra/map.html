@@ -32,8 +32,5 @@
 
 {% block scripts %}
   {% vite_asset 'src/kombstra/main.js' %}
-  {% comment %} <script src={% static "front-end/kombstra.js" %} type="module" ></script> {% endcomment %}
-  {% comment %} <link rel="stylesheet" href="/front-end/assets/{{ manifest['main.js'].css }}" /> {% endcomment %}
-  {% comment %} <script type="module" src="/front-end/assets/{{ manifest['src/kombstra/main.js'].file }}"></script> {% endcomment %}
-  {% vite_legacy_polyfills %}
+  {% comment %} {% vite_legacy_polyfills %} {% endcomment %}
 {% endblock %}
