@@ -314,7 +314,7 @@ del secrets
 DJANGO_VITE = {
     "default": {
         "static_url_prefix": "front-end/",
-        "manifest_path": f"{STATIC_ROOT}/front-end/manifest.json",
+        "manifest_path": f"{STATIC_URL}/front-end/manifest.json",
     },
 }
 
