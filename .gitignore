@@ -14,6 +14,7 @@ TODO
 static_data/
 
 node_modules/
-/front-end/src/test*
+front-end/src/test*
+front-end/src/**/*.po
 front-end/dist
 .vite
