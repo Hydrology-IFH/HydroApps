@@ -16,7 +16,7 @@
   "slider_year_tooltip": "Wählen Sie das Jahr, für das Sie das Top-Ereignis erhalten möchten.",
   "slider_sri_tooltip": "Wählen Sie den SRI, um die Anzahl der Ereignisse >= SRI zu erhalten.",
   "slider_event_rank_tooltip": "Wählen Sie den Rang des Ereignisses. Z.B. das Top 1 Ereignis pro Gitterzelle.",
-  "slider_opactity_tooltip": "Stellen Sie die Deckkraft der Ebene ein, um die darunter liegende Karte zu sehen.",
+  "slider_opactity_tooltip": "Stellen Sie die Deckkraft des Rasters ein, um die darunter liegende Karte zu sehen.",
   "popup_error_msg_data": "Es tut uns leid, es gab ein Problem beim Abrufen der Daten für diese Zelle.",
   "popup_error_header": "Fehler",
   "popup_error_footer": "Bitte versuchen Sie es später noch einmal.",
@@ -26,5 +26,13 @@
   "popup_table_header_date": "Datum",
   "popup_table_header_duration": "Dauer",
   "popup_table_header_pval": "Niederschlags-menge",
-  "popup_table_header_pint": "Niederschlags-intensität"
+  "popup_table_header_pint": "Niederschlags-intensität",
+  "legend_label_duration": "Dauer",
+  "legend_label_sri": "SRI",
+  "legend_label_month": "Monat",
+  "legend_label_year": "Jahr",
+  "legend_label_NEvents_above": "Anzahl der Ereignisse, bei denen",
+  "legend_label_top_sri": "Top SRI im Jahr ",
+  "popup_error_msg_position": "Es tut uns leid, es gab einen Fehler bei der Suche nach den Daten für diesen Ort.\")",
+  "legend_colorbar_no_event": "Kein Erreignis"
 }

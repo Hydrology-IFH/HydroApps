@@ -1,4 +1,6 @@
 <script>
+import { Tooltip } from 'bootstrap';
+
 export default {
   data: function () {
     return {
@@ -73,6 +75,11 @@ export default {
       hiddenElement.download = `kombstra_data_${this.grid_id}.csv`;
       hiddenElement.click();
     }
+  },
+  mounted() {
+    new Tooltip(document.body, {
+      selector: "[data-bs-toggle='tooltip']",
+    });
   }
 }
 </script>
@@ -91,7 +98,7 @@ export default {
     <div class="popup-header">
       <p>{{ $t('popup_explanation') }}</p>
       <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-        data-bs-title="{{ $t('popup_download_tooltip') }}"><i class="bi bi-download"
+        :data-bs-title="$t('popup_download_tooltip')"><i class="bi bi-download"
           @click="download_data"></i></button>
     </div>
     <div class="tab-content">

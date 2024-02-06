@@ -33,5 +33,6 @@
   "legend_label_month": "month of the event",
   "legend_label_year": "year of the event",
   "legend_label_NEvents_above": "number of events where",
-  "legend_label_top_sri": "Top SRI of year"
+  "legend_label_top_sri": "Top SRI of year",
+  "legend_colorbar_no_event": ""
 }

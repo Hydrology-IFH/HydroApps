@@ -30,7 +30,7 @@ function get_discrete_element(color, value) {
   let cb_tick = document.createElement("div");
   cb_tick.className = "colorbar-tick";
   if (value == 9998) {
-    cb_tick.innerText = `no event`;
+    cb_tick.innerText = i18n.t('legend_colorbar_no_event');
   } else {
     cb_tick.innerText = `${value}`;
   }
