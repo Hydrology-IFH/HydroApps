@@ -7,7 +7,7 @@ import en from '../locales/en.json'
 export const i18n = i18next.createInstance();
 
 export function init_i18n() {
-  let out = i18n
+  i18n
     // detect user language
     // learn more: https://github.com/i18next/i18next-browser-languageDetector
     .use(LanguageDetector)

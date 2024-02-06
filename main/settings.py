@@ -313,7 +313,7 @@ del secrets
 # Vite settings
 DJANGO_VITE = {
     "default": {
-        "static_url_prefix": "front-end/",
+        "static_url_prefix": "static/front-end/",
         "manifest_path": f"{STATIC_URL}/front-end/manifest.json",
     },
 }
