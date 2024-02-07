@@ -1,6 +1,4 @@
 <script>
-import { Tooltip } from 'bootstrap';
-
 export default {
   data: function () {
     return {
@@ -77,7 +75,7 @@ export default {
     }
   },
   mounted() {
-    new Tooltip(document.body, {
+    new bootstrap.Tooltip(document.body, {
       selector: "[data-bs-toggle='tooltip']",
     });
   }

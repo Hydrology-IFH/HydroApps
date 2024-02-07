@@ -1,6 +1,5 @@
 <script>
 import { ref } from 'vue';
-import { Tooltip } from 'bootstrap';
 
 export const parameter = ref('sri');
 export const year = ref(2010);
@@ -19,7 +18,7 @@ export default {
     }
   },
   mounted() {
-    new Tooltip(document.body, {
+    new bootstrap.Tooltip(document.body, {
       selector: "[data-bs-toggle='tooltip']",
     });
   },
