@@ -27,9 +27,9 @@ export default {
 
 <template>
   <form id="form_select_grid" class="form-horizontal" action="javascript:void(0);">
-    <h4>{{ $t('heading_map_form') }}</h4>
+    <h4>{{ $t('map_form_header_grid') }}</h4>
     <div class="d-flex col-12">
-      <p>{{ $t('map_explanation') }}</p>
+      <p>{{ $t('map_form_explanation') }}</p>
     </div>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -83,7 +83,7 @@ export default {
   </form>
 
   <form id="form_map_settings" class="form-horizontal" action="javascript:void(0);">
-    <h4>{{ $t("header_map_settings") }}</h4>
+    <h4>{{ $t("map_form_header_map_settings") }}</h4>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="label_opacity" data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-container="body" data-bs-html="true" :data-bs-title="$t('slider_opactity_tooltip')">{{ $t("slider_opacity_label") }}</span>

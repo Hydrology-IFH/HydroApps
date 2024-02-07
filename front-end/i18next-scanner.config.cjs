@@ -18,5 +18,6 @@ module.exports = {
         nsSeparator: false, // namespace separator
         keySeparator: false, // key separator
         removeUnusedKeys: true,
+        sort: true,
     }
 }
