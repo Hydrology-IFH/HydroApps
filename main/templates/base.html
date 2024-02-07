@@ -206,7 +206,7 @@
 
   <!-- Mobile view Navbar -->
   <script defer>
-    let activate_navbar = () => {
+    (() => {
       let path = document.location.href;
       let navitems = document.querySelectorAll("#menuitems > .navbar-nav > .nav-item > a");
       navitems.forEach((el) => {
@@ -216,8 +216,7 @@
           el.parentElement.classList.remove('active')
         }
       })
-    }
-    activate_navbar()
+    })()
     {% comment %} mobile button {% endcomment %}
     document.querySelector("button.second-button").addEventListener("click",
       ()=>{$('.animated-icon2').toggleClass('open');}
@@ -225,10 +224,13 @@
   </script>
 
   <!-- activate Bootstrap tooltips -->
-  <script>
-    var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+  <script defer>
+    (() => {
+      [...document.querySelectorAll('[data-bs-toggle="tooltip"]')]
+        .map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    })()
   </script>
+
   {% block scripts %}{% endblock %}
 
 </body>
