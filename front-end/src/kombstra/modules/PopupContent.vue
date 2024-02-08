@@ -75,7 +75,7 @@ export default {
     }
   },
   mounted() {
-    new bootstrap.Tooltip(document.body, {
+    new bootstrap.Tooltip(this.$el.parentElement, {
       selector: "[data-bs-toggle='tooltip']",
     });
   }
