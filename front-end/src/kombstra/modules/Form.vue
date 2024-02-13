@@ -6,6 +6,7 @@ export const year = ref(2010);
 export const sri = ref(1);
 export const event_rank = ref(1);
 export const opacity = ref(100);
+export const basemap = ref('basemap_grey');
 
 export default {
   data: function () {
@@ -15,6 +16,7 @@ export default {
       sri: sri,
       event_rank: event_rank,
       opacity: opacity,
+      basemap: basemap
     }
   },
   mounted() {
@@ -37,13 +39,12 @@ export default {
         :data-bs-title="$t('parameter_tooltip')">{{ $t("parameter_label") }}</span>
       <select class="form-select" id="parameter" name="parameter" v-model="parameter">
         <option value="sri" selected>{{ $t("parameter_option_SRI") }}</option>
-        <option value="duration" selected>{{ $t("parameter_option_duration") }}</option>
+        <option value="duration">{{ $t("parameter_option_duration") }}</option>
         <option value="year">{{ $t("parameter_option_year") }}</option>
         <option value="month">{{ $t("parameter_option_month") }}</option>
         <option value="Top_SRI_year">{{ $t("parameter_option_Top_SRI_year") }}</option>
         <option value="NEvents_above_SRI">{{ $t("parameter_option_NEvents_above_SRI") }}</option>
       </select>
-      <div class="bs-component" id="agg_alert_box"></div>
     </div>
 
     <div class="form-group input-group mb-3" v-if="parameter === 'Top_SRI_year'">
@@ -85,6 +86,16 @@ export default {
   <form id="form_map_settings" class="form-horizontal" action="javascript:void(0);">
     <h4>{{ $t("map_form_header_map_settings") }}</h4>
     <div class="form-group input-group mb-3">
+      <span class="input-group-text" id="label_basemap" data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-container="body" data-bs-html="true"
+        :data-bs-title="$t('basemap_tooltip')">{{ $t("basemap_label") }}</span>
+      <select class="form-select" id="basemap" name="basemap" v-model="basemap">
+        <option value="basemap_grey" selected>{{ $t("basemap_option_basemap_grey") }}</option>
+        <option value="basemap_color">{{ $t("basemap_option_basemap_color") }}</option>
+        <option value="osm">{{ $t("basemap_option_osm") }}</option>
+      </select>
+    </div>
+    <div class="form-group input-group mb-3">
       <span class="input-group-text" id="label_opacity" data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-container="body" data-bs-html="true" :data-bs-title="$t('slider_opactity_tooltip')">{{ $t("slider_opacity_label") }}</span>
       <span class="form-control">
@@ -92,7 +103,7 @@ export default {
           v-model="opacity" />
       </span>
       <input type="number" class="form-control" name="OpacityNumber" min="0" max="100" value="100" v-model="opacity"
-        style="max-width:70px" />
+        style="max-width:80px" />
       <span class="input-group-text">%</span>
     </div>
   </form></template>

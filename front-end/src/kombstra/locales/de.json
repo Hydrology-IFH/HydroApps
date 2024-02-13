@@ -1,4 +1,9 @@
 {
+  "basemap_label": "Hintergrund",
+  "basemap_option_basemap_color": "Farbe - Basemap.de",
+  "basemap_option_basemap_grey": "Grau - Basemap.de",
+  "basemap_option_osm": "OpenStreetMap",
+  "basemap_tooltip": "Wählen Sie die zugrunde liegende Hintergrundkarte aus.",
   "legend_colorbar_no_event": "Kein Erreignis",
   "legend_label_NEvents_above": "Anzahl der Ereignisse, bei denen",
   "legend_label_duration": "Dauer",

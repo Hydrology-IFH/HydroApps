@@ -16,7 +16,6 @@ proj4.defs("SR-ORG:97019", '+proj=stere +lat_0=90 +lat_ts=60 +lon_0=10 +k=1 +x_0
 register(proj4);
 const proj_radolan = getProjection("SR-ORG:97019");
 
-
 export function get_tif_source(){
   // get tiff url
   let slider_value;

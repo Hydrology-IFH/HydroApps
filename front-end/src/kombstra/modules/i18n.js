@@ -16,7 +16,7 @@ export function init_i18n() {
     .init({
       debug: process.env.NODE_ENV === 'development',
       fallbackLng: 'en',
-      // supportedLngs: ['de', 'en'],
+      supportedLngs: ['de', 'en'],
       resources: {
         de: { translation: de },
         en: { translation: en }

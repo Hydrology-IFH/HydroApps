@@ -1,11 +1,11 @@
-import {Map, View} from 'ol';
-import TileLayer from 'ol/layer/WebGLTile.js';
-import OSM from 'ol/source/OSM.js';
+import { Map, View } from 'ol';
 
+import { basemap } from './basemap.js';
 import { create_legend } from './legend.js';
 import { radolan_layer, create_form_updaters } from './radolan_layer.js';
 import { create_hover } from './hover.js';
 import { create_popup } from './popup.js';
+import { create_basemap_updater } from './basemap.js';
 
 export var map;
 
@@ -16,10 +16,7 @@ export async function create_map() {
     target: 'map',
     layers: [
       radolan_layer,
-      new TileLayer({
-        source: new OSM(),
-        projection: "EPSG:3857"
-      })
+      basemap
     ],
     view: new View({
       projection: "SR-ORG:97019",
@@ -29,6 +26,7 @@ export async function create_map() {
       zoom: 7
     }),
   });
+
   map.on('loadstart', function () {
     map.getTargetElement().classList.add('spinner');
   });
@@ -41,5 +39,6 @@ export async function create_map() {
   create_legend();
   create_hover();
   create_popup();
+  create_basemap_source_updater();
   map.getTargetElement().classList.remove('spinner');
 }

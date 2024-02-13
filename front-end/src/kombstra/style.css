@@ -231,3 +231,8 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 .tooltip {
   z-index: 1101;
 }
+
+/* map annotation */
+.ol-attribution a{
+ color: var(--bs-link-color);
+}
