@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'django.contrib.sitemaps', # for sitemaps
     # New packages
     'request', # for statistics, pip install django-request
     'django_q', # to setup tasks to run periodicaly, pip install django-q2
@@ -270,14 +271,20 @@ REQUEST_LOG_IP=True
 REQUEST_LOG_USER=False
 REQUEST_IGNORE_PATHS = (
     r'^[//]admin/',
-    '[//]favicon.ico'
+    '[//]favicon.ico',
+    r'[//]robots.txt',
+    r'[//]sitemap.xml',
 )
 REQUEST_IGNORE_USER_AGENTS = (
     # r'^$', # ignore requests with no user agent string set
     r'Googlebot',
     r'Baiduspider',
+    r'cyberscan.io',
 )
 REQUEST_IGNORE_AJAX=True
+REQUEST_IGNPORE_IP = [
+    "1.1.1.1"
+]
 
 # django rest framework settings
 REST_FRAMEWORK = {

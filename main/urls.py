@@ -21,12 +21,19 @@ from .views import impressum_view, datenschutz_view, google_site_verification_vi
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import sitemaps
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("favicon.ico",
         RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))
     ),
     path('i18n/', include('django.conf.urls.i18n')),
+    path("sitemap.xml", sitemap,
+         {"sitemaps": sitemaps
+         },
+         name="django.contrib.sitemaps.views.sitemap"),
     *i18n_patterns(
         path("", include("HydroApps.urls")),
         path("weatherdb/", include("weatherDB.urls")),
