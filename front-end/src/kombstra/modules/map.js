@@ -39,6 +39,6 @@ export async function create_map() {
   create_legend();
   create_hover();
   create_popup();
-  create_basemap_source_updater();
+  create_basemap_updater();
   map.getTargetElement().classList.remove('spinner');
 }
