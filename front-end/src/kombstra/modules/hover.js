@@ -5,6 +5,7 @@ import { parameter } from "./Form.vue";
 import { form } from "./forms.js";
 import Overlay from 'ol/Overlay.js';
 import { containsCoordinate } from 'ol/extent.js';
+import { i18n } from "./i18n.js";
 
 // define variables
 const info_div = document.getElementById('info');
@@ -69,7 +70,7 @@ export function create_hover() {
     if ((pix_value != null) && (pix_value[1] != 0)) {
       overlay.setPosition(evt.coordinate);
       if (pix_value[0] == 9998) {
-        info_div.innerText = `no event`;
+        info_div.innerText = i18n.t("hover_no-event");
       } else {
         info_div.innerText = `${pix_value[0]} ${actual_unit}`;
       }
