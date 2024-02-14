@@ -4,6 +4,7 @@
   "basemap_option_basemap_grey": "Grau - Basemap.de",
   "basemap_option_osm": "OpenStreetMap",
   "basemap_tooltip": "Wählen Sie die zugrunde liegende Hintergrundkarte aus.",
+  "hover_no-event": "keine Erreignis",
   "legend_colorbar_no_event": "Kein Erreignis",
   "legend_label_NEvents_above": "Anzahl der Ereignisse, bei denen",
   "legend_label_duration": "Dauer",
@@ -30,15 +31,15 @@
   "popup_explanation": "Dies sind die kategorisierten Ereignisse für die gewählte Rasterzelle.",
   "popup_table_header_date": "Datum",
   "popup_table_header_duration": "Dauer",
-  "popup_table_header_event_rank": "Rang des Ereignisses",
-  "popup_table_header_pint": "Niederschlags-intensität",
-  "popup_table_header_pval": "Niederschlags-menge",
+  "popup_table_header_event_rank": "Rang",
+  "popup_table_header_pint": "Intensität",
+  "popup_table_header_pval": "Menge",
+  "popup_table_header_rain": "Niederschlag",
   "slider_event_rank_label": "Erreignisrang",
   "slider_event_rank_tooltip": "Wählen Sie den Rang des Ereignisses. Z.B. das Top 1 Ereignis pro Gitterzelle.",
   "slider_opacity_label": "Deckkraft",
   "slider_opactity_tooltip": "Stellen Sie die Deckkraft des Rasters ein, um die darunter liegende Karte zu sehen.",
   "slider_sri_tooltip": "Wählen Sie den SRI, um die Anzahl der Ereignisse >= SRI zu erhalten.",
   "slider_year_label": "Jahr",
-  "slider_year_tooltip": "Wählen Sie das Jahr, für das Sie das Top-Ereignis erhalten möchten.",
-  "hover_no-event": "keine Erreignis"
+  "slider_year_tooltip": "Wählen Sie das Jahr, für das Sie das Top-Ereignis erhalten möchten."
 }
