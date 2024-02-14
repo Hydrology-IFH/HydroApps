@@ -1,0 +1,13 @@
+{% load i18n %}
+{% trans "Hello" %} {{ user.first_name }} {{ user.last_name }},
+
+{% trans "We noticed, that you didn't use your Account for" %} {{ domain }} {% trans "for nearly 2 years." %}
+
+{% blocktrans %}To keep your account please just login during the next 30 days.
+If you won't log in during the next 30 days, we will remove your account.{% endblocktrans %}
+
+{% blocktrans %}Sincerely,
+your Hydro-Apps webmaster{% endblocktrans %}
+
+{% blocktrans %}If you think this E-Mail is not for you, then just ignore it.
+This is an automatic generated E-mail, please don't answer it.{% endblocktrans %}

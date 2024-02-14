@@ -12,6 +12,9 @@ from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes
 from django.conf import settings
 from .token import account_activation_token
+from datetime import timedelta
+from django.utils import timezone
+from django.db.models import Q
 
 # Create your models here.
 class AccountManager(BaseUserManager):
@@ -48,7 +51,7 @@ class AccountManager(BaseUserManager):
 
 
 
-class Account(AbstractBaseUser,PermissionsMixin):
+class Account(AbstractBaseUser, PermissionsMixin):
     email         = models.EmailField(_('email address'), max_length=60, unique=True)
     username      = models.CharField(max_length=60, unique=True)
     first_name    = models.CharField(max_length=30, blank=False)
@@ -65,21 +68,23 @@ class Account(AbstractBaseUser,PermissionsMixin):
     is_active  = models.BooleanField(default=False,
         help_text=_('Designates whether the user got activated by a super user.'))
     is_staff = models.BooleanField(default=False,
-        help_text=_('Designates whether the user can log into this admin site.'),
+        help_text=_('Designates whether the user can log into this admin site.')
     )
     is_tester = models.BooleanField(default=False,
         help_text=_('Designates whether the user can see features that didn\'t yet get released.'),
     )
+    is_superuser  = models.BooleanField(default=False,
+        help_text=_('Designates whether the user is superuser.'))
     wdb_is_db_user = models.BooleanField(default=False,
-        help_text=_('Designates whether the user can log into the WeatherDB-database.'),
+        help_text=_('Designates whether the user can log into the WeatherDB-database.')
     )
     wdb_max_downloads = models.IntegerField(
         default=10, help_text=_('Designates the number of stations a user can download at once on the WeatherDB App.'))
-
-    is_superuser  = models.BooleanField(default=False,
-        help_text=_('Designates whether the user is superuser.'),)
     db_password = models.CharField(max_length=30, null=True, blank=True,
         help_text=_('The Password for this user to log into the database.'))
+    expiration_notification = models.DateTimeField(
+        default=None, null=True, blank=True,
+        help_text=_('Designates the date and time when the user got noticed that his account will expire soon.'))
 
     objects = AccountManager()
     USERNAME_FIELD = 'username'
@@ -99,7 +104,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
                     f"DROP USER IF EXISTS \"{self.username}\";")
 
     @staticmethod
-    def _get_domain(request):
+    def _get_domain(request=None):
         if request is None:
             return settings.BASE_DOMAIN
         else:
@@ -169,6 +174,50 @@ class Account(AbstractBaseUser,PermissionsMixin):
             to=self.get_admin_emails()
         )
         email.send()
+
+    def send_account_expiration_notice(self):
+        message = render_to_string(
+            'emails/account_expiration_notice.html', {
+                'user': self,
+                'domain': self._get_domain(),
+        })
+        email = EmailMessage(
+            'Your Hydro-Apps account will expire soon',
+            message,
+            to=[self.email]
+        )
+        email.send()
+
+        # set flag that user got notified
+        self.expiration_notification = timezone.now()
+        self.save(update_fields=["expiration_notification"])
+
+    @staticmethod
+    def check_accounts(*args, **kwargs):
+        login_limit_days = 365*2
+        notice_limit_days = 30
+        login_limit_dt = timezone.now() - timedelta(days=login_limit_days)
+        notice_limit_dt = timezone.now() - timedelta(days=notice_limit_days)
+
+        # remove accounts
+        for account in Account.objects.filter(
+                Q(last_login__lt=login_limit_dt) &
+                (Q(expiration_notification__lt=notice_limit_dt) | Q(is_email_confirmed=False))):
+            account.delete()
+
+        # notice accounts that will soon get removed
+        for account in Account.objects.filter(
+                last_login__lt=login_limit_dt + timedelta(days=notice_limit_days),
+                expiration_notification__isnull=True,
+                is_email_confirmed=True):
+            account.send_account_expiration_notice()
+
+        # reset expiration_notification flag if account got used
+        for account in Account.objects.filter(
+                last_login__gt=login_limit_dt + timedelta(days=notice_limit_days),
+                expiration_notification__isnull=False):
+            account.expiration_notification = None
+            account.save(update_fields=["expiration_notification"])
 
 
 # method for updating

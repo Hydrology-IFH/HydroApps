@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 14:33+0100\n"
+"POT-Creation-Date: 2024-02-14 11:55+0100\n"
 "PO-Revision-Date: 2024-01-25 14:42+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -19,45 +19,45 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: .\kombstra\models.py:20
+#: .\kombstra\models.py:15
 msgid "ID of the event"
 msgstr "ID des Ereignisses"
 
-#: .\kombstra\models.py:25
+#: .\kombstra\models.py:20
 msgid "ID to link to the Grid-Cell"
 msgstr "Id zur Verknüpfung mit der Rasterzelle"
 
-#: .\kombstra\models.py:29
+#: .\kombstra\models.py:24
 msgid "Duration class of the event (Dauerstufe) in minutes"
 msgstr "Dauerstuffe des Niederschlagereignisses in Minuten"
 
-#: .\kombstra\models.py:32
+#: .\kombstra\models.py:27
 msgid "Precipitation amount of the event in mm"
 msgstr "Niederschlagsmenge des Ereignisses in mm"
 
-#: .\kombstra\models.py:35
+#: .\kombstra\models.py:30
+msgid "Precipitation intensity of the event in mm/h"
+msgstr "Niederschlagsmenge des Ereignisses in mm/h"
+
+#: .\kombstra\models.py:33
 msgid "Starkregen-Index (SRI) of the event"
 msgstr "Starkregen-Index (SRI) dieses Ereignisses"
 
-#: .\kombstra\models.py:38
+#: .\kombstra\models.py:36
 msgid "Date of the event"
 msgstr "Datum des Events"
 
-#: .\kombstra\models.py:41
+#: .\kombstra\models.py:39
 msgid "Rank of the event in the grid-cell"
 msgstr "Rang des Ereignisses in dieser Rasterzelle"
-
-#: .\kombstra\models.py:44
-msgid "Percentile of the event in the grid-cell"
-msgstr "Perzentil des Ereignisses in dieser Rasterzelle"
 
 #: .\kombstra\templates\kombstra\base.html:8
 msgid ""
 "A presentation of heavy rain events and there classification (SRI) out of "
 "radar measurements. Results from the AVOSS project."
 msgstr ""
-"Eine Darstellung von Starkregenereignissen und deren Klassifizierung "
-"(SRI) aus Radarmessungen. Ergebnisse aus dem AVOSS Projekt."
+"Eine Darstellung von Starkregenereignissen und deren Klassifizierung (SRI) "
+"aus Radarmessungen. Ergebnisse aus dem AVOSS Projekt."
 
 #: .\kombstra\templates\kombstra\base.html:19
 #: .\kombstra\templates\kombstra\home.html:6
@@ -81,61 +81,6 @@ msgstr ""
 "Dieses Tool stellt Starkregenereignisse und deren Klassifizierung auf der "
 "Grundlage von Radarmessungen des DWD dar. Diese Klassifizierung ..."
 
-#: .\kombstra\templates\kombstra\map.html:11
+#: .\kombstra\templates\kombstra\map.html:13
 msgid "KombStRA map"
 msgstr "KombStRA Karte"
-
-#: .\kombstra\templates\kombstra\map.html:27
-msgid ""
-"Select the KombStRA data to show on the map. To get more information on "
-"single fields, just click on the raster cell on the map."
-msgstr ""
-"Wählen Sie die KombStRA-Daten aus, die auf der Karte angezeigt werden "
-"sollen. Um weitere Informationen zu einzelnen Feldern zu erhalten, "
-"klicken Sie einfach auf die Rasterzelle in der Karte."
-
-#: .\kombstra\templates\kombstra\map.html:32
-msgid "Choose the Parameters you would like to see on the map."
-msgstr "Wählen Sie die Parameter, die Sie auf der Karte sehen möchten."
-
-#: .\kombstra\templates\kombstra\map.html:32
-msgid "Parameter"
-msgstr "Parameter"
-
-#: .\kombstra\templates\kombstra\map.html:34
-msgid "duration"
-msgstr "Dauer"
-
-#: .\kombstra\templates\kombstra\map.html:35
-msgid "rain intensity"
-msgstr "Regenintensität"
-
-#: .\kombstra\templates\kombstra\map.html:36
-msgid "heavy rain index (SRI)"
-msgstr "Starkregenindex (SRI)"
-
-#: .\kombstra\templates\kombstra\map.html:37
-msgid "year"
-msgstr "Jahr"
-
-#: .\kombstra\templates\kombstra\map.html:38
-msgid "month"
-msgstr "Monat"
-
-#: .\kombstra\templates\kombstra\map.html:46
-msgid "Choose the percentile you would like to see on the map."
-msgstr "Wählen Sie das Perzentil, das Sie auf der Karte sehen möchten."
-
-#: .\kombstra\templates\kombstra\map.html:46
-msgid "Percentile"
-msgstr "Perzentil"
-
-#: .\kombstra\templates\kombstra\map.html:56
-msgid "Choose the rank of the event. E.g. the Top 1 event per grid cell."
-msgstr ""
-"Wählen Sie den Rang des Ereignisses. Z.B. das Top 1 Ereignis pro "
-"Gitterzelle."
-
-#: .\kombstra\templates\kombstra\map.html:56
-msgid "Event rank"
-msgstr "Rang"

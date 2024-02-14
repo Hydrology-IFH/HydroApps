@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 15:26+0100\n"
-"PO-Revision-Date: 2024-01-25 15:28+0100\n"
+"POT-Creation-Date: 2024-02-14 12:13+0100\n"
+"PO-Revision-Date: 2024-02-14 12:13+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -143,6 +143,7 @@ msgstr ""
 "einzuloggen."
 
 #: .\my_auth\templates\emails\account_activation_email.html:2
+#: .\my_auth\templates\emails\account_expiration_notice.html:2
 #: .\my_auth\templates\emails\confirm_email.html:2
 #: .\my_auth\templates\emails\db_access_granted.html:2
 #: .\my_auth\templates\emails\password_reset_email.html:2
@@ -164,6 +165,41 @@ msgid ""
 msgstr ""
 "Wenn Sie der Meinung sind, dass das nicht für Sie ist, dann ignorieren Sie "
 "diese E-Mail einfach.\n"
+"Dies ist eine automatisch generierte E-Mail, bitte beantworten Sie sie nicht."
+
+#: .\my_auth\templates\emails\account_expiration_notice.html:4
+msgid "We noticed, that you didn't use your Account for"
+msgstr "Uns ist aufgefallen, dass Sie Ihr Konto für"
+
+#: .\my_auth\templates\emails\account_expiration_notice.html:4
+msgid "for nearly 2 years."
+msgstr "seit fast 2 Jahren nicht verwendet haben."
+
+#: .\my_auth\templates\emails\account_expiration_notice.html:6
+msgid ""
+"To keep your account please just login during the next 30 days.\n"
+"If you won't log in during the next 30 days, we will remove your account."
+msgstr ""
+"Um Ihr Konto zu behalten, loggen Sie sich bitte innerhalb der nächsten 30 "
+"Tage ein.\n"
+"Wenn Sie sich in den nächsten 30 Tagen nicht anmelden, werden wir Ihr Konto "
+"löschen."
+
+#: .\my_auth\templates\emails\account_expiration_notice.html:9
+msgid ""
+"Sincerely,\n"
+"your Hydro-Apps webmaster"
+msgstr ""
+"Mit freundlichen Grüßen,\n"
+"ihr Hydro-Apps-Webmaster"
+
+#: .\my_auth\templates\emails\account_expiration_notice.html:12
+msgid ""
+"If you think this E-Mail is not for you, then just ignore it.\n"
+"This is an automatic generated E-mail, please don't answer it."
+msgstr ""
+"Wenn Sie der Meinung sind, dass diese E-Mail nicht für Sie ist, dann "
+"ignorieren Sie diese einfach.\n"
 "Dies ist eine automatisch generierte E-Mail, bitte beantworten Sie sie nicht."
 
 #: .\my_auth\templates\emails\confirm_email.html:4
@@ -192,7 +228,7 @@ msgstr ""
 
 #: .\my_auth\templates\emails\db_access_granted.html:4
 msgid "WeatherDB Website"
-msgstr "WeatherDb-Webseite"
+msgstr "WeatherDB-Webseite"
 
 #: .\my_auth\templates\emails\db_access_granted.html:4
 msgid "and go to your profile page to download your database password"
@@ -606,6 +642,12 @@ msgstr ""
 #: .\my_auth\templates\users\profile.html:214
 msgid "Request a higher download limit"
 msgstr "Beantrage ein höheres Download-Limit"
+
+#~ msgid ""
+#~ "If you won't logg in during the next 30 days, we will remove your account."
+#~ msgstr ""
+#~ "Wenn Sie sich innerhalb der nächsten 30 Tage nicht einloggen, werden wir "
+#~ "Ihr Konto löschen."
 
 #~ msgid "Hydro-Apps Website"
 #~ msgstr "Hydro-Apps Webseite"

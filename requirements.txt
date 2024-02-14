@@ -13,6 +13,7 @@ django-hCaptcha
 djangorestframework
 djangorestframework-gis
 django-q2
+croniter
 django-request
 djangorestframework-msgpack
 django-cors-headers

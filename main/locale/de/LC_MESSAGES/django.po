@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 14:33+0100\n"
+"POT-Creation-Date: 2024-02-14 11:55+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\main\settings.py:223
+#: .\main\settings.py:225
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:224
+#: .\main\settings.py:226
 msgid "English"
 msgstr "Englisch"
 
-#: .\main\templates\base.html:11
+#: .\main\templates\base.html:12
 msgid ""
 "A website with different Webtools created by the hydrology department at the "
 "university of Freiburg."

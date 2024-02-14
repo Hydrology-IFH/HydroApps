@@ -262,7 +262,7 @@ Q_CLUSTER = {
     "timeout": 60*60*24*2, # in seconds
     "max_attempts": 1,
     'has_replica': True,
-    'name':'django_q_weatherdb'
+    'name':'django_q'
 }
 
 # for user statistics request
