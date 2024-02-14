@@ -1,5 +1,25 @@
 // import { gridFormPara } from './forms.js';
 import { parameter } from './Form.vue';
+import colormap from 'colormap';
+
+// helper functions for colorbars
+let get_colorscale = function (min, max, colorbar, continous=true, reverse=false) {
+  let values = Array.from({length: max-min+1}, (value, index) => min + index);
+  let colors = colormap({
+    colormap: colorbar,
+    nshades: values.length,
+    format: 'rba',
+    alpha: 1
+  });
+  if (reverse) {
+    colors = colors.reverse();
+  }
+  if (continous) {
+    return values.map((value, index) => [value, colors[index]]).flat();
+  } else {
+    return values.map((value, index) => [["==", ["band", 1], value], colors[index]]).flat();
+  }
+}
 
 // styles
 let styles = {
@@ -83,27 +103,7 @@ let styles = {
           [ 'interpolate',
             ['linear'],
             ["band", 1],
-            2001, [13, 8, 135],
-            2002, [42, 5, 147],
-            2003, [65, 4, 157],
-            2004, [86, 1, 164],
-            2005, [106, 0, 168],
-            2006, [126, 3, 168],
-            2007, [143, 13, 164],
-            2008, [161, 27, 155],
-            2009, [177, 42, 144],
-            2010, [191, 57, 132],
-            2011, [204, 71, 120],
-            2012, [214, 85, 109],
-            2013, [225, 100, 98],
-            2014, [234, 116, 87],
-            2015, [242, 132, 75],
-            2016, [248, 149, 64],
-            2017, [252, 166, 54],
-            2018, [254, 186, 44],
-            2019, [252, 206, 37],
-            2020, [247, 228, 37],
-            2021, [240, 249, 33],
+            ...get_colorscale(2001, 2021, "portland", true, false),
           ],
         ],
         ["color", 0,0,0,0]
@@ -114,23 +114,7 @@ let styles = {
       "case",
       ["!=", ['band', 2], 0],
       ['case',
-        // colorpalette from matplotlib "plasma"
-        ["==", ["band", 1], 0], [0, 0, 0],
-        ["==", ["band", 1], 1], [13, 8, 135],
-        ["==", ["band", 1], 2], [51, 5, 151],
-        ["==", ["band", 1], 3], [80, 2, 162],
-        ["==", ["band", 1], 4], [106, 0, 168],
-        ["==", ["band", 1], 5], [132, 5, 167],
-        ["==", ["band", 1], 6], [156, 23, 158],
-        ["==", ["band", 1], 7], [177, 42, 144],
-        ["==", ["band", 1], 8], [195, 61, 128],
-        ["==", ["band", 1], 9], [211, 81, 113],
-        ["==", ["band", 1], 10], [225, 100, 98],
-        ["==", ["band", 1], 11], [237, 121, 83],
-        ["==", ["band", 1], 12], [246, 143, 68],
-        ["==", ["band", 1], 13], [252, 166, 54],
-        ["==", ["band", 1], 14], [254, 192, 41],
-        ["==", ["band", 1], 15], [249, 220, 36],
+        ...get_colorscale(0, 15, "inferno", false, false),
         ["color", 0,0,0,0]
       ],
       ["color", 0,0,0,0]
