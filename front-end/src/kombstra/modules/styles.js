@@ -103,7 +103,7 @@ let styles = {
           [ 'interpolate',
             ['linear'],
             ["band", 1],
-            ...get_colorscale(2001, 2021, "portland", true, false),
+            ...get_colorscale(spans.min_year, spans.max_year, "portland", true, false),
           ],
         ],
         ["color", 0,0,0,0]
@@ -114,7 +114,7 @@ let styles = {
       "case",
       ["!=", ['band', 2], 0],
       ['case',
-        ...get_colorscale(0, 15, "inferno", false, false),
+        ...get_colorscale(0, spans.max_rank, "inferno", false, false),
         ["color", 0,0,0,0]
       ],
       ["color", 0,0,0,0]

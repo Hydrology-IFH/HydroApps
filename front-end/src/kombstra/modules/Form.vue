@@ -16,7 +16,8 @@ export default {
       sri: sri,
       event_rank: event_rank,
       opacity: opacity,
-      basemap: basemap
+      basemap: basemap,
+      spans: spans
     }
   },
   mounted() {
@@ -52,10 +53,10 @@ export default {
         data-bs-container="body" data-bs-html="true"
         :data-bs-title="$t('slider_year_tooltip')">{{ $t("slider_year_label") }}</span>
       <span class="form-control">
-        <input type="range" class="form-range" name="SliderYearRange" id="SliderYear" min="2001" max="2021"
+        <input type="range" class="form-range" name="SliderYearRange" id="SliderYear" :min="spans.min_year" :max="spans.max_year"
           v-model="year" />
       </span>
-      <input type="number" class="form-control" name="SliderYearNumber" min="2001" max="2021" v-model="year"
+      <input type="number" class="form-control" name="SliderYearNumber" :min="spans.min_year" :max="spans.max_year" v-model="year"
         style="max-width:90px" />
     </div>
 
@@ -75,10 +76,10 @@ export default {
         data-bs-container="body" data-bs-html="true"
         :data-bs-title="$t('slider_event_rank_tooltip')">{{ $t("slider_event_rank_label") }}</span>
       <span class="form-control">
-        <input type="range" class="form-range" name="eventRankRange" id="eventRank" min="1" max="15"
+        <input type="range" class="form-range" name="eventRankRange" id="eventRank" min="1" :max="spans.max_rank"
           v-model="event_rank" />
       </span>
-      <input type="number" class="form-control" name="eventRankNumber" min="1" max="15" v-model="event_rank"
+      <input type="number" class="form-control" name="eventRankNumber" min="1" :max="spans.max_rank" v-model="event_rank"
         style="max-width:70px" />
     </div>
   </form>

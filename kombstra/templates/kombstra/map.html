@@ -31,6 +31,9 @@
 {% endblock content %}
 
 {% block scripts %}
+  <script>
+    var spans = {{ spans|safe }};
+  </script>
   {% vite_asset 'src/kombstra/main.js' %}
   {% comment %} {% vite_legacy_polyfills %} {% endcomment %}
 {% endblock %}
