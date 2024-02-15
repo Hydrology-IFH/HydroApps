@@ -3,11 +3,40 @@
 {% load i18n %}
 
 {% block head %}
-<style>span{text-align: left;}</style>
+{% comment %} <style>span{text-align: left;}</style> {% endcomment %}
 {% endblock %}
 
 {% block content %}
 
 <h1>{% trans "Method" %}</h1>
+<h3>{% trans "Starkregenindex (SRI)" %}</h3>
+<p>{% trans "Der vorliegende Starkregenindex  (SRI) ordnet verschiedenste Niederschlagshöhen einer 12-stufigen Starkregenskala zu. Der Starkregenindex wurde dabei ortsspezifisch für 12 verschiedene Dauerstufen erstellt. Je nach Dauerstufe führt eine gegebene Niederschlagsmenge zu einem unterschiedlichen Starkregenindex." %}</p>
+<p>{% trans "Die Einteilung von Niederschlagshöhen zu einzelnen Starkregenkategorien erfolgt dabei nach der Methode von" %} <a href="#quelle-Schmitt">Schmitt et al. (2018)</a>. {% trans "Für die Starkregenkategorien von 1 bis 7 werden hierfür Niederschläge einer bestimmten Wiederkehrwahrscheinlichkeit herangezogen. Die Niederschlagsmengen der Starkregenkategorien von 8 bis 12 werden über einen, für alle Dauerstufen konstanten, Erhöhungsfaktor aus den Niederschlagshöhen der Starkregenkategorie 7 abgeleitet." %}</p>
+<p>{% trans "Generell gilt, dass Niederschlagsereignisse der Starkregenkategorie 1 und 2 zu <i>"normalen" Starkregenereignissen</i> gezählt werden können; Ereignisse der Kategorie 3 bis 5 zählen zu <i>intensiven Starkregenereignissen</i>; Ereignisse der Kategorie 6 und 7 zählen zu den <i>außergewöhnlichen Starkregenereignissen</i> und Ereignisse der Kategorie 8 und mehr können als <i>extreme Starkregenereignisse</i> kategorisiert werden." %}</p>
+<h3>{% trans "Datengrundlage SRI" %}</h3>
+<p>{% trans "Der Zuordnung von Niederschlagshöhen zu einer Starkregenskala basiert auf flächenhaft vorliegenden Bemessungsniederschlägen, jeweils für jede der betrachteten Dauerstufen.  In diesem Fall wurden als Basisdaten die Bemessungsniederschläge aus" %} <a href="#quelle-kostra">KOSTRA-DWD-2020</a> {% trans "verwendet." %} {% trans "Da die KOSTRA-DWD-2020 Daten aber nicht für jede der im SRI  betrachteten Dauerstufen bzw. benötigten Wiederkehrintervalle vorliegen, wurden die entsprechenden Werte über die verfügbaren KOSTRA-Extremwert & Korrektur-Parameter auf dem ordinären KOSTRA-DWD-2020 Raster abgeleitet und anschließend konservativ auf das räumlich höher aufgelöste SRI-Raster (~ 2km x 2km) aufgeteilt." %}
+</p>
+<h3>{% trans "Ereignisdaten" %}</h3>
+<p>{% trans "Die in dieser Web-Anwendung angeführten Starkregenereignisse wurden aus den Daten der " %}<a href="#quelle-radklim">{% trans "Radarklimatologie" %} (RADKLIM)</a> {% trans "des Deutschen Wetterdienst (DWD) extrahiert." %} {% trans "Diese Daten sind deutschlandweit in einem Raster von ca. 1km x 1km verfügbar. Für die Auflistung wurden alle Ereignisse berücksichtigt, die im Zeitraum von 2001 bis 2021 auftraten. Mehr Informationen zu dem RADKLIM-Produkt des DWD erhalten Sie" %} <a href="https://www.dwd.de/DE/leistungen/radarklimatologie/radarklimatologie.html" target="_blank" rel="noopener">{% trans "hier" %}</a></p>
+<p>{% trans "Um die systematische Untererfassung von Starkregenereignissen in den Radardaten im Vergleich zu Stationsmessungen auszugleichen, wurden die Ereignisse mittels eines statistischen Verfahrens korrigiert. Dieses Verfahren ist in" %} <a href="#quelle-Haensler">Hänsler & Weiler (2020)</a> {% trans "beschrieben." %} </p>
+<p>{% trans "Um die RADKLIM-Daten mit den gröberen SRI-Kacheln (ca. 2km x 2km) zu verschneiden, wurden die originalen 5-Minutendaten aus den Rasterpunkten, die sich mit der jeweiligen SRI-Kachel schneiden, entsprechend ihrem Flächenanteil gemittelt." %}</p>
+<p>{% trans "Generell werden nur Ereignisse dargestellt, die einem SRI ≥ 1 entsprechen. Weiterhin wurde die maximale Anzahl von dargestellten Ereignissen auf 15 begrenzt. Wurden im betrachteten Zeitraum weniger als 15 Ereignisse mit einem SRI ≥ 1 beobachtet, werden entsprechend weniger Ereignisse dargestellt." %}</p>
+<p>{% trans "Um zu verhindern, dass ein Großteil der aufgeführten Ereignisse auf das gleiche Niederschlagsereignis zurückgehen (gleiches Ereignis, aber andere Dauerstufe) wurde zusätzlich noch das Kriterium eingeführt, dass pro Ereignis maximal 4 Dauerstufen in der Tabelle dargestellt werden." %}</p>
 
+<div class="quellen">
+  <ol>
+    <li id="quelle-Schmitt">Schmitt, T., Krüger, M., Pfister, A., Becker, M., Mudersbach, C., Fuchs, L., Hoppe, H., Lakes, I., 2018. Einheitliches Konzept zur Bewertung von Starkregenereignissen mittels Starkregenindex 65, 113–120. <a href="https://doi.org/10.3242/kae2018.02.002">DOI:10.3242/kae2018.02.002.</a> {% trans "Online verfügbar" %}: <a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/322930727_Einheitliches_Konzept_zur_Bewertung_von_Starkregenereignissen_mittels_Starkregenindex">{% trans "hier" %}</a>
+    </li>
+    <li id="quelle-kostra">Deutscher Wetterdienst (DWD), 2023. Koordinierte Starkniederschlagsregionalisierung und -auswertung des DWD (KOSTRA-DWD-2020). {% trans "Online verfügbar" %}: <a href="https://www.dwd.de/DE/leistungen/kostra_dwd_rasterwerte/kostra_dwd_rasterwerte.html" target="_blank" rel="noopener">{% trans "hier" %}</a>
+    </li>
+    <li id="quelle-radklim">Winterrath, T., Brendel, C., Hafer, M., Junghänel, T., Klameth, A., Lengfeld, K., Walawender, E., Weigl, E., Becker, A., 2018. Radar climatology (RADKLIM) version 2017.002; gridded precipitation data for Germany: Radar-based gauge-adjusted one-hour precipitation sum (RW). <a href="https://doi.org/10.5676/DWD/RADKLIM_RW_V2017.002" target="_blank" rel="noopener">DOI:10.5676/DWD/RADKLIM_RW_V2017.002</a>
+    </li>
+    <li id="quelle-Haensler">Hänsler, A., Weiler, M., 2022. Enhancing the usability of weather radar data for the statistical analysis of extreme precipitation events. Hydrology and Earth System Sciences 26, 5069–5084. <a href="https://doi.org/10.5194/hess-26-5069-2022" target="_blank" rel="noopener">DOI:10.5194/hess-26-5069-2022</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/references.js' %}" defer></script>
 {% endblock %}

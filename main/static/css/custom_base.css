@@ -1,9 +1,54 @@
 .popover{max-width: 15cm; }
 p{max-width: 30cm; }
 ul{max-width: 30cm; }
+html {
+  scroll-behavior: smooth;
+}
 .quellen{
   max-width:30cm;
-  font-size: 13px;}
+  font-size: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid #bbbbbb;
+}
+.quellen :target {
+  background-color: #F4A041;
+  border-radius: 0.2rem;
+  padding: 4px;
+}
+a.highlight{
+  background-color: #F4A041;
+  border-radius: 0.2rem;
+  padding: 4px;
+}
+/* .quellen :target {
+  -webkit-animation: target-fade 5s 1;
+	-moz-animation: target-fade 5s 1;
+}
+a.highlight{
+  -webkit-animation: target-fade 5s 1;
+	-moz-animation: target-fade 5s 1;
+}
+@-webkit-keyframes target-fade {
+	0% {
+    background-color: #F4A041;
+  }
+	100% {
+    background-color: none;
+    border-radius: 0rem;
+    padding: 0px;
+  }
+}
+@-moz-keyframes target-fade {
+	0% {
+    background-color:#F4A041;
+  }
+	100% {
+    background-color: none;
+    border-radius: 0rem;
+    padding: 0px;
+  }
+} */
+
 .container{max-width:38cm;}
 table.header td{
   margin:0;
