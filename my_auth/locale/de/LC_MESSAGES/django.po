@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-14 12:13+0100\n"
+"POT-Creation-Date: 2024-02-15 17:13+0100\n"
 "PO-Revision-Date: 2024-02-14 12:13+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -67,30 +67,30 @@ msgstr ""
 msgid "Maximum allowed Stations to download at once"
 msgstr "Maximal erlaubte Stationen je Download"
 
-#: .\my_auth\models.py:20
+#: .\my_auth\models.py:23
 msgid "Users must have an email address"
 msgstr "Nutzer*in benötigt eine E-Mail Adresse"
 
-#: .\my_auth\models.py:22
+#: .\my_auth\models.py:25
 msgid "Users must have an unique username"
 msgstr "Nutzer*in benötigt einen eindeutigen Nutzernamen"
 
-#: .\my_auth\models.py:31
+#: .\my_auth\models.py:34
 msgid "This username is already a database user for the weatherDB database."
 msgstr ""
 "Dieser Nutzername ist bereits ein Datenbank-Nutzer für die WeatherDB-"
 "Datenbank."
 
-#: .\my_auth\models.py:52
+#: .\my_auth\models.py:55
 msgid "email address"
 msgstr "E-Mail Adresse"
 
-#: .\my_auth\models.py:59
+#: .\my_auth\models.py:62
 msgid "Comment of the user why he/she should have access to the Hydro-Apps"
 msgstr ""
 "Begründung des/der Nutzer*in wieso Er/Sie Zugang zu Hydro-Apps haben sollte"
 
-#: .\my_auth\models.py:61
+#: .\my_auth\models.py:64
 msgid ""
 "I agree to the terms of usage of my data and I did read and agree to the "
 "policy agreement of this website."
@@ -98,33 +98,37 @@ msgstr ""
 "Ich habe die Datenschutzerklärung dieser Seite gelesen und stimme der "
 "Nutzung meiner Daten zu."
 
-#: .\my_auth\models.py:62
+#: .\my_auth\models.py:65
 msgid "Designates whether the user confirmed the data policy agreement."
 msgstr "Gibt an ob der/die Nutzer*in die Datenschutzerklärung bestätigt hat."
 
-#: .\my_auth\models.py:64
+#: .\my_auth\models.py:67
 msgid "Designates whether the user confirmed it's e-mail address."
 msgstr "Gibt an ob der/die Nutzer*in die E-Mail Adresse bestätigt hat."
 
-#: .\my_auth\models.py:66
+#: .\my_auth\models.py:69
 msgid "Designates whether the user got activated by a super user."
 msgstr ""
 "Gibt an ob der/die Nutzer*in durch einen Administrator bestätigt wurde."
 
-#: .\my_auth\models.py:68
+#: .\my_auth\models.py:71
 msgid "Designates whether the user can log into this admin site."
 msgstr "Gibt an ob der/die Nutzer*in sich ins Admin Portal einloggen kann."
 
-#: .\my_auth\models.py:71
+#: .\my_auth\models.py:74
 msgid ""
 "Designates whether the user can see features that didn't yet get released."
 msgstr "Gibt an ob der/die Nutzer*in unveröffentlichte Inhalte sehen kann."
 
-#: .\my_auth\models.py:74
+#: .\my_auth\models.py:77
+msgid "Designates whether the user is superuser."
+msgstr "Gibt an ob der/die Nutzer*in super user Rechte hat."
+
+#: .\my_auth\models.py:79
 msgid "Designates whether the user can log into the WeatherDB-database."
 msgstr "Gibt an ob der/die Nutzer*in zugang zur WeatherDB-Datenbank hat."
 
-#: .\my_auth\models.py:77
+#: .\my_auth\models.py:82
 msgid ""
 "Designates the number of stations a user can download at once on the "
 "WeatherDB App."
@@ -132,15 +136,17 @@ msgstr ""
 "Gibt die Anzahl an Stationen die ein*e Nutzer*in auf einmal von der "
 "WeatherDB-App herunterladen kann."
 
-#: .\my_auth\models.py:80
-msgid "Designates whether the user is superuser."
-msgstr "Gibt an ob der/die Nutzer*in super user Rechte hat."
-
-#: .\my_auth\models.py:82
+#: .\my_auth\models.py:84
 msgid "The Password for this user to log into the database."
 msgstr ""
 "Das Passwort für diese*n Nutzer*in um sich auf der WeatherDB-Datenbank "
 "einzuloggen."
+
+#: .\my_auth\models.py:87
+msgid ""
+"Designates the date and time when the user got noticed that his account will "
+"expire soon."
+msgstr ""
 
 #: .\my_auth\templates\emails\account_activation_email.html:2
 #: .\my_auth\templates\emails\account_expiration_notice.html:2
