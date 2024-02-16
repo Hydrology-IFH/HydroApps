@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'rest_framework', #  djangorestframework
     'rest_framework_gis', # djangorestframework-gis
     "django_vite", # django-vite
+    'webmaster_verification', # django-webmaster-verification
 ]
 
 MIDDLEWARE = [
@@ -313,6 +314,10 @@ X_FRAME_OPTIONS = 'allow-from https://uni-freiburg.de/'
 # Google SIte Verification
 if hasattr(secrets, "HYDROAPPS_GOOGLE_VERIFICATION"):
     GOOGLE_SITE_VERIFICATION_FILE = secrets.HYDROAPPS_GOOGLE_VERIFICATION
+
+# Webmaster verifications
+if hasattr(secrets, "WEBMASTER_VERIFICATION"):
+    WEBMASTER_VERIFICATION = secrets.WEBMASTER_VERIFICATION
 
 # clean secrets
 del secrets

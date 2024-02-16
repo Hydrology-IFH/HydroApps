@@ -18,3 +18,4 @@ django-request
 djangorestframework-msgpack
 django-cors-headers
 django-vite
+django-webmaster-verification
