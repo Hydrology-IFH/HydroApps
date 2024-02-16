@@ -311,10 +311,6 @@ CACHE_URL = secrets.BASE_URL + "/weatherdb/downloads/"
 # allow website to be loaded in iframe for CMS
 X_FRAME_OPTIONS = 'allow-from https://uni-freiburg.de/'
 
-# Google SIte Verification
-if hasattr(secrets, "HYDROAPPS_GOOGLE_VERIFICATION"):
-    GOOGLE_SITE_VERIFICATION_FILE = secrets.HYDROAPPS_GOOGLE_VERIFICATION
-
 # Webmaster verifications
 if hasattr(secrets, "WEBMASTER_VERIFICATION"):
     WEBMASTER_VERIFICATION = secrets.WEBMASTER_VERIFICATION
