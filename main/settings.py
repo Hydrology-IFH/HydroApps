@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'asgII',
     "HydroApps",
     "kombstra",
+    "sri_bw",
     # django
     'django.contrib.admin',
     'django.contrib.auth',

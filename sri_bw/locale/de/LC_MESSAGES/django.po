@@ -1,0 +1,356 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-19 13:22+0100\n"
+"PO-Revision-Date: 2024-01-25 14:42+0100\n"
+"Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: .\kombstra\models.py:15
+msgid "ID of the event"
+msgstr "ID des Ereignisses"
+
+#: .\kombstra\models.py:20
+msgid "ID to link to the Grid-Cell"
+msgstr "Id zur Verknüpfung mit der Rasterzelle"
+
+#: .\kombstra\models.py:24
+msgid "Duration class of the event (Dauerstufe) in minutes"
+msgstr "Dauerstuffe des Niederschlagereignisses in Minuten"
+
+#: .\kombstra\models.py:27
+msgid "Precipitation amount of the event in mm"
+msgstr "Niederschlagsmenge des Ereignisses in mm"
+
+#: .\kombstra\models.py:30
+msgid "Precipitation intensity of the event in mm/h"
+msgstr "Niederschlagsmenge des Ereignisses in mm/h"
+
+#: .\kombstra\models.py:33
+msgid "Starkregen-Index (SRI) of the event"
+msgstr "Starkregen-Index (SRI) dieses Ereignisses"
+
+#: .\kombstra\models.py:36
+msgid "Date of the event"
+msgstr "Datum des Events"
+
+#: .\kombstra\models.py:39
+msgid "Rank of the event in the grid-cell"
+msgstr "Rang des Ereignisses in dieser Rasterzelle"
+
+#: .\kombstra\templates\kombstra\base.html:8
+msgid ""
+"A presentation of heavy rain events and there classification (SRI) out of "
+"radar measurements. Results from the AVOSS project."
+msgstr ""
+"Eine Darstellung von Starkregenereignissen und deren Klassifizierung (SRI) "
+"aus Radarmessungen. Ergebnisse aus dem AVOSS Projekt."
+
+#: .\kombstra\templates\kombstra\base.html:19
+#: .\kombstra\templates\kombstra\home.html:8
+msgid "Home"
+msgstr "Home"
+
+#: .\kombstra\templates\kombstra\base.html:20
+msgid "Method"
+msgstr "Methode"
+
+#: .\kombstra\templates\kombstra\base.html:21
+msgid "Map"
+msgstr "Karte"
+
+#: .\kombstra\templates\kombstra\home.html:9
+msgid ""
+"This web tool is used to visualize past heavy rainfall events, which were "
+"classified state-wide for Baden-Württemberg using a heavy rainfall index "
+"(SRI). "
+msgstr ""
+"Dieses WebTool dient zur Visualisierung vergangener Starkregenereignisse, "
+"die landesweit für Baden-Württemberg anhand eines Starkregenindex (SRI) "
+"klassifiziert wurden."
+
+#: .\kombstra\templates\kombstra\home.html:10
+msgid ""
+"In order to provide municipalities in Baden-Württemberg with assistance "
+"within the framework of "
+msgstr "Um den Kommunen in Baden-Württemberg im Rahmen von "
+
+#: .\kombstra\templates\kombstra\home.html:10
+msgid ""
+"the Chair of Hydrology at the University of Freiburg, in cooperation with "
+"the Regional Council of Stuttgart and the Baden-Württemberg State Institute "
+"for the Environment (LUBW), has created a state-wide classification of "
+"precipitation heights into a heavy rainfall index. This classification is "
+"grid-based on a ~&nbsp;2km&nbsp;x&nbsp;2km grid and for 12 different "
+"duration levels, which were classified as relevant in the course of the "
+msgstr ""
+"eine Hilfestellung zu geben, hat die Professur für Hydrologie der "
+"Universität Freiburg in Zusammenarbeit mit dem Regierungspräsidium Stuttgart "
+"und der Landesanstalt für Umwelt Baden-Württemberg (LUBW) landesweit eine "
+"Einordnung von Niederschlagshöhen in einen Starkregenindex erstellt. Diese "
+"Einteilung erfolgt rasterbasiert auf einem ~ 2km x 2km Raster und für 12 "
+"verschiedene Dauerstufen, die ihm Zuge des "
+
+#: .\kombstra\templates\kombstra\home.html:10
+msgid "state's heavy rain risk management"
+msgstr "Starkregenrisikomanagments"
+
+#: .\kombstra\templates\kombstra\home.html:11
+msgid ""
+"Details on the data basis and the methodological approaches are listed in "
+"the "
+msgstr ""
+"Details zur Datengrundlage und den methodischen Ansätzen sind im "
+
+#: .\kombstra\templates\kombstra\home.html:11
+msgid "Method tab"
+msgstr "Reiter Methode"
+
+#: .\kombstra\templates\kombstra\home.html:12
+msgid ""
+"In FLIWAS, the heavy rainfall index provides the basis for evaluating "
+"location-specific precipitation forecasts in terms of their intensity. To "
+"assist the user in this, past heavy rainfall events were also classified for "
+"each SRI grid cell using the location-specific SRI."
+msgstr ""
+"In FLIWAS liefert der Starkregenindex die Basis, um ortsspezifische "
+"Niederschlagsvorhersagen bezüglich ihrer Stärke zu bewerten. Um dem Anwender "
+"hierfür eine Hilfestellung zu geben, wurden zusätzlich für jede SRI-"
+"Rasterzelle vergangene Starkregenereignisse anhand des ortsspezifischen SRI "
+"klassifiziert."
+
+#: .\kombstra\templates\kombstra\home.html:13
+msgid ""
+"Based on these analyses, corresponding tables of the SRI and classified "
+"heavy rainfall events are now available for the individual grid cells "
+"throughout the country. These are shown as examples in the two figures "
+"below, but can be called up specifically for each grid cell via the map tool."
+msgstr ""
+"Basierend auf diesen Analysen liegen nun landesweit für die einzelnen "
+"Rasterzellen entsprechende Tabellen des SRI und klassifizierter "
+"Starkregenereignisse vor. Diese sind exemplarisch in den beiden Abbildungen "
+"unten dargestellt, können aber über das Kartentool spezifisch für jede "
+"Raster-Zelle abgerufen werden."
+
+#: .\kombstra\templates\kombstra\home.html:28
+#: .\kombstra\templates\kombstra\home.html:29
+msgid "Example of a site-specific heavy rainfall index table"
+msgstr "Beispiel einer standortspezifischen Tabelle des Starkregenindex"
+
+#: .\kombstra\templates\kombstra\home.html:29
+#: .\kombstra\templates\kombstra\home.html:33
+msgid "Fig."
+msgstr "Abb."
+
+#: .\kombstra\templates\kombstra\home.html:32
+#: .\kombstra\templates\kombstra\home.html:33
+msgid "Example table of classified heavy rain events"
+msgstr "Beispieltabelle klassifizierter Starkregenereignisse"
+
+#: .\kombstra\templates\kombstra\map.html:13
+msgid "KombStRA map"
+msgstr "KombStRA Karte"
+
+#: .\kombstra\templates\kombstra\method.html:7
+msgid "KOSTRA Method"
+msgstr "Methode KOSTRA"
+#: .\kombstra\templates\kombstra\method.html:8
+msgid "Heavy rainfall index (SRI)"
+msgstr "Starkregenindex (SRI)"
+
+#: .\kombstra\templates\kombstra\method.html:9
+msgid ""
+"The present Heavy Rainfall Index (SRI) assigns various precipitation levels "
+"to a 12-stage heavy rainfall scale. The heavy rainfall index was created "
+"site-specifically for 12 different duration levels. Depending on the "
+"duration level, a given amount of precipitation leads to a different heavy "
+"rainfall index."
+msgstr ""
+"Der vorliegende Starkregenindex  (SRI) ordnet verschiedenste "
+"Niederschlagshöhen  einer 12-stufigen Starkregenskala zu. Der Starkregenindex"
+" wurde dabei ortsspezifisch für 12 verschiedene Dauerstufen erstellt. "
+"Je nach Dauerstufe führt eine gegebene Niederschlagsmenge zu einem "
+"unterschiedlichen Starkregenindex."
+#: .\kombstra\templates\kombstra\method.html:10
+msgid ""
+"The classification of precipitation levels into individual heavy rainfall "
+"categories is based on the method of"
+msgstr ""
+"Die Einteilung von Niederschlagshöhen zu einzelnen Starkregenkategorien "
+"erfolgt dabei nach der Methode von"
+
+#: .\kombstra\templates\kombstra\method.html:10
+msgid ""
+"For the heavy rainfall categories from 1 to 7, precipitation with a certain "
+"probability of recurrence is used. The precipitation amounts of the heavy "
+"rainfall categories from 8 to 12 are derived from the precipitation heights "
+"of category 7 multiplied by an increase factor that is constant for all "
+"duration levels."
+msgstr ""
+"Für die Starkregenkategorien von 1 bis 7 werden hierfür Niederschläge einer "
+"bestimmten Wiederkehrwahrscheinlichkeit herangezogen. Die "
+"Niederschlagsmengen der Starkregenkategorien von 8 bis 12 werden über einen, "
+"für alle Dauerstufen konstanten, Erhöhungsfaktor aus den Niederschlagshöhen "
+"der Starkregenkategorie 7 abgeleitet."
+
+#: .\kombstra\templates\kombstra\method.html:11
+msgid ""
+"In general, precipitation events in heavy rainfall categories 1 and 2 can be "
+"categorized as <i>\"normal\"</i> heavy rainfall events; events in categories "
+"3 to 5 can be categorized as <i>intense</i> heavy rainfall events; events in "
+"categories 6 and 7 can be categorized as <i>exceptional</i> heavy rainfall "
+"events; and events in categories 8 and above can be categorized as "
+"<i>extreme</i> heavy rainfall events."
+msgstr ""
+"Generell gilt, dass Niederschlagsereignisse der Starkregenkategorie 1 und 2 "
+"zu <i>\"normal\"</i> Starkregenereignissen gezählt werden können; Ereignisse "
+"der Kategorie 3 bis 5 zählen zu <i>intensiven</i> Starkregenereignissen; "
+"Ereignisse der Kategorie 6 und 7 zählen zu den <i>außergewöhnlichen</i> "
+"Starkregenereignissen und Ereignisse der Kategorie 8 und mehr können als "
+"<i>extreme</i> Starkregenereignisse kategorisiert werden."
+
+#: .\kombstra\templates\kombstra\method.html:12
+msgid "Data basis SRI"
+msgstr "Datengrundlage SRI"
+
+#: .\kombstra\templates\kombstra\method.html:13
+msgid ""
+"The assignment of precipitation heights to the heavy rainfall scale is based "
+"on area-wide available design precipitations, in each case for each of the "
+"duration levels under consideration. In this case, the design precipitation "
+"from"
+msgstr ""
+"Der Zuordnung von Niederschlagshöhen zu einer Starkregenskala basiert auf "
+"flächenhaft vorliegenden Bemessungsniederschlägen, jeweils für jede der "
+"betrachteten Dauerstufen.  In diesem Fall wurden als Basisdaten die "
+"Bemessungsniederschläge aus"
+
+#: .\kombstra\templates\kombstra\method.html:13
+msgid "was used as the base data."
+msgstr "verwendet."
+
+#: .\kombstra\templates\kombstra\method.html:13
+msgid ""
+"However, as the KOSTRA-DWD-2020 data are not available for each of the "
+"duration levels or required return intervals considered in the SRI, the "
+"corresponding values were derived using the available KOSTRA extreme value & "
+"correction parameters on the ordinary KOSTRA-DWD-2020 grid and then "
+"conservatively distributed to the spatially higher-resolution grid of the "
+"SRI (~&nbsp;2km&nbsp;x&nbsp;2km)."
+msgstr ""
+"Da die KOSTRA-DWD-2020 Daten aber nicht für jede der im SRI  betrachteten "
+"Dauerstufen bzw. benötigten Wiederkehrintervalle vorliegen, wurden die "
+"entsprechenden Werte über die verfügbaren KOSTRA-Extremwert & Korrektur-"
+"Parameter auf dem ordinären KOSTRA-DWD-2020 Raster abgeleitet und "
+"anschließend konservativ auf das räumlich höher aufgelöste SRI-Raster (~ 2km "
+"x 2km) aufgeteilt."
+
+#: .\kombstra\templates\kombstra\method.html:15
+msgid "Event data"
+msgstr "Ereignisdaten"
+
+#: .\kombstra\templates\kombstra\method.html:16
+msgid ""
+"The heavy rainfall events listed in this web application were extracted from "
+"the"
+msgstr ""
+"Die in dieser Web-Anwendung angeführten Starkregenereignisse wurden aus den "
+"Daten der "
+
+#: .\kombstra\templates\kombstra\method.html:16
+msgid "radar climatology data"
+msgstr "Radarklimatologie"
+
+#: .\kombstra\templates\kombstra\method.html:16
+msgid "of the German Weather Service (DWD)."
+msgstr "des Deutschen Wetterdienst (DWD) extrahiert."
+
+#: .\kombstra\templates\kombstra\method.html:16
+msgid ""
+"This data is available throughout Germany in a grid of approx. 1km&nbsp;"
+"x&nbsp;1km. All events that occurred in the period from 2001 to 2021 were "
+"taken into account for the listing.  You can find more information about the "
+"DWD's RADKLIM product "
+msgstr ""
+"Diese Daten sind deutschlandweit in einem Raster von ca.&nbsp;1km&nbsp;"
+"x&nbsp;1km verfügbar. Für die Auflistung wurden alle Ereignisse "
+"berücksichtigt, die im Zeitraum von 2001 bis 2021 auftraten. Mehr "
+"Informationen zu dem RADKLIM-Produkt des DWD erhalten Sie "
+
+#: .\kombstra\templates\kombstra\method.html:16
+#: .\kombstra\templates\kombstra\method.html:24
+#: .\kombstra\templates\kombstra\method.html:26
+msgid "here"
+msgstr "hier"
+
+#: .\kombstra\templates\kombstra\method.html:17
+msgid ""
+"In order to compensate for the systematic underreporting of heavy rainfall "
+"events in the radar data compared to station measurements, the events were "
+"corrected using a statistical method. This procedure is described in"
+msgstr ""
+"Um die systematische Untererfassung von Starkregenereignissen in den "
+"Radardaten im Vergleich zu Stationsmessungen auszugleichen, wurden die "
+"Ereignisse mittels eines statistischen Verfahrens korrigiert. Dieses "
+"Verfahren ist in"
+
+#: .\kombstra\templates\kombstra\method.html:18
+msgid ""
+"In order to intersect the RADKLIM data with the coarser SRI tiles (approx."
+"&nbsp;2km&nbsp;x&nbsp;2km), the original 5-minute data from the grid points "
+"that intersect with the respective SRI tile were averaged according to their "
+"area fraction."
+msgstr ""
+"Um die RADKLIM-Daten mit den gröberen SRI-Kacheln (ca.&nbsp;2km&nbsp;"
+"x&nbsp;2km) zu verschneiden, wurden die originalen 5-Minutendaten aus den "
+"Rasterpunkten, die sich mit der jeweiligen SRI-Kachel schneiden, "
+"entsprechend ihrem Flächenanteil gemittelt."
+
+#: .\kombstra\templates\kombstra\method.html:19
+msgid ""
+"In general, only events that correspond to an SRI&nbsp;≥&nbsp;1 are "
+"displayed. Furthermore, the maximum number of events shown was limited to "
+"15. If fewer than 15 events with an SRI&nbsp;≥&nbsp;1 were observed in the "
+"considered period, correspondingly fewer events are shown."
+msgstr ""
+"Generell werden nur Ereignisse dargestellt, die einem SRI ≥ 1 entsprechen. "
+"Weiterhin wurde die maximale Anzahl von dargestellten Ereignissen auf 15 "
+"begrenzt. Wurden im betrachteten Zeitraum weniger als 15 Ereignisse mit "
+"einem SRI ≥ 1 beobachtet, werden entsprechend weniger Ereignisse dargestellt."
+
+#: .\kombstra\templates\kombstra\method.html:20
+msgid ""
+"In order to prevent the majority of the events listed from being caused by "
+"the same precipitation event (same event, but different duration level), the "
+"additional criterion that a maximum of 4 duration levels per event are shown "
+"in the table was introduced."
+msgstr ""
+"Um zu verhindern, dass ein Großteil der aufgeführten Ereignisse auf das "
+"gleiche Niederschlagsereignis zurückgehen (gleiches Ereignis, aber andere "
+"Dauerstufe) wurde zusätzlich noch das Kriterium eingeführt, dass pro "
+"Ereignis maximal 4 Dauerstufen in der Tabelle dargestellt werden."
+
+#: .\kombstra\templates\kombstra\method.html:24
+#: .\kombstra\templates\kombstra\method.html:26
+msgid "Online available"
+msgstr "Online verfügbar"
+
+#~ msgid ""
+#~ "In general, precipitation events in heavy rainfall categories 1 and 2 can "
+#~ "be categorized as <i>\\"
+#~ msgstr ""
+#~ "In general, precipitation events of heavy rainfall categories 1 and 2 "
+#~ "lead to <i>"
