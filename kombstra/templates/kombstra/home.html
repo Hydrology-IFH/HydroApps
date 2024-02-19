@@ -5,11 +5,8 @@
 
 {% block head %}
 <style type="text/css">
-  div.row.sri-figures {
-    max-height: 450px;
-  }
   div.row.sri-figures figure {
-    max-height: inherit;
+    max-height: 450px;
   }
   div.row.sri-figures img {
     max-height: calc(100% - 2.5rem);
@@ -28,11 +25,11 @@
 
   <div class="container text-center">
     <div class="row sri-figures">
-      <figure class="col-6" style="max-height: inherit">
+      <figure class="col-12 col-lg-6" style="max-height: inherit">
         <img class="figure-img" src="{% static 'kombstra/img/Ort_spez_SRI-Tabelle.png' %}" alt='{% trans "Example of a site-specific heavy rainfall index table" %}'>
         <figcaption class="figure-caption">{% trans "Fig." %} 1: {% trans "Example of a site-specific heavy rainfall index table" %}</figcaption>
       </figure>
-      <figure class="col-6">
+      <figure class="col-12 col-lg-6">
         <img class="figure-img" src="{% static 'kombstra/img/SRI-Tabelle.png' %}" alt='{% trans "Example table of classified heavy rain events" %}'>
         <figcaption class="figure-caption">{% trans "Fig." %} 2: {% trans "Example table of classified heavy rain events" %}</figcaption>
       </figure>
