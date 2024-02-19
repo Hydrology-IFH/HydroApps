@@ -103,6 +103,11 @@ export default {
       <table class="table table-striped table-hover">
         <thead class="table-light ">
           <tr>
+            <th colspan="3"></th>
+            <th colspan="2">{{ $t('popup_table_header_rain') }}</th>
+            <th></th>
+          </tr>
+          <tr>
             <th scope="col">{{ $t('popup_table_header_event_rank') }}</th>
             <th scope="col">{{ $t('popup_table_header_date') }}</th>
             <th scope="col">{{ $t('popup_table_header_duration') }}</th>
