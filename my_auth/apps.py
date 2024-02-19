@@ -9,6 +9,7 @@ class MyAuthConfig(AppConfig):
         # create the my_auth schedules
         from django_q.tasks import schedule
         from django_q.models import Schedule
+        from django.db.utils import ProgrammingError
 
         today = date.today()
         options = dict(
@@ -21,15 +22,12 @@ class MyAuthConfig(AppConfig):
                 time(2, 32),
                 timezone.utc)
         )
-        # for debuging
-        # options.update(dict(
-        #     schedule_type=Schedule.MINUTES,
-        #     minutes=1,
-        #     next_run=timezone.now() + timedelta(minutes=1),
-        # ))
 
-        # update or create the schedule
-        if sched_ex := Schedule.objects.filter(name=options["name"]):
-            sched_ex.update(**options)
-        else:
-            schedule(**options)
+        try:
+            # update or create the schedule
+            if sched_ex := Schedule.objects.filter(name=options["name"]):
+                sched_ex.update(**options)
+            else:
+                schedule(**options)
+        except ProgrammingError: # if the database is not ready yet
+            pass
