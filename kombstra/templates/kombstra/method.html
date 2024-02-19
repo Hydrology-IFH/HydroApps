@@ -2,12 +2,37 @@
 {% load static %}
 {% load i18n %}
 
-{% block head %}
-<style>span{text-align: left;}</style>
-{% endblock %}
-
 {% block content %}
 
-<h1>{% trans "Method" %}</h1>
+<h1>{% trans "KOSTRA Method" %}</h1>
+<h3>{% trans "Heavy rainfall index (SRI)" %}</h3>
+<p>{% trans "The present Heavy Rainfall Index (SRI) assigns various precipitation levels to a 12-stage heavy rainfall scale. The heavy rainfall index was created site-specifically for 12 different duration levels. Depending on the duration level, a given amount of precipitation leads to a different heavy rainfall index." %}</p>
+<p>{% trans "The classification of precipitation levels into individual heavy rainfall categories is based on the method of" %} <a href="#quelle-Schmitt">Schmitt et al. (2018)</a>. {% trans "For the heavy rainfall categories from 1 to 7, precipitation with a certain probability of recurrence is used. The precipitation amounts of the heavy rainfall categories from 8 to 12 are derived from the precipitation heights of category 7 multiplied by an increase factor that is constant for all duration levels." %}</p>
+<p>{% trans 'In general, precipitation events in heavy rainfall categories 1 and 2 can be categorized as <i>"normal"</i> heavy rainfall events; events in categories 3 to 5 can be categorized as <i>intense</i> heavy rainfall events; events in categories 6 and 7 can be categorized as <i>exceptional</i> heavy rainfall events; and events in categories 8 and above can be categorized as <i>extreme</i> heavy rainfall events.' %}</p>
+<h3>{% trans "Data basis SRI" %}</h3>
+<p>{% trans "The assignment of precipitation heights to the heavy rainfall scale is based on area-wide available design precipitations, in each case for each of the duration levels under consideration. In this case, the design precipitation from" %} <a href="#quelle-kostra">KOSTRA-DWD-2020</a> {% trans "was used as the base data." %} {% trans "However, as the KOSTRA-DWD-2020 data are not available for each of the duration levels or required return intervals considered in the SRI, the corresponding values were derived using the available KOSTRA extreme value & correction parameters on the ordinary KOSTRA-DWD-2020 grid and then conservatively distributed to the spatially higher-resolution grid of the SRI (~&nbsp;2km&nbsp;x&nbsp;2km)." %}
+</p>
+<h3>{% trans "Event data" %}</h3>
+<p>{% trans "The heavy rainfall events listed in this web application were extracted from the" %} <a href="#quelle-radklim">{% trans "radar climatology data" %} (RADKLIM)</a> {% trans "of the German Weather Service (DWD)." %} {% trans "This data is available throughout Germany in a grid of approx. 1km&nbsp;x&nbsp;1km. All events that occurred in the period from 2001 to 2021 were taken into account for the listing.  You can find more information about the DWD's RADKLIM product " %} <a href="https://www.dwd.de/DE/leistungen/radarklimatologie/radarklimatologie.html" target="_blank" rel="noopener">{% trans "here" %}&nbsp;<i class="bi bi-box-arrow-up-right"></i></a>.</p>
+<p>{% trans "In order to compensate for the systematic underreporting of heavy rainfall events in the radar data compared to station measurements, the events were corrected using a statistical method. This procedure is described in" %} <a href="#quelle-Haensler">Hänsler & Weiler (2020)</a>  {% if LANGUAGE_CODE == 'de' %} beschrieben{% endif %}.</p>
+<p>{% trans "In order to intersect the RADKLIM data with the coarser SRI tiles (approx.&nbsp;2km&nbsp;x&nbsp;2km), the original 5-minute data from the grid points that intersect with the respective SRI tile were averaged according to their area fraction." %}</p>
+<p>{% trans "In general, only events that correspond to an SRI&nbsp;≥&nbsp;1 are displayed. Furthermore, the maximum number of events shown was limited to 15. If fewer than 15 events with an SRI&nbsp;≥&nbsp;1 were observed in the considered period, correspondingly fewer events are shown." %}</p>
+<p>{% trans "In order to prevent the majority of the events listed from being caused by the same precipitation event (same event, but different duration level), the additional criterion that a maximum of 4 duration levels per event are shown in the table was introduced." %}</p>
 
+<div class="quellen">
+  <ol>
+    <li id="quelle-Schmitt">Schmitt, T., Krüger, M., Pfister, A., Becker, M., Mudersbach, C., Fuchs, L., Hoppe, H., Lakes, I., 2018. Einheitliches Konzept zur Bewertung von Starkregenereignissen mittels Starkregenindex 65, 113–120. <a href="https://doi.org/10.3242/kae2018.02.002">DOI:10.3242/kae2018.02.002.</a> {% trans "Online available" %}: <a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/322930727_Einheitliches_Konzept_zur_Bewertung_von_Starkregenereignissen_mittels_Starkregenindex">{% trans "here" %}</a>
+    </li>
+    <li id="quelle-kostra">Deutscher Wetterdienst (DWD), 2023. Koordinierte Starkniederschlagsregionalisierung und -auswertung des DWD (KOSTRA-DWD-2020). {% trans "Online available" %}: <a href="https://www.dwd.de/DE/leistungen/kostra_dwd_rasterwerte/kostra_dwd_rasterwerte.html" target="_blank" rel="noopener">{% trans "here" %}</a>
+    </li>
+    <li id="quelle-radklim">Winterrath, T., Brendel, C., Hafer, M., Junghänel, T., Klameth, A., Lengfeld, K., Walawender, E., Weigl, E., Becker, A., 2018. Radar climatology (RADKLIM) version 2017.002; gridded precipitation data for Germany: Radar-based gauge-adjusted one-hour precipitation sum (RW). <a href="https://doi.org/10.5676/DWD/RADKLIM_RW_V2017.002" target="_blank" rel="noopener">DOI:10.5676/DWD/RADKLIM_RW_V2017.002</a>
+    </li>
+    <li id="quelle-Haensler">Hänsler, A., Weiler, M., 2022. Enhancing the usability of weather radar data for the statistical analysis of extreme precipitation events. Hydrology and Earth System Sciences 26, 5069–5084. <a href="https://doi.org/10.5194/hess-26-5069-2022" target="_blank" rel="noopener">DOI:10.5194/hess-26-5069-2022</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/references.js' %}" defer></script>
 {% endblock %}
