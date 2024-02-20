@@ -55,11 +55,21 @@
       {% if show_unreleased %}
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">
+          <a href="{% url 'sri-bw:home' %}" class="stretched-link"></a>
+          <img src="{% static 'sri-bw/img/Logo_512.png' %}" class="card-img-top mx-auto" alt="Logo of SRI-BW">
+          <div class="card-body">
+            <h5 class="card-title">SRI-BW</h5>
+            <p class="card-text">{% trans "Classification of heavy rain events for the state of Baden-Württemberg." %} </p>
+          </div>
+        </div>
+      </div>
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
           <a href="{% url 'kombstra:home' %}" class="stretched-link"></a>
           <img src="{% static 'kombstra/img/Logo_512.png' %}" class="card-img-top mx-auto" alt="Logo of KombStRA">
           <div class="card-body">
             <h5 class="card-title">KombStRA</h5>
-            <p class="card-text">{% trans "Classification of heavy rain events." %} </p>
+            <p class="card-text">{% trans "Classification of heavy rain events for all of germany." %} </p>
           </div>
         </div>
       </div>
