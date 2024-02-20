@@ -61,8 +61,8 @@ function update_sri_bw_data(long, lat) {
     .then((data) => {
       popup_cell_source.addFeatures(
         new GeoJSON().readFeatures(data[0].geometry, {
-          dataProjection: "SR-ORG:97019",
-          featureProjection: "SR-ORG:97019",
+          dataProjection: "EPSG:4326",
+          featureProjection: "EPSG:4326",
         }));
       popupAppInst.update_popup_data(data[0].grid_id, lat, long);
       set_overlay_position();

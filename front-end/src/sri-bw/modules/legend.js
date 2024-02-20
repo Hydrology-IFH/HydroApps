@@ -1,10 +1,8 @@
 import Legend from "ol-ext/legend/Legend.js";
 import LegendCtrl from "ol-ext/control/Legend.js";
 import { get_style } from "./styles.js";
-// import { gridFormPara } from "./forms.js";
 import { parameter, year, sri } from "./Form.vue"
 import { map } from "./map.js";
-import { get } from "ol/proj.js";
 import { i18n } from './i18n.js';
 
 const labels = {
