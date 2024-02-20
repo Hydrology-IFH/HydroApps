@@ -8,6 +8,8 @@ def get_active_app(request):
         return "asgII"
     elif first_url_part == "kombstra":
         return "kombstra"
+    elif first_url_part == "sri-bw":
+        return "sri-bw"
     else:
         return "HydroApps"
 

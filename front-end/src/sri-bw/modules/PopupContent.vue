@@ -25,7 +25,7 @@ export default {
     },
     async fetchData() {
       this.loading = true;
-      fetch("/en/kombstra/api/kombstra_data/?grid_id=" + this.grid_id)
+      fetch("/en/sri-bw/api/sri-bw_data/?grid_id=" + this.grid_id)
         .then((res) => res.json())
         .then((data) => {
           this.cell_data = data;
@@ -43,7 +43,7 @@ export default {
     download_data() {
       // create the csv content
       let header = [
-        `This is the KombStRA data for the raster cell with the ID ${this.grid_id}`,
+        `This is the SRI-BW data for the raster cell with the ID ${this.grid_id}`,
         `The cells center is located at ${this.cell_lat}, ${this.cell_lon}.`,
         "The columns are:",
         "event_rank : The ranking of the event",
@@ -70,7 +70,7 @@ export default {
       let hiddenElement = document.createElement('a');
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
       hiddenElement.target = '_blank';
-      hiddenElement.download = `kombstra_data_${this.grid_id}.csv`;
+      hiddenElement.download = `sri-bw_data_${this.grid_id}.csv`;
       hiddenElement.click();
     }
   },

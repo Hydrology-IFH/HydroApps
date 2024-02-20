@@ -12,7 +12,8 @@ export default defineConfig({
     },
     rollupOptions: {
       input: {
-        kombstra: '/src/kombstra/main.js'
+        kombstra: '/src/kombstra/main.js',
+        sriBW: '/src/sri-bw/main.js',
       },
     },
   },

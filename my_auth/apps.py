@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 from datetime import datetime, timedelta, date, time, timezone
 import warnings
+from django.db.utils import ProgrammingError
 
 class MyAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -27,15 +28,11 @@ class MyAuthConfig(AppConfig):
                         time(2, 32),
                         timezone.utc)
                 )
-                # for debuging
-                # options.update(dict(
-                #     schedule_type=Schedule.MINUTES,
-                #     minutes=1,
-                #     next_run=timezone.now() + timedelta(minutes=1),
-                # ))
 
-                # update or create the schedule
-                if sched_ex := Schedule.objects.filter(name=options["name"]):
-                    sched_ex.update(**options)
-                else:
-                    schedule(**options)
+                try:
+                    if sched_ex := Schedule.objects.filter(name=options["name"]):
+                        sched_ex.update(**options)
+                    else:
+                        schedule(**options)
+                except ProgrammingError: # if the database is not ready yet
+                    pass

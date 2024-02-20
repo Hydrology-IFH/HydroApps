@@ -2,6 +2,7 @@ from django.apps import AppConfig
 from datetime import timedelta
 from django.utils import timezone
 import warnings
+from django.db.utils import ProgrammingError
 
 class MyAuthConfig(AppConfig):
     name = 'weatherDB'
@@ -24,8 +25,11 @@ class MyAuthConfig(AppConfig):
                     next_run=timezone.now() + timedelta(minutes=5),
                 )
 
-                # update or create the schedule
-                if sched_ex := Schedule.objects.filter(name=options["name"]):
-                    sched_ex.update(**options)
-                else:
-                    schedule(**options)
+                try:
+                    # update or create the schedule
+                    if sched_ex := Schedule.objects.filter(name=options["name"]):
+                        sched_ex.update(**options)
+                    else:
+                        schedule(**options)
+                except ProgrammingError: # if the database is not ready yet
+                    pass

@@ -1,0 +1,39 @@
+{% extends 'sri-bw/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load django_vite %}
+
+{% block head %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% vite_hmr_client %}
+{% endblock %}
+
+{% block content %}
+
+  <h1>{% trans "map of classified heavy rain events" %}</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7 col-12" >
+        <div id="map">
+          <div id="info"></div>
+          <div id="popup" class="ol-popup" style="visibility:hidden">
+            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-12">
+        <div class="container" id="form-app"></div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block scripts %}
+  <script>
+    var spans = {{ spans|safe }};
+  </script>
+  {% vite_asset 'src/sri-bw/main.js' %}
+  {% comment %} {% vite_legacy_polyfills %} {% endcomment %}
+{% endblock %}
