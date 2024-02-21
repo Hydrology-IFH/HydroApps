@@ -32,7 +32,7 @@ export default {
   <form id="form_select_grid" class="form-horizontal" action="javascript:void(0);">
     <h4>{{ $t('map_form_header_grid') }}</h4>
     <div class="d-flex col-12">
-      <p>{{ $t('map_form_explanation') }}</p>
+      <p>{{ $t('map_form_explanation') }} <a href="../method">{{ $t('map_form_explanation_method') }}</a>.</p>
     </div>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="label_parameter" data-bs-toggle="tooltip" data-bs-placement="top"

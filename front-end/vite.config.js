@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   base: '/static/front-end/',
   build: {
-    sourcemap: true,
     manifest: "manifest.json",
     chunkSizeWarningLimit: 800,
     watch: {
@@ -13,7 +12,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         kombstra: '/src/kombstra/main.js',
-        sriBW: '/src/sri-bw/main.js',
+        sriBW: '/src/sri-bw/main.js'
       },
     },
   },

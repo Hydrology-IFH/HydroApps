@@ -7,8 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-16 12:46+0100\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2024-02-21 15:00+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -17,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\main\settings.py:226
+#: .\main\settings.py:227
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:227
+#: .\main\settings.py:228
 msgid "English"
 msgstr "Englisch"
 
@@ -33,27 +32,27 @@ msgstr ""
 "Eine Internetseite mit verschiedenen Web-Anwendungen die an der Professur "
 "für Hydrologie an der Uni Freiburg erstellt wurden."
 
-#: .\main\templates\base.html:128
+#: .\main\templates\base.html:129
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:130
+#: .\main\templates\base.html:131
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:132
+#: .\main\templates\base.html:133
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:134
+#: .\main\templates\base.html:135
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:183
+#: .\main\templates\base.html:184
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:184
+#: .\main\templates\base.html:185
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 

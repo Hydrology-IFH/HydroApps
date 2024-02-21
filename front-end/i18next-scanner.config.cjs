@@ -17,7 +17,7 @@ module.exports = {
     pluralSeparator: 'xacy_never-happens-ß?876',
     ns: ['kombstra', 'sri-bw'],
     defaultNs: "kombstra",
-    nsSeparator: false, // not used as defined manualy in transform
+    nsSeparator: ".", // not used as defined manualy in transform
     keySeparator: false, // key separator
     removeUnusedKeys: true,
     sort: true,
@@ -27,12 +27,14 @@ module.exports = {
     "use strict";
     const parser = this.parser;
     const content = fs.readFileSync(file.path, enc);
-    const ns = path.relative(__dirname, file.path).split(path.sep)[1];
+    const nsfile = path.relative(__dirname, file.path).split(path.sep)[1];
 
     parser.parseFuncFromString(
       content,
       { list: ['i18next.t', 'i18n.t', 'this.$t', '$t'] },
       (key, options) => {
+        let key_groups = key.split(".");
+        let ns = key_groups.length > 1 ? key_groups[0] : nsfile;
         parser.set(
           key,
           Object.assign({}, options, { ns: ns }));

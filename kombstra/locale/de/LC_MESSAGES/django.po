@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 13:22+0100\n"
+"POT-Creation-Date: 2024-02-21 09:30+0100\n"
 "PO-Revision-Date: 2024-01-25 14:42+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -60,7 +60,7 @@ msgstr ""
 "aus Radarmessungen. Ergebnisse aus dem AVOSS Projekt."
 
 #: .\kombstra\templates\kombstra\base.html:19
-#: .\kombstra\templates\kombstra\home.html:8
+#: .\kombstra\templates\kombstra\home.html:19
 msgid "Home"
 msgstr "Home"
 
@@ -72,7 +72,7 @@ msgstr "Methode"
 msgid "Map"
 msgstr "Karte"
 
-#: .\kombstra\templates\kombstra\home.html:9
+#: .\kombstra\templates\kombstra\home.html:20
 msgid ""
 "This web tool is used to visualize past heavy rainfall events, which were "
 "classified state-wide for Baden-Württemberg using a heavy rainfall index "
@@ -82,13 +82,13 @@ msgstr ""
 "die landesweit für Baden-Württemberg anhand eines Starkregenindex (SRI) "
 "klassifiziert wurden."
 
-#: .\kombstra\templates\kombstra\home.html:10
+#: .\kombstra\templates\kombstra\home.html:21
 msgid ""
 "In order to provide municipalities in Baden-Württemberg with assistance "
 "within the framework of "
 msgstr "Um den Kommunen in Baden-Württemberg im Rahmen von "
 
-#: .\kombstra\templates\kombstra\home.html:10
+#: .\kombstra\templates\kombstra\home.html:21
 msgid ""
 "the Chair of Hydrology at the University of Freiburg, in cooperation with "
 "the Regional Council of Stuttgart and the Baden-Württemberg State Institute "
@@ -104,22 +104,21 @@ msgstr ""
 "Einteilung erfolgt rasterbasiert auf einem ~ 2km x 2km Raster und für 12 "
 "verschiedene Dauerstufen, die ihm Zuge des "
 
-#: .\kombstra\templates\kombstra\home.html:10
+#: .\kombstra\templates\kombstra\home.html:21
 msgid "state's heavy rain risk management"
 msgstr "Starkregenrisikomanagments"
 
-#: .\kombstra\templates\kombstra\home.html:11
+#: .\kombstra\templates\kombstra\home.html:22
 msgid ""
 "Details on the data basis and the methodological approaches are listed in "
 "the "
-msgstr ""
-"Details zur Datengrundlage und den methodischen Ansätzen sind im "
+msgstr "Details zur Datengrundlage und den methodischen Ansätzen sind im "
 
-#: .\kombstra\templates\kombstra\home.html:11
+#: .\kombstra\templates\kombstra\home.html:22
 msgid "Method tab"
 msgstr "Reiter Methode"
 
-#: .\kombstra\templates\kombstra\home.html:12
+#: .\kombstra\templates\kombstra\home.html:23
 msgid ""
 "In FLIWAS, the heavy rainfall index provides the basis for evaluating "
 "location-specific precipitation forecasts in terms of their intensity. To "
@@ -132,7 +131,7 @@ msgstr ""
 "Rasterzelle vergangene Starkregenereignisse anhand des ortsspezifischen SRI "
 "klassifiziert."
 
-#: .\kombstra\templates\kombstra\home.html:13
+#: .\kombstra\templates\kombstra\home.html:24
 msgid ""
 "Based on these analyses, corresponding tables of the SRI and classified "
 "heavy rainfall events are now available for the individual grid cells "
@@ -145,18 +144,18 @@ msgstr ""
 "unten dargestellt, können aber über das Kartentool spezifisch für jede "
 "Raster-Zelle abgerufen werden."
 
-#: .\kombstra\templates\kombstra\home.html:28
 #: .\kombstra\templates\kombstra\home.html:29
+#: .\kombstra\templates\kombstra\home.html:30
 msgid "Example of a site-specific heavy rainfall index table"
 msgstr "Beispiel einer standortspezifischen Tabelle des Starkregenindex"
 
-#: .\kombstra\templates\kombstra\home.html:29
-#: .\kombstra\templates\kombstra\home.html:33
+#: .\kombstra\templates\kombstra\home.html:30
+#: .\kombstra\templates\kombstra\home.html:34
 msgid "Fig."
 msgstr "Abb."
 
-#: .\kombstra\templates\kombstra\home.html:32
 #: .\kombstra\templates\kombstra\home.html:33
+#: .\kombstra\templates\kombstra\home.html:34
 msgid "Example table of classified heavy rain events"
 msgstr "Beispieltabelle klassifizierter Starkregenereignisse"
 
@@ -167,6 +166,7 @@ msgstr "KombStRA Karte"
 #: .\kombstra\templates\kombstra\method.html:7
 msgid "KOSTRA Method"
 msgstr "Methode KOSTRA"
+
 #: .\kombstra\templates\kombstra\method.html:8
 msgid "Heavy rainfall index (SRI)"
 msgstr "Starkregenindex (SRI)"
@@ -179,11 +179,12 @@ msgid ""
 "duration level, a given amount of precipitation leads to a different heavy "
 "rainfall index."
 msgstr ""
-"Der vorliegende Starkregenindex  (SRI) ordnet verschiedenste "
-"Niederschlagshöhen  einer 12-stufigen Starkregenskala zu. Der Starkregenindex"
-" wurde dabei ortsspezifisch für 12 verschiedene Dauerstufen erstellt. "
-"Je nach Dauerstufe führt eine gegebene Niederschlagsmenge zu einem "
+"Der vorliegende Starkregenindex (SRI) ordnet verschiedenste "
+"Niederschlagshöhen einer 12-stufigen Starkregenskala zu. Der "
+"Starkregenindex wurde dabei ortsspezifisch für 12 verschiedene Dauerstufen "
+"erstellt. Je nach Dauerstufe führt eine gegebene Niederschlagsmenge zu einem "
 "unterschiedlichen Starkregenindex."
+
 #: .\kombstra\templates\kombstra\method.html:10
 msgid ""
 "The classification of precipitation levels into individual heavy rainfall "
@@ -347,10 +348,3 @@ msgstr ""
 #: .\kombstra\templates\kombstra\method.html:26
 msgid "Online available"
 msgstr "Online verfügbar"
-
-#~ msgid ""
-#~ "In general, precipitation events in heavy rainfall categories 1 and 2 can "
-#~ "be categorized as <i>\\"
-#~ msgstr ""
-#~ "In general, precipitation events of heavy rainfall categories 1 and 2 "
-#~ "lead to <i>"
