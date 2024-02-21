@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 export const parameter = ref('sri');
 export const year = ref(2010);
-export const sri = ref(1);
+export const sri = ref(6);
 export const event_rank = ref(1);
 export const opacity = ref(100);
 export const basemap = ref('basemap_grey');
