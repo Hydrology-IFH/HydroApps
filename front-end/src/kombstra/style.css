@@ -235,4 +235,5 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 /* map annotation */
 .ol-attribution a{
  color: var(--bs-link-color);
+ z-index: 10;
 }
