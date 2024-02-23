@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             name='SRIBWPolygons',
             fields=[
                 ('grid_id', models.IntegerField(primary_key=True, serialize=False, unique=True)),
-                ('geometry', django.contrib.gis.db.models.fields.PolygonField(blank=True, null=True, srid=4326)),
+                ('geometry', django.contrib.gis.db.models.fields.PolygonField(blank=True, null=True, srid=3857)),
             ],
             options={
                 'db_table': 'sri_bw_polygons',

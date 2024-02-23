@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class SRIBWPolygons(models.Model):
     grid_id = models.IntegerField(unique=True, primary_key=True)
-    geometry = models.PolygonField(srid=4326, blank=True, null=True)
+    geometry = models.PolygonField(srid=3857, blank=True, null=True)
 
     class Meta:
         db_table = 'sri_bw_polygons'

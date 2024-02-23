@@ -56,13 +56,13 @@ function set_overlay_position_error(long, lat) {
 
 // get sri-BW data from api
 function update_sri_bw_data(long, lat) {
-  fetch("/en/sri-bw/api/sri-bw_polygon/?long=" + long + "&lat=" + lat)
+  fetch("/en/sri-bw/api/sri-bw_polygon?long=" + long + "&lat=" + lat)
     .then((res) => res.json())
     .then((data) => {
       popup_cell_source.addFeatures(
         new GeoJSON().readFeatures(data[0].geometry, {
-          dataProjection: "EPSG:4326",
-          featureProjection: "EPSG:4326",
+          dataProjection: "EPSG:3857",
+          featureProjection: "EPSG:3857",
         }));
       popupAppInst.update_popup_data(data[0].grid_id, lat, long);
       set_overlay_position();

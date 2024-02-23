@@ -124,5 +124,5 @@ let styles = {
 styles.Top_SRI_year = styles.sri;
 
 export function get_style() {
-    return styles[parameter.value];
+  return styles[parameter.value];
 }

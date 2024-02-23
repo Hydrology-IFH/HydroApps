@@ -18,7 +18,8 @@ class SRIBWPolygonsViewSet(viewsets.ReadOnlyModelViewSet):
             return SRIBWPolygons.objects.filter(
                 geometry__contains=Point(
                     float(self.request.GET["long"]),
-                    float(self.request.GET["lat"]))) # srid 97019
+                    float(self.request.GET["lat"]),
+                    srid="EPSG:3857"))
         elif "geometry" in self.request.GET:
             return SRIBWPolygons.objects.filter(
                 geometry__contains=self.request.GET["geometry"])

@@ -2,7 +2,7 @@ import { Map, View } from 'ol';
 import proj4 from 'proj4';
 import { register } from 'ol/proj/proj4.js';
 import { get as getProjection, transformExtent, transform as transformCoords } from 'ol/proj.js';
-import {buffer} from 'ol/extent';
+import { buffer } from 'ol/extent';
 
 import { basemap } from './basemap.js';
 import { create_legend } from './legend.js';
@@ -13,9 +13,7 @@ import { create_basemap_updater } from './basemap.js';
 
 export var map;
 
-proj4.defs("EPSG:3857", "+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs +type=crs");
-register(proj4);
-let map_proj = getProjection("EPSG:3857");
+let map_proj = "EPSG:3857";
 
 export async function create_map() {
   // create the map
