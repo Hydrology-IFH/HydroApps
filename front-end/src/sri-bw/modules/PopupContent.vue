@@ -11,9 +11,12 @@ export default {
     }
   },
   computed: {
-    url_sri_tabelle() {
+    sri_table_name() {
       let grid_str = this.sri_id.toString().padStart(5, '0');
-      return `/static/sri-bw/SRI-Tabellen/SRI-Events-Combined_KOSTRA-V2020_${grid_str}.pdf`;
+      return `SRI-Events-Combined_KOSTRA-V2020_${grid_str}.pdf`;
+    },
+    url_sri_table() {
+      return `/static/sri-bw/SRI-Tabellen/${this.sri_table_name}`;
     }
   },
   watch: {
@@ -49,8 +52,9 @@ export default {
     download_data() {
       // create a hidden element and download the csv file
       let hiddenElement = document.createElement('a');
-      hiddenElement.href = this.url_sri_tabelle;
+      hiddenElement.href = this.url_sri_table;
       hiddenElement.target = '_blank';
+      hiddenElement.setAttribute("download", this.sri_table_name);
       hiddenElement.click();
     }
   },
