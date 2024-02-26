@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class SRIBWPolygons(models.Model):
-    grid_id = models.IntegerField(unique=True, primary_key=True)
+    sri_id = models.IntegerField(unique=True, primary_key=True)
     geometry = models.PolygonField(srid=4326, blank=True, null=True)
 
     class Meta:
@@ -13,12 +13,12 @@ class SRIBWData(models.Model):
     data_id = models.BigAutoField(
         primary_key=True,
         help_text=_("ID of the event"))
-    grid_id = models.ForeignKey(
+    sri_id = models.ForeignKey(
         SRIBWPolygons,
         models.DO_NOTHING,
         blank=False, null=False,
         help_text=_("ID to link to the Grid-Cell"),
-        db_column='grid_id')
+        db_column='sri_id')
     duration = models.IntegerField(
         blank=False, null=False,
         help_text=_("Duration class of the event (Dauerstufe) in minutes"))
@@ -40,4 +40,4 @@ class SRIBWData(models.Model):
 
     class Meta:
         db_table = 'sri_bw_data'
-        unique_together = (('grid_id', 'event_rank'),)
+        unique_together = (('sri_id', 'event_rank'),)

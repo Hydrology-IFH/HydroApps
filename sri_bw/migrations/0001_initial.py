@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SRIBWPolygons',
             fields=[
-                ('grid_id', models.IntegerField(primary_key=True, serialize=False, unique=True)),
+                ('sri_id', models.IntegerField(primary_key=True, serialize=False, unique=True)),
                 ('geometry', django.contrib.gis.db.models.fields.PolygonField(blank=True, null=True, srid=4326)),
             ],
             options={
@@ -33,11 +33,11 @@ class Migration(migrations.Migration):
                 ('sri', models.IntegerField(help_text='Starkregen-Index (SRI) of the event')),
                 ('date', models.DateField(help_text='Date of the event')),
                 ('event_rank', models.IntegerField(help_text='Rank of the event in the grid-cell')),
-                ('grid_id', models.ForeignKey(db_column='grid_id', help_text='ID to link to the Grid-Cell', on_delete=django.db.models.deletion.DO_NOTHING, to='sri_bw.sribwpolygons')),
+                ('sri_id', models.ForeignKey(db_column='sri_id', help_text='ID to link to the Grid-Cell', on_delete=django.db.models.deletion.DO_NOTHING, to='sri_bw.sribwpolygons')),
             ],
             options={
                 'db_table': 'sri_bw_data',
-                'unique_together': {('grid_id', 'event_rank')},
+                'unique_together': {('sri_id', 'event_rank')},
             },
         ),
     ]
