@@ -1,9 +1,6 @@
 import { Map, View } from 'ol';
-import proj4 from 'proj4';
-import { register } from 'ol/proj/proj4.js';
 import { get as getProjection, transformExtent, transform as transformCoords } from 'ol/proj.js';
 import { buffer } from 'ol/extent';
-
 import { basemap } from './basemap.js';
 import { create_legend } from './legend.js';
 import { sri_bw_layer, create_form_updaters } from './sri-bw_layer.js';
@@ -13,7 +10,7 @@ import { create_basemap_updater } from './basemap.js';
 
 export var map;
 
-let map_proj = "EPSG:3857";
+let map_proj = getProjection("EPSG:4326");
 
 export async function create_map() {
   // create the map
@@ -22,8 +19,8 @@ export async function create_map() {
     init_tif_view.extent,
     init_tif_view.projection,
     map_proj)
-  let buffer_extent = buffer(extent, 80000);
-  buffer_extent[3] -= 40000;
+  let buffer_extent = buffer(extent, 1);
+  buffer_extent[3] -= 0.5;
   map = new Map({
     target: 'map',
     layers: [

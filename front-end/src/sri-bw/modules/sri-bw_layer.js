@@ -37,7 +37,7 @@ export function get_tif_source(){
     interpolate: false,
     normalize: false,
     projection: "EPSG:4326",
-  })
+  });
   return source;
 }
 
