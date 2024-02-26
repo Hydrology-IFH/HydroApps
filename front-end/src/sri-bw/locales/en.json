@@ -24,7 +24,7 @@
   "parameter_option_month": "month in which the event took place",
   "parameter_option_year": "year in which the event took place",
   "parameter_tooltip": "Choose the Parameters you would like to see on the map.",
-  "popup_download_tooltip": "Download the data for this cell as csv.",
+  "popup_download_tooltip": "Download the SRI table for this cell as PDF.",
   "popup_error_footer": "Please try again later.",
   "popup_error_header": "Error",
   "popup_error_msg_data": "We are sorry, there was a problem fetching the data for this cell.",

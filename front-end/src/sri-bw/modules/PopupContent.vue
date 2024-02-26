@@ -10,6 +10,12 @@ export default {
       cell_lon: null
     }
   },
+  computed: {
+    url_sri_tabelle() {
+      let grid_str = this.sri_id.toString().padStart(5, '0');
+      return `/static/sri-bw/SRI-Tabellen/SRI-Events-Combined_KOSTRA-V2020_${grid_str}.pdf`;
+    }
+  },
   watch: {
     sri_id(new_sri_id, old_sri_id) {
       if (((new_sri_id !== old_sri_id) && (new_sri_id !== undefined)) || (this.error_msg) || (this.cell_data.length != 0)) {
@@ -39,39 +45,6 @@ export default {
     set_error_msg(msg) {
       this.loading = false;
       this.error_msg = msg;
-    },
-    download_data() {
-      // create the csv content
-      let header = [
-        `This is the SRI-BW data for the raster cell with the ID ${this.grid_id}`,
-        `The cells center is located at ${this.cell_lat}, ${this.cell_lon}.`,
-        "The columns are:",
-        "event_rank : The ranking of the event",
-        "date: The date of the event",
-        "duration: The duration of the event in minutes",
-        "pval: The rain amount in mm",
-        "pint: The rain intensity in mm/h",
-        "sri: The 'Starkregenindex' (SRI) of the event",
-        ""
-      ];
-      let items = this.cell_data;
-      let col_names = Object.keys(items[0]);
-      let csv = [
-        ...header,
-        col_names.join(','),
-        ...items.map(row => {
-          return col_names.map(fieldName => {
-            return JSON.stringify(row[fieldName])
-          }).join(',')
-        })
-      ].join('\r\n')
-
-      // create a hidden element and download the csv file
-      let hiddenElement = document.createElement('a');
-      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-      hiddenElement.target = '_blank';
-      hiddenElement.download = `sri-bw_data_${this.grid_id}.csv`;
-      hiddenElement.click();
     }
   },
   mounted() {
@@ -95,9 +68,8 @@ export default {
 
     <div class="popup-header">
       <p>{{ $t('popup_explanation') }}</p>
-      <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-        :data-bs-title="$t('popup_download_tooltip')"><i class="bi bi-download"
-          @click="download_data"></i></button>
+      <a class="btn btn-primary" :href="url_sri_tabelle" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+        :data-bs-title="$t('popup_download_tooltip')"><i class="bi bi-download"></i></a>
     </div>
     <div class="tab-content">
       <table class="table table-striped table-hover">

@@ -24,7 +24,7 @@
   "parameter_option_month": "Monat, in dem das Ereignis eingetreten ist",
   "parameter_option_year": "Jahr, in dem das Ereignis eingetreten ist",
   "parameter_tooltip": "Wählen Sie die Parameter, die Sie auf der Karte sehen möchten.",
-  "popup_download_tooltip": "Laden Sie die Daten für diese Rasterzelle als csv herunter.",
+  "popup_download_tooltip": "Laden Sie die SRI-Tabelle für diese Rasterzelle als PDF herunter.",
   "popup_error_footer": "Bitte versuchen Sie es später noch einmal.",
   "popup_error_header": "Fehler",
   "popup_error_msg_data": "Es tut uns leid, es gab ein Problem beim Abrufen der Daten für diese Zelle.",
