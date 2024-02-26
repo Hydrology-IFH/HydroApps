@@ -75,11 +75,13 @@ export default {
 
     <div class="popup-header">
       <p>{{ $t('popup_explanation') }}</p>
+      <div>
         <button class="btn btn-primary" role="button" :href="url_sri_tabelle" @click="download_data()"
         target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
         :data-bs-title="$t('popup_download_tooltip')">
           <i class="bi bi-download"></i>
         </button>
+      </div>
     </div>
     <div class="tab-content">
       <table class="table table-striped table-hover">

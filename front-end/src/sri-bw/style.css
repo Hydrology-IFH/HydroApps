@@ -204,12 +204,6 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 .popup-data div.tab-content table th{
   padding-bottom: 3px;
 }
-.popup-header .btn{
-  height: 3rem;
-  width: 3rem;
-  text-align: center;
-  text-justify: center;
-}
 
 /* spinner */
 @keyframes spinner {

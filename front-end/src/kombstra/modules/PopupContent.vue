@@ -95,9 +95,12 @@ export default {
 
     <div class="popup-header">
       <p>{{ $t('popup_explanation') }}</p>
-      <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
-        :data-bs-title="$t('popup_download_tooltip')"><i class="bi bi-download"
-          @click="download_data"></i></button>
+      <div>
+        <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body"
+            :data-bs-title="$t('popup_download_tooltip')" @click="download_data">
+          <i class="bi bi-download"></i>
+        </button>
+      </div>
     </div>
     <div class="tab-content">
       <table class="table table-striped table-hover">
