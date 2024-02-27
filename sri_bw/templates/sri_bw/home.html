@@ -1,4 +1,4 @@
-{% extends 'sri-bw/base.html' %}
+{% extends 'sri_bw/base.html' %}
 {% load i18n %}
 {% load static %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -19,18 +19,18 @@
   <h1>{% trans "Home" %}</h1>
   <p>{% blocktrans %}This web tool is used to visualize past heavy rainfall events, which were classified state-wide for Baden-Württemberg using a heavy rainfall index (SRI). {% endblocktrans %}</p>
   <p>{% trans "In order to provide municipalities in Baden-Württemberg with assistance within the framework of " %} <a href="https://infoportal.fliwas3.de/start.html" target="_blank" ref="noopener">FLIWAS&nbsp;<sup><i class="bi bi-box-arrow-up-right"></i></sup></a>, {% blocktrans %}the Chair of Hydrology at the University of Freiburg, in cooperation with the Regional Council of Stuttgart and the Baden-Württemberg State Institute for the Environment (LUBW), has created a state-wide classification of precipitation heights into a heavy rainfall index. This classification is grid-based on a ~&nbsp;2km&nbsp;x&nbsp;2km grid and for 12 different duration levels, which were classified as relevant in the course of the {% endblocktrans %}<a href="https://rp.baden-wuerttemberg.de/themen/wasserboden/starkregenrisikomanagement/" target="_blank" ref="noopener">{% trans "state's heavy rain risk management" %}&nbsp;<sup><i class="bi bi-box-arrow-up-right"></i></sup></a>{% if LANGUAGE_CODE == 'de'%} des Landes als relevant eingestuft wurden{% endif %}.<br>
-  {% trans "Details on the data basis and the methodological approaches are listed in the " %}<a href="{% url 'sri-bw:method' %}">{% trans "Method tab" %}</a>{% if LANGUAGE_CODE == 'de'%} aufgeführt{% endif %}.</p>
+  {% trans "Details on the data basis and the methodological approaches are listed in the " %}<a href="{% url 'sri_bw:method' %}">{% trans "Method tab" %}</a>{% if LANGUAGE_CODE == 'de'%} aufgeführt{% endif %}.</p>
   <p>{% blocktrans %}In FLIWAS, the heavy rainfall index provides the basis for evaluating location-specific precipitation forecasts in terms of their intensity. To assist the user in this, past heavy rainfall events were also classified for each SRI grid cell using the location-specific SRI.{% endblocktrans %}</p>
   <p>{% blocktrans %}Based on these analyses, corresponding tables of the SRI and classified heavy rainfall events are now available for the individual grid cells throughout the country. These are shown as examples in the two figures below, but can be called up specifically for each grid cell via the map tool.{% endblocktrans %}</p>
 
   <div class="container text-center">
     <div class="row sri-figures">
       <figure class="col-12 col-lg-6" style="max-height: inherit">
-        <img class="figure-img" src="{% static 'sri-bw/img/Ort_spez_SRI-Tabelle.png' %}" alt='{% trans "Example of a site-specific heavy rainfall index table" %}'>
+        <img class="figure-img" src="{% static 'sri_bw/img/Ort_spez_SRI-Tabelle.png' %}" alt='{% trans "Example of a site-specific heavy rainfall index table" %}'>
         <figcaption class="figure-caption">{% trans "Fig." %} 1: {% trans "Example of a site-specific heavy rainfall index table" %}</figcaption>
       </figure>
       <figure class="col-12 col-lg-6">
-        <img class="figure-img" src="{% static 'sri-bw/img/SRI-Tabelle.png' %}" alt='{% trans "Example table of classified heavy rain events" %}'>
+        <img class="figure-img" src="{% static 'sri_bw/img/SRI-Tabelle.png' %}" alt='{% trans "Example table of classified heavy rain events" %}'>
         <figcaption class="figure-caption">{% trans "Fig." %} 2: {% trans "Example table of classified heavy rain events" %}</figcaption>
       </figure>
     </div>

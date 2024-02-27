@@ -21,7 +21,7 @@ export function get_tif_source(){
       slider_value = event_rank;
   }
 
-  let tif_url = `/static/sri-bw/views/${parameter.value}_${slider_value.value}.tif`;
+  let tif_url = `/static/sri_bw/views/${parameter.value}_${slider_value.value}.tif`;
 
   // create source
   let source = new GeoTIFF({

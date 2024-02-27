@@ -16,7 +16,7 @@ export default {
       return `SRI-Events-Combined_KOSTRA-V2020_${grid_str}.pdf`;
     },
     url_sri_table() {
-      return `/static/sri-bw/SRI-Tabellen/${this.sri_table_name}`;
+      return `/static/sri_bw/SRI-Tabellen/${this.sri_table_name}`;
     }
   },
   watch: {
@@ -34,7 +34,7 @@ export default {
     },
     async fetchData() {
       this.loading = true;
-      fetch("/en/sri-bw/api/sri-bw_data/?sri_id=" + this.sri_id)
+      fetch("/en/sri_bw/api/sri_bw_data/?sri_id=" + this.sri_id)
         .then((res) => res.json())
         .then((data) => {
           this.cell_data = data;

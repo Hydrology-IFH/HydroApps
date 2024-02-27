@@ -6,7 +6,7 @@ from .models import SRIBWData
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-    return render(request, "sri-bw/home.html", {})
+    return render(request, "sri_bw/home.html", {})
 
 def map_view(request, *args, **kwargs):
     context = {
@@ -15,7 +15,7 @@ def map_view(request, *args, **kwargs):
             min_year=ExtractYear(Min('date'), default=2001),
             max_rank=Max('event_rank', default=15))
     }
-    return render(request, "sri-bw/map.html", context)
+    return render(request, "sri_bw/map.html", context)
 
 def method_view(request, *args, **kwargs):
-    return render(request, "sri-bw/method.html", {})
+    return render(request, "sri_bw/method.html", {})

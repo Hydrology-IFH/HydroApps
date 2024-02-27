@@ -1,4 +1,4 @@
-import { sri_bw_layer } from "./sri-bw_layer.js";
+import { sri_bw_layer } from "./sri_bw_layer.js";
 import { map } from "./map.js";
 // import { gridForm, gridFormPara } from "./forms.js";
 import { parameter } from "./Form.vue";

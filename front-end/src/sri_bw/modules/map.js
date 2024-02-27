@@ -3,7 +3,7 @@ import { get as getProjection, transformExtent, transform as transformCoords } f
 import { buffer } from 'ol/extent';
 import { basemap } from './basemap.js';
 import { create_legend } from './legend.js';
-import { sri_bw_layer, create_form_updaters } from './sri-bw_layer.js';
+import { sri_bw_layer, create_form_updaters } from './sri_bw_layer.js';
 import { create_hover } from './hover.js';
 import { create_popup } from './popup.js';
 import { create_basemap_updater } from './basemap.js';

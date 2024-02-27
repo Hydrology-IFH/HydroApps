@@ -75,7 +75,7 @@ INSTALLED_APPS = [
 ]
 
 # apps that are not yet released and only visible to test users
-APPS_UNRELEASED = ["kombstra", "sri-bw"]
+APPS_UNRELEASED = ["kombstra", "sri_bw"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {
@@ -84,7 +84,7 @@ APPS_ALT_NAMES = {
         "weatherdb": "weatherDB",
         "asgII": "asgII",
         "kombstra": "kombstra",
-        "sri-bw": "sri-bw"
+        "sri_bw": "sri_bw"
     }
 
 MIDDLEWARE = [

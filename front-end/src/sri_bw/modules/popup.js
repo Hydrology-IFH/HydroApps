@@ -56,7 +56,7 @@ function set_overlay_position_error(long, lat) {
 
 // get sri-BW data from api
 function update_sri_bw_data(long, lat) {
-  fetch("/en/sri-bw/api/sri-bw_polygon?long=" + long + "&lat=" + lat)
+  fetch("/en/sri_bw/api/sri_bw_polygon?long=" + long + "&lat=" + lat)
     .then((res) => res.json())
     .then((data) => {
       popup_cell_source.addFeatures(

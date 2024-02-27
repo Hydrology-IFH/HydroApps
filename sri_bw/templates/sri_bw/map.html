@@ -1,4 +1,4 @@
-{% extends 'sri-bw/base.html' %}
+{% extends 'sri_bw/base.html' %}
 {% load static %}
 {% load i18n %}
 {% load django_vite %}
@@ -34,6 +34,6 @@
   <script>
     var spans = {{ spans|safe }};
   </script>
-  {% vite_asset 'src/sri-bw/main.js' %}
+  {% vite_asset 'src/sri_bw/main.js' %}
   {% comment %} {% vite_legacy_polyfills %} {% endcomment %}
 {% endblock %}
