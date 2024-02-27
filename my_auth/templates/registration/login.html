@@ -14,7 +14,7 @@
   </div>
 {% else %}
   <p>{% trans "No Account yet?" %} --> <a href="{% url 'register' app_name=active_app %}" class ="btn btn-primary">{% trans "Register" %}</a></p>
-  <form method="post">
+  <form method="post" action="{% url 'login' app_name=active_app %}?next={% url 'user_profile' app_name=active_app %}">
     {% csrf_token %}
     {% bootstrap_form_errors form %}
     {% trans "Username" as user %} {% trans "E-Mail/Username" as ph_user %}

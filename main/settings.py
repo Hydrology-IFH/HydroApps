@@ -74,6 +74,19 @@ INSTALLED_APPS = [
     'webmaster_verification', # django-webmaster-verification
 ]
 
+# apps that are not yet released and only visible to test users
+APPS_UNRELEASED = ["kombstra", "sri-bw"]
+
+# apps that have an alternative name url-prefix: app_name
+APPS_ALT_NAMES = {
+        "weather": "weatherDB",
+        "weatherDB": "weatherDB",
+        "weatherdb": "weatherDB",
+        "asgII": "asgII",
+        "kombstra": "kombstra",
+        "sri-bw": "sri-bw"
+    }
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,12 +97,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # added
     'django.middleware.locale.LocaleMiddleware',
-    "request.middleware.RequestMiddleware"
-    # 'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
+    "request.middleware.RequestMiddleware",
 ]
-
-# if DEBUG:
-#     MIDDLEWARE.append("kolo.middleware.KoloMiddleware") # for VSCode Kolo App
 
 ROOT_URLCONF = 'main.urls'
 
@@ -104,7 +113,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'main.utils.utils.get_context_extra',# add default context, todo: delete from all the other views
+                'main.context_processors.default_context', # add default context
             ],
         },
     },

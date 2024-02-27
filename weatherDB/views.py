@@ -8,7 +8,6 @@ from .classes.weatherDB.stations import GroupStations
 from .classes.weatherDB.lib.utils import TimestampPeriod
 from .classes.weatherDB.broker import Broker
 from .forms import HCaptchaForm
-from main.utils.utils import get_context_base
 from main.settings import DEBUG
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -25,37 +24,34 @@ app_dir = Path(__file__).parent
 wdb_broker = Broker()
 
 # get method html
-# create html from Markdown 
-# open Markdown file in VS Code, then ctrl+shft+P 
+# create html from Markdown
+# open Markdown file in VS Code, then ctrl+shft+P
 # > "Markdown All in One: print current document to html"
 with open(app_dir.joinpath("markdown/Methode.html"), "r", encoding="utf8") as f:
     METHOD = re.sub(
         r'(<link.*?href="https:\/\/cdn\.jsdelivr\.net\/.*?markdown\.css.*?>)'+
         r'|(\.alert.*?\s{(.|\n)*?})',
-        "", f.read()) 
+        "", f.read())
 
 def get_wdb_max_downloads(request):
     if request.user.is_authenticated and request.user.is_active:
         return request.user.wdb_max_downloads
     else:
         return 10
- 
+
 # Create your views here.
 def home(request, *args, **kwargs):
-    context = get_context_base(request)
-    return render(request, "weatherDB/home.html", context)
+    return render(request, "weatherDB/home.html", {})
 
 
 def get_ts(request, *args, **kwargs):
-    context = get_context_base(request)
-    
     try:
-        context.update({
+        context = {
             'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
             "wdb_max_downloads": get_wdb_max_downloads(request),
             "db_version": wdb_broker.get_db_version()
-            })
-    except OperationalError: 
+            }
+    except OperationalError:
         # when database is down
         return render(request,"weatherDB/db_not_available.html")
 
@@ -116,7 +112,7 @@ def download_ts(request, *args, **kwargs):
         kind="best"
 
     if "aggregation" in request.POST:
-        agg_to = request.POST["aggregation"]  
+        agg_to = request.POST["aggregation"]
     else:
         agg_to = "day"
 
@@ -151,11 +147,11 @@ def download_ts(request, *args, **kwargs):
     else:
         kinds=[kind]
 
-    nas_allowed = kind in ["raw", "qc"] 
+    nas_allowed = kind in ["raw", "qc"]
 
     para_dict = dict(
-        stids=stids, 
-        period_start=period[0], 
+        stids=stids,
+        period_start=period[0],
         period_end=period[1],
         split_date=split_date,
         kinds=kinds,
@@ -164,12 +160,12 @@ def download_ts(request, *args, **kwargs):
         add_t_min=add_t_min,
         add_t_max=add_t_max,
         toolbox_format=toolbox_format)
-    
+
     if toolbox_format:
         file_names = {"N":"PREC.txt", "T":"TA.txt", "ET":"PET.txt"},
-        col_names = {"N":"PREC", "ET":"PET", 
-                    "T":"TA", "T_min":"TA_min", "T_max":"TA_max", 
-                    "Jahr":"YYYY", "Monat":"MM", "Tag":"DD", 
+        col_names = {"N":"PREC", "ET":"PET",
+                    "T":"TA", "T_min":"TA_min", "T_max":"TA_max",
+                    "Jahr":"YYYY", "Monat":"MM", "Tag":"DD",
                     "Stunde":"hh", "Minute":"mm"}
         add_header = False
         keep_date_parts = True
@@ -193,8 +189,8 @@ def download_ts(request, *args, **kwargs):
             stids=stids,
             agg_to=agg_to,
             r_r0=None,
-            split_date=split_date, 
-            add_na_share=add_na_share, 
+            split_date=split_date,
+            add_na_share=add_na_share,
             nas_allowed=nas_allowed,
             add_t_min=add_t_min,
             add_t_max=add_t_max,
@@ -229,10 +225,8 @@ def download_secret_settings(request):
         return response
 
 def method_view(request, *args, **kwargs):
-    context = get_context_base(request)
-    context.update({"method": METHOD})
+    context = {"method": METHOD}
     return render(request, "weatherDB/method.html", context)
 
 def package_view(request, *args, **kwargs):
-    context = get_context_base(request)
-    return render(request, "weatherDB/package.html", context)
+    return render(request, "weatherDB/package.html", {})
