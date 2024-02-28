@@ -1,5 +1,4 @@
 from django.db import models
-# from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.db import connections
@@ -11,10 +10,14 @@ from django.utils.http import urlsafe_base64_encode
 from django.core.mail import EmailMessage
 from django.utils.encoding import force_bytes
 from django.conf import settings
-from .token import account_activation_token
-from datetime import timedelta
 from django.utils import timezone
 from django.db.models import Q
+from datetime import timedelta
+from sqlalchemy import text
+
+from weatherDB.lib.connections import DB_ENG as wdb_engine
+
+from .token import account_activation_token
 
 # Create your models here.
 class AccountManager(BaseUserManager):
@@ -230,33 +233,33 @@ def save_old_values(instance,**kwargs):
 
 @receiver(post_save, sender=Account, dispatch_uid="update_db_user")
 def update_db_user(instance, created, **kwargs):
-    with connections["weatherdb"].cursor() as cursor:
+    with wdb_engine.connect() as cursor:
         if instance.wdb_is_db_user:
             if created or instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
                 if instance.db_password is None or instance.db_password == "":
                     db_password = Account.objects.make_random_password(30)
                 else:
                     db_password = instance.db_password
-                cursor.execute(f"""
+                cursor.execute(text(f"""
                     CREATE USER "{instance.username}"
                     NOSUPERUSER NOCREATEDB NOCREATEROLE
                     INHERIT IN ROLE "weather_users"
-                    LOGIN PASSWORD '{db_password}';""")
+                    LOGIN PASSWORD '{db_password}';"""))
                 instance.db_password = db_password
                 instance._old_db_password = db_password
                 instance._old_wdb_is_db_user = instance.wdb_is_db_user
                 instance.save()
             elif instance._old_username!=instance.username:
-                cursor.execute(f"""
+                cursor.execute(text(f"""
                     ALTER USER "{instance._old_username}"
-                    RENAME TO "{instance.username}";""")
+                    RENAME TO "{instance.username}";"""))
             elif instance._old_db_password!=instance.db_password:
-                cursor.execute(f"""
+                cursor.execute(text(f"""
                     ALTER USER "{instance.username}"
-                    WITH PASSWORD '{instance.db_password}';""")
+                    WITH PASSWORD '{instance.db_password}';"""))
         elif instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
-            cursor.execute(
-                f"DROP USER IF EXISTS \"{instance.username}\";")
+            cursor.execute(text(
+                f"DROP USER IF EXISTS \"{instance.username}\";"))
 
         if instance.email!=instance._old_email and instance.is_email_confirmed:
             instance.is_email_confirmed = False

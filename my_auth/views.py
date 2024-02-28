@@ -184,4 +184,4 @@ def request_db_access(request, **kwargs):
 @csrf_protect
 def renew_db_password(request, **kwargs):
     request.user.renew_db_password()
-    return redirect(to='user_profile')
+    return redirect(to='user_profile', app_name="weatherDB")
