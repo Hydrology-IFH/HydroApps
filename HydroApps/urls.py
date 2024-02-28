@@ -1,4 +1,4 @@
-"""weatherDB URL Configuration
+"""HydroApps URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -16,7 +16,6 @@ Including another URLconf
 from django.urls import path
 from .views import home_view, redirect_to_base
 
-#from weatherDB.urls import urlpatterns as weatherDB_urls
 app_name = 'HydroApps'
 urlpatterns = [
     path("", home_view, name="home"),

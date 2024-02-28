@@ -19,7 +19,7 @@ class MyAuthConfig(AppConfig):
 
                 options = dict(
                     name="weatherDB: Cleanup Cache",
-                    func="weatherDB.tasks.cleanup_cache",
+                    func="weatherdb.tasks.cleanup_cache",
                     schedule_type=Schedule.HOURLY,
                     repeats=-1,
                     next_run=timezone.now() + timedelta(minutes=5),

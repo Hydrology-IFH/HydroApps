@@ -67,7 +67,7 @@
       </div>
       <small class="form-text text-muted">{% trans "This information will get used to decide whether you are granted access to some ressources like e.g. the WeatherDB database. The information will only be visible to you and the admin of this site.<br>E.g. I am working at the Uni Freiburg Hydrology department or I am student at the hydrology in Freiburg..." %}</small>
     </div>
-    {% if active_app == "weatherDB" %}
+    {% if active_app == "weatherdb" %}
       <div class="card mb-3" style="width: 100%;">
         <div class="card-body">
           <h5 class="card-title">{% trans "WeatherDB" %}</h5>
@@ -191,7 +191,7 @@
       let btn_download = document.createElement("a");
       btn_download.id="btn_download_api_pwd";
       btn_download.className = btn_renew.className;
-      btn_download.href="{% url 'weatherDB:download_secret_settings' %}";
+      btn_download.href="{% url 'weatherdb:download_secret_settings' %}";
       btn_download.innerHTML = "<i class='bi bi-download'>";
       btn_download.setAttribute("data-bs-toggle", "tooltip");
       btn_download.setAttribute("data-bs-placement", "top");

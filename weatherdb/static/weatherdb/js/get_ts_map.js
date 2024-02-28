@@ -74,26 +74,26 @@ class Form{
         }else{
             L.Icon.Default.prototype.options.imagePath = location.origin + "/";
         }
-        L.Icon.Default.prototype.options.shadowUrl = "static/weatherDB/img/Leaflet-Marker-shadow.png";
+        L.Icon.Default.prototype.options.shadowUrl = "static/weatherdb/img/Leaflet-Marker-shadow.png";
         this.IconDefault = L.Icon.Default.extend(
             {options:{
-                iconUrl:"static/weatherDB/img/marker-icon-blue.png",
-                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-blue.png"
+                iconUrl:"static/weatherdb/img/marker-icon-blue.png",
+                iconRetinaUrl:"static/weatherdb/img/marker-icon-2x-blue.png"
             }});
         this.IconUnselect = L.Icon.Default.extend(
             {options:{
-                iconUrl:"static/weatherDB/img/marker-icon-red.png",
-                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-red.png"
+                iconUrl:"static/weatherdb/img/marker-icon-red.png",
+                iconRetinaUrl:"static/weatherdb/img/marker-icon-2x-red.png"
             }});
         this.IconSelect = L.Icon.Default.extend(
             {options:{
-                iconUrl:"static/weatherDB/img/marker-icon-green.png",
-                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-green.png"
+                iconUrl:"static/weatherdb/img/marker-icon-green.png",
+                iconRetinaUrl:"static/weatherdb/img/marker-icon-2x-green.png"
             }});
         this.IconSelectOutPeriod = L.Icon.Default.extend(
             {options:{
-                iconUrl:"static/weatherDB/img/marker-icon-orange.png",
-                iconRetinaUrl:"static/weatherDB/img/marker-icon-2x-orange.png"
+                iconUrl:"static/weatherdb/img/marker-icon-orange.png",
+                iconRetinaUrl:"static/weatherdb/img/marker-icon-2x-orange.png"
             }});
 
         // min and max date

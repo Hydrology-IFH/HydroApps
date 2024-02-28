@@ -43,7 +43,7 @@ def get_wdb_max_downloads(request):
 
 # Create your views here.
 def home(request, *args, **kwargs):
-    return render(request, "weatherDB/home.html", {})
+    return render(request, "weatherdb/home.html", {})
 
 
 def get_ts(request, *args, **kwargs):
@@ -55,7 +55,7 @@ def get_ts(request, *args, **kwargs):
             }
     except OperationalError:
         # when database is down
-        return render(request,"weatherDB/db_not_available.html")
+        return render(request,"weatherdb/db_not_available.html")
 
     # new
     if not ((request.user.is_authenticated and request.user.is_active) or DEBUG):
@@ -65,7 +65,7 @@ def get_ts(request, *args, **kwargs):
     else:
         context.update({"needs_captcha": False})
 
-    return render(request, "weatherDB/get_ts.html", context)
+    return render(request, "weatherdb/get_ts.html", context)
 
 @csrf_protect
 def download_ts(request, *args, **kwargs):
@@ -228,7 +228,7 @@ def download_secret_settings(request):
 
 def method_view(request, *args, **kwargs):
     context = {"method": METHOD}
-    return render(request, "weatherDB/method.html", context)
+    return render(request, "weatherdb/method.html", context)
 
 def package_view(request, *args, **kwargs):
-    return render(request, "weatherDB/package.html", {})
+    return render(request, "weatherdb/package.html", {})
