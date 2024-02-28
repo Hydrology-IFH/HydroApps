@@ -58,6 +58,9 @@ table.header{
   margin:10;
   padding:10;
 }
+.table {
+  --bs-table-striped-bg: rgba(0, 0, 0, .1);
+}
 .webapps-menu span {
   font-size:34px;
   color: var(--bs-navbar-brand-hover-color);
@@ -68,7 +71,7 @@ table.header{
 .navbar-toggler{
   border: 0px;
 }
-.dropdown-apps .dropdown-item{
+.dropdown-item{
   font-size: 20px;
 }
 .dropdown-apps li{
