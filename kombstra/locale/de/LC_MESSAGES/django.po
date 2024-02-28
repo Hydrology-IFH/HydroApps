@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 09:30+0100\n"
+"POT-Creation-Date: 2024-02-28 12:45+0100\n"
 "PO-Revision-Date: 2024-01-25 14:42+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -65,6 +65,7 @@ msgid "Home"
 msgstr "Home"
 
 #: .\kombstra\templates\kombstra\base.html:20
+#: .\kombstra\templates\kombstra\home.html:22
 msgid "Method"
 msgstr "Methode"
 
@@ -80,7 +81,7 @@ msgid ""
 msgstr ""
 "Dieses WebTool dient zur Visualisierung vergangener Starkregenereignisse, "
 "die landesweit für Baden-Württemberg anhand eines Starkregenindex (SRI) "
-"klassifiziert wurden."
+"klassifiziert wurden. "
 
 #: .\kombstra\templates\kombstra\home.html:21
 msgid ""
@@ -112,11 +113,8 @@ msgstr "Starkregenrisikomanagments"
 msgid ""
 "Details on the data basis and the methodological approaches are listed in "
 "the "
-msgstr "Details zur Datengrundlage und den methodischen Ansätzen sind im "
-
-#: .\kombstra\templates\kombstra\home.html:22
-msgid "Method tab"
-msgstr "Reiter Methode"
+msgstr ""
+"Details zur Datengrundlage und den methodischen Ansätzen sind im Reiter "
 
 #: .\kombstra\templates\kombstra\home.html:23
 msgid ""
@@ -180,10 +178,10 @@ msgid ""
 "rainfall index."
 msgstr ""
 "Der vorliegende Starkregenindex (SRI) ordnet verschiedenste "
-"Niederschlagshöhen einer 12-stufigen Starkregenskala zu. Der "
-"Starkregenindex wurde dabei ortsspezifisch für 12 verschiedene Dauerstufen "
-"erstellt. Je nach Dauerstufe führt eine gegebene Niederschlagsmenge zu einem "
-"unterschiedlichen Starkregenindex."
+"Niederschlagshöhen einer 12-stufigen Starkregenskala zu. Der Starkregenindex "
+"wurde dabei ortsspezifisch für 12 verschiedene Dauerstufen erstellt. Je nach "
+"Dauerstufe führt eine gegebene Niederschlagsmenge zu einem unterschiedlichen "
+"Starkregenindex."
 
 #: .\kombstra\templates\kombstra\method.html:10
 msgid ""
@@ -269,7 +267,7 @@ msgid ""
 "the"
 msgstr ""
 "Die in dieser Web-Anwendung angeführten Starkregenereignisse wurden aus den "
-"Daten der "
+"Daten der"
 
 #: .\kombstra\templates\kombstra\method.html:16
 msgid "radar climatology data"

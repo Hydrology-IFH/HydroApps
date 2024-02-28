@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 15:00+0100\n"
+"POT-Creation-Date: 2024-02-28 12:19+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\main\settings.py:227
+#: .\main\settings.py:247
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:228
+#: .\main\settings.py:248
 msgid "English"
 msgstr "Englisch"
 
@@ -40,19 +40,19 @@ msgstr "Profil"
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:133
+#: .\main\templates\base.html:135
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:135
+#: .\main\templates\base.html:138
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:184
+#: .\main\templates\base.html:187
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:185
+#: .\main\templates\base.html:188
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 

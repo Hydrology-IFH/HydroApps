@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-21 15:00+0100\n"
+"POT-Creation-Date: 2024-02-28 12:20+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -64,6 +64,7 @@ msgid "Home"
 msgstr "Home"
 
 #: .\sri_bw\templates\sri_bw\base.html:20
+#: .\sri_bw\templates\sri_bw\home.html:22
 msgid "Method"
 msgstr "Methode"
 
@@ -111,11 +112,7 @@ msgstr "Starkregenrisikomanagments"
 msgid ""
 "Details on the data basis and the methodological approaches are listed in "
 "the "
-msgstr "Details zur Datengrundlage und den methodischen Ansätzen sind im "
-
-#: .\sri_bw\templates\sri_bw\home.html:22
-msgid "Method tab"
-msgstr "Reiter Methode"
+msgstr "Details zur Datengrundlage und den methodischen Ansätzen sind im Reiter "
 
 #: .\sri_bw\templates\sri_bw\home.html:23
 msgid ""
