@@ -4,7 +4,7 @@ from HydroApps.sitemaps import HydroAppsSitemap
 from asgII.sitemaps import AsgIISitemap
 from kombstra.sitemaps import KombStRASitemap
 from my_auth.sitemaps import AuthSitemap
-from weatherDB.sitemaps import WeatherDBSitemap
+from weatherdb.sitemaps import WeatherDBSitemap
 
 
 class MainSitemap(BaseSitemap):

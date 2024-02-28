@@ -48,10 +48,10 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     # own
-    'weatherDB',
-    'my_auth',
-    'asgII',
     "HydroApps",
+    'my_auth',
+    'weatherdb',
+    'asgII',
     "kombstra",
     "sri_bw",
     # django
@@ -79,13 +79,13 @@ APPS_UNRELEASED = ["kombstra", "sri_bw"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {
-        "weather": "weatherDB",
-        "weatherDB": "weatherDB",
-        "weatherdb": "weatherDB",
-        "asgII": "asgII",
-        "kombstra": "kombstra",
-        "sri_bw": "sri_bw"
-    }
+    "weather": "weatherdb",
+    "weatherDB": "weatherdb",
+    "weatherdb": "weatherdb",
+    "asgII": "asgII",
+    "kombstra": "kombstra",
+    "sri_bw": "sri_bw"
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

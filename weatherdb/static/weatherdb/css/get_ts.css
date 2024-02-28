@@ -1,0 +1,30 @@
+/* To change the color of the markers */
+img.marker-selected {
+    filter: hue-rotate(-110deg);
+}
+img.marker-unselected {
+    filter: hue-rotate(150deg);
+}
+.legend {
+    color: #555;
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);*/
+    /*border-radius: 5px;*/
+    line-height: 30px;
+}
+.legend img {
+    max-height: 24px;
+    float: left;
+    margin-left: 10px ;
+    margin-top: 0px;
+}
+div.leaf-pop-indent {
+    margin-left: 1rem;
+}
+
+a.leaflet-popup-close-button {
+    margin: 6px 6px 0 0;
+    padding: 0!important;
+    font-size: 1.5rem!important;
+}

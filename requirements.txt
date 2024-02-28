@@ -18,3 +18,4 @@ django-request
 django-cors-headers
 django-vite
 django-webmaster-verification
+git+https://gitlab.rz.uni-freiburg.de/hydrology/weatherdb.git

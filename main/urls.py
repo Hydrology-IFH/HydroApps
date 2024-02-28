@@ -36,7 +36,7 @@ urlpatterns = [
     path(r'', include('webmaster_verification.urls')),
     *i18n_patterns(
         path("", include("HydroApps.urls")),
-        path("weatherdb/", include("weatherDB.urls")),
+        path("weatherdb/", include("weatherdb.urls")),
         path("<str:app_name>/impressum/", impressum_view, name="impressum"),
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
         path("asgII/", include("asgII.urls")),
