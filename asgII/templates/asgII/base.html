@@ -21,8 +21,3 @@
     <li class="nav-item "><a href="{% url 'asgII:map' %}" class="nav-link">{% trans "Map" %}</a></li>
   </ul>
 {% endblock %}
-
-{% block body_all %}
-  {% firstof "asgII" as active_app %}
-  {{ block.super }}
-{% endblock %}

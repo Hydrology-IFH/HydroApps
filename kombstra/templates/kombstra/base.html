@@ -21,8 +21,3 @@
     <li class="nav-item "><a href="{% url 'kombstra:map' %}" class="nav-link">{% trans "Map" %}</a></li>
   </ul>
 {% endblock %}
-
-{% block body_all %}
-  {% firstof "kombstra" as active_app %}
-  {{ block.super }}
-{% endblock %}

@@ -23,11 +23,6 @@
   </ul>
 {% endblock %}
 
-{% block body_all %}
-  {% firstof "weatherdb" as active_app %}
-  {{ block.super}}
-{% endblock %}
-
 {% comment %} {% block content %}
   <div class="container-fluid alert alert-warning" role "alert">
     <h3>Major error notification</h3>
@@ -38,4 +33,4 @@
   </div>
 {% endblock %} {% endcomment %}
 
-{% block copyright%}HyFr - Max Schmit (2023){%endblock%}
+{% block copyright%}HyFr - Max Schmit (2024){%endblock%}
