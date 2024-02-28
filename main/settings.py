@@ -132,7 +132,13 @@ DATABASES = {
         'HOST': secrets.DB_DJ_HOST,
         'PORT': secrets.DB_DJ_PORT,
         'CONN_MAX_AGE': 120,
-        'CONN_HEALTH_CHECKS': True
+        'CONN_HEALTH_CHECKS': True,
+        "TEST": {
+            "USER": secrets.DB_TEST_USER,
+            "PASSWORD": secrets.DB_TEST_PWD,
+            "HOST": secrets.DB_TEST_HOST,
+            "PORT": secrets.DB_TEST_PORT
+        }
     },
     'weatherdb': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -142,7 +148,13 @@ DATABASES = {
         'HOST': secrets.DB_WEA_HOST,
         'PORT': secrets.DB_WEA_PORT,
         'CONN_MAX_AGE': 120,
-        'CONN_HEALTH_CHECKS': True
+        'CONN_HEALTH_CHECKS': True,
+        'TEST': {
+            "USER": secrets.DB_TEST_USER,
+            "PASSWORD": secrets.DB_TEST_PWD,
+            "HOST": secrets.DB_TEST_HOST,
+            "PORT": secrets.DB_TEST_PORT
+        }
     }
 }
 

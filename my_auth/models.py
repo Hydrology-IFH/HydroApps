@@ -21,7 +21,7 @@ from .token import account_activation_token
 
 # Create your models here.
 class AccountManager(BaseUserManager):
-    def create_user(self,email,username,first_name,last_name ,password,**other_fields):
+    def create_user(self, email, username, first_name, last_name, password, **other_fields):
         if not email:
             raise ValueError(_("Users must have an email address"))
         if not username:
