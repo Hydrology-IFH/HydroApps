@@ -1,21 +1,12 @@
 from django.test import TestCase
+from django.db.utils import IntegrityError
 from django.urls import reverse
 from .models import Account
-from .views import (
-    register, confirm_email, confirm_user, profile,
-    change_password, renew_db_password,
-    resend_email_confirmation, request_db_access,
-    MyPasswordResetView, MyPasswordResetDoneView, MyPasswordResetConfirmView, MyPasswordResetCompleteView)
 from django.conf import settings
-from django.db.utils import IntegrityError
 
-# Change database settings for testing as django doesnt change those
-for db in settings.DATABASES.keys():
-    for para in ["HOST", "USER", "PORT", "PASSWORD"]:
-        if "TEST" in settings.DATABASES[db] and para in settings.DATABASES[db]["TEST"]:
-            settings.DATABASES[db][para] = settings.DATABASES[db]["TEST"][para]
-
-
+############################################
+# Model tests
+############################################
 class AccountModelTest(TestCase):
     databases = ['default', 'weatherdb']
     def setUp(self):
@@ -49,6 +40,11 @@ class AccountModelTest(TestCase):
     def test_account_is_active(self):
         self.assertFalse(self.account.is_active, msg="Account is active after creation")
 
+############################################
+# View tests
+############################################
+
+# Base test case classes for views
 class BaseTestCase:
     class NoLoginViews(TestCase):
         databases = ['default', 'weatherdb']
@@ -65,21 +61,21 @@ class BaseTestCase:
         def test_view_url_exists_at_desired_location(self):
             for app_name in self.app_names:
                 url = self.url.format(app_name=app_name)
-                resp = self.client.get(url, follow=True)
+                resp = self.client.get(url)
                 self.assertEqual(
                     resp.status_code, 200,
                     msg=f"View not accessible at desired url: {url}")
 
         def test_view_url_accessible_by_name(self):
             for app_name in self.app_names:
-                resp = self.client.get(reverse(self.url_name, kwargs={"app_name":app_name}), follow=True)
+                resp = self.client.get(reverse(self.url_name, kwargs={"app_name":app_name}))
                 self.assertEqual(
                     resp.status_code, 200,
                     msg=f"View not accessible by name: {self.url_name} & app_name: {app_name}")
 
         def test_view_uses_correct_template(self):
             for app_name in self.app_names:
-                resp = self.client.get(reverse(self.url_name, kwargs={"app_name": app_name}), follow=True)
+                resp = self.client.get(reverse(self.url_name, kwargs={"app_name": app_name}))
                 self.assertTemplateUsed(
                     resp, self.template,
                     msg_prefix=f"View ({app_name}:{self.url_name}) does not use correct template: {self.template}")
@@ -104,6 +100,7 @@ class BaseTestCase:
                 self.client.login(username='testuser', password='testpassword'),
                 msg="User can't log in with username")
 
+# Test cases for views
 class RegisterViewTest(BaseTestCase.NoLoginViews):
     url_suffix = 'accounts/register/'
     url_name = 'register'
