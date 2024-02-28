@@ -183,9 +183,10 @@ AUTHENTICATION_BACKENDS = [
     'my_auth.backends.EmailOrUsernameAuthenticationBackend'
 ]
 
-#LOGOUT_REDIRECT_URL = 'home'
 LOGIN_REDIRECT_URL = "user_profile"
 LOGOUT_REDIRECT_URL = "home"
+
+TEST_RUNNER = "main.tests.testRunner.HydroAppsTestRunner"
 
 # HCAPTCHA
 HCAPTCHA_SITEKEY = secrets.HCAPTCHA_SITEKEY

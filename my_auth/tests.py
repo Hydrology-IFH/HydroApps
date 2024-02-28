@@ -101,29 +101,50 @@ class BaseTestCase:
                 msg="User can't log in with username")
 
 # Test cases for views
-class RegisterViewTest(BaseTestCase.NoLoginViews):
+class TestRegisterView(BaseTestCase.NoLoginViews):
     url_suffix = 'accounts/register/'
     url_name = 'register'
     template = 'registration/registration_form.html'
 
-class LoginViewTest(BaseTestCase.NoLoginViews):
+class TestLoginView(BaseTestCase.NoLoginViews):
     url_suffix = 'accounts/login/'
     url_name = 'login'
     template = 'registration/login.html'
 
-class PasswordResetViewTest(BaseTestCase.NoLoginViews):
+class TestPasswordResetView(BaseTestCase.NoLoginViews):
     url_suffix = 'accounts/password_reset/'
     url_name = 'password_reset'
     template = 'registration/password_reset_request_form.html'
 
-class ProfileViewTest(BaseTestCase.LoggedInViews):
+class TestProfileView(BaseTestCase.LoggedInViews):
     url_suffix = 'accounts/profile/'
     url_name = 'user_profile'
     template = 'users/profile.html'
 
-class LogoutViewTest(BaseTestCase.LoggedInViews):
+class TestLogoutView(BaseTestCase.LoggedInViews):
     url_suffix = 'accounts/logout/'
     url_name = 'logout'
 
     def test_view_uses_correct_template(self):
         pass
+
+    def test_view_url_accessible_by_name(self):
+        for app_name in self.app_names:
+            resp = self.client.post(
+                reverse(self.url_name, kwargs={"app_name":app_name}),
+                data={"next": f"/de/{app_name}/"},
+                follow=True)
+            self.assertEqual(
+                resp.status_code, 200,
+                msg=f"View not accessible by name: {self.url_name} & app_name: {app_name}")
+
+    def test_view_url_exists_at_desired_location(self):
+            for app_name in self.app_names:
+                url = self.url.format(app_name=app_name)
+                resp = self.client.post(
+                    url,
+                    data={"next": f"/de/{app_name}/"},
+                    follow=True)
+                self.assertEqual(
+                    resp.status_code, 200,
+                    msg=f"View not accessible at desired url: {url}")
