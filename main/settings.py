@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-sys.path.insert(0, BASE_DIR.parent.as_posix())
+# sys.path.insert(0, BASE_DIR.parent.as_posix())
 import secretSettings_HydroApps as secrets
 
 SECRET_KEY = secrets.SECRET_KEY
