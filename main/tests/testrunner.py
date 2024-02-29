@@ -1,6 +1,6 @@
 from django.test.runner import DiscoverRunner
 from django.conf import settings
-from django.db import connections
+
 
 class HydroAppsTestRunner(DiscoverRunner):
 

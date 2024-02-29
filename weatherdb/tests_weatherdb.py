@@ -32,9 +32,6 @@ class TestGetTSView(Base.NoLoginViews):
     url_prefix = "weatherdb/get_ts"
     template = 'weatherdb/get_ts.html'
 
-    def setUp(self):
-        super().setUp()
-
     @classmethod
     def setUpTestData(cls):
         # Create the table for the unmanaged model
