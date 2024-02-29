@@ -21,9 +21,11 @@ default:
         - ~/.cache/pip/
 
 django-tests:
-  stage: test
-  script:
-    # The POSTGRES user only gets permissions for POSTGRES_DB, so Django can't create a test database.
-    - echo "GRANT ALL on *.* to '${POSTGRES_USER}';"| psql -u postgres -c
-    - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
-    - python3 manage.py test my_auth weatherdb asgII kombstra sri_bw
+    stage: test
+    rules:
+        - if: $CI_COMMIT_BRANCH == "master"
+    script:
+        # The POSTGRES user only gets permissions for POSTGRES_DB, so Django can't create a test database.
+        - echo "GRANT ALL on *.* to '${POSTGRES_USER}';"| psql -u postgres -c
+        - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
+        - python3 manage.py test my_auth weatherdb asgII kombstra sri_bw
