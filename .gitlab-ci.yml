@@ -13,7 +13,7 @@ default:
     before_script:
         - apt -y update
         - apt -y install apt-utils
-        - apt -y install net-tools python3.8 python3-pip mysql-client libmysqlclient-dev
+        - apt -y install net-tools python3.8 python3-pip libmysqlclient-dev
         - apt -y upgrade
         - pip3 install -r requirements.txt
     cache:
@@ -25,4 +25,5 @@ django-tests:
   script:
     # The POSTGRES user only gets permissions for POSTGRES_DB, so Django can't create a test database.
     - echo "GRANT ALL on *.* to '${POSTGRES_USER}';"| psql -u postgres -c
+    - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
     - python3 manage.py test my_auth weatherdb asgII kombstra sri_bw
