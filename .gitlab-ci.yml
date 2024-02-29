@@ -9,7 +9,7 @@ variables:
 default:
     image: ubuntu:20.04
     services:
-        - postgresql:14.0
+        - postgresql:14.3
     before_script:
         - apt -y update
         - apt -y install apt-utils
