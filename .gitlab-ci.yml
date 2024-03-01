@@ -9,7 +9,8 @@ variables:
 default:
     image: python:3.10
     services:
-        - postgis/postgis
+        - name: postgis/postgis
+          alias: postgres
     before_script:
         - apt -y update
         - python --version
