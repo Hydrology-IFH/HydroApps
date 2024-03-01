@@ -43,6 +43,7 @@ django-tests:
         - cp secretSettings_HydroApps.py.test secretSettings_weatherDB.py
         - mkdir static_data
         - cd front-end
+        - npm ci
         - npm run build
         - cd ..
         - python3 manage.py migrate
