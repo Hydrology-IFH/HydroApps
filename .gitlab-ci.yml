@@ -34,7 +34,7 @@ django-tests:
     script:
         - export PGPASSWORD=$POSTGRES_PASSWORD
         - echo 'CREATE ROLE "weather_owner";
-                GRANT "weather_owner" TO "${POSTGRES_USER}" WITH INHERIT TRUE;
+                GRANT "weather_owner" TO "'$POSTGRES_USER'" WITH INHERIT TRUE;
                 CREATE DATABASE "weatherdb" OWNER "weather_owner";' |
                 psql -U $POSTGRES_USER -h "postgres" -d "$POSTGRES_DB"
         - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
