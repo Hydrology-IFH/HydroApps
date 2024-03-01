@@ -19,7 +19,7 @@ default:
         - apt -y install git
         - apt -y install postgresql-client
         - apt -y install libgdal-dev
-        - apt -y install nodejs
+        - apt -y install nodejs npm
         - apt -y upgrade
         - pip3 install --upgrade pip
         - pip3 install -r requirements.txt
