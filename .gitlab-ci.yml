@@ -33,7 +33,7 @@ django-tests:
     script:
         # The POSTGRES user only gets permissions for POSTGRES_DB, so Django can't create a test database.
         - export PGPASSWORD=$POSTGRES_PASSWORD
-        - echo "CREATE DATABSE weatherdb OWNER '${POSTGRES_USER}'; \
+        - echo "CREATE DATABASE weatherdb OWNER '${POSTGRES_USER}'; \
                 GRANT ALL on *.* to '${POSTGRES_USER}';" |
                 psql -U $POSTGRES_USER -h "postgres" -d "$POSTGRES_DB"
         - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
