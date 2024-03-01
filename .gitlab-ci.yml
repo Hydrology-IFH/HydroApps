@@ -35,5 +35,6 @@ django-tests:
         - export PGPASSWORD=$POSTGRES_PASSWORD
         - echo "GRANT ALL on *.* to '${POSTGRES_USER}';" | psql -U $POSTGRES_USER -h "postgres" -d "$POSTGRES_DB"
         - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
+        - cp secretSettings_HydroApps.py.test secretSettings_weatherDB.py
         - python3 manage.py migrate
         - python3 manage.py test my_auth weatherdb asgII kombstra sri_bw
