@@ -39,6 +39,9 @@ django-tests:
                 GRANT "weather_owner" TO "'$POSTGRES_USER'" WITH INHERIT TRUE;
                 CREATE DATABASE "weatherdb" OWNER "weather_owner";' |
                 psql -U $POSTGRES_USER -h "postgres" -d "$POSTGRES_DB"
+        - echo 'CREATE TABLE settings (key  varchar(20) PRIMARY KEY, value varchar(20));
+                INSERT INTO settings (key, value) VALUES ("version", "1.0.0")' |
+                psql -U $POSTGRES_USER -h "postgres" -d "weatherdb"
         - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
         - cp secretSettings_HydroApps.py.test secretSettings_weatherDB.py
         - mkdir static_data
