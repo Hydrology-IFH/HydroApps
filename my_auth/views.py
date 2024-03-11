@@ -28,7 +28,6 @@ from main import settings
 @csrf_protect
 def register(request, **kwargs):
     context = {"HCAPTCHA_SITEKEY": settings.HCAPTCHA_SITEKEY}
-    context = {}
 
     if request.method == "GET":
         context.update({"form": CustomUserCreationForm})
