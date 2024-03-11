@@ -10,7 +10,7 @@ from main.tests.baseTests import BaseTestCase
 ############################################
 
 class Base:
-    class NoLoginViews(BaseTestCase.NoLoginViews):
+    class NoLoginViews(BaseTestCase.UnreleasedViews):
         app_name = "kombstra"
 
 # Test cases for views
