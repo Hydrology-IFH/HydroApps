@@ -38,6 +38,8 @@ class BaseTestCase:
                 msg_prefix=f"View ({self.app_name}:{self.url_name}) does not use correct base template: {self.app_name}/base.html")
 
     class LoggedInViews(NoLoginViews):
+        databases = ['default', 'weatherdb']
+
         def setUp(self):
             super().setUp()
             self.account = Account.objects.create_user(
