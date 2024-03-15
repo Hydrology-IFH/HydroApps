@@ -7,7 +7,7 @@ def get_active_app(request):
     return APPS_ALT_NAMES.get(first_url_part, "HydroApps")
 
 def get_show_released(request):
-    return DEBUG or (request.user.is_authenticated and request.user.is_tester)
+    return (request.user.is_authenticated and request.user.is_tester)
 
 def default_context(request):
     context = {
