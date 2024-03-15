@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-28 12:20+0100\n"
+"POT-Creation-Date: 2024-03-15 15:12+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -112,7 +112,8 @@ msgstr "Starkregenrisikomanagments"
 msgid ""
 "Details on the data basis and the methodological approaches are listed in "
 "the "
-msgstr "Details zur Datengrundlage und den methodischen Ansätzen sind im Reiter "
+msgstr ""
+"Details zur Datengrundlage und den methodischen Ansätzen sind im Reiter "
 
 #: .\sri_bw\templates\sri_bw\home.html:23
 msgid ""
@@ -156,8 +157,8 @@ msgid "Example table of classified heavy rain events"
 msgstr "Beispieltabelle klassifizierter Starkregenereignisse"
 
 #: .\sri_bw\templates\sri_bw\map.html:13
-msgid "map of classified heavy rain events"
-msgstr "Karte der klassifizierten Starkregenereignisse"
+msgid "Classified heavy rain events"
+msgstr "Klassifizierte Starkregenereignisse"
 
 #: .\sri_bw\templates\sri_bw\method.html:7
 msgid "KOSTRA Method"

@@ -10,10 +10,11 @@
 
 {% block content %}
 
-  <h1>{% trans "map of classified heavy rain events" %}</h1>
+  <h1>{% trans "Classified heavy rain events" %}</h1>
   <div class="container">
     <div class="row">
-      <div class="col-md-7 col-12" >
+      <div class="col-md-7 col-12 order-md-1 order-2" >
+        <div id="map-header"></div>
         <div id="map">
           <div id="info"></div>
           <div id="popup" class="ol-popup" style="visibility:hidden">
@@ -22,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5 col-12">
+      <div class="col-md-5 col-12 order-md-2 order-1">
         <div class="container" id="form-app"></div>
       </div>
     </div>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-28 12:19+0100\n"
+"POT-Creation-Date: 2024-03-15 15:03+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\main\settings.py:247
+#: .\main\settings.py:248
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:248
+#: .\main\settings.py:249
 msgid "English"
 msgstr "Englisch"
 
@@ -1182,11 +1182,11 @@ msgstr ""
 "Die Kontaktdaten im Impressum sind nicht zu Werbezwecken zu verwenden. Eine "
 "kommerzielle Nutzung und Weitergabe dieser Daten ist nicht gestattet.\n"
 
-#: .\main\templates\unreleased.html:5
+#: .\main\templates\unreleased.html:8
 msgid "unreleased"
 msgstr "unveröffentlicht"
 
-#: .\main\templates\unreleased.html:7
+#: .\main\templates\unreleased.html:10
 msgid ""
 "This Application didn't get released yet. If you want to test it, you need "
 "to login and apply for a test User account."

@@ -6,6 +6,7 @@ import { radolan_layer, create_form_updaters } from './radolan_layer.js';
 import { create_hover } from './hover.js';
 import { create_popup } from './popup.js';
 import { create_basemap_updater } from './basemap.js';
+import { create_header } from './mapHeader.js';
 
 export var map;
 
@@ -36,6 +37,7 @@ export async function create_map() {
   map.getTargetElement().classList.add('spinner');
 
   create_form_updaters();
+  create_header();
   create_legend();
   create_hover();
   create_popup();
