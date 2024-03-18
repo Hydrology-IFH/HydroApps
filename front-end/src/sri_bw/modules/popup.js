@@ -9,6 +9,7 @@ import { map } from './map.js';
 import { toggle_hover } from './hover.js';
 import PopupContent from './PopupContent.vue';
 import { i13nVue, i18n } from './i18n.js';
+import { sri_bw_layer } from './sri_bw_layer.js';
 
 /**
  * Elements that make up the popup.
@@ -44,7 +45,7 @@ const popup_cell_layer = new VectorLayer({
 // create PopupContent component
 let popupApp = i13nVue(createApp(PopupContent));
 let popupAppInst = popupApp.mount(content);
-window.popupAppInst = popupAppInst;
+
 // functions to set popup position
 function set_overlay_position() {
   let ext = popup_cell_source.getExtent();
@@ -119,9 +120,18 @@ export function create_popup() {
 
     let coordinate = evt.coordinate;
     let cell_features = popup_cell_source.getFeatures();
+
+    // only update if clilcked outside last clicked cell
     if (!((cell_features.length > 0) && cell_features[0].getGeometry().containsXY(...coordinate))) {
       remove_popup_cell_layer();
-      update_sri_bw_data(coordinate[0], coordinate[1]);
+
+      // check if inside sri_bw layer and update popup
+      let pix_value = sri_bw_layer.getData(map.getEventPixel(evt.originalEvent));
+      if ((pix_value != null) && (pix_value[1] != 0)) {
+        update_sri_bw_data(coordinate[0], coordinate[1]);
+      } else {
+        overlay.setPosition(undefined);
+      }
     }
 
     add_dragging_handler();
