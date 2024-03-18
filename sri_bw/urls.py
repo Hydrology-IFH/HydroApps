@@ -20,8 +20,8 @@ from .views import (home_view, map_view, method_view)
 from .apis import SRIBWDataViewSet, SRIBWPolygonsViewSet
 
 router = DefaultRouter()
-router.register(r'sri_bw_data', SRIBWDataViewSet, basename="sri_bw")
-router.register(r'sri_bw_polygon', SRIBWPolygonsViewSet, basename="sri_bw")
+router.register(r'sri_bw_data', SRIBWDataViewSet, basename="sri_bw_data")
+router.register(r'sri_bw_polygon', SRIBWPolygonsViewSet, basename="sri_bw_polygon")
 
 app_name = 'sri_bw'
 urlpatterns = [

@@ -22,8 +22,8 @@ from .views import (home_view, map_view, method_view)
 from .apis import KombStRADataViewSet, KombStRAPolygonsViewSet
 
 router = DefaultRouter()
-router.register(r'kombstra_data', KombStRADataViewSet, basename="kombstra")
-router.register(r'kombstra_polygon', KombStRAPolygonsViewSet, basename="kombstra")
+router.register(r'kombstra_data', KombStRADataViewSet, basename="kombstra_data")
+router.register(r'kombstra_polygon', KombStRAPolygonsViewSet, basename="kombstra_polygon")
 
 app_name = 'kombstra'
 urlpatterns = [
