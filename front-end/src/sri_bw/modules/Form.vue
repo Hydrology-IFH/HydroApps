@@ -53,11 +53,11 @@ export default {
         data-bs-container="body" data-bs-html="true"
         :data-bs-title="$t('slider_year_tooltip')">{{ $t("slider_year_label") }}</span>
       <span class="form-control">
-        <input type="range" class="form-range" name="SliderYearRange" id="SliderYear" :min="spans.min_year" :max="spans.max_year"
-          v-model="year" />
+        <input type="range" class="form-range" name="SliderYearRange" id="SliderYear"
+          :min="spans.min_year" :max="spans.max_year" v-model.number="year"/>
       </span>
-      <input type="number" class="form-control" name="SliderYearNumber" :min="spans.min_year" :max="spans.max_year" v-model="year"
-        style="max-width:90px" />
+      <input type="number" class="form-control" name="SliderYearNumber" :min="spans.min_year" :max="spans.max_year"
+        v-model.number="year" style="max-width:90px" />
     </div>
 
     <div class="form-group input-group mb-3" v-else-if="parameter === 'NEvents_above_SRI'">
@@ -65,10 +65,11 @@ export default {
         data-bs-container="body" data-bs-html="true"
         :data-bs-title="$t('slider_sri_tooltip')">SRI</span>
       <span class="form-control">
-        <input type="range" class="form-range" name="SliderSRIRange" id="SliderSRI" min="1" max="12" v-model="sri" />
+        <input type="range" class="form-range" name="SliderSRIRange" id="SliderSRI" min="1" max="12"
+          v-model.number="sri"/>
       </span>
-      <input type="number" class="form-control" name="SliderSRINumber" min="1" max="12" v-model="sri"
-        style="max-width:70px" />
+      <input type="number" class="form-control" name="SliderSRINumber" min="1" max="12"
+        v-model.number="sri" style="max-width:70px" />
     </div>
 
     <div class="form-group input-group mb-3" v-else>
@@ -77,10 +78,10 @@ export default {
         :data-bs-title="$t('slider_event_rank_tooltip')">{{ $t("slider_event_rank_label") }}</span>
       <span class="form-control">
         <input type="range" class="form-range" name="eventRankRange" id="eventRank" min="1" :max="spans.max_rank"
-          v-model="event_rank" />
+          v-model.number="event_rank"/>
       </span>
-      <input type="number" class="form-control" name="eventRankNumber" min="1" :max="spans.max_rank" v-model="event_rank"
-        style="max-width:70px" />
+      <input type="number" class="form-control" name="eventRankNumber" min="1" :max="spans.max_rank"
+        v-model.number="event_rank" style="max-width:70px" />
     </div>
   </form>
 
@@ -101,10 +102,10 @@ export default {
         data-bs-container="body" data-bs-html="true" :data-bs-title="$t('slider_opactity_tooltip')">{{ $t("slider_opacity_label") }}</span>
       <span class="form-control">
         <input type="range" class="form-range" name="OpacityRange" id="Opacity" min="0" max="100" value="100"
-          v-model="opacity" />
+          v-model.number="opacity"/>
       </span>
-      <input type="number" class="form-control" name="OpacityNumber" min="0" max="100" value="100" v-model="opacity"
-        style="max-width:80px" />
+      <input type="number" class="form-control" name="OpacityNumber" min="0" max="100" value="100"
+        v-model.number="opacity" style="max-width:80px" />
       <span class="input-group-text">%</span>
     </div>
   </form></template>
