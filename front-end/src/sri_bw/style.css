@@ -197,6 +197,10 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   top: 0;
   background-color: white;
 }
+.popup-data div.tab-content table thead th {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
 .popup-data div.tab-content table {
   margin-bottom: 0px;
 }

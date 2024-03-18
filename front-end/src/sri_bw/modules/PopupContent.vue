@@ -43,7 +43,7 @@ export default {
             .map((data) => data.event_rank);
       }
     },
-    highlighted_parameter() {
+    highlighted_parameters() {
       switch (this.parameter) {
         case 'sri' :
           return ["event_rank", "sri"];
@@ -99,7 +99,7 @@ export default {
     },
     highlight(event_rank, parameter) {
       return (this.highlighted_event_ranks.includes(event_rank) &&
-             (this.highlighted_parameter.includes(parameter)))
+             (this.highlighted_parameters.includes(parameter)))
     },
     highlight_class(event_rank, parameter) {
       return this.highlight(event_rank, parameter) ? "highlight" : "";
@@ -139,10 +139,12 @@ export default {
     <div class="popup-header">
       <p>{{ $t('popup_explanation') }}</p>
       <div>
-        <button class="btn btn-primary" role="button" :href="url_sri_table" @click="download_data()"
-        target="_blank" data-bs-toggle="tooltip" data-bs-container="body"
-        data-bs-placement="top"
-        :data-bs-title="$t('popup_download_tooltip')">
+        <button class="btn btn-primary" role="button"
+            @click="download_data()"
+            data-bs-toggle="tooltip"
+            data-bs-container="body"
+            data-bs-placement="top"
+            :data-bs-title="$t('popup_download_tooltip')">
           <i class="bi bi-download"></i>
         </button>
       </div>
@@ -151,17 +153,17 @@ export default {
       <table class="table table-hover table-striped">
         <thead class="table-light ">
           <tr>
-            <th class="p-0" colspan="3"></th>
-            <th class="p-0" style="text-align:center" colspan="2">{{ $t('popup_table_header_rain') }}</th>
-            <th class="p-0"></th>
+            <th colspan="3"></th>
+            <th style="text-align:center" colspan="2">{{ $t('popup_table_header_rain') }}</th>
+            <th></th>
           </tr>
           <tr>
-            <th class="pt-0" scope="col">{{ $t('popup_table_header_event_rank') }}</th>
-            <th class="pt-0" scope="col">{{ $t('popup_table_header_date') }}</th>
-            <th class="pt-0" scope="col">{{ $t('popup_table_header_duration') }}</th>
-            <th class="pt-0" scope="col">{{ $t('popup_table_header_pval') }}</th>
-            <th class="pt-0" scope="col">{{ $t('popup_table_header_pint') }}</th>
-            <th class="pt-0" scope="col">SRI</th>
+            <th scope="col">{{ $t('popup_table_header_event_rank') }}</th>
+            <th scope="col">{{ $t('popup_table_header_date') }}</th>
+            <th scope="col">{{ $t('popup_table_header_duration') }}</th>
+            <th scope="col">{{ $t('popup_table_header_pval') }}</th>
+            <th scope="col">{{ $t('popup_table_header_pint') }}</th>
+            <th scope="col">SRI</th>
           </tr>
           <tr class="th-units">
             <th scope="col"></th>

@@ -135,7 +135,6 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   border: 1px solid #cccccc;
   bottom: 12px;
   left: -50px;
-  max-height: 50vh;
   height: max-content;
   width: max-content;
 }
@@ -182,6 +181,9 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   margin-bottom: 0.5rem;
   padding-right: 1rem;
 }
+.popup-data .popup-header p {
+  margin-bottom: 0;
+}
 .popup-data div.tab-content {
   overflow-y: scroll;
   max-height: 40vh;
@@ -195,6 +197,10 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   top: 0;
   background-color: white;
 }
+.popup-data div.tab-content table thead th {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
 .popup-data div.tab-content table {
   margin-bottom: 0px;
 }
@@ -203,6 +209,9 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
 }
 .popup-data div.tab-content table th{
   padding-bottom: 3px;
+}
+.popup-data div.tab-content table .highlight{
+  background-color: #4eafffc7;
 }
 
 /* spinner */

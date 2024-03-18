@@ -36,6 +36,7 @@
   "popup_error_msg_data": "We are sorry, there was a problem fetching the data for this cell.",
   "popup_error_msg_position": "We are sorry, there was an error finding the data for this location.\")",
   "popup_explanation": "These are the events for this cell that got categorized.",
+  "popup_explanation_highlight": "The values that are highlighted in blue are the values taht get visualized in the actual map.",
   "popup_table_header_date": "Date",
   "popup_table_header_duration": "Duration",
   "popup_table_header_event_rank": "Event rank",

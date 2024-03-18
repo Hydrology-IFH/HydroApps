@@ -9,6 +9,7 @@ import { map } from './map.js';
 import { toggle_hover } from './hover.js';
 import PopupContent from './PopupContent.vue';
 import { i13nVue, i18n } from './i18n.js';
+import { radolan_layer } from './radolan_layer.js';
 
 /**
  * Elements that make up the popup.
@@ -119,9 +120,18 @@ export function create_popup() {
 
     let coordinate = evt.coordinate;
     let cell_features = popup_cell_source.getFeatures();
+
+    // only update if clilcked outside last clicked cell
     if (!((cell_features.length > 0) && cell_features[0].getGeometry().containsXY(...coordinate))) {
       remove_popup_cell_layer();
-      update_kombstra_data(coordinate[0], coordinate[1]);
+
+      // check if inside sri_bw layer and update popup
+      let pix_value = radolan_layer.getData(map.getEventPixel(evt.originalEvent));
+      if ((pix_value != null) && (pix_value[1] != 0)) {
+        update_kombstra_data(coordinate[0], coordinate[1]);
+      } else {
+        overlay.setPosition(undefined);
+      }
     }
 
     add_dragging_handler();
