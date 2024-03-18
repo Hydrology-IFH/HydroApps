@@ -44,7 +44,7 @@ const popup_cell_layer = new VectorLayer({
 // create PopupContent component
 let popupApp = i13nVue(createApp(PopupContent));
 let popupAppInst = popupApp.mount(content);
-
+window.popupAppInst = popupAppInst;
 // functions to set popup position
 function set_overlay_position() {
   let ext = popup_cell_source.getExtent();
