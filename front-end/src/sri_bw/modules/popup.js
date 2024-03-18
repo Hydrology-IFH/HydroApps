@@ -64,7 +64,7 @@ function update_sri_bw_data(long, lat) {
           dataProjection: "EPSG:3857",
           featureProjection: "EPSG:3857",
         }));
-      popupAppInst.update_popup_data(data[0].sri_id, lat, long);
+      popupAppInst.update_popup_data(data[0].grid_id, lat, long);
       set_overlay_position();
     })
     .catch((err) => {

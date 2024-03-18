@@ -3,7 +3,7 @@ export default {
   data: function () {
     return {
       cell_data: [],
-      sri_id: null,
+      grid_id: null,
       loading: true,
       error_msg: false,
       cell_lat: null,
@@ -12,7 +12,7 @@ export default {
   },
   computed: {
     sri_table_name() {
-      let grid_str = this.sri_id.toString().padStart(5, '0');
+      let grid_str = this.grid_id.toString().padStart(5, '0');
       return `SRI-Events-Combined_KOSTRA-V2020_${grid_str}.pdf`;
     },
     url_sri_table() {
@@ -20,21 +20,21 @@ export default {
     }
   },
   watch: {
-    sri_id(new_sri_id, old_sri_id) {
-      if (((new_sri_id !== old_sri_id) && (new_sri_id !== undefined)) || (this.error_msg) || (this.cell_data.length != 0)) {
+    grid_id(new_grid_id, old_grid_id) {
+      if (((new_grid_id !== old_grid_id) && (new_grid_id !== undefined)) || (this.error_msg) || (this.cell_data.length != 0)) {
         this.fetchData();
       }
     }
   },
   methods: {
-    update_popup_data(sri_id, lat, long) {
+    update_popup_data(grid_id, lat, long) {
       this.cell_lat = lat;
       this.cell_lon = long;
-      this.sri_id = sri_id;
+      this.grid_id = grid_id;
     },
     async fetchData() {
       this.loading = true;
-      fetch("/en/sri_bw/api/sri_bw_data/?sri_id=" + this.sri_id)
+      fetch("/en/sri_bw/api/sri_bw_data/?grid_id=" + this.grid_id)
         .then((res) => res.json())
         .then((data) => {
           this.cell_data = data;

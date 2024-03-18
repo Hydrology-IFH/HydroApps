@@ -10,9 +10,9 @@ class SRIBWPolygonsViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SRIBWPolygonsSerializer
 
     def get_queryset(self, *args, **kwargs):
-        if "sri_id" in self.request.GET:
+        if "grid_id" in self.request.GET:
             return SRIBWPolygons.objects.filter(
-                sri_id=self.request.GET["sri_id"])
+                grid_id=self.request.GET["grid_id"])
         elif ("long" in self.request.GET) and \
              ("lat" in self.request.GET):
             return SRIBWPolygons.objects.filter(
@@ -30,8 +30,8 @@ class SRIBWDataViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SRIBWDataSerializer
 
     def get_queryset(self, *args, **kwargs):
-        if "sri_id" in self.request.GET:
+        if "grid_id" in self.request.GET:
             return SRIBWData.objects.filter(
-                sri_id=self.request.GET["sri_id"])
+                grid_id=self.request.GET["grid_id"])
         else:
             return None
