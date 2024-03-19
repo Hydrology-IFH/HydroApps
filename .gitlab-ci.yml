@@ -32,7 +32,7 @@ django-tests:
     tags:
         - docker
     rules:
-        - if: $CI_COMMIT_BRANCH == "master"
+        - if: $CI_COMMIT_BRANCH == "master" || $CI_PIPELINE_SOURCE == 'merge_request_event'
     script:
         - export PGPASSWORD=$POSTGRES_PASSWORD
         - echo 'CREATE ROLE "weather_owner";
