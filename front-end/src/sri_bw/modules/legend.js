@@ -5,6 +5,7 @@ import { parameter, year, sri } from "./Form.vue"
 import { map } from "./map.js";
 import { i18n } from './i18n.js';
 
+// heading labels
 const labels = {
   duration: () => i18n.t('legend_label_duration'),
   sri: () => i18n.t('legend_label_sri'),
@@ -14,6 +15,23 @@ const labels = {
   Top_SRI_year: () => `${i18n.t('legend_label_top_sri')} ${year.value}`,
 }
 
+// sri return periods
+const sri_T = {
+  1: { T: "<b>1&nbsp;-&nbsp;2</b>" },
+  2: { T: "<b>3.3&nbsp;-&nbsp;5</b>" },
+  3: { T: "<b>10</b>" },
+  4: { T: "<b>20&nbsp;-&nbsp;25</b>" },
+  5: { T: "<b>33.3</b>" },
+  6: { T: "<b>50</b>" },
+  7: { T: "<b>100</b>" },
+  8: { T: "<b>>100</b>", F: "<b>1,20&nbsp;-&nbsp;1,39</b>" },
+  9: { T: "<b>>100</b>", F: "<b>1,40&nbsp;-&nbsp;1,59</b>" },
+  10: { T: "<b>>100</b>", F: "<b>1,60&nbsp;-&nbsp;2,19</b>" },
+  11: { T: "<b>>100</b>", F: "<b>2,20&nbsp;-&nbsp;2,79</b>" },
+  12: { T: "<b>>100</b>", F: "<b>&GreaterSlantEqual;2,80</b>" }
+}
+
+// create discrete colorbar elements
 function get_discrete_element(color, value) {
   let cb_el = document.createElement("div");
   cb_el.className = "colorbar-element";
@@ -37,6 +55,7 @@ function get_discrete_element(color, value) {
   return cb_el
 }
 
+// add discrete colorbar to legend
 function add_discrete_colorbar(styleColorDis, cb_div, label) {
   // get relevant style variables
   let col_ticks = styleColorDis.slice(1);
@@ -58,6 +77,20 @@ function add_discrete_colorbar(styleColorDis, cb_div, label) {
     cb_els.appendChild(get_discrete_element(colors[i], ticks[i]));
   }
   cb_div.appendChild(cb_els);
+
+  // add sri return period
+  if (["sri", "Top_SRI_year"].includes(parameter.value)) {
+    for (let i = 0; i < (ticks.length-1); i++) {
+      let cb_el = cb_els.children[i];
+      let sri = parseInt(cb_el.children[1].innerText);
+      let i18n_opts = { ...sri_T[sri], 'interpolation': { 'escapeValue': false } }
+      new bootstrap.Tooltip(cb_el, {
+        html: true,
+        placement: "top",
+        title: `${i18n.t("legend_sri_return_period", i18n_opts)} ${"F" in i18n_opts ? "<br>"+i18n.t("legend_sri_factor", i18n_opts) : ""}`
+      });
+    }
+  }
 }
 
 function add_linear_colorbar(styleColorLin, cb_div, label) {
