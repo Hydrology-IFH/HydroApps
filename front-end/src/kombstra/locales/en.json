@@ -12,6 +12,8 @@
   "legend_label_sri": "heavy rain index (SRI)",
   "legend_label_top_sri": "Top SRI of year",
   "legend_label_year": "year of the event",
+  "legend_sri_factor": "(100 yearly event * factor of {{F}})",
+  "legend_sri_return_period": "The statistical return period for this SRI is once every {{T}} years.",
   "map_form_explanation": "Select the KombStRA data to show on the map. To get more information on single fields, just click on the raster cell on the map.",
   "map_form_explanation_method": "method",
   "map_form_header_grid": "Event parameter",
