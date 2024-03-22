@@ -16,20 +16,26 @@ const labels = {
 }
 
 // sri return periods
-const sri_T = {
-  1: { T: "<b>1&nbsp;-&nbsp;2</b>" },
-  2: { T: "<b>3.3&nbsp;-&nbsp;5</b>" },
-  3: { T: "<b>10</b>" },
-  4: { T: "<b>20&nbsp;-&nbsp;25</b>" },
-  5: { T: "<b>33.3</b>" },
-  6: { T: "<b>50</b>" },
-  7: { T: "<b>100</b>" },
-  8: { T: "<b>>100</b>", F: "<b>1,20&nbsp;-&nbsp;1,39</b>" },
-  9: { T: "<b>>100</b>", F: "<b>1,40&nbsp;-&nbsp;1,59</b>" },
-  10: { T: "<b>>100</b>", F: "<b>1,60&nbsp;-&nbsp;2,19</b>" },
-  11: { T: "<b>>100</b>", F: "<b>2,20&nbsp;-&nbsp;2,79</b>" },
-  12: { T: "<b>>100</b>", F: "<b>&GreaterSlantEqual;2,80</b>" }
+var sri_T = {
+  1: { T: "1 - 2" },
+  2: { T: ">2 - 5" },
+  3: { T: ">5 - 10" },
+  4: { T: ">10 - 25" },
+  5: { T: ">25 - 30" },
+  6: { T: ">30 - 50" },
+  7: { T: ">50 - 100" },
+  8: { T: ">100", F: "1,20 - 1,39" },
+  9: { T: ">100", F: "1,40 - 1,59" },
+  10: { T: ">100", F: "1,60 - 2,19" },
+  11: { T: ">100", F: "2,20 - 2,79" },
+  12: { T: ">100", F: "&GreaterSlantEqual;2,80" }
 }
+window.sri_T = sri_T;
+Object.entries(sri_T).forEach((el, i) => {
+  sri_T[el[0]].T = `<nobr><b>${el[1].T}</nobr></b>`;
+  if ("F" in el[1]){ sri_T[el[0]].F = `<nobr><b>${el[1].F}</b></nobr>` }
+})
+
 
 // create discrete colorbar elements
 function get_discrete_element(color, value) {
@@ -87,6 +93,7 @@ function add_discrete_colorbar(styleColorDis, cb_div, label) {
       new bootstrap.Tooltip(cb_el, {
         html: true,
         placement: "top",
+        sanitize: false,
         title: `${i18n.t("legend_sri_return_period", i18n_opts)} ${"F" in i18n_opts ? "<br>"+i18n.t("legend_sri_factor", i18n_opts) : ""}`
       });
     }
