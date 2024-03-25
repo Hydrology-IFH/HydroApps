@@ -4,7 +4,7 @@
 #map {
   position: relative;
   width: 100%;
-  height: calc(100vh - 165px - 4rem);
+  height: calc(100vh - 165px - 8rem);
 }
 
 .ol-viewport {

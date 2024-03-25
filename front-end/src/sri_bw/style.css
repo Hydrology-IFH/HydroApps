@@ -4,7 +4,7 @@
 #map {
   position: relative;
   width: 100%;
-  height: calc(100vh - 165px - 4rem);
+  height: calc(100vh - 165px - 8rem);
 }
 
 .ol-viewport {
@@ -114,7 +114,6 @@ div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   padding: 5px;
   margin: 2px;
   box-shadow: 0px 0px 2px 2px rgba(255,255,255,0.62);
-
   visibility: hidden;
   pointer-events: none;
 }
