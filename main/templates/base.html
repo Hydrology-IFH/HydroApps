@@ -166,7 +166,7 @@
       {% if debug %}
         <div class="container-fluid alert alert-danger alert-dismissible" role="alert">
           <h5>
-            !!! This website is in debuging mode !!!
+            !!! {% trans "This website is in debuging mode" %} !!!
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -174,7 +174,7 @@
       {% if app_unreleased and show_unreleased %}
         <div class="container-fluid alert alert-warning alert-dismissible" role="alert">
           <h5>
-            !!! This Application did not yet get released. You can see it, because you're a Test-User !!!
+            !!! {% trans "This Application did not yet get released. You can see it, because you're a Test-User" %} !!!
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

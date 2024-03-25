@@ -14,7 +14,7 @@
   "legend_label_year": "year of the event",
   "legend_sri_factor": "(100 yearly event * factor of {{F}})",
   "legend_sri_return_period": "The statistical return period for this SRI is once every {{T}} years.",
-  "map_crs_info": "",
+  "map_crs_info": "In order to be compliant with FLIWAS, the raster analysis was created with a geographical projection (WGS84). For this reason, this map looks somewhat distorted.",
   "map_form_explanation": "Select the KombStRA data to show on the map. To get more information on single fields, just click on the raster cell on the map.",
   "map_form_explanation_method": "method",
   "map_form_header_grid": "Event parameter",
