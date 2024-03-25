@@ -71,8 +71,8 @@
                       <li><a href="{% url 'weatherdb:home' %}" class="dropdown-item">WeatherDB</a></li>
                       <li><a href="{% url 'asgII:home' %}" class="dropdown-item">ASG-II</a></li>
                       {% if show_unreleased %}
-                      <li><a href="{% url 'sri_bw:home' %}" class="dropdown-item">SRI-BW</a></li>
-                      <li><a href="{% url 'kombstra:home' %}" class="dropdown-item">KombStRA</a></li>
+                        <li><a href="{% url 'sri_bw:home' %}" class="dropdown-item">SRI-BW</a></li>
+                        <li><a href="{% url 'kombstra:home' %}" class="dropdown-item">KombStRA</a></li>
                       {% endif %}
                       <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
                         <div class="d-flex">
@@ -164,17 +164,19 @@
        id="main_page">
     <div class="container-fluid">
       {% if debug %}
-        <div class="container-fluid alert alert-danger" role "alert">
+        <div class="container-fluid alert alert-danger alert-dismissible" role "alert">
           <h5>
             !!! This website is in debuging mode !!!
           </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       {% endif %}
       {% if app_unreleased and show_unreleased %}
-        <div class="container-fluid alert alert-warning" role "alert">
+        <div class="container-fluid alert alert-warning alert-dismissible" role "alert">
           <h5>
             !!! This Application did not yet get released. You can see it, because you're a Test-User !!!
           </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       {% endif %}
       {% block content %}{% endblock %}
