@@ -108,7 +108,12 @@ export default {
         v-model.number="opacity" style="max-width:80px" />
       <span class="input-group-text">%</span>
     </div>
-  </form></template>
+  </form>
+  <div class="alert alert-warning alert-dismissible" role="alert">
+    {{ $t('map_crs_info') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</template>
 
 
 

@@ -51,5 +51,7 @@
   "slider_opactity_tooltip": "Set the opacity of the layer, to see the underlying map.",
   "slider_sri_tooltip": "Choose the SRI to get number of events >= SRI.",
   "slider_year_label": "Year",
-  "slider_year_tooltip": "Choose the year for which to get the Top event."
+  "slider_year_tooltip": "Choose the year for which to get the Top event.",
+  "tooltip_fullscreen_close": "Open the map in fullscreen mode",
+  "tooltip_fullscreen_open": "Close the fullscreen mode"
 }

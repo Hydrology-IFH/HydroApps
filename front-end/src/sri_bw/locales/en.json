@@ -14,6 +14,7 @@
   "legend_label_year": "year of the event",
   "legend_sri_factor": "(100 yearly event * factor of {{F}})",
   "legend_sri_return_period": "The statistical return period for this SRI is once every {{T}} years.",
+  "map_crs_info": "",
   "map_form_explanation": "Select the KombStRA data to show on the map. To get more information on single fields, just click on the raster cell on the map.",
   "map_form_explanation_method": "method",
   "map_form_header_grid": "Event parameter",
@@ -51,5 +52,7 @@
   "slider_opactity_tooltip": "Set the opacity of the layer, to see the underlying map.",
   "slider_sri_tooltip": "Choose the SRI to get number of events >= SRI.",
   "slider_year_label": "Year",
-  "slider_year_tooltip": "Choose the year for which to get the Top event."
+  "slider_year_tooltip": "Choose the year for which to get the Top event.",
+  "tooltip_fullscreen_close": "Open the map in fullscreen mode",
+  "tooltip_fullscreen_open": "Close the fullscreen mode"
 }
