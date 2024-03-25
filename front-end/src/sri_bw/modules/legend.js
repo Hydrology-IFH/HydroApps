@@ -197,9 +197,9 @@ export function create_legend() {
   // legend
   map.addControl(
     new LegendCtrl({
-    legend: new Legend({}),
-    collapsed: false
-    })
+      legend: new Legend({}),
+      collapsed: false
+      })
   );
 
   let leg_div = document.querySelector("div.ol-legend");
