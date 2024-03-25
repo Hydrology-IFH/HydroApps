@@ -217,9 +217,9 @@
       let navitems = document.querySelectorAll("#menuitems > .navbar-nav > .nav-item > a");
       navitems.forEach((el) => {
         if (el.href==path){
-          el.parentElement.classList.add('active')
+          el.classList.add('active')
         } else {
-          el.parentElement.classList.remove('active')
+          el.classList.remove('active')
         }
       })
     })()
