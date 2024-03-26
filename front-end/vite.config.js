@@ -12,7 +12,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         kombstra: '/src/kombstra/main.js',
-        sriBW: '/src/sri_bw/main.js'
+        sri_bw: '/src/sri_bw/main.js'
       },
     },
   },
@@ -21,5 +21,8 @@ export default defineConfig({
     alias: {
       vue: 'vue/dist/vue.esm-bundler.js',
     },
+  },
+  optimizeDeps: {
+    include: ['ol', "vue"],
   },
 })
