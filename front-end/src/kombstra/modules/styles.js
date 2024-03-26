@@ -1,13 +1,15 @@
 // import { gridFormPara } from './forms.js';
-import { parameter } from './Form.vue';
+import { parameter, sri } from './Form.vue';
 import colormap from 'colormap';
 
 // helper functions for colorbars
 let get_colorscale = function (min, max, colorbar, continous=true, reverse=false) {
-  let values = Array.from({length: max-min+1}, (value, index) => min + index);
+  let values = Array.from({ length: max - min + 1 }, (value, index) => min + index);
+  window.values = values;
+  let fact = values.length > 9 ? 1 : 9 / values.length;
   let colors = colormap({
     colormap: colorbar,
-    nshades: values.length,
+    nshades: fact == 1? values.length:9, // duplicat as some colormaps need at least 9 nshades
     format: 'rba',
     alpha: 1
   });
@@ -15,9 +17,9 @@ let get_colorscale = function (min, max, colorbar, continous=true, reverse=false
     colors = colors.reverse();
   }
   if (continous) {
-    return values.map((value, index) => [value, colors[index]]).flat();
+    return values.map((value, index) => [value, colors[Math.round(index*fact)]]).flat();
   } else {
-    return values.map((value, index) => [["==", ["band", 1], value], colors[index]]).flat();
+    return values.map((value, index) => [["==", ["band", 1], value], colors[Math.round(index*fact)]]).flat();
   }
 }
 
