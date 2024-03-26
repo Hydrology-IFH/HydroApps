@@ -42,6 +42,14 @@ export function create_zoomer(){
       zoomcont.classList.toggle("zoom-active");
     }
 
-    btn.addEventListener("click", toggle_open_state)
+    // add Click event listener
+    btn.addEventListener("click", toggle_open_state);
+
+    // add Esc key listener
+    window.addEventListener("keydown", (e)=>{
+      if (e.key == "Escape" && open_state){
+        toggle_open_state();
+      }
+    });
   });
 }
