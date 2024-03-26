@@ -41,3 +41,12 @@ class SRIBWData(models.Model):
     class Meta:
         db_table = 'sri_bw_data'
         unique_together = (('grid_id', 'event_rank'),)
+
+class SRIBWSRIMaxEvents(models.Model):
+    sri = models.IntegerField(primary_key=True)
+    max_events = models.IntegerField()
+
+    class Meta:
+        db_table = 'sri_bw_sri_max_events'
+        managed = False
+        db_table_comment = "View for the maximum number of events per SRI"

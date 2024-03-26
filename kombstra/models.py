@@ -41,3 +41,12 @@ class KombStRAData(models.Model):
     class Meta:
         db_table = 'kombstra_data'
         unique_together = (('grid_id', 'event_rank'),)
+
+class KombStRASRIMaxEvents(models.Model):
+    sri = models.IntegerField(primary_key=True)
+    max_events = models.IntegerField()
+
+    class Meta:
+        db_table = 'kombstra_sri_max_events'
+        managed = False
+        db_table_comment = "View for the maximum number of events per SRI"
