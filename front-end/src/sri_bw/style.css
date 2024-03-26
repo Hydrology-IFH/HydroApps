@@ -98,7 +98,8 @@ div.colorbar-dis div.colorbar-label{
 div.colorbar-elements{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  width: fit-content;
 }
 div.colorbar-dis div.colorbar-element {
   display: flex;
@@ -109,8 +110,11 @@ div.colorbar-dis div.colorbar-element > div.colorbar-color{
   width: 1.3rem;
   height: 1.3rem;
   border: 1px solid black;
-  margin-left: 3px;
-  margin-right: 3px;
+  margin-right: calc(.1em + .35vw);
+  margin-left: calc(.1em + .35vw);
+}
+div.colorbar-dis div.colorbar-label{
+  margin-left: .5em;
 }
 div.colorbar-dis div.colorbar-element > div.colorbar-tick{
   text-align: center;
