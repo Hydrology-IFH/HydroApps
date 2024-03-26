@@ -1,8 +1,8 @@
 # from django.http import HttpResponse # static http page
 from django.shortcuts import render
-from django.db.models import Max, Min, Count
+from django.db.models import Max, Min
 from django.db.models.functions import ExtractYear
-from .models import SRIBWData
+from .models import SRIBWData, SRIBWSRIMaxEvents
 from main.decorators import unreleased
 from django.db.models.expressions import RawSQL
 
@@ -27,6 +27,8 @@ def map_view(request, *args, **kwargs):
                       GROUP BY grid_id)""", []))
         )
     }
+    context["spans"]["nevents"] = {
+        qs["sri"]: qs["max_events"] for qs in SRIBWSRIMaxEvents.objects.values()}
     return render(request, "sri_bw/map.html", context)
 
 @unreleased

@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.db.models import Max, Min
 from django.db.models.functions import ExtractYear
-from .models import KombStRAData
+from .models import KombStRAData, KombStRASRIMaxEvents
 from main.decorators import unreleased
 from django.db.models.expressions import RawSQL
 
@@ -27,6 +27,8 @@ def map_view(request, *args, **kwargs):
                       GROUP BY grid_id)""", []))
         )
     }
+    context["spans"]["nevents"] = {
+        qs["sri"]: qs["max_events"] for qs in KombStRASRIMaxEvents.objects.values()}
     return render(request, "kombstra/map.html", context)
 
 @unreleased
