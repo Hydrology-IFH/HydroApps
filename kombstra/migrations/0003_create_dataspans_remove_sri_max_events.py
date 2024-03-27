@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
                     EXTRACT(YEAR FROM max(date))::int AS max_year,
                     max(event_rank)::int AS max_rank,
                     json_objectagg(sri_max_events.sri:sri_max_events.max_events)::text AS max_nevents
-                FROM sri_bw_data sbd
+                FROM kombstra_data sbd
                 JOIN sri_max_events ON True);
             CREATE OR REPLACE FUNCTION tg_kombstra_data_spans_refresh()
                 RETURNS trigger LANGUAGE plpgsql AS $$
