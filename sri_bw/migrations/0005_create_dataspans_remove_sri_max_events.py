@@ -58,9 +58,9 @@ class Migration(migrations.Migration):
                     GROUP BY sri ORDER BY sri)
                 SELECT
                     1 as id, -- dummy id
-                    EXTRACT(year FROM min(date)) AS min_year,
-                    EXTRACT(YEAR FROM max(date)) AS max_year,
-                    max(event_rank) AS max_rank,
+                    EXTRACT(year FROM min(date))::int AS min_year,
+                    EXTRACT(YEAR FROM max(date))::int AS max_year,
+                    max(event_rank)::int AS max_rank,
                     json_objectagg(sri_max_events.sri:sri_max_events.max_events)::text AS max_nevents
                 FROM sri_bw_data sbd
                 JOIN sri_max_events ON True);
