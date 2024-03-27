@@ -14,7 +14,6 @@
   "legend_label_year": "Jahr",
   "legend_sri_factor": "(100 jährliches Ereignis * Faktor von {{F}})",
   "legend_sri_return_period": "Die statistische Häufigkeit bei diesen SRI ist einmal alle {{T}} Jahre.",
-  "map_crs_info": "Um mit FLIWAS konform zu sein, wurde die Rasteranalyse mit einer geografischen Projektion (WGS84) erstellt. Aus diesem Grund sieht die vorliegende Karte etwas verzogen aus.",
   "map_form_explanation": "Wählen Sie die Starkregen-Daten aus, die auf der Karte angezeigt werden sollen. Um für einen spezifischen Punkt eine Übersicht aller klassifizierten Starkregenereignisse zu erhalten, klicken Sie einfach auf die Rasterzelle in der Karte. Mehr Informationen zu den zugrundeliegenden Daten und  der Klassifizierung finden Sie unter",
   "map_form_explanation_method": "Methode",
   "map_form_header_grid": "Ereignis-Parameter",

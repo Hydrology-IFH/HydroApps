@@ -11,7 +11,7 @@ import { create_header } from './mapHeader.js';
 
 export var map;
 
-let map_proj = getProjection("EPSG:4326");
+let map_proj = getProjection("EPSG:3857");
 
 export async function create_map() {
   // create the map
@@ -20,8 +20,8 @@ export async function create_map() {
     init_tif_view.extent,
     init_tif_view.projection,
     map_proj)
-  let buffer_extent = buffer(extent, 1);
-  buffer_extent[3] -= 0.5;
+  let buffer_extent = buffer(extent, 150000);
+  buffer_extent[3] -= 120000;
   map = new Map({
     target: 'map',
     layers: [

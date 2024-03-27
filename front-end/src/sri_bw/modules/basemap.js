@@ -7,7 +7,7 @@ import TileWMS from 'ol/source/TileWMS.js';
 import { form } from './forms.js';
 import { basemap as formBasemap } from './Form.vue';
 
-let basemap_proj = getProjection("EPSG:4326");
+let basemap_proj = getProjection("EPSG:3857");
 
 let basemap_sources = {
   basemap_grey: new TileWMS({
