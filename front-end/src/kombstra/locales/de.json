@@ -22,7 +22,7 @@
   "map_header_duration": "Karte der Dauerstufe des Top {{event_rank}} Starkregenereignisses",
   "map_header_month": "Karte des Monats, in dem das Top {{event_rank}} Ereignis eingetreten ist",
   "map_header_sri": "Karte des Starkregenindexes (SRI) vom Top {{event_rank}} Ereigniss",
-  "map_header_top_sri": "Karte des größten Starkregenindexes (SRI) im Jahr {{year}}",
+  "map_header_top_sri": "Karte des maximalen Starkregenindexes (SRI) im Jahr {{year}}",
   "map_header_year": "Karte des Jahres, in dem das Top {{event_rank}} Ereignis eingetreten ist",
   "parameter_label": "Parameter",
   "parameter_option_NEvents_above_SRI": "Anzahl an Ereignisen über gewissem SRI",
