@@ -57,7 +57,7 @@ export default {
         case 'NEvents_above_SRI':
           return ["all"];
         case 'Top_SRI_year':
-          return ["sri"];
+          return ["date", "sri"];
       }
     }
   },
