@@ -10,17 +10,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='KombStRASRIMaxEvents',
-            fields=[
-                ('sri', models.IntegerField(primary_key=True, serialize=False)),
-                ('max_events', models.IntegerField()),
-            ],
-            options={
-                'db_table': 'kombstra_sri_max_events',
-                'managed': False,
-            },
-        ),
         migrations.RunSQL("""
             CREATE MATERIALIZED VIEW kombstra_sri_max_events AS (
                 SELECT sri, max(nevents) as max_events
@@ -45,7 +34,21 @@ class Migration(migrations.Migration):
             FOR EACH STATEMENT EXECUTE PROCEDURE tg_kombstra_sri_max_events_refresh();""",
             """DROP MATERIALIZED VIEW kombstra_sri_max_events;
             DROP TRIGGER tg_kombstra_sri_max_events_refresh ON kombstra_data;
-            DROP FUNCTION tg_kombstra_sri_max_events_refresh;"""),
+            DROP FUNCTION tg_kombstra_sri_max_events_refresh;""",
+            state_operations=[
+                migrations.CreateModel(
+                    name='KombStRASRIMaxEvents',
+                    fields=[
+                        ('sri', models.IntegerField(primary_key=True, serialize=False)),
+                        ('max_events', models.IntegerField()),
+                    ],
+                    options={
+                        'db_table': 'kombstra_sri_max_events',
+                        'managed': False,
+                    },
+                ),
+            ]
+        ),
         migrations.AlterModelTableComment(
             name='KombStRASRIMaxEvents',
             table_comment='View for the maximum number of events per SRI',
