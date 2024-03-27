@@ -33,13 +33,15 @@ export default {
         case 'year':
           return [this.event_rank];
         case 'NEvents_above_SRI':
-          // Hier muss ich weiter machen
           return this.cell_data
             .filter((data) => data.sri >= this.sri)
             .map((data) => data.event_rank);
         case 'Top_SRI_year':
-          return this.cell_data
-            .filter((data) => new Date(data.date).getFullYear() >= this.year)
+          let cells_year = this.cell_data
+            .filter((data) => new Date(data.date).getFullYear() == this.year);
+          let max_year_sri = Math.max(...cells_year.map((data) => data.sri));
+          return cells_year
+            .filter((data) => data.sri == max_year_sri)
             .map((data) => data.event_rank);
       }
     },
