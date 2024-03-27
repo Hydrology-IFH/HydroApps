@@ -1,6 +1,7 @@
 // import { gridFormPara } from './forms.js';
 import { parameter, sri } from './Form.vue';
 import colormap from 'colormap';
+import { spans } from './spans';
 
 // helper functions for colorbars
 let get_colorscale = function (min, max, colorbar, continous=true, reverse=false) {
@@ -117,7 +118,7 @@ let styles = {
         "case",
         ["!=", ['band', 2], 0],
         ['case',
-          ...get_colorscale(0, Math.max(3,spans.nevents[sri.value]), "inferno", false, false),
+          ...get_colorscale(0, Math.max(3, spans.max_nevents[sri.value]), "inferno", false, false),
           ["color", 0, 0, 0, 0]
         ],
         ["color", 0, 0, 0, 0]

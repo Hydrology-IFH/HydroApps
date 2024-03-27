@@ -1,5 +1,6 @@
 <script>
 import { ref } from 'vue';
+import { spans } from './spans';
 
 export const parameter = ref('sri');
 export const year = ref(2010);

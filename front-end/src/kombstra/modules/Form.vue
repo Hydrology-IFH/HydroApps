@@ -1,5 +1,6 @@
 <script>
 import { ref } from 'vue';
+import { spans } from './spans';
 
 export const parameter = ref('sri');
 export const year = ref(2010);
@@ -108,7 +109,8 @@ export default {
         v-model.number="opacity" style="max-width:80px" />
       <span class="input-group-text">%</span>
     </div>
-  </form></template>
+  </form>
+</template>
 
 
 

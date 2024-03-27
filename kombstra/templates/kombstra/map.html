@@ -32,9 +32,7 @@
 {% endblock content %}
 
 {% block scripts %}
-  <script>
-    var spans = {{ spans|safe }};
-  </script>
-  {% vite_asset 'src/kombstra/main.js' %}
+  {{ spans|json_script:"spans" }}
+  {% vite_asset 'src/sri_bw/main.js' %}
   {% comment %} {% vite_legacy_polyfills %} {% endcomment %}
 {% endblock %}

@@ -42,11 +42,13 @@ class KombStRAData(models.Model):
         db_table = 'kombstra_data'
         unique_together = (('grid_id', 'event_rank'),)
 
-class KombStRASRIMaxEvents(models.Model):
-    sri = models.IntegerField(primary_key=True)
-    max_events = models.IntegerField()
+class KombStRADataSpans(models.Model):
+    max_year = models.IntegerField(help_text="Maximum year of events")
+    min_year = models.IntegerField(help_text="Minimum year of events")
+    max_rank = models.IntegerField(help_text="Maximum rank of events")
+    max_nevents = models.JSONField(help_text="Maximum number of events per SRI")
 
     class Meta:
-        db_table = 'kombstra_sri_max_events'
+        db_table = 'kombstra_data_spans'
         managed = False
-        db_table_comment = "View for the maximum number of events per SRI"
+        db_table_comment = "View for the spans of the data"
