@@ -28,7 +28,7 @@ class Command(RunserverCommand):
     def run(self, **options):
         # """Run the server with node development in the background."""
         if os.environ.get(DJANGO_AUTORELOAD_ENV) != "true":
-            self.stdout.write("Starting node dev thread.")
             if options["node-dev"]:
+                self.stdout.write("Starting node dev thread.")
                 self.node_proc = subprocess.Popen("npm run dev", cwd=os.path.join(BASE_DIR, "front-end"), shell=True)
         super(Command, self).run(**options)
