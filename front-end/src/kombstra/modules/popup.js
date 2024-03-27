@@ -23,11 +23,7 @@ const closer = document.getElementById('popup-closer');
  */
 const overlay = new Overlay({
   element: container,
-  autoPan: {
-    animation: {
-      duration: 250,
-    },
-  },
+  autoPan: false,
   className: 'ol-overlay-popup',
 });
 
@@ -57,7 +53,7 @@ function set_overlay_position_error(long, lat) {
 
 // get kombstra data from api
 function update_kombstra_data(long, lat) {
-  fetch("/en/kombstra/api/kombstra_polygon/?long=" + long + "&lat=" + lat)
+  fetch("/en/kombstra/api/kombstra_polygon?long=" + long + "&lat=" + lat)
     .then((res) => res.json())
     .then((data) => {
       popup_cell_source.addFeatures(

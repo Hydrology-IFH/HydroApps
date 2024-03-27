@@ -23,11 +23,7 @@ const closer = document.getElementById('popup-closer');
  */
 const overlay = new Overlay({
   element: container,
-  autoPan: {
-    animation: {
-      duration: 250,
-    },
-  },
+  autoPan: false,
   className: 'ol-overlay-popup',
 });
 
