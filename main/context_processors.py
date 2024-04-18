@@ -6,8 +6,18 @@ def get_active_app(request):
 
     return APPS_ALT_NAMES.get(first_url_part, "HydroApps")
 
-def get_show_released(request):
-    return (request.user.is_authenticated and request.user.is_tester)
+def get_show_unreleased_app(request, active_app=None):
+    if active_app is None:
+        active_app = get_active_app(request)
+    return (request.user.is_authenticated and
+            request.user.permissions.filter(
+                app__name=active_app,
+                permission_class__name="Test-User"
+            ).exists())
+
+def get_dict_show_unreleased_apps(request):
+    return {app: get_show_unreleased_app(request, app) for app in set(APPS_ALT_NAMES.values())}
+
 
 def default_context(request):
     context = {
@@ -16,6 +26,6 @@ def default_context(request):
     }
     context["base_template"] = f"{context['active_app']}/base.html"
     context["app_unreleased"] = context['active_app'] in APPS_UNRELEASED
-    context["show_unreleased"] = get_show_released(request)
+    context["show_unreleased_apps"] = get_dict_show_unreleased_apps(request)
 
     return context

@@ -70,8 +70,10 @@
                       <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item"><b>Hydro-Apps</b></a></li>
                       <li><a href="{% url 'weatherdb:home' %}" class="dropdown-item">WeatherDB</a></li>
                       <li><a href="{% url 'asgII:home' %}" class="dropdown-item">ASG-II</a></li>
-                      {% if show_unreleased %}
+                      {% if show_unreleased_apps.sri_bw %}
                         <li><a href="{% url 'sri_bw:home' %}" class="dropdown-item">SRI-BW</a></li>
+                      {% endif %}
+                      {% if show_unreleased_apps.kombstra %}
                         <li><a href="{% url 'kombstra:home' %}" class="dropdown-item">KombStRA</a></li>
                       {% endif %}
                       <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
