@@ -2,7 +2,7 @@ from django.contrib import admin
 # from .models import ExtendedUser
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group as DjangoGroup
-from .models import Account, Permission, PermissionClass
+from .models import Account, Permission, PermissionClass, TokenPermission
 
 # Register your models here.
 class UserAdminConfig(UserAdmin):
@@ -32,7 +32,12 @@ class PermissionClassAdmin(admin.ModelAdmin):
     list_display=['name', "description"]
     search_fields=['name', "description"]
 
+class TokenPermissionAdmin(admin.ModelAdmin):
+    list_display=['description', 'token', 'permissions']
+    search_fields=['description', 'token', 'permissions']
+
 admin.site.register(Account, UserAdminConfig)
 admin.site.register(Permission, PermissionAdmin)
 admin.site.register(PermissionClass, PermissionClassAdmin)
+admin.site.register(TokenPermission, TokenPermissionAdmin)
 admin.site.unregister(DjangoGroup)

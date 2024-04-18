@@ -291,4 +291,27 @@ def update_db_user(instance, created, **kwargs):
             instance.save()
 
 
+class TokenPermission(models.Model):
+    token = models.CharField(
+        max_length=100,
+        primary_key=True,
+        blank=False,
+        default=Account.objects.make_random_password(100))
+    description = models.TextField(max_length=300, blank=False)
+    permissions = models.ForeignKey(
+        Permission,
+        blank=True,
+        default=None,
+        on_delete=models.CASCADE)
+    valid_until = models.DateTimeField(
+        blank=False,
+        null=False,
+        default=timezone.now() + timedelta(days=30))
 
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = 'Token Permission'
+        verbose_name_plural = 'Token Permission'
+        db_table_comment = "Permissions granted via a token to be used for a limited time to access the Hydro-Apps."
