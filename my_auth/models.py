@@ -14,6 +14,8 @@ from django.utils import timezone
 from django.db.models import Q
 from datetime import timedelta
 from sqlalchemy import text
+from HydroApps.models import App
+import secrets
 
 from weatherDB.lib.connections import DB_ENG as wdb_engine
 
@@ -53,6 +55,29 @@ class AccountManager(BaseUserManager):
         return self.create_user(email,username,first_name,password,**other_fields)
 
 
+class PermissionClass(models.Model):
+    name = models.CharField(max_length=100, primary_key=True, null=False, blank=False)
+    description = models.TextField(max_length=300)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Permission class"
+        verbose_name_plural = "Permission classes"
+
+class Permission(models.Model):
+    app = models.ForeignKey(App, blank=False, on_delete=models.CASCADE)
+    permission_class = models.ForeignKey(PermissionClass, blank=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.app}: {self.permission_class}"
+
+    class Meta:
+        verbose_name = 'Permission'
+        verbose_name_plural = 'Permissions'
+        db_table_comment = "Possible Permissions for each app."
+        unique_together = ('app', 'permission_class')
 
 class Account(AbstractBaseUser, PermissionsMixin):
     email         = models.EmailField(_('email address'), max_length=60, unique=True)
@@ -73,9 +98,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False,
         help_text=_('Designates whether the user can log into this admin site.')
     )
-    is_tester = models.BooleanField(default=False,
-        help_text=_('Designates whether the user can see features that didn\'t yet get released.'),
-    )
     is_superuser  = models.BooleanField(default=False,
         help_text=_('Designates whether the user is superuser.'))
     wdb_is_db_user = models.BooleanField(default=False,
@@ -88,13 +110,16 @@ class Account(AbstractBaseUser, PermissionsMixin):
     expiration_notification = models.DateTimeField(
         default=None, null=True, blank=True,
         help_text=_('Designates the date and time when the user got noticed that his account will expire soon.'))
+    permissions = models.ManyToManyField(
+        Permission, blank=True, default=None,
+        help_text=_('The permissions the user has.'))
 
     objects = AccountManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'first_name', "last_name"]
 
     def __str__(self):
-        return self.email
+        return self.username
 
     def renew_db_password(self):
         self.db_password = Account.objects.make_random_password(30)
@@ -267,4 +292,47 @@ def update_db_user(instance, created, **kwargs):
             instance.save()
 
 
+class TokenPermission(models.Model):
+    def get_default_token():
+        return secrets.token_urlsafe(42)
 
+    def get_default_valid_until():
+        return timezone.now() + timedelta(days=30)
+
+    token = models.CharField(
+        max_length=60,
+        primary_key=True,
+        blank=False,
+        default=get_default_token)
+    description = models.TextField(
+        max_length=300, blank=False)
+    permissions = models.ManyToManyField(
+        Permission,
+        blank=True,
+        default=None)
+    valid_until = models.DateTimeField(
+        blank=False,
+        null=False,
+        default=get_default_valid_until)
+
+    def __str__(self):
+        return self.description
+
+    @staticmethod
+    def is_token_allowed_app(token, app):
+        if TokenPermission.objects.filter(token=token).exists():
+            return TokenPermission.objects.filter(
+                token=token,
+                valid_until__gt=timezone.now(),
+                permissions__app=app,
+                ).exists()
+        return False
+
+    @property
+    def token_url(self):
+        return f"{settings.BASE_URL}?token={self.token}"
+
+    class Meta:
+        verbose_name = 'Token Permission'
+        verbose_name_plural = 'Token Permission'
+        db_table_comment = "Permissions granted via a token to be used for a limited time to access the Hydro-Apps."
