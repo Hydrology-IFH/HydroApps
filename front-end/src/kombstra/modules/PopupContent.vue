@@ -157,7 +157,7 @@ export default {
   <div v-else class="popup-data">
 
     <div class="popup-header">
-      <p>{{ $t('popup_explanation') }}</p>
+      <p>{{ $t('popup_explanation') }}<a href="./method">{{ $t('popup_explanation_method_link') }}</a>.</p>
       <div>
         <button class="btn btn-primary" role="button"
             @click="download_data()"
