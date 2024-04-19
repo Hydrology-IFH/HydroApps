@@ -300,17 +300,16 @@ class TokenPermission(models.Model):
         return timezone.now() + timedelta(days=30)
 
     token = models.CharField(
-        max_length=42,
+        max_length=60,
         primary_key=True,
         blank=False,
         default=get_default_token)
     description = models.TextField(
         max_length=300, blank=False)
-    permissions = models.ForeignKey(
+    permissions = models.ManyToManyField(
         Permission,
         blank=True,
-        default=None,
-        on_delete=models.CASCADE)
+        default=None)
     valid_until = models.DateTimeField(
         blank=False,
         null=False,
@@ -318,6 +317,16 @@ class TokenPermission(models.Model):
 
     def __str__(self):
         return self.description
+
+    @staticmethod
+    def is_token_allowed_app(token, app):
+        if TokenPermission.objects.filter(token=token).exists():
+            return TokenPermission.objects.filter(
+                token=token,
+                valid_until__gt=timezone.now(),
+                permissions__app=app,
+                ).exists()
+        return False
     class Meta:
         verbose_name = 'Token Permission'
         verbose_name_plural = 'Token Permission'

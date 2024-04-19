@@ -18,17 +18,13 @@ def get_show_unreleased_app(request, active_app=None):
             .exists()):
         return True
     if ("token" in request.GET and
-        (qs_permission := TokenPermission.objects.filter(token=request.GET["token"])).exists()):
-        request.session["token_permission"] = qs_permission.first().pk
-        return qs_permission.filter(permissions__app__name=active_app,
-                                    permissions__permission_class__name="Test-User")\
-                            .exists()
+        TokenPermission.is_token_allowed_app(request.GET["token"], active_app)):
+        request.session["token_permission"] = request.GET["token"]
+        return True
     if "token_permission" in request.session:
-        return TokenPermission.objects\
-            .filter(token=request.session["token_permission"])\
-            .filter(permissions__app__name=active_app,
-                    permissions__permission_class__name="Test-User")\
-            .exists()
+        return TokenPermission.is_token_allowed_app(
+            request.session["token_permission"],
+            active_app)
     return False
 
 
