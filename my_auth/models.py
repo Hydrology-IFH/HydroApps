@@ -327,6 +327,11 @@ class TokenPermission(models.Model):
                 permissions__app=app,
                 ).exists()
         return False
+
+    @property
+    def token_url(self):
+        return f"{settings.BASE_URL}?token={self.token}"
+
     class Meta:
         verbose_name = 'Token Permission'
         verbose_name_plural = 'Token Permission'
