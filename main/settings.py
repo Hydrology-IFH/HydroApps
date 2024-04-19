@@ -74,7 +74,7 @@ INSTALLED_APPS = [
 ]
 
 # apps that are not yet released and only visible to test users
-APPS_UNRELEASED = ["kombstra", "sri_bw"]
+APPS_UNRELEASED = ["kombstra"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {
