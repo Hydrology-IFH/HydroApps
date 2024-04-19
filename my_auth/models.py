@@ -15,6 +15,7 @@ from django.db.models import Q
 from datetime import timedelta
 from sqlalchemy import text
 from HydroApps.models import App
+import secrets
 
 from weatherDB.lib.connections import DB_ENG as wdb_engine
 
@@ -292,12 +293,19 @@ def update_db_user(instance, created, **kwargs):
 
 
 class TokenPermission(models.Model):
+    def get_default_token():
+        return secrets.token_urlsafe(42)
+
+    def get_default_valid_until():
+        return timezone.now() + timedelta(days=30)
+
     token = models.CharField(
-        max_length=100,
+        max_length=42,
         primary_key=True,
         blank=False,
-        default=Account.objects.make_random_password(100))
-    description = models.TextField(max_length=300, blank=False)
+        default=get_default_token)
+    description = models.TextField(
+        max_length=300, blank=False)
     permissions = models.ForeignKey(
         Permission,
         blank=True,
@@ -306,11 +314,10 @@ class TokenPermission(models.Model):
     valid_until = models.DateTimeField(
         blank=False,
         null=False,
-        default=timezone.now() + timedelta(days=30))
+        default=get_default_valid_until)
 
     def __str__(self):
         return self.description
-
     class Meta:
         verbose_name = 'Token Permission'
         verbose_name_plural = 'Token Permission'
