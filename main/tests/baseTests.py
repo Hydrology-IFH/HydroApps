@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from my_auth.models import Account
+from my_auth.models import Permission
 
 # Base test case classes for views
 class BaseTestCase:
@@ -55,6 +56,9 @@ class BaseTestCase:
     class UnreleasedViews(LoggedInViews):
         def setUp(self):
             super().setUp()
-            self.account.is_tester = True
+            self.account.permissions.add(
+                Permission.objects.get(
+                    app=self.app_name,
+                    permission_class__name="Test-User"))
             self.account.save()
 
