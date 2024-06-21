@@ -1,0 +1,22 @@
+{% extends base_template %}
+{% load static %}
+{% load i18n %}
+{% load django_vite %}
+
+{% block head %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% vite_hmr_client %}
+{% endblock %}
+
+{% block content %}
+
+  <h1>{% trans "App Name App" %}</h1>
+  <div class="container p-0 zoomable">
+
+  </div>
+
+{% endblock content %}
+
+{% block scripts %}
+  {% vite_asset 'src/app_name/main.js' %}
+{% endblock %}

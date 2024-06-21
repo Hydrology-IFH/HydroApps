@@ -35,13 +35,13 @@ urlpatterns = [
          name="django.contrib.sitemaps.views.sitemap"),
     path(r'', include('webmaster_verification.urls')),
     *i18n_patterns(
-        path("", include("HydroApps.urls")),
-        path("weatherdb/", include("weatherdb.urls")),
         path("<str:app_name>/impressum/", impressum_view, name="impressum"),
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
+        path("<str:app_name>/auth/", include("my_auth.urls")),
+        path("", include("HydroApps.urls")),
+        path("weatherdb/", include("weatherdb.urls")),
         path("asgII/", include("asgII.urls")),
         path("sri_bw/", include("sri_bw.urls")),
         path("kombstra/", include("kombstra.urls")),
-        path("<str:app_name>/auth/", include("my_auth.urls")),
     )
 ]
