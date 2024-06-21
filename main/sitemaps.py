@@ -20,5 +20,6 @@ sitemaps = {
     'asgII': AsgIISitemap,
     # 'kombstra': KombStRASitemap,
     'my_auth': AuthSitemap,
-    'weatherDB': WeatherDBSitemap
+    'weatherDB': WeatherDBSitemap,
+    'sfi_mockup': 'sfi_mockup.sitemaps.SFIMockupSitemap'
 }
