@@ -1,0 +1,19 @@
+{% extends base_template %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<h1>{% trans "Method" %}</h1>
+<p>Bla Bla Bla von <a href="#quelle-Schmitt">Schmit et al. (2024)</a>.</p>
+<div class="quellen">
+  <ol>
+    <li id="quelle-schmit">Schmit, ...
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/references.js' %}" defer></script>
+{% endblock %}

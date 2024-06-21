@@ -10,7 +10,7 @@
 
 {% block content %}
 
-  <h1>{% trans "App Name App" %}</h1>
+  <h1>{% trans "AVOSS Mockup" %}</h1>
   <div class="container p-0 zoomable">
 
   </div>
@@ -18,5 +18,5 @@
 {% endblock content %}
 
 {% block scripts %}
-  {% comment %} your scripts {% endcomment %}
+  {% vite_asset 'src/avoss/main.js' %}
 {% endblock %}
