@@ -51,3 +51,14 @@ To test and develop the app you can use the `python manage.py runserver` command
 ## sitemaps
 
 If you want to add a sitemap to your app you can customize the `sitemaps.py` file. You can then add the sitemap to the `sitemaps` dictionary in the `main\sitemaps.py` file.
+
+Sitemaps are used by search engines to index your site. Have a look at the [Django documentation](https://docs.djangoproject.com/en/5.0/ref/contrib/sitemaps/) for more information.
+
+## Logo
+
+Customize your Logo inside `app_name\static\app_name\img\`.
+
+## Templates
+
+You can customize the templates of your app by adding them to the `app_name\templates\app_name` folder. 
+They should all extend the `base_template` which points to `app_name\templates\base.html` and which extends the base `base.html` template that is located in the `main\templates` folder. Customize your `app_name\templates\base.html` template to include your logo, favicon and other basic customizations for your app.
