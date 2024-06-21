@@ -1,0 +1,22 @@
+{% extends base_template %}
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block head %}
+<style type="text/css">
+  div.row.sri-figures figure {
+    max-height: 450px;
+  }
+  div.row.sri-figures img {
+    max-height: 400px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+  <h1>{% trans "Home" %}</h1>
+  <p>{% blocktrans %}This web tool is .... {% endblocktrans %}</p>
+
+{% endblock %}
