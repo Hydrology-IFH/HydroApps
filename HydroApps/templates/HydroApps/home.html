@@ -70,6 +70,18 @@
           </div>
         </div>
       </div>
+      {% if show_unreleased_apps.sfi_mockup %}
+      <div class="col col-flex flex-grow-0">
+        <div class="card h-100">
+          <a href="{% url 'sfi_mockup:home' %}" class="stretched-link"></a>
+          <img src="{% static 'sfi_mockup/img/AVOSS-Logo_512.png' %}" class="card-img-top mx-auto" alt="Logo of AVOSS project for SFI-Mockup App">
+          <div class="card-body">
+            <h5 class="card-title">SFI-Mockup</h5>
+            <p class="card-text">{% trans "A small mockup to demonstrate the benefits of the pluvial flood index (german: SFI)." %} </p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
       {% if show_unreleased_apps.kombstra %}
       <div class="col col-flex flex-grow-0">
         <div class="card h-100">

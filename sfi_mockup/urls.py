@@ -17,12 +17,12 @@ from django.urls import path
 from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.cache import cache_page
 
-from .views import (home_view, map_view, method_view)
+from .views import (home_view, app_view, method_view)
 
-sfi_mockup = 'sfi_mockup'
+app_name = 'sfi_mockup'
 urlpatterns = [
     path('', home_view, name="home"),
-    path('map', map_view, name="map"),
+    path('app', app_view, name="app"),
     path('method', method_view, name="method"),
     # JavaScript translation catalog
     path('jsi18n',
