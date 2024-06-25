@@ -25,6 +25,6 @@ class TestMethodView(Base.NoLoginViews):
     template = 'sfi_mockup/method.html'
 
 class TestGetTSView(Base.NoLoginViews):
-    url_name = 'map'
-    url_prefix = "sfi_mockup/map"
-    template = 'sfi_mockup/map.html'
+    url_name = 'app'
+    url_prefix = "sfi_mockup/app"
+    template = 'sfi_mockup/app.html'

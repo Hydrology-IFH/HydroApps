@@ -74,6 +74,9 @@
                       {% if show_unreleased_apps.kombstra %}
                         <li><a href="{% url 'kombstra:home' %}" class="dropdown-item">KombStRA</a></li>
                       {% endif %}
+                      {% if show_unreleased_apps.sfi_mockup %}
+                        <li><a href="{% url 'sfi_mockup:home' %}" class="dropdown-item">SFI-Mockup</a></li>
+                      {% endif %}
                       <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
                         <div class="d-flex">
                           <span class="me-auto">NatUrWB</span>
