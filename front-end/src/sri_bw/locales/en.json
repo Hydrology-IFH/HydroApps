@@ -39,6 +39,7 @@
   "popup_error_msg_position": "We are sorry, there was an error finding the data for this location.\")",
   "popup_explanation": "These are the events for this cell that got categorized. More information about the data in this table can be found in the ",
   "popup_explanation_highlight": "The values that are highlighted in blue are the values taht get visualized in the actual map.",
+  "popup_explanation_method_link": "method tab",
   "popup_table_header_date": "Date",
   "popup_table_header_duration": "Duration",
   "popup_table_header_event_rank": "Event rank",
@@ -53,6 +54,5 @@
   "slider_year_label": "Year",
   "slider_year_tooltip": "Choose the year for which to get the Top event.",
   "tooltip_fullscreen_close": "Open the map in fullscreen mode",
-  "tooltip_fullscreen_open": "Close the fullscreen mode",
-  "popup_explanation_method_link": "method tab"
+  "tooltip_fullscreen_open": "Close the fullscreen mode"
 }

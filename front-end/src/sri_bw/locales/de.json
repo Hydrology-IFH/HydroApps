@@ -39,6 +39,7 @@
   "popup_error_msg_position": "Es tut uns leid, es gab einen Fehler bei der Suche nach den Daten für diesen Ort.\")",
   "popup_explanation": "Dies sind die kategorisierten Ereignisse für die gewählte Rasterzelle. Weitere Informationen zu den Daten in dieser Tabelle  finden Sie unter ",
   "popup_explanation_highlight": "Blau hinterlegt sind die Daten die auf der aktuellen Karte dargestellt sind.",
+  "popup_explanation_method_link": "Methode",
   "popup_table_header_date": "Datum",
   "popup_table_header_duration": "Dauer",
   "popup_table_header_event_rank": "Rang",
@@ -53,6 +54,5 @@
   "slider_year_label": "Jahr",
   "slider_year_tooltip": "Wählen Sie das Jahr, für das Sie das Top-Ereignis erhalten möchten.",
   "tooltip_fullscreen_close": "Schließe die Vollbildansicht",
-  "tooltip_fullscreen_open": "Öffne die Karte in der Vollbildansicht",
-  "popup_explanation_method_link": "Methode"
+  "tooltip_fullscreen_open": "Öffne die Karte in der Vollbildansicht"
 }
