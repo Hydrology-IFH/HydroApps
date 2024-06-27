@@ -1,16 +1,52 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { Layers, Sources, MapControls } from "vue3-openlayers";
+  import { transform } from 'ol/proj';
 
   import "./projections";
 
+  // DOM references to the layers
   const osmLayer = ref(null);
   const bsmpGreyLayer = ref(null);
   const bsmpColorLayer = ref(null);
 
+  // Function to show only the basemap layers in the layer switcher
   const showBasemapLayer = (layer) => {
     return layer.values_.baseLayer
   }
+
+  onMounted(() => {
+    for (let layer of [bsmpGreyLayer, bsmpColorLayer, osmLayer]) {
+      // replace the getPreview method of the tileLayer to handle actual map center instead of fixed values
+      layer.value.tileLayer.getPreview_ = layer.value.tileLayer.getPreview;
+      layer.value.tileLayer.getPreview = function(lonlat, resolution) {
+        let mapView = this.getMapInternal().getView()
+        lonlat = lonlat || mapView.getCenter()
+        resolution = resolution || mapView.getResolution()
+
+        // If the map and layer projections are different, transform the coordinates and resolution
+        let mapProj = mapView.getProjection()
+        let layerProj = this.getSource().getProjection()
+        if (mapProj.getCode() != layerProj.getCode()){
+          // Transform the map central point to the layer projection
+          let point1 = lonlat
+          let transformedPoint1 = transform(lonlat, mapProj, layerProj)
+
+          // Transform a second point, one resolution unit to the right
+          let point2 = [point1[0] + resolution, point1[1] + resolution];
+          let transformedPoint2 = transform(point2, mapProj, layerProj);
+
+          // Calculate the new resolution as the distance between the transformed points
+          let dx = transformedPoint2[0] - transformedPoint1[0];
+          let dy = transformedPoint2[1] - transformedPoint1[1];
+          resolution = Math.sqrt(dx * dx + dy * dy);
+
+          lonlat = transformedPoint1
+          }
+        return this.getPreview_(lonlat, resolution)
+      }
+    }
+  })
 </script>
 
 <template>
@@ -53,5 +89,12 @@
 
   <MapControls.OlLayerswitcherimageControl
       :mouseover="true"
+      :extent="console.log(this)"
       :displayInLayerSwitcher="showBasemapLayer" />
 </template>
+
+<style>
+  .ol-layerswitcher-image:not(.ol-collapsed) {
+    top: 2.5em;
+  }
+</style>
