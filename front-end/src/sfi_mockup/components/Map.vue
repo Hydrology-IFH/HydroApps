@@ -30,8 +30,6 @@
   #map {
     position: relative;
     width: 100%;
-    /* 100% - navbar - h1 - body_bottom */
-    height: calc(100vh - 165px - .5em - 1.2*2em - 2em);
   }
   @media screen and (max-width: 768px) {
     #map {
@@ -41,8 +39,12 @@
   }
   @media screen and (min-width: 1200px){
     #map {
-      /* 100% - navbar - h1 - p - body_bottom */
+      /* 100% - navbar - h1 - body_bottom */
       height: calc(100vh - 165px - .5em - 1.2*2.5em - 2em);
     }
+  }
+  .zoom-container.zoom-active #map{
+    /* 100vh - 2 * margin+padding of fullscreeen */
+    height: calc(100vh - 2*20px)
   }
 </style>
