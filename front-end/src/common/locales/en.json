@@ -1,4 +1,4 @@
 {
-  "tooltip_fullscreen_close": "",
-  "tooltip_fullscreen_open": ""
+  "tooltip_fullscreen_close": "Open the app in fullscreen mode",
+  "tooltip_fullscreen_open": "Close the fullscreen mode"
 }

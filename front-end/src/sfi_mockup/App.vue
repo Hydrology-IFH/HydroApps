@@ -5,7 +5,7 @@
 </script>
 <template>
   <FullscreenAble>
-    <div class="container">
+    <div class="container p-0">
       <div class="col-4"><Menu /></div>
       <div class="col-8"><Map /></div>
     </div>
