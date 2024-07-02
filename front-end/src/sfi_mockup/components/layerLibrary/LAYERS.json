@@ -1,0 +1,28 @@
+[
+  {
+    "name": "OA-Sum",
+    "file": "OA_Sum.tif",
+    "style": {
+      "collorscale": {
+        "min": 0,
+        "max": 10,
+        "colorbar": "viridis",
+        "continous": true,
+        "reverse": false
+      }
+    }
+  },
+  {
+    "name": "OA-Mean",
+    "file": "OA_Mean.tif",
+    "style": {
+      "collorscale": {
+        "min": 0,
+        "max": 10,
+        "colorbar": "viridis",
+        "continous": true,
+        "reverse": false
+      }
+    }
+  }
+]
