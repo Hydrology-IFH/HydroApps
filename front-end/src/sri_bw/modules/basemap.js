@@ -14,7 +14,7 @@ let basemap_sources = {
     url: 'https://sgx.geodatenzentrum.de/wms_basemapde',
     projection: basemap_proj,
     crossOrigin: '',
-    attributions: '© GeoBasis-DE / <a href="ttps://www.bkg.bund.de" target="_blank">BKG</a> / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>',
+    attributions: '© GeoBasis-DE / <a href="https://www.bkg.bund.de" target="_blank">BKG</a> / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>',
     params: {
       'LAYERS': 'de_basemapde_web_raster_grau',
       'TILED': false,
@@ -28,7 +28,7 @@ let basemap_sources = {
     url: 'https://sgx.geodatenzentrum.de/wms_basemapde',
     projection: basemap_proj,
     crossOrigin: '',
-    attributions: '© GeoBasis-DE / <a href="ttps://www.bkg.bund.de" target="_blank">BKG</a> / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>',
+    attributions: '© GeoBasis-DE / <a href="https://www.bkg.bund.de" target="_blank">BKG</a> / <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>',
     params: {
       'LAYERS': 'de_basemapde_web_raster_farbe',
       'TILED': false,
