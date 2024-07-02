@@ -1,20 +1,29 @@
 <script setup>
-  import { ref, onMounted, watchEffect, computed } from 'vue';
+  import { ref, onMounted, provide } from 'vue';
   import { Map, MapControls } from "vue3-openlayers";
   import { getCenter } from 'ol/extent';
 
   import "./utils/projections";
   import { useConfig } from '../stores/config';
   import Basemaps from './utils/Basemaps.vue';
+  import { LayerLib } from './layerLibrary/Library';
 
   const config = useConfig();
   const extent = ref([440776.5, 5289518.5, 457136.5, 5301268.5]);
   const center = ref(getCenter(extent.value))
+  const mapRef = ref(null);
+
+  // initialize the layer library
+  const layerLib = ref(null);
+  provide('layerLib', layerLib);
+  onMounted(() => {
+    layerLib.value = new LayerLib(mapRef.value.map);
+  })
 
 </script>
 
 <template>
-  <Map.OlMap id="map">
+  <Map.OlMap id="map" ref="mapRef">
     <Map.OlView
       :center="center" zoom="13"
       :extent="extent"
