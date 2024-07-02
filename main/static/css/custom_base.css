@@ -1,9 +1,21 @@
-.popover{max-width: 15cm; }
-p{max-width: 30cm; }
-ul{max-width: 30cm; }
+/* overall styling */
+.popover{
+  max-width: 15cm;
+}
+p{
+  max-width: 30cm;
+}
+ul{
+  max-width: 30cm;
+}
 html {
   scroll-behavior: smooth;
 }
+.container{
+  max-width:38cm;
+}
+
+/* quellen */
 .quellen{
   max-width:30cm;
   font-size: 0.8rem;
@@ -20,36 +32,8 @@ a.highlight{
   border-radius: 0.2rem;
   padding: 4px;
 }
-/* .quellen :target {
-  -webkit-animation: target-fade 5s 1;
-	-moz-animation: target-fade 5s 1;
-}
-a.highlight{
-  -webkit-animation: target-fade 5s 1;
-	-moz-animation: target-fade 5s 1;
-}
-@-webkit-keyframes target-fade {
-	0% {
-    background-color: #F4A041;
-  }
-	100% {
-    background-color: none;
-    border-radius: 0rem;
-    padding: 0px;
-  }
-}
-@-moz-keyframes target-fade {
-	0% {
-    background-color:#F4A041;
-  }
-	100% {
-    background-color: none;
-    border-radius: 0rem;
-    padding: 0px;
-  }
-} */
 
-.container{max-width:38cm;}
+/* table styling */
 table.header td{
   margin:0;
   padding:0;
@@ -60,6 +44,34 @@ table.header{
 }
 .table {
   --bs-table-striped-bg: rgba(0, 0, 0, .1);
+}
+
+/* navbar */
+div.header{
+  z-index:1001;
+  position: sticky;
+  top: 0;
+}
+table.header>tbody>tr:first-child{
+  /* position:relative; */
+  height: 115px;
+}
+table.header>tbody>tr:last-child{
+  height: 50px
+}
+td.navbar-container{
+  position: relative;
+  width: 100%;
+  background-color: #064A98
+}
+td.navbar-container>div.container{
+  max-width: none;
+  position: absolute;
+  z-index: 10;
+  top: 50px;
+  transform: translateY(-50px);
+  min-height: 115px;
+  align-content: center;
 }
 .webapps-menu span {
   font-size:34px;
@@ -82,4 +94,8 @@ div.lang-dropdown-menu{
 }
 a.nav-link{
   font-size: 24px;
+}
+/* footer */
+.footer{
+  z-index: 10;
 }

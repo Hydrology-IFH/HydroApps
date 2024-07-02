@@ -36,24 +36,25 @@
 {% block body_all %}
 <body style="background-color: #F2F2F2;">
   <!-- Navigation Pane -->
-  <div class="sticky-top" style="z-index:1001;">
+  <div class="header">
     <table class="header">
       <tr>
-        <td>
+        <td rowspan="2">
           <a href="https://www.uni-freiburg.de/" target="_blank">
             <img src="{% static "ihf_header_left.gif" %}" height="165" border="0" align="left">
           </a>
-        </td><td height="165" width="100%" style="position:relative;">
-          <img src="{% static "ihf_header_center.gif" %}" width="100%" height="165" border="0" style="position:absolute;top:0;">
-          <div class="container pt-md-2 ps-0 pe-0 ps-md-2 pe-md-2 ps-sm-1 pe-sm-1" style="position:absolute;top:0;max-width:none;">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-toggler">
+        </td>
+        <td class="navbar-container">
+          <div class="container pt-0 ps-0 pe-0" >
+            <nav class="navbar navbar-expand-xl navbar-dark bg-primary navbar-toggler">
               <div class="navbar-header">
                 <a class="navbar-brand" href="/">
                   {% block navbar_brand %}{% endblock %}
                 </a>
               </div>
               <!-- Mobile Menu -->
-              <button class="navbar-toggler second-button" type="button" data-bs-toggle="collapse"
+              <button class="navbar-toggler second-button" type="button"
+                      data-bs-toggle="collapse"
                       data-bs-target="#menuitems" aria-controls="menuitems"
                       aria-expanded="false" aria-label="Toggle navigation">
                 <div class="animated-icon2"><span></span><span></span><span></span><span></span></div>
@@ -63,8 +64,12 @@
               <div class="navbar-collapse collapse" id="menuitems">
                 <ul class="nav navbar-nav me-0">
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle webapps-menu" href="#" id="navbarDropdownApps" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="align-middle d-inline d-lg-none d-xl-inline">{% block navbar_appname %}{% endblock %}</span>
+                    <a class="nav-link dropdown-toggle webapps-menu" href="#"
+                       id="navbarDropdownApps" role="button"
+                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="align-middle d-inline d-xl-none d-xxl-inline">
+                        {% block navbar_appname %}{% endblock %}
+                      </span>
                     </a>
                     <ul class="dropdown-menu dropdown-apps" aria-labelledby="navbarDropdownApps">
                       <li><a href="{% url 'HydroApps:home' %}" class="dropdown-item"><b>Hydro-Apps</b></a></li>
@@ -105,7 +110,7 @@
                 <ul class="nav navbar-nav ms-auto">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarLangDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img src="{% if LANGUAGE_CODE == 'en' %}{% static 'img/united-kingdom.png' %}{% else %}{% static 'img/germany.png' %}{%endif%}" height="30">
+                      <img src="{% if LANGUAGE_CODE == 'en' %}{% static 'img/united-kingdom.png' %}{% else %}{% static 'img/germany.png' %}{% endif %}" height="30">
                     </a>
                   </i>
                   <div class="dropdown-menu lang-dropdown-menu" aria-labelledby="navbarLangDropdown">
@@ -124,7 +129,9 @@
                 <ul class="nav navbar-nav">
                   <li class="nav-item dropdown">
                     {% block login_navbar %}
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarLoginDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarLoginDropdown"
+                         role="button" data-bs-toggle="dropdown"
+                         aria-haspopup="true" aria-expanded="false">
                         {% if user.is_authenticated %}{{ user.username }} {% endif %}<i class="bi bi-person-circle"></i>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarLoginDropdown">
@@ -146,12 +153,17 @@
                 </ul>
               </div>
             </nav>
-
           </div>
-        </td><td>
+        </td>
+        <td rowspan="2">
           <a href="https://www.hydro.uni-freiburg.de/" target="_parent" class="d-none d-md-inline">
             <img src="{% static "ihf_header_right.gif" %}" width="205" height="165" border="0"  align="right">
           </a>
+        </td>
+      </tr>
+      <tr style="height:50px">
+        <td style="position:relative; width:100%">
+          <img src="{% static "ihf_header_center_bottom.gif" %}" width="100%" height="50px" border="0" style="position:absolute;top:0;">
         </td>
       </tr>
     </table>
@@ -187,7 +199,7 @@
 
 
     <!-- Footer -->
-    <div class="col-auto d-inline-flex position-relative fixed-bottom"
+    <div class="col-auto d-inline-flex position-relative fixed-bottom footer"
           style="left:50%; transform: translate(-50%, 0%);">
       <a href="{% url 'impressum' app_name=active_app %}" class="me-2">{% trans "imprint" %}</a>
       <a href="{% url 'datenschutz' app_name=active_app %}" class="me-2">{% trans "privacy agreement" %}</a>
