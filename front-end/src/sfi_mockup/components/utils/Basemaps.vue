@@ -89,12 +89,23 @@
 
   <MapControls.OlLayerswitcherimageControl
       :mouseover="true"
-      :extent="console.log(this)"
       :displayInLayerSwitcher="showBasemapLayer" />
 </template>
 
 <style>
   .ol-layerswitcher-image:not(.ol-collapsed) {
     top: 2.5em;
+  }
+  .ol-layerswitcher-image li.ol-visible{
+    opacity: 1!important;
+    border-color: red!important;;
+  }
+  .ol-layerswitcher-image li{
+    border-color: #FFF;
+    opacity: 0.9;
+  }
+  .ol-layerswitcher-image li.ol-layer-hidden{
+    opacity: 0.9;
+    border-color: #FFF;
   }
 </style>
