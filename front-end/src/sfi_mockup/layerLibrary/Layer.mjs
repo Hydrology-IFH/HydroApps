@@ -1,7 +1,7 @@
 import { GeoTIFF } from "ol/source";
 import TileLayer from 'ol/layer/WebGLTile.js';
-import { getColorscaleTileLayerStyle } from "~/common/utils/mapLayerStyles.mjs";
-import { useConfig } from "../stores/config.js";
+import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
+import { useConfig } from "~/stores/config.js";
 
 export class Layer {
   constructor(id, {file, style}) {

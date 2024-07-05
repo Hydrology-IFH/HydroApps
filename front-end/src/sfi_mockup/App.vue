@@ -1,5 +1,5 @@
 <script setup>
-  import FullscreenAble from '~/common/components/FullscreenAble.vue';
+  import FullscreenAble from '~~/components/FullscreenAble.vue';
   import Map from './components/Map.vue';
   import Flowchart from './components/Flowchart.vue';
   import Menu from './components/Menu.vue';
