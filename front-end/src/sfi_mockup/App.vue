@@ -8,8 +8,10 @@
   <FullscreenAble>
     <div class="container p-0">
       <div class="row"><Flowchart/></div>
-      <div class="col-4"><Menu/></div>
-      <div class="col-8"><Map/></div>
+      <div class="row">
+        <div class="col-12 col-md-4 order-md-2"><Menu/></div>
+        <div class="col-12 col-md-8 order-md-1"><Map/></div>
+      </div>
     </div>
   </FullscreenAble>
 </template>
