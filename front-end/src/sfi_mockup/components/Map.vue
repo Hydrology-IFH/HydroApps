@@ -42,14 +42,14 @@
   }
   @media screen and (max-width: 768px) {
     #map {
-      /* 100% - navbar - footer*/
-      height: calc(100vh - 165px - .5em);
+      /* 100% - navbar - footer - flowchart*/
+      height: calc(100vh - 165px - .5em - 100px);
     }
   }
-  @media screen and (min-width: 1200px){
+  @media screen and (min-width: 768px){
     #map {
-      /* 100% - navbar - h1 - body_bottom */
-      height: calc(100vh - 165px - .5em - 1.2*2.5em - 2em);
+      /* 100% - navbar - h1 - flowchart - body_bottom */
+      height: calc(100vh - 165px - .5em - 1.2*2.5em - 100px - 2em);
     }
   }
   .zoom-container.zoom-active #map{

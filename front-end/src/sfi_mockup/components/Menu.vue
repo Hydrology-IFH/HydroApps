@@ -6,4 +6,7 @@
 
 </script>
 <template>
+  <form>
+    <p>test</p>
+  </form>
 </template>
