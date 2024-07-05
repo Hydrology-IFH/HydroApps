@@ -1,0 +1,53 @@
+[
+  {
+    "id": "OA",
+    "file": "OA_circ_A2.tif",
+    "style": {
+      "colorscale": {
+        "min": 0,
+        "max": 10,
+        "colorbar": "viridis",
+        "continous": true,
+        "reverse": false
+      }
+    }
+  },
+  {
+    "id": "SFGF",
+    "file": "sfgf.tif",
+    "style": {
+      "color": [
+        "case",
+        ["!=",["band",2],0],
+        [
+          "case",
+          ["==",["band",1],1],
+          ["color",255,0,0,255],
+          ["color",0,0,0,0]
+        ],
+        ["color",0,0,0,0]
+      ]
+    }
+  },
+  {
+    "id": "SFI",
+    "file": "SFI_circ_A2.tif",
+    "style": {
+      "color": [
+        "case",
+        ["!=",["band",2],0],
+        [
+          "interpolate",
+          ["linear"],
+          ["band",1],
+          0, [84,194,31,1],
+          0.4999, [84,194,31,1],
+          0.5, [255,236,1,1],
+          2, [226,35,35,1],
+          5, [147,68,144,1]
+        ],
+        ["color",0,0,0,0]
+      ]
+    }
+  }
+]

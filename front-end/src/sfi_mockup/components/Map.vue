@@ -1,25 +1,25 @@
 <script setup>
-  import { ref, onMounted, provide } from 'vue';
+  import { ref, onMounted, watchEffect } from 'vue';
   import { Map, MapControls } from "vue3-openlayers";
   import { getCenter } from 'ol/extent';
 
   import "./utils/projections";
   import { useConfig } from '../stores/config';
   import Basemaps from './utils/Basemaps.vue';
-  import { LayerLib } from './layerLibrary/Library';
 
   const config = useConfig();
-  const extent = ref([440776.5, 5289518.5, 457136.5, 5301268.5]);
+  const extent = ref([ 441576.5, 5290318.5, 456351.5, 5300468.5 ]);
   const center = ref(getCenter(extent.value))
   const mapRef = ref(null);
 
-  // initialize the layer library
-  const layerLib = ref(null);
-  provide('layerLib', layerLib);
   onMounted(() => {
-    layerLib.value = new LayerLib(mapRef.value.map);
-  })
+    config.layerLib.initMap(mapRef.value.map)
+    config.layerLib.selectLayer("SFI")
 
+    watchEffect(() => {
+      config.layerLib.setOpacity(config.opacity)
+    })
+  })
 </script>
 
 <template>
