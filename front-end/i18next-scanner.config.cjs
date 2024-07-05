@@ -16,8 +16,8 @@ module.exports = {
     debug: false,
     pluralSeparator: 'xacy_never-happens-ß?876',
     ns: ['kombstra', 'sri_bw', 'sfi_mockup', 'common'],
-    defaultNs: "kombstra",
-    nsSeparator: ".", // not used as defined manualy in transform
+    defaultNs: "common",
+    nsSeparator: ":",
     keySeparator: false, // key separator
     removeUnusedKeys: true,
     sort: true,
@@ -33,7 +33,7 @@ module.exports = {
       content,
       { list: ['i18next.t', 'i18n.t', 'this.$t', '$t'] },
       (key, options) => {
-        let key_groups = key.split(".");
+        let key_groups = key.split(options.nsSeparator);
         let ns = key_groups.length > 1 ? key_groups[0] : nsfile;
         parser.set(
           key,

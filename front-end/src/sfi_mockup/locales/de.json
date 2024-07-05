@@ -1,1 +1,14 @@
-{}
+{
+  "node_oa_label": "Oberflächenabfluss",
+  "node_oa_tooltip": "Das Niederschlagswasser, das oberflächlich abfließt",
+  "node_precipitation_label": "Niederschlag",
+  "node_precipitation_tooltip": "Der Niederschlag der Berechnung. In diesem Fall ist es ein Bemessungsniederschlag",
+  "node_sfgf_label": "SFGF",
+  "node_sfgf_tooltip": "SFGF: <b>S</b>turz<b>f</b>lut <b>g</b>efährdete <b>F</b>läche<br>Dies sind die Gebiete, bei denin dem die Höhe oder Geschwindigkeit des fließenden Wassers eine Gefahr darstellen könnte",
+  "node_sfi_label": "SFI",
+  "node_sfi_tooltip": "SFI: <b>S</b>turz<b>f</b>lut <b>I</b>ndex<br>Der Index beschreibt die Gefahren durch eine Sturzflut.",
+  "node_soil_moisture_label": "Boden-Vorfeuchte",
+  "node_soil_moisture_tooltip": "Die Feuchtigkeit des Bodens vor dem Regenereignis",
+  "node_sri_label": "SRI",
+  "node_sri_tooltip": "SRI: <b>S</b>tark<b>r</b>egen-<b>I</b>ndex<br>Die Indexklasse des Regenereignisses"
+}

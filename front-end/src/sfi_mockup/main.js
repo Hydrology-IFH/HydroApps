@@ -1,15 +1,17 @@
+import "~/common/styles/uni-colors.css"
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import I18NextVue from 'i18next-vue'
 
+import { i18n as i18next } from "./utils/i18n.js"
 import App from './App.vue'
-import i18n from '../common/utils/i18n.js';
-import de from './locales/de.json'
-import en from './locales/en.json'
 
 const app = createApp(App)
 
 // use i18n
-i18n(app, "sfi_mockup", { de, en })
+// i18nVue(app, "sfi_mockup", { de, en })
+app.use(I18NextVue, { i18next });
 
 // use pinia
 app.use(createPinia())
