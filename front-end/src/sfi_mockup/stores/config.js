@@ -1,20 +1,22 @@
 import { defineStore } from 'pinia'
+import { LayerLib } from '../layerLibrary/Library';
 
 export const useConfig = defineStore(
   "config",
   {
     state: () => ({
       // pre event soil moisture
-      soil_moisture: "event", // one of event, dry, wet
+      soilMoisture: 50, // one of 10,50,90
 
-      // radar precipitation
-      precip_variant: "live", // one of live, version2
-
-      // active layer
-      active_layer: null,
+      // precipitation
+      sri: 7, // one of 3, 7, 11
+      duration: 60, // one of 30, 60, 120 min
 
       // opacity
       opacity: 0.5,
 
-    }),
+      // layer lib
+      layerLib: new LayerLib(),
+
+    })
   })
