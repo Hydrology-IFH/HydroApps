@@ -1,18 +1,15 @@
 import i18next from 'i18next'
-import I18NextVue from 'i18next-vue'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import de from '../locales/de.json'
 import en from '../locales/en.json'
 
-
-// for vue apps
-export default function (app, app_name, app_locales) {
-  // const app_name = Object.keys(app_locales)[0]
-
+// initialize i18next
+export function initI18n(app_name, app_locales) {
   // load locales
   const rsrc = {de: {common: de}, en: {common: en}}
   rsrc.de[app_name] = app_locales.de
   rsrc.en[app_name] = app_locales.en
+  console.log(rsrc)
 
   // i18next initialization
   i18next
@@ -33,7 +30,6 @@ export default function (app, app_name, app_locales) {
       defaultNS: app_name
     });
 
-  app.use(I18NextVue, { i18next });
-
-  return app
+  return i18next
 }
+

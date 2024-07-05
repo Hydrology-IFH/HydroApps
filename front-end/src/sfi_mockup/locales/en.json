@@ -1,1 +1,14 @@
-{}
+{
+  "node_oa_label": "Surface Runoff",
+  "node_oa_tooltip": "The precipitation water that flows off the surface",
+  "node_precipitation_label": "Precipitation",
+  "node_precipitation_tooltip": "The precipitation that has been set. In this case, it is a design precipitation",
+  "node_sfgf_label": "FFPA",
+  "node_sfgf_tooltip": "FFPA: <b>F</b>lash <b>F</b>lood <b>P</b>rone <b>A</b>rea<br>This is the area where the height or speed of flowing water could pose a danger",
+  "node_sfi_label": "FFI",
+  "node_sfi_tooltip": "FFI: <b>F</b>lash <b>F</b>lood <b>I</b>ndex<br>The expected hazard class due to a flash flood",
+  "node_soil_moisture_label": "soil moisture",
+  "node_soil_moisture_tooltip": "The moisture of the soil before the rain event",
+  "node_sri_label": "HRI",
+  "node_sri_tooltip": "HRI: <b>H</b>eavy <b>R</b>ain <b>I</b>ndex<br>The index class of the rain event"
+}
