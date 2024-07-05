@@ -1,4 +1,4 @@
-import "~/common/styles/uni-colors.css"
+import "~~/styles/uni-colors.css"
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
