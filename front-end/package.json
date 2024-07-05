@@ -29,6 +29,7 @@
   "type": "module",
   "homepage": "https://github.com/Hydrology-IFH/HydroApps",
   "dependencies": {
+    "@vue-flow/core": "^1.38.2",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "colormap": "^2.3.2",
     "i18next": "^23.10.1",

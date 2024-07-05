@@ -87,6 +87,7 @@
     font-size: x-large;
     cursor: pointer;
     color: black;
+    z-index: 500;
   }
   a.zoom-button:hover{
     opacity: 1;
