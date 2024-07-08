@@ -6,6 +6,7 @@
   width: 100%;
   /* 100% - navbar - h1 - 2*h4 - p - body_bottom */
   height: calc(100vh - 165px - .5em - 1.2*(1.375em + 1.5vw + .5em) - (2*1.2*(1.275em + 0.3vw) - .5em) - 1.2*2em - 2em);
+  min-height: 70vh;
 }
 @media screen and (max-width: 768px) {
   #map {
