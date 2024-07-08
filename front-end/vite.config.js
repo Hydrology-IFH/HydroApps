@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vuetify from 'vite-plugin-vuetify'
 import path from 'path'
 
 const rootDir = __dirname
@@ -19,7 +20,10 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    vuetify({ autoImport: true })
+  ],
   resolve: {
     alias: [
       { find: "vue", replacement: 'vue/dist/vue.esm-bundler.js' },
