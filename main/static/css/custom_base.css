@@ -73,6 +73,9 @@ td.navbar-container>div.container{
   min-height: 115px;
   align-content: center;
 }
+nav.navbar{
+  background-color: #0000;
+}
 .webapps-menu span {
   font-size:34px;
   color: var(--bs-navbar-brand-hover-color);
