@@ -97,3 +97,8 @@
     z-index: 2000;
   }
 </style>
+<style>
+  .zoom-elements .container{
+    max-width: 100%!important;
+  }
+</style>
