@@ -53,7 +53,7 @@
     }
   }
   .zoom-container.zoom-active #map{
-    /* 100vh - 2 * margin+padding of fullscreeen */
-    height: calc(100vh - 2*20px)
+    /* 100vh - 2 * margin+padding of fullscreeen - flowchart*/
+    height: calc(100vh - 2*20px - 100px)
   }
 </style>
