@@ -51,16 +51,6 @@ export const nodesInit = [
     position: { x: 400, y: 50 },
     type: nodeType,
     data: {
-      label: i18n.t('node_sfgf_label'),
-      layerID: 'SFGF',
-      tooltip: i18n.t('node_sfgf_tooltip'),
-    },
-  },
-  {
-    id: '6',
-    position: { x: 500, y: 50 },
-    type: nodeType,
-    data: {
       label: i18n.t('node_sfi_label'),
       layerID: 'SFI',
       tooltip: i18n.t('node_sfi_tooltip'),
@@ -89,15 +79,9 @@ export const edgesInit = [
     type: edgeType,
   },
   {
-    id: 'OA->SFGF',
+    id: 'OA->SFI',
     source: '3',
     target: '5',
-    type: edgeType,
-  },
-  {
-    id: 'SFGF->SFI',
-    source: '5',
-    target: '6',
     type: edgeType,
   }
 ]
