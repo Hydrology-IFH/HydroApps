@@ -26,7 +26,6 @@ export class Layer {
   _addConfigSubscription() {
     if (!this._config_subscibed) {
       this.config.$subscribe((mutation) => {
-        console.log(mutation)
           if (mutation.events?.key === "opacity") {
             this.updateOpacity()
           } else if (mutation.events?.key === "sri" || mutation.events?.key === "duration" || mutation.events?.key === "soilMoisture") {
