@@ -1,20 +1,24 @@
 <script setup>
-  import { ref, onMounted, watchEffect } from 'vue';
+  import { ref, onMounted, computed } from 'vue';
   import { Map, MapControls } from "vue3-openlayers";
   import { getCenter } from 'ol/extent';
 
-  import "./utils/projections";
-  import { useConfig } from '../stores/config';
-  import Basemaps from './utils/Basemaps.vue';
+  import { useConfig } from '~/stores/config.js';
+  import "./map/projections";
+  import Basemaps from './map/Basemaps.vue';
+  import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
 
   const config = useConfig();
   const extent = ref([ 441576.5, 5290318.5, 456351.5, 5300468.5 ]);
   const center = ref(getCenter(extent.value))
   const mapRef = ref(null);
+  const map = ref(null);
+  const layer = computed(() => config.layerLib.selectedLayer)
 
   onMounted(() => {
     config.layerLib.initMap(mapRef.value.map)
     config.layerLib.selectLayer("SFI")
+    map.value = mapRef.value.map;
   })
 </script>
 
@@ -26,6 +30,13 @@
       projection="EPSG:25832" />
 
       <Basemaps/>
+      <MapHover/>
+      <MapHoverOverlay
+          v-if="map != null && layer != null"
+          :map="map"
+          :layer="layer.olLayer"
+          :unit="layer.unit"
+          :decimals="layer.decimals"/>
 
     <MapControls.OlFullscreenControl />
   </Map.OlMap>

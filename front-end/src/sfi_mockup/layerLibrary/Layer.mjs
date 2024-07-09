@@ -4,9 +4,11 @@ import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
 
 export class Layer {
-  constructor(id, {file, style}) {
+  constructor(id, {file, style, decimals=2, unit=""}) {
     this.id = id;
     this.file = file;
+    this.decimals = decimals;
+    this.unit = unit;
     this._styleInit = style;
     this.selected = false;
     this.map = null;
@@ -42,7 +44,7 @@ export class Layer {
   get style() {
     if (!this._style) {
       if (this._styleInit.hasOwnProperty("colorscale")) {
-        let opts = this._style.colorscale;
+        let opts = this._styleInit.colorscale;
         this._style = getColorscaleTileLayerStyle(
           opts.min, opts.max, opts.colorbar, opts.continous, opts.reverse);
       } else {
