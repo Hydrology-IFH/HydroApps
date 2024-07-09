@@ -7,14 +7,32 @@ export class Layer {
   constructor(id, {file, style}) {
     this.id = id;
     this.file = file;
-    this._style = style;
-    this.onMap = false;
+    this._styleInit = style;
+    this.selected = false;
     this.map = null;
+    this._olLayers = {};
+
+    // subscribe to config store
     this.config = useConfig();
+    this._config_subscibed = false;
   }
 
   initMap(map) {
     this.map = map;
+  }
+
+  _addConfigSubscription() {
+    if (!this._config_subscibed) {
+      this.config.$subscribe((mutation) => {
+        console.log(mutation)
+          if (mutation.events?.key === "opacity") {
+            this.updateOpacity()
+          } else if (mutation.events?.key === "sri" || mutation.events?.key === "duration" || mutation.events?.key === "soilMoisture") {
+            this.updateLayer();
+          }
+      });
+      this._config_subscibed = true;
+    }
   }
 
   get url() {
@@ -22,28 +40,21 @@ export class Layer {
   }
 
   get style() {
-    if (this._style.hasOwnProperty("colorscale")) {
-      let opts = this._style.colorscale;
-      return getColorscaleTileLayerStyle(
-        opts.min, opts.max, opts.colorbar, opts.continous, opts.reverse);
-    } else {
-      return this._style;
+    if (!this._style) {
+      if (this._styleInit.hasOwnProperty("colorscale")) {
+        let opts = this._style.colorscale;
+        this._style = getColorscaleTileLayerStyle(
+          opts.min, opts.max, opts.colorbar, opts.continous, opts.reverse);
+      } else {
+        this._style = this._styleInit;
+      }
     }
-  }
-
-  get visible() {
-    return this.hasOwnProperty("_olLayer") ? this.olLayer.getVisible() : false;
-  }
-
-  set visible(value) {
-    if (this.hasOwnProperty("_olLayer")) {
-      this.olLayer.setVisible(value);
-    }
+    return this._style;
   }
 
   get olLayer() {
-    if (!this._olLayer) {
-      this._olLayer = new TileLayer({
+    if (!this._layerCreated) {
+      let new_layer = new TileLayer({
         source: new GeoTIFF({
           sources: [{ url: this.url }],
           sourceOptions: {
@@ -54,36 +65,48 @@ export class Layer {
         }),
         visible: false
       });
-      this._olLayer.setStyle(this.style);
-      this._olLayer.setOpacity(this.config.opacity);
+      this._olLayers[this.url] = new_layer;
+      new_layer.setStyle(this.style);
+      new_layer.setOpacity(this.config.opacity/100);
+      new_layer.setVisible(this.selected);
+      this.map.addLayer(new_layer);
+      this._addConfigSubscription();
     }
-    return this._olLayer;
+    return this._olLayers[this.url];
+  }
+
+  get _layerCreated() {
+    return this._olLayers[this.url]? true : false;
   }
 
   setOpacity(value) {
-    if (this.hasOwnProperty("_olLayer")) {
-      this.olLayer.setOpacity(value);
-    }
+    Object.entries(this._olLayers).forEach(([key, layer]) => {
+      layer.setOpacity(value);
+    });
   }
 
-  checkOrAddToMap() {
-    if (!this.onMap) {
-      if (this.map == null) {
-        new Error("Map not initialized");
-      }
-      this.map.addLayer(this.olLayer);
-      this.onMap = true;
+  updateOpacity() {
+    this.setOpacity(this.config.opacity/100);
+  }
+
+  updateLayer() {
+    Object.entries(this._olLayers).forEach(([key, layer]) => {
+      layer.setVisible(false);
+    });
+    if (this.selected) {
+      this.olLayer.setVisible(this.selected);;
     }
   }
 
   select() {
-    this.checkOrAddToMap(this.map);
-    this.visible = true;
+    this.selected = true;
+    this.updateLayer();
     console.info(`Layer "${this.id}" got activated`);
   }
 
   unselect() {
-    this.visible = false;
+    this.selected = false;
+    this.updateLayer();
     console.info(`Layer "${this.id}" got deactivated`);
   }
 }

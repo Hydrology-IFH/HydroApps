@@ -35,7 +35,7 @@ export class LayerLib {
   }
 
   get selectedLayer() {
-    return this.layers.find((layer, key) => layer.visible);
+    return this.layers.find((layer, key) => layer.selected);
   }
 
   initMap(map) {
