@@ -49,7 +49,7 @@
     }
   .zoom-container.zoom-active{
     background-color: #696969;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     height: 100vh;
@@ -62,6 +62,7 @@
     border-radius: 10px;
     margin: 10px;
     min-height: calc(100vh - 20px);
+    height: calc(100% - 20px);
     overflow-y: auto;
     overflow-x: hidden;
   }
