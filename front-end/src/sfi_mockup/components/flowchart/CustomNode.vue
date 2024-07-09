@@ -95,7 +95,7 @@
     cursor: default;
   }
 
-  .custom-node icon {
+  .custom-node i {
     margin-left: 5px;
   }
 
