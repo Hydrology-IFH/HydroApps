@@ -1,5 +1,5 @@
 <script setup>
-  import { onMounted, ref } from 'vue';
+  import { onMounted, ref, computed } from 'vue';
   import { Position, Handle } from '@vue-flow/core';
 
   // props were passed from the slot using `v-bind="customNodeProps"`
@@ -20,17 +20,31 @@
   })
 
   const nodeRef = ref(null)
-  const layer = ref(props.config.layerLib.getLayer(props.data.layerID) ?? {})
+  const layer = ref(props.config.layerLib.getLayer(props.data.layerID) ?? null)
+  const hasLayer = computed(() => {
+    return layer.value != null
+  })
 
   // select Layer on Click
   const onClick = (event) => {
-    props.config.layerLib.selectLayer(layer.value)
+    if (hasLayer.value){
+      props.config.layerLib.selectLayer(layer.value)
+    }
   }
+
+  // node classes
+  const nodeClasses = computed(() => {
+    return {
+      selected: layer.value?.selected,
+      "not-available": !hasLayer.value,
+      left: layer.value?.selected_side == 'left',
+      right: layer.value?.selected_side == 'right',
+    }
+  })
 
   // set Tooltip
   onMounted(() => {
     if (props.data.tooltip) {
-      layer.value.tooltip = props.data.tooltip
       new window.bootstrap.Tooltip(
         nodeRef.value,
         { title: props.data.tooltip, trigger: "hover", html: true, placement: "top" })
@@ -41,11 +55,11 @@
 <template>
   <div class="custom-node bs-primary-bg-subtle"
        ref="nodeRef"
-       :class="{'selected': layer.selected, 'left': layer.selected_side == 'left', 'right': layer.selected_side == 'right'}"
+       :class="nodeClasses"
        :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null"
        @click="onClick">
     {{ data.label }}
-    <icon v-if="data.icon" class="bi" :class="`${data.icon}`"></icon>
+    <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>
     <Handle type="source" :position="Position.Right" />
     <Handle type="target" :position="Position.Left" />
   </div>
@@ -66,15 +80,19 @@
   }
   .custom-node.selected {
     border: 3px solid var(--uni-green-80);
-    background-color: var(--uni-green-40);
+    background-color: var(--uni-green-60);
   }
   .custom-node.left {
     border: 3px solid var(--uni-green-80);
-    background-color: var(--uni-green-40);
+    background-color: var(--uni-green-60);
   }
   .custom-node.right {
     border: 3px solid var(--uni-rose-80);
     background-color: var(--uni-rose-40);
+  }
+  .custom-node.not-available {
+    background-color: var(--uni-brown-40);
+    cursor: default;
   }
 
   .custom-node icon {
