@@ -15,10 +15,6 @@
   onMounted(() => {
     config.layerLib.initMap(mapRef.value.map)
     config.layerLib.selectLayer("SFI")
-
-    watchEffect(() => {
-      config.layerLib.setOpacity(config.opacity)
-    })
   })
 </script>
 
@@ -39,6 +35,7 @@
   #map {
     position: relative;
     width: 100%;
+    min-height: min(80vh, 100%, max(70vh, 400px));
   }
   @media screen and (max-width: 768px) {
     #map {
