@@ -7,6 +7,7 @@
   import "./map/projections";
   import Basemaps from './map/Basemaps.vue';
   import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
+  import MapLegend from "./map/MapLegend.vue";
 
   const config = useConfig();
   const extent = ref([ 441576.5, 5290318.5, 456351.5, 5300468.5 ]);
@@ -37,6 +38,12 @@
           :layer="layer.olLayer"
           :unit="layer.unit"
           :decimals="layer.decimals"/>
+      <MapLegend
+          v-if="map != null && layer != null"
+          :map="map"
+          :layer_name="layer.name"
+          :style="layer.style"
+          :unit="layer.unit"/>
 
     <MapControls.OlFullscreenControl />
   </Map.OlMap>

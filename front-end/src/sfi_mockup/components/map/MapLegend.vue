@@ -2,16 +2,20 @@
   import { ref, onMounted, computed } from 'vue';
   import Overlay from 'ol-ext/control/Overlay.js';
   import Button from 'ol-ext/control/Button.js';
-  import { get_reasonable_digits } from '~/components/utils/reasonable_digits';
+
+  import { getReasonableDigits } from '~~/utils/reasonableDigits';
+  import { useConfig } from '~/stores/config.js';
 
   // define variables
   const props = defineProps({
     layer_name: String,
+    layer: Object,
     style: Object,
     map: Object,
     unit: { type: String, default: "mm" },
   })
   const legend_div = ref(null)
+  const layerLib = useConfig().layerLib;
 
   const label = computed(() => {
     if (props.unit !== "") {
@@ -20,6 +24,7 @@
       return props.layer_name
     }
   })
+  // get styling from style definition
   const style_col_ticks = computed(() => {
     return props.style.color[2].slice(3);
   })
@@ -48,7 +53,7 @@
       ticks = [tick_min, tick_min + (tick_max - tick_min) / 2, tick_max];
     }
     // round ticks
-    let digits = get_reasonable_digits(tick_min, tick_max);
+    let digits = getReasonableDigits(tick_min, tick_max);
     let rdigits = Math.pow(10, digits);
     ticks = ticks.map((el) => Math.round(el*rdigits)/rdigits);
 
@@ -59,6 +64,22 @@
     let colors = style_col_ticks.value.filter((el) => el instanceof Array);
     return `background: linear-gradient(to right, rgb(${colors.join("), rgb(")})`
   })
+
+  // special stylings
+  var sri_T = {
+    1: { T: "1 - 2" },
+    2: { T: ">2 - 5" },
+    3: { T: ">5 - 10" },
+    4: { T: ">10 - 25" },
+    5: { T: ">25 - 30" },
+    6: { T: ">30 - 50" },
+    7: { T: ">50 - 100" },
+    8: { T: ">100", F: "1,20 - 1,39" },
+    9: { T: ">100", F: "1,40 - 1,59" },
+    10: { T: ">100", F: "1,60 - 2,19" },
+    11: { T: ">100", F: "2,20 - 2,79" },
+    12: { T: ">100", F: "&GreaterSlantEqual;2,80" }
+  }
 
   // create legend overlay
   var overlay = null;
@@ -97,7 +118,21 @@
   <div ref="legend_div">
     <button type="button" class="btn btn-close" role="button" @click="close"></button>
     <div class="colorbar colorbar-con-dis" ref="legend_div">
-      <div class="colorbar-con ol-legend">
+      <div class="colorbar-dis  ol-legend" v-if="layerLib.selectedLayer.id=='SRI'">
+          <div class="colorbar-label">SRI</div>
+          <div class="colorbar-elements">
+            <div class="colorbar-element">
+              <div class="colorbar-color" style="background: rgb(161, 194, 31);"></div>
+              <div class="colorbar-tick">1</div>
+            </div>
+            <div class="colorbar-element">
+              <div class="colorbar-color" style="background: rgb(178, 207, 129);"></div>
+              <div class="colorbar-tick">2</div></div><div class="colorbar-element">
+                  <div class="colorbar-color" style="background: rgb(222, 225, 14);"></div><div class="colorbar-tick">3</div></div><div class="colorbar-element">
+                    <div class="colorbar-color" style="background: rgb(255, 236, 1);"></div><div class="colorbar-tick">4</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(241, 144, 6);"></div><div class="colorbar-tick">5</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(233, 98, 25);"></div><div class="colorbar-tick">6</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(229, 81, 26);"></div><div class="colorbar-tick">7</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(226, 35, 35);"></div><div class="colorbar-tick">8</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(227, 41, 64);"></div><div class="colorbar-tick">9</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(228, 35, 95);"></div><div class="colorbar-tick">10</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(224, 64, 141);"></div><div class="colorbar-tick">11</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(160, 69, 144);"></div><div class="colorbar-tick">12</div></div><div class="colorbar-element"><div class="colorbar-color" style="background: rgb(200, 200, 200);"></div><div class="colorbar-tick">Kein Ereignis</div></div></div></div>
+
+      </div>
+      <div class="colorbar-con ol-legend" v-else>
         <div class="colorbar-bar" :style="cb_style"></div>
         <div class="colorbar-ticks">
           <div class="colorbar-tick" v-for="tick in ticks" :key="tick">{{ tick }}</div>
