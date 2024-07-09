@@ -10,20 +10,20 @@
     2: "1 h",
     3: "2 h",
   }
+  const sliderToDur = {
+    1: 30,
+    2: 60,
+    3: 120,
+  }
 
-  const sliderValue = ref(config.sri);
+  const durToSlider = Object.fromEntries(
+    Object.entries(sliderToDur).map(
+      (val) => [val[1], parseInt(val[0])])
+  )
+
+  const sliderValue = ref(durToSlider[config.duration]);
   watchEffect(() => {
-    switch (sliderValue.value) {
-      case 1:
-        config.duration = 30;
-        break;
-      case 2:
-        config.duration = 60;
-        break;
-      case 3:
-        config.duration = 120;
-        break;
-    }
+    config.duration = sliderToDur[sliderValue.value];
   })
 </script>
 <template>

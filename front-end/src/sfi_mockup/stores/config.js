@@ -13,7 +13,7 @@ export const useConfig = defineStore(
       duration: 60, // one of 30, 60, 120 min
 
       // opacity
-      opacity: 0.5,
+      opacity: 80,
 
       // layer lib
       layerLib: new LayerLib(),
