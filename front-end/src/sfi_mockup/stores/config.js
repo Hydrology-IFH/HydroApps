@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { LayerLib } from '../layerLibrary/Library';
+import { LayerLib } from '~/layerLibrary/Library.mjs';
 
 export const useConfig = defineStore(
   "config",
