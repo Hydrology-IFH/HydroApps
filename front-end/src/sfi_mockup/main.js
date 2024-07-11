@@ -6,7 +6,6 @@ import { createPinia } from 'pinia'
 import I18NextVue from 'i18next-vue'
 
 // vuetify
-import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import { vuetifyTheme } from '~~/styles/vuetifyTheme.js'
 
