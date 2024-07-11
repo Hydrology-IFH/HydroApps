@@ -1,3 +1,5 @@
+import "./vuetify.css"
+
 const getCSSVar = (name) => {
   return getComputedStyle(document.documentElement).getPropertyValue(name);
 }
