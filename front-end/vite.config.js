@@ -36,7 +36,6 @@ export default defineConfig({
         replacement: '~',
         customResolver(src, importer) {
           const app_name = path.relative(rootDir, importer).split(path.sep)[1];
-          console.log("customResolver", src, importer);
           return path.join(rootDir, "src", app_name, src.slice(1))
         },
       },

@@ -1,13 +1,12 @@
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { useConfig } from '../stores/config';
+
   import MenuPrecipitationForce from './menu/MenuPrecipitationForce.vue';
   import MenuSoilMoisture from './menu/MenuSoilMoisture.vue';
   import MenuDuration from './menu/MenuDuration.vue';
   import MenuOpacity from './menu/MenuOpacity.vue';
 
   const fromRef = ref(null);
-  const config = useConfig();
 
   onMounted(() => {
     fromRef.value.querySelectorAll('[data-bs-toggle=tooltip]').forEach((input) => {

@@ -1,4 +1,4 @@
-import LAYERS from './LAYERS.json';
+import { LAYERS } from './LAYERS.js';
 import { Layer } from './Layer';
 
 export class LayerLib {

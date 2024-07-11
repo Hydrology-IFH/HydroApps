@@ -1,4 +1,7 @@
 {
+  "label_layer_oa": "Surface runoff",
+  "label_layer_precipitation": "Precipitation",
+  "label_layer_sfi": "Flash flood index (FFI, german: SFI)",
   "menu_PrecipitationForce_label": "Precipitation force",
   "menu_PrecipitationForce_tooltip": "The force of the precipitation event as a qualitative category<br>The events were derived from the Baden-Württemberg-wide KoStRA data",
   "menu_SoilMoisture_10": "dry",
@@ -19,12 +22,14 @@
   "node_oa_tooltip": "The precipitation water that flows off the surface",
   "node_precipitation_label": "Precipitation",
   "node_precipitation_tooltip": "The precipitation that has been set. In this case, it is a design precipitation",
-  "node_sfgf_label": "FFPA",
-  "node_sfgf_tooltip": "FFPA: <b>F</b>lash <b>F</b>lood <b>P</b>rone <b>A</b>rea<br>This is the area where the height or speed of flowing water could pose a danger",
-  "node_sfi_label": "FFI",
-  "node_sfi_tooltip": "FFI: <b>F</b>lash <b>F</b>lood <b>I</b>ndex<br>The expected hazard class due to a flash flood",
+  "node_sfi_label": "FFI/SRI",
+  "node_sfi_tooltip": "FFI: <b>F</b>lash <b>F</b>lood <b>I</b>ndex (german: SRI)<br>The expected hazard class due to a flash flood",
   "node_soil_moisture_label": "soil moisture",
   "node_soil_moisture_tooltip": "The soil moisture before the rain event",
-  "node_sri_label": "HRI",
-  "node_sri_tooltip": "HRI: <b>H</b>eavy <b>R</b>ain <b>I</b>ndex<br>The index class of the rain event"
+  "node_sri_label": "HRI/SRI",
+  "node_sri_tooltip": "HRI: <b>H</b>eavy <b>R</b>ain <b>I</b>ndex (german: SRI)<br>The index class of the rain event",
+  "tooltip_sfi_0": "no to low risk",
+  "tooltip_sfi_1": "moderate risk",
+  "tooltip_sfi_2": "considerable to great danger",
+  "tooltip_sfi_3": "very great danger"
 }

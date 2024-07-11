@@ -4,7 +4,7 @@ import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
 
 export class Layer {
-  constructor(id, {file, style, decimals=2, unit=""}) {
+  constructor(id, {file, style, decimals=2, unit="", ...kwargs}) {
     this.id = id;
     this.file = file;
     this.decimals = decimals;
@@ -13,6 +13,7 @@ export class Layer {
     this.selected = false;
     this.map = null;
     this._olLayers = {};
+    kwargs && Object.entries(kwargs).forEach(([key, value]) => this[key] = value);
 
     // subscribe to config store
     this.config = useConfig();
