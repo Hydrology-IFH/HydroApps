@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, computed } from 'vue';
   import { containsCoordinate } from 'ol/extent.js';
   import Overlay from 'ol/Overlay.js';
 
@@ -7,12 +7,22 @@
     map: Object,
     layer: Object,
     unit: { type: String, default: "mm" },
-    decimals: { type: Number, default: 2}
+    decimals: { type: Number, default: 2 },
+    valueConverter: { type: Function, default: (x) => x }
   })
 
   const hover_div = ref(null)
   const hover_text = ref("")
   const hover_active = ref(false)
+
+  const valueConverter = computed(() => {
+    if (typeof props.valueConverter == "function") {
+      return props.valueConverter;
+    }
+    return (x) => x;
+  })
+  window.valueConverter = valueConverter;
+  window.props = props;
 
   // create overlay
   onMounted(() => {
@@ -47,7 +57,9 @@
       if ((pix_value != null) && (pix_value[1] != 0)) {
         overlay.setPosition(evt.coordinate);
         let dec = props.decimals;
-        hover_text.value = `${Math.round(parseFloat(pix_value[0]) * 10 ** dec) / 10 ** dec} ${props.unit}`;
+        let val = valueConverter.value(
+          Math.round(parseFloat(pix_value[0]) * 10 ** dec) / 10 ** dec)
+        hover_text.value = `${val} ${ props.unit }`;
       } else {
         overlay.setPosition(undefined);
       }

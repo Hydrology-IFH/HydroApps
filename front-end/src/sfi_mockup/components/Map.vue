@@ -31,13 +31,13 @@
       projection="EPSG:25832" />
 
       <Basemaps/>
-      <MapHover/>
       <MapHoverOverlay
           v-if="map != null && layer != null"
           :map="map"
           :layer="layer.olLayer"
           :unit="layer.unit"
-          :decimals="layer.decimals"/>
+          :decimals="layer.decimals"
+          :valueConverter="layer.valueConverter"/>
       <MapLegend
           v-if="map != null && layer != null"
           :map="map"
