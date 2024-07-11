@@ -150,6 +150,8 @@ def download_ts(request, *args, **kwargs):
         kinds=[kind]
 
     nas_allowed = kind in ["raw", "qc"]
+    # temporarily allow all NAs as ET from DWD is not providen anymore
+    nas_allowed = True
 
     para_dict = dict(
         stids=stids,
