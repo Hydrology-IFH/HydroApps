@@ -51,12 +51,13 @@ class TSDownloads(models.Model):
                     aggregation, add_na_share, add_t_min, add_t_max,
                     toolbox_format, request):
         temp_zf = CACHE_DIR.joinpath(
-            "ts_produkt_" + datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")+".zip")
+            "ts_produkt_" + datetime.datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")+".zip")
         # check if already existing and add number
         i=0
         while len(cls.objects.filter(filepath=temp_zf))>0:
             temp_zf = CACHE_DIR.joinpath(
-            "ts_produkt_" + datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")+f"_{i}.zip")
+                "ts_produkt_" + datetime.datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")+f"_{i}.zip")
+            i+=1
 
         obj = cls.objects.create(
             user=request.user,
