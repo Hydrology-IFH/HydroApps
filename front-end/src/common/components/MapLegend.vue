@@ -2,63 +2,56 @@
   import { ref, onMounted, computed } from 'vue';
   import Overlay from 'ol-ext/control/Overlay.js';
   import Button from 'ol-ext/control/Button.js';
-  import { getReasonableDigits } from '~~/utils/reasonableDigits';
 
   // define variables
   const props = defineProps({
-    layer_name: String,
-    style: Object,
+    title: String,
+    elements: Array, // Array of elements {colors, labels=[String] || [{label, tooltip}], type="con"} || {color, label, tooltip, type="dis"} }
     map: Object,
-    unit: { type: String, default: "mm" },
+    titlePosition: { type: Boolean, default: "topIfContinous" } // top/bottom/topIfContinous, default topIfContinous: depending if continous elements are present,
   })
   const legend_div = ref(null)
 
-  const label = computed(() => {
-    if (props.unit !== "") {
-      return `${props.layer_name} in ${props.unit}`
-    } else {
-      return props.layer_name
-    }
-  })
-  const style_col_ticks = computed(() => {
-    return props.style.color[2].slice(3);
-  })
-  const ticks = computed(() => {
-    // calculate amount of ticks
-    let ticks = style_col_ticks.value.filter((el) => !(el instanceof Array));
-    let n_ticks = ticks.length;
-    let tick_min = ticks[0];
-    let tick_max = ticks.at(-1);
-    let n_max = 8;
-    if (n_ticks > n_max) {
-      // select only some of the ticks
-      let factor;
-      let start_i = (n_ticks - (n_ticks % n_max) + n_max) / n_max;
-      for (let i = start_i; i <= n_ticks+1; i++) {
-        if ((n_ticks+1) % i == 0) {
-          factor = i;
-          break;
+  // get correct legend elements
+  const elements = computed(() => {
+    if (props.elements.length >= 0) {
+      let validElements = props.elements.filter((el) => {
+        if (el.type === "dis") {
+          return el.hasOwnProperty("label") && el.hasOwnProperty("color")
+        } else if (el.type === "con") {
+          return (el.hasOwnProperty("colors") && el.hasOwnProperty("labels") &&
+            (el.labels.map((label) => (
+              (typeof label === "string") || (typeof label === "number") ||
+              ((typeof label == "object") && label.hasOwnProperty("label"))
+            ))).reduce((a, b) => a && b, true))
         }
+      })
+      // convert all continous eleements labels to Object format
+      return validElements.map((el) => {
+        if (el.type === "con") {
+          el.labels = el.labels.map((label) => (typeof label === "object") ? label : {label: label} )
+        }
+        return el
+      })
+    }
+  })
+
+  // get title position
+  const titleTop = computed(() => {
+    return props.titlePosition === "top" || (props.titlePosition === "topIfContinous" && elements.value.some((el) => el.type === "con"))
+  })
+
+  // get style for continous elements
+  const cb_style = function(colors) {
+    colors = colors.map((color) => {
+      if (typeof color === "string") {
+        return color
+      } else {
+        return `rgb(${color.join(", ")})`
       }
-      ticks = ticks.filter((el) => ((ticks.indexOf(el)+2) % factor == 0) | (ticks.indexOf(el) == 0));
-      n_ticks = ticks.length;
-    }
-    if ((n_ticks == 2) & ((tick_max - tick_min) % 2 == 0)) {
-      n_ticks = 3;
-      ticks = [tick_min, tick_min + (tick_max - tick_min) / 2, tick_max];
-    }
-    // round ticks
-    let digits = getReasonableDigits(tick_min, tick_max);
-    let rdigits = Math.pow(10, digits);
-    ticks = ticks.map((el) => Math.round(el*rdigits)/rdigits);
-
-    return ticks
-  })
-
-  const cb_style = computed(() => {
-    let colors = style_col_ticks.value.filter((el) => el instanceof Array);
-    return `background: linear-gradient(to right, rgb(${colors.join("), rgb(")})`
-  })
+    })
+    return {background: `linear-gradient(to right, ${colors.join(", ")})`}
+  }
 
   // create legend overlay
   var overlay = null;
@@ -96,46 +89,76 @@
 <template>
   <div ref="legend_div">
     <button type="button" class="btn btn-close" role="button" @click="close"></button>
-    <div class="colorbar colorbar-con-dis" ref="legend_div">
-      <div class="colorbar-con ol-legend">
-        <div class="colorbar-bar" :style="cb_style"></div>
-        <div class="colorbar-ticks">
-          <div class="colorbar-tick" v-for="tick in ticks" :key="tick">{{ tick }}</div>
+    <div class="colorbar" ref="legend_div">
+      <slot>
+        <div class="colorbar-title" v-if="titleTop">{{ title }} </div>
+        <div class="colorbar-elements">
+          <div v-for="element in elements" :key="element.label" :class="`colorbar-${element.type}`">
+            <slot v-if="element.type=='con'">
+              <div class="colorbar-bar" :style="cb_style(element.colors)"></div>
+              <div class="colorbar-ticks">
+                <div class="colorbar-tick" v-for="label in element.labels" :key="label.label">
+                  {{ label.label }}
+                  <v-tooltip v-if="label.hasOwnProperty('tooltip')"
+                            :text="label.tooltip"
+                            class="arrow-bottom" offset="-4px"
+                            activator="parent" location="top"/>
+                </div>
+              </div>
+            </slot>
+            <slot v-else>
+              <div class="colorbar-color" :style="{ background: element.color }"></div>
+              <div class="colorbar-tick">
+                {{ element.label }}
+                <v-tooltip v-if="element.hasOwnProperty('tooltip')"
+                            :text="element.tooltip"
+                            class="arrow-bottom" offset="-4px"
+                            activator="parent" location="top"/>
+              </div>
+            </slot>
+          </div>
         </div>
-        <div class="colorbar-label">{{ label }}</div>
-      </div>
+        <div class="colorbar-title"  v-if="!titleTop">{{ title }} </div>
+      </slot>
     </div>
   </div>
 </template>
 
 <style scoped>
-  div.colorbar-label{
+  /* Colorbar */
+  div.colorbar{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  /* Colorbar title */
+  div.colorbar-title{
     font-weight: 600;
     font-size: 1rem;
   }
+  div.colorbar .colorbar-title:first-child{
+    margin-bottom: 5px;
+    margin-top: -5px;
+  }
+  div.colorbar .colorbar-title:last-child{
+    text-align: center;
+  }
 
-  /* continous and discret colorbar mixed */
-  div.colorbar-con-dis{
+  /* the real legend elements */
+  div.colorbar-elements {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-  }
-  div.colorbar-con-dis > div.colorbar-con{
-    width: -moz-available;
-    width: -webkit-fill-available;
-  }
-  div.colorbar-con-dis > div.colorbar-dis{
-    margin-top: 5px;
-    margin-left: 10px;
-    width: fit-content;
-  }
-  div.colorbar-con-dis > div.colorbar-dis .colorbar-tick{
-    width: max-content;
+    flex-wrap: nowrap;
+    width: 100%;
   }
 
   /* continous colorbar */
   div.colorbar-con {
-    margin-top: 5px;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    min-width: 50%;
   }
 
   div.colorbar-con div.colorbar-bar {
@@ -149,26 +172,29 @@
     flex-wrap: nowrap;
     height: 20px;
     text-align: center;
+    margin: 0px 1rem 0px 1rem;
   }
-  div.colorbar-con div.colorbar-tick {
+  .colorbar-con>.colorbar-ticks>.colorbar-tick:first-child {
+    transform: translateX(-50%);
+  }
+  .colorbar-con>.colorbar-ticks>.colorbar-tick:last-child {
+    transform: translateX(50%);
+  }
+  div.colorbar-con {
     min-width: 2rem;
-  }
-  div.colorbar-con div.colorbar-label{
-    text-align: center;
   }
 
   /* discrete colorbar */
-  div.colorbar-dis div.colorbar-element {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  div.colorbar-dis div.colorbar-element > div.colorbar-color{
+  div.colorbar-dis > div.colorbar-color{
     width: 1.3rem;
     height: 1.3rem;
     border: 1px solid black;
     margin-right: calc(.1em + .35vw);
     margin-left: calc(.1em + .35vw);
+  }
+  div.colorbar-dis > div.colorbar-tick{
+    width: 100%;
+    text-align: center;
   }
 
   /* close button */
@@ -179,7 +205,6 @@
     left: auto;
     font-size: 1em;
   }
-
 </style>
 <style>
   /* legend button */
