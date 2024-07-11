@@ -1,6 +1,5 @@
 from django.contrib.gis.db import models
 import datetime
-from datetime import timezone
 from pathlib import Path
 from main.settings import CACHE_DIR, CACHE_URL
 
@@ -108,11 +107,19 @@ class TSDownloads(models.Model):
 
     @classmethod
     def clean_files(cls, max_days=2):
-        limit_tstp = datetime.datetime.utcnow().replace(tzinfo=timezone.utc)\
+        #  remove outdated files
+        limit_tstp = datetime.datetime.now(datetime.UTC)\
              - datetime.timedelta(days=max_days)
         old_files = cls.objects.filter(timestamp__lte=limit_tstp)
         for fileobj in old_files:
             fileobj.delete()
+
+        # remove database entries with no corresponding file
+        limit_tstp = datetime.datetime.now(datetime.UTC)\
+                - datetime.timedelta(minutes=2) # to be sure, that entry is not in use
+        for db_entry in cls.objects.filter(timestamp__lte=limit_tstp):
+            if not db_entry.get_fp().is_file():
+                db_entry.delete()
 
     def get_url(self):
         return CACHE_URL + str(self.get_fp().name)
