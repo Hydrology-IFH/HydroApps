@@ -51,12 +51,12 @@ class TSDownloads(models.Model):
                     aggregation, add_na_share, add_t_min, add_t_max,
                     toolbox_format, request):
         temp_zf = CACHE_DIR.joinpath(
-            "ts_produkt_" + datetime.datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")+".zip")
+            "ts_produkt_" + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d_%H%M%S")+".zip")
         # check if already existing and add number
         i=0
         while len(cls.objects.filter(filepath=temp_zf))>0:
             temp_zf = CACHE_DIR.joinpath(
-                "ts_produkt_" + datetime.datetime.now(datetime.UTC).strftime("%Y%m%d_%H%M%S")+f"_{i}.zip")
+                "ts_produkt_" + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%d_%H%M%S")+f"_{i}.zip")
             i+=1
 
         obj = cls.objects.create(
@@ -109,14 +109,14 @@ class TSDownloads(models.Model):
     @classmethod
     def clean_files(cls, max_days=2):
         #  remove outdated files
-        limit_tstp = datetime.datetime.now(datetime.UTC)\
+        limit_tstp = datetime.datetime.now(datetime.timezone.utc)\
              - datetime.timedelta(days=max_days)
         old_files = cls.objects.filter(timestamp__lte=limit_tstp)
         for fileobj in old_files:
             fileobj.delete()
 
         # remove database entries with no corresponding file
-        limit_tstp = datetime.datetime.now(datetime.UTC)\
+        limit_tstp = datetime.datetime.now(datetime.timezone.utc)\
                 - datetime.timedelta(minutes=2) # to be sure, that entry is not in use
         for db_entry in cls.objects.filter(timestamp__lte=limit_tstp):
             if not db_entry.get_fp().is_file():
