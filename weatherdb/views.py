@@ -184,22 +184,26 @@ def download_ts(request, *args, **kwargs):
     else:
         temp_zf = TSDownloads.create_file(request=request, **para_dict)
         warnings.simplefilter("ignore")
-        gstats.create_ts(
-            dir=temp_zf.get_fp(),
-            period=period,
-            kinds=kinds,
-            stids=stids,
-            agg_to=agg_to,
-            r_r0=None,
-            split_date=split_date,
-            add_na_share=add_na_share,
-            nas_allowed=nas_allowed,
-            add_t_min=add_t_min,
-            add_t_max=add_t_max,
-            file_names=file_names,
-            col_names=col_names,
-            add_header=add_header,
-            keep_date_parts=keep_date_parts,)
+        try:
+            gstats.create_ts(
+                dir=temp_zf.get_fp(),
+                period=period,
+                kinds=kinds,
+                stids=stids,
+                agg_to=agg_to,
+                r_r0=None,
+                split_date=split_date,
+                add_na_share=add_na_share,
+                nas_allowed=nas_allowed,
+                add_t_min=add_t_min,
+                add_t_max=add_t_max,
+                file_names=file_names,
+                col_names=col_names,
+                add_header=add_header,
+                keep_date_parts=keep_date_parts,)
+        except Exception as e:
+            temp_zf.delete()
+            raise e
 
     return HttpResponse(temp_zf.get_url())
 
