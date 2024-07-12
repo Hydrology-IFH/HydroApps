@@ -170,9 +170,13 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
-    height: 20px;
+    height: 1.5em;
     text-align: center;
     margin: 0px 1rem 0px 1rem;
+  }
+  .colorbar-con>.colorbar-ticks>.colorbar-tick {
+    padding: 1em;
+    padding-top: 0;
   }
   .colorbar-con>.colorbar-ticks>.colorbar-tick:first-child {
     transform: translateX(-50%);
@@ -194,6 +198,7 @@
   }
   div.colorbar-dis > div.colorbar-tick{
     width: 100%;
+    height: 1.5em;
     text-align: center;
   }
 
