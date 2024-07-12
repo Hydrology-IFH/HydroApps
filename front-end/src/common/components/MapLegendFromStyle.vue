@@ -6,7 +6,7 @@
 
   // define variables
   const props = defineProps({
-    layer_name: String,
+    layerName: String,
     style: Object,
     map: Object,
     ignoreLabels: { type: Array, default: [] }, // ["label1", "label2"]
@@ -18,9 +18,9 @@
   // get title
   const title = computed(() => {
     if (props.unit !== "") {
-      return `${props.layer_name} in ${props.unit}`
+      return `${props.layerName} in ${props.unit}`
     } else {
-      return props.layer_name
+      return props.layerName
     }
   })
 
