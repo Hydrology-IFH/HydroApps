@@ -31,5 +31,6 @@
     height: 100%;
     width: 100%;
     padding: 1em;
+    pointer-events: none;
   }
 </style>
