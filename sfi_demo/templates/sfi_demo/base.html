@@ -6,7 +6,7 @@
   <title>AVOSS - SFI Demonstrator</title>
   <link rel="icon" type="image/x-icon" href="{% static 'sfi_demo/img/favicon_128.ico'%}" sizes="128x128">
   <link rel="icon" type="image/x-icon" href="{% static 'sfi_demo/img/favicon_32.ico'%}" sizes="32x32">
-  <meta name="description" content='{% trans "This is a mockup to show the usage of heavy flood index (german: SFI)." %}'>
+  <meta name="description" content='{% trans "This is a demonstrator app to show the usage of heavy flood index (german: SFI)." %}'>
 {% endblock %}
 
 {% block navbar_brand %}
@@ -20,6 +20,6 @@
   <ul class="navbar-nav mr-auto">
     <li class="nav-item "><a href="{% url 'sfi_demo:home' %}" class="nav-link">{% trans "Home" %}</a></li>
     <li class="nav-item "><a href="{% url 'sfi_demo:method' %}" class="nav-link">{% trans "Method" %}</a></li>
-    <li class="nav-item "><a href="{% url 'sfi_demo:app' %}" class="nav-link">{% trans "Mockup" %}</a></li>
+    <li class="nav-item "><a href="{% url 'sfi_demo:app' %}" class="nav-link">{% trans "Demonstrator" %}</a></li>
   </ul>
 {% endblock %}
