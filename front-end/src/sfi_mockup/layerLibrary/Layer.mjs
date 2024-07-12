@@ -13,11 +13,12 @@ export class Layer {
     this.selected = false;
     this.map = null;
     this._olLayers = {};
+    this._layersNotAvailable = [];
     kwargs && Object.entries(kwargs).forEach(([key, value]) => this[key] = value);
 
     // subscribe to config store
     this.config = useConfig();
-    this._config_subscibed = false;
+    this._config_subscribed = false;
   }
 
   initMap(map) {
@@ -25,7 +26,7 @@ export class Layer {
   }
 
   _addConfigSubscription() {
-    if (!this._config_subscibed) {
+    if (!this._config_subscribed) {
       this.config.$subscribe((mutation) => {
           if (mutation.events?.key === "opacity") {
             this.updateOpacity()
@@ -33,7 +34,7 @@ export class Layer {
             this.updateLayer();
           }
       });
-      this._config_subscibed = true;
+      this._config_subscribed = true;
     }
   }
 
@@ -92,12 +93,10 @@ export class Layer {
   }
 
   updateLayer() {
+    let url = this.url;
     Object.entries(this._olLayers).forEach(([key, layer]) => {
-      layer.setVisible(false);
+      layer.setVisible(this.selected && key === url);
     });
-    if (this.selected) {
-      this.olLayer.setVisible(this.selected);;
-    }
   }
 
   select() {
