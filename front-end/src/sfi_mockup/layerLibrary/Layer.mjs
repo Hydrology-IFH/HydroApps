@@ -4,7 +4,7 @@ import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
 
 export class Layer {
-  constructor(id, {file, style, decimals=2, unit="", ...kwargs}) {
+  constructor(id, {file, style, decimals=2, unit="", url, ...kwargs}) {
     this.id = id;
     this.file = file;
     this.decimals = decimals;
@@ -14,6 +14,7 @@ export class Layer {
     this.map = null;
     this._olLayers = {};
     this._errorLayers = [];
+    this._url = url;
     kwargs && Object.entries(kwargs).forEach(([key, value]) => this[key] = value);
 
     // subscribe to config store
@@ -39,6 +40,7 @@ export class Layer {
   }
 
   get url() {
+    if (this._url) return this._url(this.config.sri, this.config.duration, this.config.soilMoisture);
     return `/static/sfi_mockup/Bonndorf/${this.config.sri}/${this.config.duration}/${this.config.soilMoisture}/${this.file}`
   }
 
@@ -105,7 +107,7 @@ export class Layer {
   }
 
   updateLayer() {
-    let olLayer = this.olLayer
+    let olLayer = this.selected? this.olLayer:{}
 
     Object.entries(this._olLayers).forEach(([key, layer]) => {
       layer.setVisible(this.selected && layer==olLayer);
