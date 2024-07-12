@@ -41,7 +41,7 @@
       <MapLegend
           v-if="map != null && layer != null"
           :map="map"
-          :layer_name="layer.name"
+          :layerName="layer.name"
           :style="layer.style"
           :unit="layer.unit"/>
 

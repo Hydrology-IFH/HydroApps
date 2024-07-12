@@ -18,7 +18,7 @@
 
 <template>
   <MapLegendFromStyle
-    :layer_name="layer.name"
+    :layerName="layer.name"
     :style="layer.style"
     :map="layerLib.map"
     :unit="layer.unit"
