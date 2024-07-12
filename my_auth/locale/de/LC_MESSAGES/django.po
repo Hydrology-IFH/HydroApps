@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-28 12:19+0100\n"
+"POT-Creation-Date: 2024-07-12 14:53+0200\n"
 "PO-Revision-Date: 2024-02-14 12:13+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -67,30 +67,30 @@ msgstr ""
 msgid "Maximum allowed Stations to download at once"
 msgstr "Maximal erlaubte Stationen je Download"
 
-#: .\my_auth\models.py:26
+#: .\my_auth\models.py:28
 msgid "Users must have an email address"
 msgstr "Nutzer*in benötigt eine E-Mail Adresse"
 
-#: .\my_auth\models.py:28
+#: .\my_auth\models.py:30
 msgid "Users must have an unique username"
 msgstr "Nutzer*in benötigt einen eindeutigen Nutzernamen"
 
-#: .\my_auth\models.py:37
+#: .\my_auth\models.py:39
 msgid "This username is already a database user for the weatherDB database."
 msgstr ""
 "Dieser Nutzername ist bereits ein Datenbank-Nutzer für die WeatherDB-"
 "Datenbank."
 
-#: .\my_auth\models.py:58
+#: .\my_auth\models.py:83
 msgid "email address"
 msgstr "E-Mail Adresse"
 
-#: .\my_auth\models.py:65
+#: .\my_auth\models.py:90
 msgid "Comment of the user why he/she should have access to the Hydro-Apps"
 msgstr ""
 "Begründung des/der Nutzer*in wieso Er/Sie Zugang zu Hydro-Apps haben sollte"
 
-#: .\my_auth\models.py:67
+#: .\my_auth\models.py:92
 msgid ""
 "I agree to the terms of usage of my data and I did read and agree to the "
 "policy agreement of this website."
@@ -98,37 +98,32 @@ msgstr ""
 "Ich habe die Datenschutzerklärung dieser Seite gelesen und stimme der "
 "Nutzung meiner Daten zu."
 
-#: .\my_auth\models.py:68
+#: .\my_auth\models.py:93
 msgid "Designates whether the user confirmed the data policy agreement."
 msgstr "Gibt an ob der/die Nutzer*in die Datenschutzerklärung bestätigt hat."
 
-#: .\my_auth\models.py:70
+#: .\my_auth\models.py:95
 msgid "Designates whether the user confirmed it's e-mail address."
 msgstr "Gibt an ob der/die Nutzer*in die E-Mail Adresse bestätigt hat."
 
-#: .\my_auth\models.py:72
+#: .\my_auth\models.py:97
 msgid "Designates whether the user got activated by a super user."
 msgstr ""
 "Gibt an ob der/die Nutzer*in durch einen Administrator bestätigt wurde."
 
-#: .\my_auth\models.py:74
+#: .\my_auth\models.py:99
 msgid "Designates whether the user can log into this admin site."
 msgstr "Gibt an ob der/die Nutzer*in sich ins Admin Portal einloggen kann."
 
-#: .\my_auth\models.py:77
-msgid ""
-"Designates whether the user can see features that didn't yet get released."
-msgstr "Gibt an ob der/die Nutzer*in unveröffentlichte Inhalte sehen kann."
-
-#: .\my_auth\models.py:80
+#: .\my_auth\models.py:102
 msgid "Designates whether the user is superuser."
 msgstr "Gibt an ob der/die Nutzer*in super user Rechte hat."
 
-#: .\my_auth\models.py:82
+#: .\my_auth\models.py:104
 msgid "Designates whether the user can log into the WeatherDB-database."
 msgstr "Gibt an ob der/die Nutzer*in zugang zur WeatherDB-Datenbank hat."
 
-#: .\my_auth\models.py:85
+#: .\my_auth\models.py:107
 msgid ""
 "Designates the number of stations a user can download at once on the "
 "WeatherDB App."
@@ -136,16 +131,20 @@ msgstr ""
 "Gibt die Anzahl an Stationen die ein*e Nutzer*in auf einmal von der "
 "WeatherDB-App herunterladen kann."
 
-#: .\my_auth\models.py:87
+#: .\my_auth\models.py:109
 msgid "The Password for this user to log into the database."
 msgstr ""
 "Das Passwort für diese*n Nutzer*in um sich auf der WeatherDB-Datenbank "
 "einzuloggen."
 
-#: .\my_auth\models.py:90
+#: .\my_auth\models.py:112
 msgid ""
 "Designates the date and time when the user got noticed that his account will "
 "expire soon."
+msgstr ""
+
+#: .\my_auth\models.py:115
+msgid "The permissions the user has."
 msgstr ""
 
 #: .\my_auth\templates\emails\account_activation_email.html:2
@@ -648,6 +647,10 @@ msgstr ""
 #: .\my_auth\templates\users\profile.html:214
 msgid "Request a higher download limit"
 msgstr "Beantrage ein höheres Download-Limit"
+
+#~ msgid ""
+#~ "Designates whether the user can see features that didn't yet get released."
+#~ msgstr "Gibt an ob der/die Nutzer*in unveröffentlichte Inhalte sehen kann."
 
 #~ msgid ""
 #~ "If you won't logg in during the next 30 days, we will remove your account."

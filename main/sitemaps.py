@@ -21,5 +21,5 @@ sitemaps = {
     # 'kombstra': KombStRASitemap,
     'my_auth': AuthSitemap,
     'weatherDB': WeatherDBSitemap,
-    'sfi_mockup': 'sfi_mockup.sitemaps.SFIMockupSitemap'
+    'sfi_demo': 'sfi_demo.sitemaps.SFIMockupSitemap'
 }

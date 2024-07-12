@@ -19,7 +19,7 @@ from django.views.decorators.cache import cache_page
 
 from .views import (home_view, app_view, method_view)
 
-app_name = 'sfi_mockup'
+app_name = 'sfi_demo'
 urlpatterns = [
     path('', home_view, name="home"),
     path('app', app_view, name="app"),
@@ -27,6 +27,6 @@ urlpatterns = [
     # JavaScript translation catalog
     path('jsi18n',
          cache_page(86400, key_prefix='jsi18n')(
-            JavaScriptCatalog.as_view(packages=['sfi_mockup'])),
+            JavaScriptCatalog.as_view(packages=['sfi_demo'])),
          name='javascript-catalog')
 ]

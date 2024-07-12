@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-25 15:30+0100\n"
+"POT-Creation-Date: 2024-07-12 14:53+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,11 +16,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\main\settings.py:248
+#: .\sfi_demo\templates\sfi_demo\app.html:13
+msgid "SFI Demonstrator"
+msgstr ""
+
+#: .\sfi_demo\templates\sfi_demo\base.html:9
+msgid "This is a mockup to show the usage of heavy flood index (german: SFI)."
+msgstr ""
+
+#: .\sfi_demo\templates\sfi_demo\base.html:21
+#: .\sfi_demo\templates\sfi_demo\home.html:19
+#: .\template_new_app\templates\app_name\base.html:19
+#: .\template_new_app\templates\app_name\home.html:19
+msgid "Home"
+msgstr ""
+
+#: .\sfi_demo\templates\sfi_demo\base.html:22
+#: .\sfi_demo\templates\sfi_demo\method.html:7
+#: .\template_new_app\templates\app_name\base.html:20
+#: .\template_new_app\templates\app_name\method.html:7
+msgid "Method"
+msgstr ""
+
+#: .\sfi_demo\templates\sfi_demo\base.html:23
+msgid "Mockup"
+msgstr ""
+
+#: .\sfi_demo\templates\sfi_demo\home.html:20
+#: .\template_new_app\templates\app_name\home.html:20
+msgid "This web tool is .... "
+msgstr ""
+
+#: .\template_new_app\templates\app_name\app.html:13
+msgid "App Name App"
+msgstr ""
+
+#: .\template_new_app\templates\app_name\base.html:8
+msgid "A description of your project."
+msgstr ""
+
+#: .\template_new_app\templates\app_name\base.html:21
+msgid "Map"
+msgstr ""
+
+#: .\main\settings.py:250
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:249
+#: .\main\settings.py:251
 msgid "English"
 msgstr "Englisch"
 
@@ -32,27 +75,27 @@ msgstr ""
 "Eine Internetseite mit verschiedenen Web-Anwendungen die an der Professur "
 "für Hydrologie an der Uni Freiburg erstellt wurden."
 
-#: .\main\templates\base.html:129
+#: .\main\templates\base.html:139
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:131
+#: .\main\templates\base.html:141
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:135
+#: .\main\templates\base.html:145
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:138
+#: .\main\templates\base.html:148
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:169
+#: .\main\templates\base.html:184
 msgid "This website is in debuging mode"
 msgstr "Diese Website ist aktuel im Debug-Modus"
 
-#: .\main\templates\base.html:177
+#: .\main\templates\base.html:192
 msgid ""
 "This Application did not yet get released. You can see it, because you're a "
 "Test-User"
@@ -61,11 +104,11 @@ msgstr ""
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
 
-#: .\main\templates\base.html:189
+#: .\main\templates\base.html:204
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:190
+#: .\main\templates\base.html:205
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 
@@ -803,7 +846,7 @@ msgstr ""
 "entnehmen.</p><p>Weitere Informationen zu hCaptcha entnehmen Sie den "
 "Datenschutzbestimmungen und Nutzungsbedingungen unter folgenden Links:"
 
-#: .\main\templates\datenschutz.html:138 .\main\templates\impressum.html:144
+#: .\main\templates\datenschutz.html:138 .\main\templates\impressum.html:145
 msgid "and"
 msgstr "und"
 
@@ -872,7 +915,7 @@ msgstr ""
 "Die folgenden Software-Pakete wurden für die Erstellung dieser Webseite "
 "genutzt"
 
-#: .\main\templates\impressum.html:73
+#: .\main\templates\impressum.html:74
 msgid ""
 "This list does not claim to be a complete list of all the software used, but "
 "only lists the main packages. We thank all the developers of these packages "
@@ -884,7 +927,7 @@ msgstr ""
 "Entwickler*Innen dieser Pakete soll hiermit für ihre Arbeit gedankt werden, "
 "da ohne deren Arbeit dieses Projekt nicht hätte entstehen können."
 
-#: .\main\templates\impressum.html:74
+#: .\main\templates\impressum.html:75
 msgid ""
 "Certainly many more software packages were used that are not listed here. "
 "However, we would like to thank them as well."
@@ -892,11 +935,11 @@ msgstr ""
 "Sicher kamen noch viele weitere Software-Pakete zum Einsatz die hier nicht "
 "aufgeführt werden können. Der Dank gilt ihnen aber ebenso."
 
-#: .\main\templates\impressum.html:76
+#: .\main\templates\impressum.html:77
 msgid "Used datasets"
 msgstr "Genutzte Datensätze"
 
-#: .\main\templates\impressum.html:77
+#: .\main\templates\impressum.html:78
 msgid ""
 "For each Application on this website different data sources were used. Here "
 "you will find a list of data sources used depending for each Application:"
@@ -905,31 +948,31 @@ msgstr ""
 "genutzt. Hier finden Sie je nach Anwendung eine Liste der genutzten "
 "Datenquellen:"
 
-#: .\main\templates\impressum.html:81 .\main\templates\impressum.html:83
-#: .\main\templates\impressum.html:87 .\main\templates\impressum.html:89
-#: .\main\templates\impressum.html:91 .\main\templates\impressum.html:93
-#: .\main\templates\impressum.html:95
+#: .\main\templates\impressum.html:82 .\main\templates\impressum.html:84
+#: .\main\templates\impressum.html:88 .\main\templates\impressum.html:90
+#: .\main\templates\impressum.html:92 .\main\templates\impressum.html:94
+#: .\main\templates\impressum.html:96
 msgid "Available online at"
 msgstr "Online verfügbar unter"
 
-#: .\main\templates\impressum.html:87 .\main\templates\impressum.html:89
-#: .\main\templates\impressum.html:91 .\main\templates\impressum.html:93
+#: .\main\templates\impressum.html:88 .\main\templates\impressum.html:90
+#: .\main\templates\impressum.html:92 .\main\templates\impressum.html:94
 msgid "last checked on"
 msgstr "zuletzt geprüft am"
 
-#: .\main\templates\impressum.html:107
+#: .\main\templates\impressum.html:108
 msgid "Online available"
 msgstr ""
 
-#: .\main\templates\impressum.html:107
+#: .\main\templates\impressum.html:108
 msgid "here"
 msgstr ""
 
-#: .\main\templates\impressum.html:114
+#: .\main\templates\impressum.html:115
 msgid "Disclaimer"
 msgstr "Haftungsausschluss"
 
-#: .\main\templates\impressum.html:115
+#: .\main\templates\impressum.html:116
 msgid ""
 "\n"
 "  The Chair of Hydrology as publisher and Max Schmit as author of the "
@@ -952,7 +995,7 @@ msgstr ""
 "Verantwortung für missbräuchliche oder unsachgemäße Anwendung der hier "
 "angebotenen Dienste durch Dritte."
 
-#: .\main\templates\impressum.html:117
+#: .\main\templates\impressum.html:118
 msgid ""
 "\n"
 "  The use of the contents of this website, including downloading time "
@@ -966,7 +1009,7 @@ msgstr ""
 "Nutzers. Mit der reinen Nutzung der Website kommt keinerlei "
 "Vertragsverhältnis zwischen dem Nutzer und dem Herausgeber zustande.\n"
 
-#: .\main\templates\impressum.html:119
+#: .\main\templates\impressum.html:120
 msgid ""
 "\n"
 "  Excluded are claims for direct or indirect damages or consequences of a "
@@ -986,11 +1029,11 @@ msgstr ""
 "Pflichten zwischen der Professur für Hydrologie und dem Nutzer dieser "
 "Website oder Dritten.\n"
 
-#: .\main\templates\impressum.html:123
+#: .\main\templates\impressum.html:124
 msgid "Disclaimer for external links"
 msgstr "Haftungsausschluss bei externen links"
 
-#: .\main\templates\impressum.html:124
+#: .\main\templates\impressum.html:125
 msgid ""
 "\n"
 "  The contents of external sites or the services offered by them, to which "
@@ -1011,7 +1054,7 @@ msgstr ""
 "externen Links bedeutet nicht, dass sich der Herausgeber die hinter dem "
 "Verweis oder Link liegenden Inhalte zu Eigen macht.\n"
 
-#: .\main\templates\impressum.html:126
+#: .\main\templates\impressum.html:127
 msgid ""
 "\n"
 "  The Chair of Hydrology declares that it has no influence whatsoever on the "
@@ -1027,11 +1070,11 @@ msgstr ""
 "von allen Inhalten aller verlinkte Seiten auf dieser Homepage. Diese "
 "Erklärung gilt für alle auf dieser Homepage angezeigten Links.\n"
 
-#: .\main\templates\impressum.html:130
+#: .\main\templates\impressum.html:131
 msgid "Copyright"
 msgstr "Urheberrecht"
 
-#: .\main\templates\impressum.html:131
+#: .\main\templates\impressum.html:132
 msgid ""
 "\n"
 "  The texts, illustrations, photos and maps published on this website as "
@@ -1064,7 +1107,7 @@ msgstr ""
 "einem Proxy-Server zur Optimierung der Zugriffsgeschwindigkeit ist "
 "gestattet.\n"
 
-#: .\main\templates\impressum.html:133
+#: .\main\templates\impressum.html:134
 msgid ""
 "\n"
 "  The graphics and downloaded time series may be used without permission. "
@@ -1078,11 +1121,11 @@ msgstr ""
 "unsere Webseite sind ausdrücklich erlaubt. Bei Darstellung dieser Webseite "
 "in fremden Frames bitten wir um vorherige Rücksprache und Zustimmung.\n"
 
-#: .\main\templates\impressum.html:137
+#: .\main\templates\impressum.html:138
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: .\main\templates\impressum.html:138
+#: .\main\templates\impressum.html:139
 msgid ""
 "\n"
 "  By visiting this website, files may be temporarily stored when downloading "
@@ -1101,7 +1144,7 @@ msgstr ""
 "findet nicht statt. Die Daten werden in regelmässigen Abständen gelöscht "
 "(maximal 7 Tage).\n"
 
-#: .\main\templates\impressum.html:141
+#: .\main\templates\impressum.html:142
 msgid ""
 "For the purpose of user statistics, the IP address, the current time and the "
 "URL are stored when the page is called up. Data will not be passed on to "
@@ -1112,7 +1155,7 @@ msgstr ""
 "Weitergabe an Dritte, zu kommerziellen oder nicht kommerziellen Zwecken, "
 "findet nicht statt."
 
-#: .\main\templates\impressum.html:144
+#: .\main\templates\impressum.html:145
 msgid ""
 "We use the hCaptcha anti-bot service (hereinafter \"hCaptcha\") on our "
 "website. This service is provided by Intuition Machines, Inc., a Delaware US "
@@ -1155,11 +1198,11 @@ msgstr ""
 "(CCPA). Weitere Informationen über hCaptcha und die Datenschutzrichtlinien "
 "und Nutzungsbedingungen von IMI finden Sie unter den folgenden Links: "
 
-#: .\main\templates\impressum.html:146
+#: .\main\templates\impressum.html:147
 msgid "Notes"
 msgstr "Hinweise"
 
-#: .\main\templates\impressum.html:147
+#: .\main\templates\impressum.html:148
 msgid ""
 "\n"
 "  The fact that a term or designation on this website is not identified as a "
@@ -1173,7 +1216,7 @@ msgstr ""
 "Schluss zu, dass es sich nicht evtl. doch um eine Marke oder ein "
 "Warenzeichen handelt. Gleiches gilt für Patente und andere Schutzformen.\n"
 
-#: .\main\templates\impressum.html:149
+#: .\main\templates\impressum.html:150
 msgid ""
 "\n"
 "  The Professorship of Hydrology and the author expressly reserve the right "
@@ -1185,7 +1228,7 @@ msgstr ""
 "jederzeit Inhalte ohne Ankündigung ganz oder teilweise zu ändern, zu löschen "
 "oder zeitweise nicht zu veröffentlichen.\n"
 
-#: .\main\templates\impressum.html:151
+#: .\main\templates\impressum.html:152
 msgid ""
 "\n"
 "  The contact data in the imprint are not to be used for advertising "

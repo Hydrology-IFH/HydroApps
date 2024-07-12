@@ -43,6 +43,6 @@ urlpatterns = [
         path("asgII/", include("asgII.urls")),
         path("sri_bw/", include("sri_bw.urls")),
         path("kombstra/", include("kombstra.urls")),
-        path("sfi_mockup/", include("sfi_mockup.urls")),
+        path("sfi_demo/", include("sfi_demo.urls")),
     )
 ]
