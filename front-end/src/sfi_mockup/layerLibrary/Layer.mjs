@@ -13,7 +13,7 @@ export class Layer {
     this.selected = false;
     this.map = null;
     this._olLayers = {};
-    this._layersNotAvailable = [];
+    this._errorLayers = [];
     kwargs && Object.entries(kwargs).forEach(([key, value]) => this[key] = value);
 
     // subscribe to config store
@@ -68,6 +68,14 @@ export class Layer {
         }),
         visible: false
       });
+      // add error handling
+      new_layer.on("change", (e) => {
+        let src = e.target.getSource();
+        if (src.state_ == "error") {
+          this._errorLayers.push(src.getKey());
+        }
+      })
+      // add layer to map
       this._olLayers[this.url] = new_layer;
       new_layer.setStyle(this.style);
       new_layer.setOpacity(this.config.opacity/100);
@@ -82,6 +90,10 @@ export class Layer {
     return this._olLayers[this.url]? true : false;
   }
 
+  get hasError() {
+    return this._errorLayers.includes(this.url);
+  }
+
   setOpacity(value) {
     Object.entries(this._olLayers).forEach(([key, layer]) => {
       layer.setOpacity(value);
@@ -93,10 +105,12 @@ export class Layer {
   }
 
   updateLayer() {
-    let url = this.url;
+    let olLayer = this.olLayer
+
     Object.entries(this._olLayers).forEach(([key, layer]) => {
-      layer.setVisible(this.selected && key === url);
+      layer.setVisible(this.selected && layer==olLayer);
     });
+    this.updateOpacity();
   }
 
   select() {
