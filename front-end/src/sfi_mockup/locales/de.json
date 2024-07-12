@@ -2,6 +2,8 @@
   "label_layer_oa": "Oberflächenabfluss",
   "label_layer_precipitation": "Niederschlag",
   "label_layer_sfi": "Sturzflutindex (SFI)",
+  "map_error_header": "Problem beim laden der Kartenebene",
+  "map_error_msg": "Wir entschuldigen uns für die Unannehmlichkeiten.<br>Versuchen Sie eine andere Kartenebene auszuwählen oder kommen Sie später wieder",
   "menu_PrecipitationForce_label": "Stärke des Niederschlags",
   "menu_PrecipitationForce_tooltip": "Die Stärke des Niederschlagserreignisses als qualitative Katergorie<br>Die Ereignisse wurden aus den Baden-Württemberg-weiten KoStRA Daten abgeleitet",
   "menu_SoilMoisture_10": "trocken",
