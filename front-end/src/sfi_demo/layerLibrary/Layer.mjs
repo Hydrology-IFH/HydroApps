@@ -41,7 +41,7 @@ export class Layer {
 
   get url() {
     if (this._url) return this._url(this.config.sri, this.config.duration, this.config.soilMoisture);
-    return `/static/sfi_mockup/Bonndorf/${this.config.sri}/${this.config.duration}/${this.config.soilMoisture}/${this.file}`
+    return `/static/sfi_demo/Bonndorf/${this.config.sri}/${this.config.duration}/${this.config.soilMoisture}/${this.file}`
   }
 
   get style() {

@@ -15,7 +15,7 @@ import App from './App.vue'
 const app = createApp(App)
 
 // use i18n
-// i18nVue(app, "sfi_mockup", { de, en })
+// i18nVue(app, "sfi_demo", { de, en })
 app.use(I18NextVue, { i18next });
 
 // use pinia

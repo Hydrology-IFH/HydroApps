@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'asgII',
     "kombstra",
     "sri_bw",
-    "sfi_mockup",
+    "sfi_demo",
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -75,7 +75,7 @@ INSTALLED_APPS = [
 ]
 
 # apps that are not yet released and only visible to test users
-APPS_UNRELEASED = ["kombstra", "sfi_mockup"]
+APPS_UNRELEASED = ["kombstra", "sfi_demo"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {
@@ -85,7 +85,7 @@ APPS_ALT_NAMES = {
     "asgII": "asgII",
     "kombstra": "kombstra",
     "sri_bw": "sri_bw",
-    "sfi_mockup": "sfi_mockup"
+    "sfi_demo": "sfi_demo"
 }
 
 MIDDLEWARE = [
