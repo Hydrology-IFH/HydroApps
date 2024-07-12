@@ -34,6 +34,7 @@ export const LAYERS = [
     name: i18n.t("label_layer_precipitation"),
     unit: "mm",
     decimals: 0,
+    url: (sri, duration) => `/static/sfi_mockup/Bonndorf/${sri}/${duration}/N.tif`,
     style: {
       colorscale: {
         min: 0,
