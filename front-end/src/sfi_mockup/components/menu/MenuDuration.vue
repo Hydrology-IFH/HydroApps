@@ -25,6 +25,9 @@
   watchEffect(() => {
     config.duration = sliderToDur[sliderValue.value];
   })
+  watchEffect(() => {
+    sliderValue.value = durToSlider[config.duration];
+  })
 </script>
 <template>
   <MenuSlider v-model="sliderValue"
