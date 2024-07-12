@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 14:53+0200\n"
+"POT-Creation-Date: 2024-07-12 15:15+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,37 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
-
-#: .\sfi_demo\templates\sfi_demo\app.html:13
-msgid "SFI Demonstrator"
-msgstr ""
-
-#: .\sfi_demo\templates\sfi_demo\base.html:9
-msgid "This is a mockup to show the usage of heavy flood index (german: SFI)."
-msgstr ""
-
-#: .\sfi_demo\templates\sfi_demo\base.html:21
-#: .\sfi_demo\templates\sfi_demo\home.html:19
-#: .\template_new_app\templates\app_name\base.html:19
-#: .\template_new_app\templates\app_name\home.html:19
-msgid "Home"
-msgstr ""
-
-#: .\sfi_demo\templates\sfi_demo\base.html:22
-#: .\sfi_demo\templates\sfi_demo\method.html:7
-#: .\template_new_app\templates\app_name\base.html:20
-#: .\template_new_app\templates\app_name\method.html:7
-msgid "Method"
-msgstr ""
-
-#: .\sfi_demo\templates\sfi_demo\base.html:23
-msgid "Mockup"
-msgstr ""
-
-#: .\sfi_demo\templates\sfi_demo\home.html:20
-#: .\template_new_app\templates\app_name\home.html:20
-msgid "This web tool is .... "
-msgstr ""
 
 #: .\template_new_app\templates\app_name\app.html:13
 msgid "App Name App"
@@ -55,8 +24,22 @@ msgstr ""
 msgid "A description of your project."
 msgstr ""
 
+#: .\template_new_app\templates\app_name\base.html:19
+#: .\template_new_app\templates\app_name\home.html:19
+msgid "Home"
+msgstr ""
+
+#: .\template_new_app\templates\app_name\base.html:20
+#: .\template_new_app\templates\app_name\method.html:7
+msgid "Method"
+msgstr ""
+
 #: .\template_new_app\templates\app_name\base.html:21
 msgid "Map"
+msgstr ""
+
+#: .\template_new_app\templates\app_name\home.html:20
+msgid "This web tool is .... "
 msgstr ""
 
 #: .\main\settings.py:250

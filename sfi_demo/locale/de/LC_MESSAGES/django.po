@@ -1,0 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-12 15:18+0200\n"
+"PO-Revision-Date: 2024-07-12 15:21+0200\n"
+"Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: .\sfi_demo\templates\sfi_demo\app.html:13
+msgid "SFI Demonstrator"
+msgstr "SFI Demonstrator"
+
+#: .\sfi_demo\templates\sfi_demo\base.html:9
+msgid ""
+"This is a demonstrator app to show the usage of heavy flood index (german: "
+"SFI)."
+msgstr ""
+"Dies ist ein Demonstrator um den nutzen des Starkregenindexes (SFI) zu "
+"zeigen."
+
+#: .\sfi_demo\templates\sfi_demo\base.html:21
+#: .\sfi_demo\templates\sfi_demo\home.html:19
+msgid "Home"
+msgstr "Home"
+
+#: .\sfi_demo\templates\sfi_demo\base.html:22
+#: .\sfi_demo\templates\sfi_demo\method.html:7
+msgid "Method"
+msgstr "Methode"
+
+#: .\sfi_demo\templates\sfi_demo\base.html:23
+msgid "Demonstrator"
+msgstr "Demonstrator"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:20
+msgid "This web tool is .... "
+msgstr "Dieses Webtool wurde im Zuge vomProjekt AVOSS entwickelt."
