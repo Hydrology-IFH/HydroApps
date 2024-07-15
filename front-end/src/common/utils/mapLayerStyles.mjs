@@ -1,4 +1,3 @@
-// import { gridFormPara } from './forms.mjs';
 import colormap from 'colormap';
 
 const MIN_STEPS = 9;

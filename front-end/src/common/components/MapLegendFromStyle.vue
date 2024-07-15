@@ -36,6 +36,7 @@
       // calculate amount of labels
       let labels = style.slice(3).filter((el) => !(el instanceof Array));
       let n_labels = labels.length;
+      let max_index = n_labels - 1;
       let tick_min = labels[0];
       let tick_max = labels.at(-1);
       let n_max = 8;
@@ -44,12 +45,12 @@
         let factor;
         let start_i = (n_labels - (n_labels % n_max) + n_max) / n_max;
         for (let i = start_i; i <= n_labels + 1; i++) {
-          if ((n_labels + 1) % i == 0) {
+          if (max_index % i == 0) {
             factor = i;
             break;
           }
         }
-        labels = labels.filter((el) => ((labels.indexOf(el) + 2) % factor == 0) | (labels.indexOf(el) == 0));
+        labels = labels.filter((el, i ) => (i % factor == 0));
         n_labels = labels.length;
       }
       if ((n_labels == 2) & ((tick_max - tick_min) % 2 == 0)) {
