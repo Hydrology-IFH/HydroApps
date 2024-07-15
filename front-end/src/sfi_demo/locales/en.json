@@ -2,6 +2,7 @@
   "label_layer_oa": "Surface runoff",
   "label_layer_precipitation": "Precipitation",
   "label_layer_sfi": "Flash flood index (FFI, german: SFI)",
+  "label_layer_soil_moisture": "Soil moisture of the root zone",
   "map_error_header": "Error loading the layer",
   "map_error_msg": "There was a problem getting this layer. We are sorry for the inconvenience.<br>Try the other layers or come back later",
   "menu_PrecipitationForce_label": "Precipitation force",

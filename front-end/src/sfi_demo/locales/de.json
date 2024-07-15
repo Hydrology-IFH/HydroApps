@@ -2,6 +2,7 @@
   "label_layer_oa": "Oberflächenabfluss",
   "label_layer_precipitation": "Niederschlag",
   "label_layer_sfi": "Sturzflutindex (SFI)",
+  "label_layer_soil_moisture": "Boden-Vorfeuchte der Wurzelzone",
   "map_error_header": "Problem beim laden der Kartenebene",
   "map_error_msg": "Wir entschuldigen uns für die Unannehmlichkeiten.<br>Versuchen Sie eine andere Kartenebene auszuwählen oder kommen Sie später wieder",
   "menu_PrecipitationForce_label": "Stärke des Niederschlags",

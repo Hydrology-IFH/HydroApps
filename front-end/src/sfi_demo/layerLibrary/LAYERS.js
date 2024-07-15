@@ -34,7 +34,7 @@ export const LAYERS = [
     name: i18n.t("label_layer_precipitation"),
     unit: "mm",
     decimals: 0,
-    url: (sri, duration) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/N.tif`,
+    url: ({sri, duration}) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/N.tif`,
     style: {
       colorscale: {
         min: 0,
@@ -42,6 +42,22 @@ export const LAYERS = [
         colorbar: "viridis",
         continous: true,
         reverse: false,
+      },
+    },
+  },
+  {
+    id: "soil_moisture",
+    url: ({soilMoisture}) => `/static/sfi_demo/Bonndorf/input/theta/theta_wrzl_ps${soilMoisture}.tif`,
+    name: i18n.t("label_layer_soil_moisture"),
+    unit: "% Vol.",
+    decimals: 1,
+    style: {
+      colorscale: {
+        min: 0,
+        max: 100,
+        colorbar: "salinity", //"RdBu",
+        continous: true,
+        reverse: true,
       },
     },
   },
