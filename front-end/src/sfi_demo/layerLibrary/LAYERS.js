@@ -49,7 +49,7 @@ export const LAYERS = [
     id: "soil_moisture",
     url: ({soilMoisture}) => `/static/sfi_demo/Bonndorf/input/theta/theta_wrzl_ps${soilMoisture}.tif`,
     name: i18n.t("label_layer_soil_moisture"),
-    unit: "% Vol.",
+    unit: "% vol",
     decimals: 1,
     style: {
       colorscale: {
