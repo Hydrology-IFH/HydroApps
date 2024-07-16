@@ -1,5 +1,6 @@
 import { GeoTIFF } from "ol/source";
 import TileLayer from 'ol/layer/WebGLTile.js';
+import { watch } from 'vue';
 import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
 
@@ -28,13 +29,25 @@ export class Layer {
 
   _addConfigSubscription() {
     if (!this._config_subscribed) {
-      this.config.$subscribe((mutation) => {
+      console.debug("add subscription")
+      this.config.$subscribe((mutation, state) => {
+        console.debug("mutation", mutation, state)
+        window.mutation = mutation;
           if (mutation.events?.key === "opacity") {
             this.updateOpacity()
           } else if (mutation.events?.key === "sri" || mutation.events?.key === "duration" || mutation.events?.key === "soilMoisture") {
             this.updateLayer();
           }
+        this._lastConfigState = JSON.parse(JSON.stringify(this.config));
       });
+      this._lastConfigState = JSON.parse(JSON.stringify(this.config));
+      watch(this.config.opacity, () => { console.log("update opacity"); this.updateOpacity() }, { deep: true })
+      watch(this.config.sri, () => this.updateLayer(), { deep: true })
+      watch(this.config.duration, (newVal, oldVal) => {
+        console.log("update duratiuon");
+        this.updateLayer()
+      }, { deep: true })
+      watch(this.config.soilMoisture, () => this.updateLayer(), { deep: true })
       this._config_subscribed = true;
     }
   }
@@ -103,12 +116,13 @@ export class Layer {
   }
 
   updateOpacity() {
+    console.log("update opacity")
     this.setOpacity(this.config.opacity/100);
   }
 
   updateLayer() {
     let olLayer = this.selected? this.olLayer:{}
-
+    console.log("update Layer:", olLayer, this.selected)
     Object.entries(this._olLayers).forEach(([key, layer]) => {
       layer.setVisible(this.selected && layer==olLayer);
     });
