@@ -21,33 +21,29 @@ export class Layer {
     // subscribe to config store
     this.config = useConfig();
     this._config_subscribed = false;
+    this._saveConfigState();
   }
 
   initMap(map) {
     this.map = map;
   }
 
+  _saveConfigState() {
+    this._lastConfigState = JSON.parse(JSON.stringify(this.config));
+  }
+
   _addConfigSubscription() {
     if (!this._config_subscribed) {
-      console.debug("add subscription")
       this.config.$subscribe((mutation, state) => {
-        console.debug("mutation", mutation, state)
-        window.mutation = mutation;
-          if (mutation.events?.key === "opacity") {
-            this.updateOpacity()
-          } else if (mutation.events?.key === "sri" || mutation.events?.key === "duration" || mutation.events?.key === "soilMoisture") {
-            this.updateLayer();
-          }
-        this._lastConfigState = JSON.parse(JSON.stringify(this.config));
+        if (state.opacity !== this._lastConfigState?.opacity) {
+          this.updateOpacity()
+        } else if ((state.opacity !== this._lastConfigState?.opacity) ||
+                    (state.sri !== this._lastConfigState?.sri) ||
+                    (state.duration !== this._lastConfigState?.duration)) {
+          this.updateLayer();
+        }
+        this._saveConfigState()
       });
-      this._lastConfigState = JSON.parse(JSON.stringify(this.config));
-      watch(this.config.opacity, () => { console.log("update opacity"); this.updateOpacity() }, { deep: true })
-      watch(this.config.sri, () => this.updateLayer(), { deep: true })
-      watch(this.config.duration, (newVal, oldVal) => {
-        console.log("update duratiuon");
-        this.updateLayer()
-      }, { deep: true })
-      watch(this.config.soilMoisture, () => this.updateLayer(), { deep: true })
       this._config_subscribed = true;
     }
   }
@@ -116,17 +112,14 @@ export class Layer {
   }
 
   updateOpacity() {
-    console.log("update opacity")
     this.setOpacity(this.config.opacity/100);
   }
 
   updateLayer() {
     let olLayer = this.selected? this.olLayer:{}
-    console.log("update Layer:", olLayer, this.selected)
     Object.entries(this._olLayers).forEach(([key, layer]) => {
       layer.setVisible(this.selected && layer==olLayer);
     });
-    this.updateOpacity();
   }
 
   select() {
