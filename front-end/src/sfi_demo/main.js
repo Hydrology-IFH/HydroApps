@@ -1,6 +1,8 @@
 import "~~/styles/uni-colors.css"
 import "./assets/style.css"
 
+import 'vite/modulepreload-polyfill';
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import I18NextVue from 'i18next-vue'
