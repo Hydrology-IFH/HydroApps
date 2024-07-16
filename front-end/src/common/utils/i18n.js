@@ -9,7 +9,6 @@ export function initI18n(app_name, app_locales) {
   const rsrc = {de: {common: de}, en: {common: en}}
   rsrc.de[app_name] = app_locales.de
   rsrc.en[app_name] = app_locales.en
-  console.log(rsrc)
 
   // i18next initialization
   i18next
