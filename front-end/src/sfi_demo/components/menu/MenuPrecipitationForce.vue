@@ -4,7 +4,6 @@
 
   import { useConfig } from '~/stores/config.js';
   import MenuSlider from "./MenuSlider.vue";
-import { set } from 'ol/transform';
 
   const { i18next } = useTranslation();
   const config = useConfig();
@@ -45,7 +44,6 @@ import { set } from 'ol/transform';
   })
 
   const arrowEventListener = (e) => {
-    console.log(e)
     if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
       sliderValue.value = steps[steps.indexOf(sliderValue.value) - 1] || steps[0];
     } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
@@ -53,11 +51,13 @@ import { set } from 'ol/transform';
     }
   }
   const activateArrows = () => {
-    console.log("activateArrows")
     window.addEventListener("keydown", arrowEventListener);
     setTimeout(() => {
-      window.addEventListener("click", () => { window.removeEventListener("keydown", arrowEventListener) }, { once: true })
-    }, 50);
+      window.addEventListener(
+        "click",
+        () => { window.removeEventListener("keydown", arrowEventListener) },
+        { once: true })
+    }, 100);
   }
 </script>
 <template>
