@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { LayerLib } from '~/layerLibrary/Library.mjs';
 
 export const useConfig = defineStore(
   "config",
@@ -13,10 +12,7 @@ export const useConfig = defineStore(
       duration: 60, // one of 30, 60, 120 min
 
       // opacity
-      opacity: 80,
-
-      // layer lib
-      layerLib: new LayerLib(),
+      opacity: 80
 
     })
   })

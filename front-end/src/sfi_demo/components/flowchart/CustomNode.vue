@@ -14,13 +14,13 @@
     targetPosition: {
       type: String,
     },
-    config: {
+    layerLib: {
       type: Object,
     },
   })
 
   const nodeRef = ref(null)
-  const layer = ref(props.config.layerLib.getLayer(props.data.layerID) ?? null)
+  const layer = ref(props.layerLib.getLayer(props.data.layerID) ?? null)
   const hasLayer = computed(() => {
     return layer.value != null
   })
@@ -28,7 +28,7 @@
   // select Layer on Click
   const onClick = (event) => {
     if (hasLayer.value){
-      props.config.layerLib.selectLayer(layer.value)
+      props.layerLib.selectLayer(layer.value)
     }
   }
 

@@ -2,10 +2,11 @@
   import { computed } from 'vue';
 
   import { useConfig } from '~/stores/config.js';
+  import { useLayerLib } from '~/stores/layerLib.js';
   import MapLegendFromStyle from '~~/components/MapLegendFromStyle.vue';
 
   // define variables
-  const layerLib = useConfig().layerLib;
+  const layerLib = useLayerLib();
   const layer = computed(() => layerLib.selectedLayer);
 
   const valueConverter = computed(() => {

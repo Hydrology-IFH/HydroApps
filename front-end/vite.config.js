@@ -19,6 +19,14 @@ export default defineConfig({
         sri_bw: '/src/sri_bw/main.js',
         sfi_demo: '/src/sfi_demo/main.js',
       },
+      // activate this to debug production with
+      // > npx vite build --watch
+      // > ln -s /path/to/your/production/static/front-end/dist/assets/* /path/to/your/development/static/front-end/assets
+      // > apachectl restart
+      // output: {
+      //   assetFileNames: 'assets/[name][extname]',
+      //   entryFileNames: 'assets/[name].js',
+      // }
     },
   },
   plugins: [

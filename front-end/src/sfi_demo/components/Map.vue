@@ -6,24 +6,26 @@
   import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
   import ErrorFrame from '~~/components/ErrorFrame.vue';
   import { useConfig } from '~/stores/config.js';
+  import { useLayerLib } from '~/stores/layerLib.js';
   import "./map/projections";
   import Basemaps from './map/Basemaps.vue';
   import MapLegend from "./map/MapLegend.vue";
 
   const config = useConfig();
+  const layerLib = useLayerLib();
   const extent = ref([ 441576.5, 5290318.5, 456351.5, 5300468.5 ]);
   const center = ref(getCenter(extent.value))
   const mapRef = ref(null);
   const map = ref(null);
 
-  const layer = computed(() => config.layerLib.selectedLayer)
+  const layer = computed(() => layerLib.selectedLayer)
   const layerError = computed(() => {
     return layer.value ? layer.value.hasError : false
   })
 
   onMounted(() => {
-    config.layerLib.initMap(mapRef.value.map)
-    config.layerLib.selectLayer("SFI")
+    layerLib.initMap(mapRef.value.map)
+    layerLib.selectLayer("SFI")
     map.value = mapRef.value?.map;
   })
 </script>

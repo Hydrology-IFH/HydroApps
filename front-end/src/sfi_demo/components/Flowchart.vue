@@ -2,12 +2,12 @@
   import { ref } from 'vue';
   import { VueFlow, useVueFlow  } from '@vue-flow/core'
 
-  import { useConfig } from '../stores/config';
+  import { useLayerLib } from '~/stores/layerLib.js';
   import CustomNode from './flowchart/CustomNode.vue';
   import CustomEdge from './flowchart/CustomEdge.vue';
   import { nodesInit, edgesInit } from './flowchart/flowElements';
 
-  const config = useConfig();
+  const layerLib = useLayerLib();
   const flowStore = useVueFlow()
   const { onPaneReady } = flowStore
 
@@ -34,7 +34,7 @@
              :edgesUpdatable="false">
 
       <template #node-custom="customNodeProps">
-        <CustomNode v-bind="customNodeProps" :config="config"/>
+        <CustomNode v-bind="customNodeProps" :layerLib="layerLib"/>
       </template>
 
       <template #edge-custom="customEdgeProps">
