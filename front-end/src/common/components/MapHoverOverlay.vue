@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, computed } from 'vue';
+  import { ref, toRef, onMounted, computed, watch } from 'vue';
   import { containsCoordinate } from 'ol/extent.js';
   import Overlay from 'ol/Overlay.js';
 
@@ -11,58 +11,96 @@
     valueConverter: { type: Function, default: (x) => x }
   })
 
-  const hover_div = ref(null)
-  const hover_text = ref("")
-  const hover_active = ref(false)
+  const hoverDiv = ref(null)
+  const hoverActive = ref(false)
+  const pixel = ref(null)
+  const layerRef = toRef(props, 'layer');
 
+  // get value converter function
   const valueConverter = computed(() => {
     if (typeof props.valueConverter == "function") {
       return props.valueConverter;
     }
     return (x) => x;
   })
-  window.valueConverter = valueConverter;
-  window.props = props;
+
+  // hover text
+  const hoverText = ref("");
+  const updateHoverText = () => {
+    if (pixel.value == null) return "";
+
+    let pixValue = props.layer.getData(pixel.value);
+    if ((pixValue != null) && (pixValue[1] != 0)) {
+      let dec = props.decimals;
+      let val = valueConverter.value(
+        Math.round(parseFloat(pixValue[0]) * 10 ** dec) / 10 ** dec)
+      hoverText.value = val !== null? `${val} ${ props.unit }`.trim():"";
+    } else {
+      hoverText.value =  "";
+    }
+  }
+  watch(pixel, updateHoverText, { deep: true, flush: 'sync' });
+
+  // hover style
+  const hoverStyle = computed(() => {
+    return {
+      visibility: hoverActive.value & hoverText.value != "" ? 'visible' : 'hidden'
+    }
+  })
+
+  // update hoverText if layer changes
+  watch(layerRef, (newLayer, oldLayer) => {
+    if (newLayer.ol_uid !== oldLayer.ol_uid) {
+      if (pixel.value !== null) {
+        // set to "" on change
+        updateHoverText();
+
+        // loop until data is ready
+        const checkAndGetData = () => {
+          if (newLayer.getData(pixel.value) !== null) {
+            updateHoverText();
+          } else {
+            setTimeout(checkAndGetData, 100);
+          }
+        };
+        checkAndGetData();
+      }
+    }
+  },
+  { deep: false, flush: 'sync' });
 
   // create overlay
   onMounted(() => {
+    // create overlay
     const overlay = new Overlay({
-      element: hover_div.value,
+      element: hoverDiv.value,
       className: 'ov-hover',
       autoPan: false,
-      positioning: 'bottom-left',
+      positioning: 'bottom-left'
     });
     props.map.addOverlay(overlay);
-    hover_active.value = true;
+    hoverActive.value = true;
 
-    // update hover value
+    // update hover position
     let map_view = props.map.getView();
-
     props.map.on('pointermove', (evt) => {
-      if (props.layer.getSource() === null) return;
+      // check if dragging
       if (evt.dragging) {
         overlay.setPosition(undefined);
         return;
       }
+
       //  check if pointer on map
-      let pixel = props.map.getEventPixel(evt.originalEvent);
       let view_extent = map_view.getViewStateAndExtent().extent;
       if (!containsCoordinate(view_extent, evt.coordinate)) {
         overlay.setPosition(undefined);
+        pixel.value = null;
         return;
       }
 
-      // update the hover value
-      let pix_value = props.layer.getData(pixel);
-      if ((pix_value != null) && (pix_value[1] != 0)) {
-        overlay.setPosition(evt.coordinate);
-        let dec = props.decimals;
-        let val = valueConverter.value(
-          Math.round(parseFloat(pix_value[0]) * 10 ** dec) / 10 ** dec)
-        hover_text.value = `${val} ${ props.unit }`;
-      } else {
-        overlay.setPosition(undefined);
-      }
+      // update the hover position
+      pixel.value = props.map.getEventPixel(evt.originalEvent);
+      overlay.setPosition(evt.coordinate);
     });
 
     // additional event listener to make hover disappear on exiting map
@@ -70,14 +108,12 @@
       overlay.setPosition(undefined);
     });
   });
-
-
 </script>
 
 <template>
-  <div class="hover" ref="hover_div"
-    v-bind:style="[hover_active ? { 'visibility': 'visible' } : {'visibility':'hidden'}]">
-    {{ hover_text }}
+  <div class="hover" ref="hoverDiv"
+    :style="hoverStyle">
+    {{ hoverText }}
   </div>
 </template>
 
