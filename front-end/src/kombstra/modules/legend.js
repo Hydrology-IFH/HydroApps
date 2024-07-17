@@ -30,7 +30,7 @@ var sri_T = {
   11: { T: ">100", F: "2,20 - 2,79" },
   12: { T: ">100", F: "&GreaterSlantEqual;2,80" }
 }
-window.sri_T = sri_T;
+
 Object.entries(sri_T).forEach((el, i) => {
   sri_T[el[0]].T = `<nobr><b>${el[1].T}</nobr></b>`;
   if ("F" in el[1]){ sri_T[el[0]].F = `<nobr><b>${el[1].F}</b></nobr>` }

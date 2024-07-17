@@ -101,7 +101,7 @@
                   {{ label.label }}
                   <v-tooltip v-if="label.hasOwnProperty('tooltip')"
                             :text="label.tooltip"
-                            class="arrow-bottom" offset="-4px"
+                            class="arrow-bottom" offset="20px"
                             activator="parent" location="top"/>
                 </div>
               </div>
@@ -110,11 +110,13 @@
               <div class="colorbar-color" :style="{ background: element.color }"></div>
               <div class="colorbar-tick">
                 {{ element.label }}
-                <v-tooltip v-if="element.hasOwnProperty('tooltip')"
-                            :text="element.tooltip"
-                            class="arrow-bottom" offset="-4px"
-                            activator="parent" location="top"/>
+
               </div>
+              <v-tooltip v-if="element.hasOwnProperty('tooltip')"
+                        class="arrow-bottom" offset="0px"
+                        activator="parent" location="top">
+                <span v-html="element.tooltip"></span>
+              </v-tooltip>
             </slot>
           </div>
         </div>
@@ -226,7 +228,6 @@
   .legend-overlay{
     height: max-content;
     width: max-content;
-    min-width: 85%;
     max-width: 90%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -240,5 +241,8 @@
     padding-right: 1em;
     border-radius: 4px;
     z-index: 1;
+  }
+  .legend-overlay:has(.colorbar-con){
+    min-width: 85%;
   }
 </style>
