@@ -36,7 +36,7 @@ export class Layer {
       this.config.$subscribe((mutation, state) => {
         if (state.opacity !== this._lastConfigState?.opacity) {
           this.updateOpacity()
-        } else if ((state.opacity !== this._lastConfigState?.opacity) ||
+        } else if ((state.soilMoisture !== this._lastConfigState?.soilMoisture) ||
                     (state.sri !== this._lastConfigState?.sri) ||
                     (state.duration !== this._lastConfigState?.duration)) {
           this.updateLayer();
