@@ -112,8 +112,8 @@
 
 <template>
   <div class="hover" ref="hoverDiv"
-    :style="hoverStyle">
-    {{ hoverText }}
+    :style="hoverStyle"
+    v-html="hoverText">
   </div>
 </template>
 
