@@ -3,13 +3,14 @@ import i18n from 'i18next';
 const sfiCats = [
   { sfi: 0, range: [0, 0.5] },
   { sfi: 1, range: [0.5, 1] },
-  { sfi: "1+", range: [1, 2]},
+  { sfi: "1<sup>+</sup>", range: [1, 1.5] },
+  { sfi: "1<sup>++</sup>", range: [1.5, 2] },
   { sfi: 2, range: [2, 3] },
-  { sfi: "2+", range: [3, 4] },
-  { sfi: "2++", range: [4, 5]},
+  { sfi: "2<sup>+</sup>", range: [3, 4] },
+  { sfi: "2<sup>++</sup>", range: [4, 5] },
   { sfi: 3, range: [5, 10] },
-  { sfi: "3+", range: [10, 15] },
-  { sfi: "3++", range: [15, 100] },
+  { sfi: "3<sup>+</sup>", range: [10, 15] },
+  { sfi: "3<sup>++</sup>", range: [15, 100] },
 ]
 
 const sriCats = {
@@ -34,7 +35,7 @@ export const LAYERS = [
     name: i18n.t("label_layer_precipitation"),
     unit: "mm",
     decimals: 0,
-    url: ({sri, duration}) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/N.tif`,
+    url: ({ sri, duration }) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/N.tif`,
     style: {
       colorscale: {
         min: 0,
@@ -46,8 +47,50 @@ export const LAYERS = [
     },
   },
   {
+    id: "SRI",
+    url: ({ sri, duration }) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/SRI.tif`,
+    name: i18n.t("label_layer_sri"),
+    unit: "",
+    decimals: 1,
+    legend: {
+      tooltips: Object.entries(sriCats).map((el) => {
+        let i18n_opts = {
+          T: `<b>${el[1].T}</b>`,
+          F: `<b>${el[1].F}</b>`,
+          'interpolation': { 'escapeValue': false }
+        }
+        let msg = i18n.t('tooltip_sri_return_period', i18n_opts);
+        if ("F" in el[1]) { msg += "<br>" + i18n.t('tooltip_sri_factor', i18n_opts) }
+        console.log(msg);
+        return { label: el[0], message: msg }
+      })
+    },
+    style: {
+      color: [
+        "case",
+        ["!=", ["band", 2], 0],
+        [ 'case',
+          ["==", ["band", 1], 1], [161, 194, 31],
+          ["==", ["band", 1], 2], [178, 207, 129],
+          ["==", ["band", 1], 3], [222, 225, 14],
+          ["==", ["band", 1], 4], [255, 236, 1],
+          ["==", ["band", 1], 5], [241, 144, 6],
+          ["==", ["band", 1], 6], [233, 98, 25],
+          ["==", ["band", 1], 7], [229, 81, 26],
+          ["==", ["band", 1], 8], [226, 35, 35],
+          ["==", ["band", 1], 9], [227, 41, 64],
+          ["==", ["band", 1], 10], [228, 35, 95],
+          ["==", ["band", 1], 11], [224, 64, 141],
+          ["==", ["band", 1], 12], [160, 69, 144],
+          ["color", 0,0,0,0]
+        ],
+        ["color", 0, 0, 0, 0]
+      ]
+    }
+  },
+  {
     id: "soil_moisture",
-    url: ({soilMoisture}) => `/static/sfi_demo/Bonndorf/input/theta/theta_wrzl_ps${soilMoisture}.tif`,
+    url: ({ soilMoisture }) => `/static/sfi_demo/Bonndorf/input/theta/theta_wrzl_ps${soilMoisture}.tif`,
     name: i18n.t("label_layer_soil_moisture"),
     unit: "% vol",
     decimals: 1,
@@ -97,7 +140,7 @@ export const LAYERS = [
     style: {
       color: [
         "case",
-        ["!=",["band",2],0],
+        ["!=", ["band", 2], 0],
         [
           "case",
           ["==", ["band", 1], 0], [84, 194, 31, 1],
@@ -105,13 +148,13 @@ export const LAYERS = [
           [
             "interpolate",
             ["linear"],
-            ["band",1],
-            0.5, [255,236,1,1],
-            2, [226,35,35,1],
+            ["band", 1],
+            0.5, [255, 236, 1, 1],
+            2, [226, 35, 35, 1],
             5, [147, 68, 144, 1]
           ]
         ],
-        ["color",0,0,0,0]
+        ["color", 0, 0, 0, 0]
       ]
     }
   }

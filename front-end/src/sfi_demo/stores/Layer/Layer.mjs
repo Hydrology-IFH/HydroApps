@@ -1,6 +1,5 @@
 import { GeoTIFF } from "ol/source";
 import TileLayer from 'ol/layer/WebGLTile.js';
-import { watch } from 'vue';
 import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
 
@@ -77,7 +76,9 @@ export class Layer {
           interpolate: false,
           normalize: false
         }),
-        visible: false
+        visible: this.selected,
+        style: this.style,
+        opacity: this.config.opacity/100
       });
       // add error handling
       new_layer.on("change", (e) => {
@@ -88,9 +89,6 @@ export class Layer {
       })
       // add layer to map
       this._olLayers[this.url] = new_layer;
-      new_layer.setStyle(this.style);
-      new_layer.setOpacity(this.config.opacity/100);
-      new_layer.setVisible(this.selected);
       this.map.addLayer(new_layer);
       this._addConfigSubscription();
     }

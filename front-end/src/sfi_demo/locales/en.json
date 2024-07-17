@@ -3,6 +3,7 @@
   "label_layer_precipitation": "Precipitation",
   "label_layer_sfi": "Pluvial flood index (PFI, german: SFI)",
   "label_layer_soil_moisture": "Soil moisture of the root zone",
+  "label_layer_sri": "Heavy rain index (HRI, german: SRI)",
   "map_error_header": "Error loading the layer",
   "map_error_msg": "There was a problem getting this layer. We are sorry for the inconvenience.<br>Try the other layers or come back later",
   "menu_PrecipitationForce_label": "Precipitation force",
@@ -34,5 +35,7 @@
   "tooltip_sfi_0": "no to low risk",
   "tooltip_sfi_1": "moderate risk",
   "tooltip_sfi_2": "considerable to great danger",
-  "tooltip_sfi_3": "very great danger"
+  "tooltip_sfi_3": "very great danger",
+  "tooltip_sri_factor": "(100 year event * factor of {{F}})",
+  "tooltip_sri_return_period": "The statistical frequency of this SRI is {{T}} years."
 }
