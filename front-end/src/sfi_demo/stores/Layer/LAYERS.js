@@ -154,7 +154,8 @@ export const LAYERS = [
             5, [147, 68, 144, 1]
           ]
         ],
-        ["color", 0, 0, 0, 0]
+        // this is just a workaround as openlayers  case has a problem to check for alpha band
+        ["color", 84, 194, 31, 1]
       ]
     }
   }
