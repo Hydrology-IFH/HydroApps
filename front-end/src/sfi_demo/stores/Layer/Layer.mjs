@@ -28,7 +28,7 @@ export class Layer {
   }
 
   _saveConfigState() {
-    this._lastConfigState = JSON.parse(JSON.stringify(this.config));
+    this._lastConfigState = JSON.parse(JSON.stringify(this.config.$state));
   }
 
   _addConfigSubscription() {
