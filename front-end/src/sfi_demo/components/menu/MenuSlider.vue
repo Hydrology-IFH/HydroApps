@@ -1,4 +1,5 @@
 <script setup>
+  import { ref } from 'vue';
   defineProps({
     label: String,
     min: Number,
@@ -9,15 +10,23 @@
     tooltip: String,
     getTickTooltips: {Function, default: undefined}
   });
+
   const model = defineModel()
+
+  const isFolded = ref(false);
 </script>
 <template>
   <div class="input-group-vertical mb-3">
     <span class="input-group-text" :id="`label_${label}`"
         data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-container="body" data-bs-html="true"
-        :data-bs-title="tooltip">{{ label }}</span>
-    <div class="form-control">
+        :data-bs-title="tooltip">
+      {{ label }}
+      <button @click.left="isFolded = !isFolded">
+        <i class="bi" :class="{ 'bi-chevron-down': isFolded, 'bi-chevron-up': !isFolded}"></i>
+      </button>
+    </span>
+    <div class="form-control" v-if="!isFolded">
       <v-slider
         v-model="model"
         :min="min"
@@ -66,7 +75,7 @@
     padding-left: 0.3em;
     padding-bottom: 1em;
   }
-  .input-group-vertical>:first-child{
+  .input-group-vertical>:first-child:not(:last-child){
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -79,6 +88,14 @@
   }
   .v-slider-thumb__label-container{
     width: 100%
+  }
+  .input-group-vertical span.input-group-text>button{
+    position: absolute;
+    right: 0.5em;
+    color:black;
+    :hover{
+      color: var(--bs-primary);
+    }
   }
 </style>
 <style>
