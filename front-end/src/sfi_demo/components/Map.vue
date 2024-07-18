@@ -28,6 +28,13 @@
     layerLib.selectLayer("SFI")
     map.value = mapRef.value?.map;
   })
+
+  if (import.meta.env !== undefined) {
+    window.map = map;
+    window.layer = layer;
+    window.layerLib = layerLib;
+    window.config = config;
+  }
 </script>
 
 <template>
