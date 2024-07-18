@@ -14,19 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from django.views.i18n import JavaScriptCatalog
-from django.views.decorators.cache import cache_page
 
 from .views import (home_view, app_view, method_view)
 
 app_name = 'sfi_demo'
 urlpatterns = [
     path('', home_view, name="home"),
-    path('app', app_view, name="app"),
-    path('method', method_view, name="method"),
-    # JavaScript translation catalog
-    path('jsi18n',
-         cache_page(86400, key_prefix='jsi18n')(
-            JavaScriptCatalog.as_view(packages=['sfi_demo'])),
-         name='javascript-catalog')
+    path('app/', app_view, name="app"),
+    path('method/', method_view, name="method")
 ]

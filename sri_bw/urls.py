@@ -26,7 +26,7 @@ router.register(r'sri_bw_polygon', SRIBWPolygonsViewSet, basename="sri_bw_polygo
 app_name = 'sri_bw'
 urlpatterns = [
     path('', home_view, name="home"),
-    path('map', map_view, name="map"),
-    path('method', method_view, name="method"),
+    path('map/', map_view, name="map"),
+    path('method/', method_view, name="method"),
     path('api/', include(router.urls)),
 ]

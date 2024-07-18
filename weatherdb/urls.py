@@ -24,12 +24,12 @@ from .views import (
 app_name = 'weatherdb'
 urlpatterns = [
     path('', home, name="home"),
-    path('get_ts', get_ts, name="get_ts"),
-    path('download_ts', download_ts, name="download_ts"),
-    path('download_secret_settings', download_secret_settings, name="download_secret_settings"),
-    path('method', method_view, name="method"),
-    path('package', package_view, name="package"),
-    path('jsi18n',
+    path('get_ts/', get_ts, name="get_ts"),
+    path('download_ts/', download_ts, name="download_ts"),
+    path('download_secret_settings/', download_secret_settings, name="download_secret_settings"),
+    path('method/', method_view, name="method"),
+    path('package/', package_view, name="package"),
+    path('jsi18n/',
         cache_page(86400, key_prefix='jsi18n')(
             JavaScriptCatalog.as_view(packages=['weatherdb'])),
         name='javascript-catalog'),
