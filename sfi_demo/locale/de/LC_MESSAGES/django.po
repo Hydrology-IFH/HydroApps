@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 15:18+0200\n"
+"POT-Creation-Date: 2024-07-18 09:58+0200\n"
 "PO-Revision-Date: 2024-07-12 15:21+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -22,6 +22,37 @@ msgstr ""
 #: .\sfi_demo\templates\sfi_demo\app.html:13
 msgid "SFI Demonstrator"
 msgstr "SFI Demonstrator"
+
+#: .\sfi_demo\templates\sfi_demo\app.html:14
+msgid ""
+"Explore a virtual soil-moisture, precipitation intensity and duration matrix "
+"to see the benefits of the pluvial flood Index (PFI, german SFI) over the "
+"heavy rain index (HRI, german SRI)."
+msgstr ""
+"Untersuche eine virtuelle Bodenfeuchte, Niederschlagsintensität, und -Dauer "
+"Matrix, um die Vorteile des Sturzflut-Indexes (SFI) gegenüber dem Starkregen-"
+"Index (SRI) zu sehen."
+
+#: .\sfi_demo\templates\sfi_demo\app.html:16
+msgid ""
+"The blue flow chart shows you how the data is generated and lets you choose "
+"different layers to see their data."
+msgstr ""
+"Das blaue Flussdiagramm zeigt Ihnen, wie die Daten generiert werden und "
+"ermöglicht es Ihnen, die einzelnen Layerebene auszuwählen, um die Daten zu "
+"sehen."
+
+#: .\sfi_demo\templates\sfi_demo\app.html:17
+msgid ""
+"In the \"Event Selection\" menu you can change different parameters to see "
+"their effect."
+msgstr ""
+"Im \"Event Auswahl\" Menü können Sie verschiedene Parameter ändern um deren Auswirkungen "
+"zu sehen."
+
+#: .\sfi_demo\templates\sfi_demo\app.html:20
+msgid "loading ..."
+msgstr "laden ..."
 
 #: .\sfi_demo\templates\sfi_demo\base.html:9
 msgid ""
@@ -47,4 +78,7 @@ msgstr "Demonstrator"
 
 #: .\sfi_demo\templates\sfi_demo\home.html:20
 msgid "This web tool is .... "
-msgstr "Dieses Webtool wurde im Zuge vomProjekt AVOSS entwickelt."
+msgstr ""
+"Dieses Webtool wurde im Zuge des Projekts AVOSS entwickelt. AVOSS ist ein "
+"Verbundprojekt innerhalb der Fördermaßnahme \"WAX - Wasser-Extremereignisse"
+"\" das vom Bundesministerium für Bildung und Forschung (BMBF) gefördert wird."

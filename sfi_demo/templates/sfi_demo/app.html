@@ -11,8 +11,13 @@
 {% block content %}
 
   <h1>{% trans "SFI Demonstrator" %}</h1>
+  <p>{% trans "Explore a virtual soil-moisture, precipitation intensity and duration matrix to see the benefits of the pluvial flood Index (PFI, german SFI) over the heavy rain index (HRI, german SRI)." %}</p>
+  <p>
+    {% trans "The blue flow chart shows you how the data is generated and lets you choose different layers to see their data." %}<br>
+    {% trans 'In the "Event Selection" menu you can change different parameters to see their effect.' %}
+  </p>
   <div id="app">
-    <p>loading ...</p>
+    <p>{% trans "loading ..." %}</p>
   </div>
 
 {% endblock content %}
