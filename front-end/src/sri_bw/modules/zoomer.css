@@ -1,4 +1,8 @@
 /* Make map zoom to fullscreen */
+.zoom-container:has(.zoom-button:hover){
+  box-shadow: var(--bs-gray-400) 0px 0px 5px 5px;
+  transition: box-shadow 0.2s;
+}
 .zoom-container .zoom-elements{
     position: relative;
   }
@@ -34,15 +38,14 @@
 .zoom-container.zoom-active .zoom-elements>div.container div.row #map{
   flex-grow: 1;
 }
-
 a.zoom-button{
   position: absolute;
-  top: -1rem;
-  right: 5px;
-  margin: 5px;
+  top: 0px;
+  right: 8px;
   font-size: x-large;
   cursor: pointer;
   color: black;
+  z-index: 500;
 }
 a.zoom-button:hover{
   opacity: 1;
