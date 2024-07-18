@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from pickle import APPEND
 import sys, os
 from urllib.parse import urlparse
 from django.utils.translation import gettext_lazy as _
@@ -102,6 +103,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'main.urls'
+APPEND_SLASH = True
 
 TEMPLATES = [
     {
