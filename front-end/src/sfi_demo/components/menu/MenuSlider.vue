@@ -13,7 +13,7 @@
 </script>
 <template>
   <div class="input-group-vertical mb-3">
-    <span class="input-group-text" id="label_SoilMoisture"
+    <span class="input-group-text" :id="`label_${label}`"
         data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-container="body" data-bs-html="true"
         :data-bs-title="tooltip">{{ label }}</span>
@@ -32,6 +32,7 @@
         density="compact"
         hide-details="auto"
         show-ticks="always"
+        class="menu-slider"
         >
 
         <template v-slot:thumb-label="{ modelValue }">
@@ -74,8 +75,8 @@
     border-top-right-radius: 0;
   }
   .input-group-vertical>div:not(:first-child){
-      border-top: 0;
-    }
+    border-top: 0;
+  }
   .v-slider-thumb__label-container{
     width: 100%
   }
@@ -85,5 +86,11 @@
     width: fit-content;
     height: fit-content;
     text-wrap: nowrap;
+  }
+  .menu-slider.v-locale--is-ltr.v-slider.v-input--horizontal .v-slider-track__ticks>.v-slider-track__tick--first>.v-slider-track__tick-label{
+    transform: translateX(-0.5em);
+  }
+  .menu-slider.v-locale--is-ltr.v-slider.v-input--horizontal .v-slider-track__ticks>.v-slider-track__tick--last>.v-slider-track__tick-label{
+    transform: translateX(-100%) translateX(1em);
   }
 </style>

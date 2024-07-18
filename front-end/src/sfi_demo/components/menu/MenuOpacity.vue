@@ -4,8 +4,8 @@
 
   const config = useConfig();
   const labels = {
-    0: "0",
-    100: "100",
+    0: "0 %",
+    100: "100 %",
   }
 </script>
 <template>
