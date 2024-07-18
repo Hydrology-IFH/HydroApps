@@ -1,7 +1,6 @@
 <script setup>
   import { computed } from 'vue';
 
-  import { useConfig } from '~/stores/config.js';
   import { useLayerLib } from '~/stores/layerLib.js';
   import MapLegendFromStyle from '~~/components/MapLegendFromStyle.vue';
 
@@ -10,7 +9,9 @@
   const layer = computed(() => layerLib.selectedLayer);
 
   const valueConverter = computed(() => {
-    if (layer.value.valueConverter) {
+    if (layer.value.legend?.valueConverter) {
+      return layer.value.legend.valueConverter;
+    } else if (layer.value.valueConverter) {
       return layer.value.valueConverter;
     }
     return (x) => x;
@@ -25,6 +26,6 @@
     :unit="layer.unit"
     :valueConverter="valueConverter"
     v-bind="layer.legend"
-    :titlePosition="top"
+    titlePosition="top"
   />
 </template>
