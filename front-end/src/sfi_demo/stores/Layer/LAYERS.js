@@ -40,9 +40,9 @@ export const LAYERS = [
       colorscale: {
         min: 0,
         max: 120,
-        colorbar: "viridis",
+        colorbar: "salinity",
         continous: true,
-        reverse: false,
+        reverse: true,
       },
     },
   },
@@ -98,7 +98,7 @@ export const LAYERS = [
       colorscale: {
         min: 0,
         max: 100,
-        colorbar: "salinity", //"RdBu",
+        colorbar: "salinity",
         continous: true,
         reverse: true,
       },
@@ -114,9 +114,9 @@ export const LAYERS = [
       colorscale: {
         min: 0,
         max: 90,
-        colorbar: "viridis",
+        colorbar: "salinity",
         continous: true,
-        reverse: false,
+        reverse: true,
       },
     },
   },
