@@ -1,17 +1,30 @@
 import i18n from 'i18next';
 
+// uncomment for continuous color scale from 1-3
+// const sfiCats = [
+//   { sfi: 0, range: [0, 0.5] },
+//   { sfi: 1, range: [0.5, 1] },
+//   { sfi: "1<sup>+</sup>", range: [1, 1.5] },
+//   { sfi: "1<sup>++</sup>", range: [1.5, 2] },
+//   { sfi: 2, range: [2, 3] },
+//   { sfi: "2<sup>+</sup>", range: [3, 4] },
+//   { sfi: "2<sup>++</sup>", range: [4, 5] },
+//   { sfi: 3, range: [5, 10] },
+//   { sfi: "3<sup>+</sup>", range: [10, 15] },
+//   { sfi: "3<sup>++</sup>", range: [15, 100] },
+// ]
 const sfiCats = [
   { sfi: 0, range: [0, 0.5] },
-  { sfi: 1, range: [0.5, 1] },
-  { sfi: "1<sup>+</sup>", range: [1, 1.5] },
-  { sfi: "1<sup>++</sup>", range: [1.5, 2] },
-  { sfi: 2, range: [2, 3] },
-  { sfi: "2<sup>+</sup>", range: [3, 4] },
-  { sfi: "2<sup>++</sup>", range: [4, 5] },
-  { sfi: 3, range: [5, 10] },
-  { sfi: "3<sup>+</sup>", range: [10, 15] },
-  { sfi: "3<sup>++</sup>", range: [15, 100] },
+  { sfi: 1, range: [0.5, 2] },
+  { sfi: 2, range: [2, 5] },
+  { sfi: 3, range: [5, 100] }
 ]
+const sfiLegendLabels = {
+  "< 0.5": "0",
+  "< 2": "1",
+  "< 5": "2",
+  ">= 5": "3"
+}
 
 const sriCats = {
   1: { T: "1 - 2" },
@@ -135,24 +148,40 @@ export const LAYERS = [
         { label: "1", message: i18n.t("tooltip_sfi_1") },
         { label: "2", message: i18n.t("tooltip_sfi_2") },
         { label: "3", message: i18n.t("tooltip_sfi_3") }],
-      ignoreLabels: ["< 1"]
+        valueConverter: (val) => sfiLegendLabels[val]
+      // ignoreLabels: ["< 1"] // uncomment for continuous color scale from 1-3
     },
     style: {
+      // uncomment for continuous color scale from 1-3
+      // color: [
+      //   "case",
+      //   ["!=", ["band", 2], 0],
+      //   [
+      //     "case",
+      //     ["==", ["band", 1], 0], [84, 194, 31, 1],
+      //     ["<", ["band", 1], 0.5], [84, 194, 31, 1],
+      //     [
+      //       "interpolate",
+      //       ["linear"],
+      //       ["band", 1],
+      //       0.5, [255, 236, 1, 1],
+      //       2, [226, 35, 35, 1],
+      //       5, [147, 68, 144, 1]
+      //     ]
+      //   ],
+      //   // this is just a workaround as openlayers  case has a problem to check for alpha band
+      //   ["color", 84, 194, 31, 1]
+      // ]
       color: [
         "case",
         ["!=", ["band", 2], 0],
         [
           "case",
-          ["==", ["band", 1], 0], [84, 194, 31, 1],
           ["<", ["band", 1], 0.5], [84, 194, 31, 1],
-          [
-            "interpolate",
-            ["linear"],
-            ["band", 1],
-            0.5, [255, 236, 1, 1],
-            2, [226, 35, 35, 1],
-            5, [147, 68, 144, 1]
-          ]
+          ["<", ["band", 1], 2], [255, 236, 1, 1],
+          ["<", ["band", 1], 5], [226, 35, 35, 1],
+          [">=", ["band", 1], 5], [147, 68, 144, 1],
+          ["color", 147, 68, 144, 1],
         ],
         // this is just a workaround as openlayers  case has a problem to check for alpha band
         ["color", 84, 194, 31, 1]
