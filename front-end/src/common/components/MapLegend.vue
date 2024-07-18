@@ -110,7 +110,6 @@
               <div class="colorbar-color" :style="{ background: element.color }"></div>
               <div class="colorbar-tick">
                 {{ element.label }}
-
               </div>
               <v-tooltip v-if="element.hasOwnProperty('tooltip')"
                         class="arrow-bottom" offset="0px"
@@ -139,6 +138,7 @@
   div.colorbar-title{
     font-weight: 600;
     font-size: 1rem;
+    margin-right: 0.8em;
   }
   div.colorbar .colorbar-title:first-child{
     margin-bottom: 5px;

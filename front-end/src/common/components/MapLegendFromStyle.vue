@@ -100,7 +100,7 @@
           let element = { type: "dis" }
 
           // get label
-          let label = String(props.valueConverter(cond[2]));
+          let label = String(cond[2]);
           switch (cond[0]) {
             case "==":
               break
@@ -110,7 +110,7 @@
             default:
               label = `${cond[0]} ${label}`
           }
-          element.label = label
+          element.label = props.valueConverter(label)
 
           // get color
           if (out.length == 3) {
