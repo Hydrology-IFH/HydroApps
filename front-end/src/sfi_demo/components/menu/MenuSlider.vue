@@ -8,8 +8,9 @@
     ticks: Object,
     getLabel: Function,
     tooltip: String,
-    getTickTooltips: {Function, default: undefined}
+    getTickTooltips: { Function, default: undefined }
   });
+  defineEmits(['update:focused'])
 
   const model = defineModel()
 
@@ -42,6 +43,7 @@
         hide-details="auto"
         show-ticks="always"
         class="menu-slider"
+        @update:focused="$emit('update:focused', $event)"
         >
 
         <template v-slot:thumb-label="{ modelValue }">

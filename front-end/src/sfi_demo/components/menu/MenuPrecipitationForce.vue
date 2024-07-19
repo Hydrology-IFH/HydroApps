@@ -53,14 +53,13 @@
       sliderValue.value = steps[steps.indexOf(sliderValue.value) + 1] || steps[steps.length - 1];
     }
   }
-  const activateArrows = () => {
-    window.addEventListener("keydown", arrowEventListener);
-    setTimeout(() => {
-      window.addEventListener(
-        "click",
-        () => { window.removeEventListener("keydown", arrowEventListener) },
-        { once: true })
-    }, 100);
+
+  const toggleArrows = (state) => {
+    if (state) {
+      window.addEventListener("keydown", arrowEventListener)
+    } else {
+      window.removeEventListener("keydown", arrowEventListener)
+    }
   }
 </script>
 <template>
@@ -70,5 +69,5 @@
               :ticks="labels"
               :getLabel="getLabel"
               :tooltip="$t('menu_PrecipitationForce_tooltip')"
-              @click="activateArrows"/>
+              @update:focused="toggleArrows"/>
 </template>
