@@ -22,13 +22,16 @@
     if (labels[value]) {
       return labels[value];
     } else {
-      let prev = -Infinity;
-      let next = Infinity;
-      Object.keys(labels).forEach((key) => {
-        let dif = parseInt(key) - value;
-        if (dif < 0 && (dif > prev)) { prev = parseInt(key) }
-        if (dif > 0 && (dif < next)) { next = parseInt(key) }
-      });
+      let diffs = Object.keys(labels).map((key_val) => parseInt(key_val) - parseInt(value))
+      let prev_index = diffs.indexOf(
+        diffs.filter(val => val < 0)
+          .reduce((prev, curr) => Math.max(prev, curr)))
+      let next_index = diffs.indexOf(
+        diffs.filter(val => val > 0)
+          .reduce((prev, curr) => Math.min(prev, curr)))
+      let prev = Object.keys(labels)[prev_index]
+      let next = Object.keys(labels)[next_index]
+
       return `${labels[prev]} - ${labels[next]}`;
     }
   }
