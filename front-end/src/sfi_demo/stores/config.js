@@ -12,7 +12,10 @@ export const useConfig = defineStore(
       duration: 60, // one of 30, 60, 120 min
 
       // opacity
-      opacity: 80
+      opacity: 80,
+
+      // region, on of the simulated regions Bonndorf, Emmendingen, Wieslauf
+      region: "Bonndorf"
 
     })
   })

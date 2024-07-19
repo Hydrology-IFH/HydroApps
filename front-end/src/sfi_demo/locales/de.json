@@ -22,6 +22,8 @@
   "menu_precipitationForce_11": "extrem",
   "menu_precipitationForce_3": "stark",
   "menu_precipitationForce_7": "sehr stark",
+  "menu_region_label": "Region",
+  "menu_region_tooltip": "Wähle eine Region für die du die Ergebnisse sehen willst",
   "node_oa_label": "Oberflächenabfluss",
   "node_oa_tooltip": "Das Niederschlagswasser, das oberflächlich abfließt",
   "node_precipitation_label": "Niederschlag",

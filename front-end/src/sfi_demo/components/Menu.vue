@@ -5,6 +5,7 @@
   import MenuSoilMoisture from './menu/MenuSoilMoisture.vue';
   import MenuDuration from './menu/MenuDuration.vue';
   import MenuOpacity from './menu/MenuOpacity.vue';
+  import MenuRegion from './menu/MenuRegion.vue';
 
   const fromRef = ref(null);
 
@@ -17,6 +18,7 @@
 <template>
   <form class="form-horizontal" action="javascript:void(0);" ref="fromRef">
     <h4>{{ $t('menu_header_event') }}</h4>
+    <MenuRegion />
     <MenuSoilMoisture />
     <MenuPrecipitationForce />
     <MenuDuration />

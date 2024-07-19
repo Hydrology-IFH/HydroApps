@@ -48,7 +48,7 @@ export const LAYERS = [
     name: i18n.t("label_layer_precipitation"),
     unit: "mm",
     decimals: 0,
-    url: ({ sri, duration }) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/N.tif`,
+    url: ({ region, sri, duration }) => `/static/sfi_demo/${region}/${sri}/${duration}/N.tif`,
     style: {
       colorscale: {
         min: 0,
@@ -61,7 +61,7 @@ export const LAYERS = [
   },
   {
     id: "SRI",
-    url: ({ sri, duration }) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/SRI.tif`,
+    url: ({ region, sri, duration }) => `/static/sfi_demo/${region}/${sri}/${duration}/SRI.tif`,
     name: i18n.t("label_layer_sri"),
     unit: "",
     decimals: 1,
@@ -103,7 +103,7 @@ export const LAYERS = [
   },
   {
     id: "soil_moisture",
-    url: ({ soilMoisture }) => `/static/sfi_demo/Bonndorf/input/theta/theta_wrzl_ps${soilMoisture}.tif`,
+    url: ({ region, soilMoisture }) => `/static/sfi_demo/${region}/input/theta/theta_wrzl_ps${soilMoisture}.tif`,
     name: i18n.t("label_layer_soil_moisture"),
     unit: "% vol",
     decimals: 1,
