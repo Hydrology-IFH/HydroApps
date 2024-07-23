@@ -45,7 +45,26 @@ let popupAppInst = popupApp.mount(content);
 // functions to set popup position
 function set_overlay_position() {
   let ext = popup_cell_source.getExtent();
-  overlay.setPosition([(ext[0] + ext[2]) / 2, ext[3]]);
+  let center = getCenter(ext);
+  let pixel = map.getPixelFromCoordinate(center);
+  let screenTopPos = pixel[1] + map.getTargetElement().getBoundingClientRect().y;
+  let overlayEl = overlay.getElement();
+
+  if (screenTopPos <= (window.screen.availHeight * 0.4)) {
+    overlayEl.className = 'ol-popup popup-bottom';
+    overlay.setPosition([center[0], ext[1]]);
+  } else if (screenTopPos <= (window.screen.availHeight * 0.6)) {
+    if ((pixel[0] > map.getTargetElement().getBoundingClientRect().width * 0.6) && (pixel[0] + map.getTargetElement().getBoundingClientRect().x > 450)) {
+      overlayEl.className = 'ol-popup popup-left';
+      overlay.setPosition([ext[0], center[1]]);
+    } else {
+      overlayEl.className = 'ol-popup popup-right';
+      overlay.setPosition([ext[2], center[1]]);
+    }
+  } else {
+    overlayEl.className = 'ol-popup popup-top';
+    overlay.setPosition([center[0], ext[3]]);
+  }
 };
 function set_overlay_position_error(long, lat) {
   overlay.setPosition([long, lat]);
@@ -90,9 +109,11 @@ export function create_popup() {
   }
   function add_dragging_handler() {
     map.on('pointerdrag', dragging_listener)
+    window.addEventListener("scroll", dragging_listener);
   };
   function remove_dragging_handler() {
     map.un('pointerdrag', dragging_listener)
+    window.removeEventListener("scroll", dragging_listener);
   };
 
   //  add popup to map
