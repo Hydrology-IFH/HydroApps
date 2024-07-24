@@ -11,7 +11,7 @@ from main.tests.baseTests import BaseTestCase
 
 class Base:
     class NoLoginViews(BaseTestCase.UnreleasedViews):
-        sfi_demo = "sfi_demo"
+        app_name = "sfi_demo"
 
 # Test cases for views
 class TestHomeView(Base.NoLoginViews):
@@ -21,10 +21,10 @@ class TestHomeView(Base.NoLoginViews):
 
 class TestMethodView(Base.NoLoginViews):
     url_name = 'method'
-    url_prefix = "sfi_demo/method"
+    url_prefix = "sfi_demo/method/"
     template = 'sfi_demo/method.html'
 
 class TestGetTSView(Base.NoLoginViews):
     url_name = 'app'
-    url_prefix = "sfi_demo/app"
+    url_prefix = "sfi_demo/app/"
     template = 'sfi_demo/app.html'

@@ -12,7 +12,7 @@ class BaseTestCase:
         template = '' # e.g. "weatherdb/home.html"
 
         def setUp(self):
-            self.url = f'/de/{self.url_prefix}'
+            self.url = f'/de/{self.url_prefix}{"/" if self.url_prefix[-1]!="/" else ""}'
             self.url_name = f'{self.app_name}:{self.url_name}'
 
         def test_view_url_exists_at_desired_location(self):
