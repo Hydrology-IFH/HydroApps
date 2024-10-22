@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from pickle import APPEND
-import sys, os
+import os
 from urllib.parse import urlparse
 from django.utils.translation import gettext_lazy as _
 
@@ -51,7 +50,7 @@ INSTALLED_APPS = [
     "HydroApps",
     'my_auth',
     'weatherdb',
-    'asgII',
+    'RheiKlim',
     "kombstra",
     "sri_bw",
     "sfi_demo",
@@ -83,7 +82,7 @@ APPS_ALT_NAMES = {
     "weather": "weatherdb",
     "weatherDB": "weatherdb",
     "weatherdb": "weatherdb",
-    "asgII": "asgII",
+    "RheiKlim": "RheiKlim",
     "kombstra": "kombstra",
     "sri_bw": "sri_bw",
     "sfi_demo": "sfi_demo"

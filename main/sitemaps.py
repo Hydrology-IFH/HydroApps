@@ -1,7 +1,7 @@
 from .base_sitemap import BaseSitemap
 
 from HydroApps.sitemaps import HydroAppsSitemap
-from asgII.sitemaps import AsgIISitemap
+from RheiKlim.sitemaps import RheiKlimSitemap
 from kombstra.sitemaps import KombStRASitemap
 from my_auth.sitemaps import AuthSitemap
 from weatherdb.sitemaps import WeatherDBSitemap
@@ -17,7 +17,7 @@ class MainSitemap(BaseSitemap):
 sitemaps = {
     "main": MainSitemap,
     'HydroApps': HydroAppsSitemap,
-    'asgII': AsgIISitemap,
+    'RheiKlim': RheiKlimSitemap,
     # 'kombstra': KombStRASitemap,
     'my_auth': AuthSitemap,
     'weatherDB': WeatherDBSitemap,

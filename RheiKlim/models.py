@@ -12,4 +12,4 @@ class MetaN(models.Model):
     name = models.TextField(blank=True, null=True)
 
     class Meta:
-        db_table = 'asgii_station_meta'
+        db_table = 'rheiklim_station_meta'

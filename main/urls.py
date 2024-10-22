@@ -40,7 +40,7 @@ urlpatterns = [
         path("<str:app_name>/auth/", include("my_auth.urls")),
         path("", include("HydroApps.urls")),
         path("weatherdb/", include("weatherdb.urls")),
-        path("asgII/", include("asgII.urls")),
+        path("RheiKlim/", include("RheiKlim.urls")),
         path("sri_bw/", include("sri_bw.urls")),
         path("kombstra/", include("kombstra.urls")),
         path("sfi_demo/", include("sfi_demo.urls")),

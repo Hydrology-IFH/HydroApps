@@ -21,13 +21,13 @@ var plots_data = Vue.ref([])
 function add_plot(stid, para, period) {
   if (!plots_data.value.some(el=>{return (el.station_id == stid) && (el.para == para) && (el.period == period)})){
     plots_data.value.push({
-        station_id: stid, 
-        para: para, 
+        station_id: stid,
+        para: para,
         period: period,
         key: `${stid}_${para}_${period}`
       })
   }
-}  
+}
 
 // Vue App
 var plotAreaApp = Vue.createApp({
@@ -59,7 +59,7 @@ plotAreaApp.component(
     props: ['station_id', 'para', 'period', 'n'],
     computed: {
       src: function(){
-        return `/static/asgII/PNG/A4_Ann_Trends_${this.station_id}_${this.para}_${this.period}.png`
+        return `/static/RheiKlim/PNG/A4_Ann_Trends_${this.station_id}_${this.para}_${this.period}.png`
       },
       style: function(){
         let jitter = this.n_start*15;
@@ -153,14 +153,14 @@ let plot_area_inter = interact("#plot_area>.card").resizable({
     }
   },
   modifiers: [
-    interact.modifiers.restrictSize({ 
+    interact.modifiers.restrictSize({
       min: ()=>{
           let max_x = 0;
           let max_y = 0;
           document.querySelectorAll(".plot_card").forEach((e) => {
             max_x = Math.max(max_x, e.getBoundingClientRect().right);
             max_y = Math.max(max_y, e.getBoundingClientRect().bottom);
-          }) 
+          })
           let start = document.querySelector("#plot_area").getBoundingClientRect()
           return {width: max_x-start.x+10, height: max_y-start.y+10}
         },

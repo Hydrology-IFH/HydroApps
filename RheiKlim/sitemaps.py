@@ -1,7 +1,7 @@
 from main.base_sitemap import BaseSitemap
 
-class AsgIISitemap(BaseSitemap):
-    namespace = "asgII"
+class RheiKlimSitemap(BaseSitemap):
+    namespace = "RheiKlim"
 
     def items(self):
         return ['home', "map", "method"]

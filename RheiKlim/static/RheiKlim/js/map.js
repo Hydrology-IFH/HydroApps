@@ -1,5 +1,7 @@
 "use strict";
 
+var tooltipList = [];
+
 class InputField{
     constructor(name, type="input"){
         this.type = type;
@@ -7,7 +9,7 @@ class InputField{
         this.dom_input = document.querySelector(type + "#" + name);
         this.dom_form = document.getElementById("select_stations_form");
     }
-    
+
     make_valid(){
         this.dom_input.setCustomValidity('');
         this.dom_invalid_feedback.display = "none";
@@ -27,14 +29,14 @@ class InputField{
 
     get_value(){
         if (this.type=="select" && this.dom_input.multiple){
-            return [...this.dom_input.selectedOptions].map(option => option.value) 
+            return [...this.dom_input.selectedOptions].map(option => option.value)
         } else {
             return this.dom_input.value;
         }
     }
 }
 
-class asgIIMap{
+class RheiKlimMap{
     constructor(){
         this.get_stations_meta()
 
@@ -57,19 +59,19 @@ class asgIIMap{
 
         // icons
         L.Icon.Default.prototype.options.imagePath = location.origin;
-        L.Icon.Default.prototype.options.shadowUrl = "/static/asgII/img/Leaflet-Marker-shadow.png"; 
+        L.Icon.Default.prototype.options.shadowUrl = "/static/RheiKlim/img/Leaflet-Marker-shadow.png";
         this.IconDefault = L.Icon.Default.extend(
             {options:{
-                iconUrl:"/static/asgII/img/marker-icon-blue.png", 
-                iconRetinaUrl:"/static/asgII/img/marker-icon-2x-blue.png"}});
+                iconUrl:"/static/RheiKlim/img/marker-icon-blue.png",
+                iconRetinaUrl:"/static/RheiKlim/img/marker-icon-2x-blue.png"}});
         this.IconUnselect = L.Icon.Default.extend(
             {options:{
-                iconUrl:"/static/asgII/img/marker-icon-red.png", 
-                iconRetinaUrl:"/static/asgII/img/marker-icon-2x-red.png"}});
+                iconUrl:"/static/RheiKlim/img/marker-icon-red.png",
+                iconRetinaUrl:"/static/RheiKlim/img/marker-icon-2x-red.png"}});
         this.IconSelect = L.Icon.Default.extend(
             {options:{
-                iconUrl:"/static/asgII/img/marker-icon-green.png", 
-                iconRetinaUrl:"/static/asgII/img/marker-icon-2x-green.png"}});
+                iconUrl:"/static/RheiKlim/img/marker-icon-green.png",
+                iconRetinaUrl:"/static/RheiKlim/img/marker-icon-2x-green.png"}});
 
         // set variables
         this.coloring_active = false;
@@ -172,8 +174,8 @@ class asgIIMap{
         this.map_scale = L.control.scale();
         this.map_scale.addTo(this.map);
     }
-    
-    get_stations_meta(){           
+
+    get_stations_meta(){
         this.stations_meta = JSON.parse(
             document.getElementById("stations_meta").textContent);
         this.station_ids = [];
@@ -192,9 +194,6 @@ class asgIIMap{
 
     load_stations_to_map(filter=(feature) => {return true;}){
         // check if filter was given or set default
-        // if (filter == undefined){
-        //     filter = (feature) => {return true;}
-        // }
         if (this.lmarkers != undefined){
             this.lmarkers.clearLayers();
         }
@@ -223,7 +222,7 @@ class asgIIMap{
                             data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body" data-bs-trigger="hover"\
                             data-bs-title="${tooltip_select}">${str_select}</button></div>\
                         <div class="col gx-0">\
-                            <a class="btn btn-primary" href="/static/asgII/PDF/A4_Ann_Trends_${stid}.pdf" download style="color:#FFFFFF" \
+                            <a class="btn btn-primary" href="/static/RheiKlim/PDF/A4_Ann_Trends_${stid}.pdf" download style="color:#FFFFFF" \
                                 data-bs-toggle="tooltip" data-bs-placement="top" data-bs-container="body" data-bs-trigger="hover" \
                                 data-bs-title="${tooltip_download}">\
                                 <i class="bi bi-download"></i>\
@@ -237,7 +236,6 @@ class asgIIMap{
             tooltipList = tooltipList.filter((el) => el._element.isConnected);
             [...document.querySelectorAll('.leaflet-popup-content [data-bs-toggle="tooltip"]')
                 ].map(tooltipTriggerEl => tooltipList.push(new bootstrap.Tooltip(tooltipTriggerEl)));
-            // $('.leaflet-popup-content [data-toggle="tooltip"]').tooltip();
         })
         this.lmarkers.getLayers().forEach((layer) => {
             layer.setIcon(new this.IconDefault);
@@ -335,10 +333,10 @@ class asgIIMap{
     add_plot(stid, para, period){
         // if (!plotAreaApp.plots_data.some(el=>{return (el.station_id == stid) && (el.para == para) && (el.period == period)})){
         //     plotAreaApp.plots_data.push({
-        //         station_id: stid, 
-        //         para: para, 
+        //         station_id: stid,
+        //         para: para,
         //         period: period})
-        // }        
+        // }
         // plotAreaApp.
         add_plot(stid, para, period)
     }
@@ -380,7 +378,7 @@ class asgIIMap{
     select_station(stid){
         if (this.check_stid(stid) && !this.get_selected_stations().includes(stid)){
             if (this.input_stids.get_value().length == 0){
-                this.input_stids.dom_input.value = stid; 
+                this.input_stids.dom_input.value = stid;
             } else {
                 this.input_stids.dom_input.value += ", " + stid;
             }
@@ -406,7 +404,7 @@ class asgIIMap{
     }
 
     check_stations_input(){
-        this.input_stids.make_valid();        
+        this.input_stids.make_valid();
         // this.form_dom.classList.add("was-validated");
         let in_text = this.input_stids.get_value();
         if (in_text.length == 0) {
@@ -450,23 +448,17 @@ class asgIIMap{
 }
 
 
-const asgIImap = new asgIIMap();
+const RheiKlimmap = new RheiKlimMap();
 
 // button functions
-// let check_stations_input = function(event){
-//     event.stopPropagation();
-//     form.check_stations_input()
-// }
-// form.input_stids.addEventListener("change", check_stations_input)
-
 let button_select_station = (stid, event) => {
     if (event.target.innerText == gettext("select")) {
-        asgIImap.select_station(stid);
+        RheiKlimmap.select_station(stid);
         event.target.innerText = gettext("unselect");
     } else {
-        asgIImap.unselect_station(stid);
+        RheiKlimmap.unselect_station(stid);
         event.target.innerText = gettext("select");
     }
 }
 
-asgIImap.addEventListeners()
+RheiKlimmap.addEventListeners()

@@ -11,6 +11,8 @@ class Migration(migrations.Migration):
     dependencies = [
     ]
 
+    replaces = [('asgII', '0001_initial')]
+
     operations = [
         migrations.CreateModel(
             name='MetaN',

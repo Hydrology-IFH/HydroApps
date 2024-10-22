@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 15:53+0200\n"
-"PO-Revision-Date: 2023-02-23 12:16+0100\n"
+"PO-Revision-Date: 2024-10-22 09:20+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: .\asgII\static\asgII\js\map.js:76 .\asgII\static\asgII\js\map.min.js:1
 msgid "Legend"
@@ -44,7 +44,7 @@ msgstr "Filter aktualisieren"
 
 #: .\asgII\static\asgII\js\map.js:130 .\asgII\static\asgII\js\map.min.js:1
 msgid "Filter Selection"
-msgstr "auf Auswahl filtern"
+msgstr "Auf Auswahl filtern"
 
 #: .\asgII\static\asgII\js\map.js:137 .\asgII\static\asgII\js\map.min.js:1
 msgid "add new plots"
@@ -72,11 +72,11 @@ msgstr "Laden Sie alle Plots für diese Station als PDF herunter."
 
 #: .\asgII\static\asgII\js\map.js:207 .\asgII\static\asgII\js\map.min.js:1
 msgid "Betreiber"
-msgstr "operator"
+msgstr "Operator"
 
 #: .\asgII\static\asgII\js\map.js:208 .\asgII\static\asgII\js\map.min.js:1
 msgid "Name"
-msgstr "name"
+msgstr "Name"
 
 #: .\asgII\static\asgII\js\plot_area.js:4
 #: .\asgII\static\asgII\js\plot_area.min.js:1
@@ -121,7 +121,7 @@ msgstr "Jahr"
 #: .\asgII\static\asgII\js\plot_area.js:13
 #: .\asgII\static\asgII\js\plot_area.min.js:1
 msgid "Daily Maximum"
-msgstr "tägliches Maximum"
+msgstr "Tägliches Maximum"
 
 #: .\asgII\static\asgII\js\plot_area.js:14
 #: .\asgII\static\asgII\js\plot_area.min.js:1
