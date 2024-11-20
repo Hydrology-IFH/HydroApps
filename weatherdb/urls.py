@@ -18,7 +18,7 @@ from django.views.i18n import JavaScriptCatalog
 from django.views.decorators.cache import cache_page
 
 from .views import (
-    home, get_ts, download_ts, download_secret_settings,
+    home, get_ts, download_ts, get_user_config,
     package_view, method_view)
 
 app_name = 'weatherdb'
@@ -26,7 +26,7 @@ urlpatterns = [
     path('', home, name="home"),
     path('get_ts/', get_ts, name="get_ts"),
     path('download_ts/', download_ts, name="download_ts"),
-    path('download_secret_settings/', download_secret_settings, name="download_secret_settings"),
+    path('get_user_config/', get_user_config, name="get_user_config"),
     path('method/', method_view, name="method"),
     path('package/', package_view, name="package"),
     path('jsi18n/',

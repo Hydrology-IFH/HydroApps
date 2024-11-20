@@ -87,6 +87,10 @@
           {% endif %}
           {% trans "maximal Download" as md %}
           {% bootstrap_field form.wdb_max_downloads show_label='skip' addon_before=md addon_after_class=None addon_after='<a id="addon_after_max_download"></a>' %}
+
+          <div class="modal" tabindex="-1" id="wdb_user_config_modal">
+          </div>
+
         </div>
       </div>
     {% endif %}
@@ -188,15 +192,30 @@
         addon_after_api.appendChild(btn_clipboard);
       }
 
-      let btn_download = document.createElement("a");
-      btn_download.id="btn_download_api_pwd";
-      btn_download.className = btn_renew.className;
-      btn_download.href="{% url 'weatherdb:download_secret_settings' %}";
-      btn_download.innerHTML = "<i class='bi bi-download'>";
-      btn_download.setAttribute("data-bs-toggle", "tooltip");
-      btn_download.setAttribute("data-bs-placement", "top");
-      btn_download.setAttribute("title", '{% trans "Download your personal secret settings file" %}');
-      addon_after_api.appendChild(btn_download);
+      let btn_info = document.createElement("button");
+      btn_info.id="btn_info_api_pwd";
+      btn_info.className = btn_renew.className;
+      btn_info.innerHTML = "<i class='bi bi-info'>";
+      btn_info.setAttribute("data-bs-toggle", "tooltip");
+      btn_info.setAttribute("data-bs-placement", "top");
+      btn_info.setAttribute("title", '{% trans "Show additional infos on how to use this API-Password" %}');
+      btn_info.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+
+        $.ajax({url:"{% url 'weatherdb:get_user_config' %}"})
+          .then(res => {
+            let modal_el = $("#wdb_user_config_modal");
+            modal_el.html(res);
+            let modal = new bootstrap.Modal(modal_el);
+            modal.show();
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      });
+      addon_after_api.appendChild(btn_info);
     }
 
   })();
