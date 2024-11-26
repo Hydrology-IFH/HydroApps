@@ -9,7 +9,8 @@
 </script>
 
 <template>
-  <MenuInfo :label="$t('menu_date_label')"
+  <MenuInfo v-if="config.kind=='event'"
+            :label="$t('menu_date_label')"
             :msg="config.date[config.region]"
             type="date"
             :tooltip="$t('menu_region_tooltip')"/>

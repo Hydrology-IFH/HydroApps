@@ -1,6 +1,7 @@
 <script setup>
-  import { ref, onMounted, computed } from 'vue';
+  import { ref, onMounted, computed, watch } from 'vue';
   import { Map, MapControls } from "vue3-openlayers";
+  import { View } from 'ol';
   import { getCenter } from 'ol/extent';
 
   import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
@@ -10,6 +11,7 @@
   import "./map/projections";
   import Basemaps from './map/Basemaps.vue';
   import MapLegend from "./map/MapLegend.vue";
+  import { flyToExtent } from "./map/animations";
 
   const config = useConfig();
   const layerLib = useLayerLib();
@@ -19,20 +21,36 @@
   }
   const mapRef = ref(null);
   const map = ref(null);
+  const extent = ref(extents[config.region])
+  const center = ref(getCenter(extent.value))
 
-  const extent = computed(() => extents[config.region])
-  const center = computed(() => getCenter(extent.value))
   const layer = computed(() => layerLib.selectedLayer)
   const layerError = computed(() => {
     return layer.value ? layer.value.hasError : false
   })
 
+  // change map extent on region change
+  config.$subscribe((mutation, state) => {
+    if (mutation.events.key === "region") {
+      extent.value = undefined;
+      let new_extent = extents[mutation.events.newValue];
+
+      flyToExtent(map.value, new_extent, () => {
+        extent.value = new_extent;
+        center.value = getCenter(extent.value);
+      },
+      3000)
+    }
+  })
+
+  // initiate the map
   onMounted(() => {
     layerLib.initMap(mapRef.value.map)
     layerLib.selectLayer("SFI")
     map.value = mapRef.value?.map;
   })
 
+  // for debugging
   if (import.meta.env !== undefined) {
     window.map = map;
     window.layer = layer;
@@ -45,8 +63,9 @@
   <div class="map-container">
     <Map.OlMap id="map" ref="mapRef">
       <Map.OlView
-        :center="center" zoom="13"
+        zoom="13"
         :extent="extent"
+        :center="center"
         projection="EPSG:25832" />
 
         <Basemaps/>
