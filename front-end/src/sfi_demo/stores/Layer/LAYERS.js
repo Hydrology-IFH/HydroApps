@@ -1,18 +1,5 @@
 import i18n from 'i18next';
 
-// uncomment for continuous color scale from 1-3
-// const sfiCats = [
-//   { sfi: 0, range: [0, 0.5] },
-//   { sfi: 1, range: [0.5, 1] },
-//   { sfi: "1<sup>+</sup>", range: [1, 1.5] },
-//   { sfi: "1<sup>++</sup>", range: [1.5, 2] },
-//   { sfi: 2, range: [2, 3] },
-//   { sfi: "2<sup>+</sup>", range: [3, 4] },
-//   { sfi: "2<sup>++</sup>", range: [4, 5] },
-//   { sfi: 3, range: [5, 10] },
-//   { sfi: "3<sup>+</sup>", range: [10, 15] },
-//   { sfi: "3<sup>++</sup>", range: [15, 100] },
-// ]
 const sfiCats = [
   { sfi: 0, range: [0, 0.5] },
   { sfi: 1, range: [0.5, 2] },
@@ -48,7 +35,17 @@ export const LAYERS = [
     name: i18n.t("label_layer_precipitation"),
     unit: "mm",
     decimals: 0,
-    url: ({ sri, duration }) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/N.tif`,
+    url: ({ region, kind, sri, duration, date }) => {
+      let base_url = `/static/sfi_demo/${region}/${kind}/`
+      if (kind == "matrix") {
+        return `${base_url}/${sri}/${duration}/N.tif`
+      } else if (kind == "event") {
+        return `${base_url}/${date}/N.tif`
+      } else {
+        console.error("Invalid kind for precipitation layer")
+        return ""
+      }
+    },
     style: {
       colorscale: {
         min: 0,
@@ -61,7 +58,17 @@ export const LAYERS = [
   },
   {
     id: "SRI",
-    url: ({ sri, duration }) => `/static/sfi_demo/Bonndorf/${sri}/${duration}/SRI.tif`,
+    url: ({ region, kind, sri, duration }) => {
+      let base_url = `/static/sfi_demo/${region}/${kind}/`
+      if (kind == "matrix") {
+        return `${base_url}/${sri}/${duration}/SRI.tif`
+      } else if (kind == "event") {
+        return `${base_url}/${date}/SRI.tif`
+      } else {
+        console.error("Invalid kind for SRI layer")
+        return ""
+      }
+    },
     name: i18n.t("label_layer_sri"),
     unit: "",
     decimals: 1,
@@ -74,7 +81,6 @@ export const LAYERS = [
         }
         let msg = i18n.t('tooltip_sri_return_period', i18n_opts);
         if ("F" in el[1]) { msg += "<br>" + i18n.t('tooltip_sri_factor', i18n_opts) }
-        console.log(msg);
         return { label: el[0], message: msg }
       })
     },
@@ -103,7 +109,17 @@ export const LAYERS = [
   },
   {
     id: "soil_moisture",
-    url: ({ soilMoisture }) => `/static/sfi_demo/Bonndorf/input/theta/theta_wrzl_ps${soilMoisture}.tif`,
+    url: ({ region, kind, soilMoisture, date }) => {
+      let base_url = `/static/sfi_demo/${region}/${kind}/`
+      if (kind == "matrix") {
+        return `${base_url}/theta/${soilMoisture}/theta_wrzl.tif`
+      } else if (kind == "event") {
+        return `${base_url}/${date}/theta_wrzl.tif`
+      } else {
+        console.error("Invalid kind for soil moisture layer")
+        return ""
+      }
+    },
     name: i18n.t("label_layer_soil_moisture"),
     unit: "% vol",
     decimals: 1,
@@ -119,7 +135,7 @@ export const LAYERS = [
   },
   {
     id: "OA",
-    file: "OA_circ_A2.tif",
+    file: "OA_Sum.tif",
     name: i18n.t("label_layer_oa"),
     unit: "mm",
     decimals: 1,
@@ -149,29 +165,8 @@ export const LAYERS = [
         { label: "2", message: i18n.t("tooltip_sfi_2") },
         { label: "3", message: i18n.t("tooltip_sfi_3") }],
         valueConverter: (val) => sfiLegendLabels[val]
-      // ignoreLabels: ["< 1"] // uncomment for continuous color scale from 1-3
     },
     style: {
-      // uncomment for continuous color scale from 1-3
-      // color: [
-      //   "case",
-      //   ["!=", ["band", 2], 0],
-      //   [
-      //     "case",
-      //     ["==", ["band", 1], 0], [84, 194, 31, 1],
-      //     ["<", ["band", 1], 0.5], [84, 194, 31, 1],
-      //     [
-      //       "interpolate",
-      //       ["linear"],
-      //       ["band", 1],
-      //       0.5, [255, 236, 1, 1],
-      //       2, [226, 35, 35, 1],
-      //       5, [147, 68, 144, 1]
-      //     ]
-      //   ],
-      //   // this is just a workaround as openlayers  case has a problem to check for alpha band
-      //   ["color", 84, 194, 31, 1]
-      // ]
       color: [
         "case",
         ["!=", ["band", 2], 0],
@@ -183,7 +178,7 @@ export const LAYERS = [
           [">=", ["band", 1], 5], [147, 68, 144, 1],
           ["color", 147, 68, 144, 1],
         ],
-        // this is just a workaround as openlayers  case has a problem to check for alpha band
+        // this is just a workaround as openlayers case has a problem to check for alpha band
         ["color", 84, 194, 31, 1]
       ]
     }

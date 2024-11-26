@@ -1,5 +1,6 @@
 <script setup>
   import { ref } from 'vue';
+
   defineProps({
     label: String,
     min: Number,
@@ -10,12 +11,12 @@
     tooltip: String,
     getTickTooltips: { Function, default: undefined }
   });
-  defineEmits(['update:focused'])
-
-  const model = defineModel()
+  const model = defineModel();
 
   const isFolded = ref(false);
+
 </script>
+
 <template>
   <div class="input-group-vertical mb-3">
     <span class="input-group-text" :id="`label_${label}`"
@@ -63,6 +64,7 @@
     </div>
   </div>
 </template>
+
 <style scoped>
   .input-group-vertical{
     display: flex;
@@ -100,6 +102,7 @@
     }
   }
 </style>
+
 <style>
   .v-slider-thumb__label{
     width: fit-content;

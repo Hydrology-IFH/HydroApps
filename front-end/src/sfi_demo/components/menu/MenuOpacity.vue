@@ -1,6 +1,6 @@
 <script setup>
   import { useConfig } from '~/stores/config.js';
-  import MenuSlider from "./MenuSlider.vue";
+  import MenuSlider from "./utils/MenuSlider.vue";
 
   const config = useConfig();
   const labels = {

@@ -36,7 +36,10 @@ export class Layer {
       this.config.$subscribe((mutation, state) => {
         if (state.opacity !== this._lastConfigState?.opacity) {
           this.updateOpacity()
-        } else if ((state.soilMoisture !== this._lastConfigState?.soilMoisture) ||
+        } else if ((state.region !== this._lastConfigState?.region) ||
+                    (state.kind !== this._lastConfigState?.kind) ||
+                    (state.date !== this._lastConfigState?.date) ||
+                    (state.soilMoisture !== this._lastConfigState?.soilMoisture) ||
                     (state.sri !== this._lastConfigState?.sri) ||
                     (state.duration !== this._lastConfigState?.duration)) {
           this.updateLayer();
@@ -48,8 +51,23 @@ export class Layer {
   }
 
   get url() {
-    if (this._url) return this._url({sri: this.config.sri, duration: this.config.duration, soilMoisture: this.config.soilMoisture});
-    return `/static/sfi_demo/Bonndorf/${this.config.sri}/${this.config.duration}/${this.config.soilMoisture}/${this.file}`
+    if (this._url) return this._url({
+      region: this.config.region,
+      kind: this.config.kind,
+      sri: this.config.sri,
+      duration: this.config.duration,
+      soilMoisture: this.config.soilMoisture,
+      date: this.config.date[this.config.region]
+    });
+    let base_url = `/static/sfi_demo/${this.config.region}/${this.config.kind}/`
+    if (this.config.kind == "matrix") {
+      return `${base_url}/${this.config.sri}/${this.config.duration}/${this.config.soilMoisture}/${this.file}`
+    } else if (this.config.kind == "event") {
+      return `${base_url}/${this.config.date[this.config.region]}/${this.file}`
+    } else {
+      console.error("Invalid kind for layer")
+      return ""
+    }
   }
 
   get style() {

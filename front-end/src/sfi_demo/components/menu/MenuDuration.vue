@@ -1,7 +1,7 @@
 <script setup>
   import { watchEffect, ref } from 'vue';
   import { useConfig } from '~/stores/config.js';
-  import MenuSlider from "./MenuSlider.vue";
+  import MenuSlider from "./utils/MenuSlider.vue";
 
   const config = useConfig();
 
@@ -31,6 +31,7 @@
 </script>
 <template>
   <MenuSlider v-model="sliderValue"
+              v-if="config.kind=='matrix'"
               :label="$t('menu_duration_label')"
               :min="1" :max="3" :step="1"
               :ticks="labels"

@@ -3,7 +3,7 @@
   import { useTranslation } from "i18next-vue";
 
   import { useConfig } from '~/stores/config.js';
-  import MenuSlider from "./MenuSlider.vue";
+  import MenuSlider from "./utils/MenuSlider.vue";
 
   const { i18next } = useTranslation();
   const config = useConfig();
@@ -64,6 +64,7 @@
 </script>
 <template>
   <MenuSlider v-model="sliderValue"
+              v-if="config.kind=='matrix'"
               :label="$t('menu_PrecipitationForce_label')"
               :min="3" :max="11" :step=".1"
               :ticks="labels"

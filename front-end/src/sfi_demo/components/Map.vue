@@ -13,11 +13,15 @@
 
   const config = useConfig();
   const layerLib = useLayerLib();
-  const extent = ref([ 441576.5, 5290318.5, 456351.5, 5300468.5 ]);
-  const center = ref(getCenter(extent.value))
+  const extents = {
+    Bonndorf: [441576.5, 5290318.5, 456351.5, 5300468.5],
+    Wieslauf: [536286.5, 5406178.5, 545986.5, 5420628.5]
+  }
   const mapRef = ref(null);
   const map = ref(null);
 
+  const extent = computed(() => extents[config.region])
+  const center = computed(() => getCenter(extent.value))
   const layer = computed(() => layerLib.selectedLayer)
   const layerError = computed(() => {
     return layer.value ? layer.value.hasError : false
