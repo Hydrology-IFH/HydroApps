@@ -12,11 +12,12 @@
 
   const labels = {
     3: i18next.t("menu_precipitationForce_3"),
+    5: "",
     7: i18next.t("menu_precipitationForce_7"),
     9: "",
     11: i18next.t("menu_precipitationForce_11"),
   }
-  const steps = [3, 7, 9, 11];
+  const steps = [3, 5, 7, 9, 11];
 
   const getLabel = (value) => {
     if (labels[value]) {
