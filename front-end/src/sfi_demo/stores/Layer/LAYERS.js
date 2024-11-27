@@ -28,6 +28,10 @@ const sriCats = {
   12: { T: ">100", F: "2,80" }
 }
 
+const sfgfLegendLabels = {
+  1: i18n.t("label_sfgf_1")
+}
+
 export const LAYERS = [
   {
     id: "precipitation",
@@ -181,6 +185,36 @@ export const LAYERS = [
         // this is just a workaround as openlayers case has a problem to check for alpha band
         ["color", 84, 194, 31, 1]
       ]
+    },
+    child_layer: {
+      id: "SFGF",
+      file: "SFGF.tif",
+      name: i18n.t("label_layer_sfgf"),
+      unit: "",
+      decimals: 0,
+      legend: {
+        tooltips: [
+          { label: "1", message: i18n.t("tooltip_sfgf_1") }
+        ],
+        valueConverter: (val) => sfgfLegendLabels[val]
+      },
+      style: {
+        color: [
+          "case",
+          ["!=", ["band", 2], 0],
+          [
+            "case",
+            ["==", ["band", 1], 1], [95, 95, 95, 0.8],
+            ["color", 0, 0, 0, 0],
+          ],
+          // this is just a workaround as openlayers case has a problem to check for alpha band
+          ["color", 0, 0, 0, 0]
+        ]
+      },
+      condition: (config) => config.show_sfgf,
+      openlayer_options: {
+        maxZoom: 16,
+      }
     }
   }
 ];

@@ -8,7 +8,7 @@ export const useLayerLib = defineStore(
   {
     state: () => ({
       map: null,
-      layers: LAYERS.map(layerDef => new Layer(layerDef.id, layerDef)),
+      layers: LAYERS.map(layerDef => new Layer(layerDef)),
     }),
 
     getters: {

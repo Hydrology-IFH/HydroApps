@@ -1,6 +1,7 @@
 <script setup>
   import { onMounted, ref, computed } from 'vue';
   import { Position, Handle } from '@vue-flow/core';
+  import Popover from 'primevue/popover';
 
   // props were passed from the slot using `v-bind="customNodeProps"`
   const props = defineProps({
@@ -16,10 +17,16 @@
     },
     layerLib: {
       type: Object,
-    },
+    }
   })
 
   const nodeRef = ref(null)
+  const tooltip = ref(null)
+
+  // Popover
+  const PopoverRef = ref(null)
+
+  // Layer
   const layer = ref(props.layerLib.getLayer(props.data.layerID) ?? null)
   const hasLayer = computed(() => {
     return layer.value != null
@@ -29,6 +36,9 @@
   const onClick = (event) => {
     if (hasLayer.value){
       props.layerLib.selectLayer(layer.value)
+    }
+    if (props.data.popover) {
+      PopoverRef.value.toggle(event)
     }
   }
 
@@ -45,24 +55,32 @@
   // set Tooltip
   onMounted(() => {
     if (props.data.tooltip) {
-      new window.bootstrap.Tooltip(
+      tooltip.value = new window.bootstrap.Tooltip(
         nodeRef.value,
-        { title: props.data.tooltip, trigger: "hover", html: true, placement: "top" })
+        {
+          title: props.data.tooltip,
+          trigger: "hover",
+          html: true,
+          placement: "top"
+        })
     }
   })
 </script>
 
 <template>
-  <div class="custom-node bs-primary-bg-subtle"
-       ref="nodeRef"
-       :class="nodeClasses"
-       :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null"
-       @click="onClick">
-    {{ data.label }}
-    <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>
-    <Handle type="source" :position="Position.Right" />
-    <Handle type="target" :position="Position.Left" />
-  </div>
+    <div class="custom-node bs-primary-bg-subtle"
+        ref="nodeRef"
+        :class="nodeClasses"
+        :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null"
+        @click="onClick">
+        {{ data.label }}
+        <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>
+        <Handle type="source" :position="Position.Right" />
+        <Handle type="target" :position="Position.Left" />
+    </div>
+    <Popover ref="PopoverRef" v-if="data.popover">
+      <data.popover/>
+    </Popover>
 </template>
 
 <style scoped>

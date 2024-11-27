@@ -30,6 +30,7 @@
     <VueFlow :nodes="nodes" :edges="edges"
              :nodes-draggable="false"
              :zoomOnScroll="false"
+             :zoomOnDoubleClick="false"
              :panOnDrag="false"
              :edgesUpdatable="false">
 

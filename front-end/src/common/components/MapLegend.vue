@@ -66,7 +66,7 @@
     props.map.addControl(overlay);
     overlay.show()
 
-    //   // A toggle control to show/hide the menu
+    // A toggle control to show/hide the menu
     btnOpen = new Button({
       html: '<i class="bi bi-palette"></i>',
       className: "open-legend hidden",

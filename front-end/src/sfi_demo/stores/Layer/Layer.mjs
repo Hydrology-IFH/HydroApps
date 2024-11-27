@@ -4,7 +4,17 @@ import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
 
 export class Layer {
-  constructor(id, {file, style, decimals=2, unit="", url, ...kwargs}) {
+  constructor({ id,
+                file,
+                style,
+                decimals = 2,
+                unit = "",
+                url,
+                child_layer,
+                z_index = 0,
+                condition,
+                openlayer_options,
+                ...kwargs }) {
     this.id = id;
     this.file = file;
     this.decimals = decimals;
@@ -15,16 +25,25 @@ export class Layer {
     this._olLayers = {};
     this._errorLayers = [];
     this._url = url;
+    this.z_index = z_index;
+    this.condition = condition;
+    this.openlayer_options = openlayer_options;
     kwargs && Object.entries(kwargs).forEach(([key, value]) => this[key] = value);
 
     // subscribe to config store
     this.config = useConfig();
     this._config_subscribed = false;
     this._saveConfigState();
+
+    // add child layer
+    if (child_layer) {
+      this._child_layer = new Layer({...child_layer, z_index:z_index+1});
+    }
   }
 
   initMap(map) {
     this.map = map;
+    if (this._child_layer) this._child_layer.initMap(map);
   }
 
   _saveConfigState() {
@@ -36,13 +55,14 @@ export class Layer {
       this.config.$subscribe((mutation, state) => {
         if (state.opacity !== this._lastConfigState?.opacity) {
           this.updateOpacity()
-        } else if ((state.region !== this._lastConfigState?.region) ||
+        } else if ( (state.region !== this._lastConfigState?.region) ||
                     (state.kind !== this._lastConfigState?.kind) ||
                     (state.date !== this._lastConfigState?.date) ||
                     (state.soilMoisture !== this._lastConfigState?.soilMoisture) ||
                     (state.sri !== this._lastConfigState?.sri) ||
-                    (state.duration !== this._lastConfigState?.duration)) {
-          this.updateLayer();
+                    (state.duration !== this._lastConfigState?.duration) ||
+                    (state.show_sfgf !== this._lastConfigState?.show_sfgf)) {
+          this._updateLayer();
         }
         this._saveConfigState()
       });
@@ -59,7 +79,7 @@ export class Layer {
       soilMoisture: this.config.soilMoisture,
       date: this.config.date[this.config.region]
     });
-    let base_url = `/static/sfi_demo/${this.config.region}/${this.config.kind}/`
+    let base_url = `/static/sfi_demo/${this.config.region}/${this.config.kind}`
     if (this.config.kind == "matrix") {
       return `${base_url}/${this.config.sri}/${this.config.duration}/${this.config.soilMoisture}/${this.file}`
     } else if (this.config.kind == "event") {
@@ -94,10 +114,18 @@ export class Layer {
           interpolate: false,
           normalize: false
         }),
-        visible: this.selected,
+        visible: this.visible,
         style: this.style,
         opacity: this.config.opacity/100
       });
+
+      // set additional options
+      if (this.openlayer_options) {
+        Object.entries(this.openlayer_options).forEach(([key, value]) => {
+          new_layer.set(key, value);
+        });
+      }
+
       // add error handling
       new_layer.on("change", (e) => {
         let src = e.target.getSource();
@@ -105,10 +133,12 @@ export class Layer {
           this._errorLayers.push(src.getKey());
         }
       })
+
       // add layer to map
       this._olLayers[this.url] = new_layer;
       this.map.addLayer(new_layer);
-      this._addConfigSubscription();
+
+      new_layer.setZIndex(this.z_index);
     }
     return this._olLayers[this.url];
   }
@@ -131,22 +161,31 @@ export class Layer {
     this.setOpacity(this.config.opacity/100);
   }
 
-  updateLayer() {
-    let olLayer = this.selected? this.olLayer:{}
+  _updateLayer() {
+    let olLayer = this.visible? this.olLayer:{}
     Object.entries(this._olLayers).forEach(([key, layer]) => {
-      layer.setVisible(this.selected && layer==olLayer);
+      layer.setVisible(this.visible && layer==olLayer);
     });
   }
 
   select() {
     this.selected = true;
-    this.updateLayer();
-    console.info(`Layer "${this.id}" got activated`);
+    this._updateLayer();
+    if (this._child_layer) this._child_layer.select();
+    this._addConfigSubscription();
   }
 
   unselect() {
     this.selected = false;
-    this.updateLayer();
-    console.info(`Layer "${this.id}" got deactivated`);
+    this._updateLayer();
+    if (this._child_layer) this._child_layer.unselect();
+  }
+
+  get visible() {
+    if (this.condition === undefined) {
+      return this.selected;
+    } else {
+      return this.selected && this.condition(this.config);
+    }
   }
 }

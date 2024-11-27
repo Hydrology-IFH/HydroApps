@@ -29,6 +29,7 @@
   "type": "module",
   "homepage": "https://github.com/Hydrology-IFH/HydroApps",
   "dependencies": {
+    "@primevue/themes": "^4.2.4",
     "@vue-flow/core": "^1.39.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "colormap": "^2.3.2",
@@ -39,6 +40,7 @@
     "ol-contextmenu": "^5.4.0",
     "ol-ext": "^4.0.21",
     "pinia": "^2.1.7",
+    "primevue": "^4.2.4",
     "proj4": "^2.11.0",
     "vue": "^3.4.21",
     "vue3-openlayers": "^10.0.2",

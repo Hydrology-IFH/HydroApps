@@ -9,6 +9,7 @@ export const useConfig = defineStore(
       region: "Bonndorf", // one of Bonndorf, Wieslauf
       kind: "matrix", // one of matrix, event
       opacity: 80,
+      show_sfgf: false,
 
       // event settings
       // --------------

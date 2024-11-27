@@ -1,5 +1,7 @@
 import i18n from 'i18next';
 
+import PopoverSFGF from './PopoverSFGF.vue';
+
 const edgeType = "custom";
 const nodeType = "custom";
 
@@ -54,6 +56,7 @@ export const nodesInit = [
       label: i18n.t('node_sfi_label'),
       layerID: 'SFI',
       tooltip: i18n.t('node_sfi_tooltip'),
+      popover: PopoverSFGF
     },
   },
 ]
