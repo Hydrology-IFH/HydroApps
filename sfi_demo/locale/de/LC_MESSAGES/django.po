@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-18 09:58+0200\n"
+"POT-Creation-Date: 2024-11-27 16:43+0100\n"
 "PO-Revision-Date: 2024-07-12 15:21+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -26,11 +26,11 @@ msgstr "SFI Demonstrator"
 #: .\sfi_demo\templates\sfi_demo\app.html:14
 msgid ""
 "Explore a virtual soil-moisture, precipitation intensity and duration matrix "
-"to see the benefits of the pluvial flood Index (PFI, german SFI) over the "
-"heavy rain index (HRI, german SRI)."
+"or some real events to see the benefits of the pluvial flood Index (PFI, "
+"german SFI) over the heavy rain index (HRI, german SRI)."
 msgstr ""
-"Untersuche eine virtuelle Bodenfeuchte, Niederschlagsintensität, und -Dauer "
-"Matrix, um die Vorteile des Sturzflut-Indexes (SFI) gegenüber dem Starkregen-"
+"Untersuche eine virtuelle Matrix mit verschiedenen Bodenfeuchten, Niederschlagsintensitäten und -dauern "
+", sowie reale Erreignisse, um die Vorteile des Sturzflut-Indexes (SFI) gegenüber dem Starkregen-"
 "Index (SRI) zu sehen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:16
@@ -47,10 +47,10 @@ msgid ""
 "In the \"Event Selection\" menu you can change different parameters to see "
 "their effect."
 msgstr ""
-"Im \"Event Auswahl\" Menü können Sie verschiedene Parameter ändern um deren Auswirkungen "
-"zu sehen."
+"Im \"Event Auswahl\" Menü können Sie verschiedene Parameter ändern um deren "
+"Auswirkungen zu sehen."
 
-#: .\sfi_demo\templates\sfi_demo\app.html:20
+#: .\sfi_demo\templates\sfi_demo\app.html:22
 msgid "loading ..."
 msgstr "laden ..."
 
