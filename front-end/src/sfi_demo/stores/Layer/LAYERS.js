@@ -40,7 +40,7 @@ export const LAYERS = [
     unit: "mm",
     decimals: 0,
     url: ({ region, kind, sri, duration, date }) => {
-      let base_url = `/static/sfi_demo/${region}/${kind}/`
+      let base_url = `/static/sfi_demo/${region}/${kind}`
       if (kind == "matrix") {
         return `${base_url}/${sri}/${duration}/N.tif`
       } else if (kind == "event") {
@@ -62,8 +62,8 @@ export const LAYERS = [
   },
   {
     id: "SRI",
-    url: ({ region, kind, sri, duration }) => {
-      let base_url = `/static/sfi_demo/${region}/${kind}/`
+    url: ({ region, kind, sri, duration, date }) => {
+      let base_url = `/static/sfi_demo/${region}/${kind}`
       if (kind == "matrix") {
         return `${base_url}/${sri}/${duration}/SRI.tif`
       } else if (kind == "event") {
@@ -114,7 +114,7 @@ export const LAYERS = [
   {
     id: "soil_moisture",
     url: ({ region, kind, soilMoisture, date }) => {
-      let base_url = `/static/sfi_demo/${region}/${kind}/`
+      let base_url = `/static/sfi_demo/${region}/${kind}`
       if (kind == "matrix") {
         return `${base_url}/theta/${soilMoisture}/theta_wrzl.tif`
       } else if (kind == "event") {
