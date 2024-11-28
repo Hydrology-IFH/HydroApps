@@ -21,6 +21,7 @@
   }
   const mapRef = ref(null);
   const map = ref(null);
+  const last_region = ref(config.region)
   const extent = ref(extents[config.region])
   const center = ref(getCenter(extent.value))
 
@@ -31,15 +32,16 @@
 
   // change map extent on region change
   config.$subscribe((mutation, state) => {
-    if (mutation.events.key === "region") {
+    if (state.region !== last_region.value) {
       extent.value = undefined;
-      let new_extent = extents[mutation.events.newValue];
+      let new_extent = extents[state.region];
 
       flyToExtent(map.value, new_extent, () => {
-        extent.value = new_extent;
-        center.value = getCenter(extent.value);
-      },
-      3000)
+          extent.value = new_extent;
+          center.value = getCenter(extent.value);
+        },
+        3000)
+      last_region.value = state.region;
     }
   })
 
