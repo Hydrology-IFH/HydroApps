@@ -1,8 +1,6 @@
 <script setup>
   import { ref, onMounted, computed, watch } from 'vue';
   import { Map, MapControls } from "vue3-openlayers";
-  import { View } from 'ol';
-  import { getCenter } from 'ol/extent';
 
   import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
   import ErrorFrame from '~~/components/ErrorFrame.vue';
@@ -11,19 +9,17 @@
   import "./map/projections";
   import Basemaps from './map/Basemaps.vue';
   import MapLegend from "./map/MapLegend.vue";
+  import RegionSelection from './map/RegionSelection.vue';
   import { flyToExtent } from "./map/animations";
+  import { regions } from "./map/regions";
 
   const config = useConfig();
   const layerLib = useLayerLib();
-  const extents = {
-    Bonndorf: [441576.5, 5290318.5, 456351.5, 5300468.5],
-    Wieslauf: [536286.5, 5406178.5, 545986.5, 5420628.5]
-  }
   const mapRef = ref(null);
   const map = ref(null);
   const last_region = ref(config.region)
-  const extent = ref(extents[config.region])
-  const center = ref(getCenter(extent.value))
+  const extent = ref(undefined);//ref(regions[config.region].extent)
+  const center = ref(regions[config.region].center)
 
   const layer = computed(() => layerLib.selectedLayer)
   const layerError = computed(() => {
@@ -34,11 +30,11 @@
   config.$subscribe((mutation, state) => {
     if (state.region !== last_region.value) {
       extent.value = undefined;
-      let new_extent = extents[state.region];
+      let new_center = regions[state.region].center;
 
-      flyToExtent(map.value, new_extent, () => {
-          extent.value = new_extent;
-          center.value = getCenter(extent.value);
+      flyToExtent(map.value, new_center, () => {
+          extent.value = regions[state.region].extent;
+          center.value = new_center;
         },
         3000)
       last_region.value = state.region;
@@ -71,6 +67,7 @@
         projection="EPSG:25832" />
 
         <Basemaps/>
+        <RegionSelection/>
         <MapHoverOverlay
             v-if="map != null && layer != null"
             :map="map"
