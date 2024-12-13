@@ -2,13 +2,17 @@
   import { ref, toRef, onMounted, computed, watch } from 'vue';
   import { containsCoordinate } from 'ol/extent.js';
   import Overlay from 'ol/Overlay.js';
+  import  VectorLayer  from 'ol/layer/Vector';
+  window.VectorLayer = VectorLayer;
 
   const props = defineProps({
     map: Object,
     layer: Object,
     unit: { type: String, default: "mm" },
     decimals: { type: Number, default: 2 },
-    valueConverter: { type: Function, default: (x) => x }
+    valueConverter: { type: Function, default: (x) => x },
+    propertyName: { type: String, default: "value" },
+    dtype : { type: String, default: "number" } // number or string
   })
 
   const hoverDiv = ref(null)
@@ -26,15 +30,36 @@
 
   // hover text
   const hoverText = ref("");
-  const updateHoverText = () => {
-    if (pixel.value == null) return "";
+  const  updateHoverText = async () => {
+    if (pixel.value == null) return;
 
-    let pixValue = props.layer.getData(pixel.value);
-    if ((pixValue != null) && (pixValue[1] != 0)) {
-      let dec = props.decimals;
-      let val = valueConverter.value(
-        Math.round(parseFloat(pixValue[0]) * 10 ** dec) / 10 ** dec)
-      hoverText.value = val !== null? `${val} ${ props.unit }`.trim():"";
+    // get raw value from raster or vector layer
+    let rawValue;
+    if (props.layer.constructor === VectorLayer) {
+      // vector layer
+      rawValue = await props.layer.getFeatures(pixel.value).then((features) => {
+        if (features.length > 0) {
+          return features[0].get(props.propertyName);
+        }
+        return null;
+      });
+    } else {
+      // raster layer
+      let pixValue = props.layer.getData(pixel.value);
+      if ((pixValue != null) && (pixValue[1] != 0)) {
+        rawValue = pixValue[0];
+      }
+    }
+
+    // convert raw value to display value
+    if (rawValue != null) {
+      let value = rawValue;
+      if (props.dtype == "number") {
+        let dec = props.decimals;
+        value = Math.round(parseFloat(value) * 10 ** dec) / 10 ** dec;
+      }
+      value = valueConverter.value(value);
+      hoverText.value = value? `${value} ${ props.unit }`.trim():"";
     } else {
       hoverText.value =  "";
     }
