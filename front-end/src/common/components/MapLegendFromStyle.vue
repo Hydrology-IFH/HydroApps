@@ -13,6 +13,7 @@
     valueConverter: { type: Function, default: (x) => x},
     tooltips: { type: Array, default: [] }, // [{label: "label", message: "message"}]
     unit: { type: String, default: "" },
+    visible: { type: Boolean, default: true }
   })
 
   // get title
@@ -152,5 +153,5 @@
 </script>
 
 <template>
-  <MapLegend :title="title" :elements="elements" :map="map" />
+  <MapLegend :title="title" :elements="elements" :map="map" :visible="visible" />
 </template>

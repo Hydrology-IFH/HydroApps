@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, computed } from 'vue';
+  import { ref, onMounted, computed, watchEffect } from 'vue';
   import Overlay from 'ol-ext/control/Overlay.js';
   import Button from 'ol-ext/control/Button.js';
 
@@ -8,7 +8,8 @@
     title: String,
     elements: Array, // Array of elements {colors, labels=[String] || [{label, tooltip}], type="con"} || {color, label, tooltip, type="dis"} }
     map: Object,
-    titlePosition: { type: Boolean, default: "topIfContinous" } // top/bottom/topIfContinous, default topIfContinous: depending if continous elements are present,
+    titlePosition: { type: Boolean, default: "topIfContinous" }, // top/bottom/topIfContinous, default topIfContinous: depending if continous elements are present,
+    visible: { type: Boolean, default: true }
   })
   const legend_div = ref(null)
 
@@ -64,7 +65,7 @@
       className: "slide-left legend-overlay"
     });
     props.map.addControl(overlay);
-    overlay.show()
+    if (props.visible) { overlay.show(); }
 
     // A toggle control to show/hide the menu
     btnOpen = new Button({
@@ -77,6 +78,15 @@
       }
     });
     props.map.addControl(btnOpen);
+  })
+
+  // watch for visibility changes
+  watchEffect(() => {
+    if (props.visible) {
+      overlay?.show();
+    } else {
+      overlay?.hide();
+    }
   })
 
   // legend closer
