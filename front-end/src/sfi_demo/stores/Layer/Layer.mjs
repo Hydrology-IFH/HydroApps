@@ -61,7 +61,8 @@ export class Layer {
                     (state.soilMoisture !== this._lastConfigState?.soilMoisture) ||
                     (state.sri !== this._lastConfigState?.sri) ||
                     (state.duration !== this._lastConfigState?.duration) ||
-                    (state.show_sfgf !== this._lastConfigState?.show_sfgf)) {
+                    (state.show_sfgf !== this._lastConfigState?.show_sfgf) ||
+                    (state.region_selection_active !== this._lastConfigState?.region_selection_active)) {
           this._updateLayer();
         }
         this._saveConfigState()
@@ -182,6 +183,9 @@ export class Layer {
   }
 
   get visible() {
+    if (this.config.region_selection_active) {
+      return false;
+    }
     if (this.condition === undefined) {
       return this.selected;
     } else {

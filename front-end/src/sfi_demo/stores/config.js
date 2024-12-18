@@ -6,7 +6,7 @@ export const useConfig = defineStore(
     state: () => ({
       // overall settings
       // ----------------
-      region: "Bonndorf", // one of Bonndorf, Wieslauf
+      region: "", // one of Bonndorf, Wieslauf
       kind: "matrix", // one of matrix, event
       opacity: 80,
       show_sfgf: false,
@@ -29,5 +29,8 @@ export const useConfig = defineStore(
       // precipitation
       sri: 7, // one of 3, 7, 11
       duration: 60, // one of 30, 60, 120 min
+
+      // System settings
+      region_selection_active: true,
     })
   })

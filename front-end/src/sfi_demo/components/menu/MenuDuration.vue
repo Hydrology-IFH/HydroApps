@@ -36,5 +36,6 @@
               :min="1" :max="3" :step="1"
               :ticks="labels"
               :getLabel="(val) => labels[val]"
-              :tooltip="$t('menu_duration_tooltip')"/>
+              :tooltip="$t('menu_duration_tooltip')"
+              :active="!config.region_selection_active"/>
 </template>

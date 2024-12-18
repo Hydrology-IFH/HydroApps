@@ -28,9 +28,11 @@
 <template>
   <div class="flow-container" style="height:100px;">
     <VueFlow :nodes="nodes" :edges="edges"
-             :nodes-draggable="false"
+             :nodesDraggable="false"
+             :nodesConnectable="false"
              :zoomOnScroll="false"
              :zoomOnDoubleClick="false"
+             :zoomOnPinch="false"
              :panOnDrag="false"
              :edgesUpdatable="false">
 

@@ -41,5 +41,6 @@
               :ticks="labels[config.kind]"
               :getLabel="(val) => labels[val]"
               :tooltip="$t('menu_SoilMoisture_tooltip')"
-              :getTickTooltips="getTickTooltip"/>
+              :getTickTooltips="getTickTooltip"
+              :active="!config.region_selection_active"/>
 </template>

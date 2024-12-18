@@ -1,8 +1,8 @@
 <script setup>
   import { ref, onMounted, computed, watch } from 'vue';
   import { Map, MapControls } from "vue3-openlayers";
-  import { View } from 'ol';
-  import { getCenter } from 'ol/extent';
+  import { buffer, getCenter } from 'ol/extent';
+  import View from 'ol/View';
 
   import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
   import ErrorFrame from '~~/components/ErrorFrame.vue';
@@ -11,20 +11,58 @@
   import "./map/projections";
   import Basemaps from './map/Basemaps.vue';
   import MapLegend from "./map/MapLegend.vue";
-  import { flyToExtent } from "./map/animations";
+  import RegionSelector from './map/RegionSelector.vue';
+  import { flyTo } from "./map/animations";
+  import { regions } from "./map/regions";
 
+  // calculate total extent
+  var total_extent = [Infinity, Infinity, -Infinity, -Infinity];
+  for (let region of Object.keys(regions)) {
+    total_extent = [
+      Math.min(total_extent[0], regions[region].extent[0]),
+      Math.min(total_extent[1], regions[region].extent[1]),
+      Math.max(total_extent[2], regions[region].extent[2]),
+      Math.max(total_extent[3], regions[region].extent[3])];
+  }
+  total_extent = buffer(total_extent, 50000);
+
+  // setup
   const config = useConfig();
   const layerLib = useLayerLib();
-  const extents = {
-    Bonndorf: [441576.5, 5290318.5, 456351.5, 5300468.5],
-    Wieslauf: [536286.5, 5406178.5, 545986.5, 5420628.5]
-  }
   const mapRef = ref(null);
   const map = ref(null);
   const last_region = ref(config.region)
-  const extent = ref(extents[config.region])
-  const center = ref(getCenter(extent.value))
+  const last_region_selection_active = ref(config.region_selection_active)
 
+  // define view, vue3-openlayers imnplementation of View did produce many problems with the flyTo method and extent
+  var view = new View({
+    projection: 'EPSG:25832',
+    smoothExtentConstraint: false,
+    smoothResolutionConstraint: false,
+  });
+
+  //  functions for manipulating the map extent
+  const get_extent = () =>{
+    return config.region_selection_active ? total_extent : regions[config.region].extent;
+  }
+  const set_extent = function (extent, moveToExtent = false) {
+    let view_props = view.getProperties();
+    view_props.extent = extent;
+    if (moveToExtent) {
+      view_props.center = getCenter(extent);
+      view_props.resolution = view.getResolutionForExtent(extent);
+    }
+
+    view = new View(view_props);
+    if (map.value) {
+      map.value.setView(view);
+    }
+  }
+  const update_extent = function (moveToExtent = false) {
+    set_extent(get_extent(), moveToExtent);
+  }
+
+  // layers
   const layer = computed(() => layerLib.selectedLayer)
   const layerError = computed(() => {
     return layer.value ? layer.value.hasError : false
@@ -32,16 +70,18 @@
 
   // change map extent on region change
   config.$subscribe((mutation, state) => {
-    if (state.region !== last_region.value) {
-      extent.value = undefined;
-      let new_extent = extents[state.region];
+    if ((state.region_selection_active !== last_region_selection_active.value) ||
+      (state.region !== last_region.value)) {
+      // fly to next region/total_extent
+      set_extent(undefined, false);
+      flyTo(map.value,
+        { extent: get_extent() },
+        () => update_extent(false),
+        3000);
 
-      flyToExtent(map.value, new_extent, () => {
-          extent.value = new_extent;
-          center.value = getCenter(extent.value);
-        },
-        3000)
+      // store last region
       last_region.value = state.region;
+      last_region_selection_active.value = state.region_selection_active;
     }
   })
 
@@ -50,6 +90,8 @@
     layerLib.initMap(mapRef.value.map)
     layerLib.selectLayer("SFI")
     map.value = mapRef.value?.map;
+    update_extent(true);
+    map.value.setView(view);
   })
 
   // for debugging
@@ -64,28 +106,25 @@
 <template>
   <div class="map-container">
     <Map.OlMap id="map" ref="mapRef">
-      <Map.OlView
-        zoom="13"
-        :extent="extent"
-        :center="center"
-        projection="EPSG:25832" />
 
-        <Basemaps/>
-        <MapHoverOverlay
-            v-if="map != null && layer != null"
-            :map="map"
-            :layer="layer.olLayer"
-            :unit="layer.unit"
-            :decimals="layer.decimals"
-            :valueConverter="layer.valueConverter"/>
-        <MapLegend
-            v-if="map != null && layer != null"
-            :map="map"
-            :layerName="layer.name"
-            :style="layer.style"
-            :unit="layer.unit"/>
+      <Basemaps/>
+      <RegionSelector v-if="map != null" :map="map"/>
+      <MapHoverOverlay
+          v-if="map != null && layer != null && !config.region_selection_active"
+          :map="map"
+          :layer="layer.olLayer"
+          :unit="layer.unit"
+          :decimals="layer.decimals"
+          :valueConverter="layer.valueConverter"/>
+      <MapLegend
+          v-if="map != null && layer != null"
+          :map="map"
+          :layerName="layer.name"
+          :style="layer.style"
+          :unit="layer.unit"
+          :visible="!config.region_selection_active"/>
 
-      <MapControls.OlFullscreenControl />
+      <MapControls.OlFullscreenControl/>
 
     </Map.OlMap>
     <ErrorFrame v-if="layerError" class="map-error" :header="$t('map_error_header')" :msg="$t('map_error_msg')"/>

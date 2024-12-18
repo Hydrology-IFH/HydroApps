@@ -8,6 +8,10 @@
     type: {
       type: String,
       default: 'text'
+    },
+    active: {
+      type: Boolean,
+      default: true
     }
   });
 
@@ -23,7 +27,7 @@
         :data-bs-title="tooltip">
       {{ label }}
     </span>
-    <input class="form-control" :type="type" :value="msg" aria-label="readonly input example" readonly>
+    <input class="form-control" :type="type" :value="msg" aria-label="readonly input example" readonly :disabled="!active">
   </div>
 </template>
 

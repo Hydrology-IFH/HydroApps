@@ -13,5 +13,6 @@
             :label="$t('menu_date_label')"
             :msg="config.date[config.region]"
             type="date"
-            :tooltip="$t('menu_region_tooltip')"/>
+            :tooltip="$t('menu_region_tooltip')"
+            :active="!config.region_selection_active"/>
 </template>

@@ -14,5 +14,6 @@
               :min="0" :max="100" :step="1"
               :ticks="labels"
               :getLabel="(val) => val"
-              :tooltip="$t('menu_opacity_tooltip')"/>
+              :tooltip="$t('menu_opacity_tooltip')"
+              :active="!config.region_selection_active"/>
 </template>

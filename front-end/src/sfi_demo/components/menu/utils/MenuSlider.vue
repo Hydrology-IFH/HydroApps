@@ -9,6 +9,7 @@
     ticks: Object,
     getLabel: Function,
     tooltip: String,
+    active: { Boolean, default: true },
     getTickTooltips: { Function, default: undefined }
   });
   const model = defineModel();
@@ -45,6 +46,7 @@
         show-ticks="always"
         class="menu-slider"
         @update:focused="$emit('update:focused', $event)"
+        :disabled="!active"
         >
 
         <template v-slot:thumb-label="{ modelValue }">

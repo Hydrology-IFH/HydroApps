@@ -71,5 +71,6 @@
               :ticks="labels"
               :getLabel="getLabel"
               :tooltip="$t('menu_PrecipitationForce_tooltip')"
-              @update:focused="toggleArrows"/>
+              @update:focused="toggleArrows"
+              :active="!config.region_selection_active"/>
 </template>
