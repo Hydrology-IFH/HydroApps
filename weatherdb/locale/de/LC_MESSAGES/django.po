@@ -407,7 +407,7 @@ msgstr ""
 
 #: .\weatherdb\templates\weatherdb\user_conf.html:28
 msgid "For further information, please refer to the"
-msgstr "Für weitere Informationen, siehe"
+msgstr "Für weitere Informationen, lies am besten die "
 
 #: .\weatherdb\templates\weatherdb\user_conf.html:28
 msgid "documentation"

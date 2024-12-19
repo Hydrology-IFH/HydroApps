@@ -22,7 +22,7 @@ DATABASE = {{ db_database }}
 USER = {{ db_user }}</code></pre>
 
 
-      {% trans "Your Database password is" %}: {{ db_password }}
+      <p>{% trans "Your Database password is" %}: <mark>{{ db_password }}</mark></p>
       {% trans "You will be asked to enter it when you run the weatehrDB-module for the first time." %}
 
       {% trans "For further information, please refer to the" %} <a href="https://weatherdb.readthedocs.io/latest/setup/Configuration.html#setup-database">{% trans "documentation" %}</a>.
@@ -33,6 +33,15 @@ USER = {{ db_user }}</code></pre>
 
 
 <script type="text/javascript" defer>
-  hljs.highlightAll();
+  (() => {
+    var activate_hljs = () => {
+      if (window.hljs !== undefined) {
+        hljs.highlightAll();
+      } else {
+        setTimeout(activate_hljs, 10);
+      }
+    }
+    activate_hljs();
+  })();
 </script>
 
