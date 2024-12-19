@@ -20,7 +20,7 @@
   <link rel="stylesheet" href={% static "weatherdb/css/leaflet.awesome-markers.css" %}>
   <script src={% static "weatherdb/js/leaflet/leaflet.awesome-markers.min.js" %}></script>
 
-    <style>
+    <style type="text/css">
       .loading {
         display: none;
         position: fixed;
@@ -35,7 +35,7 @@
         max-width: 420px !important;
     }
     </style>
-    <link rel="stylesheet" href="{% static "weatherdb/css/get_ts.css" %}">
+    <link rel="stylesheet" href="{% static "weatherdb/css/get_ts.css" %}" type="text/css">
 
 {% endblock %}
 
@@ -256,9 +256,8 @@
     var download_url = "{% url 'weatherdb:download_ts' %}";
   </script>
   <script src="{% url 'weatherdb:javascript-catalog' %}"></script>
-  {{ meta_n|json_script:"meta_n-data" }}
-  {% comment %} {{ needs_captcha|script:"needs_captcha" }}
-  {{ wdb_max_downloads|script:"wdb_max_downloads" }} {% endcomment %}
+  {{ meta_p|json_script:"meta_p-data" }}
+  {{ quots|json_script:"quots-data" }}
   {% if debug %}
     <script src={% static "weatherdb/js/get_ts_map.js" %} defer></script>
   {% else %}

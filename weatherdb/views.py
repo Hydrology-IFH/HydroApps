@@ -15,13 +15,14 @@ from distutils.util import strtobool
 import warnings
 import re
 import datetime
+import pandas as pd
 
-from weatherDB.stations import GroupStations
+from weatherDB.stations import GroupStations, StationsP
 from weatherDB.utils import TimestampPeriod
 from weatherDB.broker import Broker
 
 from .forms import HCaptchaForm
-from .models import MetaN, TSDownloads, CacheHCaptchaTest
+from .models import MetaP, TSDownloads, CacheHCaptchaTest
 
 app_dir = Path(__file__).parent
 wdb_broker = Broker()
@@ -32,6 +33,7 @@ WDB_DB_CONFIG = {
     "db_port": weatherDB.db.db_engine.engine.url.port,
     "db_database": weatherDB.db.db_engine.engine.url.database,
 }
+statsp = StationsP()
 
 # get method html
 # create html from Markdown
@@ -56,8 +58,13 @@ def home(request, *args, **kwargs):
 
 def get_ts(request, *args, **kwargs):
     try:
+        quots = pd.concat([statsp.get_quotient("corr", "filled"), statsp.get_quotient("filled", "hyras")])\
+            .droplevel("parameter").mul(100).round(1)\
+            .reset_index().pivot_table(index="station_id", columns=["kind_num","kind_denom"], values="value")
+        quots_json = quots.set_axis(quots.columns.map("_".join), axis=1).to_dict(orient="index")
         context = {
-            'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
+            'meta_p': json.loads(serialize("geojson", MetaP.objects.all())),
+            'quots': quots_json,
             "wdb_max_downloads": get_wdb_max_downloads(request),
             "db_version": wdb_broker.get_db_version()
             }

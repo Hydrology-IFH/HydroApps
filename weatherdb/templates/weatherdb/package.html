@@ -6,12 +6,12 @@
 <h2>{% trans "Python Package" %}</h2>
 <p>{% trans "To download the timeseries, there is a python package available on GitHub. For more information on the package please refer to" %} <a href="https://github.com/Hydrology-IFH/WeatherDB" target="_blank" rel="noopener">Github <i class="bi bi-github"></i></a> {% trans "and the" %} <a target="_blank" rel="noopener" href="https://weatherdb.readthedocs.io/en/latest/README.html">{% trans "Documentation" %}</a></p>
 
-<p>{% trans "To use the package you need login credentials, that are saved in a secretSettings_weatherDB.py file and have to be inside of the UNI Freiburg network." %}
+<p>{% trans "To use the package you need login credentials, that are saved in the user configuration file and have to be inside of the UNI Freiburg network." %}
 {% if user.is_authenticated %}
-    {% trans "You can download your personal secretSettings_weatherDB.py file from your" %} <a href="{% url "user_profile" app_name=active_app %}">{% trans "Profile page" %}</a>{% trans "after_profile_page" %}.
+    {% trans "You can download your personal user configuration section from your" %} <a href="{% url "user_profile" app_name=active_app %}">{% trans "Profile page" %}</a> {% trans "after_profile_page" %}.
 {% else %}
     {% trans "You can get those credentials by" %} <a href="{% url "register" app_name=active_app %}">{% trans "requesting an account" %}</a> {% trans "on this page." %}
-    {% trans "If your account was activated you can download your secretSettings_weatherDB.py file from your Profile page." %}
+    {% trans "If your account was activated you can download your user credential section from your Profile page." %}
 {% endif %}
 </p>
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 14:53+0200\n"
+"POT-Creation-Date: 2024-12-19 12:33+0100\n"
 "PO-Revision-Date: 2024-02-14 12:13+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -518,7 +518,7 @@ msgid "New Password confirmation"
 msgstr "Neues Passwort bestätigen"
 
 #: .\my_auth\templates\users\password_change_form.html:15
-#: .\my_auth\templates\users\profile.html:93
+#: .\my_auth\templates\users\profile.html:97
 msgid "Save Changes"
 msgstr "Speichere Änderungen"
 
@@ -597,21 +597,21 @@ msgstr "Zugang anfragen"
 msgid "maximal Download"
 msgstr "maximaler Download"
 
-#: .\my_auth\templates\users\profile.html:115
+#: .\my_auth\templates\users\profile.html:119
 msgid "Your E-Mail adress got confirmed"
 msgstr "Ihre E-Mail-Adresse wurde bestätigt"
 
-#: .\my_auth\templates\users\profile.html:118
+#: .\my_auth\templates\users\profile.html:122
 msgid "You still have to confirm your E-Mail adress"
 msgstr "Sie müssen noch Ihre E-Mail-Adresse bestätigen"
 
-#: .\my_auth\templates\users\profile.html:127
-#: .\my_auth\templates\users\profile.html:140
-#: .\my_auth\templates\users\profile.html:152
+#: .\my_auth\templates\users\profile.html:131
+#: .\my_auth\templates\users\profile.html:144
+#: .\my_auth\templates\users\profile.html:156
 msgid "Resend an E-mail confirmation mail."
 msgstr "E-Mail Bestätigung erneut zuschicken."
 
-#: .\my_auth\templates\users\profile.html:155
+#: .\my_auth\templates\users\profile.html:159
 msgid ""
 "You Account still has to get activated. <br>If your E-Mail is confirmed and "
 "you waited for 2 ore more days and your account is still not active, please "
@@ -621,19 +621,19 @@ msgstr ""
 "Sie 2 oder mehr Tage gewartet haben und Ihr Konto immer noch nicht aktiv "
 "ist, schreiben Sie bitte an"
 
-#: .\my_auth\templates\users\profile.html:170
+#: .\my_auth\templates\users\profile.html:174
 msgid "Renew the API Password"
 msgstr "Erneure das API Passwort"
 
-#: .\my_auth\templates\users\profile.html:188
+#: .\my_auth\templates\users\profile.html:192
 msgid "Copy the API Password to your clipboard"
 msgstr "Kopiere das API Passwort"
 
-#: .\my_auth\templates\users\profile.html:199
-msgid "Download your personal secret settings file"
-msgstr "Laden Sie Ihre persönliche \"secret settings\" Datei herunter"
+#: .\my_auth\templates\users\profile.html:202
+msgid "Show additional infos on how to use this API-Password"
+msgstr ""
 
-#: .\my_auth\templates\users\profile.html:209
+#: .\my_auth\templates\users\profile.html:228
 msgid ""
 "Hello Admin, \\n\\nI need a higher download limit for the weatherDB website, "
 "because: \\n... fill out ...\\n\\nPlease update my Account.\\n\\nSincerely,"
@@ -643,10 +643,13 @@ msgstr ""
 "Anwendung, weil ich \\n... füllen Sie dies aus...\\n\\nBitte aktualisieren "
 "Sie mein Konto.\\n\\nMit freundlichen Grüßen,\\n"
 
-#: .\my_auth\templates\users\profile.html:210
-#: .\my_auth\templates\users\profile.html:214
+#: .\my_auth\templates\users\profile.html:229
+#: .\my_auth\templates\users\profile.html:233
 msgid "Request a higher download limit"
 msgstr "Beantrage ein höheres Download-Limit"
+
+#~ msgid "Download your personal secret settings file"
+#~ msgstr "Laden Sie Ihre persönliche \"secret settings\" Datei herunter"
 
 #~ msgid ""
 #~ "Designates whether the user can see features that didn't yet get released."
