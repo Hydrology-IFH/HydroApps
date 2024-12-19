@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from urllib.parse import urlparse
 from django.utils.translation import gettext_lazy as _
+import weatherDB as wdb
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,7 +126,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+wdb_url = wdb.db.db_engine.engine.url
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -145,19 +146,13 @@ DATABASES = {
     },
     'weatherdb': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': secrets.DB_WEA_NAME,
-        'USER': secrets.DB_WEA_USER,
-        'PASSWORD': secrets.DB_WEA_PWD,
-        'HOST': secrets.DB_WEA_HOST,
-        'PORT': secrets.DB_WEA_PORT,
+        'NAME': wdb_url.database,
+        'USER': wdb_url.username,
+        'PASSWORD': wdb_url.password,
+        'HOST': wdb_url.host,
+        'PORT': wdb_url.port,
         'CONN_MAX_AGE': 120,
         'CONN_HEALTH_CHECKS': True,
-        'TEST': {
-            "USER": secrets.DB_TEST_USER,
-            "PASSWORD": secrets.DB_TEST_PWD,
-            "HOST": secrets.DB_TEST_HOST,
-            "PORT": secrets.DB_TEST_PORT
-        }
     }
 }
 

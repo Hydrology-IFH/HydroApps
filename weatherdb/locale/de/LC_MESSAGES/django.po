@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-04 12:16+0100\n"
+"POT-Creation-Date: 2024-12-19 14:04+0100\n"
 "PO-Revision-Date: 2024-01-04 12:16+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -27,7 +27,6 @@ msgstr ""
 "Zeitreihen für ganz Deutschland heruntergeladen werden können."
 
 #: .\weatherdb\templates\weatherdb\base.html:19
-#: .\weatherdb\templates\weatherdb\home.html:6
 msgid "Home"
 msgstr "Home"
 
@@ -36,6 +35,7 @@ msgid "Method"
 msgstr "Methode"
 
 #: .\weatherdb\templates\weatherdb\base.html:21
+#: .\weatherdb\templates\weatherdb\home.html:8
 msgid "Download"
 msgstr "Herunterladen"
 
@@ -292,6 +292,10 @@ msgstr "RoGeR Toolbox Format"
 msgid "download"
 msgstr "Herunterladen"
 
+#: .\weatherdb\templates\weatherdb\home.html:6
+msgid "Welcome"
+msgstr "Willkommen"
+
 #: .\weatherdb\templates\weatherdb\home.html:7
 msgid ""
 "This is the Web interface for the WeatherDB. The WeatherDB is a Database "
@@ -307,6 +311,14 @@ msgstr ""
 "eine Richter-Korrektur auf die Niederschlagsdaten anwendet. Über diese "
 "Weboberfläche können Sie die rohen, geprüften, gefüllten und Richter-"
 "korrigierten Zeitreihen für Ihre Simulationen herunterladen."
+
+#: .\weatherdb\templates\weatherdb\home.html:8
+msgid "To download the station data go to"
+msgstr "Um die Stationsdaten herunterzuladen, gehen Sie auf die "
+
+#: .\weatherdb\templates\weatherdb\home.html:8
+msgid "page"
+msgstr "Seite"
 
 #: .\weatherdb\templates\weatherdb\package.html:6
 msgid "Python Package"
@@ -330,19 +342,17 @@ msgstr "Dokumentation"
 
 #: .\weatherdb\templates\weatherdb\package.html:9
 msgid ""
-"To use the package you need login credentials, that are saved in a "
-"secretSettings_weatherDB.py file and have to be inside of the UNI Freiburg "
-"network."
+"To use the package you need login credentials, that are saved in the user "
+"configuration file and have to be inside of the UNI Freiburg network."
 msgstr ""
-"Um das Paket nutzen zu können, benötigen Sie Anmeldedaten, die in der Datei "
-"secretSettings_weatherDB.py gespeichert sind und müssen sich innerhalb des "
+"Um das Paket nutzen zu können, benötigen Sie Anmeldedaten, die in der "
+"Benutzerkonfigurations gespeichert werden und müssen sich innerhalb des "
 "UNI Freiburg Netzwerks befinden."
 
 #: .\weatherdb\templates\weatherdb\package.html:11
-msgid ""
-"You can download your personal secretSettings_weatherDB.py file from your"
+msgid "You can download your personal user configuration section from your"
 msgstr ""
-"Sie können Ihre persönliche Datei secretSettings_weatherDB.py von Ihrer"
+"Sie können den betreffenden Abschnitt für Ihre Benutzerkonfiguration von Ihrer"
 
 #: .\weatherdb\templates\weatherdb\package.html:11
 msgid "Profile page"
@@ -366,15 +376,39 @@ msgstr "."
 
 #: .\weatherdb\templates\weatherdb\package.html:14
 msgid ""
-"If your account was activated you can download your secretSettings_weatherDB."
-"py file from your Profile page."
+"If your account was activated you can download your user credential section "
+"from your Profile page."
 msgstr ""
-"Wenn Ihr Konto aktiviert wurde, können Sie Ihre secretSettings_weatherDB.py "
-"Datei von Ihrer Profilseite herunterladen."
+"Wenn Ihr Konto aktiviert wurde, können Sie den betreffenden Abschnitt für die Benutzerkonfiguraktions"
+" von Ihrer Profilseite herunterladen."
 
-#~ msgid ""
-#~ "Eine Darstellung der Klima-Prognosen für einzelne Wetter-Stationen. "
-#~ "Ergebnisse des ASG-II Projekts"
-#~ msgstr ""
-#~ "A presentation of climate forecasts for individual weather stations. "
-#~ "Results of the ASG-II project"
+#: .\weatherdb\templates\weatherdb\user_conf.html:9
+msgid "WeatherDB user configuration"
+msgstr "Benutzerkonfiguration für WeatherDB"
+
+#: .\weatherdb\templates\weatherdb\user_conf.html:13
+msgid ""
+"Those are the settings you will have to set in your user configuration file:"
+msgstr ""
+"Dies sind die Einstellungen, die Sie in Ihrer Benutzerkonfigurationsdatei "
+"festlegen müssen:"
+
+#: .\weatherdb\templates\weatherdb\user_conf.html:25
+msgid "Your Database password is"
+msgstr "Dein Passwort für die Datenbank ist"
+
+#: .\weatherdb\templates\weatherdb\user_conf.html:26
+msgid ""
+"You will be asked to enter it when you run the weatehrDB-module for the "
+"first time."
+msgstr ""
+"Du wirst aufgefordert, es einzugeben, wenn du das WeatherDB-Modul zum ersten "
+"Mal ausführst."
+
+#: .\weatherdb\templates\weatherdb\user_conf.html:28
+msgid "For further information, please refer to the"
+msgstr "Für weitere Informationen, siehe"
+
+#: .\weatherdb\templates\weatherdb\user_conf.html:28
+msgid "documentation"
+msgstr "Dokumentation"

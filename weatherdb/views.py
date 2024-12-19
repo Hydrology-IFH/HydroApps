@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.db import OperationalError
 from django.core.serializers import serialize
 from django.http import Http404, HttpResponse
+import weatherDB
 from main.settings import DEBUG
 import json
 from pathlib import Path
@@ -14,16 +15,25 @@ from distutils.util import strtobool
 import warnings
 import re
 import datetime
+import pandas as pd
 
-from weatherDB.stations import GroupStations
-from weatherDB.lib.utils import TimestampPeriod
+from weatherDB.stations import GroupStations, StationsP
+from weatherDB.utils import TimestampPeriod
 from weatherDB.broker import Broker
 
 from .forms import HCaptchaForm
-from .models import MetaN, TSDownloads, CacheHCaptchaTest
+from .models import MetaP, TSDownloads, CacheHCaptchaTest
 
 app_dir = Path(__file__).parent
 wdb_broker = Broker()
+
+# get wdb_url
+WDB_DB_CONFIG = {
+    "db_host": weatherDB.db.db_engine.engine.url.host,
+    "db_port": weatherDB.db.db_engine.engine.url.port,
+    "db_database": weatherDB.db.db_engine.engine.url.database,
+}
+statsp = StationsP()
 
 # get method html
 # create html from Markdown
@@ -48,8 +58,13 @@ def home(request, *args, **kwargs):
 
 def get_ts(request, *args, **kwargs):
     try:
+        quots = pd.concat([statsp.get_quotient("corr", "filled"), statsp.get_quotient("filled", "hyras")])\
+            .droplevel("parameter").mul(100).round(1)\
+            .reset_index().pivot_table(index="station_id", columns=["kind_num","kind_denom"], values="value")
+        quots_json = quots.set_axis(quots.columns.map("_".join), axis=1).to_dict(orient="index")
         context = {
-            'meta_n': json.loads(serialize("geojson", MetaN.objects.all())),
+            'meta_p': json.loads(serialize("geojson", MetaP.objects.all())),
+            'quots': quots_json,
             "wdb_max_downloads": get_wdb_max_downloads(request),
             "db_version": wdb_broker.get_db_version()
             }
@@ -211,26 +226,19 @@ def download_ts(request, *args, **kwargs):
 
 @login_required
 @csrf_protect
-def download_secret_settings(request):
+def get_user_config(request):
     if not request.user.is_active:
         messages.error("Your account is not activated yet")
     else:
-        response = HttpResponse(
-            content_type='text/py',
-            headers={'Content-Disposition': 'attachment; filename="secretSettings_weatherDB.py"'})
-        response.writelines([
-            "# secret settings for the weatherDB python package #\n",
-            "#"*52,
-            "\n\n# !!!The database is only available inside the UNI-Freiburg network!!!",
-            "# Therefor this package won't work if you are outside of this network.",
-            "\n\n# put this file in a parent folder of the python package or some other folder in the PATH or PYTHONPATH environment\n\n",
-            "DB_HOST = 'weather.hydro.intra.uni-freiburg.de'\n",
-            "DB_PORT = 5432\n",
-            "DB_NAME = 'weather'\n",
-            "DB_USER = '{}'\n".format(request.user.username),
-            "DB_PWD = '{}'\n".format(request.user.db_password)])
-        # response['Content-Disposition'] = "attachment; filename=secretSettings.py"
-        return response
+        context = {
+            "db_user": request.user.username,
+            "db_password": request.user.db_password,
+            **WDB_DB_CONFIG
+        }
+        if context["db_host"] == "localhost":
+            context["db_host"] = request.get_host()
+        return render(request, "weatherdb/user_conf.html", context)
+
 
 def method_view(request, *args, **kwargs):
     context = {"method": METHOD}

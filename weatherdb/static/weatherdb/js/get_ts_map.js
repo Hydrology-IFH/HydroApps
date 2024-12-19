@@ -296,7 +296,9 @@ class Form{
 
     get_stations_data(){
         this.geojson_data = JSON.parse(
-            document.getElementById("meta_n-data").textContent);
+            document.getElementById("meta_p-data").textContent);
+        this.quots = JSON.parse(
+            document.getElementById("quots-data").textContent);
         this.station_ids = [];
         for (let feature of this.geojson_data.features){
             this.station_ids.push(feature.properties.pk);
@@ -320,9 +322,9 @@ class Form{
                 let filled_from = new Date(layer.feature.properties.filled_from);
                 let filled_until = new Date(layer.feature.properties.filled_until);
                 let richter_class = layer.feature.properties.richter_class;
-                let quot_hyras_filled = Math.round(100/layer.feature.properties.quot_filled_hyras*1000)/10;
-                let quot_corr_filled = Math.round(layer.feature.properties.quot_corr_filled * 10) / 10;
-                let qc_droped = Math.round(layer.feature.properties.qc_droped, 2);
+                let quot_hyras_filled = this.quots[stid].filled_hyras;
+                let quot_corr_filled = this.quots[stid].corr_filled;
+                let qc_dropped = Math.round(layer.feature.properties.qc_dropped, 2);
                 let label_btn_select = this.is_selected(stid)? gettext("unselect"):gettext("select");
                 let date_options = {
                     year:'numeric', month:'numeric', day:'numeric',
@@ -344,7 +346,7 @@ class Form{
                     <div class="leaf-pop-indent">\
                         N<sub>${gettext("corrected")}</sub> = ${quot_corr_filled}% &#8226; N<sub>${gettext("filled")}</sub> <br>\
                         N<sub>${gettext("filled")}</sub> = ${quot_hyras_filled}% &#8226; N<sub>${gettext("multi_annual")}, HYRAS</sub><br>\
-                        Quality Check droped ${qc_droped}% of raw values.\
+                        Quality Check dropped ${qc_dropped}% of raw values.\
                     </div>`
                     ;
                 return str

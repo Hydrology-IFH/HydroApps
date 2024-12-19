@@ -4,7 +4,7 @@ from pathlib import Path
 from main.settings import CACHE_DIR, CACHE_URL
 
 
-class MetaN(models.Model):
+class MetaP(models.Model):
     using = 'weatherdb'
     station_id = models.IntegerField(unique=True, primary_key=True)
     is_real = models.BooleanField()
@@ -13,14 +13,12 @@ class MetaN(models.Model):
     raw_until = models.DateTimeField(blank=True, null=True)
     filled_from = models.DateTimeField(blank=True, null=True)
     filled_until = models.DateTimeField(blank=True, null=True)
-    quot_corr_filled = models.FloatField(null=True, blank=True)
-    quot_filled_hyras = models.FloatField(null=True, blank=True)
     richter_class = models.TextField(blank=True, null=True)
-    qc_droped = models.FloatField(null=True, blank=True)
+    qc_dropped = models.FloatField(null=True, blank=True)
 
     class Meta:
         managed = False
-        db_table = 'meta_n'
+        db_table = 'meta_p'
 
 class TSDownloads(models.Model):
     using = 'default'
