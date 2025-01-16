@@ -31,6 +31,6 @@ urlpatterns = [
     path('package/', package_view, name="package"),
     path('jsi18n/',
         cache_page(86400, key_prefix='jsi18n')(
-            JavaScriptCatalog.as_view(packages=['weatherdb'])),
+            JavaScriptCatalog.as_view(packages=['weatherdb_app'])),
         name='javascript-catalog'),
 ]
