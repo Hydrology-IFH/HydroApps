@@ -2,7 +2,6 @@ from django.apps import AppConfig
 from datetime import datetime, timedelta, date, time, timezone
 import warnings
 from django.db.utils import ProgrammingError
-from django.conf import settings
 from django.db import connection
 
 class MyAuthConfig(AppConfig):

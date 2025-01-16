@@ -1,4 +1,4 @@
-from weatherDB.broker import Broker
+from weatherdb.broker import Broker
 from .models import TSDownloads, CacheHCaptchaTest
 
 def regular_update(*args, **kwargs): # now done in crontab on fuhys011

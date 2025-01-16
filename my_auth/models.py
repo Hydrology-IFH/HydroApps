@@ -17,7 +17,7 @@ from sqlalchemy import text
 from HydroApps.models import App
 import secrets
 
-from weatherDB.db.connections import db_engine as wdb_engine
+from weatherdb.db.connections import db_engine as wdb_engine
 
 from .token import account_activation_token
 

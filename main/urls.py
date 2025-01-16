@@ -39,7 +39,7 @@ urlpatterns = [
         path("<str:app_name>/datenschutz/", datenschutz_view, name="datenschutz"),
         path("<str:app_name>/auth/", include("my_auth.urls")),
         path("", include("HydroApps.urls")),
-        path("weatherdb/", include("weatherdb.urls")),
+        path("weatherdb/", include("weatherdb_app.urls")),
         path("RheiKlim/", include("RheiKlim.urls")),
         path("sri_bw/", include("sri_bw.urls")),
         path("kombstra/", include("kombstra.urls")),

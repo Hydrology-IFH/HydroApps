@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('weatherdb', '0001_initial'),
+        ('weatherdb_app', '0001_initial'),
     ]
 
     operations = [

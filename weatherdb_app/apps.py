@@ -5,7 +5,7 @@ import warnings
 from datetime import timedelta
 
 class MyAuthConfig(AppConfig):
-    name = 'weatherdb'
+    name = 'weatherdb_app'
     run_already = False
 
     def ready(self):
@@ -19,7 +19,7 @@ class MyAuthConfig(AppConfig):
 
                 options = dict(
                     name="weatherDB: Cleanup Cache",
-                    func="weatherdb.tasks.cleanup_cache",
+                    func="weatherdb_app.tasks.cleanup_cache",
                     schedule_type=Schedule.HOURLY,
                     repeats=-1,
                     next_run=timezone.now() + timedelta(minutes=5),

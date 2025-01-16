@@ -4,7 +4,7 @@ from HydroApps.sitemaps import HydroAppsSitemap
 from RheiKlim.sitemaps import RheiKlimSitemap
 from kombstra.sitemaps import KombStRASitemap
 from my_auth.sitemaps import AuthSitemap
-from weatherdb.sitemaps import WeatherDBSitemap
+from weatherdb_app.sitemaps import WeatherDBSitemap
 
 
 class MainSitemap(BaseSitemap):
@@ -20,6 +20,6 @@ sitemaps = {
     'RheiKlim': RheiKlimSitemap,
     # 'kombstra': KombStRASitemap,
     'my_auth': AuthSitemap,
-    'weatherDB': WeatherDBSitemap,
+    'WeatherDB': WeatherDBSitemap,
     'sfi_demo': 'sfi_demo.sitemaps.SFIMockupSitemap'
 }

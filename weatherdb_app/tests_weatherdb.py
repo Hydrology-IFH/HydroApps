@@ -1,6 +1,6 @@
 from main.tests.baseTests import BaseTestCase
 from django.db import connections
-from weatherdb.models import MetaN
+from .models import MetaP
 
 ############################################
 # Model tests
@@ -36,11 +36,11 @@ class TestGetTSView(Base.NoLoginViews):
     def setUpTestData(cls):
         # Create the table for the unmanaged model
         with connections["weatherdb"].schema_editor() as schema_editor:
-            schema_editor.create_model(MetaN)
+            schema_editor.create_model(MetaP)
 
     @classmethod
     def tearDownClass(cls):
         # Delete the table for the unmanaged model
         with connections["weatherdb"].schema_editor() as schema_editor:
-            schema_editor.delete_model(MetaN)
+            schema_editor.delete_model(MetaP)
         super().tearDownClass()

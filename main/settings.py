@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from urllib.parse import urlparse
 from django.utils.translation import gettext_lazy as _
-import weatherDB as wdb
+from weatherdb.db import db_engine as wdb_engine
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,10 +28,7 @@ import secretSettings_HydroApps as secrets
 SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if "HydroApps_Debug" in os.environ:
-    DEBUG = os.environ["HydroApps_Debug"].upper()=="TRUE"
-else:
-    DEBUG = False
+DEBUG = os.environ.get("HydroApps_Debug", "False").upper()=="TRUE"
 
 # set secret debug settings
 if DEBUG and hasattr(secrets, "DEBUG_SETTINGS"):
@@ -50,7 +47,7 @@ INSTALLED_APPS = [
     # own
     "HydroApps",
     'my_auth',
-    'weatherdb',
+    'weatherdb_app',
     'RheiKlim',
     "kombstra",
     "sri_bw",
@@ -126,7 +123,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-wdb_url = wdb.db.db_engine.engine.url
+wdb_url = wdb_engine.engine.url
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',

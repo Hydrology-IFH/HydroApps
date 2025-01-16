@@ -7,7 +7,6 @@ from django.utils import timezone
 from django.db import OperationalError
 from django.core.serializers import serialize
 from django.http import Http404, HttpResponse
-import weatherDB
 from main.settings import DEBUG
 import json
 from pathlib import Path
@@ -17,9 +16,10 @@ import re
 import datetime
 import pandas as pd
 
-from weatherDB.stations import GroupStations, StationsP
-from weatherDB.utils import TimestampPeriod
-from weatherDB.broker import Broker
+import weatherdb
+from weatherdb.stations import GroupStations, StationsP
+from weatherdb.utils import TimestampPeriod
+from weatherdb.broker import Broker
 
 from .forms import HCaptchaForm
 from .models import MetaP, TSDownloads, CacheHCaptchaTest
@@ -29,9 +29,9 @@ wdb_broker = Broker()
 
 # get wdb_url
 WDB_DB_CONFIG = {
-    "db_host": weatherDB.db.db_engine.engine.url.host,
-    "db_port": weatherDB.db.db_engine.engine.url.port,
-    "db_database": weatherDB.db.db_engine.engine.url.database,
+    "db_host": weatherdb.db.db_engine.engine.url.host,
+    "db_port": weatherdb.db.db_engine.engine.url.port,
+    "db_database": weatherdb.db.db_engine.engine.url.database,
 }
 statsp = StationsP()
 
