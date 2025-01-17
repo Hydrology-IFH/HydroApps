@@ -42,8 +42,9 @@
   });
 
   //  functions for manipulating the map extent
-  const get_extent = () =>{
-    return config.region_selection_active ? total_extent : regions[config.region].extent;
+  const get_extent = (addBuffer = false) => {
+    let extent = config.region_selection_active ? total_extent : regions[config.region].extent;
+    return addBuffer && !config.region_selection_active? buffer(extent, 20000) : extent;
   }
   const set_extent = function (extent, moveToExtent = false) {
     let view_props = view.getProperties();
@@ -59,7 +60,7 @@
     }
   }
   const update_extent = function (moveToExtent = false) {
-    set_extent(get_extent(), moveToExtent);
+    set_extent(get_extent(true), moveToExtent);
   }
 
   // layers
@@ -75,7 +76,7 @@
       // fly to next region/total_extent
       set_extent(undefined, false);
       flyTo(map.value,
-        { extent: get_extent() },
+        { extent: get_extent(false) },
         () => update_extent(false),
         3000);
 
