@@ -66,7 +66,7 @@
   // layers
   const layer = computed(() => layerLib.selectedLayer)
   const layerError = computed(() => {
-    return layer.value ? layer.value.hasError : false
+    return config.region_selection_active? false : layer.value ? layer.value.hasError: false
   })
 
   // change map extent on region change
