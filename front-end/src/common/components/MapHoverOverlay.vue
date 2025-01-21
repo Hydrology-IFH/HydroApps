@@ -30,7 +30,7 @@
 
   // hover text
   const hoverText = ref("");
-  const  updateHoverText = async () => {
+  const updateHoverText = async () => {
     if (pixel.value == null) return;
 
     // get raw value from raster or vector layer
@@ -107,7 +107,6 @@
     hoverActive.value = true;
 
     // update hover position
-    let map_view = props.map.getView();
     props.map.on('pointermove', (evt) => {
       // check if dragging
       if (evt.dragging) {
@@ -116,7 +115,7 @@
       }
 
       //  check if pointer on map
-      let view_extent = map_view.getViewStateAndExtent().extent;
+      let view_extent = props.map.getView().getViewStateAndExtent().extent;
       if (!containsCoordinate(view_extent, evt.coordinate)) {
         overlay.setPosition(undefined);
         pixel.value = null;
