@@ -1,27 +1,40 @@
 # based on https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Django.gitlab-ci.yml
 
 variables:
-    POSTGRES_DB: $POSTGRES_DB
-    POSTGRES_USER: $POSTGRES_USER
-    POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    HYDROAPPS_SECRET_KEY: 'very_long_secret_key123'
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_PORT: 5432
     POSTGRES_HOST_AUTH_METHOD: trust
+    HYDROAPPS_DB_HOST: hydroapps
+    HYDROAPPS_DB_DATABASE: hydroapps
+    WEATHERDB_DB_HOST: weatherdb
+    WEATHERDB_DB_DATABASE: weatherdb
+    WEATHERDB_DB_PORT: $POSTGRES_PORT
+    WEATHERDB_DB_USER: $POSTGRES_USER
+    WEATHERDB_DB_PASSWORD: $POSTGRES_PASSWORD
+    WEATHERDB_LOGGING_HANDLER: console
+    WEATHERDB_LOGGING_LEVEL: DEBUG
+
+workflow:
+  auto_cancel:
+    on_new_commit: interruptible
 
 default:
     image: python:3.10
     services:
         - name: postgis/postgis
-          alias: postgres
+          alias: hydroapps
+          variables:
+              POSTGRES_DB: $HYDROAPPS_DB_DATABASE
+        - name: postgis/postgis
+          alias: weatherdb
+          variables:
+              POSTGRES_DB: $WEATHERDB_DB_DATABASE
     before_script:
-        - apt -y update
-        - apt -y install apt-utils
-        - apt -y install net-tools
-        - apt -y install git
-        - apt -y install postgresql-client
-        - apt -y install libgdal-dev
-        - apt -y install nodejs npm
-        - apt -y upgrade
-        - pip3 install --upgrade pip
-        - pip3 install -r requirements.txt
+        - apt update && apt install nodejs npm libgdal-dev -y
+        - pip3 install -r requirements.txt --root-user-action=ignore
+        - weatherdb create-db-schema
     cache:
         paths:
         - ~/.cache/pip/
@@ -32,23 +45,12 @@ django-tests:
         - docker
     rules:
         - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-        - if: '$CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE != "merge_request_event"'
+        - if: $CI_COMMIT_BRANCH == "master"
     script:
-        - export PGPASSWORD=$POSTGRES_PASSWORD
-        - echo 'CREATE ROLE "weather_owner";
-                GRANT "weather_owner" TO "'$POSTGRES_USER'" WITH INHERIT TRUE;
-                CREATE DATABASE "weatherdb" OWNER "weather_owner";' |
-                psql -U $POSTGRES_USER -h "postgres" -d "$POSTGRES_DB"
-        - echo 'CREATE TABLE settings (key  varchar(20) PRIMARY KEY, value varchar(20));
-                INSERT INTO settings (key, value) VALUES ("version", "1.0.0")' |
-                psql -U $POSTGRES_USER -h "postgres" -d "weatherdb"
         - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
-        - cp secretSettings_HydroApps.py.test secretSettings_weatherDB.py
         - mkdir static_data
-        - cd front-end
-        - npm ci
-        - npm run build
-        - cd ..
+        - cd front-end && npm ci && npm run build && cd ../
         - python3 manage.py migrate
         - python3 manage.py collectstatic --noinput
         - python3 manage.py test my_auth weatherdb RheiKlim kombstra sri_bw sfi_demo
+    interruptible: true
