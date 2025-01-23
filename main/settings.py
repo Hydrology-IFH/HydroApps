@@ -123,7 +123,6 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-wdb_url = wdb_engine.engine.url
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -140,8 +139,11 @@ DATABASES = {
             "HOST": secrets.DB_TEST_HOST,
             "PORT": secrets.DB_TEST_PORT
         }
-    },
-    'weatherdb': {
+    }
+}
+try:
+    wdb_url = wdb_engine.engine.url
+    DATABASES["weatherdb"] = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': wdb_url.database,
         'USER': wdb_url.username,
@@ -151,7 +153,9 @@ DATABASES = {
         'CONN_MAX_AGE': 120,
         'CONN_HEALTH_CHECKS': True,
     }
-}
+except:
+    print("Could not connect to weatherdb")
+
 
 DATABASE_ROUTERS = ['main.routers.MainRouter']
 
