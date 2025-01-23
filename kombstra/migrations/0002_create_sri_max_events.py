@@ -18,9 +18,11 @@ class Migration(migrations.Migration):
                     FROM (
                         SELECT grid_id, max(sri) AS max_sri
                         FROM kombstra_data
-                        GROUP BY grid_id, date)
-                    LEFT JOIN (SELECT generate_series(0,12) AS sri) ON TRUE
-                    GROUP BY grid_id, sri)
+                        GROUP BY grid_id, date
+                        ) AS maxsri
+                    LEFT JOIN (SELECT generate_series(0,12) AS sri) as sris ON TRUE
+                    GROUP BY grid_id, sri
+                    ) as sqnevents
                 GROUP BY sri ORDER BY sri);
             CREATE OR REPLACE FUNCTION tg_kombstra_sri_max_events_refresh()
                 RETURNS trigger LANGUAGE plpgsql AS $$

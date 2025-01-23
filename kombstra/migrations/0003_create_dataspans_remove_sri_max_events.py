@@ -52,10 +52,13 @@ class Migration(migrations.Migration):
                         FROM (
                             SELECT grid_id, max(sri) AS max_sri
                             FROM kombstra_data
-                            GROUP BY grid_id, date)
-                        LEFT JOIN (SELECT generate_series(0,12) AS sri) ON TRUE
-                        GROUP BY grid_id, sri)
-                    GROUP BY sri ORDER BY sri)
+                            GROUP BY grid_id, date
+                            ) AS maxsri
+                        LEFT JOIN (SELECT generate_series(0,12) AS sri) AS sris ON TRUE
+                        GROUP BY grid_id, sri
+                        ) AS sqnevents
+                    GROUP BY sri ORDER BY sri
+                )
                 SELECT
                     1 as id, -- dummy id
                     EXTRACT(year FROM min(date))::int AS min_year,
