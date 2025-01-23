@@ -25,15 +25,6 @@ from .forms import HCaptchaForm
 from .models import MetaP, TSDownloads, CacheHCaptchaTest
 
 app_dir = Path(__file__).parent
-wdb_broker = Broker()
-
-# get wdb_url
-WDB_DB_CONFIG = {
-    "db_host": weatherdb.db.db_engine.engine.url.host,
-    "db_port": weatherdb.db.db_engine.engine.url.port,
-    "db_database": weatherdb.db.db_engine.engine.url.database,
-}
-statsp = StationsP()
 
 # get method html
 # create html from Markdown
@@ -58,6 +49,8 @@ def home(request, *args, **kwargs):
 
 def get_ts(request, *args, **kwargs):
     try:
+        statsp = StationsP()
+        broker = Broker()
         quots = pd.concat([statsp.get_quotient("corr", "filled"), statsp.get_quotient("filled", "hyras")])\
             .droplevel("parameter").mul(100).round(1)\
             .reset_index().pivot_table(index="station_id", columns=["kind_num","kind_denom"], values="value")
@@ -66,7 +59,7 @@ def get_ts(request, *args, **kwargs):
             'meta_p': json.loads(serialize("geojson", MetaP.objects.all())),
             'quots': quots_json,
             "wdb_max_downloads": get_wdb_max_downloads(request),
-            "db_version": wdb_broker.get_db_version()
+            "db_version": broker.get_db_version()
             }
     except OperationalError:
         # when database is down
@@ -233,7 +226,9 @@ def get_user_config(request):
         context = {
             "db_user": request.user.username,
             "db_password": request.user.db_password,
-            **WDB_DB_CONFIG
+            "db_host": weatherdb.db.db_engine.engine.url.host,
+            "db_port": weatherdb.db.db_engine.engine.url.port,
+            "db_database": weatherdb.db.db_engine.engine.url.database,
         }
         if context["db_host"] == "localhost":
             context["db_host"] = request.get_host()
