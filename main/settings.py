@@ -154,7 +154,6 @@ try:
         'CONN_HEALTH_CHECKS': True,
     }
 except:
-    # mock the engine
     print("Could not connect to weatherdb")
 
 
