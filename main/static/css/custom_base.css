@@ -50,9 +50,14 @@ table.header{
   --bs-nav-link-color: #cccccc;
   --bs-nav-link-hover-color: #fff;
 }
-
+nav.navbar{
+  --bs-navbar-padding-y: 0;
+}
 .navbar-nav .nav-link.active, .navbar-nav .show > .nav-link {
   --bs-navbar-active-color: #fff;
+}
+.nav-item{
+  color: var(--bs-nav-link-color);
 }
 div.header{
   z-index:1001;

@@ -62,80 +62,85 @@
 
               <!-- Hydro-Apps Menu -->
               <div class="navbar-collapse collapse" id="menuitems">
-                <ul class="nav navbar-nav me-0">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle webapps-menu" href="#"
-                       id="navbarDropdownApps" role="button"
-                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="align-middle d-inline d-xl-none d-xxl-inline">
-                        {% block navbar_appname %}{% endblock %}
-                      </span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-apps" aria-labelledby="navbarDropdownApps">
-                      <li>
-                        <a href="{% url 'HydroApps:home' %}"
-                           class="dropdown-item {% if active_app == 'HydroApps' %}active{% endif %}">
-                           <b>Hydro-Apps</b>
+                <div class="navbar-main-menu">
+                  <div class="navbar-hydroapps">
+                    <ul class="nav navbar-nav me-0">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle webapps-menu" href="#"
+                          id="navbarDropdownApps" role="button"
+                          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="align-middle d-inline d-l-none d-xxl-inline">
+                            {% block navbar_appname %}{% endblock %}
+                          </span>
                         </a>
+                        <ul class="dropdown-menu dropdown-apps" aria-labelledby="navbarDropdownApps">
+                          <li>
+                            <a href="{% url 'HydroApps:home' %}"
+                              class="dropdown-item {% if active_app == 'HydroApps' %}active{% endif %}">
+                              <b>Hydro-Apps</b>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="{% url 'weatherdb:home' %}"
+                              class="dropdown-item {% if active_app == 'weatherdb' %}active{% endif %}">
+                              WeatherDB
+                            </a>
+                          </li>
+                          <li>
+                            <a href="{% url 'RheiKlim:home' %}"
+                              class="dropdown-item {% if active_app == 'RheiKlim' %}active{% endif %}">
+                              RheiKlim
+                            </a>
+                          </li>
+                          <li>
+                            <a href="{% url 'sri_bw:home' %}"
+                              class="dropdown-item {% if active_app == 'sri_bw' %}active{% endif %}">
+                              SRI-BW
+                            </a>
+                          </li>
+                          {% if show_unreleased_apps.kombstra %}
+                            <li>
+                              <a href="{% url 'kombstra:home' %}"
+                                class="dropdown-item  {% if active_app == 'kombstra' %}active{% endif %}">
+                                KombStRA
+                              </a>
+                            </li>
+                          {% endif %}
+                          {% if show_unreleased_apps.sfi_demo %}
+                            <li>
+                              <a href="{% url 'sfi_demo:home' %}"
+                                class="dropdown-item  {% if active_app == 'sfi_demo' %}active{% endif %}">
+                                SFI-Demonstrator
+                              </a>
+                            </li>
+                          {% endif %}
+                          <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
+                            <div class="d-flex">
+                              <span class="me-auto">NatUrWB</span>
+                              <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </div>
+                          </a></li>
+                          <li><a href="http://www.naturnahe-regenwasserbewirtschaftung.info/" class="dropdown-item" target="_blank" rel="noopener noreferrer">
+                            <div class="d-flex">
+                              <span class="me-auto">FReWaB</span>
+                              <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </div>
+                          </a></li>
+                          <li><a href="https://www.biozidauswaschung.de/" class="dropdown-item" target="_blank" rel="noopener noreferrer">
+                            <div class="d-flex">
+                              <span class="me-auto">FReWaB-Plus</span>
+                              <i class="bi bi-box-arrow-up-right ms-2"></i>
+                            </div>
+                          </a></li>
+                        </ul>
                       </li>
-                      <li>
-                        <a href="{% url 'weatherdb:home' %}"
-                           class="dropdown-item {% if active_app == 'weatherdb' %}active{% endif %}">
-                          WeatherDB
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{% url 'RheiKlim:home' %}"
-                           class="dropdown-item {% if active_app == 'RheiKlim' %}active{% endif %}">
-                          RheiKlim
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{% url 'sri_bw:home' %}"
-                           class="dropdown-item {% if active_app == 'sri_bw' %}active{% endif %}">
-                          SRI-BW
-                        </a>
-                      </li>
-                      {% if show_unreleased_apps.kombstra %}
-                        <li>
-                          <a href="{% url 'kombstra:home' %}"
-                             class="dropdown-item  {% if active_app == 'kombstra' %}active{% endif %}">
-                            KombStRA
-                          </a>
-                        </li>
-                      {% endif %}
-                      {% if show_unreleased_apps.sfi_demo %}
-                        <li>
-                          <a href="{% url 'sfi_demo:home' %}"
-                             class="dropdown-item  {% if active_app == 'sfi_demo' %}active{% endif %}">
-                            SFI-Demonstrator
-                          </a>
-                        </li>
-                      {% endif %}
-                      <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                        <div class="d-flex">
-                          <span class="me-auto">NatUrWB</span>
-                          <i class="bi bi-box-arrow-up-right ms-2"></i>
-                        </div>
-                      </a></li>
-                      <li><a href="http://www.naturnahe-regenwasserbewirtschaftung.info/" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                        <div class="d-flex">
-                          <span class="me-auto">FReWaB</span>
-                          <i class="bi bi-box-arrow-up-right ms-2"></i>
-                        </div>
-                      </a></li>
-                      <li><a href="https://www.biozidauswaschung.de/" class="dropdown-item" target="_blank" rel="noopener noreferrer">
-                        <div class="d-flex">
-                          <span class="me-auto">FReWaB-Plus</span>
-                          <i class="bi bi-box-arrow-up-right ms-2"></i>
-                        </div>
-                      </a></li>
                     </ul>
-                  </li>
-                </ul>
-                <!-- App specific Menu -->
-                {% block navbar_app %}{% endblock %}
-
+                  </div>
+                  <!-- App specific Menu -->
+                  <div class="navbar-app-menu">
+                    {% block navbar_app %}{% endblock %}
+                  </div>
+                </div>
                 <!-- Language switcher Menu -->
                 <ul class="nav navbar-nav ms-auto">
                   <li class="nav-item dropdown">
