@@ -8,6 +8,7 @@
   import MenuDuration from './menu/MenuDuration.vue';
   import MenuDate from './menu/MenuDate.vue';
   import MenuOpacity from './menu/MenuOpacity.vue';
+  import MenuColorbar from './menu/MenuColorbar.vue';
 
   const fromRef = ref(null);
 
@@ -28,5 +29,6 @@
     <MenuDate />
     <h4>{{ $t('menu_header_map') }}</h4>
     <MenuOpacity />
+    <MenuColorbar />
   </form>
 </template>

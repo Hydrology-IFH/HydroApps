@@ -2,6 +2,7 @@ import { GeoTIFF } from "ol/source";
 import TileLayer from 'ol/layer/WebGLTile.js';
 import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
+import "./extraColormaps.js";
 
 export class Layer {
   constructor({ id,
@@ -150,6 +151,14 @@ export class Layer {
 
   get hasError() {
     return this._errorLayers.includes(this.url);
+  }
+
+  restyle(style) {
+    delete this._style
+    this._styleInit = style;
+    Object.entries(this._olLayers).forEach(([key, layer]) => {
+      layer.setStyle(this.style);
+    });
   }
 
   setOpacity(value) {
