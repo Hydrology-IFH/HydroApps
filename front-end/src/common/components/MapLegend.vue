@@ -9,7 +9,8 @@
     elements: Array, // Array of elements {colors, labels=[String] || [{label, tooltip}], type="con"} || {color, label, tooltip, type="dis"} }
     map: Object,
     titlePosition: { type: Boolean, default: "topIfContinous" }, // top/bottom/topIfContinous, default topIfContinous: depending if continous elements are present,
-    visible: { type: Boolean, default: true }
+    visible: { type: Boolean, default: true },
+    opacity: { type: Number, default: 1 }
   })
   const legend_div = ref(null)
 
@@ -51,7 +52,10 @@
         return `rgb(${color.join(", ")})`
       }
     })
-    return {background: `linear-gradient(to right, ${colors.join(", ")})`}
+    return {
+      background: `linear-gradient(to right, ${colors.join(", ")})`,
+      opacity: props.opacity
+    }
   }
 
   // create legend overlay
@@ -117,7 +121,9 @@
               </div>
             </slot>
             <slot v-else>
-              <div class="colorbar-color" :style="{ background: element.color }"></div>
+              <div class="colorbar-color">
+                <div :style="{ background: element.color, opacity: opacity }"></div>
+              </div>
               <div class="colorbar-tick">
                 {{ element.label }}
               </div>
@@ -207,6 +213,10 @@
     border: 1px solid black;
     margin-right: calc(.1em + .35vw);
     margin-left: calc(.1em + .35vw);
+  }
+  div.colorbar-dis > div.colorbar-color > div{
+    width: 100%;
+    height: 100%;
   }
   div.colorbar-dis > div.colorbar-tick{
     width: 100%;

@@ -123,7 +123,8 @@
           :layerName="layer.name"
           :style="layer.style"
           :unit="layer.unit"
-          :visible="!config.region_selection_active"/>
+          :visible="!config.region_selection_active"
+          :opacity="config.opacity/100"/>
 
       <MapControls.OlFullscreenControl/>
 
