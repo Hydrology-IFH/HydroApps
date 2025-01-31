@@ -19,6 +19,8 @@
   "menu_colorscale_label": "Farbskala",
   "menu_colorscale_tooltip": "Ändere die Farbskalierung für den aktuellen Kartenlayer",
   "menu_date_label": "Datum",
+  "menu_date_selection_tooltip": "Wähle eins der möglichen Erreignisse anhand des Datums aus",
+  "menu_date_static_tooltip": "Dies ist das Datum des Niederschlagereignisses",
   "menu_duration_label": "Dauerstufe",
   "menu_duration_tooltip": "Die Dauerstufe des Niederschlags",
   "menu_header_event": "Event Auswahl",

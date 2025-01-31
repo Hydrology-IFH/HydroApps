@@ -19,6 +19,8 @@
   "menu_colorscale_label": "Colorscale",
   "menu_colorscale_tooltip": "Change the colorscale for the current layer",
   "menu_date_label": "Date",
+  "menu_date_selection_tooltip": "Select one of the possible events based on the date",
+  "menu_date_static_tooltip": "This is the date of the precipitation event",
   "menu_duration_label": "Duration",
   "menu_duration_tooltip": "The duration of the event",
   "menu_header_event": "Simulation parameters",

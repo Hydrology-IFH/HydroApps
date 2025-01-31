@@ -18,6 +18,7 @@ export const useConfig = defineStore(
       date: {
         Bonndorf: "2015-06-14", // yyyy-mm-dd of the event
         Wieslauf: "2024-06-02",
+        Emmendingen: "2014-07-20",
       },
 
       // matrix settings
