@@ -32,7 +32,7 @@ const getColorscale = function (min, max, colorbar, continous=true, reverse=fals
   }
 }
 
-export function getColorscaleTileLayerStyle(min, max, colorbar, continous = true, reverse = false) {
+export function getColorscaleTileLayerStyle({min, max, colorbar, continous = true, reverse = false}) {
   if (continous) {
     return {
       color: [

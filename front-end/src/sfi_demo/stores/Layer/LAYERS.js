@@ -54,9 +54,9 @@ export const LAYERS = [
       colorscale: {
         min: 0,
         max: 120,
-        colorbar: "salinity",
+        colorbar: "cmocean:rain",
         continous: true,
-        reverse: true,
+        reverse: false,
       },
     },
   },
@@ -130,10 +130,10 @@ export const LAYERS = [
     style: {
       colorscale: {
         min: 0,
-        max: 100,
-        colorbar: "salinity",
+        max: 60,
+        colorbar: "bathymetry",
         continous: true,
-        reverse: true,
+        reverse: true
       },
     },
   },
@@ -147,7 +147,7 @@ export const LAYERS = [
       colorscale: {
         min: 0,
         max: 90,
-        colorbar: "salinity",
+        colorbar: "density",
         continous: true,
         reverse: true,
       },

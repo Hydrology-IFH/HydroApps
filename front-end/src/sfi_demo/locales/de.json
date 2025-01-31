@@ -16,6 +16,8 @@
   "menu_SoilMoisture_label": "Boden-Vorfeuchte",
   "menu_SoilMoisture_tooltip": "Die Feuchtigkeit des Bodens vor dem Regenereignis",
   "menu_SoilMoisture_wet": "feucht",
+  "menu_colorscale_label": "Farbskala",
+  "menu_colorscale_tooltip": "Ändere die Farbskalierung für den aktuellen Kartenlayer",
   "menu_date_label": "Datum",
   "menu_duration_label": "Dauerstufe",
   "menu_duration_tooltip": "Die Dauerstufe des Niederschlags",

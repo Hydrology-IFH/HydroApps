@@ -96,8 +96,7 @@ export class Layer {
     if (!this._style) {
       if (this._styleInit.hasOwnProperty("colorscale")) {
         let opts = this._styleInit.colorscale;
-        this._style = getColorscaleTileLayerStyle(
-          opts.min, opts.max, opts.colorbar, opts.continous, opts.reverse);
+        this._style = getColorscaleTileLayerStyle(opts);
       } else {
         this._style = this._styleInit;
       }

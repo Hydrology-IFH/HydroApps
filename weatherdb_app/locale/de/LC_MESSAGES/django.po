@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-19 14:04+0100\n"
+"POT-Creation-Date: 2025-01-31 09:47+0100\n"
 "PO-Revision-Date: 2024-01-04 12:16+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: .\weatherdb\templates\weatherdb\base.html:8
+#: .\weatherdb_app\templates\weatherdb\base.html:8
 msgid ""
 "An application to download quality checked, filled and corrected weather "
 "timeseries for all of germany."
@@ -26,24 +26,24 @@ msgstr ""
 "Eine Applikation mit der aufbereitete, gefüllte und korrigierte Wetter-"
 "Zeitreihen für ganz Deutschland heruntergeladen werden können."
 
-#: .\weatherdb\templates\weatherdb\base.html:19
+#: .\weatherdb_app\templates\weatherdb\base.html:19
 msgid "Home"
 msgstr "Home"
 
-#: .\weatherdb\templates\weatherdb\base.html:20
+#: .\weatherdb_app\templates\weatherdb\base.html:20
 msgid "Method"
 msgstr "Methode"
 
-#: .\weatherdb\templates\weatherdb\base.html:21
-#: .\weatherdb\templates\weatherdb\home.html:8
+#: .\weatherdb_app\templates\weatherdb\base.html:21
+#: .\weatherdb_app\templates\weatherdb\home.html:8
 msgid "Download"
 msgstr "Herunterladen"
 
-#: .\weatherdb\templates\weatherdb\base.html:22
+#: .\weatherdb_app\templates\weatherdb\base.html:22
 msgid "Package"
 msgstr "Paket"
 
-#: .\weatherdb\templates\weatherdb\db_not_available.html:8
+#: .\weatherdb_app\templates\weatherdb\db_not_available.html:8
 msgid ""
 "We are sorry. The WeatherDB Database Server is not available at the moment, "
 "please come back in some minutes."
@@ -51,11 +51,11 @@ msgstr ""
 "Es tut uns leid. Der WeatherDB Datenbank Server ist im Moment nicht "
 "verfügbar. Bitte kommen Sie in einigen Minuten wieder."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:50
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:50
 msgid "Get a timeserie"
 msgstr "Zeitreihe herunterladen"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:56
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:56
 msgid ""
 "This is the Version of the WeatherDB-module that created the data in the "
 "database."
@@ -63,92 +63,92 @@ msgstr ""
 "Dies ist die Version des WeatherDB-Moduls, das die Daten in der Datenbank "
 "erstellt hat."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:56
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:56
 msgid "Click to see all the Changes made in the module."
 msgstr ""
 "Klicken Sie hierauf , um alle am Modul vorgenommenen Änderungen anzuzeigen."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:61
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:61
 msgid ""
 "To download a timeserie you can select the stations from the following map."
 msgstr ""
 "Um eine Zeitreihe herunterzuladen, können Sie die Stationen auf der "
 "folgenden Karte auswählen."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:71
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:71
 msgid "Set the starting date of your timeserie"
 msgstr "Legen Sie das Startdatum Ihrer Zeitreihe fest"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:71
-#: .\weatherdb\templates\weatherdb\get_ts.html:77
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:71
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:77
 msgid "The timeseries timestamp will be in UTC."
 msgstr "Der Zeitstempel für die Zeitreihe wird in UTC angegeben."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:71
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:71
 msgid "From"
 msgstr "Von"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:77
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:77
 msgid "Set the ending date of your timeserie."
 msgstr "Legen Sie das Enddatum Ihrer Zeitreihe fest."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:77
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:77
 msgid "Until"
 msgstr "Bis"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:86
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:86
 msgid "Choose the aggregation step you like to have."
 msgstr "Wählen Sie die gewünschte Aggregationsstufe."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:86
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:86
 msgid "Aggregation Step"
 msgstr "Aggregationsstufe"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:88
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:88
 msgid "10 minutes"
 msgstr "10 minütig"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:89
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:89
 msgid "hourly"
 msgstr "stündlich"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:90
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:90
 msgid "daily"
 msgstr "täglich"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:91
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:91
 msgid "monthly"
 msgstr "monatlich"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:92
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:92
 msgid "year"
 msgstr "jährlich"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:100
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:100
 msgid "Which format should the timestamp column have?"
 msgstr "Welches Format sollte der Zeitstempel haben?"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:100
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:100
 msgid "RoGeR format is one column per date part(year, month...)"
 msgstr "RoGeR-Format ist eine Spalte pro Datumsteil (Jahr, Monat...)"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:100
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:100
 msgid "string representation is one timestamp column as string"
 msgstr "String-Format ist eine Zeitstempelspalte als String"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:100
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:100
 msgid "timestamp format"
 msgstr "Zeitstempel-Format"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:102
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:102
 msgid "RoGeR format"
 msgstr "RoGeR Format"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:103
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:103
 msgid "string representation"
 msgstr "String-Format"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:109
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:109
 msgid ""
 "There are different steps of timeseries creation that can get downloaded. "
 "Choose the step you would like. For more information read the method section."
@@ -157,64 +157,64 @@ msgstr ""
 "heruntergeladen werden können. Wählen Sie den gewünschten Schritt. Für "
 "weitere Informationen lesen Sie die Seite der Methode."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:109
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:109
 msgid "data kind"
 msgstr "Datenart"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:112
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:112
 msgid "4. Richter corrected and filled"
 msgstr "4. Richter korrigiert und gefüllt"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:113
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:113
 msgid "3. filled"
 msgstr "3. Gefüllt"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:114
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:114
 msgid "2. quality checked"
 msgstr "2. Qualitätsgeprüft"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:115
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:115
 msgid "1. raw"
 msgstr "1. Roh"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:121
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:121
 msgid "Enter the station IDs you like as comma separated list"
 msgstr "Geben Sie die gewünschten Stations-IDs als kommagetrennte Liste ein"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:121
-#: .\weatherdb\templates\weatherdb\get_ts.html:124
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:121
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:124
 msgid "selected Station IDs"
 msgstr "gewählte Stations-IDs"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:133
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:133
 msgid "Show selection on map"
 msgstr "Zeige Auswahl auf der Karte"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:140
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:140
 msgid "Color Selection"
 msgstr "Auswahl einfärben"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:141
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:141
 msgid "Remove Coloring"
 msgstr "Einfärbung entfernen"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:144
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:144
 msgid "Filter Selection"
 msgstr "Auswahl filtern"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:145
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:145
 msgid "Remove Filters"
 msgstr "Filter entfernen"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:155
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:155
 msgid "Additional options"
 msgstr "Zusätzliche Optionen"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:166
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:166
 msgid "Should the information about the filling step be added."
 msgstr "Sollen die Informationen über den Füll-Schritt hinzugefügt werden."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:166
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:166
 msgid ""
 "If no aggregation is done, a &quot;filled_by&quot; column is added to the "
 "output, to show the Station ID from which the data was taken to fill the gap."
@@ -223,12 +223,12 @@ msgstr ""
 "filled_by&quot; hinzugefügt. Diese gibt die Stations-ID an, deren Daten zum "
 "Füllen der Lücke genutzt wurden."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:166
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:166
 msgid "No data in this column means the measurement is a real measurement."
 msgstr ""
 "Keine Daten in dieser Spalte bedeutet, dass der Wert eine echte Messung ist."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:166
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:166
 msgid ""
 "If the data got aggregated a filled_share column is added, giving the share "
 "of gap filled values in the aggregation group in percent."
@@ -237,11 +237,11 @@ msgstr ""
 "die den Anteil der mit Lücken gefüllten Werte in der Aggregationsgruppe in "
 "Prozent angibt."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:169
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:169
 msgid "add gap filling information"
 msgstr "Informationen zum Füllen der Lücken hinzufügen"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:179
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:179
 msgid ""
 "Should the share of NAs be added, when the value got aggregated.<br>This "
 "adds a column with the share of NA values that where in the aggregation step "
@@ -251,32 +251,32 @@ msgstr ""
 "<br>Dies fügt eine Spalte mit dem Anteil in Prozent der NA-Werte hinzu, die "
 "in der Aggregierungsgruppe enthalten waren."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:182
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:182
 msgid "add the share of NAs in the original data (only for aggregated values)"
 msgstr ""
 "den Anteil der NAs in den Originaldaten hinzufügen (nur für aggregierte "
 "Werte)"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:192
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:192
 msgid "Should the minimal daily temperature value be added to the timeserie."
 msgstr ""
 "Sollte der minimale tägliche Temperaturwert zur Zeitreihe hinzugefügt werden."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:195
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:195
 msgid "add minimal daily Temperature"
 msgstr "minimale tägliche Temperatur hinzufügen"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:204
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:204
 msgid "Should the maximal daily temperature value be added to the timeserie."
 msgstr ""
 "Sollte der maximale  tägliche Temperaturwert zur Zeitreihe hinzugefügt "
 "werden."
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:207
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:207
 msgid "add maximal daily Temperature"
 msgstr "maximale tägliche Temperatur hinzufügen"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:216
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:216
 msgid ""
 "Should the output format be the RoGeR-toolbox format. This will rename the "
 "file and columns. Have a look at the examples in the "
@@ -284,19 +284,19 @@ msgstr ""
 "Sollen die Zeitreihen im RoGeR-Toolbox-Format sein. Dies ändert die Namen "
 "der Dateien und der Spalten. Schauen Sie sich die Beispiele im "
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:219
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:219
 msgid "RoGeR toolbox format"
 msgstr "RoGeR Toolbox Format"
 
-#: .\weatherdb\templates\weatherdb\get_ts.html:240
+#: .\weatherdb_app\templates\weatherdb\get_ts.html:240
 msgid "download"
 msgstr "Herunterladen"
 
-#: .\weatherdb\templates\weatherdb\home.html:6
+#: .\weatherdb_app\templates\weatherdb\home.html:6
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: .\weatherdb\templates\weatherdb\home.html:7
+#: .\weatherdb_app\templates\weatherdb\home.html:7
 msgid ""
 "This is the Web interface for the WeatherDB. The WeatherDB is a Database "
 "that automatically downloads the weather station data from the DWD-CDC "
@@ -312,19 +312,19 @@ msgstr ""
 "Weboberfläche können Sie die rohen, geprüften, gefüllten und Richter-"
 "korrigierten Zeitreihen für Ihre Simulationen herunterladen."
 
-#: .\weatherdb\templates\weatherdb\home.html:8
+#: .\weatherdb_app\templates\weatherdb\home.html:8
 msgid "To download the station data go to"
 msgstr "Um die Stationsdaten herunterzuladen, gehen Sie auf die "
 
-#: .\weatherdb\templates\weatherdb\home.html:8
+#: .\weatherdb_app\templates\weatherdb\home.html:8
 msgid "page"
 msgstr "Seite"
 
-#: .\weatherdb\templates\weatherdb\package.html:6
+#: .\weatherdb_app\templates\weatherdb\package.html:6
 msgid "Python Package"
 msgstr "Python Paket"
 
-#: .\weatherdb\templates\weatherdb\package.html:7
+#: .\weatherdb_app\templates\weatherdb\package.html:7
 msgid ""
 "To download the timeseries, there is a python package available on GitHub. "
 "For more information on the package please refer to"
@@ -332,72 +332,73 @@ msgstr ""
 "Um die Zeitreihen herunterzuladen, gibt es ein Python-Paket auf GitHub. "
 "Weitere Informationen zu diesem Paket finden Sie unter"
 
-#: .\weatherdb\templates\weatherdb\package.html:7
+#: .\weatherdb_app\templates\weatherdb\package.html:7
 msgid "and the"
 msgstr "und die"
 
-#: .\weatherdb\templates\weatherdb\package.html:7
+#: .\weatherdb_app\templates\weatherdb\package.html:7
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: .\weatherdb\templates\weatherdb\package.html:9
+#: .\weatherdb_app\templates\weatherdb\package.html:9
 msgid ""
 "To use the package you need login credentials, that are saved in the user "
 "configuration file and have to be inside of the UNI Freiburg network."
 msgstr ""
 "Um das Paket nutzen zu können, benötigen Sie Anmeldedaten, die in der "
-"Benutzerkonfigurations gespeichert werden und müssen sich innerhalb des "
-"UNI Freiburg Netzwerks befinden."
+"Benutzerkonfigurations gespeichert werden und müssen sich innerhalb des UNI "
+"Freiburg Netzwerks befinden."
 
-#: .\weatherdb\templates\weatherdb\package.html:11
+#: .\weatherdb_app\templates\weatherdb\package.html:11
 msgid "You can download your personal user configuration section from your"
 msgstr ""
-"Sie können den betreffenden Abschnitt für Ihre Benutzerkonfiguration von Ihrer"
+"Sie können den betreffenden Abschnitt für Ihre Benutzerkonfiguration von "
+"Ihrer"
 
-#: .\weatherdb\templates\weatherdb\package.html:11
+#: .\weatherdb_app\templates\weatherdb\package.html:11
 msgid "Profile page"
 msgstr "Profilseite"
 
-#: .\weatherdb\templates\weatherdb\package.html:11
+#: .\weatherdb_app\templates\weatherdb\package.html:11
 msgid "after_profile_page"
 msgstr "herunterladen"
 
-#: .\weatherdb\templates\weatherdb\package.html:13
+#: .\weatherdb_app\templates\weatherdb\package.html:13
 msgid "You can get those credentials by"
 msgstr "Sie können diese Zugangsdaten erhalten, indem Sie auf dieser Seite"
 
-#: .\weatherdb\templates\weatherdb\package.html:13
+#: .\weatherdb_app\templates\weatherdb\package.html:13
 msgid "requesting an account"
 msgstr "ein Konto anlegen"
 
-#: .\weatherdb\templates\weatherdb\package.html:13
+#: .\weatherdb_app\templates\weatherdb\package.html:13
 msgid "on this page."
 msgstr "."
 
-#: .\weatherdb\templates\weatherdb\package.html:14
+#: .\weatherdb_app\templates\weatherdb\package.html:14
 msgid ""
 "If your account was activated you can download your user credential section "
 "from your Profile page."
 msgstr ""
-"Wenn Ihr Konto aktiviert wurde, können Sie den betreffenden Abschnitt für die Benutzerkonfiguraktions"
-" von Ihrer Profilseite herunterladen."
+"Wenn Ihr Konto aktiviert wurde, können Sie den betreffenden Abschnitt für "
+"die Benutzerkonfiguraktions von Ihrer Profilseite herunterladen."
 
-#: .\weatherdb\templates\weatherdb\user_conf.html:9
+#: .\weatherdb_app\templates\weatherdb\user_conf.html:9
 msgid "WeatherDB user configuration"
 msgstr "Benutzerkonfiguration für WeatherDB"
 
-#: .\weatherdb\templates\weatherdb\user_conf.html:13
+#: .\weatherdb_app\templates\weatherdb\user_conf.html:13
 msgid ""
 "Those are the settings you will have to set in your user configuration file:"
 msgstr ""
 "Dies sind die Einstellungen, die Sie in Ihrer Benutzerkonfigurationsdatei "
 "festlegen müssen:"
 
-#: .\weatherdb\templates\weatherdb\user_conf.html:25
+#: .\weatherdb_app\templates\weatherdb\user_conf.html:25
 msgid "Your Database password is"
 msgstr "Dein Passwort für die Datenbank ist"
 
-#: .\weatherdb\templates\weatherdb\user_conf.html:26
+#: .\weatherdb_app\templates\weatherdb\user_conf.html:26
 msgid ""
 "You will be asked to enter it when you run the weatehrDB-module for the "
 "first time."
@@ -405,10 +406,10 @@ msgstr ""
 "Du wirst aufgefordert, es einzugeben, wenn du das WeatherDB-Modul zum ersten "
 "Mal ausführst."
 
-#: .\weatherdb\templates\weatherdb\user_conf.html:28
+#: .\weatherdb_app\templates\weatherdb\user_conf.html:28
 msgid "For further information, please refer to the"
 msgstr "Für weitere Informationen, lies am besten die "
 
-#: .\weatherdb\templates\weatherdb\user_conf.html:28
+#: .\weatherdb_app\templates\weatherdb\user_conf.html:28
 msgid "documentation"
 msgstr "Dokumentation"

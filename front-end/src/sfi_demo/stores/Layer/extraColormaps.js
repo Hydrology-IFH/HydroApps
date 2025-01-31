@@ -2,16 +2,15 @@ import colorScale from 'colormap/colorScale.js';
 
 function registerColormap(key, colormap) {
   if (colormap.every(c => c.index !== undefined && c.rgb?.length == 3)) {
-      colorScale[key] = colormap;
+    colorScale[key.toLowerCase()] = colormap;
   } else {
       throw new Error('Invalid colormap');
   }
 }
-window.colorScale = colorScale;
 
 // colormap created online with http://colormaker.org/
 // ----------------------------------------------------
-registerColormap("precip", [
+registerColormap("BluPu", [
   {"index":0, "rgb":[119, 206, 234]},
   {"index":0.0588235294117647, "rgb":[114, 198, 237]},
   {"index":0.117647058823529, "rgb":[107, 190, 242]},
@@ -32,7 +31,7 @@ registerColormap("precip", [
   {"index":1, "rgb":[145, 2, 191]}
 ]);
 
-registerColormap("soil_moisture", [
+registerColormap("OrBu", [
   {"index":0, "rgb":[253, 136, 4]},
   {"index":0.0416666666666666, "rgb":[231, 141, 8]},
   {"index":0.0833333333333333, "rgb":[212, 144, 12]},
@@ -61,36 +60,36 @@ registerColormap("soil_moisture", [
 ]);
 
 registerColormap("cmocean:rain", [
-{"index":1/250, "rgb":[238,237,243]},
-{"index":10/250, "rgb":[232,228,229]},
-{"index":20/250, "rgb":[225,217,212]},
-{"index":30/250, "rgb":[220,206,193]},
-{"index":40/250, "rgb":[215,196,174]},
-{"index":50/250, "rgb":[205,188,155]},
-{"index":60/250, "rgb":[190,182,142]},
-{"index":70/250, "rgb":[173,176,135]},
-{"index":80/250, "rgb":[156,170,129]},
-{"index":90/250, "rgb":[138,165,123]},
-{"index":100/250, "rgb":[121,159,118]},
-{"index":110/250, "rgb":[101,154,114]},
-{"index":120/250, "rgb":[81,148,111]},
-{"index":130/250, "rgb":[61,142,110]},
-{"index":140/250, "rgb": [36, 134, 110] },
-{"index":150/250, "rgb": [18, 126, 110] },
-{"index":160/250, "rgb": [6, 117, 110]},
-{"index":170/250, "rgb":[3,108,109]},
-{"index":180/250, "rgb":[8,99,107]},
-{"index":190/250, "rgb":[18,90,103]},
-{"index":200/250, "rgb":[26,80,99]},
-{"index":210/250, "rgb":[33,71,92]},
-{"index":220/250, "rgb":[36,61,84]},
-{"index":230/250, "rgb":[37,52,76]},
-{"index":240/250, "rgb":[37,42,68]},
-{"index":250/250, "rgb":[35,33,61]},
+  {"index":1/250, "rgb":[238,237,243]},
+  {"index":10/250, "rgb":[232,228,229]},
+  {"index":20/250, "rgb":[225,217,212]},
+  {"index":30/250, "rgb":[220,206,193]},
+  {"index":40/250, "rgb":[215,196,174]},
+  {"index":50/250, "rgb":[205,188,155]},
+  {"index":60/250, "rgb":[190,182,142]},
+  {"index":70/250, "rgb":[173,176,135]},
+  {"index":80/250, "rgb":[156,170,129]},
+  {"index":90/250, "rgb":[138,165,123]},
+  {"index":100/250, "rgb":[121,159,118]},
+  {"index":110/250, "rgb":[101,154,114]},
+  {"index":120/250, "rgb":[81,148,111]},
+  {"index":130/250, "rgb":[61,142,110]},
+  {"index":140/250, "rgb": [36, 134, 110] },
+  {"index":150/250, "rgb": [18, 126, 110] },
+  {"index":160/250, "rgb": [6, 117, 110]},
+  {"index":170/250, "rgb":[3,108,109]},
+  {"index":180/250, "rgb":[8,99,107]},
+  {"index":190/250, "rgb":[18,90,103]},
+  {"index":200/250, "rgb":[26,80,99]},
+  {"index":210/250, "rgb":[33,71,92]},
+  {"index":220/250, "rgb":[36,61,84]},
+  {"index":230/250, "rgb":[37,52,76]},
+  {"index":240/250, "rgb":[37,42,68]},
+  {"index":250/250, "rgb":[35,33,61]},
 ])
 
 // source https://www.giss.nasa.gov/tools/panoply/colorbars/
-registerColormap("neo_soil_moisture", [
+registerColormap("NEO_soil_moisture", [
   {"index": 0.0, "rgb": [0, 59, 98]},
   {"index": 0.04, "rgb": [0, 63, 104]},
   {"index": 0.08, "rgb": [0, 67, 109]},
@@ -119,7 +118,7 @@ registerColormap("neo_soil_moisture", [
   {"index": 1.0, "rgb": [236, 237, 229]},
 ])
 
-registerColormap("neo_trmm_rainfall", [
+registerColormap("NEO_trmm_rainfall", [
   {"index": 0.0, "rgb": [8, 70, 136]},
   {"index": 0.04, "rgb": [8, 83, 149]},
   {"index": 0.08, "rgb": [8, 95, 163]},
@@ -148,35 +147,7 @@ registerColormap("neo_trmm_rainfall", [
   {"index": 1.0, "rgb": [247, 252, 240]},
 ])
 
-registerColormap("neo_ceres_net", [
-  {"index": 0.0, "rgb": [218, 69, 77]},
-  {"index": 0.04, "rgb": [228, 84, 73]},
-  {"index": 0.08, "rgb": [237, 99, 70]},
-  {"index": 0.12, "rgb": [245, 115, 70]},
-  {"index": 0.16, "rgb": [248, 135, 79]},
-  {"index": 0.2, "rgb": [250, 156, 89]},
-  {"index": 0.24, "rgb": [253, 176, 98]},
-  {"index": 0.28, "rgb": [253, 191, 111]},
-  {"index": 0.32, "rgb": [254, 207, 125]},
-  {"index": 0.36, "rgb": [254, 222, 138]},
-  {"index": 0.4, "rgb": [254, 233, 154]},
-  {"index": 0.44, "rgb": [255, 242, 170]},
-  {"index": 0.48, "rgb": [255, 252, 186]},
-  {"index": 0.52, "rgb": [250, 253, 182]},
-  {"index": 0.56, "rgb": [242, 250, 170]},
-  {"index": 0.6, "rgb": [234, 247, 158]},
-  {"index": 0.64, "rgb": [221, 241, 154]},
-  {"index": 0.68, "rgb": [202, 234, 158]},
-  {"index": 0.72, "rgb": [184, 226, 161]},
-  {"index": 0.76, "rgb": [165, 218, 164]},
-  {"index": 0.8, "rgb": [143, 210, 164]},
-  {"index": 0.84, "rgb": [121, 202, 165]},
-  {"index": 0.88, "rgb": [100, 192, 166]},
-  {"index": 0.92, "rgb": [84, 173, 174]},
-  {"index": 0.96, "rgb": [67, 155, 181]},
-  {"index": 1.0, "rgb": [50, 136, 189]},
-])
-registerColormap("eo_soil_moist_div", [
+registerColormap("EO_soil_moist_div", [
   {"index": 0.0, "rgb": [31, 151, 239]},
   {"index": 0.04, "rgb": [44, 160, 241]},
   {"index": 0.08, "rgb": [56, 166, 240]},
@@ -204,7 +175,8 @@ registerColormap("eo_soil_moist_div", [
   {"index": 0.96, "rgb": [193, 143, 25]},
   { "index": 1.0, "rgb": [189, 134, 24] },
 ])
-registerColormap("eo_aura_omi_formal", [
+
+registerColormap("EO_aura_omi_formal", [
   {"index": 0.0, "rgb": [85, 0, 82]},
   {"index": 0.04, "rgb": [100, 2, 93]},
   {"index": 0.08, "rgb": [112, 10, 108]},
@@ -232,7 +204,8 @@ registerColormap("eo_aura_omi_formal", [
   {"index": 0.96, "rgb": [237, 244, 250]},
   { "index": 1.0, "rgb": [255, 255, 255] },
 ])
-registerColormap("svs_soil_moisture", [
+
+registerColormap("SVS_soil_moisture", [
   {"index": 0.0, "rgb": [1, 23, 220]},
   {"index": 0.037037037037037035, "rgb": [0, 33, 206]},
   {"index": 0.07407407407407407, "rgb": [0, 44, 192]},

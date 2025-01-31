@@ -16,6 +16,8 @@
   "menu_SoilMoisture_label": "Pre event soil moisture",
   "menu_SoilMoisture_tooltip": "The soil moisture before the rain event",
   "menu_SoilMoisture_wet": "wet",
+  "menu_colorscale_label": "Colorscale",
+  "menu_colorscale_tooltip": "Change the colorscale for the current layer",
   "menu_date_label": "Date",
   "menu_duration_label": "Duration",
   "menu_duration_tooltip": "The duration of the event",
