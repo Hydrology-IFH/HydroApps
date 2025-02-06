@@ -32,6 +32,21 @@ const sfgfLegendLabels = {
   1: i18n.t("label_sfgf_1")
 }
 
+const maxDepthLegendLabels = {
+  "< 5": "0-5",
+  "< 10": "5-10",
+  "< 50": "10-50",
+  "< 100": "50-100",
+  ">= 100": "≥100"
+}
+
+const maxSpeedLegendLabels = {
+  "< 0.5": "0.2-0.5",
+  "< 1": "0.5-1",
+  "< 2": "1-2",
+  ">= 2": "≥2"
+}
+
 export const LAYERS = [
   {
     id: "precipitation",
@@ -215,6 +230,66 @@ export const LAYERS = [
       openlayer_options: {
         maxZoom: 16,
       }
+    }
+  },
+  {
+    id: "ai_depth",
+    file: "ai_depth.tif",
+    name: i18n.t("label_layer_ai_depth"),
+    unit: "cm",
+    decimals: 0,
+    condition: (config) => config.region == "Emmendingen",
+    backupLayer: "OA",
+    style: {
+      color: [
+        "case",
+        ["all", ["!=", ["band", 2], 0], [">", ["band", 1], 5]],
+        [
+          "case",
+          // colors from https://sgx.geodatenzentrum.de/wms_starkregen
+          ["<", ["band", 1], 10], [204, 236, 255],
+          ["<", ["band", 1], 50], [153, 204, 255],
+          ["<", ["band", 1], 100], [110, 153, 255],
+          [">=", ["band", 1], 100], [61, 102, 255],
+          ["color", 61, 102, 255],
+        ],
+        ["color", 255, 255, 255, 0.2]
+      ]
+    },
+    legend: {
+      valueConverter: (val) => maxDepthLegendLabels[val]||val,
+      ignoreLabels: [
+        "0",
+        // "0-5"
+      ]
+    }
+  },
+  {
+    id: "ai_speed",
+    file: "ai_speed.tif",
+    name: i18n.t("label_layer_ai_speed"),
+    unit: "m/s",
+    decimals: 1,
+    condition: (config) => config.region == "Emmendingen",
+    backupLayer: "OA",
+    style: {
+      color: [
+        "case",
+        ["all", ["!=", ["band", 2], 0], [">", ["band", 1], 0.2]],
+        [
+          "case",
+          ["<", ["band", 1], 0.5], [255, 255, 178],
+          ["<", ["band", 1], 1], [254, 204, 92],
+          ["<", ["band", 1], 2], [253, 141, 60],
+          [">=", ["band", 1], 2], [227, 26, 28],
+          ["color", 227, 26, 28],
+        ],
+        // this is just a workaround as openlayers case has a problem to check for alpha band
+        ["color", 255, 255, 255, 0.4]
+      ]
+    },
+    legend: {
+      valueConverter: (val) => maxSpeedLegendLabels[val]||val,
     }
   }
 ];

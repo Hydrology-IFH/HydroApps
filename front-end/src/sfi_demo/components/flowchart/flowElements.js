@@ -8,7 +8,7 @@ const nodeType = "custom";
 // nodes definition
 export const nodesInit = [
   {
-    id: '1',
+    id: 'VF',
     position: { x: 0, y: 50 },
     type: nodeType,
     data: {
@@ -18,7 +18,7 @@ export const nodesInit = [
     },
   },
   {
-    id: '2',
+    id: 'N',
     position: { x: 5, y: 0 },
     type: nodeType,
     data: {
@@ -29,17 +29,20 @@ export const nodesInit = [
     },
   },
   {
-    id: '3',
+    id: 'OA',
     position: { x: 200, y: 50 },
     type: nodeType,
     data: {
       label: i18n.t('node_oa_label'),
       layerID: 'OA',
       tooltip: i18n.t('node_oa_tooltip'),
+      additionalHandles: [
+        { id: 'source-top', type:"source", position: "top" },
+      ]
     },
   },
   {
-    id: '4',
+    id: 'SRI',
     position: { x: 200, y: 0 },
     type: nodeType,
     data: {
@@ -49,7 +52,7 @@ export const nodesInit = [
     },
   },
   {
-    id: '5',
+    id: 'SFI',
     position: { x: 400, y: 50 },
     type: nodeType,
     data: {
@@ -59,32 +62,76 @@ export const nodesInit = [
       popover: PopoverSFGF
     },
   },
+  {
+    id: 'ai_depth',
+    position: { x: 50, y: 0 },
+    type: nodeType,
+    data: {
+      label: i18n.t('node_ai_depth_label'),
+      layerID: 'ai_depth',
+      tooltip: i18n.t('node_ai_depth_tooltip')
+    },
+    condition: ({ config }) => config.region == "Emmendingen",
+    parentNode: 'ai'
+  },
+  {
+    id: 'ai_speed',
+    position: { x: 220, y: 0 },
+    type: nodeType,
+    data: {
+      label: i18n.t('node_ai_speed_label'),
+      layerID: 'ai_speed',
+      tooltip: i18n.t('node_ai_speed_tooltip')
+    },
+    condition: ({ config }) => config.region == "Emmendingen",
+    parentNode: 'ai',
+    expandParent: true
+  },
+  {
+    id: 'ai',
+    position: { x: 300, y: 0 },
+    type: "wrapper",
+    data: {
+      layerID: 'ai',
+      icon: 'bi-stars',
+      label: i18n.t('node_ai_label'),
+      tooltip: i18n.t('node_ai_tooltip'),
+    },
+    condition: ({ config }) => config.region == "Emmendingen",
+  }
 ]
 
 // edges definition
 export const edgesInit = [
   {
     id: 'VF->OA',
-    source: '1',
-    target: '3',
+    source: 'VF',
+    target: 'OA',
     type: edgeType,
   },
   {
     id: 'N->OA',
-    source: '2',
-    target: '3',
+    source: 'N',
+    target: 'OA',
     type: edgeType,
   },
   {
     id: 'N->SRI',
-    source: '2',
-    target: '4',
+    source: 'N',
+    target: 'SRI',
     type: edgeType,
   },
   {
     id: 'OA->SFI',
-    source: '3',
-    target: '5',
+    source: 'OA',
+    target: 'SFI',
+    type: edgeType,
+  },
+  {
+    id: 'OA->AI',
+    source: 'OA',
+    sourceHandle: 'source-top',
+    target: 'ai',
     type: edgeType,
   }
 ]

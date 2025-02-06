@@ -86,6 +86,13 @@
     }
   })
 
+  // change layer if the current layer isn't available anymore
+  config.$subscribe((mutation, state) => {
+    if (!layerLib.selectedLayer?.condition?.(state) && layerLib.selectedLayer.backupLayer !== undefined) {
+      layerLib.selectLayer(layerLib.selectedLayer.backupLayer);
+    }
+  })
+
   // initiate the map
   onMounted(() => {
     layerLib.initMap(mapRef.value.map)
