@@ -69,10 +69,11 @@ export const useLayerLib = defineStore(
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useLayerLib, import.meta.hot))
   import.meta.hot.accept("./Layer/LAYERS.js", ({ LAYERS }) => {
+    console.log("updating LAYERS");
     let store = useLayerLib();
     let selectedLayerID = store.selectedLayer.id;
     store.layers.forEach(layer => store.map.removeLayer(layer.olLayer));
-    store.layers = LAYERS.map(layerDef => new Layer(layerDef.id, layerDef));
+    store.layers = LAYERS.map(layerDef => new Layer(layerDef));
     store.layers.forEach(layer => layer.initMap(store.map));
     store.selectLayer(selectedLayerID);
   });

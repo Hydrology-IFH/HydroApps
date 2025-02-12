@@ -28,7 +28,7 @@ export const useConfig = defineStore(
       soilMoisture: 50, // one of 5,10,50,90,95
 
       // precipitation
-      sri: 7, // one of 3, 7, 11
+      sri: 7, // one of 3, 5, 7, 11
       duration: 60, // one of 30, 60, 120 min
 
       // System settings

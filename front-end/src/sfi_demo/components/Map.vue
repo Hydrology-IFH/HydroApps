@@ -100,6 +100,18 @@
     map.value = mapRef.value?.map;
     update_extent(true);
     map.value.setView(view);
+
+    // debug allways start with specific settings
+    // config.soilMoisture = 10;
+    // config.sri = 5;
+    // setTimeout(() => {
+    //   config.region = "Emmendingen";
+    //   config.region_selection_active = false;
+    //   layerLib.selectLayer("ai_depth");
+    //   update_extent(true);
+    // }, 1000);
+    // end debug
+
   })
 
   // for debugging

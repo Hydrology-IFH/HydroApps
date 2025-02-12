@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-31 09:47+0100\n"
+"POT-Creation-Date: 2025-02-12 14:53+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -882,7 +882,7 @@ msgstr ""
 "entnehmen.</p><p>Weitere Informationen zu hCaptcha entnehmen Sie den "
 "Datenschutzbestimmungen und Nutzungsbedingungen unter folgenden Links:"
 
-#: .\main\templates\datenschutz.html:138 .\main\templates\impressum.html:152
+#: .\main\templates\datenschutz.html:138 .\main\templates\impressum.html:147
 msgid "and"
 msgstr "und"
 
@@ -1008,11 +1008,11 @@ msgstr ""
 msgid "here"
 msgstr ""
 
-#: .\main\templates\impressum.html:122
+#: .\main\templates\impressum.html:117
 msgid "Disclaimer"
 msgstr "Haftungsausschluss"
 
-#: .\main\templates\impressum.html:123
+#: .\main\templates\impressum.html:118
 msgid ""
 "\n"
 "  The Chair of Hydrology as publisher and Max Schmit as author of the "
@@ -1035,7 +1035,7 @@ msgstr ""
 "Verantwortung für missbräuchliche oder unsachgemäße Anwendung der hier "
 "angebotenen Dienste durch Dritte."
 
-#: .\main\templates\impressum.html:125
+#: .\main\templates\impressum.html:120
 msgid ""
 "\n"
 "  The use of the contents of this website, including downloading time "
@@ -1049,7 +1049,7 @@ msgstr ""
 "Nutzers. Mit der reinen Nutzung der Website kommt keinerlei "
 "Vertragsverhältnis zwischen dem Nutzer und dem Herausgeber zustande.\n"
 
-#: .\main\templates\impressum.html:127
+#: .\main\templates\impressum.html:122
 msgid ""
 "\n"
 "  Excluded are claims for direct or indirect damages or consequences of a "
@@ -1069,11 +1069,11 @@ msgstr ""
 "Pflichten zwischen der Professur für Hydrologie und dem Nutzer dieser "
 "Website oder Dritten.\n"
 
-#: .\main\templates\impressum.html:131
+#: .\main\templates\impressum.html:126
 msgid "Disclaimer for external links"
 msgstr "Haftungsausschluss bei externen links"
 
-#: .\main\templates\impressum.html:132
+#: .\main\templates\impressum.html:127
 msgid ""
 "\n"
 "  The contents of external sites or the services offered by them, to which "
@@ -1094,7 +1094,7 @@ msgstr ""
 "externen Links bedeutet nicht, dass sich der Herausgeber die hinter dem "
 "Verweis oder Link liegenden Inhalte zu Eigen macht.\n"
 
-#: .\main\templates\impressum.html:134
+#: .\main\templates\impressum.html:129
 msgid ""
 "\n"
 "  The Chair of Hydrology declares that it has no influence whatsoever on the "
@@ -1110,11 +1110,11 @@ msgstr ""
 "von allen Inhalten aller verlinkte Seiten auf dieser Homepage. Diese "
 "Erklärung gilt für alle auf dieser Homepage angezeigten Links.\n"
 
-#: .\main\templates\impressum.html:138
+#: .\main\templates\impressum.html:133
 msgid "Copyright"
 msgstr "Urheberrecht"
 
-#: .\main\templates\impressum.html:139
+#: .\main\templates\impressum.html:134
 msgid ""
 "\n"
 "  The texts, illustrations, photos and maps published on this website as "
@@ -1147,7 +1147,7 @@ msgstr ""
 "einem Proxy-Server zur Optimierung der Zugriffsgeschwindigkeit ist "
 "gestattet.\n"
 
-#: .\main\templates\impressum.html:141
+#: .\main\templates\impressum.html:136
 msgid ""
 "\n"
 "  The graphics and downloaded time series may be used without permission. "
@@ -1161,11 +1161,11 @@ msgstr ""
 "unsere Webseite sind ausdrücklich erlaubt. Bei Darstellung dieser Webseite "
 "in fremden Frames bitten wir um vorherige Rücksprache und Zustimmung.\n"
 
-#: .\main\templates\impressum.html:145
+#: .\main\templates\impressum.html:140
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: .\main\templates\impressum.html:146
+#: .\main\templates\impressum.html:141
 msgid ""
 "\n"
 "  By visiting this website, files may be temporarily stored when downloading "
@@ -1184,7 +1184,7 @@ msgstr ""
 "findet nicht statt. Die Daten werden in regelmässigen Abständen gelöscht "
 "(maximal 7 Tage).\n"
 
-#: .\main\templates\impressum.html:149
+#: .\main\templates\impressum.html:144
 msgid ""
 "For the purpose of user statistics, the IP address, the current time and the "
 "URL are stored when the page is called up. Data will not be passed on to "
@@ -1195,7 +1195,7 @@ msgstr ""
 "Weitergabe an Dritte, zu kommerziellen oder nicht kommerziellen Zwecken, "
 "findet nicht statt."
 
-#: .\main\templates\impressum.html:152
+#: .\main\templates\impressum.html:147
 msgid ""
 "We use the hCaptcha anti-bot service (hereinafter \"hCaptcha\") on our "
 "website. This service is provided by Intuition Machines, Inc., a Delaware US "
@@ -1238,11 +1238,11 @@ msgstr ""
 "(CCPA). Weitere Informationen über hCaptcha und die Datenschutzrichtlinien "
 "und Nutzungsbedingungen von IMI finden Sie unter den folgenden Links: "
 
-#: .\main\templates\impressum.html:154
+#: .\main\templates\impressum.html:149
 msgid "Notes"
 msgstr "Hinweise"
 
-#: .\main\templates\impressum.html:155
+#: .\main\templates\impressum.html:150
 msgid ""
 "\n"
 "  The fact that a term or designation on this website is not identified as a "
@@ -1256,7 +1256,7 @@ msgstr ""
 "Schluss zu, dass es sich nicht evtl. doch um eine Marke oder ein "
 "Warenzeichen handelt. Gleiches gilt für Patente und andere Schutzformen.\n"
 
-#: .\main\templates\impressum.html:157
+#: .\main\templates\impressum.html:152
 msgid ""
 "\n"
 "  The Professorship of Hydrology and the author expressly reserve the right "
@@ -1268,7 +1268,7 @@ msgstr ""
 "jederzeit Inhalte ohne Ankündigung ganz oder teilweise zu ändern, zu löschen "
 "oder zeitweise nicht zu veröffentlichen.\n"
 
-#: .\main\templates\impressum.html:159
+#: .\main\templates\impressum.html:154
 msgid ""
 "\n"
 "  The contact data in the imprint are not to be used for advertising "

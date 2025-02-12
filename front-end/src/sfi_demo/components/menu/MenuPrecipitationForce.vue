@@ -46,7 +46,14 @@
     }
     config.sri = sliderValue.value;
   })
+  // update slider value if config changes
+  config.$subscribe((mutation, state) => {
+    if (state.sri !== sliderValue.value) {
+      sliderValue.value = state.sri;
+    }
+  })
 
+  // Arrow sliding
   const arrowEventListener = (e) => {
     if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
       sliderValue.value = steps[steps.indexOf(sliderValue.value) - 1] || steps[0];
