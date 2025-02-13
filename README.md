@@ -14,8 +14,9 @@ The repository consists of a "normal" django setup with:
 - an app folder for each of the Hydroapps. Those are standard django apps, with their specific folder structure.
 - `template_new_app`: This is an empty template if you want to create a new app. Just copy this folder and rename it to the name of your new app.
 - `front-end`: Inside of this folder is tha node front-end devellopment environment. So for every app where node is used to create the front-end, there is a sub-folder with the name of the app under `front-end\src\`.
-
-Furthermore there is a `static_data` folder that is not syncronised with `git`, as this folder is very big. Inside of this folder you will find a subfolder for each app, where the massive static data like tifs and pdfs of the app are stored.
+- `my_auth`: My own implementation of the django Account manager used on HydroApps.
+- app folders for each HydroApps-app. Those are standard django apps, with their specific folder structure.
+- `static_data`: This folder is not syncronised with `git`, as this folder is very big. Inside of this folder you will find a subfolder for each app, where the massive static data like tifs and pdfs of the app are stored.
 
 ### Installation
 
