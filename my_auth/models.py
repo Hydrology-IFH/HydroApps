@@ -16,6 +16,7 @@ from datetime import timedelta
 from sqlalchemy import text
 from HydroApps.models import App
 import secrets
+import string
 
 from weatherdb.db.connections import db_engine as wdb_engine
 
@@ -38,21 +39,30 @@ class AccountManager(BaseUserManager):
         if username in db_users:
             raise ValueError(_("This username is already a database user for the weatherDB database."))
         email=self.normalize_email(email)
-        user=self.model(email=email,username=username,first_name=first_name, last_name=last_name, **other_fields)
+        user=self.model(email=email,
+                        username=username,
+                        first_name=first_name,
+                        last_name=last_name,
+                        **other_fields)
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self,email,username,first_name,password,**other_fields):
-        other_fields.setdefault('is_staff',True)
-        other_fields.setdefault('is_superuser',True)
-        other_fields.setdefault('is_active',True)
-        other_fields.setdefault('wdb_is_db_user',True)
-        if other_fields.get('is_staff') is not True:
+    def create_superuser(self, **fields):
+        fields.setdefault('is_staff', True)
+        fields.setdefault('is_superuser', True)
+        fields.setdefault('is_active', True)
+        fields.setdefault('wdb_is_db_user', False)
+        fields.setdefault('confirmed_data_policy', True)
+        if fields.get('is_staff') is not True:
             raise ValueError('is_staff is set to False')
-        if other_fields.get('is_superuser') is not True:
+        if fields.get('is_superuser') is not True:
             raise ValueError('is_superuser is set to False')
-        return self.create_user(email,username,first_name,password,**other_fields)
+        return self.create_user(**fields)
+
+    def make_random_password(self, length):
+        alphabet = string.ascii_letters + string.digits
+        return "".join(secrets.choice(alphabet) for i in range(length))
 
 
 class PermissionClass(models.Model):
