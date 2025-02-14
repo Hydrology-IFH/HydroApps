@@ -33,6 +33,7 @@
     "@vue-flow/core": "^1.39.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "colormap": "^2.3.2",
+    "html2canvas": "^1.4.1",
     "i18next": "^23.12.1",
     "i18next-browser-languagedetector": "^7.2.1",
     "i18next-vue": "^4.0.0",
