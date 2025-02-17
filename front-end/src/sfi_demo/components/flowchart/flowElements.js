@@ -5,6 +5,8 @@ import PopoverSFGF from './PopoverSFGF.vue';
 const edgeType = "custom";
 const nodeType = "custom";
 
+const langCode = location.pathname.split("/")[1];
+
 // nodes definition
 export const nodesInit = [
   {
@@ -43,7 +45,7 @@ export const nodesInit = [
   },
   {
     id: 'SRI',
-    position: { x: 200, y: 0 },
+    position: langCode=="de"?{ x: 200, y: 0 }:{ x: 180, y: 0 },
     type: nodeType,
     data: {
       label: i18n.t('node_sri_label'),
@@ -53,7 +55,7 @@ export const nodesInit = [
   },
   {
     id: 'SFI',
-    position: { x: 400, y: 50 },
+    position: langCode == "de"?{ x: 400, y: 50 }:{ x: 370, y: 50 },
     type: nodeType,
     data: {
       label: i18n.t('node_sfi_label'),
@@ -64,7 +66,7 @@ export const nodesInit = [
   },
   {
     id: 'ai_depth',
-    position: { x: 50, y: 0 },
+    position: { x: 45, y: 0 },
     type: nodeType,
     data: {
       label: i18n.t('node_ai_depth_label'),
@@ -76,7 +78,7 @@ export const nodesInit = [
   },
   {
     id: 'ai_speed',
-    position: { x: 220, y: 0 },
+    position: langCode == "de"?{ x: 220, y: 0 }:{ x: 190, y: 0 },
     type: nodeType,
     data: {
       label: i18n.t('node_ai_speed_label'),
