@@ -1,19 +1,29 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { VueFlow, useVueFlow  } from '@vue-flow/core'
 
   import { useLayerLib } from '~/stores/layerLib.js';
   import CustomNode from './flowchart/CustomNode.vue';
+  import WrapperNode from './flowchart/WrapperNode.vue';
   import CustomEdge from './flowchart/CustomEdge.vue';
   import { nodesInit, edgesInit } from './flowchart/flowElements';
+  import { useConfig } from '~/stores/config.js';
 
   const layerLib = useLayerLib();
-  const flowStore = useVueFlow()
+  const config = useConfig();
+  const flowStore = useVueFlow();
   const { onPaneReady } = flowStore
 
-  const nodes = ref(nodesInit)
+  const nodes = computed(() => {
+    return nodesInit.map(node => (
+      {
+        ...node,
+        hidden: node.condition !== undefined ? !node.condition({ config }) : false
+      }))
+  })
   const edges = ref(edgesInit)
 
+  // fit the flowchart view
   onPaneReady((instance) => {
     let fit = () => {
       instance.fitView({ padding: 0.1, includeHiddenNodes: true }).then(() => {
@@ -36,12 +46,16 @@
              :panOnDrag="false"
              :edgesUpdatable="false">
 
-      <template #node-custom="customNodeProps">
-        <CustomNode v-bind="customNodeProps" :layerLib="layerLib"/>
+      <template #node-custom="NodeProps">
+        <CustomNode v-bind="NodeProps" :layerLib="layerLib"/>
       </template>
 
-      <template #edge-custom="customEdgeProps">
-        <CustomEdge v-bind="customEdgeProps" />
+      <template #edge-custom="EdgeProps">
+        <CustomEdge v-bind="EdgeProps" />
+      </template>
+
+      <template #node-wrapper="NodeProps">
+        <WrapperNode v-bind="NodeProps" :layerLib="layerLib"/>
       </template>
     </VueFlow>
   </div>
@@ -49,7 +63,4 @@
 <style>
   /* import the necessary styles for Vue Flow to work */
   @import '@vue-flow/core/dist/style.css';
-
-  /* import the default theme, this is optional but generally recommended
-  @import '@vue-flow/core/dist/theme-default.css'; */
 </style>

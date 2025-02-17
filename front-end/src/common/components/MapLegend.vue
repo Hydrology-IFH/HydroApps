@@ -207,12 +207,17 @@
   }
 
   /* discrete colorbar */
+  div.colorbar-dis {
+    padding: 0 .5em;
+  }
+  div.colorbar-dis:first-child {
+    padding-left: 0;
+  }
   div.colorbar-dis > div.colorbar-color{
     width: 1.3rem;
     height: 1.3rem;
     border: 1px solid black;
-    margin-right: calc(.1em + .35vw);
-    margin-left: calc(.1em + .35vw);
+   margin: auto;
   }
   div.colorbar-dis > div.colorbar-color > div{
     width: 100%;

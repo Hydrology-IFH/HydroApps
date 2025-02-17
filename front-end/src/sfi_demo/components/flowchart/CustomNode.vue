@@ -9,12 +9,6 @@
       type: Object,
       required: true,
     },
-    sourcePosition: {
-      type: String,
-    },
-    targetPosition: {
-      type: String,
-    },
     layerLib: {
       type: Object,
     }
@@ -77,6 +71,9 @@
         <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>
         <Handle type="source" :position="Position.Right" />
         <Handle type="target" :position="Position.Left" />
+        <Handle v-if="data.additionalHandles" v-for="handle in data.additionalHandles"
+                :key="handle.type" :id="handle.id" :type="handle.type"
+                :position="handle.position" />
     </div>
     <Popover ref="PopoverRef" v-if="data.popover">
       <data.popover/>
@@ -112,11 +109,9 @@
     background-color: var(--uni-brown-40);
     cursor: default;
   }
-
   .custom-node i {
     margin-left: 5px;
   }
-
   .custom-node .vue-flow__handle {
     border: none;
     height: unset;

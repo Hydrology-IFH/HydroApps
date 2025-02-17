@@ -32,6 +32,22 @@ const sfgfLegendLabels = {
   1: i18n.t("label_sfgf_1")
 }
 
+const aiDepthLegendLabels = {
+  "< 10": "5-10",
+  "< 50": "10-50",
+  "< 100": "50-100",
+  ">= 100": "≥100",
+  "-9": i18n.t("legend_ai_sim_area"),
+}
+
+const aiSpeedLegendLabels = {
+  "< 0.5": "0.2-0.5",
+  "< 1": "0.5-1",
+  "< 2": "1-2",
+  ">= 2": "≥2",
+  "-9": i18n.t("legend_ai_sim_area"),
+}
+
 export const LAYERS = [
   {
     id: "precipitation",
@@ -216,5 +232,69 @@ export const LAYERS = [
         maxZoom: 16,
       }
     }
+  },
+  {
+    id: "ai_depth",
+    file: "ai_depth.tif",
+    name: i18n.t("label_layer_ai_depth"),
+    unit: "cm",
+    decimals: 0,
+    condition: (config) => config.region == "Emmendingen",
+    backupLayer: "OA",
+    style: {
+      color: [
+        "case",
+        ["!=", ["band", 2], 0],
+        [
+          "case",
+          // colors from https://sgx.geodatenzentrum.de/wms_starkregen
+          ["<", ["band", 1], 5], [160, 160, 160, 0.3],
+          ["<", ["band", 1], 10], [204, 236, 255],
+          ["<", ["band", 1], 50], [153, 204, 255],
+          ["<", ["band", 1], 100], [110, 153, 255],
+          [">=", ["band", 1], 100], [61, 102, 255],
+          ["==", ["band", 1], -9], [160, 160, 160, .7], // for legend
+          ["color", 255, 255, 255, 0]
+        ],
+        ["color", 255, 255, 255, 0]
+      ]
+    },
+    legend: {
+      valueConverter: (val) => aiDepthLegendLabels[val]||val,
+      ignoreLabels: ["< 5"]
+    },
+    valueConverter: (val) => (val == -1) ? undefined:val
+  },
+  {
+    id: "ai_speed",
+    file: "ai_speed.tif",
+    name: i18n.t("label_layer_ai_speed"),
+    unit: "m/s",
+    decimals: 1,
+    condition: (config) => config.region == "Emmendingen",
+    backupLayer: "OA",
+    style: {
+      color: [
+        "case",
+        ["!=", ["band", 2], 0],
+        [
+          "case",
+          ["<", ["band", 1], 0.2], [160, 160, 160, 0.3],
+          ["<", ["band", 1], 0.5], [255, 255, 178],
+          ["<", ["band", 1], 1], [254, 204, 92],
+          ["<", ["band", 1], 2], [253, 141, 60],
+          [">=", ["band", 1], 2], [227, 26, 28],
+          ["==", ["band", 1], -9], [160, 160, 160, .7], // for legend
+          ["color", 255, 255, 255, 0]
+        ],
+        // this is just a workaround as openlayers case has a problem to check for alpha band
+        ["color", 255, 255, 255, 0]
+      ]
+    },
+    legend: {
+      valueConverter: (val) => aiSpeedLegendLabels[val] || val,
+      ignoreLabels: ["< 0.2"]
+    },
+    valueConverter: (val) => (val == -1)? undefined:val
   }
 ];

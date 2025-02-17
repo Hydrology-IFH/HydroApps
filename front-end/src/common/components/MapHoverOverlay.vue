@@ -59,7 +59,7 @@
         value = Math.round(parseFloat(value) * 10 ** dec) / 10 ** dec;
       }
       value = valueConverter.value(value);
-      hoverText.value = (value!==undefined || value !== null)? `${value} ${ props.unit }`.trim():"";
+      hoverText.value = (value!==undefined && value !== null)? `${value} ${ props.unit }`.trim():"";
     } else {
       hoverText.value =  "";
     }
