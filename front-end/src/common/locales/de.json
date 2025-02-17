@@ -1,4 +1,5 @@
 {
   "tooltip_fullscreen_close": "Schließe die Vollbildansicht",
-  "tooltip_fullscreen_open": "Öffne die App in der Vollbildansicht"
+  "tooltip_fullscreen_open": "Öffne die App in der Vollbildansicht",
+  "tooltip_screenshot": "Erstelle ein Screenshot der aktuellen Ansicht und lade dieses als Bild herunter"
 }
