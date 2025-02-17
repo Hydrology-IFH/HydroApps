@@ -1,5 +1,5 @@
 <script setup>
-  import { onMounted, ref, inject } from 'vue';
+  import { onMounted, ref, inject} from 'vue';
   import html2canvas from 'html2canvas';
 
   const props = defineProps({
@@ -8,6 +8,9 @@
       default: 'HydroApps_Screenshot.png'
     }
   })
+
+  // define variable to trigger spinner of wrapper
+  const { updateSpinnerActive } = inject('screenshot-spinner-active');
 
   // get highlight from screenshot/Wrapper
   const { updateHighlight } = inject('screenshot-highlight');
@@ -23,6 +26,7 @@
 
   // Save screenshot
   const saveScreenshot = async () => {
+    updateSpinnerActive(true);
     let screenshotContainer = document.getElementById('screenshot-container');
     html2canvas(screenshotContainer, {
       onclone: (clonedDOM) => {
@@ -42,10 +46,14 @@
       },
       // backgroundColor: "#ffffff",
     }).then(canvas => {
+      updateSpinnerActive(false);
       var link = document.createElement('a');
       link.download = props.fileName;
       link.href = canvas.toDataURL();
       link.click();
+    }).exception((error) => {
+      console.error('Screenshot failed:', error);
+      updateSpinnerActive(false);
     });
   };
 </script>
