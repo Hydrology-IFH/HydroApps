@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, watchEffect, computed, onMounted } from 'vue';
+  import { ref, watchEffect, computed } from 'vue';
 
   import MenuSelection from "./utils/MenuSelection.vue";
   import { useLayerLib } from '~/stores/layerLib.js';
@@ -12,7 +12,6 @@
   const colorscalesKeys = computed(
     () => layerLib.selectedLayer ? Object.keys(layerLib.selectedLayer.styles) : [])
   const colorscalesAvailable = computed(() => colorscalesKeys.value.length > 1)
-  window.colorscalesKeys = colorscalesKeys
 
   // the scale to show in menu
   const menuScale = ref(
