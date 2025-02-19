@@ -9,11 +9,13 @@
     1: "30 min",
     2: "1 h",
     3: "2 h",
+    4: "4 h"
   }
   const sliderToDur = {
     1: 30,
     2: 60,
     3: 120,
+    4: 240
   }
 
   const durToSlider = Object.fromEntries(
@@ -33,7 +35,7 @@
   <MenuSlider v-model="sliderValue"
               v-if="config.kind=='matrix'"
               :label="$t('menu_duration_label')"
-              :min="1" :max="3" :step="1"
+              :min="1" :max="4" :step="1"
               :ticks="labels"
               :getLabel="(val) => labels[val]"
               :tooltip="$t('menu_duration_tooltip')"
