@@ -1,3 +1,4 @@
+import { bathymetry } from 'colormap/colorScale';
 import i18n from 'i18next';
 
 const sfiCats = [
@@ -67,14 +68,53 @@ export const LAYERS = [
       }
     },
     style: {
-      colorscale: {
-        min: 0,
-        max: 120,
-        colorbar: "cmocean:rain",
-        continous: true,
-        reverse: false,
-      },
-    },
+      options: {
+        defaultKey: "cmocean:rain",
+        defaultColorscaleOpts: {
+          min: 0,
+          max: 120,
+          continous: true
+        },
+        colorscales: {
+          "cmocean:rain": {
+            colorbar: "cmocean:rain",
+            reverse: false,
+          },
+          density: {
+            colorbar: "density",
+            reverse: true,
+          },
+          "NEO_trmm_rainfall": {
+            colorbar: "NEO_trmm_rainfall",
+            reverse: true,
+          },
+          "NEO_soil_moisture": {
+            colorbar: "NEO_soil_moisture",
+            reverse: true,
+          },
+          "Yellow-Green-Blue": {
+            colorbar: "YiGnBu",
+            reverse: true,
+          },
+          "EO_aura_omi_formal": {
+            colorbar: "EO_aura_omi_formal",
+            reverse: true,
+          },
+          "Blue-Purple": {
+            colorbar: "BluPu",
+            reverse: false,
+          },
+          "salinity": {
+            colorbar: "salinity",
+            reverse: true,
+          },
+          "viridis": {
+            colorbar: "viridis",
+            reverse: true,
+          }
+        }
+      }
+    }
   },
   {
     id: "SRI",
@@ -144,14 +184,73 @@ export const LAYERS = [
     unit: "% vol",
     decimals: 1,
     style: {
-      colorscale: {
-        min: 0,
-        max: 60,
-        colorbar: "bathymetry",
-        continous: true,
-        reverse: true
-      },
-    },
+      options: {
+        defaultKey: "bathymetry",
+        defaultColorscaleOpts: {
+          min: 0,
+          max: 60,
+          continous: true,
+        },
+        colorscales: {
+          bathymetry: {
+            colorbar: "bathymetry",
+            reverse: true,
+          },
+          salinity : {
+            colorbar: "salinity",
+            reverse: true,
+          },
+          NEO_soil_moisture : {
+            colorbar: "NEO_soil_moisture",
+            reverse: true,
+          },
+          "Yellow-Green-Blue": {
+            colorbar: "YiGnBu",
+            reverse: true,
+          },
+          viridis : {
+            colorbar: "viridis",
+            reverse: true,
+          },
+          velocityGreen : {
+            colorbar: "velocity-green",
+            reverse: true,
+          },
+          "Orange-Blue": {
+            colorbar: "OrBu",
+            reverse: false
+          },
+          temperature : {
+            colorbar: "temperature",
+            reverse: true,
+          },
+          EO_soil_moist_div : {
+            colorbar: "EO_soil_moist_div",
+            reverse: true,
+          },
+          SVS_soil_moisture : {
+            colorbar: "SVS_soil_moisture",
+            reverse: true,
+          },
+          "Plasma reversed" : {
+            colorbar: "plasma",
+            reverse: true,
+          },
+          "Plasma" : {
+            colorbar: "plasma",
+            reverse: false,
+          },
+          "Red-Blue" : {
+            colorbar: "RdBu",
+            reverse: true,
+          },
+          NEO_trmm_rainfall : {
+            colorbar: "NEO_trmm_rainfall",
+            reverse: true,
+          }
+        }
+      }
+    }
   },
   {
     id: "OA",
@@ -160,13 +259,60 @@ export const LAYERS = [
     unit: "mm",
     decimals: 1,
     style: {
-      colorscale: {
-        min: 0,
-        max: 90,
-        colorbar: "density",
-        continous: true,
-        reverse: true,
-      },
+      options: {
+        defaultKey: "density",
+        defaultColorscaleOpts: {
+          min: 0,
+          max: 90,
+          continous: true,
+        },
+        colorscales: {
+          density: {
+            colorbar: "density",
+            reverse: true,
+          },
+          bathymetry: {
+            colorbar: "bathymetry",
+            reverse: true,
+          },
+          salinity: {
+            colorbar: "salinity",
+            reverse: true,
+          },
+          viridis: {
+            colorbar: "viridis",
+            reverse: true,
+          },
+          "Yellow-Green-Blue": {
+            colorbar: "YiGnBu",
+            reverse: true,
+          },
+          "Plasma": {
+            colorbar: "plasma",
+            reverse: false,
+          },
+          "Plasma reversed": {
+            colorbar: "plasma",
+            reverse: true,
+          },
+          freesurfaceBlue: {
+            colorbar: "freesurface-blue",
+            reverse: true,
+          },
+          "cmocean:rain": {
+            colorbar: "cmocean:rain",
+            reverse: false,
+          },
+          "NEO_soil_moisture": {
+            colorbar: "NEO_soil_moisture",
+            reverse: true,
+          },
+          "NEO_trmm_rainfall": {
+            colorbar: "NEO_trmm_rainfall",
+            reverse: true,
+          }
+        }
+      }
     },
   },
   {
