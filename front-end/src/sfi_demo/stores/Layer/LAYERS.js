@@ -368,7 +368,7 @@ export const LAYERS = [
   },
   {
     id: "SFI",
-    file: "SFI_circ_A2.tif",
+    file: "SFI_circ_A3.tif",
     name: i18n.t("label_layer_sfi"),
     unit: "",
     decimals: 1,
