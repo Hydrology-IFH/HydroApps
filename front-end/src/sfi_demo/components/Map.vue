@@ -176,7 +176,7 @@
       height: calc(100vh - 165px - .5em - 1.2*2.5em - 100px - 2em);
     }
   }
-  .zoom-container.zoom-active #map{
+  .fullscreen-wrapper.fullscreen-active #map{
     /* 100vh - 2 * margin+padding of fullscreeen - flowchart*/
     height: calc(100vh - 2*20px - 100px)
   }

@@ -55,7 +55,8 @@
           title: props.data.tooltip,
           trigger: "hover",
           html: true,
-          placement: "top"
+          placement: "top",
+          container: "#fullscreen-wrapper",
         })
     }
   })

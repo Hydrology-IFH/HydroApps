@@ -36,4 +36,7 @@
     display: flex;
     gap: 10px;
   }
+  .fullscreen-container .container.app{
+    max-width: 100%!important;
+  }
 </style>

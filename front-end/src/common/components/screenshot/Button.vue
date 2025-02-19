@@ -64,6 +64,7 @@
     data-html2canvas-ignore>
     <i  class="bi bi-camera"
         :data-bs-title='$t("common:tooltip_screenshot")' data-bs-placement="auto"
+        data-bs-toggle="tooltip"
         ref="buttonRef" />
   </a>
 </template>
