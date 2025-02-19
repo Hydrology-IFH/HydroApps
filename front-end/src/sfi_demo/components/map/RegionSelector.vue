@@ -70,7 +70,7 @@
 </script>
 
 <template>
-  <Layers.OlVectorLayer ref="refLayer" :visible="layerVisible" className="regionLayer" >
+  <Layers.OlVectorLayer ref="refLayer" :visible="layerVisible" className="regionLayer"  :updateWhileAnimating="true">
     <Sources.OlSourceVector>
       <Map.OlFeature v-for="(region, name) in regions" :properties="{ name }">
         <Geometries.OlGeomPolygon
@@ -79,7 +79,7 @@
         ></Geometries.OlGeomPolygon>
         <Styles.OlStyle>
           <Styles.OlStyleStroke :color="config.region===name?'#00a082':'#344A9A'" :width="4"></Styles.OlStyleStroke>
-          <Styles.OlStyleFill :color="config.region===name?'#7bc6b480':'#868DC260'"></Styles.OlStyleFill>
+          <Styles.OlStyleFill :color="config.region===name ? !config.region_selection_active? '#00000000':'#7bc6b480' : '#868DC260'"></Styles.OlStyleFill>
         </Styles.OlStyle>
       </Map.OlFeature>
     </Sources.OlSourceVector>
