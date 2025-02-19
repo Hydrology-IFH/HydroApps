@@ -72,7 +72,7 @@
 </script>
 <template>
   <MenuSlider v-model="sliderValue"
-              v-if="config.kind=='matrix'"
+              v-show="config.kind=='matrix'"
               :label="$t('menu_PrecipitationForce_label')"
               :min="3" :max="11" :step=".1"
               :ticks="labels"

@@ -27,7 +27,7 @@
 </script>
 <template>
   <MenuSlider v-model="config.soilMoisture"
-              v-if="config.kind=='matrix'"
+              v-show="config.kind=='matrix'"
               :label="$t('menu_SoilMoisture_label')"
               :min="min[config.kind]" :max="max[config.kind]"
               :step="(max[config.kind]-min[config.kind])/2"

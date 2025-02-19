@@ -33,7 +33,7 @@
 </script>
 <template>
   <MenuSlider v-model="sliderValue"
-              v-if="config.kind=='matrix'"
+              v-show="config.kind=='matrix'"
               :label="$t('menu_duration_label')"
               :min="1" :max="4" :step="1"
               :ticks="labels"
