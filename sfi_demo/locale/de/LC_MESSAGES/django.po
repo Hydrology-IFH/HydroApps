@@ -38,8 +38,8 @@ msgid ""
 "The blue flow chart shows you how the data is generated and lets you choose "
 "different layers to see their data."
 msgstr ""
-"Das blaue Flussdiagramm zeigt Ihnen, wie die Daten generiert werden und "
-"ermöglicht es Ihnen, die einzelnen Layerebene auszuwählen, um die Daten zu "
+"Das blaue Flussdiagramm zeigt, wie die Daten generiert werden und "
+"ermöglicht es, die einzelnen Layerebene auszuwählen, um die Daten zu "
 "sehen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:17

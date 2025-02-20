@@ -92,16 +92,50 @@ export class Layer {
     }
   }
 
-  get style() {
-    if (!this._style) {
-      if (this._styleInit.hasOwnProperty("colorscale")) {
-        let opts = this._styleInit.colorscale;
-        this._style = getColorscaleTileLayerStyle(opts);
+  get styles() {
+    if (!this._styles) {
+      if (this._styleInit.hasOwnProperty("options")) {
+        //  create all colorscales with default options
+        var defaultColorscaleOpts = this._styleInit.options.defaultColorscaleOpts || {};
+        this._styles = {};
+        Object.entries(this._styleInit.options.colorscales||{}).forEach(([key, opts]) => {
+          this._styles[key] = {
+            colorscale: { ...defaultColorscaleOpts, ...opts }
+          };
+        });
+
+        //  add styles
+        Object.entries(this._styleInit.options.styles||{}).forEach(([key, style]) => {
+          this._styles[key] = style;
+        });
+
+        // set default style
+        this.selectedStyle = this._styleInit.options.defaultKey;
       } else {
-        this._style = this._styleInit;
+        this._styles = { main: this._styleInit };
       }
     }
-    return this._style;
+    return this._styles;
+  }
+
+  get selectedStyle() {
+    return this._selectedStyle || "main";
+  }
+
+  set selectedStyle(value) {
+    if (Object.keys(this.styles).includes(value)) {
+      this._selectedStyle = value;
+    } else {
+      console.error(`Selected style ${value} not found in available styles`);
+    }
+    this.restyle(this.style);
+  }
+
+  get style() {
+    if (this.styles[this.selectedStyle].hasOwnProperty("colorscale")) {
+      this.styles[this.selectedStyle] = getColorscaleTileLayerStyle(this.styles[this.selectedStyle].colorscale);
+    }
+    return this.styles[this.selectedStyle];
   }
 
   get olLayer() {

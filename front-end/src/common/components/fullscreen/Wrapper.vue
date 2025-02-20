@@ -1,28 +1,41 @@
 <script setup>
-  import { onMounted, provide, ref, watch, watchEffect } from 'vue';
+  import { provide, ref, watchEffect } from 'vue';
 
-  const zoomActive = ref(false);
-  function updateZoomActive(value){
-    zoomActive.value = value;
+  const active = ref(false);
+  function updateActive(value) {
+    if (value !== active.value) {
+      active.value = value;
+
+      // update bootstrap tooltips to be shown in the container
+      let trgtRef = active.value ? wrapperRef.value : document.body;
+      let srcref = active.value ? document.body : wrapperRef.value;
+      wrapperRef.value.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
+        let tltp = window.bootstrap.Tooltip.getInstance(el);
+        if (tltp && tltp._config.container === srcref) {
+          tltp._config.container = trgtRef;
+        }
+      });
+      window.bootstrap.Tooltip.DefaultType.container = trgtRef;
+    }
   }
-  provide('fullscreen-zoomActive', { zoomActive, updateZoomActive });
+  provide('fullscreen-active', { active, updateActive });
 
   const highlight = ref(false);
   function updateHighlight(value){
-    highlight.value = zoomActive.value? false:value;
+    highlight.value = active.value? false:value;
   }
   provide('fullscreen-highlight', { highlight, updateHighlight });
 
   // activate fullscreen mode if possible
-  const containerRef = ref(null);
+  const wrapperRef = ref(null);
   watchEffect(() => {
-    if (zoomActive.value) {
-      if (containerRef.value.requestFullscreen) {
-        containerRef.value.requestFullscreen();
-      } else if (containerRef.value.webkitRequestFullscreen) { /* Safari */
-        containerRef.value.webkitRequestFullscreen();
-      } else if (containerRef.value.msRequestFullscreen) { /* IE11 */
-        containerRef.value.msRequestFullscreen();
+    if (active.value) {
+      if (wrapperRef.value.requestFullscreen) {
+        wrapperRef.value.requestFullscreen();
+      } else if (wrapperRef.value.webkitRequestFullscreen) { /* Safari */
+        wrapperRef.value.webkitRequestFullscreen();
+      } else if (wrapperRef.value.msRequestFullscreen) { /* IE11 */
+        wrapperRef.value.msRequestFullscreen();
       }
     } else if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement){
       if (document.exitFullscreen) {
@@ -39,20 +52,19 @@
   if (window.fullscreenable) {
     const fullscreenListener = () => {
       updateZoomActive(
-        containerRef.value.fullscreenElement ||
-        containerRef.value.webkitFullscreenElement ||
-        containerRef.value.msFullscreenElement ||
+        wrapperRef.value.fullscreenElement ||
+        wrapperRef.value.webkitFullscreenElement ||
+        wrapperRef.value.msFullscreenElement ||
         false);
     };
     window.addEventListener('fullscreenchange', fullscreenListener);
   }
 
-
 </script>
 
 <template>
-  <div class="zoom-container" :class="{'zoom-active': zoomActive, highlight: highlight}" id="zoom-container" ref="containerRef">
-    <div class="zoom-containerRefents">
+  <div class="fullscreen-wrapper" :class="{'fullscreen-active': active, highlight: highlight}" id="fullscreen-wrapper" ref="wrapperRef">
+    <div class="fullscreen-container">
       <slot default>
       </slot>
     </div>
@@ -61,23 +73,23 @@
 
 <style scoped>
   /* Make map zoom to fullscreen */
-  .zoom-container.highlight{
+  .fullscreen-wrapper.highlight{
     box-shadow: var(--bs-gray-400) 0px 0px 5px 5px;
     transition: box-shadow 0.2s;
   }
-  .zoom-container .zoom-containerRefents{
+  .fullscreen-wrapper .fullscreen-container{
       position: relative;
     }
-  .zoom-container.zoom-active{
+  .fullscreen-wrapper.fullscreen-active{
     background-color: #696969;
+    height: 100vh;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100%;
     z-index: 2000;
   }
-  .zoom-container.zoom-active .zoom-containerRefents{
+  .fullscreen-wrapper.fullscreen-active .fullscreen-container{
     background: white;
     padding: 10px;
     border-radius: 10px;
@@ -88,9 +100,4 @@
     overflow-x: hidden;
   }
 
-</style>
-<style>
-  .zoom-containerRefents .container{
-    max-width: 100%!important;
-  }
 </style>

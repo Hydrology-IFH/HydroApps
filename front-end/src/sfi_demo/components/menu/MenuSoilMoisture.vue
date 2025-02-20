@@ -8,16 +8,9 @@
   const config = useConfig();
 
   const labels = {
-    matrix: {
-      10: i18next.t("menu_SoilMoisture_dry"),
-      50: i18next.t("menu_SoilMoisture_avg"),
-      90: i18next.t("menu_SoilMoisture_wet"),
-    },
-    event: {
-      5: i18next.t("menu_SoilMoisture_dry"),
-      50: i18next.t("menu_SoilMoisture_avg"),
-      95: i18next.t("menu_SoilMoisture_wet"),
-    }
+    10: i18next.t("menu_SoilMoisture_dry"),
+    50: i18next.t("menu_SoilMoisture_avg"),
+    90: i18next.t("menu_SoilMoisture_wet")
   };
   const min = {
     matrix: 10,
@@ -34,11 +27,11 @@
 </script>
 <template>
   <MenuSlider v-model="config.soilMoisture"
-              v-if="config.kind=='matrix'"
+              v-show="config.kind=='matrix'"
               :label="$t('menu_SoilMoisture_label')"
               :min="min[config.kind]" :max="max[config.kind]"
               :step="(max[config.kind]-min[config.kind])/2"
-              :ticks="labels[config.kind]"
+              :ticks="labels"
               :getLabel="(val) => labels[val]"
               :tooltip="$t('menu_SoilMoisture_tooltip')"
               :getTickTooltips="getTickTooltip"

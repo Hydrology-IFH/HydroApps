@@ -76,6 +76,7 @@
   }
   .input-group-vertical .input-group-text{
     width: 100%;
+    position: relative;
   }
   .input-group-vertical>.form-control{
     padding-left: 0.3em;

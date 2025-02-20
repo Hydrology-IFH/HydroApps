@@ -4,7 +4,7 @@
 
 {% block content %}
 <h2>{% trans "Python Package" %}</h2>
-<p>{% trans "To download the timeseries, there is a python package available on GitHub. For more information on the package please refer to" %} <a href="https://github.com/Hydrology-IFH/WeatherDB" target="_blank" rel="noopener">Github <i class="bi bi-github"></i></a> {% trans "and the" %} <a target="_blank" rel="noopener" href="https://weatherdb.readthedocs.io/en/latest/README.html">{% trans "Documentation" %}</a></p>
+<p>{% trans "To download the timeseries, there is a python package available on GitHub. For more information on the package please refer to" %} <a href="https://gitlab.uni-freiburg.de/hydrology/weatherDB" target="_blank" rel="noopener">GitLab repository <i class="bi bi-gitlab"></i></a> {% trans "and the" %} <a target="_blank" rel="noopener" href="https://weatherdb.readthedocs.io/en/latest/README.html">{% trans "Documentation" %}</a></p>
 
 <p>{% trans "To use the package you need login credentials, that are saved in the user configuration file and have to be inside of the UNI Freiburg network." %}
 {% if user.is_authenticated %}
