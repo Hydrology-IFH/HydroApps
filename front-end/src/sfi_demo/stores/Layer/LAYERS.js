@@ -1,5 +1,5 @@
-import { bathymetry } from 'colormap/colorScale';
 import i18n from 'i18next';
+import { Fill, Stroke, Style } from 'ol/style';
 
 const sfiCats = [
   { sfi: 0, range: [0, 0.5] },
@@ -49,6 +49,8 @@ const aiSpeedLegendLabels = {
   "-9": i18n.t("legend_ai_sim_area"),
 }
 
+const relevantConfigsDefaults = ["region", "kind", "date", "region_selection_active"]
+
 export const LAYERS = [
   {
     id: "precipitation",
@@ -56,6 +58,7 @@ export const LAYERS = [
     name: i18n.t("label_layer_precipitation"),
     unit: "mm",
     decimals: 0,
+    relevantConfigs: [...relevantConfigsDefaults, "sri", "duration",],
     url: ({ region, kind, sri, duration, date }) => {
       let base_url = `/static/sfi_demo/${region}/${kind}`
       if (kind == "matrix") {
@@ -132,6 +135,7 @@ export const LAYERS = [
     name: i18n.t("label_layer_sri"),
     unit: "",
     decimals: 1,
+    relevantConfigs: [...relevantConfigsDefaults, "sri", "duration",],
     legend: {
       tooltips: Object.entries(sriCats).map((el) => {
         let i18n_opts = {
@@ -231,6 +235,7 @@ export const LAYERS = [
         return ""
       }
     },
+    relevantConfigs: [...relevantConfigsDefaults, "soil_moisture"],
     name: i18n.t("label_layer_soil_moisture"),
     unit: "% vol",
     decimals: 1,
@@ -309,6 +314,9 @@ export const LAYERS = [
     name: i18n.t("label_layer_oa"),
     unit: "mm",
     decimals: 1,
+    relevantConfigs: [
+      ...relevantConfigsDefaults,
+      "soil_moisture", "sri", "duration"],
     style: {
       options: {
         defaultKey: "density",
@@ -375,6 +383,9 @@ export const LAYERS = [
     valueConverter: (val) => {
       return sfiCats.filter((cat) => cat.range[0] <= val && val < cat.range[1])[0].sfi;
     },
+    relevantConfigs: [
+      ...relevantConfigsDefaults,
+      "soil_moisture", "sri", "duration"],
     legend: {
       tooltips: [
         { label: "0", message: i18n.t("tooltip_sfi_0") },
@@ -441,6 +452,9 @@ export const LAYERS = [
       name: i18n.t("label_layer_sfgf"),
       unit: "",
       decimals: 0,
+      relevantConfigs: [
+        ...relevantConfigsDefaults,
+        "soil_moisture", "sri", "duration", "show_sfgf"],
       legend: {
         tooltips: [
           { label: "1", message: i18n.t("tooltip_sfgf_1") }
@@ -472,6 +486,9 @@ export const LAYERS = [
     name: i18n.t("label_layer_ai_depth"),
     unit: "cm",
     decimals: 0,
+    relevantConfigs: [
+      ...relevantConfigsDefaults,
+      "soil_moisture", "sri", "duration"],
     condition: (config) => config.region == "Emmendingen",
     backupLayer: "OA",
     style: {
@@ -504,6 +521,9 @@ export const LAYERS = [
     name: i18n.t("label_layer_ai_speed"),
     unit: "m/s",
     decimals: 1,
+    relevantConfigs: [
+      ...relevantConfigsDefaults,
+      "soil_moisture", "sri", "duration"],
     condition: (config) => config.region == "Emmendingen",
     backupLayer: "OA",
     style: {
@@ -529,5 +549,190 @@ export const LAYERS = [
       ignoreLabels: ["< 0.2"]
     },
     valueConverter: (val) => (val == -1)? undefined:val
+  },
+  {
+    id: "damage",
+    url: ({ region }) => {
+      return `/static/sfi_demo/${region}/damage.geojson`
+    },
+    name: i18n.t("label_layer_damage"),
+    type: "GeoJSON",
+    unit: "€",
+    decimals: 0,
+    relevantConfigs: [
+      ...relevantConfigsDefaults,
+      "soil_moisture", "sri", "duration", "damageKind", "preparedness"],
+    condition: (config) => config.region == "Emmendingen",
+    style: {
+      options: {
+        defaultKey: "inferno",
+        defaultColormapsOpts: {
+          ranges: [
+            [0, 5_000],
+            [5_000, 50_000],
+            [50_000, 250_000],
+            [250_000, 500_000],
+            [500_000, 1_000_000],
+            [1_000_000, 2_500_000],
+            [2_500_000, 5_000_000],
+            [5_000_000, 10_000_000],
+            [10_000_000, 25_000_000],
+            [25_000_000, Infinity]],
+        },
+        colormaps: {
+          "inferno": {
+            "colors": [
+              [0, 0, 3],
+              [26, 11, 64],
+              [74, 11, 106],
+              [120, 28, 109],
+              [164, 44, 96],
+              [207, 68, 70],
+              [237, 104, 37],
+              [251, 155, 6],
+              [247, 209, 60],
+              [252, 254, 164],
+            ],
+          },
+          "plasma": {
+            "colors": [
+              [12, 7, 134],
+              [69, 3, 158],
+              [114, 0, 168],
+              [155, 23, 158],
+              [188, 54, 133],
+              [215, 87, 107],
+              [236, 120, 83],
+              [250, 159, 58],
+              [252, 201, 38],
+              [239, 248, 33],
+            ],
+          },
+          "viridis": {
+            "colors": [
+              [68, 1, 84],
+              [71, 39, 119],
+              [62, 73, 137],
+              [48, 103, 141],
+              [37, 130, 142],
+              [30, 157, 136],
+              [53, 183, 120],
+              [109, 206, 88],
+              [181, 221, 43],
+              [253, 231, 36],
+            ],
+          },
+          "magma": {
+            "colors": [
+              [0, 0, 3],
+              [23, 15, 60],
+              [67, 15, 117],
+              [113, 31, 129],
+              [158, 46, 126],
+              [205, 63, 112],
+              [240, 96, 93],
+              [253, 149, 103],
+              [254, 201, 141],
+              [251, 252, 191],
+            ],
+          },
+          "cividis": {
+            "colors": [
+              [0, 34, 77],
+              [17, 53, 111],
+              [58, 72, 107],
+              [87, 93, 109],
+              [111, 112, 115],
+              [137, 134, 120],
+              [165, 155, 115],
+              [195, 179, 104],
+              [225, 204, 84],
+              [253, 231, 55],
+            ],
+          },
+          "YlOrRd": {
+            "colors": [
+              [255, 255, 204],
+              [255, 239, 165],
+              [254, 221, 128],
+              [254, 191, 90],
+              [253, 157, 67],
+              [252, 112, 51],
+              [243, 60, 37],
+              [217, 19, 30],
+              [181, 0, 38],
+              [128, 0, 38],
+            ],
+          },
+          "hot": {
+            "colors": [
+              [10, 0, 0],
+              [84, 0, 0],
+              [157, 0, 0],
+              [233, 0, 0],
+              [255, 52, 0],
+              [255, 128, 0],
+              [255, 201, 0],
+              [255, 255, 34],
+              [255, 255, 144],
+              [255, 255, 255],
+            ],
+          },
+          "afmhot": {
+            "colors": [
+              [0, 0, 0],
+              [56, 0, 0],
+              [112, 0, 0],
+              [170, 42, 0],
+              [226, 98, 0],
+              [255, 156, 29],
+              [255, 212, 84],
+              [255, 255, 143],
+              [255, 255, 198],
+              [255, 255, 255],
+            ],
+          },
+        }
+      },
+      function: ({config, cmap}) => {
+          var styleCache = {};
+          return (feature, resolution) => {
+            let val = feature.get(config.sri)[config.duration][config.soilMoisture][config.preparedness][config.damageKind];
+            if (!styleCache[val]) {
+              styleCache[val] = new Style({
+                fill: new Fill({
+                  color: cmap(val)
+                }),
+                stroke: new Stroke({
+                  color: 'black',
+                  width: 1
+                })
+              });
+            }
+            return styleCache[val];
+          }
+        }
+    },
+    propertyName: (config) => [config.sri, config.duration, config.soilMoisture, config.preparedness, config.damageKind],
+    legend: {
+      valueConverter: (val) => {
+        let [val1, val2] = val.split("-").map((v) => v.trim() != "Infinity" ? parseInt(v.trim()) : "∞")
+        for (let [div, unit] of [[1_000_000, "M"], [1_000, "k"]]) {
+          [val1, val2] = [val1, val2].map((val) => {
+            if ((typeof val == "number") & ((val / div) >= 1)) {
+              val = `${val / div}${unit}`
+            }
+            return val
+          })
+        }
+        if (val1 == "0") {
+          return `< ${val2}`
+        } else if (val2 == "∞") {
+          return `> ${val1}`
+        } else {
+          return `${val1}-${val2}`
+        }
+      }
+    },
   }
 ];

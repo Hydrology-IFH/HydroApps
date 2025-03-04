@@ -135,12 +135,13 @@
           :layer="layer.olLayer"
           :unit="layer.unit"
           :decimals="layer.decimals"
-          :valueConverter="layer.valueConverter"/>
+          :valueConverter="layer.valueConverter"
+          :propertyName="layer.propertyName"/>
       <MapLegend
           v-if="map != null && layer != null"
           :map="map"
           :layerName="layer.name"
-          :style="layer.style"
+          :style="layer.legendStyle"
           :unit="layer.unit"
           :visible="!config.region_selection_active"
           :opacity="config.opacity/100"/>
@@ -201,5 +202,9 @@
     border: 5px solid rgba(180, 180, 180, 0.6);
     border-top-color: rgba(0, 0, 0, 0.6);
     animation: spinner 0.6s linear infinite;
+  }
+
+  #map .geojson-layer{
+    pointer-events: none;
   }
 </style>
