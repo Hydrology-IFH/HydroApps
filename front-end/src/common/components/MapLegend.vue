@@ -119,7 +119,8 @@
               <slot v-if="element.type=='con'">
                 <div class="colorbar-bar" :style="cb_style(element.colors)"></div>
                 <div class="colorbar-ticks">
-                  <div class="colorbar-tick" v-for="label in element.labels" :key="label.label">
+                  <div class="colorbar-tick" v-for="(label, index) in element.labels" :key="label.label"
+                   :style="{ transform: `translateX(${(-50 + index / (element.labels.length-1) * 100)}%)` }">
                     {{ label.label }}
                     <v-tooltip v-if="label.hasOwnProperty('tooltip')"
                               :text="label.tooltip"
@@ -203,12 +204,6 @@
   .colorbar-con>.colorbar-ticks>.colorbar-tick {
     padding: 1em;
     padding-top: 0;
-  }
-  .colorbar-con>.colorbar-ticks>.colorbar-tick:first-child {
-    transform: translateX(-50%);
-  }
-  .colorbar-con>.colorbar-ticks>.colorbar-tick:last-child {
-    transform: translateX(50%);
   }
   div.colorbar-con {
     min-width: 2rem;
