@@ -51,10 +51,15 @@ def get_ts(request, *args, **kwargs):
     try:
         statsp = StationsP()
         broker = Broker()
-        quots = pd.concat([statsp.get_quotient("corr", "filled"), statsp.get_quotient("filled", "hyras")])\
+        quots = pd.concat([statsp.get_quotient("corr", "filled"),
+                           statsp.get_quotient("filled", "hyras")])\
             .droplevel("parameter").mul(100).round(1)\
-            .reset_index().pivot_table(index="station_id", columns=["kind_num","kind_denom"], values="value")
-        quots_json = quots.set_axis(quots.columns.map("_".join), axis=1).to_dict(orient="index")
+            .reset_index()\
+            .pivot_table(index="station_id",
+                         columns=["kind_num","kind_denom"],
+                         values="value")
+        quots_json = quots.set_axis(quots.columns.map("_".join), axis=1)\
+            .to_json(orient="index")
         context = {
             'meta_p': json.loads(serialize("geojson", MetaP.objects.all())),
             'quots': quots_json,

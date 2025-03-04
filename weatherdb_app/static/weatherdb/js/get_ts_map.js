@@ -56,9 +56,6 @@ class Form{
             remove_coloring: document.getElementById("btn_remove_coloring"),
             filter_stations: document.getElementById("btn_filter_stations"),
             remove_filter: document.getElementById("btn_remove_filter"),
-            // upload_shape: document.getElementById("btn_upload_shape"),
-            // draw_polygon: document.getElementById("btn_draw_polygon"),
-            // geoencode: document.getElementById("btn_geoencode"),
             download_ts: document.getElementById("btn_download_ts")
         }
 
@@ -297,8 +294,7 @@ class Form{
     get_stations_data(){
         this.geojson_data = JSON.parse(
             document.getElementById("meta_p-data").textContent);
-        this.quots = JSON.parse(
-            document.getElementById("quots-data").textContent);
+        this.quots = window.quots_data;
         this.station_ids = [];
         for (let feature of this.geojson_data.features){
             this.station_ids.push(feature.properties.pk);
