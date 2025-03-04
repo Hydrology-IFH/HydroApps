@@ -19,7 +19,7 @@
 </script>
 
 <template>
-  <div class="input-group-vertical mb-3">
+  <div class="input-group-vertical mb-3" :disabled="!active">
     <span class="input-group-text" :id="`label_${label}`"
         data-bs-toggle="tooltip" data-bs-placement="top"
         data-bs-container="body" data-bs-html="true"
@@ -103,6 +103,9 @@
     :hover{
       color: var(--bs-primary);
     }
+  }
+  .input-group-vertical[disabled=true] .input-group-text {
+    color: var(--bs-gray-600);
   }
 </style>
 
