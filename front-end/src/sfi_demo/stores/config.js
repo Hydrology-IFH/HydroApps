@@ -31,6 +31,10 @@ export const useConfig = defineStore(
       sri: 7, // one of 3, 5, 7, 11
       duration: 60, // one of 30, 60, 120 min
 
+      // the dammage layer to show
+      damageKind: "men_dm_ttl", // one of min_dm_ttl, men_dm_ttl, max_dm_ttl
+      preparedness: "medium", // one of low, medium, high
+
       // System settings
       region_selection_active: true,
     })

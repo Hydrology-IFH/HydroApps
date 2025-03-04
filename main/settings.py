@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from urllib.parse import urlparse
 from django.utils.translation import gettext_lazy as _
-from weatherdb.db import db_engine as wdb_engine
+import weatherdb as wdb
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -142,7 +142,9 @@ DATABASES = {
     }
 }
 try:
-    wdb_url = wdb_engine.engine.url
+    if hasattr(secrets, "WDB_CON"):
+        wdb.config.set("database", "connection", secrets.WDB_CON)
+    wdb_url = wdb.db.db_engine.engine.url
     DATABASES["weatherdb"] = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': wdb_url.database,

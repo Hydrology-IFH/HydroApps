@@ -9,6 +9,7 @@
   import MenuDate from './menu/MenuDate.vue';
   import MenuOpacity from './menu/MenuOpacity.vue';
   import MenuColorscale from './menu/MenuColorscale.vue';
+  import MenuPreparedness from './menu/MenuPreparedness.vue';
 
   const fromRef = ref(null);
 
@@ -27,6 +28,7 @@
     <MenuPrecipitationForce />
     <MenuDuration />
     <MenuDate />
+    <MenuPreparedness />
     <h4>{{ $t('menu_header_map') }}</h4>
     <MenuOpacity />
     <MenuColorscale />

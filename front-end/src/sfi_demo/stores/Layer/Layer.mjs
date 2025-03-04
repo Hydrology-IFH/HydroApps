@@ -1,10 +1,13 @@
 import { GeoTIFF } from "ol/source";
 import TileLayer from 'ol/layer/WebGLTile.js';
-import { getColorscaleTileLayerStyle } from "~~/utils/mapLayerStyles.mjs";
+import GeoJSON from 'ol/format/GeoJSON.js';
+import VectorLayer from 'ol/layer/Vector.js';
+import VectorSource from 'ol/source/Vector.js';
+import { getColorscaleTileLayerStyle, getColormap } from "~~/utils/mapLayerStyles.mjs";
 import { useConfig } from "~/stores/config.js";
 import "./extraColormaps.js";
 
-export class Layer {
+class BaseLayer {
   constructor({ id,
                 file,
                 style,
@@ -16,6 +19,11 @@ export class Layer {
                 condition,
                 openlayer_options,
                 ...kwargs }) {
+
+    if (this.constructor === BaseLayer) {
+      throw new TypeError('Abstract class "BaseLayer" can\'t be instantiated directly');
+    }
+
     this.id = id;
     this.file = file;
     this.decimals = decimals;
@@ -29,6 +37,9 @@ export class Layer {
     this.z_index = z_index;
     this.condition = condition;
     this.openlayer_options = openlayer_options;
+    this.relevantConfigs = [
+      'region', 'kind', 'date', 'sri', 'duration', 'soilMoisture',
+      "preparedness", "damageKind", "show_sfgf", "region_selection_active"];
     kwargs && Object.entries(kwargs).forEach(([key, value]) => this[key] = value);
 
     // subscribe to config store
@@ -56,14 +67,8 @@ export class Layer {
       this.config.$subscribe((mutation, state) => {
         if (state.opacity !== this._lastConfigState?.opacity) {
           this.updateOpacity()
-        } else if ( (state.region !== this._lastConfigState?.region) ||
-                    (state.kind !== this._lastConfigState?.kind) ||
-                    (state.date !== this._lastConfigState?.date) ||
-                    (state.soilMoisture !== this._lastConfigState?.soilMoisture) ||
-                    (state.sri !== this._lastConfigState?.sri) ||
-                    (state.duration !== this._lastConfigState?.duration) ||
-                    (state.show_sfgf !== this._lastConfigState?.show_sfgf) ||
-                    (state.region_selection_active !== this._lastConfigState?.region_selection_active)) {
+        }
+        if (this.relevantConfigs.some(key => state[key] !== this._lastConfigState?.[key])) {
           this._updateLayer();
         }
         this._saveConfigState()
@@ -104,6 +109,14 @@ export class Layer {
           };
         });
 
+        // create all colormaps with default options, only used for Vector layers
+        var defaultColormapsOpts = this._styleInit.options.defaultColormapsOpts || {};
+        Object.entries(this._styleInit.options.colormaps||{}).forEach(([key, opts]) => {
+          this._styles[key] = {
+            colormap: { ...defaultColormapsOpts, ...opts }
+          };
+        });
+
         //  add styles
         Object.entries(this._styleInit.options.styles||{}).forEach(([key, style]) => {
           this._styles[key] = style;
@@ -132,27 +145,20 @@ export class Layer {
   }
 
   get style() {
-    if (this.styles[this.selectedStyle].hasOwnProperty("colorscale")) {
-      this.styles[this.selectedStyle] = getColorscaleTileLayerStyle(this.styles[this.selectedStyle].colorscale);
-    }
     return this.styles[this.selectedStyle];
+  }
+
+  get legendStyle(){
+    return this.styles[this.selectedStyle];
+  }
+
+  createOlLayer() {
+    // implement in supclasses
   }
 
   get olLayer() {
     if (!this._layerCreated) {
-      let new_layer = new TileLayer({
-        source: new GeoTIFF({
-          sources: [{ url: this.url }],
-          sourceOptions: {
-            allowFullFile: true,
-          },
-          interpolate: false,
-          normalize: false
-        }),
-        visible: this.visible,
-        style: this.style,
-        opacity: this.config.opacity/100
-      });
+      let new_layer = this.createOlLayer();
 
       // set additional options
       if (this.openlayer_options) {
@@ -232,6 +238,132 @@ export class Layer {
       return this.selected;
     } else {
       return this.selected && this.condition(this.config);
+    }
+  }
+}
+
+class GeoTiffLayer extends BaseLayer {
+  constructor({ ...kwargs }) {
+    super({ ...kwargs });
+  }
+
+  createOlLayer() {
+    return new TileLayer({
+      source: new GeoTIFF({
+        sources: [{ url: this.url }],
+        sourceOptions: {
+          allowFullFile: true,
+        },
+        interpolate: false,
+        normalize: false
+      }),
+      visible: this.visible,
+      style: this.style,
+      opacity: this.config.opacity / 100
+    });
+  }
+
+  get style(){
+    if (this.styles[this.selectedStyle].hasOwnProperty("colorscale")) {
+      this.styles[this.selectedStyle] = getColorscaleTileLayerStyle(this.styles[this.selectedStyle].colorscale);
+    }
+    return super.style;
+  }
+}
+
+class GeoJSONLayer extends BaseLayer {
+  constructor({ propertyName, ...kwargs }) {
+    super({ ...kwargs });
+
+    if (this._styleInit.function){
+      this._styleFunction = this._styleInit.function;
+    }
+
+    this._propertyName = propertyName;
+  }
+
+  get propertyName() {
+    if (this._propertyName) {
+      if (this._propertyName instanceof Function) {
+        return this._propertyName(this.config);
+      } else {
+        return this._propertyName;
+      }
+    }
+    return undefined;
+  }
+
+  createOlLayer() {
+    return new VectorLayer({
+      source: new VectorSource({
+        url: this.url,
+        format: new GeoJSON({dataProjection: "EPSG:25832", featureProjection: "EPSG:25832" })
+      }),
+      visible: this.visible,
+      style: this.style,
+      opacity: this.config.opacity / 100,
+      updateWhileAnimating: true,
+      updateWhileInteracting: true,
+      className: "geojson-layer"
+    });
+  }
+
+  get style() {
+    if (this._styleFunction) {
+      return this._styleFunction({ config, cmap: this.cmap });
+    }
+    return super.style;
+  }
+
+  get cmap() {
+    if (this.styles[this.selectedStyle].hasOwnProperty("colormap")) {
+      let colors = this.styles[this.selectedStyle].colormap.colors;
+      let ranges = this.styles[this.selectedStyle].colormap.ranges;
+      return (val) => {
+        let index = ranges.findIndex(range => val >= range[0] && val < range[1]);
+        return colors[index];
+      }
+    } else if (this.styles[this.selectedStyle].hasOwnProperty("colorscale")) {
+      return getColormap(this.styles[this.selectedStyle].colorscale);
+    }
+  }
+
+  get legendStyle() {
+    if (this.styles[this.selectedStyle].hasOwnProperty("colorscale")) {
+      return getColorscaleTileLayerStyle(this.styles[this.selectedStyle].colorscale);
+    } else if (this.styles[this.selectedStyle].hasOwnProperty("colormap")) {
+      let colors = this.styles[this.selectedStyle].colormap.colors;
+      let ranges = this.styles[this.selectedStyle].colormap.ranges;
+      return {
+        color: [
+          "case",
+          ["!=", ["band", 2], 0],
+          ["case",
+            ...ranges.map((range, index) => [["between", ["band", 1], range[0], range[1]], colors[index]]).flat(),
+            ["color", 0, 0, 0, 0],
+          ]
+        ]
+      }
+    }
+    return this.styles[this.selectedStyle];
+  }
+
+  _updateLayer() {
+    super._updateLayer();
+    if (this._styleFunction) {
+      this.restyle(this.style);
+    }
+  }
+}
+
+export class Layer extends BaseLayer {
+  constructor({ type = "GeoTiff", ...kwargs }) {
+    if (type == "GeoTiff") {
+      return new GeoTiffLayer({ ...kwargs });
+    } else if (type == "GeoJSON") {
+      return new GeoJSONLayer({ ...kwargs });
+    } else {
+      console.error("Invalid layer type");
     }
   }
 }

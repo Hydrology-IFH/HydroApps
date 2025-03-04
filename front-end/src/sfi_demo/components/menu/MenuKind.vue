@@ -1,5 +1,4 @@
 <script setup>
-  import { watchEffect, ref } from 'vue';
   import { useTranslation } from "i18next-vue";
 
   import { useConfig } from '~/stores/config.js';

@@ -39,8 +39,13 @@
   })
 
   // get title position
-  const titleTop = computed(() => {
-    return props.titlePosition === "top" || (props.titlePosition === "topIfContinous" && elements.value.some((el) => el.type === "con"))
+  const titleStyle = computed(() => {
+    if ((props.titlePosition === "top") ||
+        (props.titlePosition === "topIfContinous" && elements.value.some((el) => el.type === "con"))) {
+      return {order: 0}
+    } else {
+      return {order: 2}
+    }
   })
 
   // get style for continous elements
@@ -104,38 +109,42 @@
   <div ref="legend_div">
     <button type="button" class="btn btn-close" role="button" @click="close"></button>
     <div class="colorbar" ref="legend_div">
-      <slot>
-        <div class="colorbar-title" v-if="titleTop">{{ title }} </div>
-        <div class="colorbar-elements">
-          <div v-for="element in elements" :key="element.label" :class="`colorbar-${element.type}`">
-            <slot v-if="element.type=='con'">
-              <div class="colorbar-bar" :style="cb_style(element.colors)"></div>
-              <div class="colorbar-ticks">
-                <div class="colorbar-tick" v-for="label in element.labels" :key="label.label">
-                  {{ label.label }}
-                  <v-tooltip v-if="label.hasOwnProperty('tooltip')"
-                            :text="label.tooltip"
-                            class="arrow-bottom" offset="20px"
-                            activator="parent" location="top"/>
+      <slot default>
+        <slot name="title">
+          <div class="colorbar-title" :style="titleStyle">{{ title }} </div>
+        </slot>
+        <slot name="colorbar-elements">
+          <div class="colorbar-elements">
+            <div v-for="element in elements" :key="element.label" :class="`colorbar-${element.type}`">
+              <slot v-if="element.type=='con'">
+                <div class="colorbar-bar" :style="cb_style(element.colors)"></div>
+                <div class="colorbar-ticks">
+                  <div class="colorbar-tick" v-for="(label, index) in element.labels" :key="label.label"
+                   :style="{ transform: `translateX(${(-50 + index / (element.labels.length-1) * 100)}%)` }">
+                    {{ label.label }}
+                    <v-tooltip v-if="label.hasOwnProperty('tooltip')"
+                              :text="label.tooltip"
+                              class="arrow-bottom" offset="20px"
+                              activator="parent" location="top"/>
+                  </div>
                 </div>
-              </div>
-            </slot>
-            <slot v-else>
-              <div class="colorbar-color">
-                <div :style="{ background: element.color, opacity: opacity }"></div>
-              </div>
-              <div class="colorbar-tick">
-                {{ element.label }}
-              </div>
-              <v-tooltip v-if="element.hasOwnProperty('tooltip')"
-                        class="arrow-bottom" offset="0px"
-                        activator="parent" location="top">
-                <span v-html="element.tooltip"></span>
-              </v-tooltip>
-            </slot>
+              </slot>
+              <slot v-else>
+                <div class="colorbar-color">
+                  <div :style="{ background: element.color, opacity: opacity }"></div>
+                </div>
+                <div class="colorbar-tick">
+                  {{ element.label }}
+                </div>
+                <v-tooltip v-if="element.hasOwnProperty('tooltip')"
+                          class="arrow-bottom" offset="0px"
+                          activator="parent" location="top">
+                  <span v-html="element.tooltip"></span>
+                </v-tooltip>
+              </slot>
+            </div>
           </div>
-        </div>
-        <div class="colorbar-title"  v-if="!titleTop">{{ title }} </div>
+        </slot>
       </slot>
     </div>
   </div>
@@ -195,12 +204,6 @@
   .colorbar-con>.colorbar-ticks>.colorbar-tick {
     padding: 1em;
     padding-top: 0;
-  }
-  .colorbar-con>.colorbar-ticks>.colorbar-tick:first-child {
-    transform: translateX(-50%);
-  }
-  .colorbar-con>.colorbar-ticks>.colorbar-tick:last-child {
-    transform: translateX(50%);
   }
   div.colorbar-con {
     min-width: 2rem;

@@ -76,7 +76,7 @@
                 :key="handle.type" :id="handle.id" :type="handle.type"
                 :position="handle.position" />
     </div>
-    <Popover ref="PopoverRef" v-if="data.popover">
+    <Popover ref="PopoverRef" v-if="data.popover" appendTo="#fullscreen-wrapper">
       <data.popover/>
     </Popover>
 </template>

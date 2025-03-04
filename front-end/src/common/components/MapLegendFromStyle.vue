@@ -106,7 +106,7 @@
             case "==":
               break
             case "between":
-              label = `>= ${label}`;
+              label = `${String(cond[2])} - ${String(cond[3])}`;
               break
             default:
               label = `${cond[0]} ${label}`

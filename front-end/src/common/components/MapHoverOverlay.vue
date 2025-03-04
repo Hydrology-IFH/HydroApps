@@ -11,7 +11,7 @@
     unit: { type: String, default: "mm" },
     decimals: { type: Number, default: 2 },
     valueConverter: { type: Function, default: (x) => x },
-    propertyName: { type: String, default: "value" },
+    propertyName: { type: [Array, String], default: "value" },
     dtype : { type: String, default: "number" } // number or string
   })
 
@@ -39,6 +39,13 @@
       // vector layer
       rawValue = await props.layer.getFeatures(pixel.value).then((features) => {
         if (features.length > 0) {
+          if (Array.isArray(props.propertyName)) {
+            let prop = features[0].getProperties();
+            for (let id of props.propertyName) {
+              prop = prop[id];
+            }
+            return prop;
+          }
           return features[0].get(props.propertyName);
         }
         return null;
@@ -46,6 +53,7 @@
     } else {
       // raster layer
       let pixValue = props.layer.getData(pixel.value);
+      // console.log(pixValue);
       if ((pixValue != null) && (pixValue[1] != 0)) {
         rawValue = pixValue[0];
       }
@@ -59,7 +67,7 @@
         value = Math.round(parseFloat(value) * 10 ** dec) / 10 ** dec;
       }
       value = valueConverter.value(value);
-      hoverText.value = (value!==undefined && value !== null)? `${value} ${ props.unit }`.trim():"";
+      hoverText.value = (value!==undefined && value !== null)? `${value.toLocaleString()} ${ props.unit }`.trim():"";
     } else {
       hoverText.value =  "";
     }

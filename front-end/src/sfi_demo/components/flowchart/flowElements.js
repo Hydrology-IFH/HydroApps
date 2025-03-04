@@ -21,7 +21,7 @@ export const nodesInit = [
   },
   {
     id: 'N',
-    position: { x: 5, y: 0 },
+    position: { x: 0, y: 0 },
     type: nodeType,
     data: {
       label: i18n.t('node_precipitation_label'),
@@ -45,7 +45,7 @@ export const nodesInit = [
   },
   {
     id: 'SRI',
-    position: langCode=="de"?{ x: 200, y: 0 }:{ x: 180, y: 0 },
+    position: langCode=="de"? { x: 200, y: 0 } : { x: 180, y: 0 },
     type: nodeType,
     data: {
       label: i18n.t('node_sri_label'),
@@ -55,7 +55,7 @@ export const nodesInit = [
   },
   {
     id: 'SFI',
-    position: langCode == "de"?{ x: 400, y: 50 }:{ x: 370, y: 50 },
+    position: langCode == "de"? { x: 400, y: 50 } : { x: 370, y: 50 },
     type: nodeType,
     data: {
       label: i18n.t('node_sfi_label'),
@@ -78,7 +78,7 @@ export const nodesInit = [
   },
   {
     id: 'ai_speed',
-    position: langCode == "de"?{ x: 220, y: 0 }:{ x: 190, y: 0 },
+    position: langCode == "de"? { x: 210, y: 0 } : { x: 190, y: 0 },
     type: nodeType,
     data: {
       label: i18n.t('node_ai_speed_label'),
@@ -91,13 +91,24 @@ export const nodesInit = [
   },
   {
     id: 'ai',
-    position: { x: 300, y: 0 },
+    position: langCode == "de"? { x: 300, y: 0 } : { x: 310, y: 0 },
     type: "wrapper",
     data: {
       layerID: 'ai',
       icon: 'bi-stars',
       label: i18n.t('node_ai_label'),
       tooltip: i18n.t('node_ai_tooltip'),
+    },
+    condition: ({ config }) => config.region == "Emmendingen",
+  },
+  {
+    id: 'damage',
+    position: langCode == "de"? { x: 510, y: 50 } : { x: 495, y: 50 },
+    type: nodeType,
+    data: {
+      label: i18n.t('node_damage_label'),
+      layerID: 'damage',
+      tooltip: i18n.t('node_damage_tooltip')
     },
     condition: ({ config }) => config.region == "Emmendingen",
   }
@@ -135,5 +146,12 @@ export const edgesInit = [
     sourceHandle: 'source-top',
     target: 'ai',
     type: edgeType,
-  }
+  },
+  {
+    id: 'AI->damage',
+    source: 'ai',
+    sourceHandle: 'source-bottom',
+    target: 'damage',
+    type: edgeType,
+  },
 ]
