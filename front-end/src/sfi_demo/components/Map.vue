@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, computed, watch } from 'vue';
+  import { ref, onMounted, computed } from 'vue';
   import { Map, MapControls } from "vue3-openlayers";
   import { buffer, getCenter } from 'ol/extent';
   import View from 'ol/View';
@@ -124,7 +124,7 @@
 </script>
 
 <template>
-  <div class="map-container">
+  <div class="map-container" @wheel="(event) => event.preventDefault()">
     <Map.OlMap id="map" ref="mapRef">
 
       <Basemaps/>
