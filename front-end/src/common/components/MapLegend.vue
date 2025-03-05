@@ -177,8 +177,11 @@
   div.colorbar-elements {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     width: 100%;
+  }
+  div.colorbar-tick {
+    white-space: nowrap;
   }
 
   /* continous colorbar */
