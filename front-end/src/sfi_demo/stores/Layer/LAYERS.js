@@ -734,5 +734,8 @@ export const LAYERS = [
         }
       }
     },
+    valueConverter: (val) => (val < 5_000) ? "<5k" : (
+      (val < 100_000)? Math.round(val / 1_000) * 1_000 : Math.round(val / 10_000) * 10_000
+    )
   }
 ];
