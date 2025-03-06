@@ -489,7 +489,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration"],
-    condition: (config) => config.region == "Emmendingen",
+    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
     backupLayer: "OA",
     style: {
       color: [
@@ -498,7 +498,7 @@ export const LAYERS = [
         [
           "case",
           // colors from https://sgx.geodatenzentrum.de/wms_starkregen
-          ["<", ["band", 1], 5], [160, 160, 160, 0.3],
+          ["<", ["band", 1], 5], [160, 160, 160, 0.5],
           ["<", ["band", 1], 10], [204, 236, 255],
           ["<", ["band", 1], 50], [153, 204, 255],
           ["<", ["band", 1], 100], [110, 153, 255],
@@ -524,7 +524,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration"],
-    condition: (config) => config.region == "Emmendingen",
+    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
     backupLayer: "OA",
     style: {
       color: [
@@ -532,7 +532,7 @@ export const LAYERS = [
         ["!=", ["band", 2], 0],
         [
           "case",
-          ["<", ["band", 1], 0.2], [160, 160, 160, 0.3],
+          ["<", ["band", 1], 0.2], [160, 160, 160, 0.5],
           ["<", ["band", 1], 0.5], [255, 255, 178, 1],
           ["<", ["band", 1], 1], [254, 204, 92, 1],
           ["<", ["band", 1], 2], [253, 141, 60, 1],
@@ -562,7 +562,8 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration", "damageKind", "preparedness"],
-    condition: (config) => config.region == "Emmendingen",
+    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
+    backupLayer: "SFI",
     style: {
       options: {
         defaultKey: "inferno",

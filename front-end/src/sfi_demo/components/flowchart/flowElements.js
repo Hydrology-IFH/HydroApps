@@ -73,7 +73,7 @@ export const nodesInit = [
       layerID: 'ai_depth',
       tooltip: i18n.t('node_ai_depth_tooltip')
     },
-    condition: ({ config }) => config.region == "Emmendingen",
+    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
     parentNode: 'ai'
   },
   {
@@ -85,7 +85,7 @@ export const nodesInit = [
       layerID: 'ai_speed',
       tooltip: i18n.t('node_ai_speed_tooltip')
     },
-    condition: ({ config }) => config.region == "Emmendingen",
+    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
     parentNode: 'ai',
     expandParent: true
   },
@@ -99,7 +99,7 @@ export const nodesInit = [
       label: i18n.t('node_ai_label'),
       tooltip: i18n.t('node_ai_tooltip'),
     },
-    condition: ({ config }) => config.region == "Emmendingen",
+    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
   },
   {
     id: 'damage',
@@ -110,7 +110,7 @@ export const nodesInit = [
       layerID: 'damage',
       tooltip: i18n.t('node_damage_tooltip')
     },
-    condition: ({ config }) => config.region == "Emmendingen",
+    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
   }
 ]
 
