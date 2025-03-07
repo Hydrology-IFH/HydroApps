@@ -23,11 +23,22 @@
   })
   const edges = ref(edgesInit)
 
+  const nodesWidthRaw = computed(() => {
+    if (config.region == "Emmendingen" && config.kind == "matrix") {
+      return 750
+    } else {
+      return 580
+    }
+  })
+  const zoom = ref(1)
+  const width = computed(() => `${nodesWidthRaw.value / zoom.value}px`)
+
   // fit the flowchart view
   onPaneReady((instance) => {
     let fit = () => {
-      instance.fitView({ padding: 0.1, includeHiddenNodes: true }).then(() => {
+      instance.fitView({ "padding-top": "5px", includeHiddenNodes: false }).then(() => {
         instance.viewport.value.x = 0
+        zoom.value = instance.viewport._value.zoom
       })
     }
     fit()
@@ -35,8 +46,9 @@
   })
 
 </script>
+
 <template>
-  <div class="flow-container" style="height:100px;">
+  <div class="flow-container" style="height:100px" :style="{width: width}">
     <VueFlow :nodes="nodes" :edges="edges"
              :nodesDraggable="false"
              :nodesConnectable="false"
@@ -60,7 +72,12 @@
     </VueFlow>
   </div>
 </template>
+
 <style>
   /* import the necessary styles for Vue Flow to work */
   @import '@vue-flow/core/dist/style.css';
+
+  div.flow-container {
+    padding: 5px;
+  }
 </style>

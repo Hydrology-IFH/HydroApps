@@ -20,17 +20,21 @@
   });
 </script>
 <template>
-  <form class="form-horizontal" action="javascript:void(0);" ref="fromRef">
+  <form class="form-horizontal" action="javascript:void(0);" ref="fromRef" id="menu">
     <h4>{{ $t('menu_header_event') }}</h4>
     <MenuRegion />
-    <MenuKind />
-    <MenuSoilMoisture />
-    <MenuPrecipitationForce />
-    <MenuDuration />
+    <MenuKind id="menu-kind"/>
+    <div id="menu-matrix">
+      <MenuSoilMoisture />
+      <MenuPrecipitationForce />
+      <MenuDuration />
+    </div>
     <MenuDate />
     <MenuPreparedness />
     <h4>{{ $t('menu_header_map') }}</h4>
-    <MenuOpacity />
-    <MenuColorscale />
+    <div id="menu-map">
+      <MenuOpacity />
+      <MenuColorscale />
+    </div>
   </form>
 </template>

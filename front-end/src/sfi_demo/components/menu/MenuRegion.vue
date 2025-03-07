@@ -18,7 +18,8 @@
               :label="$t('menu_region_label')"
               :options="regions_keys"
               :tooltip="$t('menu_region_tooltip')"
-              @change="updateRegion">
+              @change="updateRegion"
+              id="menu-region">
     <template v-slot:after>
       <button class="btn btn-primary text-white" type="button" @click="config.region_selection_active = true"
               data-bs-toggle="tooltip" data-bs-placement="top"
