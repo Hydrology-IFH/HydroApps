@@ -18,6 +18,7 @@ class BaseLayer {
                 z_index = 0,
                 condition,
                 openlayer_options,
+                valueConverter,
                 ...kwargs }) {
 
     if (this.constructor === BaseLayer) {
@@ -27,7 +28,7 @@ class BaseLayer {
     this.id = id;
     this.file = file;
     this.decimals = decimals;
-    this.unit = unit;
+    this._unit = unit;
     this._styleInit = style;
     this.selected = false;
     this.map = null;
@@ -37,6 +38,7 @@ class BaseLayer {
     this.z_index = z_index;
     this.condition = condition;
     this.openlayer_options = openlayer_options;
+    this._valueConverter = valueConverter;
     this.relevantConfigs = [
       'region', 'kind', 'date', 'sri', 'duration', 'soilMoisture',
       "preparedness", "damageKind", "show_sfgf", "region_selection_active"];
@@ -95,6 +97,25 @@ class BaseLayer {
       console.error("Invalid kind for layer")
       return ""
     }
+  }
+
+  get unit() {
+    if (this._unit instanceof Function) {
+      return this._unit(this.config);
+    }
+    return this._unit;
+  }
+
+  get valueConverter() {
+    if (this._valueConverter instanceof Function) {
+      let params = /^\(([\s\S]*?)\)/.exec(this._valueConverter);
+      if (params) {
+        if (params[1] == "config") {
+          return this._valueConverter(this.config);
+        }
+      }
+    }
+    return this._valueConverter;
   }
 
   get styles() {
@@ -319,6 +340,9 @@ class GeoJSONLayer extends BaseLayer {
     if (this.styles[this.selectedStyle].hasOwnProperty("colormap")) {
       let colors = this.styles[this.selectedStyle].colormap.colors;
       let ranges = this.styles[this.selectedStyle].colormap.ranges;
+      if (ranges instanceof Function) {
+        ranges = ranges(this.config);
+      }
       return (val) => {
         let index = ranges.findIndex(range => val >= range[0] && val < range[1]);
         return colors[index];
@@ -334,6 +358,9 @@ class GeoJSONLayer extends BaseLayer {
     } else if (this.styles[this.selectedStyle].hasOwnProperty("colormap")) {
       let colors = this.styles[this.selectedStyle].colormap.colors;
       let ranges = this.styles[this.selectedStyle].colormap.ranges;
+      if (ranges instanceof Function) {
+        ranges = ranges(this.config);
+      }
       return {
         color: [
           "case",

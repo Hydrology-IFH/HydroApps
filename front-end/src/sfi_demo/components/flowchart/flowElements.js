@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 
 import PopoverSFGF from './PopoverSFGF.vue';
+import PopoverDamagePerHoushold from './PopoverDamagePerHoushold.vue';
 
 const edgeType = "custom";
 const nodeType = "custom";
@@ -108,7 +109,8 @@ export const nodesInit = [
     data: {
       label: i18n.t('node_damage_label'),
       layerID: 'damage',
-      tooltip: i18n.t('node_damage_tooltip')
+      tooltip: i18n.t('node_damage_tooltip'),
+      popover: PopoverDamagePerHoushold
     },
     condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
   }

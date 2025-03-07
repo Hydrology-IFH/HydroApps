@@ -557,28 +557,44 @@ export const LAYERS = [
     },
     name: i18n.t("label_layer_damage"),
     type: "GeoJSON",
-    unit: "€",
+    unit: (config) => config.damagePerHoushold? `€/100 ${i18n.t('layer_damage_unit_housholds')}`:"€",
     decimals: 0,
     relevantConfigs: [
       ...relevantConfigsDefaults,
-      "soil_moisture", "sri", "duration", "damageKind", "preparedness"],
+      "soil_moisture", "sri", "duration", "damageKind", "preparedness", "damagePerHoushold"],
     condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
     backupLayer: "SFI",
     style: {
       options: {
         defaultKey: "YlOrRd",
         defaultColormapsOpts: {
-          ranges: [
-            [0, 5_000],
-            [5_000, 50_000],
-            [50_000, 250_000],
-            [250_000, 500_000],
-            [500_000, 1_000_000],
-            [1_000_000, 2_500_000],
-            [2_500_000, 5_000_000],
-            [5_000_000, 10_000_000],
-            [10_000_000, 25_000_000],
-            [25_000_000, Infinity]],
+          ranges: (config) => {
+            if (config.damagePerHoushold) {
+              return [
+                [0, 500],
+                [500, 5_000],
+                [5_000, 25_000],
+                [25_000, 50_000],
+                [50_000, 100_000],
+                [100_000, 250_000],
+                [250_000, 500_000],
+                [500_000, 750_000],
+                [750_000, 1_000_000],
+                [1_000_000, Infinity]]
+            } else {
+              return [
+                [0, 5_000],
+                [5_000, 50_000],
+                [50_000, 250_000],
+                [250_000, 500_000],
+                [500_000, 1_000_000],
+                [1_000_000, 2_500_000],
+                [2_500_000, 5_000_000],
+                [5_000_000, 10_000_000],
+                [10_000_000, 25_000_000],
+                [25_000_000, Infinity]]
+            }
+          },
         },
         colormaps: {
           "YlOrRd": {
@@ -696,25 +712,28 @@ export const LAYERS = [
         }
       },
       function: ({config, cmap}) => {
-          var styleCache = {};
-          return (feature, resolution) => {
-            let val = feature.get(config.sri)[config.duration][config.soilMoisture][config.preparedness][config.damageKind];
-            if (!styleCache[val]) {
-              styleCache[val] = new Style({
-                fill: new Fill({
-                  color: cmap(val)
-                }),
-                stroke: new Stroke({
-                  color: 'black',
-                  width: 1
-                })
-              });
-            }
-            return styleCache[val];
+        var styleCache = {};
+        return (feature, resolution) => {
+          let val = feature.get("damage")[config.sri][config.duration][config.soilMoisture][config.preparedness][config.damageKind];
+          if (config.damagePerHoushold) {
+            val = (val / parseInt(feature.get("housholds"))) * 100;
           }
+          if (!styleCache[val]) {
+            styleCache[val] = new Style({
+              fill: new Fill({
+                color: cmap(val)
+              }),
+              stroke: new Stroke({
+                color: 'black',
+                width: 1
+              })
+            });
+          }
+          return styleCache[val];
         }
+      }
     },
-    propertyName: (config) => [config.sri, config.duration, config.soilMoisture, config.preparedness, config.damageKind],
+    propertyName: (config) => ["damage", config.sri, config.duration, config.soilMoisture, config.preparedness, config.damageKind],
     legend: {
       valueConverter: (val) => {
         let [val1, val2] = val.split("-").map((v) => v.trim() != "Infinity" ? parseInt(v.trim()) : "∞")
@@ -735,8 +754,22 @@ export const LAYERS = [
         }
       }
     },
-    valueConverter: (val) => (val < 5_000) ? "<5k" : (
-      (val < 100_000)? Math.round(val / 1_000) * 1_000 : Math.round(val / 10_000) * 10_000
-    )
+    // valueConverter: (val) => (val < 5_000) ? "<5k" : (
+    //   (val < 100_000)? Math.round(val / 1_000) * 1_000 : Math.round(val / 10_000) * 10_000
+    // ),
+    valueConverter: (config) => {
+      if (config.damagePerHoushold) {
+        return (val, { features }) => {
+          val = (val / parseInt(features[0].get("housholds"))) * 100;
+          return (val < 500) ? "<500" : (
+            (val < 10_000) ? Math.round(val / 100) * 100 : Math.round(val / 1_000) * 1_000
+          )
+        }
+      } else {
+        return (val) => (val < 5_000) ? "<5k" : (
+          (val < 100_000)? Math.round(val / 1_000) * 1_000 : Math.round(val / 10_000) * 10_000
+        )
+      }
+    }
   }
 ];

@@ -22,7 +22,7 @@
 
   // get value converter function
   const valueConverter = computed(() => {
-    if (typeof props.valueConverter == "function") {
+    if (props.valueConverter instanceof Function) {
       return props.valueConverter;
     }
     return (x) => x;
@@ -35,20 +35,21 @@
 
     // get raw value from raster or vector layer
     let rawValue;
+    const extraProps = {};
     if (props.layer.constructor === VectorLayer) {
       // vector layer
-      rawValue = await props.layer.getFeatures(pixel.value).then((features) => {
+      [ rawValue, extraProps.features ] = await props.layer.getFeatures(pixel.value).then((features) => {
         if (features.length > 0) {
           if (Array.isArray(props.propertyName)) {
             let prop = features[0].getProperties();
             for (let id of props.propertyName) {
               prop = prop[id];
             }
-            return prop;
+            return [prop, features];
           }
-          return features[0].get(props.propertyName);
+          return [features[0].get(props.propertyName), features];
         }
-        return null;
+        return [null, features];
       });
     } else {
       // raster layer
@@ -66,7 +67,7 @@
         let dec = props.decimals;
         value = Math.round(parseFloat(value) * 10 ** dec) / 10 ** dec;
       }
-      value = valueConverter.value(value);
+      value = valueConverter.value(value, extraProps);
       hoverText.value = (value!==undefined && value !== null)? `${value.toLocaleString()} ${ props.unit }`.trim():"";
     } else {
       hoverText.value =  "";
