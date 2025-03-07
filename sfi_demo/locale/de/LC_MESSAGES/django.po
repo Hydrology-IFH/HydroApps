@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 16:43+0100\n"
+"POT-Creation-Date: 2025-03-07 16:43+0100\n"
 "PO-Revision-Date: 2024-07-12 15:21+0200\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -29,18 +29,18 @@ msgid ""
 "or some real events to see the benefits of the pluvial flood Index (PFI, "
 "german SFI) over the heavy rain index (HRI, german SRI)."
 msgstr ""
-"Untersuche eine virtuelle Matrix mit verschiedenen Bodenfeuchten, Niederschlagsintensitäten und -dauern "
-", sowie reale Erreignisse, um die Vorteile des Sturzflut-Indexes (SFI) gegenüber dem Starkregen-"
-"Index (SRI) zu sehen."
+"Untersuche eine virtuelle Matrix mit verschiedenen Bodenfeuchten, "
+"Niederschlagsintensitäten und -dauern , sowie reale Erreignisse, um die "
+"Vorteile des Sturzflut-Indexes (SFI) gegenüber dem Starkregen-Index (SRI) zu "
+"sehen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:16
 msgid ""
 "The blue flow chart shows you how the data is generated and lets you choose "
 "different layers to see their data."
 msgstr ""
-"Das blaue Flussdiagramm zeigt, wie die Daten generiert werden und "
-"ermöglicht es, die einzelnen Layerebene auszuwählen, um die Daten zu "
-"sehen."
+"Das blaue Flussdiagramm zeigt, wie die Daten generiert werden und ermöglicht "
+"es, die einzelnen Layerebene auszuwählen, um die Daten zu sehen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:17
 msgid ""
@@ -68,7 +68,7 @@ msgid "Home"
 msgstr "Home"
 
 #: .\sfi_demo\templates\sfi_demo\base.html:22
-#: .\sfi_demo\templates\sfi_demo\method.html:7
+#: .\sfi_demo\templates\sfi_demo\method.html:20
 msgid "Method"
 msgstr "Methode"
 
@@ -76,9 +76,3 @@ msgstr "Methode"
 msgid "Demonstrator"
 msgstr "Demonstrator"
 
-#: .\sfi_demo\templates\sfi_demo\home.html:20
-msgid "This web tool is .... "
-msgstr ""
-"Dieses Webtool wurde im Zuge des Projekts AVOSS entwickelt. AVOSS ist ein "
-"Verbundprojekt innerhalb der Fördermaßnahme \"WAX - Wasser-Extremereignisse"
-"\" das vom Bundesministerium für Bildung und Forschung (BMBF) gefördert wird."

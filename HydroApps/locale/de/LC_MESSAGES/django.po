@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-12 15:00+0200\n"
+"POT-Creation-Date: 2025-03-07 16:43+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -48,9 +48,10 @@ msgstr "Klassifizierung von Starkregenereignissen für Baden-Württemberg."
 
 #: .\HydroApps\templates\HydroApps\home.html:80
 msgid ""
-"A small app to demonstrate the benefits of the pluvial flood index (german: "
-"SFI)."
-msgstr "Eine kleine Anwendung, um die Vorteile des Sturzflutindexes (SFI) zu zeigen."
+"An app to demonstrate the outcomes of the AVOSS project. E.g. illustrate the "
+"benefits of the pluvial flood index (german: SFI)."
+msgstr ""
+"Eine Anwendung, um die Ergebnisse des AVOSS Projekts darzustellen. Z.B. die Vorteile des Sturzflutindexes (SFI) zu zeigen."
 
 #: .\HydroApps\templates\HydroApps\home.html:92
 msgid "Classification of heavy rain events for all of germany."

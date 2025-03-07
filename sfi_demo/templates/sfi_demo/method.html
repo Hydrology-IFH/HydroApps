@@ -2,18 +2,81 @@
 {% load static %}
 {% load i18n %}
 
-{% block content %}
+{% block head %}
+  {% comment %} For TOC {% endcomment %}
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.css" integrity="sha384-oJyFk/zeMJXNIGMVvmH262FT6dbSYss66WJHHgp1RlUk4/LfONQTzkAsHHwfcqat" crossorigin="anonymous">
+  <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js" integrity="sha384-OGf04BRlCdmgZXHhCupHT3BIkznbahjfhX8DKSIEXyU9PvSO0/8iMiiVJPcA5vi7" crossorigin="anonymous"></script>
+{% endblock %}
 
-<h1>{% trans "Method" %}</h1>
-<p>Bla Bla Bla von <a href="#quelle-Schmitt">Schmit et al. (2024)</a>.</p>
-<div class="quellen">
-  <ol>
-    <li id="quelle-schmit">Schmit, ...
-    </li>
-  </ol>
-</div>
+{% block content %}
+  <div data-bs-spy="scroll" data-bs-target="#toc">
+    <div class="container"><div class="row">
+      <div class="col-lg-2 order-lg-last p-0">
+        <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+      </div>
+    <div class="text col-lg-10">
+      <h1>{% trans "Method" %}</h1>
+      <h2>Sturzflutindex (SFI)</h2>
+      <p>Kernelement des AVOSS Web-Demonstrators ist der neu entwickelte Sturzflutindex (SFI). Der SFI beschreibt die Gefährdung durch wild abfließendes Oberflächenwasser, das in Folge starker Gewitterereignisse oftmals außerhalb von Flüssen entlang von kleinen Bächen, Geländevertiefungen oder Wegen bzw. Straßen abläuft und zu einer Gefahr für Leib und Leben werden kann. Für diese Gefährdung gibt es im derzeitigen Warnsystem keine verlässliche Information.</p>
+      <p>Der SFI kann sowohl als Warninstrument zur Abschätzung der aktuellen Sturzflutgefährdung (reale Ereignisse) als auch im Rahmen der Sensibilisierung (fiktive Szenarien) zur Abschätzung der regionalen Sturzflutanfälligkeit verwendet werden. Beide Optionen sind im Demonstrator visualisiert.</p>
+      <p>Um den SFI ausweisen zu können, muss eine Modellierungskette – von Niederschlagsdaten über die hydrologische Abflussbildung und die hydraulische Abflussakkumulation bis hin zur Identifizierung sturzflutgefährdeter Flächen (SFGF) und schlussendlich die Klassifizierung des SFI - durchgerechnet werden, so wie in untenstehender Abbildung visualisiert. </p>
+      <p>Die Kriterien zur Ausweisung von SFGF sind wie folgt. Alle Rasterpunkte, die einen maximale Überflutungstiefen von &ge;30cm, eine maximale Fließgeschwindigkeit von &ge;1.5m/s oder einen maximalen spezifischen Abfluss von &ge;200l/m*s aufweisen, werden als potentiell sturzflutgefährdet eingeordnet. Der Klassifizierung des SFI erfolgt dann über den Anteil der SFGF Flächen in einem bestimmten Umkreis der betrachteten Zelle.</p>
+      <p>Mehr Informationen zum SFI finden Sie auf der <a href="https://www.avoss.uni-freiburg.de/aps/ap-b/sfi-hintergrund" target="_blank" rel="noopener noreferrer">AVOSS – Projekthomepage <sup><i class="bi bi-box-arrow-up-right"></i></sup></a> bzw. ausführlich in einem <a href="https://freidok.uni-freiburg.de/data/246016" target="_blank" rel="noopener noreferrer">Leitfaden zur SFI-Entwicklung</a></p>
+
+      <h2>Niederschlag & SRI</h2>
+      <p>Die Ereignissummen der realen Starkregenereignisse basieren auf kalibrierten Niederschlagsradardaten, die in einer zeitlichen Auflösung von 5 Minuten vom assoziierten AVOSS Projektpartner im Bereich Forschung und Entwicklung, der Kachelmann GmbH bereitgestellt wurden. Die Daten entsprechen weitestgehend den Daten, die auch auf der <a href="https://kachelmannwetter.com/de/regenradar" target="_blank" rel="noopener noreferrer"    >Internetseite der Kachelmann GmbH <sup><i class="bi bi-box-arrow-up-right"></i></sup></a> visualisiert sind. Zur Einordnung der Stärke der Niederschlagsereignisse wurden die Niederschlagssummen des Ereignisses mittels des Starkregenindexes (SRI) klassifiziert. Basis für den SRI sind die vom Deutschen Wetterdienst veröffentlichten KOSTRA-Starkregenhöhen in der Version 2020 (KOSTRA_V2020). Das Vorgehen dabei entspricht dem <a href="https://apps.hydro.uni-freiburg.de/de/sri_bw/method/" target="_blank">hier</a> beschriebenen Ansatz</p>
+      <p>Die Niederschlagssummen der fiktiven Szenarien basieren auf dem räumlichen Median (für Baden-Württemberg) der auf KOSTRA_V2020 beruhenden Niederschlagswerte verschiedener SRIs und Dauerstufen, und sind daher räumlich konstant. Im Demonstrator sind bisher die SRI-Schwellen 3 (stark), 5 (stark - sehr stark), 7 (sehr stark), 9 (sehr stark – extrem) und 11 (extrem) für die Dauerstufen 30 min, 1 h, 2 h und 4 h abgebildet. Zur weiteren Modellierung werden die jeweiligen Gesamtsummen des Niederschlags in 5-Minuten Niederschlagssummen unterteilt. Der angenommene zeitliche Verlauf der Niederschläge entspricht einer linkssteilen Weibull-Verteilung.</p>
+      <img src="{% static 'sfi_demo/img/SFI_schema.png' %}" alt="A schematic representation of the SFI computation chain" class="img-fluid" style="margin-bottom: 1.5rem; margin-top: -.5rem;">
+      <br>
+
+      <h2 id="compute_OA">Berechnung des oberflächlich abfließenden Wassers</h2>
+      <p>Die Berechnung der Oberflächenabflussbildung erfolgt mit dem physikalisch basierten <a href="https://www.hydrology.uni-freiburg.de/roger/" target="_blank" rel="noopener noreferrer">Niederschlags-Abfluss-Modell RoGeR <sup><i class="bi bi-box-arrow-up-right"></i></sup></a>, das auch im Rahmen des <a href="https://pudi.lubw.de/detailseite/-/publication/47871" target="_blank" rel="noopener noreferrer">kommunalen Starkregenrisikomanagements in Baden-Württemberg (SRRM-BW) <sup><i class="bi bi-box-arrow-up-right"></i></sup></a> zum Einsatz kam. </p>
+      <p>Als ereignisspezifische Eingangsdaten müssen für RoGeR neben den oben beschriebenen Niederschlagsdaten auch Informationen zur aktuellen Bodenvorfeuchte vorliegen. Für die realen Starkregenereignisse wurden dabei die zum Zeitpunkt des Ereignisses herrschenden Vorfeuchtebedingen (auf Basis einer landesweit für Baden-Württemberg vorliegenden, ebenfalls mit RoGeR erstellten, langjährigen Wasserbilanzsimulation) herangezogen.</p>
+      <p>Für die fiktiven Szenarien wurden aus der oben genannten Wasserbilanzsimulation, über einen Perzentil-Ansatz drei Vorfeuchtebedingungen abgeleitet. Die Vorfeuchte-Option "trocken" entspricht dabei dem 10. Perze ntil der langjährigen nutzbaren Feldkapazität (nFK) in den Sommermonaten; "mittel" entspricht dem 50. Perzentil nFK und "feucht" dem 90. Perzentil nFK. </p>
+      <p>Als Output von RoGeR erhält man pro Niederschlagsintervall (5 Minuten) den sog. Oberflächenabfluss (OA-Werte, hier 5x5m räumliche Auflösung). Das ist der Teil des Niederschlags, der nicht in den Boden infiltrieren kann (im Starkregenfall meistens aufgrund von Infiltrationsüberschuss). </p>
+
+      <h2 id="accumulate_OA">Akkumulation des Oberflächenabflusses</h2>
+      <p>Um die Gefahr durch Überflutungen außerhalb von bestehenden Gerinnestrukturen abzubilden, ist die raum-zeitliche Akkumulation des gebildeten Oberflächenabflusses unerlässlich. Oftmals werden dafür 2d-hydraulische Modelle verwendet, die allerdings den Nachteil haben, dass sie oftmals relativ rechenzeitintensiv sind und somit lange Berechnungszeiten aufweisen. In AVOSS wurde daher zur Akkumulation des Oberflächenabflusses ein, auf einer geomorphologischen Fließakkumulation beruhender Ansatz weiterentwickelt, so dass Überflutungsbereiche mit geringem Rechenzeitbedarf ausgewiesen werden können. </p>
+      <p>Der in AVOSS entwickelte quasi-hydraulische Ansatz AccRo wurde für die im Demonstrator dargestellten SFI-Berechnungen mit einer Rasterweite von 5x5 m iteriert. Als Inputdaten gehen neben den OA-Werten aus RoGeR, auch statische Daten zu Geländemorphologie (DGM) und Rauigkeit mit ein. Die Zuordnung der Rauigkeitswerte zur verschiedenen Landnutzungsklassen erfolgt dabei nach den Vorgaben des <a href="https://pudi.lubw.de/detailseite/-/publication/47871" target="_blank" rel="noopener noreferrer">SRRM-BW <sup><i class="bi bi-box-arrow-up-right"></i></sup></a>. Der Anteil des Niederschlags, der auf Gebäude fällt, wird in der aktuellen Version von AccRo nicht berücksichtigt. Ebenso können keine Verdohlungen oder andere Durchlässe in AccRo berücksichtigt werden. Daher werden im Zuge eines Präprozessing verdohlte Gerinneabschnitte im DGM wieder durchlässig gemacht.</p>
+      <p>Zur Abgrenzung von fluvialen Hochwässern und zur Vermeidung unrealistischer Abflussmengen aufgrund Einheitsberegnung wird im Falle der fiktiven Szenarien die Kapazität der vorhandenen Gerinne ab einer Akkumulationsfläche von mehr als 10km² als unendlich angenommen. Dies bedeutet, dass keinerlei vom Gewässer ausgehende Ausuferung stattfinden kann. Im Falle der realen Starkregenereignisse gibt es diese Begrenzung aufgrund der realen Niederschlagsverteilung nicht. </p>
+      <p>Als Output von AccRo ergeben sich räumliche Daten der maximalen Überflutungstiefe, der maximalen Fließgeschwindigkeit sowie des maximalen spezifischen Abflusses. Aus den Ergebnissen von AccRo lassen sich somit direkt die Sturzflutgefahrenflächen ableiten und ein entsprechender SFI (s.o.) ausweisen.  Zusätzlich können die Parameter auch für großräumigere quantitative Schadensabschätzungen genutzt werden.</p>
+
+      <h2>KNN-basierte quasi-Echtzeit Starkregengefahrenkarten</h2>
+      <p>Aufgrund der teilweise sehr vereinfachten Annahmen und der eher geringen räumlichen Auflösung lässt sich AccRo nur bedingt zur Erstellung detaillierter, straßenzugs- bzw. gebäudespezifischen Überflutungskartierungen, wie sie in den Starkregengefahrenkarten (SRGKs) vorliegt, heranziehen. Daher wird hier im Normallfall auf detaillierte 2d-hydraulische Modellierung zurückgegriffen werden müssen.
+      </p><p>Aufgrund des hohen Rechenzeitbedarfs lässt sich dies aber nur unabhängig vom konkreten Ereignisfall und nur für eine begrenzte Anzahl von Szenarien durchführen. Im Zuge von AVOSS wurde für einzelne Testgebiete (s. Emmendingen) der Einsatz von KI zur Generierung von SRGKs in quasi-Echtzeit erprobt. Dafür wurden mit 2d-hydraulichen Modellen für eine Vielzahl von unterschiedlichen Starkregenereignissen ein großer Datensatz von maximalen Überflutungstiefen und max. Fließgeschwindigkeiten erzeugt. Dieser wurde dann zusammen mit den in die 2d-Modellierung eingehenden OA-Werten dafür genutzt, mehrschichtige künstliche neuronale Netze zu trainieren, die dann wiederum in quasi-Echtzeit für beliebige OA-Inputs detaillierte SRGKs ausweisen kann. Mehr Informationen zu dem in AVOSS verwendeten KNN-Ansatz findet sich <a href="https://www.avoss.uni-freiburg.de/aps/ap-c" target="_blank" rel="noopener noreferrer">hier <sup><i class="bi bi-box-arrow-up-right"></i></sup></a>auf der AVOSS Projekthomepage.</p>
+
+      <h2>Quantitative Schadensmodellierung</h2>
+      <p>Die Identifizierung von zu erwartenden Schadens-Hotspots kann die Entscheidungsfindung im Notfall erheblich unterstützen. Vor diesem Hintergrund wird in AVOSS für die fiktiven Szenarien eine quantitative Schadensabschätzung auf Bezugsebene der Ortslagen durchgeführt, anhand derer man die unterschiedliche Betroffenheit im potentiellen Ereignisfall abschätzen und somit ggf. Vorkehrungen zur Minimierung der Schäden treffen kann.</p>
+      <p>
+      <p>Im Beispiel von Emmendingen wird ein Bayes'sches Netz dazu genutzt, um potentielle Gebäudeschäden im privaten Wohnsektor in Folge von Überflutung zu quantifizieren. In einem solchen Ansatz fließen neben gebäudespezifischen Faktoren auch sozioökonomische Annahmen sowie der Grad der Vorsorge mit ein. Hinsichtlich der Überflutungsparameter sind insb. die maximale Überflutungstiefe und die maximale Fließgeschwindigkeit von Bedeutung. Für die hier dargestellten, ortslagenspezifischen Schadensabschätzungen fließen diese Informationen aus AccRo in das Bayes’sche Netz ein. Mehr Informationen zu der in AVOSS durchgeführten Schadensmodellierung findet sich auf der <a href="https://www.avoss.uni-freiburg.de/aps/ap-d" target="_blank" rel="noopener noreferrer">AVOSS Webseite <sup><i class="bi bi-box-arrow-up-right"></i></sup></a> auf der AVOSS Projekthomepage.</p>
+    </div>
+  </div>
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'js/references.js' %}" defer></script>
+    <style type="text/css">
+      @supports ((position: -webkit-sticky) or (position: sticky)) {
+        .sticky-top {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 165px;
+          z-index: 1019;
+        }
+      }
+      nav#toc>ul>li{
+        width: 100%;
+      }
+      nav#toc *{
+        --bs-gutter-x: 0;
+      }
+      nav#toc .nav > li >a {
+        padding-top: 0;
+        padding-bottom: .8em;
+      }
+      nav#toc .nav > li {
+        padding: 0;
+      }
+    </style>
 {% endblock %}

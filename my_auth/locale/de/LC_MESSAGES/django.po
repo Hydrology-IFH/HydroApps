@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-17 10:08+0100\n"
+"POT-Creation-Date: 2025-03-07 16:43+0100\n"
 "PO-Revision-Date: 2024-02-14 12:13+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -281,7 +281,7 @@ msgstr "Registrieren"
 
 #: .\my_auth\templates\registration\login.html:20
 #: .\my_auth\templates\registration\registration_form.html:10
-#: .\my_auth\templates\users\profile.html:50
+#: .\my_auth\templates\users\profile.html:49
 msgid "Username"
 msgstr "Nutzername"
 
@@ -291,7 +291,7 @@ msgstr "E-Mail/Nutzername"
 
 #: .\my_auth\templates\registration\login.html:22
 #: .\my_auth\templates\registration\registration_form.html:29
-#: .\my_auth\templates\users\profile.html:45
+#: .\my_auth\templates\users\profile.html:44
 msgid "Password"
 msgstr "Passwort"
 
@@ -390,17 +390,17 @@ msgid "Register to Hydro-Apps"
 msgstr "Auf Hydro-Apps Registrieren"
 
 #: .\my_auth\templates\registration\registration_form.html:13
-#: .\my_auth\templates\users\profile.html:52
+#: .\my_auth\templates\users\profile.html:51
 msgid "First Name"
 msgstr "Vorname"
 
 #: .\my_auth\templates\registration\registration_form.html:15
-#: .\my_auth\templates\users\profile.html:54
+#: .\my_auth\templates\users\profile.html:53
 msgid "Last Name"
 msgstr "Nachname"
 
 #: .\my_auth\templates\registration\registration_form.html:18
-#: .\my_auth\templates\users\profile.html:58
+#: .\my_auth\templates\users\profile.html:57
 msgid "personal introduction"
 msgstr "persönliche Vorstellung"
 
@@ -518,7 +518,7 @@ msgid "New Password confirmation"
 msgstr "Neues Passwort bestätigen"
 
 #: .\my_auth\templates\users\password_change_form.html:15
-#: .\my_auth\templates\users\profile.html:97
+#: .\my_auth\templates\users\profile.html:96
 msgid "Save Changes"
 msgstr "Speichere Änderungen"
 
@@ -555,11 +555,11 @@ msgstr "zurück zu ihrem Profil"
 msgid "Send request"
 msgstr "Sende Anfrage"
 
-#: .\my_auth\templates\users\profile.html:47
+#: .\my_auth\templates\users\profile.html:46
 msgid "Change Password"
 msgstr "Ändere Passwort"
 
-#: .\my_auth\templates\users\profile.html:68
+#: .\my_auth\templates\users\profile.html:67
 msgid ""
 "This information will get used to decide whether you are granted access to "
 "some ressources like e.g. the WeatherDB database. The information will only "
@@ -573,45 +573,45 @@ msgstr ""
 "an der Uni Freiburg Hydrologie oder ich bin Student der Hydrologie in "
 "Freiburg..."
 
-#: .\my_auth\templates\users\profile.html:73
+#: .\my_auth\templates\users\profile.html:72
 msgid "WeatherDB"
 msgstr "WeatherDB"
 
-#: .\my_auth\templates\users\profile.html:74
+#: .\my_auth\templates\users\profile.html:73
 msgid "specific profile settings for the active app"
 msgstr "spezifische Profileigenschaften für die aktive App"
 
-#: .\my_auth\templates\users\profile.html:82
+#: .\my_auth\templates\users\profile.html:81
 msgid "Database access"
 msgstr "Datenbankzugang"
 
-#: .\my_auth\templates\users\profile.html:83
+#: .\my_auth\templates\users\profile.html:82
 msgid "You haven't yet been granted access to the WeatherDB database."
 msgstr "Ihnen wurde noch kein Zugang zur WeatherDB-Datenbank gewährt."
 
-#: .\my_auth\templates\users\profile.html:84
+#: .\my_auth\templates\users\profile.html:83
 msgid "request access"
 msgstr "Zugang anfragen"
 
-#: .\my_auth\templates\users\profile.html:88
+#: .\my_auth\templates\users\profile.html:87
 msgid "maximal Download"
 msgstr "maximaler Download"
 
-#: .\my_auth\templates\users\profile.html:119
+#: .\my_auth\templates\users\profile.html:118
 msgid "Your E-Mail adress got confirmed"
 msgstr "Ihre E-Mail-Adresse wurde bestätigt"
 
-#: .\my_auth\templates\users\profile.html:122
+#: .\my_auth\templates\users\profile.html:121
 msgid "You still have to confirm your E-Mail adress"
 msgstr "Sie müssen noch Ihre E-Mail-Adresse bestätigen"
 
-#: .\my_auth\templates\users\profile.html:131
-#: .\my_auth\templates\users\profile.html:144
-#: .\my_auth\templates\users\profile.html:156
+#: .\my_auth\templates\users\profile.html:130
+#: .\my_auth\templates\users\profile.html:143
+#: .\my_auth\templates\users\profile.html:155
 msgid "Resend an E-mail confirmation mail."
 msgstr "E-Mail Bestätigung erneut zuschicken."
 
-#: .\my_auth\templates\users\profile.html:159
+#: .\my_auth\templates\users\profile.html:158
 msgid ""
 "You Account still has to get activated. <br>If your E-Mail is confirmed and "
 "you waited for 2 ore more days and your account is still not active, please "
@@ -621,19 +621,19 @@ msgstr ""
 "Sie 2 oder mehr Tage gewartet haben und Ihr Konto immer noch nicht aktiv "
 "ist, schreiben Sie bitte an"
 
-#: .\my_auth\templates\users\profile.html:174
+#: .\my_auth\templates\users\profile.html:173
 msgid "Renew the API Password"
 msgstr "Erneure das API Passwort"
 
-#: .\my_auth\templates\users\profile.html:192
+#: .\my_auth\templates\users\profile.html:191
 msgid "Copy the API Password to your clipboard"
 msgstr "Kopiere das API Passwort"
 
-#: .\my_auth\templates\users\profile.html:202
+#: .\my_auth\templates\users\profile.html:201
 msgid "Show additional infos on how to use this API-Password"
 msgstr ""
 
-#: .\my_auth\templates\users\profile.html:228
+#: .\my_auth\templates\users\profile.html:227
 msgid ""
 "Hello Admin, \\n\\nI need a higher download limit for the weatherDB website, "
 "because: \\n... fill out ...\\n\\nPlease update my Account.\\n\\nSincerely,"
@@ -643,23 +643,7 @@ msgstr ""
 "Anwendung, weil ich \\n... füllen Sie dies aus...\\n\\nBitte aktualisieren "
 "Sie mein Konto.\\n\\nMit freundlichen Grüßen,\\n"
 
-#: .\my_auth\templates\users\profile.html:229
-#: .\my_auth\templates\users\profile.html:233
+#: .\my_auth\templates\users\profile.html:228
+#: .\my_auth\templates\users\profile.html:232
 msgid "Request a higher download limit"
 msgstr "Beantrage ein höheres Download-Limit"
-
-#~ msgid "Download your personal secret settings file"
-#~ msgstr "Laden Sie Ihre persönliche \"secret settings\" Datei herunter"
-
-#~ msgid ""
-#~ "Designates whether the user can see features that didn't yet get released."
-#~ msgstr "Gibt an ob der/die Nutzer*in unveröffentlichte Inhalte sehen kann."
-
-#~ msgid ""
-#~ "If you won't logg in during the next 30 days, we will remove your account."
-#~ msgstr ""
-#~ "Wenn Sie sich innerhalb der nächsten 30 Tage nicht einloggen, werden wir "
-#~ "Ihr Konto löschen."
-
-#~ msgid "Hydro-Apps Website"
-#~ msgstr "Hydro-Apps Webseite"
