@@ -84,7 +84,7 @@
   "onboarding_menu_region_description": "Alternativ zum auswählen der Region auf der Karte, kannst du auch eine Region aus der Dropdown-Liste auswählen.",
   "onboarding_menu_region_title": "Region auswählen",
   "popover_SFGF_switch_label": "Sturzflutgefährdete Fläche",
-  "popover_damagePerHoushold_switch_label": "pro Haushalte",
+  "popover_damagePerHoushold_switch_label": "normiert auf Haushalte",
   "tooltip_sfgf_1": "Sturzflutgefährdete Fläche",
   "tooltip_sfi_0": "keine bis geringe Gefahr",
   "tooltip_sfi_1": "mäßige Gefahr",

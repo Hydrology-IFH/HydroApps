@@ -84,7 +84,7 @@
   "onboarding_menu_region_description": "Alternatively to selecting the region on the map, you can also select a region from the dropdown list.",
   "onboarding_menu_region_title": "Select Region",
   "popover_SFGF_switch_label": "Heavy rain hazard area",
-  "popover_damagePerHoushold_switch_label": "per housholds",
+  "popover_damagePerHoushold_switch_label": "normalized on housholds",
   "tooltip_sfgf_1": "Pluvial flood hazard area. The area where a pluvial flood would create a hazard for humans or infrastructure.",
   "tooltip_sfi_0": "no to low risk",
   "tooltip_sfi_1": "moderate risk",

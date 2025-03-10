@@ -19,6 +19,7 @@ class BaseLayer {
                 condition,
                 openlayer_options,
                 valueConverter,
+                valueConverterConfig,
                 ...kwargs }) {
 
     if (this.constructor === BaseLayer) {
@@ -39,6 +40,7 @@ class BaseLayer {
     this.condition = condition;
     this.openlayer_options = openlayer_options;
     this._valueConverter = valueConverter;
+    this.valueConverterConfig = valueConverterConfig;
     this.relevantConfigs = [
       'region', 'kind', 'date', 'sri', 'duration', 'soilMoisture',
       "preparedness", "damageKind", "show_sfgf", "region_selection_active"];
@@ -107,13 +109,8 @@ class BaseLayer {
   }
 
   get valueConverter() {
-    if (this._valueConverter instanceof Function) {
-      let params = /^\(([\s\S]*?)\)/.exec(this._valueConverter);
-      if (params) {
-        if (params[1] == "config") {
-          return this._valueConverter(this.config);
-        }
-      }
+    if (this.valueConverterConfig instanceof Function) {
+      return this.valueConverterConfig(this.config);
     }
     return this._valueConverter;
   }
