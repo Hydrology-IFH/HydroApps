@@ -1,5 +1,5 @@
 <script setup>
-  import { onMounted, ref, computed } from 'vue';
+  import { onMounted, ref, computed, watchEffect } from 'vue';
   import { Position, Handle } from '@vue-flow/core';
   import Popover from 'primevue/popover';
 
@@ -58,6 +58,10 @@
           placement: "top",
           container: "#fullscreen-wrapper",
         })
+
+      watchEffect(() => {
+        tooltip.value.setContent({'.tooltip-inner': props.data.tooltip})
+      })
     }
   })
 </script>
@@ -66,7 +70,7 @@
     <div class="custom-node bs-primary-bg-subtle"
         ref="nodeRef"
         :class="nodeClasses"
-        :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null"
+        :data-bs-custom-class="data.tooltip?.length > 120? 'fn-tooltip-l': data.tooltip?.length > 80? 'fn-tooltip-md':null"
         @click="onClick">
         {{ data.label }}
         <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>

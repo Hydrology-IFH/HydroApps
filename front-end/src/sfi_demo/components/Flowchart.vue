@@ -15,11 +15,15 @@
   const { onPaneReady } = flowStore
 
   const nodes = computed(() => {
-    return nodesInit.map(node => (
-      {
+    return nodesInit.map(node => {
+      if (node.data.tooltipConfig) {
+        node.data.tooltip = computed(() => node.data.tooltipConfig({ config }))
+      }
+      return {
         ...node,
         hidden: node.condition !== undefined ? !node.condition({ config }) : false
-      }))
+      }
+    })
   })
   const edges = ref(edgesInit)
 

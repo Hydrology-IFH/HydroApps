@@ -17,7 +17,7 @@ export const nodesInit = [
     data: {
       label: i18n.t('node_soil_moisture_label'),
       layerID: 'soil_moisture',
-      tooltip: i18n.t('node_soil_moisture_tooltip'),
+      tooltip: i18n.t('node_soil_moisture_tooltip')
     },
   },
   {
@@ -28,7 +28,7 @@ export const nodesInit = [
       label: i18n.t('node_precipitation_label'),
       icon: 'bi-cloud-rain-heavy',
       layerID: 'precipitation',
-      tooltip: i18n.t('node_precipitation_tooltip'),
+      tooltipConfig: ({ config }) => config.kind == "matrix" ? i18n.t('node_precipitation_tooltip_matrix') : i18n.t('node_precipitation_tooltip_event'),
     },
   },
   {
