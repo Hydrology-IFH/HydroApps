@@ -1,5 +1,5 @@
 {
-  "label_layer_ai_depth": "maximale Überfluttungstiefe",
+  "label_layer_ai_depth": "maximale Überflutungstiefe",
   "label_layer_ai_speed": "maximale Fließgeschwindigkeit",
   "label_layer_damage": "Schadenssumme im Wohnsektor",
   "label_layer_oa": "Oberflächenabfluss",
@@ -47,8 +47,8 @@
   "menu_region_label": "Region",
   "menu_region_map_tooltip": "Wähle eine Beispielregionen auf der Karte aus",
   "menu_region_tooltip": "Wähle eine der Beispielregionen aus",
-  "node_ai_depth_label": "Überfluttungstiefe",
-  "node_ai_depth_tooltip": "Die von der KI bestimmte maximale Überfluttungstiefe",
+  "node_ai_depth_label": "Überflutungstiefe",
+  "node_ai_depth_tooltip": "Die von der KI bestimmte maximale Überflutungstiefe",
   "node_ai_label": "KI",
   "node_ai_speed_label": "Fließgeschwindigkeit",
   "node_ai_speed_tooltip": "Die von der KI bestimmte maximale Fließgeschwindigkeit des Wassers",
