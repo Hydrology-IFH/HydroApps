@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-07 16:43+0100\n"
+"POT-Creation-Date: 2025-03-10 17:05+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -42,11 +42,11 @@ msgstr ""
 msgid "This web tool is .... "
 msgstr ""
 
-#: .\main\settings.py:249
+#: .\main\settings.py:252
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:250
+#: .\main\settings.py:253
 msgid "English"
 msgstr "Englisch"
 

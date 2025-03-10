@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-07 16:43+0100\n"
-"PO-Revision-Date: 2024-07-12 15:21+0200\n"
+"POT-Creation-Date: 2025-03-10 17:26+0100\n"
+"PO-Revision-Date: 2025-03-10 17:12+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -17,7 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
+
+#: .\sfi_demo\forms.py:13
+msgid "Message"
+msgstr "Nachricht"
+
+#: .\sfi_demo\forms.py:31
+msgid "Feedback from AVOSS SFI-Demonstrator"
+msgstr "Feedback zum AVOSS Web-Demonstrator"
+
+#: .\sfi_demo\forms.py:44
+msgid "Feedback for AVOSS Web-Demonstrator sent"
+msgstr "Feedback zum AVOSS Web-Demonstrator gesendet"
 
 #: .\sfi_demo\templates\sfi_demo\app.html:13
 msgid "SFI Demonstrator"
@@ -68,7 +80,7 @@ msgid "Home"
 msgstr "Home"
 
 #: .\sfi_demo\templates\sfi_demo\base.html:22
-#: .\sfi_demo\templates\sfi_demo\method.html:20
+#: .\sfi_demo\templates\sfi_demo\method.html:29
 msgid "Method"
 msgstr "Methode"
 
@@ -76,3 +88,77 @@ msgstr "Methode"
 msgid "Demonstrator"
 msgstr "Demonstrator"
 
+#: .\sfi_demo\templates\sfi_demo\base.html:24
+msgid "Feedback"
+msgstr "Feedback"
+
+#: .\sfi_demo\templates\sfi_demo\email_feedback.html:2
+#: .\sfi_demo\templates\sfi_demo\email_feedback_confirmation.html:2
+msgid "Hello"
+msgstr "Hallo"
+
+#: .\sfi_demo\templates\sfi_demo\email_feedback.html:4
+msgid "You received feedback from"
+msgstr "Sie haben Feedback von"
+
+#: .\sfi_demo\templates\sfi_demo\email_feedback.html:4
+msgid "on the AVOSS Web-Demonstrator"
+msgstr "zum AVOSS Web-Demonstrator erhalten"
+
+#: .\sfi_demo\templates\sfi_demo\email_feedback.html:9
+#: .\sfi_demo\templates\sfi_demo\email_feedback_confirmation.html:11
+msgid ""
+"If you think, it's not you, then just ignore this email.\n"
+"This is an automatic generated E-mail, please don't answer it."
+msgstr ""
+"Wenn Sie der Meinung sind, dass das nicht für Sie ist, dann ignorieren Sie "
+"diese E-Mail einfach.\n"
+"Dies ist eine automatisch generierte E-Mail, bitte beantworten Sie sie nicht."
+
+#: .\sfi_demo\templates\sfi_demo\email_feedback_confirmation.html:4
+msgid "Thanks for your feedback for our AVOSS Web-Demonstrator."
+msgstr "Vielen Dank für Ihr Feedback zu unserem AVOSS Web-Demonstrator."
+
+#: .\sfi_demo\templates\sfi_demo\email_feedback_confirmation.html:6
+msgid "Here's a copy of your message to us:"
+msgstr "Hier ist eine Kopie Ihrer Nachricht an uns:"
+
+#: .\sfi_demo\templates\sfi_demo\feedback.html:9
+msgid ""
+"Our products are currently still in the test phase. We would therefore be "
+"pleased to receive constructive feedback on the further development of our "
+"products. If you have any comments, suggestions or criticism for us, please "
+"feel free to write to us using the following contact form."
+msgstr ""
+"Unsere Produkte sind derzeit noch in der Testphase. Wir würden uns daher "
+"über konstruktives Feedback zur Weiterentwicklung der Produkte freuen. "
+"Sollten Sie Anmerkungen, Anregungen oder Kritik für uns haben, dann "
+"schreiben Sie uns doch gerne über das folgende Kontakformular."
+
+#: .\sfi_demo\templates\sfi_demo\feedback.html:15
+msgid "Thank you"
+msgstr "Vielen Dank"
+
+#: .\sfi_demo\templates\sfi_demo\feedback.html:16
+msgid ""
+"Your message has been sent successfully and you should have received a copy "
+"via E-Mail."
+msgstr ""
+"Ihre Nachricht wurde erfolgreich gesendet und Sie sollten eine Kopie per E-"
+"Mail erhalten haben."
+
+#: .\sfi_demo\templates\sfi_demo\feedback.html:21
+msgid "Error"
+msgstr "Fehler"
+
+#: .\sfi_demo\templates\sfi_demo\feedback.html:22
+msgid ""
+"An error occurred while sending your message. Please try again later or "
+"contact us via E-Mail."
+msgstr ""
+"Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie "
+"es später erneut oder kontaktieren Sie uns per E-Mail."
+
+#: .\sfi_demo\templates\sfi_demo\feedback.html:30
+msgid "Send"
+msgstr "Senden"

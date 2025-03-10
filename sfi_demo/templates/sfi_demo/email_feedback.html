@@ -1,0 +1,10 @@
+{% load i18n %}
+{% trans "Hello" %} {{ user.first_name }} {{ user.last_name }},
+
+{% trans "You received feedback from" %} {{name}} {% trans "on the AVOSS Web-Demonstrator" %}:
+
+{{ message }}
+
+--------------------------------------------------------------
+{% blocktrans %}If you think, it's not you, then just ignore this email.
+This is an automatic generated E-mail, please don't answer it.{% endblocktrans %}

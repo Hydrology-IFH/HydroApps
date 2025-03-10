@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.urls import path
 
-from .views import (home_view, app_view, method_view)
+from .views import (home_view, app_view, method_view, FeedbackView)
 
 app_name = 'sfi_demo'
 urlpatterns = [
     path('', home_view, name="home"),
     path('app/', app_view, name="app"),
-    path('method/', method_view, name="method")
+    path('method/', method_view, name="method"),
+    path('feedback/', FeedbackView.as_view(), name="feedback"),
 ]

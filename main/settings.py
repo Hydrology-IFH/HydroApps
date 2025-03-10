@@ -203,7 +203,10 @@ if "EMAIL_HOST" in dir(secrets):
     EMAIL_HOST_PASSWORD = secrets.EMAIL_HOST_PASSWORD
     EMAIL_USE_SSL = secrets.EMAIL_USE_SSL
     EMAIL_USE_TLS = secrets.EMAIL_USE_TLS
-    DEFAULT_FROM_EMAIL = secrets.EMAIL_HOST_USER
+    if "DEFAULT_FROM_EMAIL" in dir(secrets):
+        DEFAULT_FROM_EMAIL = secrets.DEFAULT_FROM_EMAIL
+    else:
+        DEFAULT_FROM_EMAIL = secrets.EMAIL_HOST_USER
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # set Logging

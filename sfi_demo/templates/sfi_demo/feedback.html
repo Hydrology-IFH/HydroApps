@@ -1,0 +1,34 @@
+{% extends base_template %}
+{% load static %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<h1>Feedback</h1>
+<p>{% blocktrans %}Our products are currently still in the test phase. We would therefore be pleased to receive constructive feedback on the further development of our products. If you have any comments, suggestions or criticism for us, please feel free to write to us using the following contact form.{% endblocktrans %}</p>
+
+{% bootstrap_messages %}
+<form method="post" >
+  {% if success %}
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">{% trans "Thank you" %}</h4>
+      <p>{% trans "Your message has been sent successfully and you should have received a copy via E-Mail." %}</p>
+    </div>
+  {% else %}
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">{% trans "Error" %}</h4>
+      <p>{% trans "An error occurred while sending your message. Please try again later or contact us via E-Mail." %}</p>
+    </div>
+    {% endif %}
+    {% csrf_token %}
+    {% bootstrap_field form.name show_label='skip' addon_before="Name" form_group_class="form-group input-group mb-3" layout="horizontal" %}
+    {% bootstrap_field form.email show_label='skip' addon_before='E-Mail' layout="horizontal"%}
+    {% bootstrap_field form.message show_label='skip' layout="horizontal" %}
+    {{ form.hcaptcha }}
+    <button type="submit" class="btn btn-primary">{% trans "Send" %}</button>
+  {% endif %}
+</form>
+
+{% endblock %}
