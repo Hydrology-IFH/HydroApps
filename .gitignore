@@ -14,3 +14,4 @@ front-end/src/test*
 front-end/dist
 .vite
 builds
+.venv

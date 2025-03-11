@@ -13,7 +13,7 @@
   "legend_ai_sim_area": "simulation area",
   "map_error_header": "Error loading the layer",
   "map_error_msg": "There was a problem getting this layer. We are sorry for the inconvenience.<br>Try the other layers or come back later",
-  "map_notification_select_region": "Select a region",
+  "map_notification_select_region": "Select a region!<br>We are working on adding more regions",
   "menu_PrecipitationForce_label": "Precipitation force",
   "menu_PrecipitationForce_tooltip": "The force of the precipitation event as a qualitative category<br>The underlying quantities were derived as average values based on KOSTRA-V2020.",
   "menu_SoilMoisture_avg": "medium",
