@@ -379,7 +379,7 @@ export const LAYERS = [
     file: "SFI_circ_A3.tif",
     name: i18n.t("label_layer_sfi"),
     unit: "",
-    decimals: 1,
+    decimals: Infinity,
     valueConverter: (val) => {
       return sfiCats.filter((cat) => cat.range[0] <= val && val < cat.range[1])[0].sfi;
     },
@@ -754,9 +754,6 @@ export const LAYERS = [
         }
       }
     },
-    // valueConverter: (val) => (val < 5_000) ? "<5k" : (
-    //   (val < 100_000)? Math.round(val / 1_000) * 1_000 : Math.round(val / 10_000) * 10_000
-    // ),
     valueConverterConfig: (config) => {
       if (config.damagePerHoushold) {
         return (val, { features }) => {
