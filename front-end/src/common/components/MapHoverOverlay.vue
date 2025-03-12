@@ -102,6 +102,7 @@
     }
   },
   { deep: false, flush: 'sync' });
+  watch(valueConverter, updateHoverText, { deep: false, flush: 'sync' });
 
   // create overlay
   onMounted(() => {
