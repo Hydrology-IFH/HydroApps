@@ -2,11 +2,16 @@ import i18n from 'i18next';
 
 import PopoverSFGF from './PopoverSFGF.vue';
 import PopoverDamagePerHoushold from './PopoverDamagePerHoushold.vue';
+import { conditionAI, conditionDamage } from '~/stores/Layer/LAYERS.js';
 
 const edgeType = "custom";
 const nodeType = "custom";
 
 const langCode = location.pathname.split("/")[1];
+
+const conditionSVEmpty = ({ config }) => {
+  return conditionDamage({ config }) && !conditionAI({ config })
+}
 
 // nodes definition
 export const nodesInit = [
@@ -70,37 +75,70 @@ export const nodesInit = [
     position: { x: 45, y: 0 },
     type: nodeType,
     data: {
-      label: i18n.t('node_ai_depth_label'),
+      label: i18n.t('node_depth_label'),
       layerID: 'ai_depth',
       tooltip: i18n.t('node_ai_depth_tooltip')
     },
-    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
-    parentNode: 'ai'
+    condition: conditionAI,
+    parentNode: 'ai_wrapper'
   },
   {
     id: 'ai_speed',
     position: langCode == "de"? { x: 210, y: 0 } : { x: 190, y: 0 },
     type: nodeType,
     data: {
-      label: i18n.t('node_ai_speed_label'),
+      label: i18n.t('node_speed_label'),
       layerID: 'ai_speed',
       tooltip: i18n.t('node_ai_speed_tooltip')
     },
-    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
-    parentNode: 'ai',
+    condition: conditionAI,
+    parentNode: 'ai_wrapper',
     expandParent: true
   },
   {
-    id: 'ai',
+    id: 'ai_wrapper',
     position: langCode == "de"? { x: 300, y: 0 } : { x: 310, y: 0 },
     type: "wrapper",
     data: {
-      layerID: 'ai',
       icon: 'bi-stars',
-      label: i18n.t('node_ai_label'),
-      tooltip: i18n.t('node_ai_tooltip'),
+      label: i18n.t('node_ai_wrapper_label'),
+      tooltip: i18n.t('node_ai_wrapper_tooltip'),
     },
-    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionAI,
+  },
+  // speed and depth nodes if no AI available
+  {
+    id: 'empty_depth',
+    position: { x: 55, y: 0 },
+    type: nodeType,
+    data: {
+      label: i18n.t('node_depth_label'),
+      tooltip: i18n.t('node_empty_depth_tooltip')
+    },
+    condition: conditionSVEmpty,
+    parentNode: 'sv_wrapper'
+  },
+  {
+    id: 'empty_speed',
+    position: langCode == "de"? { x: 220, y: 0 } : { x: 200, y: 0 },
+    type: nodeType,
+    data: {
+      label: i18n.t('node_speed_label'),
+      tooltip: i18n.t('node_empty_speed_tooltip')
+    },
+    condition: conditionSVEmpty,
+    parentNode: 'sv_wrapper',
+    expandParent: true
+  },
+  {
+    id: 'sv_wrapper',
+    position: langCode == "de"? { x: 290, y: 0 } : { x: 300, y: 0 },
+    type: "wrapper",
+    data: {
+      label: i18n.t('node_sv_wrapper_label'),
+      tooltip: i18n.t('node_sv_wrapper_tooltip'),
+    },
+    condition: conditionSVEmpty,
   },
   {
     id: 'damage',
@@ -112,7 +150,7 @@ export const nodesInit = [
       tooltip: i18n.t('node_damage_tooltip'),
       popover: PopoverDamagePerHoushold
     },
-    condition: ({ config }) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionDamage,
   }
 ]
 
@@ -146,14 +184,28 @@ export const edgesInit = [
     id: 'OA->AI',
     source: 'OA',
     sourceHandle: 'source-top',
-    target: 'ai',
+    target: 'ai_wrapper',
     type: edgeType,
   },
   {
     id: 'AI->damage',
-    source: 'ai',
+    source: 'ai_wrapper',
     sourceHandle: 'source-bottom',
     target: 'damage',
     type: edgeType,
   },
+  {
+    id: 'OA->empty',
+    source: 'OA',
+    sourceHandle: 'source-top',
+    target: 'sv_wrapper',
+    type: edgeType
+  },
+  {
+    id: 'empty->damage',
+    source: 'sv_wrapper',
+    sourceHandle: 'source-bottom',
+    target: 'damage',
+    type: edgeType
+  }
 ]

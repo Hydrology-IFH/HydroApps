@@ -1,6 +1,19 @@
 import i18n from 'i18next';
 import { Fill, Stroke, Style } from 'ol/style';
 
+
+// condition functions
+export const conditionAI = ({ config }) => {
+  return config.kind == "matrix" &&
+    (config.region == "Emmendingen" || config.region == "Karlsbad");
+}
+
+export const conditionDamage = ({ config }) => {
+  return config.kind == "matrix" &&
+    (config.region == "Emmendingen" || config.region == "Herrstein" || config.region == "Wieslauf");
+}
+
+// revlevant constants
 const sfiCats = [
   { sfi: 0, range: [0, 0.5] },
   { sfi: 1, range: [0.5, 2] },
@@ -51,6 +64,7 @@ const aiSpeedLegendLabels = {
 
 const relevantConfigsDefaults = ["region", "kind", "date", "region_selection_active"]
 
+// Layer definitions
 export const LAYERS = [
   {
     id: "precipitation",
@@ -489,7 +503,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration"],
-    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionAI,
     backupLayer: "OA",
     style: {
       color: [
@@ -524,7 +538,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration"],
-    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionAI,
     backupLayer: "OA",
     style: {
       color: [
@@ -562,7 +576,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration", "damageKind", "preparedness", "damagePerHoushold"],
-    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionDamage,
     backupLayer: "SFI",
     style: {
       options: {

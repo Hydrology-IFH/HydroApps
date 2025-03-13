@@ -7,6 +7,7 @@
   import WrapperNode from './flowchart/WrapperNode.vue';
   import CustomEdge from './flowchart/CustomEdge.vue';
   import { nodesInit, edgesInit } from './flowchart/flowElements';
+  import { conditionAI, conditionDamage } from '~/stores/Layer/LAYERS.js';
   import { useConfig } from '~/stores/config.js';
 
   const layerLib = useLayerLib();
@@ -28,7 +29,7 @@
   const edges = ref(edgesInit)
 
   const nodesWidthRaw = computed(() => {
-    if (config.region == "Emmendingen" && config.kind == "matrix") {
+    if (conditionAI({config}) || conditionDamage({config})) {
       return 750
     } else {
       return 580

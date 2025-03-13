@@ -21,7 +21,7 @@
   const PopoverRef = ref(null)
 
   // Layer
-  const layer = ref(props.layerLib.getLayer(props.data.layerID) ?? null)
+  const layer = ref(props.data.layerID? props.layerLib.getLayer(props.data.layerID) ?? null : null)
   const hasLayer = computed(() => {
     return layer.value != null
   })
