@@ -69,7 +69,7 @@
   "onboarding_button_finish": "Schließen",
   "onboarding_button_next": "Weiter",
   "onboarding_button_previous": "Zurück",
-  "onboarding_button_tooltip": "Starte eine Einführung in den SFI Demonstrator um die Funktionalitäten kennen zu lernen",
+  "onboarding_button_tooltip": "Starte eine Einführung in den AVOSS Web-Demonstrator um die Funktionalitäten kennen zu lernen",
   "onboarding_flowchart_description": "Dieses Flußdiagramm repräsentiert die Modellkette. Durch Klicken auf einen der Knoten können Sie die verschiedenen Layer auswählen, die auf der Karte angezeigt werden sollen.",
   "onboarding_flowchart_title": "Kartenebene auswählen",
   "onboarding_map_layer_description": "Nachdem eine Region ausgewählt wurde, wird der im Fließdiagramm ausgewählte Layer auf der Karte angezeigt. Wenn Sie mit der Maus über die Karte fährst, sehen Sie die genauen Werte des Layers.",

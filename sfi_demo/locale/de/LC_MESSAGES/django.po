@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-10 17:38+0100\n"
+"POT-Creation-Date: 2025-03-14 16:12+0100\n"
 "PO-Revision-Date: 2025-03-10 17:12+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -31,10 +31,6 @@ msgstr "Feedback zum AVOSS Web-Demonstrator"
 msgid "Feedback for AVOSS Web-Demonstrator sent"
 msgstr "Feedback zum AVOSS Web-Demonstrator gesendet"
 
-#: .\sfi_demo\templates\sfi_demo\app.html:13
-msgid "SFI Demonstrator"
-msgstr "SFI Demonstrator"
-
 #: .\sfi_demo\templates\sfi_demo\app.html:14
 msgid ""
 "The flash flood index can be used to demonstrate the different regional "
@@ -43,7 +39,12 @@ msgid ""
 "interactive web demonstrator, you can discover both possible applications "
 "for selected test regions."
 msgstr ""
-"Der Sturzflut-Index kann dafür herangezogen werden, um anhand fiktiver Szenarien die regional unterschiedliche Betroffenheit gegenüber pluvialen Sturzflutereignissen zu demonstrieren. Er kann aber auch als Warnindex im realen Ereignisfall verwendet werden. Hier im interaktiven Web-Demonstrator lassen sich für ausgewählte Testregionen beide Anwendungsmöglichkeiten entdecken."
+"Der Sturzflut-Index kann dafür herangezogen werden, um anhand fiktiver "
+"Szenarien die regional unterschiedliche Betroffenheit gegenüber pluvialen "
+"Sturzflutereignissen zu demonstrieren. Er kann aber auch als Warnindex im "
+"realen Ereignisfall verwendet werden. Hier im interaktiven Web-Demonstrator "
+"lassen sich für ausgewählte Testregionen beide Anwendungsmöglichkeiten "
+"entdecken."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:16
 msgid ""
@@ -51,7 +52,9 @@ msgid ""
 "under Method). It also allows you to select the individual data levels for "
 "visualization."
 msgstr ""
-"Das blaue Flussdiagramm abstrahiert die zugrundeliegende Methodik (mehr Informationen unter Methode). Es ermöglicht weiterhin, die einzelnen Datenebenen zur Visualisierung anzuwählen."
+"Das blaue Flussdiagramm abstrahiert die zugrundeliegende Methodik (mehr "
+"Informationen unter Methode). Es ermöglicht weiterhin, die einzelnen "
+"Datenebenen zur Visualisierung anzuwählen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:17
 msgid ""
@@ -60,7 +63,10 @@ msgid ""
 "scenarios, you can independently change the parameters influencing the flash "
 "flood in order to see their effects on the regional impact."
 msgstr ""
-"Im \"Ereignis-Optionen\"  Menü können Sie räumlich zwischen Regionen sowie inhaltlich zwischen realen Ereignissen und fiktiven Szenarien wechseln. Bei den Szenarien können Sie selbständig die sturzflutbeeinflussenden Parameter ändern, um deren Auswirkungen auf die regionale Betroffenheit zu sehen."
+"Im \"Ereignis-Optionen\"  Menü können Sie räumlich zwischen Regionen sowie "
+"inhaltlich zwischen realen Ereignissen und fiktiven Szenarien wechseln. Bei "
+"den Szenarien können Sie selbständig die sturzflutbeeinflussenden Parameter "
+"ändern, um deren Auswirkungen auf die regionale Betroffenheit zu sehen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:22
 msgid "loading ..."
@@ -75,7 +81,7 @@ msgstr ""
 "zeigen."
 
 #: .\sfi_demo\templates\sfi_demo\base.html:21
-#: .\sfi_demo\templates\sfi_demo\home.html:19
+#: .\sfi_demo\templates\sfi_demo\home.html:21
 msgid "Home"
 msgstr "Home"
 
