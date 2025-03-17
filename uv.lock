@@ -2,9 +2,15 @@ version = 1
 revision = 1
 requires-python = ">=3.10"
 resolution-markers = [
-    "python_full_version >= '3.12'",
-    "python_full_version == '3.11.*'",
-    "python_full_version < '3.11'",
+    "python_full_version >= '3.12' and sys_platform == 'linux'",
+    "python_full_version >= '3.12' and sys_platform == 'win32'",
+    "python_full_version >= '3.12' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version == '3.11.*' and sys_platform == 'linux'",
+    "python_full_version == '3.11.*' and sys_platform == 'win32'",
+    "python_full_version == '3.11.*' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version < '3.11' and sys_platform == 'linux'",
+    "python_full_version < '3.11' and sys_platform == 'win32'",
+    "python_full_version < '3.11' and sys_platform != 'linux' and sys_platform != 'win32'",
 ]
 
 [[package]]
@@ -74,7 +80,7 @@ name = "cffi"
 version = "1.17.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "pycparser" },
+    { name = "pycparser", marker = "sys_platform == 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fc/97/c783634659c2920c3fc70419e3af40972dbaf758daa229a7d6ea6135c90d/cffi-1.17.1.tar.gz", hash = "sha256:1c39c6016c32bc48dd54561950ebd6836e1670f2ae46128f67cf49e789c52824", size = 516621 }
 wheels = [
@@ -234,7 +240,7 @@ name = "cryptography"
 version = "44.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cffi", marker = "platform_python_implementation != 'PyPy'" },
+    { name = "cffi", marker = "platform_python_implementation != 'PyPy' and sys_platform == 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/cd/25/4ce80c78963834b8a9fd1cc1266be5ed8d1840785c0f2e1b73b8d128d505/cryptography-44.0.2.tar.gz", hash = "sha256:c63454aa261a0cf0c5b4718349629793e9e634993538db841165b3df74f37ec0", size = 710807 }
 wheels = [
@@ -445,6 +451,62 @@ wheels = [
 ]
 
 [[package]]
+name = "gdal"
+version = "3.10.1"
+source = { registry = "https://nathanjmcdougall.github.io/geospatial-wheels-index/" }
+resolution-markers = [
+    "python_full_version >= '3.12' and sys_platform == 'win32'",
+    "python_full_version == '3.11.*' and sys_platform == 'win32'",
+    "python_full_version < '3.11' and sys_platform == 'win32'",
+]
+wheels = [
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp310-cp310-win32.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp310-cp310-win_amd64.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp311-cp311-win32.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp311-cp311-win_amd64.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp311-cp311-win_arm64.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp312-cp312-win32.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp312-cp312-win_amd64.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp312-cp312-win_arm64.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp313-cp313-win32.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp313-cp313-win_amd64.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-cp313-cp313-win_arm64.whl" },
+    { url = "https://github.com/cgohlke/geospatial-wheels/releases/download/v2025.1.20/GDAL-3.10.1-pp310-pypy310_pp73-win_amd64.whl" },
+]
+
+[[package]]
+name = "gdal"
+version = "3.10.2"
+source = { registry = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/simple" }
+resolution-markers = [
+    "python_full_version >= '3.12' and sys_platform == 'linux'",
+    "python_full_version == '3.11.*' and sys_platform == 'linux'",
+    "python_full_version < '3.11' and sys_platform == 'linux'",
+]
+sdist = { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/c0cffa8ce9f9c0fa287fcc20b8271c519ca054958420e5880be8bedb432753f4/gdal-3.10.2.tar.gz", hash = "sha256:c0cffa8ce9f9c0fa287fcc20b8271c519ca054958420e5880be8bedb432753f4" }
+wheels = [
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/c803f9328e3810192ddb2811f90e8ba79c1e5c1aba784e81e39b8c1b81c0f140/GDAL-3.10.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c803f9328e3810192ddb2811f90e8ba79c1e5c1aba784e81e39b8c1b81c0f140" },
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/2db998f7a26add97244632bda4e2fbd80d7501938b3ea6b88da9881f497f37e9/GDAL-3.10.2-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:2db998f7a26add97244632bda4e2fbd80d7501938b3ea6b88da9881f497f37e9" },
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/be6c523d8766c1c172a56b3217a67705e21a7296e33116a61f521e87d75fd168/GDAL-3.10.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:be6c523d8766c1c172a56b3217a67705e21a7296e33116a61f521e87d75fd168" },
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/68229393ab3dcd1b682c3340aa960ce893ae569d93602c51807d5b85c3ba9f00/GDAL-3.10.2-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:68229393ab3dcd1b682c3340aa960ce893ae569d93602c51807d5b85c3ba9f00" },
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/e2636f613fdcac0b3567c836932b8235fa054ac7def79c772643202d30746878/GDAL-3.10.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e2636f613fdcac0b3567c836932b8235fa054ac7def79c772643202d30746878" },
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/912cf21a46b5b5bad38f20cafaf718eb43d57764aa9a944f8ad5f6b718cb77e8/GDAL-3.10.2-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:912cf21a46b5b5bad38f20cafaf718eb43d57764aa9a944f8ad5f6b718cb77e8" },
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/dec8ca5b108ffe6b925bbb0a912d53c7a89bf44b3555d0d16df21d128a7951aa/GDAL-3.10.2-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:dec8ca5b108ffe6b925bbb0a912d53c7a89bf44b3555d0d16df21d128a7951aa" },
+    { url = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/files/9174e432f7e7164dcbb50c48da4b2893de575fc0a33ef94e1c78e5623db0b060/GDAL-3.10.2-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:9174e432f7e7164dcbb50c48da4b2893de575fc0a33ef94e1c78e5623db0b060" },
+]
+
+[[package]]
+name = "gdal"
+version = "3.10.2"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.12' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version == '3.11.*' and sys_platform != 'linux' and sys_platform != 'win32'",
+    "python_full_version < '3.11' and sys_platform != 'linux' and sys_platform != 'win32'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/30/db/6417c83f6e9c4169ebe57cd26e02ad01d1e0dafb9476736481f536c10517/gdal-3.10.2.tar.gz", hash = "sha256:c0cffa8ce9f9c0fa287fcc20b8271c519ca054958420e5880be8bedb432753f4", size = 838054 }
+
+[[package]]
 name = "geoalchemy2"
 version = "0.17.1"
 source = { registry = "https://pypi.org/simple" }
@@ -541,6 +603,9 @@ dependencies = [
     { name = "django-webmaster-verification" },
     { name = "djangorestframework" },
     { name = "djangorestframework-gis" },
+    { name = "gdal", version = "3.10.1", source = { registry = "https://nathanjmcdougall.github.io/geospatial-wheels-index/" }, marker = "sys_platform == 'win32'" },
+    { name = "gdal", version = "3.10.2", source = { registry = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/simple" }, marker = "sys_platform == 'linux'" },
+    { name = "gdal", version = "3.10.2", source = { registry = "https://pypi.org/simple" }, marker = "sys_platform != 'linux' and sys_platform != 'win32'" },
     { name = "geopandas" },
     { name = "pandas" },
     { name = "progressbar2" },
@@ -565,6 +630,9 @@ requires-dist = [
     { name = "django-webmaster-verification", specifier = ">=0.4.3" },
     { name = "djangorestframework", specifier = "==3.*" },
     { name = "djangorestframework-gis", specifier = "==1.*" },
+    { name = "gdal", marker = "sys_platform != 'linux' and sys_platform != 'win32'", specifier = ">=3.10.1" },
+    { name = "gdal", marker = "sys_platform == 'linux'", specifier = ">=3.10.1", index = "https://gitlab.com/api/v4/projects/61637378/packages/pypi/simple" },
+    { name = "gdal", marker = "sys_platform == 'win32'", specifier = ">=3.10.1", index = "https://nathanjmcdougall.github.io/geospatial-wheels-index/" },
     { name = "geopandas", specifier = ">=1.0.1" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "progressbar2", specifier = ">=4.5.0" },
@@ -665,8 +733,8 @@ name = "keyrings-alt"
 version = "5.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "jaraco-classes" },
-    { name = "jaraco-context" },
+    { name = "jaraco-classes", marker = "sys_platform == 'linux'" },
+    { name = "jaraco-context", marker = "sys_platform == 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/5c/7b/e3bf53326e0753bee11813337b1391179582ba5c6851b13e0d9502d15a50/keyrings_alt-5.0.2.tar.gz", hash = "sha256:8f097ebe9dc8b185106502b8cdb066c926d2180e13b4689fd4771a3eab7d69fb", size = 29229 }
 wheels = [
@@ -1151,8 +1219,8 @@ name = "secretstorage"
 version = "3.3.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "cryptography" },
-    { name = "jeepney" },
+    { name = "cryptography", marker = "sys_platform == 'linux'" },
+    { name = "jeepney", marker = "sys_platform == 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/53/a4/f48c9d79cb507ed1373477dbceaba7401fd8a23af63b837fa61f1dcd3691/SecretStorage-3.3.3.tar.gz", hash = "sha256:2403533ef369eca6d2ba81718576c5e0f564d5cca1b58f73a8b23e7d4eeebd77", size = 19739 }
 wheels = [

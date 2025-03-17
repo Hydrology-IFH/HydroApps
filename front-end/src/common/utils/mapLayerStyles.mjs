@@ -9,7 +9,7 @@ const getLengthFactStep = function ({min, max, colorbar}) {
   let length = max - min + 1;
   let step = 1;
   let fact = 1;
-  let minSteps = colorbar? colorscales[colorbar].length: MIN_STEPS;
+  let minSteps = colorbar? colorscales[colorbar.toLowerCase()].length: MIN_STEPS;
   if (length > minSteps){
     step = Math.floor(length / MAX_STEPS);
     length = Math.ceil(length / step);

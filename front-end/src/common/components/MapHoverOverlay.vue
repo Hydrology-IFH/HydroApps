@@ -65,7 +65,9 @@
       let value = rawValue;
       if (props.dtype == "number") {
         let dec = props.decimals;
-        value = Math.round(parseFloat(value) * 10 ** dec) / 10 ** dec;
+        if (dec !== Infinity) {
+          value = Math.round(parseFloat(value) * 10 ** dec) / 10 ** dec;
+        }
       }
       value = valueConverter.value(value, extraProps);
       hoverText.value = (value!==undefined && value !== null)? `${value.toLocaleString()} ${ props.unit }`.trim():"";
@@ -102,6 +104,7 @@
     }
   },
   { deep: false, flush: 'sync' });
+  watch(valueConverter, updateHoverText, { deep: false, flush: 'sync' });
 
   // create overlay
   onMounted(() => {
