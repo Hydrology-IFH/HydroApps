@@ -5,7 +5,6 @@ variables:
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: postgres
     POSTGRES_PORT: 5432
-    POSTGRES_HOST_AUTH_METHOD: trust
     HYDROAPPS_DB_HOST: hydroapps
     HYDROAPPS_DB_DATABASE: hydroapps
     WEATHERDB_DB_HOST: weatherdb
@@ -20,8 +19,34 @@ workflow:
   auto_cancel:
     on_new_commit: interruptible
 
-default:
-    image: python:3.10
+stages:
+    - build_test_image
+    - test
+
+build_test_image:
+    stage: build_test_image
+    rules:
+        - changes:
+            - Dockerfile.test
+          when: always
+    script:
+        - unset DOCKER_HOST
+        - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+        - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH || true
+        - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+          -t $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH -f Dockerfile.test .
+        - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    tags:
+        - shell
+
+django-tests:
+    stage: test
+    image: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    rules:
+        - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+        - if: $CI_COMMIT_BRANCH == "master"
+    dependencies:
+      - build_test_image
     services:
         - name: postgis/postgis
           alias: hydroapps
@@ -32,25 +57,20 @@ default:
           variables:
               POSTGRES_DB: $WEATHERDB_DB_DATABASE
     before_script:
-        - apt update && apt install nodejs npm libgdal-dev -y
-        - pip3 install -r requirements.txt --root-user-action=ignore
-        - weatherdb create-db-schema
-    cache:
-        paths:
-        - ~/.cache/pip/
-
-django-tests:
-    stage: test
-    tags:
-        - docker
-    rules:
-        - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-        - if: $CI_COMMIT_BRANCH == "master"
-    script:
         - cp secretSettings_HydroApps.py.test secretSettings_HydroApps.py
         - mkdir static_data
         - cd front-end && npm ci && npm run build && cd ../
-        - python3 manage.py migrate
-        - python3 manage.py collectstatic --noinput
-        - python3 manage.py test my_auth weatherdb RheiKlim kombstra sri_bw sfi_demo
+        - uv sync
+        - uv run weatherdb create-db-schema
+        - uv run python3 manage.py migrate
+        - uv run python3 manage.py collectstatic --noinput
+    script:
+        - uv run python3 manage.py test my_auth weatherdb RheiKlim kombstra sri_bw sfi_demo
     interruptible: true
+    cache:
+        paths:
+        - ~/.cache/pip/
+        - front-end/node_modules/
+        - .venv/
+    tags:
+        - docker
