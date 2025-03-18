@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed } from 'vue';
+  import { ref, computed, watch } from 'vue';
   import { VueFlow, useVueFlow  } from '@vue-flow/core'
 
   import { useLayerLib } from '~/stores/layerLib.js';
@@ -13,21 +13,9 @@
   const layerLib = useLayerLib();
   const config = useConfig();
   const flowStore = useVueFlow();
-  const { onPaneReady } = flowStore
+  const { onPaneReady, fitView } = flowStore;
 
-  const nodes = computed(() => {
-    return nodesInit.map(node => {
-      if (node.data.tooltipConfig) {
-        node.data.tooltip = computed(() => node.data.tooltipConfig({ config }))
-      }
-      return {
-        ...node,
-        hidden: node.condition !== undefined ? !node.condition({ config }) : false
-      }
-    })
-  })
-  const edges = ref(edgesInit)
-
+  // set the width of the flowchart
   const nodesWidthRaw = computed(() => {
     if (conditionAI({config}) || conditionDamage({config})) {
       return 750
@@ -39,17 +27,30 @@
   const width = computed(() => `${nodesWidthRaw.value / zoom.value}px`)
 
   // fit the flowchart view
-  onPaneReady((instance) => {
-    let fit = () => {
-      instance.fitView({ "padding-top": "5px", includeHiddenNodes: false }).then(() => {
-        instance.viewport.value.x = 0
-        zoom.value = instance.viewport._value.zoom
-      })
-    }
-    fit()
-    window.addEventListener('resize', fit)
-  })
+  const fit = () => {
+    fitView({ "padding-top": "5px", includeHiddenNodes: false }).then(() => {
+      flowStore.viewport.value.x = 0
+      zoom.value = flowStore.viewport._value.zoom
+    })
+  }
+  window.addEventListener('resize', fit)
+  onPaneReady(fit)
 
+  // nodes and edges constructor
+  const nodes = computed(() => {
+    return nodesInit.map(nodeInit => {
+      const node = { ...nodeInit }
+      if (node.data.tooltipConfig) {
+        node.data.tooltip = computed(() => node.data.tooltipConfig({ config }))
+      }
+      if (node.condition) {
+        node.hidden = computed(() => !node.condition({ config }))
+        watch(node.hidden , () => setTimeout(fit, 5))
+      }
+      return node
+    })
+  })
+  const edges = ref(edgesInit)
 </script>
 
 <template>
@@ -83,6 +84,7 @@
   @import '@vue-flow/core/dist/style.css';
 
   div.flow-container {
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;;
   }
 </style>

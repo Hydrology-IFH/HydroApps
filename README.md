@@ -56,3 +56,9 @@ If you change the internationalization keys in the source code you will have to 
 ```bash
 python manage.py makemessages -l de
 ```
+
+Before the django site will use your translations you will have to compile the translations:
+
+```bash
+python manage.py compilemessages
+```
