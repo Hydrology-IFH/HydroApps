@@ -117,6 +117,16 @@ a.nav-link{
 .navbar-container div.navbar-collapse.show, div.navbar-collapse.collapsing{
   padding-left: .7em;
   padding-right: .7em;
+  overflow-x: hidden;
+
+  & .nav-item {
+    width: 100%;
+
+    & .nav-link{
+      overflow: hidden;
+      white-space: wrap;
+    }
+  }
 }
 .navbar-container .navbar-nav{
   --bs-nav-link-padding-x: 0.15rem;
