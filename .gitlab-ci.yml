@@ -26,9 +26,8 @@ stages:
 build_test_image:
     stage: build_test_image
     rules:
-        - changes:
-            - Dockerfile.test
-          when: always
+        - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+        - if: $CI_COMMIT_BRANCH == "master"
     script:
         - unset DOCKER_HOST
         - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
@@ -42,9 +41,7 @@ build_test_image:
 django-tests:
     stage: test
     image: $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
-    rules:
-        - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
-        - if: $CI_COMMIT_BRANCH == "master"
+    rules: !reference [build_test_image, rules]
     dependencies:
       - build_test_image
     services:
