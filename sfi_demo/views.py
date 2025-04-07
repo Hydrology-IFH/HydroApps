@@ -3,6 +3,7 @@ from django.views.generic.edit import FormView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
+from main.settings import CESIUM_API_KEY
 from .forms import FeedbackForm
 
 # Create your views here.
@@ -10,7 +11,7 @@ def home_view(request, *args, **kwargs):
     return render(request, "sfi_demo/home.html", {})
 
 def app_view(request, *args, **kwargs):
-    return render(request, "sfi_demo/app.html", {})
+    return render(request, "sfi_demo/app.html", {"CESIUM_API_KEY": CESIUM_API_KEY})
 
 def method_view(request, *args, **kwargs):
     return render(request, "sfi_demo/method.html", {})

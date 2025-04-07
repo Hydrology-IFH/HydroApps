@@ -5,6 +5,11 @@
 
 {% block head %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Include the CesiumJS JavaScript and CSS files -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.128/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.128/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
   {% vite_hmr_client %}
 {% endblock %}
 
@@ -27,5 +32,9 @@
 {% endblock content %}
 
 {% block scripts %}
+  <script type="module">
+    Cesium.Ion.defaultAccessToken = "{{CESIUM_API_KEY}}";
+  </script>
   {% vite_asset 'src/sfi_demo/main.js' %}
+
 {% endblock %}

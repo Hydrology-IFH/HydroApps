@@ -341,6 +341,12 @@ X_FRAME_OPTIONS = 'allow-from https://uni-freiburg.de/'
 if hasattr(secrets, "WEBMASTER_VERIFICATION"):
     WEBMASTER_VERIFICATION = secrets.WEBMASTER_VERIFICATION
 
+# CESIUM
+if hasattr(secrets, "CESIUM_API_KEY"):
+    CESIUM_API_KEY = secrets.CESIUM_API_KEY
+else:
+    CESIUM_API_KEY = ""
+
 # clean secrets
 del secrets
 

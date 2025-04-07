@@ -12,6 +12,7 @@
   import Basemaps from './map/Basemaps.vue';
   import MapLegend from "./map/MapLegend.vue";
   import RegionSelector from './map/RegionSelector.vue';
+  import Map3D from './map/Map3D.vue';
   import { flyTo } from "./map/animations";
   import { regions } from "./map/regions";
 
@@ -151,6 +152,7 @@
     </Map.OlMap>
     <ErrorFrame v-if="layerError" class="map-error" :header="$t('map_error_header')" :msg="$t('map_error_msg')"/>
   </div>
+  <Map3D  v-if="map != null" :map="map" />
 
 </template>
 
