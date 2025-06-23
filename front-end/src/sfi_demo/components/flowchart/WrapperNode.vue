@@ -35,8 +35,7 @@
 <template>
     <div class="wrapper-node bs-primary-bg-subtle"
         ref="nodeRef"
-        :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null"
-        @click="onClick">
+        :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null">
         <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>
         {{ data.label }}
         <Handle type="source" :position="Position.Right" />
