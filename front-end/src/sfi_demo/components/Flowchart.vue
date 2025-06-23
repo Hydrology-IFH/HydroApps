@@ -17,7 +17,7 @@
 
   // set the width of the flowchart
   const nodesWidthRaw = computed(() => {
-    if (conditionAI({config}) || conditionDamage({config})) {
+    if (conditionAI({ config }) || conditionDamage({ config })) {
       return 750
     } else {
       return 580

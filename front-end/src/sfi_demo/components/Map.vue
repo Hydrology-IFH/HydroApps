@@ -88,7 +88,7 @@
 
   // change layer if the current layer isn't available anymore
   config.$subscribe((mutation, state) => {
-    if (!layerLib.selectedLayer?.condition?.(state) && layerLib.selectedLayer.backupLayer !== undefined) {
+    if (!layerLib.selectedLayer?.condition?.({ config: state }) && layerLib.selectedLayer.backupLayer !== undefined) {
       layerLib.selectLayer(layerLib.selectedLayer.backupLayer);
     }
   })

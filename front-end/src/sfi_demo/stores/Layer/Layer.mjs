@@ -255,7 +255,7 @@ class BaseLayer {
     if (this.condition === undefined) {
       return this.selected;
     } else {
-      return this.selected && this.condition(this.config);
+      return this.selected && this.condition({ config: this.config });
     }
   }
 }

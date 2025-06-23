@@ -488,7 +488,7 @@ export const LAYERS = [
           ["color", 0, 0, 0, 0]
         ]
       },
-      condition: (config) => config.show_sfgf,
+      condition: ({ config }) => config.show_sfgf,
       openlayer_options: {
         maxZoom: 16,
       }
