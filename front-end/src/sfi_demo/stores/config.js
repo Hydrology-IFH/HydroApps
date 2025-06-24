@@ -19,6 +19,12 @@ export const useConfig = defineStore(
         Bonndorf: "2015-06-14", // yyyy-mm-dd of the event
         Wieslauf: "2024-06-02",
         Emmendingen: "2014-07-20",
+        Karlsbad: "2021-06-18",
+        // Karlsbad: "2021-06-29",
+        // Karlsbad: "2021-07-04",
+        Herrstein: "2018-05-27",
+        Ottingen: "2017-08-15",
+        Stadtallendorf: "2020-08-11",
       },
 
       // matrix settings
