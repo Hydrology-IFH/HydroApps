@@ -13,6 +13,7 @@
     getTickTooltips: { Function, default: undefined }
   });
   const model = defineModel();
+  const emit = defineEmits(['update:focused']);
 
   const isFolded = ref(false);
 
