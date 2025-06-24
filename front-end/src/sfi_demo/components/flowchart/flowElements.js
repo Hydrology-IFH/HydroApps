@@ -1,4 +1,5 @@
 import i18n from 'i18next';
+import { markRaw } from 'vue';
 
 import PopoverSFGF from './PopoverSFGF.vue';
 import PopoverDamagePerHoushold from './PopoverDamagePerHoushold.vue';
@@ -67,7 +68,7 @@ export const nodesInit = [
       label: i18n.t('node_sfi_label'),
       layerID: 'SFI',
       tooltip: i18n.t('node_sfi_tooltip'),
-      popover: PopoverSFGF
+      popover: markRaw(PopoverSFGF)
     },
   },
   {
@@ -148,7 +149,7 @@ export const nodesInit = [
       label: i18n.t('node_damage_label'),
       layerID: 'damage',
       tooltip: i18n.t('node_damage_tooltip'),
-      popover: PopoverDamagePerHoushold
+      popover: markRaw(PopoverDamagePerHoushold)
     },
     condition: conditionDamage,
   }
