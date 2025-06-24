@@ -24,7 +24,7 @@
       Math.max(total_extent[2], regions[region].extent[2]),
       Math.max(total_extent[3], regions[region].extent[3])];
   }
-  total_extent = buffer(total_extent, 100000);
+  total_extent = buffer(total_extent, 150000);
 
   // setup
   const config = useConfig();
