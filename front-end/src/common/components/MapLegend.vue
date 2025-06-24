@@ -8,7 +8,7 @@
     title: String,
     elements: Array, // Array of elements {colors, labels=[String] || [{label, tooltip}], type="con"} || {color, label, tooltip, type="dis"} }
     map: Object,
-    titlePosition: { type: Boolean, default: "topIfContinous" }, // top/bottom/topIfContinous, default topIfContinous: depending if continous elements are present,
+    titlePosition: { type: String, default: "topIfContinous" }, // top/bottom/topIfContinous, default topIfContinous: depending if continous elements are present,
     visible: { type: Boolean, default: true },
     opacity: { type: Number, default: 1 }
   })
