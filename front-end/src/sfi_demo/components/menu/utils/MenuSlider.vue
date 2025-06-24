@@ -36,7 +36,6 @@
         :max="max"
         :step="step"
         :thumb-label="true"
-        :hint="true"
         :persistent-hint="true"
         :elevation="5"
         hide-error
