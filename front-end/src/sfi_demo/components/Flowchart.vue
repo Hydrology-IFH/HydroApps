@@ -65,7 +65,7 @@
              :edgesUpdatable="false">
 
       <template #node-custom="NodeProps">
-        <CustomNode v-bind="NodeProps" :layerLib="layerLib"/>
+        <CustomNode :data="NodeProps.data" :layerLib="layerLib"/>
       </template>
 
       <template #edge-custom="EdgeProps">
@@ -73,7 +73,7 @@
       </template>
 
       <template #node-wrapper="NodeProps">
-        <WrapperNode v-bind="NodeProps" :layerLib="layerLib"/>
+        <WrapperNode :data="NodeProps.data" :layerLib="layerLib"/>
       </template>
     </VueFlow>
   </div>
