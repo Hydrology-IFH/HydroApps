@@ -2,9 +2,18 @@
   import { ref, computed } from 'vue';
 
   const props = defineProps({
-    label: String,
-    msg: String,
-    tooltip: String,
+    label: {
+      type: String,
+      required: true
+    },
+    msg: {
+      type: String,
+      required: true
+    },
+    tooltip: {
+      type: String,
+      default: ''
+    },
     type: {
       type: String,
       default: 'text'
@@ -20,14 +29,29 @@
 </script>
 
 <template>
-  <div class="input-group mb-3" :disabled="!active">
-    <span class="input-group-text" :id="`label_${id}`"
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        data-bs-container="body" data-bs-html="true"
-        :data-bs-title="tooltip">
+  <div
+    class="input-group mb-3"
+    :disabled="!active"
+  >
+    <span
+      :id="`label_${id}`"
+      class="input-group-text"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      data-bs-container="body"
+      data-bs-html="true"
+      :data-bs-title="tooltip"
+    >
       {{ label }}
     </span>
-    <input class="form-control" :type="type" :value="msg" aria-label="readonly input example" readonly :disabled="!active">
+    <input
+      class="form-control"
+      :type="type"
+      :value="msg"
+      aria-label="readonly input example"
+      readonly
+      :disabled="!active"
+    >
   </div>
 </template>
 

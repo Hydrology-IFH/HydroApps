@@ -71,13 +71,17 @@
   }
 </script>
 <template>
-  <MenuSlider v-model="sliderValue"
-              v-show="config.kind=='matrix'"
-              :label="$t('menu_PrecipitationForce_label')"
-              :min="3" :max="11" :step=".1"
-              :ticks="labels"
-              :getLabel="getLabel"
-              :tooltip="$t('menu_PrecipitationForce_tooltip')"
-              @update:focused="toggleArrows"
-              :active="!config.region_selection_active"/>
+  <MenuSlider
+    v-show="config.kind=='matrix'"
+    v-model="sliderValue"
+    :label="$t('menu_PrecipitationForce_label')"
+    :min="3"
+    :max="11"
+    :step=".1"
+    :ticks="labels"
+    :get-label="getLabel"
+    :tooltip="$t('menu_PrecipitationForce_tooltip')"
+    :active="!config.region_selection_active"
+    @update:focused="toggleArrows"
+  />
 </template>

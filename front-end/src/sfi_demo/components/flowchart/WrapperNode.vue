@@ -7,9 +7,6 @@
     data: {
       type: Object,
       required: true,
-    },
-    layerLib: {
-      type: Object,
     }
   })
 
@@ -33,17 +30,37 @@
 </script>
 
 <template>
-    <div class="wrapper-node bs-primary-bg-subtle"
-        ref="nodeRef"
-        :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null">
-        <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>
-        {{ data.label }}
-        <Handle type="source" :position="Position.Right" />
-        <Handle type="target" :position="Position.Left" />
-        <Handle v-if="data.additionalHandles" v-for="handle in data.additionalHandles"
-                :key="handle.type" :id="handle.id" :type="handle.type"
-                :position="handle.position" />
-    </div>
+  <div
+    ref="nodeRef"
+    class="wrapper-node bs-primary-bg-subtle"
+    :data-bs-custom-class="props.data.tooltip?.length > 120? 'fn-tooltip-l': props.data.tooltip?.length > 80? 'fn-tooltip-md':null"
+  >
+    <i
+      v-if="data.icon"
+      class="bi"
+      :class="`${data.icon}`"
+    />
+    {{ data.label }}
+    <Handle
+      type="source"
+      :position="Position.Right"
+    />
+    <Handle
+      type="target"
+      :position="Position.Left"
+    />
+    <template
+      v-if="data.additionalHandles"
+    >
+      <Handle
+        v-for="handle in data.additionalHandles"
+        :id="handle.id"
+        :key="handle.type"
+        :type="handle.type"
+        :position="handle.position"
+      />
+    </template>
+  </div>
 </template>
 
 <style scoped>

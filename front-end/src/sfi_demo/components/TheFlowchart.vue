@@ -54,18 +54,27 @@
 </script>
 
 <template>
-  <div class="flow-container" style="height:100px" :style="{width: width}">
-    <VueFlow :nodes="nodes" :edges="edges"
-             :nodesDraggable="false"
-             :nodesConnectable="false"
-             :zoomOnScroll="false"
-             :zoomOnDoubleClick="false"
-             :zoomOnPinch="false"
-             :panOnDrag="false"
-             :edgesUpdatable="false">
-
+  <div
+    class="flow-container"
+    style="height:100px"
+    :style="{width: width}"
+  >
+    <VueFlow
+      :nodes="nodes"
+      :edges="edges"
+      :nodes-draggable="false"
+      :nodes-connectable="false"
+      :zoom-on-scroll="false"
+      :zoom-on-double-click="false"
+      :zoom-on-pinch="false"
+      :pan-on-drag="false"
+      :edges-updatable="false"
+    >
       <template #node-custom="NodeProps">
-        <CustomNode :data="NodeProps.data" :layerLib="layerLib"/>
+        <CustomNode
+          :data="NodeProps.data"
+          :layer-lib="layerLib"
+        />
       </template>
 
       <template #edge-custom="EdgeProps">
@@ -73,7 +82,10 @@
       </template>
 
       <template #node-wrapper="NodeProps">
-        <WrapperNode :data="NodeProps.data" :layerLib="layerLib"/>
+        <WrapperNode
+          :data="NodeProps.data"
+          :layer-lib="layerLib"
+        />
       </template>
     </VueFlow>
   </div>

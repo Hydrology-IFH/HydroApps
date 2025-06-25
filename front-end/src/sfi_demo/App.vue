@@ -3,10 +3,10 @@
   import FullscreenButton from '~~/components/fullscreen/Button.vue';
   import ScreenshotWrapper from '~~/components/screenshot/Wrapper.vue';
   import ScreenshotButton from '~~/components/screenshot/Button.vue';
-  import Map from './components/Map.vue';
-  import Flowchart from './components/Flowchart.vue';
-  import Menu from './components/Menu.vue';
-  import IntroTour from './components/IntroTour.vue';
+  import TheMap from './components/TheMap.vue';
+  import TheFlowchart from './components/TheFlowchart.vue';
+  import TheMenu from './components/TheMenu.vue';
+  import TheIntroTour from './components/TheIntroTour.vue';
 </script>
 
 <template>
@@ -14,16 +14,20 @@
     <ScreenshotWrapper>
       <div class="container p-0 app">
         <div class="row top-row">
-          <Flowchart id="flow-chart" />
+          <TheFlowchart id="flow-chart" />
           <div class="wrapper-buttons">
-            <IntroTour/>
-            <ScreenshotButton file-name="SFI_Demonstrator.png"/>
-            <FullscreenButton/>
+            <TheIntroTour />
+            <ScreenshotButton file-name="SFI_Demonstrator.png" />
+            <FullscreenButton />
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-md-8"><Map/></div>
-          <div class="col-12 col-md-4"><Menu/></div>
+          <div class="col-12 col-md-8">
+            <TheMap />
+          </div>
+          <div class="col-12 col-md-4">
+            <TheMenu />
+          </div>
         </div>
       </div>
     </ScreenshotWrapper>

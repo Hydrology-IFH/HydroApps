@@ -9,9 +9,9 @@
   import { useConfig } from '~/stores/config.js';
   import { useLayerLib } from '~/stores/layerLib.js';
   import "./map/projections";
-  import Basemaps from './map/Basemaps.vue';
-  import MapLegend from "./map/MapLegend.vue";
-  import RegionSelector from './map/RegionSelector.vue';
+  import TheBasemaps from './map/TheBasemaps.vue';
+  import TheMapLegend from "./map/TheMapLegend.vue";
+  import TheRegionSelector from './map/TheRegionSelector.vue';
   import { flyTo } from "./map/animations";
   import { regions } from "./map/regions";
 
@@ -124,34 +124,47 @@
 </script>
 
 <template>
-  <div class="map-container" @wheel="(event) => event.preventDefault()">
-    <Map.OlMap id="map" ref="mapRef">
-
-      <Basemaps/>
-      <RegionSelector v-if="map != null" :map="map"/>
+  <div
+    class="map-container"
+    @wheel="(event) => event.preventDefault()"
+  >
+    <Map.OlMap
+      id="map"
+      ref="mapRef"
+    >
+      <TheBasemaps />
+      <TheRegionSelector
+        v-if="map != null"
+        :map="map"
+      />
       <MapHoverOverlay
-          v-if="map != null && layer != null && !config.region_selection_active"
-          :map="map"
-          :layer="layer.olLayer"
-          :unit="layer.unit"
-          :decimals="layer.decimals"
-          :valueConverter="layer.valueConverter"
-          :propertyName="layer.propertyName"/>
-      <MapLegend
-          v-if="map != null && layer != null"
-          :map="map"
-          :layerName="layer.name"
-          :style="layer.legendStyle"
-          :unit="layer.unit"
-          :visible="!config.region_selection_active"
-          :opacity="config.opacity/100"/>
+        v-if="map != null && layer != null && !config.region_selection_active"
+        :map="map"
+        :layer="layer.olLayer"
+        :unit="layer.unit"
+        :decimals="layer.decimals"
+        :value-converter="layer.valueConverter"
+        :property-name="layer.propertyName"
+      />
+      <TheMapLegend
+        v-if="map != null && layer != null"
+        :map="map"
+        :layer-name="layer.name"
+        :style="layer.legendStyle"
+        :unit="layer.unit"
+        :visible="!config.region_selection_active"
+        :opacity="config.opacity/100"
+      />
 
-      <MapControls.OlFullscreenControl/>
-
+      <MapControls.OlFullscreenControl />
     </Map.OlMap>
-    <ErrorFrame v-if="layerError" class="map-error" :header="$t('map_error_header')" :msg="$t('map_error_msg')"/>
+    <ErrorFrame
+      v-if="layerError"
+      class="map-error"
+      :header="$t('map_error_header')"
+      :msg="$t('map_error_msg')"
+    />
   </div>
-
 </template>
 
 <style>

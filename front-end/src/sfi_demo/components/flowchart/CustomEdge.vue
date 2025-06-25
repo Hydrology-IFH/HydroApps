@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <BezierEdge class="flow-edge"/>
+  <BezierEdge class="flow-edge" />
 </template>
 
 <style>

@@ -43,6 +43,8 @@ export default {
           return cells_year
             .filter((data) => data.sri == max_year_sri)
             .map((data) => data.event_rank);
+        default:
+          return [];
       }
     },
     highlighted_parameters() {
@@ -58,6 +60,8 @@ export default {
           return ["all"];
         case 'Top_SRI_year':
           return ["date", "sri"];
+        default:
+          return [];
       }
     }
   },
@@ -67,6 +71,17 @@ export default {
         this.fetchData();
       }
     }
+  },
+  mounted() {
+    new bootstrap.Tooltip(
+      this.$el.parentElement,
+      {selector:'button[data-bs-toggle="tooltip"]'});
+  },
+  updated() {
+    this.table_tooltips.forEach((tooltip) => {tooltip.dispose()});
+    this.table_tooltips = [
+      ...this.$el.parentElement.querySelectorAll('table [data-bs-toggle="tooltip"]')]
+      .map((el) => new bootstrap.Tooltip(el, {placement: "auto"}));
   },
   methods: {
     update_popup_data(grid_id, lat, long) {
@@ -113,17 +128,6 @@ export default {
       return this.highlight(event_rank, parameter) ? this.$t('popup_explanation_highlight') : "";
     }
   },
-  mounted() {
-    new bootstrap.Tooltip(
-      this.$el.parentElement,
-      {selector:'button[data-bs-toggle="tooltip"]'});
-  },
-  updated() {
-    this.table_tooltips.forEach((tooltip) => {tooltip.dispose()});
-    this.table_tooltips = [
-      ...this.$el.parentElement.querySelectorAll('table [data-bs-toggle="tooltip"]')]
-      .map((el) => new bootstrap.Tooltip(el, {placement: "auto"}));
-  }
 }
 </script>
 

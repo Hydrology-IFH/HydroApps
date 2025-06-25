@@ -15,10 +15,12 @@
 </script>
 
 <template>
-  <MenuSelection v-model="config.kind"
-              :label="$t('menu_kind_label')"
-              :options="kinds"
-              :tooltip="$t('menu_kind_tooltip')"
-              :as_buttons="true"
-              :active="!config.region_selection_active"/>
+  <MenuSelection
+    v-model="config.kind"
+    :label="$t('menu_kind_label')"
+    :options="kinds"
+    :tooltip="$t('menu_kind_tooltip')"
+    :as-buttons="true"
+    :active="!config.region_selection_active"
+  />
 </template>

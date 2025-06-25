@@ -34,21 +34,22 @@
   <template v-if="config.kind=='event'">
     <template v-if="regionDates.length==1">
       <MenuInfo
-            :label="$t('menu_date_label')"
-            :msg="selected_date"
-            type="date"
-            :tooltip="$t('menu_date_static_tooltip')"
-            :active="!config.region_selection_active"/>
+        :label="$t('menu_date_label')"
+        :msg="selected_date"
+        type="date"
+        :tooltip="$t('menu_date_static_tooltip')"
+        :active="!config.region_selection_active"
+      />
     </template>
     <template v-else>
       <MenuSelection
-            :label="$t('menu_date_label')"
-            :tooltip="$t('menu_date_selection_tooltip')"
-            v-model="selected_date"
-            :options="regionDates"
-            @change="updateDate"
-            :active="!config.region_selection_active"/>
+        v-model="selected_date"
+        :label="$t('menu_date_label')"
+        :tooltip="$t('menu_date_selection_tooltip')"
+        :options="regionDates"
+        :active="!config.region_selection_active"
+        @change="updateDate"
+      />
     </template>
   </template>
-
 </template>

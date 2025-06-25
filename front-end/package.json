@@ -9,7 +9,8 @@
     "clean": "rm -rf node_modules",
     "dev": "vite",
     "i18n-scan": "i18next-scanner --config i18next-scanner.config.cjs",
-    "i18n": "npm run i18n-scan"
+    "i18n": "npm run i18n-scan",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
+    "eslint": "^9.29.0",
+    "eslint-plugin-vue": "^10.2.0",
     "i18next-scanner": "^4.6.0",
     "vite": "^6.2.0",
     "vite-plugin-vuetify": "^2.1.0"

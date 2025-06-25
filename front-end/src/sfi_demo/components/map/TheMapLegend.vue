@@ -20,12 +20,12 @@
 
 <template>
   <MapLegendFromStyle
-    :layerName="layer.name"
+    :layer-name="layer.name"
     :style="layer.style"
     :map="layerLib.map"
     :unit="layer.unit"
-    :valueConverter="valueConverter"
+    :value-converter="valueConverter"
     v-bind="layer.legend"
-    titlePosition="top"
+    title-position="top"
   />
 </template>

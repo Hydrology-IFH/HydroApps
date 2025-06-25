@@ -28,12 +28,13 @@
 </script>
 
 <template>
-  <MenuSelection v-model="menuScale"
-              :label="$t('menu_colorscale_label')"
-              :options="colorscalesKeys"
-              v-show="colorscalesAvailable"
-              @change="updateScale"
-              :tooltip="$t('menu_colorscale_tooltip')"
-              :active="!config.region_selection_active">
-  </MenuSelection>
+  <MenuSelection
+    v-show="colorscalesAvailable"
+    v-model="menuScale"
+    :label="$t('menu_colorscale_label')"
+    :options="colorscalesKeys"
+    :tooltip="$t('menu_colorscale_tooltip')"
+    :active="!config.region_selection_active"
+    @change="updateScale"
+  />
 </template>

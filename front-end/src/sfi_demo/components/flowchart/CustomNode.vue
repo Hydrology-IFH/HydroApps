@@ -11,6 +11,7 @@
     },
     layerLib: {
       type: Object,
+      required: true,
     }
   })
 
@@ -67,22 +68,44 @@
 </script>
 
 <template>
-    <div class="custom-node bs-primary-bg-subtle"
-        ref="nodeRef"
-        :class="nodeClasses"
-        :data-bs-custom-class="data.tooltip?.length > 120? 'fn-tooltip-l': data.tooltip?.length > 80? 'fn-tooltip-md':null"
-        @click="onClick">
-        {{ data.label }}
-        <i v-if="data.icon" class="bi" :class="`${data.icon}`"></i>
-        <Handle type="source" :position="Position.Right" />
-        <Handle type="target" :position="Position.Left" />
-        <Handle v-if="data.additionalHandles" v-for="handle in data.additionalHandles"
-                :key="handle.type" :id="handle.id" :type="handle.type"
-                :position="handle.position" />
-    </div>
-    <Popover ref="PopoverRef" v-if="data.popover" appendTo="#fullscreen-wrapper">
-      <data.popover/>
-    </Popover>
+  <div
+    ref="nodeRef"
+    class="custom-node bs-primary-bg-subtle"
+    :class="nodeClasses"
+    :data-bs-custom-class="data.tooltip?.length > 120? 'fn-tooltip-l': data.tooltip?.length > 80? 'fn-tooltip-md':null"
+    @click="onClick"
+  >
+    {{ data.label }}
+    <i
+      v-if="data.icon"
+      class="bi"
+      :class="`${data.icon}`"
+    />
+    <Handle
+      type="source"
+      :position="Position.Right"
+    />
+    <Handle
+      type="target"
+      :position="Position.Left"
+    />
+    <template v-if="data.additionalHandles">
+      <Handle
+        v-for="handle in data.additionalHandles"
+        :id="handle.id"
+        :key="handle.type"
+        :type="handle.type"
+        :position="handle.position"
+      />
+    </template>
+  </div>
+  <Popover
+    v-if="data.popover"
+    ref="PopoverRef"
+    append-to="#fullscreen-wrapper"
+  >
+    <data.popover />
+  </Popover>
 </template>
 
 <style scoped>
