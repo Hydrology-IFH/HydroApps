@@ -73,6 +73,7 @@
   "onboarding_button_finish": "Finish",
   "onboarding_button_next": "Next",
   "onboarding_button_previous": "Previous",
+  "onboarding_button_tooltip": "Start an introduction to the PFI Demonstrator to get to know the functionalities",
   "onboarding_flowchart_description": "Layer selection",
   "onboarding_flowchart_title": "This flowchart represents the model chain. By clicking on one of the nodes you can select the diferent layers to be displayed on the map.",
   "onboarding_map_layer_description": "After a region has been selected, the layer selected in the flowchart will be displayed on the map. When you hover over the map, you will see the exact values of this layer.",
