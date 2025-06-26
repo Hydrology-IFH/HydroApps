@@ -23,7 +23,7 @@
           </p>
           <p>{% trans "The aim of AVOSS is to make a decisive contribution to closing the existing gap in the warning system for flash floods. More information about AVOSS can be found at the" %} <a href="https://www.avoss.uni-freiburg.de" target="_blank" rel="noopener noreferrer">{% trans "AVOSS project homepage" %} <sup><i class="bi bi-box-arrow-up-right"></i></sup></a></p>
           <br>
-          <p>{% trans "This web demonstrator is intended to present the prototype prediction and warning products developed within the framework of AVOSS. Background information on the data presented can be found in the Method section and in the further information linked there." %}</p>
+          <p>{% trans "This" context "prior demonstrator link" %} <a href="{% url 'sfi_demo:app' %}">{% trans "web demonstrator" %}</a> {% trans "is intended to present the prototype prediction and warning products developed within the framework of AVOSS. Background information on the data presented can be found in the" %} <a href={% url 'sfi_demo:method'%}>{% trans "Method section" %}</a> {% trans "and in the further information linked there." %}</p>
       </div>
       <div class="col-md-6 col-12" style="align-content: center;">
         <figure class="figure">
