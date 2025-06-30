@@ -19,7 +19,10 @@
   import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
 
   const props = defineProps({
-    map: Object
+    map: {
+      type: Object,
+      required: true
+    }
   });
 
   const config = useConfig();
@@ -70,35 +73,47 @@
 </script>
 
 <template>
-  <Layers.OlVectorLayer ref="refLayer" :visible="layerVisible" className="regionLayer"  :updateWhileAnimating="true">
+  <Layers.OlVectorLayer
+    ref="refLayer"
+    :visible="layerVisible"
+    class-name="regionLayer"
+    :update-while-animating="true"
+  >
     <Sources.OlSourceVector>
-      <Map.OlFeature v-for="(region, name) in regions" :properties="{ name }">
+      <Map.OlFeature
+        v-for="(region, name) in regions"
+        :key="name"
+        :properties="{ name }"
+      >
         <Geometries.OlGeomPolygon
           :coordinates="fromExtent(region.extent).getCoordinates()"
-          :geometryName_="name"
-        ></Geometries.OlGeomPolygon>
+          :geometry-name_="name"
+        />
         <Styles.OlStyle>
-          <Styles.OlStyleStroke :color="config.region===name?'#00a082':'#344A9A'" :width="4"></Styles.OlStyleStroke>
-          <Styles.OlStyleFill :color="config.region===name ? !config.region_selection_active? '#00000000':'#7bc6b480' : '#868DC260'"></Styles.OlStyleFill>
+          <Styles.OlStyleStroke
+            :color="config.region===name?'#00a082':'#344A9A'"
+            :width="4"
+          />
+          <Styles.OlStyleFill :color="config.region===name ? !config.region_selection_active? '#00000000':'#7bc6b480' : '#868DC260'" />
         </Styles.OlStyle>
       </Map.OlFeature>
     </Sources.OlSourceVector>
   </Layers.OlVectorLayer>
   <Interactions.OlInteractionSelect
-      @select="featureSelected"
-      :condition="click"
-      :filter="selectInteractionFilter"
-      v-if="config.region_selection_active"
-      ref="selectRef">
-  </Interactions.OlInteractionSelect>
+    v-if="config.region_selection_active"
+    ref="selectRef"
+    :condition="click"
+    :filter="selectInteractionFilter"
+    @select="featureSelected"
+  />
   <MapHoverOverlay
-      v-if="map != null && refLayer != null && config.region_selection_active"
-      :map="map"
-      :layer="refLayer.vectorLayer"
-      unit=""
-      propertyName="name"
-      dtype="string"/>
-
+    v-if="map != null && refLayer != null && config.region_selection_active"
+    :map="map"
+    :layer="refLayer.vectorLayer"
+    unit=""
+    property-name="name"
+    dtype="string"
+  />
 </template>
 
 <style>

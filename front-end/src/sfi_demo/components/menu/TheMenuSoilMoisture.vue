@@ -26,14 +26,17 @@
   }
 </script>
 <template>
-  <MenuSlider v-model="config.soilMoisture"
-              v-show="config.kind=='matrix'"
-              :label="$t('menu_SoilMoisture_label')"
-              :min="min[config.kind]" :max="max[config.kind]"
-              :step="(max[config.kind]-min[config.kind])/2"
-              :ticks="labels"
-              :getLabel="(val) => labels[val]"
-              :tooltip="$t('menu_SoilMoisture_tooltip')"
-              :getTickTooltips="getTickTooltip"
-              :active="!config.region_selection_active"/>
+  <MenuSlider
+    v-show="config.kind=='matrix'"
+    v-model="config.soilMoisture"
+    :label="$t('menu_SoilMoisture_label')"
+    :min="min[config.kind]"
+    :max="max[config.kind]"
+    :step="(max[config.kind]-min[config.kind])/2"
+    :ticks="labels"
+    :get-label="(val) => labels[val]"
+    :tooltip="$t('menu_SoilMoisture_tooltip')"
+    :get-tick-tooltips="getTickTooltip"
+    :active="!config.region_selection_active"
+  />
 </template>

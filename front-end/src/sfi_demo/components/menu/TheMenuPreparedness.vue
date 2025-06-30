@@ -35,12 +35,16 @@
   })
 </script>
 <template>
-  <MenuSlider v-model="sliderValue"
-              v-show="layerLib.selectedLayer?.id=='damage'"
-              :label="$t('menu_preparedness_label')"
-              :min="1" :max="3" :step="1"
-              :ticks="labels"
-              :getLabel="(val) => labels[val]"
-              :tooltip="$t('menu_preparedness_tooltip')"
-              :active="!config.region_selection_active"/>
+  <MenuSlider
+    v-show="layerLib.selectedLayer?.id=='damage'"
+    v-model="sliderValue"
+    :label="$t('menu_preparedness_label')"
+    :min="1"
+    :max="3"
+    :step="1"
+    :ticks="labels"
+    :get-label="(val) => labels[val]"
+    :tooltip="$t('menu_preparedness_tooltip')"
+    :active="!config.region_selection_active"
+  />
 </template>

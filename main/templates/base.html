@@ -98,19 +98,17 @@
                               SRI-BW
                             </a>
                           </li>
+                          <li>
+                            <a href="{% url 'sfi_demo:home' %}"
+                              class="dropdown-item  {% if active_app == 'sfi_demo' %}active{% endif %}">
+                              AVOSS Web-Demonstrator
+                            </a>
+                          </li>
                           {% if show_unreleased_apps.kombstra %}
                             <li>
                               <a href="{% url 'kombstra:home' %}"
                                 class="dropdown-item  {% if active_app == 'kombstra' %}active{% endif %}">
                                 KombStRA
-                              </a>
-                            </li>
-                          {% endif %}
-                          {% if active_app == 'sfi_demo' %}
-                            <li>
-                              <a href="{% url 'sfi_demo:home' %}"
-                                class="dropdown-item  {% if active_app == 'sfi_demo' %}active{% endif %}">
-                                AVOSS Web-Demonstrator
                               </a>
                             </li>
                           {% endif %}

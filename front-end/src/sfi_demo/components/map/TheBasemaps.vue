@@ -50,46 +50,51 @@
 </script>
 
 <template>
-
   <Layers.OlTileLayer
-      ref="bsmpGreyLayer"
-      title="Grau basemap.de"
-      :visible="true"
-      :baseLayer="true" >
+    ref="bsmpGreyLayer"
+    title="Grau basemap.de"
+    :visible="true"
+    :base-layer="true"
+  >
     <Sources.OlSourceTileWms
       url="https://sgx.geodatenzentrum.de/wms_basemapde"
-      attributions='© GeoBasis-DE  <a href="https://www.bkg.bund.de" target="_blank">BKG</a>  <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>'
+      attributions="© GeoBasis-DE  <a href=&quot;https://www.bkg.bund.de&quot; target=&quot;_blank&quot;>BKG</a>  <a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot; target=&quot;_blank&quot;>CC BY 4.0</a>"
       layers="de_basemapde_web_raster_grau"
       :params="{'TILED': false, 'FORMAT': 'image/png', 'VERSION': '1.3.0', 'CRS': 'EPSG:25832', 'SERVICE': 'WMS'}"
       projection="EPSG:25832"
-      crossOrigin=""/>
+      cross-origin=""
+    />
   </Layers.OlTileLayer>
 
   <Layers.OlTileLayer
-      ref="bsmpColorLayer"
-      title="Color basemap.de"
-      :visible="false"
-      :baseLayer="true" >
+    ref="bsmpColorLayer"
+    title="Color basemap.de"
+    :visible="false"
+    :base-layer="true"
+  >
     <Sources.OlSourceTileWms
       url="https://sgx.geodatenzentrum.de/wms_basemapde"
-      attributions='© GeoBasis-DE  <a href="https://www.bkg.bund.de" target="_blank">BKG</a>  <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>'
+      attributions="© GeoBasis-DE  <a href=&quot;https://www.bkg.bund.de&quot; target=&quot;_blank&quot;>BKG</a>  <a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot; target=&quot;_blank&quot;>CC BY 4.0</a>"
       layers="de_basemapde_web_raster_farbe"
       :params="{'TILED': false, 'FORMAT': 'image/png', 'VERSION': '1.3.0', 'CRS': 'EPSG:25832', 'SERVICE': 'WMS'}"
       projection="EPSG:25832"
-      crossOrigin=""/>
+      cross-origin=""
+    />
   </Layers.OlTileLayer>
 
   <Layers.OlTileLayer
-      ref="osmLayer"
-      title="OSM"
-      :visible="false"
-      :baseLayer="true">
+    ref="osmLayer"
+    title="OSM"
+    :visible="false"
+    :base-layer="true"
+  >
     <Sources.OlSourceOsm />
   </Layers.OlTileLayer>
 
   <MapControls.OlLayerswitcherimageControl
-      :mouseover="true"
-      :displayInLayerSwitcher="showBasemapLayer" />
+    :mouseover="true"
+    :display-in-layer-switcher="showBasemapLayer"
+  />
 </template>
 
 <style>

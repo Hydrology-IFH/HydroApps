@@ -7,6 +7,7 @@
   import WrapperNode from './flowchart/WrapperNode.vue';
   import CustomEdge from './flowchart/CustomEdge.vue';
   import { nodesInit, edgesInit } from './flowchart/flowElements';
+  import { conditionAI, conditionDamage } from '~/stores/Layer/LAYERS.js';
   import { useConfig } from '~/stores/config.js';
 
   const layerLib = useLayerLib();
@@ -16,7 +17,7 @@
 
   // set the width of the flowchart
   const nodesWidthRaw = computed(() => {
-    if (config.region == "Emmendingen" && config.kind == "matrix") {
+    if (conditionAI({ config }) || conditionDamage({ config })) {
       return 750
     } else {
       return 580
@@ -53,18 +54,27 @@
 </script>
 
 <template>
-  <div class="flow-container" style="height:100px" :style="{width: width}">
-    <VueFlow :nodes="nodes" :edges="edges"
-             :nodesDraggable="false"
-             :nodesConnectable="false"
-             :zoomOnScroll="false"
-             :zoomOnDoubleClick="false"
-             :zoomOnPinch="false"
-             :panOnDrag="false"
-             :edgesUpdatable="false">
-
+  <div
+    class="flow-container"
+    style="height:100px"
+    :style="{width: width}"
+  >
+    <VueFlow
+      :nodes="nodes"
+      :edges="edges"
+      :nodes-draggable="false"
+      :nodes-connectable="false"
+      :zoom-on-scroll="false"
+      :zoom-on-double-click="false"
+      :zoom-on-pinch="false"
+      :pan-on-drag="false"
+      :edges-updatable="false"
+    >
       <template #node-custom="NodeProps">
-        <CustomNode v-bind="NodeProps" :layerLib="layerLib"/>
+        <CustomNode
+          :data="NodeProps.data"
+          :layer-lib="layerLib"
+        />
       </template>
 
       <template #edge-custom="EdgeProps">
@@ -72,7 +82,10 @@
       </template>
 
       <template #node-wrapper="NodeProps">
-        <WrapperNode v-bind="NodeProps" :layerLib="layerLib"/>
+        <WrapperNode
+          :data="NodeProps.data"
+          :layer-lib="layerLib"
+        />
       </template>
     </VueFlow>
   </div>

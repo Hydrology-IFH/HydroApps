@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-14 16:12+0100\n"
+"POT-Creation-Date: 2025-06-26 12:58+0200\n"
 "PO-Revision-Date: 2025-03-10 17:12+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -49,21 +49,32 @@ msgstr ""
 #: .\sfi_demo\templates\sfi_demo\app.html:16
 msgid ""
 "The blue flow chart abstracts the underlying methodology (more information "
-"under Method). It also allows you to select the individual data levels for "
-"visualization."
+"under "
 msgstr ""
 "Das blaue Flussdiagramm abstrahiert die zugrundeliegende Methodik (mehr "
-"Informationen unter Methode). Es ermöglicht weiterhin, die einzelnen "
-"Datenebenen zur Visualisierung anzuwählen."
+"Informationen unter "
+
+#: .\sfi_demo\templates\sfi_demo\app.html:16
+#: .\sfi_demo\templates\sfi_demo\base.html:22
+#: .\sfi_demo\templates\sfi_demo\method.html:29
+msgid "Method"
+msgstr "Methode"
+
+#: .\sfi_demo\templates\sfi_demo\app.html:16
+msgid ""
+"It also allows you to select the individual data levels for visualization."
+msgstr ""
+"Es ermöglicht weiterhin, die einzelnen Datenebenen zur Visualisierung "
+"anzuwählen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:17
 msgid ""
-"In the \"Event selection\" menu, you can switch spatially between regions "
-"and in terms of content between real events and fictitious scenarios. In the "
+"In the \"Event options\" menu, you can switch spatially between regions and "
+"in terms of content between real events and fictitious scenarios. In the "
 "scenarios, you can independently change the parameters influencing the flash "
 "flood in order to see their effects on the regional impact."
 msgstr ""
-"Im \"Ereignis-Optionen\"  Menü können Sie räumlich zwischen Regionen sowie "
+"Im \"Ereignis Optionen\" Menü können Sie räumlich zwischen Regionen sowie "
 "inhaltlich zwischen realen Ereignissen und fiktiven Szenarien wechseln. Bei "
 "den Szenarien können Sie selbständig die sturzflutbeeinflussenden Parameter "
 "ändern, um deren Auswirkungen auf die regionale Betroffenheit zu sehen."
@@ -84,11 +95,6 @@ msgstr ""
 #: .\sfi_demo\templates\sfi_demo\home.html:21
 msgid "Home"
 msgstr "Home"
-
-#: .\sfi_demo\templates\sfi_demo\base.html:22
-#: .\sfi_demo\templates\sfi_demo\method.html:29
-msgid "Method"
-msgstr "Methode"
 
 #: .\sfi_demo\templates\sfi_demo\base.html:23
 msgid "Demonstrator"
@@ -168,3 +174,490 @@ msgstr ""
 #: .\sfi_demo\templates\sfi_demo\feedback.html:30
 msgid "Send"
 msgstr "Senden"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:22
+msgid ""
+"The AVOSS project (Impact-based prediction of heavy rainfall and flash "
+"floods on different scales: potentials, uncertainties, and limitations) is a "
+"project funded by the BMFTR as part of the \"WaX - Water Extreme Events\" "
+"funding measure on the topic of pluvial flash floods. "
+msgstr ""
+"Das Projekt AVOSS (Auswirkungsbasierte Vorhersage von Starkregen und "
+"Sturzfluten auf verschiedenen Skalen: Potentiale, Unsicherheiten und "
+"Grenzen) ist ein vom BMFTR im Rahmen der Fördermaßnahme \"WaX - Wasser-"
+"Extremereignisse\" gefördertes Projekt zum Themenkomplex pluvialer "
+"Sturzfluten."
+
+#: .\sfi_demo\templates\sfi_demo\home.html:24
+msgid ""
+"The aim of AVOSS is to make a decisive contribution to closing the existing "
+"gap in the warning system for flash floods. More information about AVOSS can "
+"be found at the"
+msgstr ""
+"Ziel von AVOSS ist es, einen entscheidenden Beitrag dazu zu leisten, die "
+"bestehende Lücke zu Sturzfluten im Warnsystem zu schließen. Mehr "
+"Informationen zu AVOSS finden Sie unter"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:24
+#: .\sfi_demo\templates\sfi_demo\method.html:35
+#: .\sfi_demo\templates\sfi_demo\method.html:59
+#: .\sfi_demo\templates\sfi_demo\method.html:64
+msgid "AVOSS project homepage"
+msgstr "AVOSS – Projekthomepage"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgctxt "prior demonstrator link"
+msgid "This"
+msgstr "Mit diesem"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgid "web demonstrator"
+msgstr "Web-Demonstrator"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgid ""
+"is intended to present the prototype prediction and warning products "
+"developed within the framework of AVOSS. Background information on the data "
+"presented can be found in the"
+msgstr ""
+"sollen die im Rahmen von AVOSS entwickelten, prototypischen Vorhersage- bzw. "
+"Warnprodukte vorgestellt werden. Die Hintergründe zu den dargestellten Daten "
+"finden Sie im"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgid "Method section"
+msgstr "Bereich Methode"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgid "and in the further information linked there."
+msgstr ", bzw. in den dort verlinkten weiterführenden Informationen."
+
+#: .\sfi_demo\templates\sfi_demo\home.html:30
+#: .\sfi_demo\templates\sfi_demo\home.html:31
+msgid "The Logos of the AVOSS consortium"
+msgstr "Logos des AVOSS Konsortiums"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:38
+msgid ""
+"AVOSS is part of the WAX funding program of the Federal Ministry of "
+"Research, Technology and Space of germany (BMFTR)."
+msgstr ""
+"AVOSS ist Teil der Fördermaßnahme WAX des Bundesminsiteriums für "
+"Forschung, Technologie und Raumfahrt (BMFTR)"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:16
+#: .\sfi_demo\templates\sfi_demo\method.html:30
+msgid "Pluvial flood index (PFI)"
+msgstr "Sturzflutindex (SFI)"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:17
+#: .\sfi_demo\templates\sfi_demo\method.html:41
+msgid "Precipitation &amp; PFI"
+msgstr "Niederschlag &amp; SFI"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:18
+#: .\sfi_demo\templates\sfi_demo\method.html:45
+msgid "Calculation of surface runoff"
+msgstr "Berechnung des oberflächlich abfließenden Wassers"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:19
+#: .\sfi_demo\templates\sfi_demo\method.html:51
+msgid "Accumulation of surface runoff"
+msgstr "Akkumulation des Oberflächenabflusses"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:20
+#: .\sfi_demo\templates\sfi_demo\method.html:57
+msgid "KNN-based quasi-real-time heavy rain hazard maps"
+msgstr "KNN-basierte quasi-Echtzeit Starkregengefahrenkarten"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:21
+#: .\sfi_demo\templates\sfi_demo\method.html:61
+msgid "Quantitative damage modeling"
+msgstr "Quantitative Schadensmodellierung"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:31
+msgid ""
+"The core element of the AVOSS web demonstrator is the newly developed "
+"pluvial flood index (PFI). The PFI describes the risk posed by rapidly "
+"flowing surface water, which often runs off outside of rivers along small "
+"streams, depressions in the terrain, or paths and roads as a result of "
+"severe thunderstorms and can pose a danger to life and limb. The current "
+"warning system, which is based exclusively on precipitation amount and "
+"duration, does not provide reliable information about this hazard."
+msgstr ""
+"Kernelement des AVOSS Web-Demonstrators ist der neu entwickelte "
+"Sturzflutindex (SFI). Der SFI beschreibt die Gefährdung durch wild "
+"abfließendes Oberflächenwasser, das in Folge starker Gewitterereignisse "
+"oftmals außerhalb von Flüssen entlang von kleinen Bächen, "
+"Geländevertiefungen oder Wegen bzw. Straßen abläuft und zu einer Gefahr für "
+"Leib und Leben werden kann. Für diese Gefährdung gibt es im derzeitigen "
+"Warnsystem, welches ausschließlich auf Niederschlagsmenge und - dauer "
+"basiert, keine verlässliche Information."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:32
+msgid ""
+"The PFI can be used both as a warning tool to assess the current pluvial "
+"flood risk (real events) and as part of awareness-raising (fictitious "
+"scenarios) to assess regional pluvial flood susceptibility. Both options are "
+"visualized in the demonstrator."
+msgstr ""
+"Der SFI kann sowohl als Warninstrument zur Abschätzung der aktuellen "
+"Sturzflutgefährdung (reale Ereignisse) als auch im Rahmen der "
+"Sensibilisierung (fiktive Szenarien) zur Abschätzung der regionalen "
+"Sturzflutanfälligkeit verwendet werden. Beide Optionen sind im Demonstrator "
+"visualisiert."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:33
+msgid ""
+"In order to identify the PFI, a modeling chain must be calculated—from "
+"precipitation data to hydrological runoff formation and hydraulic runoff "
+"accumulation to the identification of pluvial flood hazard areas (PFHA) and "
+"finally the classification of the PFI—as visualized in the figure below."
+msgstr ""
+"Um den SFI ausweisen zu können, muss eine Modellierungskette – von "
+"Niederschlagsdaten über die hydrologische Abflussbildung und die "
+"hydraulische Abflussakkumulation bis hin zur Identifizierung "
+"sturzflutgefährdeter Flächen (SFGF) und schlussendlich die Klassifizierung "
+"des SFI - durchgerechnet werden, so wie in untenstehender Abbildung "
+"visualisiert."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:34
+msgid ""
+"The criteria for identifying PFHA are as follows. All grid points with a "
+"maximum flood depth of ≥30 cm, a maximum flow velocity of &ge;1.5 m/s, or a "
+"maximum specific discharge of &ge;200 l/m*s are classified as potentially "
+"prone to pluvial flooding. The PFI is then classified based on the "
+"proportion of PFHA areas within a defined radius of each cell in the model "
+"area."
+msgstr ""
+"Die Kriterien zur Ausweisung von SFGF sind wie folgt. Alle Rasterpunkte, die "
+"eine maximale Überflutungstiefen von &ge;30cm, eine maximale "
+"Fließgeschwindigkeit von &ge;1.5m/s oder einen maximalen spezifischen "
+"Abfluss von &ge;200l/m*s aufweisen, werden als potentiell sturzflutgefährdet "
+"eingeordnet. Die Klassifizierung des SFI erfolgt dann über den Anteil der "
+"SFGF Flächen in einem definerten Umkreis der jeder Zelle im Modellgebiet."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:35
+msgid "More information about PFI can be found on the "
+msgstr "Mehr Informationen zum SFI finden Sie auf der "
+
+#: .\sfi_demo\templates\sfi_demo\method.html:35
+msgid "or in detail in a"
+msgstr "bzw. ausführlich in einem"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:35
+msgid "guide about the PFI devellopment"
+msgstr "Leitfaden zur SFI-Entwicklung"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:38
+msgid ""
+"A schematic representation of the processing steps for the heavy rainfall "
+"index (SRI)"
+msgstr ""
+"Eine schematische Darstellung der Prozessieruingsschritte für den "
+"Starkregenindex (SRI)"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:42
+msgid ""
+"The event sums of the actual heavy rainfall events are based on calibrated "
+"precipitation radar data, which was provided at a temporal resolution of "
+"5&nbsp;minutes by the associated AVOSS project partner in the field of "
+"research and development, Kachelmann GmbH. The data largely corresponds to "
+"the data that is also visualized on the"
+msgstr ""
+"Die Ereignissummen der realen Starkregenereignisse basieren auf kalibrierten "
+"Niederschlagsradardaten, die in einer zeitlichen Auflösung von 5&nbsp;"
+"Minuten vom assoziierten AVOSS Projektpartner im Bereich Forschung und "
+"Entwicklung, der Kachelmann GmbH bereitgestellt wurden. Die Daten "
+"entsprechen weitestgehend den Daten, die auch auf der "
+
+#: .\sfi_demo\templates\sfi_demo\method.html:42
+msgid "Kachelmann GmbH website"
+msgstr "Kachelmann GmbH Webseite"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:42
+msgid ""
+". The SRI is based on the KOSTRA heavy rainfall levels published by the "
+"German Weather Service in version 2020 (KOSTRA_V2020). The procedure "
+"corresponds to the approach described"
+msgstr ""
+" visualisiert sind. Zur Einordnung der Stärke der Niederschlagsereignisse "
+"wurden die Niederschlagssummen des Ereignisses mittels des Starkregenindexes "
+"(SRI) klassifiziert. Basis für den SRI sind die vom Deutschen Wetterdienst "
+"veröffentlichten KOSTRA-Starkregenhöhen in der Version 2020 (KOSTRA_V2020). "
+"Das Vorgehen dabei entspricht dem"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:42
+msgid "here"
+msgstr "hier"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:42
+msgctxt "after sri_bw link"
+msgid "."
+msgstr "beschriebenen Ansatz."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:43
+msgid ""
+"The precipitation totals for the fictional scenarios are based on the "
+"spatial median (for Baden-Württemberg) of the precipitation values of "
+"various SRIs and duration levels based on KOSTRA_V2020, and are therefore "
+"spatially constant. In the demonstrator, SRI thresholds 3 (heavy), 5 (heavy "
+"- very heavy), 7 (very heavy), 9 (very heavy - extreme) and 11 (extreme) "
+"have been mapped for duration levels 30&nbsp;min, 1&nbsp;h, 2&nbsp;h and "
+"4&nbsp;h. For further modeling, the respective total precipitation amounts "
+"are divided into 5-minute precipitation totals. The assumed temporal course "
+"of precipitation corresponds to a left-skewed Weibull distribution."
+msgstr ""
+"Die Niederschlagssummen der fiktiven Szenarien basieren auf dem räumlichen "
+"Median (für Baden-Württemberg) der auf KOSTRA_V2020 beruhenden "
+"Niederschlagswerte verschiedener SRIs und Dauerstufen, und sind daher "
+"räumlich konstant. Im Demonstrator sind bisher die SRI-Schwellen 3 (stark), "
+"5 (stark - sehr stark), 7 (sehr stark), 9 (sehr stark – extrem) und 11 "
+"(extrem) für die Dauerstufen 30&nbsp;min, 1&nbsp;h, 2&nbsp;h und 4&nbsp;h "
+"abgebildet. Zur weiteren Modellierung werden die jeweiligen Gesamtsummen des "
+"Niederschlags in 5-Minuten Niederschlagssummen unterteilt. Der angenommene "
+"zeitliche Verlauf der Niederschläge entspricht einer linkssteilen Weibull-"
+"Verteilung."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:46
+msgid "Surface runoff is calculated using the physically based"
+msgstr ""
+"Die Berechnung der Oberflächenabflussbildung erfolgt mit dem physikalisch "
+"basierten"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:46
+msgid "precipitation-runoff model RoGeR"
+msgstr "Niederschlags-Abfluss-Modell RoGeR"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:46
+msgid ", which is also used in the"
+msgstr ", das auch im Rahmen des "
+
+#: .\sfi_demo\templates\sfi_demo\method.html:46
+msgid "heavy rainfall risk management system in Baden-Württemberg (SRRM-BW)"
+msgstr "kommunalen Starkregenrisikomanagements in Baden-Württemberg (SRRM-BW)"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:46
+msgctxt "after SRRM link"
+msgid "."
+msgstr "zum Einsatz kommt."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:47
+msgid ""
+"In addition to the precipitation data described above, RoGeR also requires "
+"information on current soil moisture as event-specific input data. For real "
+"heavy rainfall events, the moisture conditions at the beginning of the event "
+"(based on a long-term water balance simulation created for the whole of "
+"Baden-Württemberg using the RoGeR_WB_1D water balance model) were used."
+msgstr ""
+"Als ereignisspezifische Eingangsdaten müssen für RoGeR neben den oben "
+"beschriebenen Niederschlagsdaten auch Informationen zur aktuellen "
+"Bodenvorfeuchte vorliegen. Für die realen Starkregenereignisse wurden dabei "
+"die zu Beginn des Ereignisses herrschenden Vorfeuchtebedingen (auf Basis "
+"einer landesweit für Baden-Württemberg vorliegenden, mit dem "
+"Wasserhaushaltsmodell RoGeR_WB_1D erstellten, langjährigen "
+"Wasserbilanzsimulation) herangezogen."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:48
+msgid ""
+"For the fictitious scenarios, three pre-moisture conditions were derived "
+"from the above-mentioned water balance simulation using a percentile "
+"approach. The \"dry\" pre-moisture option corresponds to the 10th percentile "
+"of the frequency distribution of the values of the usable field capacity "
+"(nFK) in the summer months; \"medium\" corresponds to the 50th percentile "
+"nFK and \"wet\" to the 90th percentile nFK. \" "
+msgstr ""
+"Für die fiktiven Szenarien wurden aus der oben genannten "
+"Wasserbilanzsimulation, über einen Perzentil-Ansatz drei "
+"Vorfeuchtebedingungen abgeleitet. Die Vorfeuchte-Option \"trocken\" "
+"entspricht dabei dem 10. Perzentil der Häufigkeitsverteilung der Werte der "
+"nutzbaren Feldkapazität (nFK) in den Sommermonaten; \"mittel\" entspricht "
+"dem 50. Perzentil nFK und \"feucht\" dem 90. Perzentil nFK. "
+
+#: .\sfi_demo\templates\sfi_demo\method.html:49
+msgid ""
+"RoGeR outputs the so-called surface runoff (OA values, here 5&nbsp;"
+"x&nbsp;5&nbsp;m spatial resolution) for each precipitation interval (5&nbsp;"
+"minutes). This is the part of the precipitation that cannot infiltrate the "
+"soil (in heavy rainfall, usually due to excess infiltration)."
+msgstr ""
+"Als Output von RoGeR erhält man pro Niederschlagsintervall (5&nbsp;Minuten) "
+"den sog. Oberflächenabfluss (OA-Werte, hier 5&nbsp;x&nbsp;5&nbsp;m räumliche "
+"Auflösung). Das ist der Teil des Niederschlags, der nicht in den Boden "
+"infiltrieren kann (im Starkregenfall meistens aufgrund von "
+"Infiltrationsüberschuss). "
+
+#: .\sfi_demo\templates\sfi_demo\method.html:52
+msgid ""
+"In order to map the risk of flooding outside existing channel structures, it "
+"is essential to determine the spatial and temporal concentration of the "
+"surface runoff that is formed. Usually, 2D hydraulic models are used for "
+"this purpose, but these have the disadvantage of being relatively "
+"computationally intensive compared to other elements in the model chain, "
+"resulting in long calculation times. In AVOSS, an approach based on "
+"geomorphological flow accumulation was therefore developed to concentrate "
+"surface runoff, which allows flood areas and the criteria necessary for PFHA "
+"designation to be identified with minimal computation time. "
+msgstr ""
+"Um die Gefahr durch Überflutungen außerhalb von bestehenden "
+"Gerinnestrukturen abzubilden, ist die räumliche und zeitliche Konzentration "
+"des gebildeten Oberflächenabflusses unerlässlich. In der Regel werden dafür "
+"2d-hydraulische Modelle verwendet, die allerdings den Nachteil haben, dass "
+"sie im Vergleich zu den anderen Modellierungskettenglieder relativ "
+"rechenzeitintensiv sind und somit lange Berechnungszeiten aufweisen. In "
+"AVOSS wurde daher zur Konzentration des Oberflächenabflusses ein, auf einer "
+"geomorphologischen Fließakkumulation beruhender Ansatz entwickelt, der es "
+"erlaubt Überflutungsbereiche und die zur SFGF Ausweisung notwendigen "
+"Kriterien mit geringem Rechenzeitbedarf ausgewiesen werden können."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:53
+msgid ""
+"The AccRo (iterative <b>acc</b>umulated <b>r</b>un<b>o</b>ff) approach "
+"developed in AVOSS was applied to the PFI calculations shown in the "
+"demonstrator with a grid size of 5&nbsp;x&nbsp;5&nbsp;m. In addition to the "
+"surface runoff values from RoGeR, static data on terrain morphology (DEM) "
+"and roughness are also included as input data. The roughness values are "
+"assigned to the various land use classes in accordance with the "
+"specifications of the"
+msgstr ""
+"Der in AVOSS entwickelte Ansatz AccRo (iterative accumulated runoff) wurde "
+"für die im Demonstrator dargestellten SFI-Berechnungen mit einer Rasterweite "
+"von 5&nbsp;x&nbsp;5&nbsp;m angewendet. Als Inputdaten gehen neben den "
+"Oberflächenabfluss-Werten aus RoGeR, auch statische Daten zu "
+"Geländemorphologie (DGM) und Rauigkeit mit ein. Die Zuordnung der "
+"Rauigkeitswerte zur verschiedenen Landnutzungsklassen erfolgt dabei nach den "
+"Vorgaben des"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:53
+msgid "SRRM-BW"
+msgstr "SRRM-BW"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:53
+msgid ""
+"The proportion of precipitation that falls on buildings is not taken into "
+"account in the current version of AccRo. Similarly, culverts or other "
+"passages cannot be taken into account in AccRo. Therefore, culverted channel "
+"sections in the DEM are made permeable again in the course of preprocessing."
+msgstr ""
+"Der Anteil des Niederschlags, der auf Gebäude fällt, wird in der aktuellen "
+"Version von AccRo nicht berücksichtigt. Ebenso können keine Verdohlungen "
+"oder andere Durchlässe in AccRo berücksichtigt werden. Daher werden im Zuge "
+"eines Präprozessing verdohlte Gerinneabschnitte im DGM wieder durchlässig "
+"gemacht."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:54
+msgid ""
+"In order to distinguish between fluvial floods and to avoid unrealistic "
+"discharge volumes due to uniform rainfall, the capacity of existing channels "
+"is assumed to be infinite in the case of fictitious scenarios with an "
+"accumulation area of more than 10&nbsp;km². This means that no outflowing "
+"flooding can occur above this size of the contributing catchment area. In "
+"the case of real heavy rainfall events, this limitation does not exist due "
+"to the spatial limitation of real heavy rainfall events."
+msgstr ""
+"Zur Abgrenzung von fluvialen Hochwässern und zur Vermeidung unrealistischer "
+"Abflussmengen aufgrund Einheitsberegnung wird im Falle der fiktiven "
+"Szenarien die Kapazität der vorhandenen Gerinne ab einer Akkumulationsfläche "
+"von mehr als 10&nbsp;km² als unendlich angenommen. Dies bedeutet, dass ab "
+"dieser Größe des beitragenden Einzugsgebietes keinerlei ausgehende "
+"Ausuferung stattfinden kann. Im Falle der realen Starkregenereignisse gibt "
+"es diese Begrenzung aufgrund der räumlichen Begrenzung realer "
+"Starkregenereignisse nicht."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:55
+msgid ""
+"AccRo outputs spatial data on the maximum flood depth, the maximum flow "
+"velocity, and the maximum specific discharge. The results from AccRo can "
+"thus be used to directly derive the pluvial flood hazard areas and identify "
+"a corresponding PFI (see above). In addition, the parameters can also be "
+"used for damage scenarios."
+msgstr ""
+"Als Output von AccRo ergeben sich räumliche Daten der maximalen "
+"Überflutungstiefe, der maximalen Fließgeschwindigkeit sowie des maximalen "
+"spezifischen Abflusses. Aus den Ergebnissen von AccRo lassen sich somit "
+"direkt die Sturzflutgefahrenflächen ableiten und ein entsprechender SFI (s."
+"o.) ausweisen. Zusätzlich können die Parameter auch für Schadensszenarien "
+"genutzt werden."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:58
+msgid ""
+"Due to the sometimes highly simplified assumptions and the rather low "
+"spatial resolution (here 5&nbsp;x&nbsp;5&nbsp;m), AccRo can only be used to "
+"a limited extent for creating detailed, street- or building-specific flood "
+"maps, such as those found in heavy rain hazard maps (HRRMs). Therefore, "
+"detailed 2D hydraulic modeling will normally have to be used here."
+msgstr ""
+"Aufgrund der teilweise sehr vereinfachten Annahmen und der eher geringen "
+"räumlichen Auflösung (hier 5&nbsp;x&nbsp;5&nbsp;m) lässt sich AccRo nur "
+"bedingt zur Erstellung detaillierter, straßenzugs- bzw. gebäudespezifischen "
+"Überflutungskartierungen, wie sie in den Starkregengefahrenkarten (SRGKs) "
+"vorliegt, heranziehen. Daher wird hier im Normallfall auf detaillierte 2d-"
+"hydraulische Modellierung zurückgegriffen werden müssen."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:59
+msgid ""
+"However, due to the high computing time required for 2D hydraulic models, "
+"this can only be done independently of the specific event and only for a "
+"limited number of scenarios. As part of AVOSS, the use of AI to generate "
+"HRRMs in near real time was tested for individual test areas (see "
+"Emmendingen). For this purpose, a large data set of maximum flood depths and "
+"maximum flow velocities was generated using 2D hydraulic models for a large "
+"number of different heavy rainfall events. This was then used, together with "
+"the OA values entered into the 2D modeling, to train multi-layer artificial "
+"neural networks, which in turn can identify detailed HRRMs in near real time "
+"for any OA inputs. More information on the KNN approach used in AVOSS can be "
+"found here on the"
+msgstr ""
+"Aufgrund des hohen Rechenzeitbedarfs 2d-hydraulsicher Modelle lässt sich "
+"dies aber nur unabhängig vom konkreten Ereignisfall und nur für eine "
+"begrenzte Anzahl von Szenarien durchführen. Im Zuge von AVOSS wurde für "
+"einzelne Testgebiete (siehe Emmendingen) der Einsatz von KI zur Generierung "
+"von SRGKs in quasi-Echtzeit erprobt. Dafür wurden mit 2d-hydraulichen "
+"Modellen für eine Vielzahl von unterschiedlichen Starkregenereignissen ein "
+"großer Datensatz von maximalen Überflutungstiefen und max. "
+"Fließgeschwindigkeiten erzeugt. Dieser wurde dann zusammen mit den in die 2d-"
+"Modellierung eingehenden OA-Werten dafür genutzt, mehrschichtige künstliche "
+"neuronale Netze zu trainieren, die dann wiederum in quasi-Echtzeit für "
+"beliebige OA-Inputs detaillierte SRGKs ausweisen kann. Mehr Informationen zu "
+"dem in AVOSS verwendeten KNN-Ansatz findet sich auf der"
+
+#: .\sfi_demo\templates\sfi_demo\method.html:62
+msgid ""
+"Identifying expected damage hotspots can significantly aid decision-making "
+"in an emergency. Against this backdrop, AVOSS performs a quantitative damage "
+"assessment at the reference level of the locations for the fictitious "
+"scenarios, which can be used to estimate the varying degrees of impact in "
+"the event of a potential incident and thus take precautions to minimize "
+"damage if necessary."
+msgstr ""
+"Die Identifizierung von zu erwartenden Schadens-Hotspots kann die "
+"Entscheidungsfindung im Notfall erheblich unterstützen. Vor diesem "
+"Hintergrund wird in AVOSS für die fiktiven Szenarien eine quantitative "
+"Schadensabschätzung auf Bezugsebene der Ortslagen durchgeführt, anhand derer "
+"man die unterschiedliche Betroffenheit im potentiellen Ereignisfall "
+"abschätzen und somit ggf. Vorkehrungen zur Minimierung der Schäden treffen "
+"kann."
+
+#: .\sfi_demo\templates\sfi_demo\method.html:64
+msgid ""
+"In the example of Emmendingen, a Bayesian network is used to quantify "
+"potential damage to buildings in the private residential sector as a result "
+"of flooding. In addition to building-specific factors, this approach also "
+"takes into account socioeconomic assumptions and the degree to which a "
+"municipality is prepared for heavy rainfall. With regard to flood "
+"parameters, the maximum flood depth and the maximum flow velocity are "
+"particularly important. For the location-specific damage estimates presented "
+"here, this information from AccRo is incorporated into the Bayesian network. "
+"More information on the damage modeling carried out in AVOSS can be found on "
+"the"
+msgstr ""
+"Im Beispiel von Emmendingen wird ein Bayes'sches Netz dazu genutzt, um "
+"potentielle Gebäudeschäden im privaten Wohnsektor in Folge von Überflutung "
+"zu quantifizieren. In einem solchen Ansatz fließen neben gebäudespezifischen "
+"Faktoren auch sozioökonomische Annahmen sowie der Grad der (wie gut eine "
+"Kommune auf Starkregen vorbereitet ist) mit ein. Hinsichtlich der "
+"Überflutungsparameter sind insb. die maximale Überflutungstiefe und die "
+"maximale Fließgeschwindigkeit von Bedeutung. Für die hier dargestellten, "
+"ortslagenspezifischen Schadensabschätzungen fließen diese Informationen aus "
+"AccRo in das Bayes'sche Netz ein. Mehr Informationen zu der in AVOSS "
+"durchgeführten Schadensmodellierung findet sich auf der "

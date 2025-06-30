@@ -16,7 +16,7 @@
   const { updateHighlight } = inject('screenshot-highlight');
 
   // checkout if zoom of fullscreen is active
-  const { zoomActive } = inject('fullscreen-zoomActive') || ref(false);
+  const { zoomActive } = inject('fullscreen-active') || ref(false);
 
   // Button tooltip
   const buttonRef = ref(null);
@@ -45,7 +45,7 @@
         clonedDOM.querySelectorAll('div.ol-layerswitcher-image').forEach((b) => b.remove());
       },
       // backgroundColor: "#ffffff",
-    }).then(canvas => {
+    }).then((canvas) => {
       updateSpinnerActive(false);
       var link = document.createElement('a');
       link.download = props.fileName;

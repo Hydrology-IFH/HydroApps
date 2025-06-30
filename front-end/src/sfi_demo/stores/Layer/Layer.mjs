@@ -10,6 +10,7 @@ import "./extraColormaps.js";
 class BaseLayer {
   constructor({ id,
                 file,
+                name,
                 style,
                 decimals = 2,
                 unit = "",
@@ -17,6 +18,7 @@ class BaseLayer {
                 child_layer,
                 z_index = 0,
                 condition,
+                layerAvailable = true,
                 openlayer_options,
                 valueConverter,
                 valueConverterConfig,
@@ -28,6 +30,7 @@ class BaseLayer {
 
     this.id = id;
     this.file = file;
+    this._name = name;
     this.decimals = decimals;
     this._unit = unit;
     this._styleInit = style;
@@ -38,6 +41,7 @@ class BaseLayer {
     this._url = url;
     this.z_index = z_index;
     this.condition = condition;
+    this._layerAvailable = layerAvailable;
     this.openlayer_options = openlayer_options;
     this._valueConverter = valueConverter;
     this.valueConverterConfig = valueConverterConfig;
@@ -101,6 +105,13 @@ class BaseLayer {
     }
   }
 
+  get name() {
+    if (this._name instanceof Function) {
+      return this._name(this.config);
+    }
+    return this._name;
+  }
+
   get unit() {
     if (this._unit instanceof Function) {
       return this._unit(this.config);
@@ -120,6 +131,9 @@ class BaseLayer {
       if (this._styleInit.hasOwnProperty("options")) {
         //  create all colorscales with default options
         var defaultColorscaleOpts = this._styleInit.options.defaultColorscaleOpts || {};
+        if (defaultColorscaleOpts instanceof Function) {
+          defaultColorscaleOpts = defaultColorscaleOpts(this.config);
+        }
         this._styles = {};
         Object.entries(this._styleInit.options.colorscales||{}).forEach(([key, opts]) => {
           this._styles[key] = {
@@ -255,8 +269,15 @@ class BaseLayer {
     if (this.condition === undefined) {
       return this.selected;
     } else {
-      return this.selected && this.condition(this.config);
+      return this.selected && this.condition({ config: this.config });
     }
+  }
+
+  get layerAvailable() {
+    if (this._layerAvailable instanceof Function) {
+      return this._layerAvailable(this.config);
+    }
+    return this._layerAvailable;
   }
 }
 

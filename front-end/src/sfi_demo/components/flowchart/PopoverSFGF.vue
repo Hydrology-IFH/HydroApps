@@ -6,7 +6,15 @@
 
 <template>
   <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" id="sfgfSwitch" v-model="config.show_sfgf">
-    <label class="form-check-label" for="sfgfSwitch">{{$t("popover_SFGF_switch_label")}}</label>
+    <input
+      id="sfgfSwitch"
+      v-model="config.show_sfgf"
+      class="form-check-input"
+      type="checkbox"
+    >
+    <label
+      class="form-check-label"
+      for="sfgfSwitch"
+    >{{ $t("popover_SFGF_switch_label") }}</label>
   </div>
 </template>

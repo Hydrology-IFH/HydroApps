@@ -113,7 +113,8 @@
       element: hoverDiv.value,
       className: 'ov-hover',
       autoPan: false,
-      positioning: 'bottom-left'
+      positioning: 'bottom-left',
+      stopEvent: false
     });
     props.map.addOverlay(overlay);
     hoverActive.value = true;

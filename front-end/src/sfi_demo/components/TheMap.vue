@@ -9,9 +9,9 @@
   import { useConfig } from '~/stores/config.js';
   import { useLayerLib } from '~/stores/layerLib.js';
   import "./map/projections";
-  import Basemaps from './map/Basemaps.vue';
-  import MapLegend from "./map/MapLegend.vue";
-  import RegionSelector from './map/RegionSelector.vue';
+  import TheBasemaps from './map/TheBasemaps.vue';
+  import TheMapLegend from "./map/TheMapLegend.vue";
+  import TheRegionSelector from './map/TheRegionSelector.vue';
   import { flyTo } from "./map/animations";
   import { regions } from "./map/regions";
 
@@ -24,7 +24,7 @@
       Math.max(total_extent[2], regions[region].extent[2]),
       Math.max(total_extent[3], regions[region].extent[3])];
   }
-  total_extent = buffer(total_extent, 50000);
+  total_extent = buffer(total_extent, 150000);
 
   // setup
   const config = useConfig();
@@ -68,6 +68,9 @@
   const layerError = computed(() => {
     return config.region_selection_active? false : layer.value ? layer.value.hasError: false
   })
+  const layerAvailable = computed(() => {
+    return layer.value ? layer.value.layerAvailable : false
+  })
 
   // change map extent on region change
   config.$subscribe((mutation, state) => {
@@ -88,7 +91,7 @@
 
   // change layer if the current layer isn't available anymore
   config.$subscribe((mutation, state) => {
-    if (!layerLib.selectedLayer?.condition?.(state) && layerLib.selectedLayer.backupLayer !== undefined) {
+    if (!layerLib.selectedLayer?.condition?.({ config: state }) && layerLib.selectedLayer.backupLayer !== undefined) {
       layerLib.selectLayer(layerLib.selectedLayer.backupLayer);
     }
   })
@@ -124,34 +127,53 @@
 </script>
 
 <template>
-  <div class="map-container" @wheel="(event) => event.preventDefault()">
-    <Map.OlMap id="map" ref="mapRef">
-
-      <Basemaps/>
-      <RegionSelector v-if="map != null" :map="map"/>
+  <div
+    class="map-container"
+    @wheel="(event) => event.preventDefault()"
+  >
+    <Map.OlMap
+      id="map"
+      ref="mapRef"
+    >
+      <TheBasemaps />
+      <TheRegionSelector
+        v-if="map != null"
+        :map="map"
+      />
       <MapHoverOverlay
-          v-if="map != null && layer != null && !config.region_selection_active"
-          :map="map"
-          :layer="layer.olLayer"
-          :unit="layer.unit"
-          :decimals="layer.decimals"
-          :valueConverter="layer.valueConverter"
-          :propertyName="layer.propertyName"/>
-      <MapLegend
-          v-if="map != null && layer != null"
-          :map="map"
-          :layerName="layer.name"
-          :style="layer.legendStyle"
-          :unit="layer.unit"
-          :visible="!config.region_selection_active"
-          :opacity="config.opacity/100"/>
+        v-if="map != null && layer != null && layer.layerAvailable && !config.region_selection_active"
+        :map="map"
+        :layer="layer.olLayer"
+        :unit="layer.unit"
+        :decimals="layer.decimals"
+        :value-converter="layer.valueConverter"
+        :property-name="layer.propertyName"
+      />
+      <TheMapLegend
+        v-if="map != null && layer != null"
+        :map="map"
+        :layer-name="layer.name"
+        :style="layer.legendStyle"
+        :unit="layer.unit"
+        :visible="!config.region_selection_active"
+        :opacity="config.opacity/100"
+      />
 
-      <MapControls.OlFullscreenControl/>
-
+      <MapControls.OlFullscreenControl />
     </Map.OlMap>
-    <ErrorFrame v-if="layerError" class="map-error" :header="$t('map_error_header')" :msg="$t('map_error_msg')"/>
+    <ErrorFrame
+      v-if="layerError && layerAvailable"
+      type="danger"
+      :header="$t('map_popup_error_header')"
+      :msg="$t('map_popup_error_msg')"
+    />
+    <ErrorFrame
+      v-if="!layerAvailable"
+      type="warning"
+      :header="$t('map_popup_not_available_header')"
+      :msg="$t('map_popup_not_available_msg')"
+    />
   </div>
-
 </template>
 
 <style>

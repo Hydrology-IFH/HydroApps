@@ -32,12 +32,16 @@
   })
 </script>
 <template>
-  <MenuSlider v-model="sliderValue"
-              v-show="config.kind=='matrix'"
-              :label="$t('menu_duration_label')"
-              :min="1" :max="4" :step="1"
-              :ticks="labels"
-              :getLabel="(val) => labels[val]"
-              :tooltip="$t('menu_duration_tooltip')"
-              :active="!config.region_selection_active"/>
+  <MenuSlider
+    v-show="config.kind=='matrix'"
+    v-model="sliderValue"
+    :label="$t('menu_duration_label')"
+    :min="1"
+    :max="4"
+    :step="1"
+    :ticks="labels"
+    :get-label="(val) => labels[val]"
+    :tooltip="$t('menu_duration_tooltip')"
+    :active="!config.region_selection_active"
+  />
 </template>

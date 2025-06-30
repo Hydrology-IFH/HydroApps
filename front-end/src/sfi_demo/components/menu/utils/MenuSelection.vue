@@ -2,10 +2,19 @@
   import { computed } from 'vue';
 
   const props = defineProps({
-    label: String,
-    options: Object,
-    tooltip: String,
-    as_buttons: {
+    label: {
+      type: String,
+      required: true
+    },
+    options: {
+      type: Object,
+      default: () => ({})
+    },
+    tooltip: {
+      type: String,
+      default: ''
+    },
+    asButtons: {
       type: Boolean,
       default: false
     },
@@ -14,7 +23,10 @@
       default: true
     }
   });
-  const model = defineModel()
+  const model = defineModel({
+    type: [String, Number],
+    default: () => []
+  });
   defineEmits(['change']);
 
   const id = computed(() => props.label.replace(/ /g, '_').toLowerCase());
@@ -29,25 +41,52 @@
 </script>
 
 <template>
-  <div class="input-group mb-3" :disabled="!active">
-    <span class="input-group-text" :id="`label_${id}`"
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        data-bs-container="body" data-bs-html="true"
-        :data-bs-title="tooltip">
+  <div
+    class="input-group mb-3"
+    :disabled="!active"
+  >
+    <span
+      :id="`label_${id}`"
+      class="input-group-text"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      data-bs-container="body"
+      data-bs-html="true"
+      :data-bs-title="tooltip"
+    >
       {{ label }}
     </span>
-    <select class="form-select" :aria-label="label" v-model="model" v-if="!as_buttons" :disabled="!active" @change="$emit('change', $event)">
-      <option v-for="value, opt_label in options_obj" :value="value">{{opt_label}}</option>
+    <select
+      v-if="!asButtons"
+      v-model="model"
+      class="form-select"
+      :aria-label="label"
+      :disabled="!active"
+      @change="$emit('change', $event)"
+    >
+      <option
+        v-for="value, opt_label in options_obj"
+        :key="value"
+        :value="value"
+      >
+        {{ opt_label }}
+      </option>
     </select>
-    <button class="btn btn-stretch"
-      v-if="as_buttons"
-      v-for="(obj_label, key) in options_obj"
-      :class="[(key == model)? 'btn-primary':'btn-secondary']"
-      @click="model = key; $emit('change', $event)"
-      :disabled="!active">
-      {{obj_label}}
-    </button>
-    <slot name="after"></slot>
+    <template
+      v-if="asButtons"
+    >
+      <button
+        v-for="(obj_label, key) in options_obj"
+        :key="key"
+        class="btn btn-stretch"
+        :class="[(key == model)? 'btn-primary':'btn-secondary']"
+        :disabled="!active"
+        @click="model = key; $emit('change', $event)"
+      >
+        {{ obj_label }}
+      </button>
+    </template>
+    <slot name="after" />
   </div>
 </template>
 

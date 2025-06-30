@@ -11,6 +11,10 @@
     "Wieslauf": ["2024-06-02"],
     "Bonndorf": ["2015-06-14"],
     "Emmendingen": ["2014-07-20", "2021-06-08"],
+    "Karlsbad": ["2021-06-18", "2021-06-29", "2021-07-04"],
+    "Herrstein": ["2018-05-27"],
+    "Otting": ["2017-08-15"],
+    "Stadtallendorf": ["2020-08-11"],
   }
   const regionDates = computed(() => {
     return REGIONDATES[config.region] || [];
@@ -30,21 +34,22 @@
   <template v-if="config.kind=='event'">
     <template v-if="regionDates.length==1">
       <MenuInfo
-            :label="$t('menu_date_label')"
-            :msg="selected_date"
-            type="date"
-            :tooltip="$t('menu_date_static_tooltip')"
-            :active="!config.region_selection_active"/>
+        :label="$t('menu_date_label')"
+        :msg="selected_date"
+        type="date"
+        :tooltip="$t('menu_date_static_tooltip')"
+        :active="!config.region_selection_active"
+      />
     </template>
     <template v-else>
       <MenuSelection
-            :label="$t('menu_date_label')"
-            :tooltip="$t('menu_date_selection_tooltip')"
-            v-model="selected_date"
-            :options="regionDates"
-            @change="updateDate"
-            :active="!config.region_selection_active"/>
+        v-model="selected_date"
+        :label="$t('menu_date_label')"
+        :tooltip="$t('menu_date_selection_tooltip')"
+        :options="regionDates"
+        :active="!config.region_selection_active"
+        @change="updateDate"
+      />
     </template>
   </template>
-
 </template>

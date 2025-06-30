@@ -25,7 +25,9 @@ export default {
         case 'NEvents_above_SRI':
           return i18n.t('map_header_NEvents_above', {sri: this.sri});
         case 'Top_SRI_year':
-          return i18n.t('map_header_top_sri', {year: this.year});
+          return i18n.t('map_header_top_sri', { year: this.year });
+        default:
+          return "";
       }
     }
   },

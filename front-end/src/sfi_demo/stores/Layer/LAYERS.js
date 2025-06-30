@@ -1,6 +1,19 @@
 import i18n from 'i18next';
 import { Fill, Stroke, Style } from 'ol/style';
 
+
+// condition functions
+export const conditionAI = ({ config }) => {
+  return config.kind == "matrix" &&
+    (config.region == "Emmendingen" || config.region == "Karlsbad");
+}
+
+export const conditionDamage = ({ config }) => {
+  return config.kind == "matrix" &&
+    (config.region == "Emmendingen" || config.region == "Wieslauf"); //|| config.region == "Herrstein" --> missing values
+}
+
+// revlevant constants
 const sfiCats = [
   { sfi: 0, range: [0, 0.5] },
   { sfi: 1, range: [0.5, 2] },
@@ -51,6 +64,7 @@ const aiSpeedLegendLabels = {
 
 const relevantConfigsDefaults = ["region", "kind", "date", "region_selection_active"]
 
+// Layer definitions
 export const LAYERS = [
   {
     id: "precipitation",
@@ -236,16 +250,37 @@ export const LAYERS = [
       }
     },
     relevantConfigs: [...relevantConfigsDefaults, "soil_moisture"],
-    name: i18n.t("label_layer_soil_moisture"),
+    name: ({ region }) => {
+      if (region == "Stadtallendorf" || region == "Otting" || region == "Herrstein") {
+        return i18n.t("label_layer_soil_moisture_hydron");
+      } else {
+        return i18n.t("label_layer_soil_moisture");
+      }
+    },
+    layerAvailable: ({ region, kind }) => {
+      if (region == "Otting") return false;
+      if ((region == "Stadtallendorf" || region == "Herrstein") && kind == "event") return false;
+      return true;
+    },
     unit: "% vol",
     decimals: 1,
     style: {
       options: {
         defaultKey: "bathymetry",
-        defaultColorscaleOpts: {
-          min: 0,
-          max: 60,
-          continous: true,
+        defaultColorscaleOpts: ({ region }) => {
+          if (region == "Stadtallendorf" || region == "Otting" || region == "Herrstein") {
+            return {
+              min: 0,
+              max: 60,
+              continous: true,
+            }
+          } else {
+            return {
+              min: 0,
+              max: 100,
+              continous: true,
+            }
+          }
         },
         colorscales: {
           bathymetry: {
@@ -410,7 +445,7 @@ export const LAYERS = [
                 [">=", ["band", 1], 5], [147, 68, 144, 1],
                 ["color", 147, 68, 144, 1],
               ],
-              ["color", 84, 194, 31, 1]
+              ["color", 84, 194, 31, 0]
             ]
           },
           "Viridis": {
@@ -474,7 +509,7 @@ export const LAYERS = [
           ["color", 0, 0, 0, 0]
         ]
       },
-      condition: (config) => config.show_sfgf,
+      condition: ({ config }) => config.show_sfgf,
       openlayer_options: {
         maxZoom: 16,
       }
@@ -489,7 +524,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration"],
-    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionAI,
     backupLayer: "OA",
     style: {
       color: [
@@ -524,7 +559,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration"],
-    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionAI,
     backupLayer: "OA",
     style: {
       color: [
@@ -562,7 +597,7 @@ export const LAYERS = [
     relevantConfigs: [
       ...relevantConfigsDefaults,
       "soil_moisture", "sri", "duration", "damageKind", "preparedness", "damagePerHoushold"],
-    condition: (config) => config.region == "Emmendingen" && config.kind == "matrix",
+    condition: conditionDamage,
     backupLayer: "SFI",
     style: {
       options: {

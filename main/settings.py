@@ -16,14 +16,11 @@ from urllib.parse import urlparse
 from django.utils.translation import gettext_lazy as _
 import weatherdb as wdb
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 import secretSettings_HydroApps as secrets
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = secrets.SECRET_KEY
 
@@ -73,7 +70,7 @@ INSTALLED_APPS = [
 ]
 
 # apps that are not yet released and only visible to test users
-APPS_UNRELEASED = ["kombstra", "sfi_demo"]
+APPS_UNRELEASED = ["kombstra"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {

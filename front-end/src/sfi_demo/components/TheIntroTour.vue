@@ -1,11 +1,23 @@
 <template>
-  <VOnboardingWrapper ref="wrapper" :steps="steps" :options="options"/>
+  <VOnboardingWrapper
+    ref="wrapper"
+    :steps="steps"
+    :options="options"
+  />
   <div>
-    <a class="onboarding-button" @click="start" data-html2canvas-ignore ref="">
-      <i  class="bi bi-question-circle"
-          :data-bs-title='$t("onboarding_button_tooltip")' data-bs-placement="auto"
-          data-bs-toggle="tooltip"
-          ref="buttonRef" />
+    <a
+      ref=""
+      class="onboarding-button"
+      data-html2canvas-ignore
+      @click="start"
+    >
+      <i
+        ref="buttonRef"
+        class="bi bi-question-circle"
+        :data-bs-title="$t('onboarding_button_tooltip')"
+        data-bs-placement="auto"
+        data-bs-toggle="tooltip"
+      />
     </a>
   </div>
 </template>
@@ -159,7 +171,7 @@
 
 </script>
 
-<style >
+<style>
   a.onboarding-button{
     font-size: x-large;
     cursor: pointer;
