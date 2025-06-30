@@ -751,7 +751,7 @@ export const LAYERS = [
         return (feature, resolution) => {
           let val = feature.get("damage")[config.sri][config.duration][config.soilMoisture][config.preparedness][config.damageKind];
           if (config.damagePerHoushold) {
-            val = (val / parseInt(feature.get("housholds"))) * 100;
+            val = (val / parseInt(feature.get("households"))) * 100;
           }
           if (!styleCache[val]) {
             styleCache[val] = new Style({
@@ -792,7 +792,7 @@ export const LAYERS = [
     valueConverterConfig: (config) => {
       if (config.damagePerHoushold) {
         return (val, { features }) => {
-          val = (val / parseInt(features[0].get("housholds"))) * 100;
+          val = (val / parseInt(features[0].get("households"))) * 100;
           return (val < 500) ? "<500" : (
             (val < 10_000) ? Math.round(val / 100) * 100 : Math.round(val / 1_000) * 1_000
           )
