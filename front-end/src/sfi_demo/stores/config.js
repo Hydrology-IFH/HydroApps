@@ -23,7 +23,7 @@ export const useConfig = defineStore(
         // Karlsbad: "2021-06-29",
         // Karlsbad: "2021-07-04",
         Herrstein: "2018-05-27",
-        Ottingen: "2017-08-15",
+        Otting: "2017-08-15",
         Stadtallendorf: "2020-08-11",
       },
 

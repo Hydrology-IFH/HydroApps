@@ -19,7 +19,7 @@ export const regions = {
   Stadtallendorf: {
     extent: [486170, 5620570, 505570, 5640050]
   },
-  Ottingen: {
+  Otting: {
     extent: [625780, 5411685, 641850, 5430380]
   },
 }
