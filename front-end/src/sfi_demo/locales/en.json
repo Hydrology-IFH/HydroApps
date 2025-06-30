@@ -7,6 +7,7 @@
   "label_layer_sfgf": "Pluvial flood hazard area (PFHA)",
   "label_layer_sfi": "Pluvial flood index (PFI, german: SFI)",
   "label_layer_soil_moisture": "Soil moisture of the root zone",
+  "label_layer_soil_moisture_hydron": "Soil moisture of the effective pore volume",
   "label_layer_sri": "Heavy rain index (HRI, german: SRI)",
   "label_sfgf_1": "PFHA",
   "layer_damage_unit_housholds": "housholds",

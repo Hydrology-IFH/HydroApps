@@ -250,16 +250,32 @@ export const LAYERS = [
       }
     },
     relevantConfigs: [...relevantConfigsDefaults, "soil_moisture"],
-    name: i18n.t("label_layer_soil_moisture"),
+    name: ({ region }) => {
+      if (region == "Stadtallendorf" || region == "Otting" || region == "Herrstein") {
+        return i18n.t("label_layer_soil_moisture_hydron");
+      } else {
+        return i18n.t("label_layer_soil_moisture");
+      }
+    },
     unit: "% vol",
     decimals: 1,
     style: {
       options: {
         defaultKey: "bathymetry",
-        defaultColorscaleOpts: {
-          min: 0,
-          max: 60,
-          continous: true,
+        defaultColorscaleOpts: ({ region }) => {
+          if (region == "Stadtallendorf" || region == "Otting" || region == "Herrstein") {
+            return {
+              min: 0,
+              max: 60,
+              continous: true,
+            }
+          } else {
+            return {
+              min: 0,
+              max: 100,
+              continous: true,
+            }
+          }
         },
         colorscales: {
           bathymetry: {

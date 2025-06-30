@@ -7,6 +7,7 @@
   "label_layer_sfgf": "Sturzflugefährdete Fläche",
   "label_layer_sfi": "Sturzflutindex (SFI)",
   "label_layer_soil_moisture": "Boden-Vorfeuchte der Wurzelzone",
+  "label_layer_soil_moisture_hydron": "Boden-Vorfeuchte des effektiven Porenvolumens",
   "label_layer_sri": "Starkregen-Index (SRI)",
   "label_sfgf_1": "SFGF",
   "layer_damage_unit_housholds": "Haushalte",

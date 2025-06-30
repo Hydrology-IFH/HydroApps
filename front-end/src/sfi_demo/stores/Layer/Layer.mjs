@@ -10,6 +10,7 @@ import "./extraColormaps.js";
 class BaseLayer {
   constructor({ id,
                 file,
+                name,
                 style,
                 decimals = 2,
                 unit = "",
@@ -28,6 +29,7 @@ class BaseLayer {
 
     this.id = id;
     this.file = file;
+    this._name = name;
     this.decimals = decimals;
     this._unit = unit;
     this._styleInit = style;
@@ -101,6 +103,13 @@ class BaseLayer {
     }
   }
 
+  get name() {
+    if (this._name instanceof Function) {
+      return this._name(this.config);
+    }
+    return this._name;
+  }
+
   get unit() {
     if (this._unit instanceof Function) {
       return this._unit(this.config);
@@ -120,6 +129,9 @@ class BaseLayer {
       if (this._styleInit.hasOwnProperty("options")) {
         //  create all colorscales with default options
         var defaultColorscaleOpts = this._styleInit.options.defaultColorscaleOpts || {};
+        if (defaultColorscaleOpts instanceof Function) {
+          defaultColorscaleOpts = defaultColorscaleOpts(this.config);
+        }
         this._styles = {};
         Object.entries(this._styleInit.options.colorscales||{}).forEach(([key, opts]) => {
           this._styles[key] = {
