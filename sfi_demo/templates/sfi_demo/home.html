@@ -19,11 +19,11 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <h1>{% trans "Home" %}</h1>
-          <p>{% blocktrans %}The AVOSS project (Impact-based prediction of heavy rainfall and flash floods on different scales: potentials, uncertainties, and limitations) is a project funded by the BMBF as part of the "WaX - Water Extreme Events" funding measure on the topic of pluvial flash floods. {% endblocktrans %}
+          <p>{% blocktrans %}The AVOSS project (Impact-based prediction of heavy rainfall and flash floods on different scales: potentials, uncertainties, and limitations) is a project funded by the BMFTR as part of the "WaX - Water Extreme Events" funding measure on the topic of pluvial flash floods. {% endblocktrans %}
           </p>
           <p>{% trans "The aim of AVOSS is to make a decisive contribution to closing the existing gap in the warning system for flash floods. More information about AVOSS can be found at the" %} <a href="https://www.avoss.uni-freiburg.de" target="_blank" rel="noopener noreferrer">{% trans "AVOSS project homepage" %} <sup><i class="bi bi-box-arrow-up-right"></i></sup></a></p>
           <br>
-          <p>{% trans "This web demonstrator is intended to present the prototype prediction and warning products developed within the framework of AVOSS. Background information on the data presented can be found in the Method section and in the further information linked there." %}</p>
+          <p>{% trans "This" context "prior demonstrator link" %} <a href="{% url 'sfi_demo:app' %}">{% trans "web demonstrator" %}</a> {% trans "is intended to present the prototype prediction and warning products developed within the framework of AVOSS. Background information on the data presented can be found in the" %} <a href={% url 'sfi_demo:method'%}>{% trans "Method section" %}</a> {% trans "and in the further information linked there." %}</p>
       </div>
       <div class="col-md-6 col-12" style="align-content: center;">
         <figure class="figure">
@@ -35,7 +35,7 @@
   </div>
 
   <hr style="margin-bottom: 0px">
-  <figurecaption class="figure-caption">{% trans "AVOSS is part of the WAX funding program of the Federal Ministry of Education and Research of germany (BMBF)." %}</figurecaption>
+  <figurecaption class="figure-caption">{% trans "AVOSS is part of the WAX funding program of the Federal Ministry of Research, Technology and Space of germany (BMFTR)." %}</figurecaption>
   <figure class="logos">
     <a href="https://www.bmbf-wax.de/" target="_blank" rel="noopener noreferrer">
       <img src="{% static "sfi_demo/img/WAX.png" %}" alt="WAX - Logo" >
@@ -47,7 +47,7 @@
       <img src="{% static "sfi_demo/img/FONA.svg" %}" alt="FONA - Logo" >
     </a>
     <a href="https://www.bmbf.de/" target="_blank" rel="noopener noreferrer">
-      <img src="{% static "sfi_demo/img/BMBF.png" %}" alt="gefördert vom BMBF - Logo" style="height: 110px">
+      <img src="{% static "sfi_demo/img/BMFTR_"|add:LANGUAGE_CODE|add:".png" %}" alt="gefördert vom BMFTR - Logo" style="height: 110px">
     </a>
   </figure>
 

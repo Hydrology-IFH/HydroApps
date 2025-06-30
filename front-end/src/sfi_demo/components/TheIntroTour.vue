@@ -14,7 +14,7 @@
       <i
         ref="buttonRef"
         class="bi bi-question-circle"
-        :data-bs-title="$t(&quot;onboarding_button_tooltip&quot;)"
+        :data-bs-title="$t('onboarding_button_tooltip')"
         data-bs-placement="auto"
         data-bs-toggle="tooltip"
       />

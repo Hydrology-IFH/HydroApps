@@ -45,7 +45,7 @@
         clonedDOM.querySelectorAll('div.ol-layerswitcher-image').forEach((b) => b.remove());
       },
       // backgroundColor: "#ffffff",
-    }).then(canvas => {
+    }).then((canvas) => {
       updateSpinnerActive(false);
       var link = document.createElement('a');
       link.download = props.fileName;
