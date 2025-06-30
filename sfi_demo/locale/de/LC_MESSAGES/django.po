@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-24 13:38+0200\n"
+"POT-Creation-Date: 2025-06-26 12:58+0200\n"
 "PO-Revision-Date: 2025-03-10 17:12+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -49,21 +49,32 @@ msgstr ""
 #: .\sfi_demo\templates\sfi_demo\app.html:16
 msgid ""
 "The blue flow chart abstracts the underlying methodology (more information "
-"under Method). It also allows you to select the individual data levels for "
-"visualization."
+"under "
 msgstr ""
 "Das blaue Flussdiagramm abstrahiert die zugrundeliegende Methodik (mehr "
-"Informationen unter Methode). Es ermöglicht weiterhin, die einzelnen "
-"Datenebenen zur Visualisierung anzuwählen."
+"Informationen unter "
+
+#: .\sfi_demo\templates\sfi_demo\app.html:16
+#: .\sfi_demo\templates\sfi_demo\base.html:22
+#: .\sfi_demo\templates\sfi_demo\method.html:29
+msgid "Method"
+msgstr "Methode"
+
+#: .\sfi_demo\templates\sfi_demo\app.html:16
+msgid ""
+"It also allows you to select the individual data levels for visualization."
+msgstr ""
+"Es ermöglicht weiterhin, die einzelnen Datenebenen zur Visualisierung "
+"anzuwählen."
 
 #: .\sfi_demo\templates\sfi_demo\app.html:17
 msgid ""
-"In the \"Event selection\" menu, you can switch spatially between regions "
-"and in terms of content between real events and fictitious scenarios. In the "
+"In the \"Event options\" menu, you can switch spatially between regions and "
+"in terms of content between real events and fictitious scenarios. In the "
 "scenarios, you can independently change the parameters influencing the flash "
 "flood in order to see their effects on the regional impact."
 msgstr ""
-"Im \"Ereignis-Optionen\"  Menü können Sie räumlich zwischen Regionen sowie "
+"Im \"Ereignis Optionen\" Menü können Sie räumlich zwischen Regionen sowie "
 "inhaltlich zwischen realen Ereignissen und fiktiven Szenarien wechseln. Bei "
 "den Szenarien können Sie selbständig die sturzflutbeeinflussenden Parameter "
 "ändern, um deren Auswirkungen auf die regionale Betroffenheit zu sehen."
@@ -84,11 +95,6 @@ msgstr ""
 #: .\sfi_demo\templates\sfi_demo\home.html:21
 msgid "Home"
 msgstr "Home"
-
-#: .\sfi_demo\templates\sfi_demo\base.html:22
-#: .\sfi_demo\templates\sfi_demo\method.html:29
-msgid "Method"
-msgstr "Methode"
 
 #: .\sfi_demo\templates\sfi_demo\base.html:23
 msgid "Demonstrator"
@@ -173,12 +179,12 @@ msgstr "Senden"
 msgid ""
 "The AVOSS project (Impact-based prediction of heavy rainfall and flash "
 "floods on different scales: potentials, uncertainties, and limitations) is a "
-"project funded by the BMBF as part of the \"WaX - Water Extreme Events\" "
+"project funded by the BMFTR as part of the \"WaX - Water Extreme Events\" "
 "funding measure on the topic of pluvial flash floods. "
 msgstr ""
 "Das Projekt AVOSS (Auswirkungsbasierte Vorhersage von Starkregen und "
 "Sturzfluten auf verschiedenen Skalen: Potentiale, Unsicherheiten und "
-"Grenzen) ist ein vom BMBF im Rahmen der Fördermaßnahme \"WaX - Wasser-"
+"Grenzen) ist ein vom BMFTR im Rahmen der Fördermaßnahme \"WaX - Wasser-"
 "Extremereignisse\" gefördertes Projekt zum Themenkomplex pluvialer "
 "Sturzfluten."
 
@@ -200,16 +206,31 @@ msgid "AVOSS project homepage"
 msgstr "AVOSS – Projekthomepage"
 
 #: .\sfi_demo\templates\sfi_demo\home.html:26
+msgctxt "prior demonstrator link"
+msgid "This"
+msgstr "Mit diesem"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgid "web demonstrator"
+msgstr "Web-Demonstrator"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
 msgid ""
-"This web demonstrator is intended to present the prototype prediction and "
-"warning products developed within the framework of AVOSS. Background "
-"information on the data presented can be found in the Method section and in "
-"the further information linked there."
+"is intended to present the prototype prediction and warning products "
+"developed within the framework of AVOSS. Background information on the data "
+"presented can be found in the"
 msgstr ""
-"Mit diesem Web-Demonstrator sollen die im Rahmen von AVOSS entwickelten, "
-"prototypischen Vorhersage- bzw. Warnprodukte vorgestellt werden. Die "
-"Hintergründe zu den dargestellten Daten finden Sie im Bereich Methode, bzw. "
-"in den dort verlinkten weiterführenden Informationen."
+"sollen die im Rahmen von AVOSS entwickelten, prototypischen Vorhersage- bzw. "
+"Warnprodukte vorgestellt werden. Die Hintergründe zu den dargestellten Daten "
+"finden Sie im"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgid "Method section"
+msgstr "Bereich Methode"
+
+#: .\sfi_demo\templates\sfi_demo\home.html:26
+msgid "and in the further information linked there."
+msgstr ", bzw. in den dort verlinkten weiterführenden Informationen."
 
 #: .\sfi_demo\templates\sfi_demo\home.html:30
 #: .\sfi_demo\templates\sfi_demo\home.html:31
@@ -219,10 +240,10 @@ msgstr "Logos des AVOSS Konsortiums"
 #: .\sfi_demo\templates\sfi_demo\home.html:38
 msgid ""
 "AVOSS is part of the WAX funding program of the Federal Ministry of "
-"Education and Research of germany (BMBF)."
+"Research, Technology and Space of germany (BMFTR)."
 msgstr ""
-"AVOSS ist Teil der Fördermaßnahme WAX des Bundesminsiteriums für Bildung und "
-"Forschung (BMBF)"
+"AVOSS ist Teil der Fördermaßnahme WAX des Bundesminsiteriums für "
+"Forschung, Technologie und Raumfahrt (BMFTR)"
 
 #: .\sfi_demo\templates\sfi_demo\method.html:16
 #: .\sfi_demo\templates\sfi_demo\method.html:30
@@ -493,17 +514,19 @@ msgstr ""
 msgid ""
 "The AccRo (iterative <b>acc</b>umulated <b>r</b>un<b>o</b>ff) approach "
 "developed in AVOSS was applied to the PFI calculations shown in the "
-"demonstrator with a grid size of 5&nbsp;x&nbsp;5&nbsp;m. In addition to the surface "
-"runoff values from RoGeR, static data on terrain morphology (DEM) and "
-"roughness are also included as input data. The roughness values are assigned "
-"to the various land use classes in accordance with the specifications of the"
+"demonstrator with a grid size of 5&nbsp;x&nbsp;5&nbsp;m. In addition to the "
+"surface runoff values from RoGeR, static data on terrain morphology (DEM) "
+"and roughness are also included as input data. The roughness values are "
+"assigned to the various land use classes in accordance with the "
+"specifications of the"
 msgstr ""
 "Der in AVOSS entwickelte Ansatz AccRo (iterative accumulated runoff) wurde "
 "für die im Demonstrator dargestellten SFI-Berechnungen mit einer Rasterweite "
-"von 5&nbsp;x&nbsp;5&nbsp;m angewendet. Als Inputdaten gehen neben den Oberflächenabfluss-"
-"Werten aus RoGeR, auch statische Daten zu Geländemorphologie (DGM) und "
-"Rauigkeit mit ein. Die Zuordnung der Rauigkeitswerte zur verschiedenen "
-"Landnutzungsklassen erfolgt dabei nach den Vorgaben des"
+"von 5&nbsp;x&nbsp;5&nbsp;m angewendet. Als Inputdaten gehen neben den "
+"Oberflächenabfluss-Werten aus RoGeR, auch statische Daten zu "
+"Geländemorphologie (DGM) und Rauigkeit mit ein. Die Zuordnung der "
+"Rauigkeitswerte zur verschiedenen Landnutzungsklassen erfolgt dabei nach den "
+"Vorgaben des"
 
 #: .\sfi_demo\templates\sfi_demo\method.html:53
 msgid "SRRM-BW"

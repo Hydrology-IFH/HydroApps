@@ -28,7 +28,7 @@
   "menu_date_static_tooltip": "This is the date of the precipitation event",
   "menu_duration_label": "Duration",
   "menu_duration_tooltip": "The duration of the event",
-  "menu_header_event": "Event selection",
+  "menu_header_event": "Event options",
   "menu_header_map": "Map settings",
   "menu_kind_event": "real",
   "menu_kind_label": "kind of event",

@@ -13,8 +13,8 @@
   <h1>AVOSS Web-Demonstrator</h1>
   <p>{% trans "The flash flood index can be used to demonstrate the different regional impacts of pluvial flash flood events using fictitious scenarios. However, it can also be used as a warning index in real events. Here in the interactive web demonstrator, you can discover both possible applications for selected test regions." %}</p>
   <p>
-    {% trans "The blue flow chart abstracts the underlying methodology (more information under Method). It also allows you to select the individual data levels for visualization." %}<br>
-    {% trans 'In the "Event selection" menu, you can switch spatially between regions and in terms of content between real events and fictitious scenarios. In the scenarios, you can independently change the parameters influencing the flash flood in order to see their effects on the regional impact.' %}
+    {% trans "The blue flow chart abstracts the underlying methodology (more information under " %}<a href="{% url 'sfi_demo:method' %}">{% trans "Method" %}</a>). {% trans "It also allows you to select the individual data levels for visualization."  %}<br>
+    {% trans 'In the "Event options" menu, you can switch spatially between regions and in terms of content between real events and fictitious scenarios. In the scenarios, you can independently change the parameters influencing the flash flood in order to see their effects on the regional impact.' %}
   </p>
   <div id="app">
     <div class="d-flex justify-content-center">
