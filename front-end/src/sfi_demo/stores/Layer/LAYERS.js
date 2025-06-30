@@ -257,6 +257,11 @@ export const LAYERS = [
         return i18n.t("label_layer_soil_moisture");
       }
     },
+    layerAvailable: ({ region, kind }) => {
+      if (region == "Otting") return false;
+      if ((region == "Stadtallendorf" || region == "Herrstein") && kind == "event") return false;
+      return true;
+    },
     unit: "% vol",
     decimals: 1,
     style: {

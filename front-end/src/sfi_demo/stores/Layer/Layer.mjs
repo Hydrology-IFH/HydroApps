@@ -18,6 +18,7 @@ class BaseLayer {
                 child_layer,
                 z_index = 0,
                 condition,
+                layerAvailable = true,
                 openlayer_options,
                 valueConverter,
                 valueConverterConfig,
@@ -40,6 +41,7 @@ class BaseLayer {
     this._url = url;
     this.z_index = z_index;
     this.condition = condition;
+    this._layerAvailable = layerAvailable;
     this.openlayer_options = openlayer_options;
     this._valueConverter = valueConverter;
     this.valueConverterConfig = valueConverterConfig;
@@ -269,6 +271,13 @@ class BaseLayer {
     } else {
       return this.selected && this.condition({ config: this.config });
     }
+  }
+
+  get layerAvailable() {
+    if (this._layerAvailable instanceof Function) {
+      return this._layerAvailable(this.config);
+    }
+    return this._layerAvailable;
   }
 }
 

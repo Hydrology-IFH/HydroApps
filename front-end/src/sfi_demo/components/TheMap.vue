@@ -68,6 +68,9 @@
   const layerError = computed(() => {
     return config.region_selection_active? false : layer.value ? layer.value.hasError: false
   })
+  const layerAvailable = computed(() => {
+    return layer.value ? layer.value.layerAvailable : false
+  })
 
   // change map extent on region change
   config.$subscribe((mutation, state) => {
@@ -138,7 +141,7 @@
         :map="map"
       />
       <MapHoverOverlay
-        v-if="map != null && layer != null && !config.region_selection_active"
+        v-if="map != null && layer != null && layer.layerAvailable && !config.region_selection_active"
         :map="map"
         :layer="layer.olLayer"
         :unit="layer.unit"
@@ -159,10 +162,16 @@
       <MapControls.OlFullscreenControl />
     </Map.OlMap>
     <ErrorFrame
-      v-if="layerError"
-      class="map-error"
-      :header="$t('map_error_header')"
-      :msg="$t('map_error_msg')"
+      v-if="layerError && layerAvailable"
+      type="danger"
+      :header="$t('map_popup_error_header')"
+      :msg="$t('map_popup_error_msg')"
+    />
+    <ErrorFrame
+      v-if="!layerAvailable"
+      type="warning"
+      :header="$t('map_popup_not_available_header')"
+      :msg="$t('map_popup_not_available_msg')"
     />
   </div>
 </template>
