@@ -67,10 +67,11 @@ INSTALLED_APPS = [
     'rest_framework_gis', # djangorestframework-gis
     "django_vite", # django-vite
     'webmaster_verification', # django-webmaster-verification
+    'internal', # Hydro internal apps
 ]
 
 # apps that are not yet released and only visible to test users
-APPS_UNRELEASED = ["kombstra"]
+APPS_UNRELEASED = ["kombstra", "internal"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {
@@ -80,7 +81,8 @@ APPS_ALT_NAMES = {
     "RheiKlim": "RheiKlim",
     "kombstra": "kombstra",
     "sri_bw": "sri_bw",
-    "sfi_demo": "sfi_demo"
+    "sfi_demo": "sfi_demo",
+    "internal": "internal"
 }
 
 MIDDLEWARE = [
