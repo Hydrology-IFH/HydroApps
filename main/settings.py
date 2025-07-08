@@ -104,7 +104,10 @@ APPEND_SLASH = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.joinpath("main/templates")],
+        'DIRS': [
+            BASE_DIR.joinpath("main/templates"),
+            *BASE_DIR.glob("internal/**/templates"), # for all internal app templates
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

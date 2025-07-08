@@ -1,12 +1,12 @@
 """Internals URL Configuration
 """
-from django.urls import path
+from django.urls import path, include
 
-from .views import (home_view, aquarius_view)
+from .views import home_view
 
 
 app_name = 'internal'
 urlpatterns = [
     path('', home_view, name="home"),
-    path("aquarius/", aquarius_view, name="aquarius"),
+    path('aquarius/', include('internal.aquarius.urls', "aquarius")),
 ]

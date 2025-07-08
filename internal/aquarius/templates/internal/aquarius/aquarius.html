@@ -1,12 +1,15 @@
 {% extends base_template %}
 {% load i18n %}
-{% load static %}
 
 
 {% block content %}
 
   <h1>{% trans "Aquarius Insights" %}</h1>
   <p>{% trans "Here is a list of all defined locations in our Aquarius system: " %}</p>
-  <div id="app" />
+  <div id="app" ></div>
+  {% csrf_token %}
+  <script>
+    window.aquariusApiUrl = "{% url 'internal:aquarius:aquarius_api_proxy' '${endpoint}' %}";
+  </script>
 
 {% endblock %}
