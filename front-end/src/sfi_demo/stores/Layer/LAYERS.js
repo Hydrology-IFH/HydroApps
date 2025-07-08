@@ -10,7 +10,7 @@ export const conditionAI = ({ config }) => {
 
 export const conditionDamage = ({ config }) => {
   return config.kind == "matrix" &&
-    (config.region == "Emmendingen" || config.region == "Wieslauf"); //|| config.region == "Herrstein" --> missing values
+    (config.region == "Emmendingen" || config.region == "Wieslauf" || config.region == "Herrstein")
 }
 
 // revlevant constants
