@@ -2,7 +2,10 @@
 Simplified Configuration for Aquarius API Adapter
 """
 
-from secretSettings_HydroApps import AQUARIUS_CONFIG
+try:
+    from secretSettings_HydroApps import AQUARIUS_CONFIG
+except ImportError:
+    raise ImportError("Please define AQUARIUS_CONFIG in your secretSettings_HydroApps.py file.")
 
 AQUARIUS_API_USER = AQUARIUS_CONFIG.get('AQUARIUS_USER')
 AQUARIUS_API_PWD = AQUARIUS_CONFIG.get('AQUARIUS_PWD')

@@ -11,7 +11,6 @@ This module provides a simple wrapper around the Aquarius API with:
 import requests
 import logging
 from django.conf import settings
-from django.core.cache import cache
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required

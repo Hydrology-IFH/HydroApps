@@ -6,7 +6,7 @@ from django.db import connection
 from .config import PERMISSION_CLASS_READ, PERMISSION_CLASS_EDIT, AQUARIUS_PERMISSION_APP
 
 class InternalAquariusConfig:
-    # This is a base clas that needs to get imported in the internal app
+    # This is a base class that needs to get imported in the internal app
     run_already = False
 
     def ready(self):

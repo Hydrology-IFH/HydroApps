@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.gis.db import models as gis_models
 
-class AquariusLocationFolder(models.Model):
+class LocationFolder(models.Model):
     name = models.CharField(max_length=255, unique=True)
     parent = models.ForeignKey(
         'self',
@@ -11,11 +11,11 @@ class AquariusLocationFolder(models.Model):
         related_name='subfolders',
         help_text="Parent folder for hierarchical structure")
 
-class AquariusLocationTags(models.Model):
+class LocationTags(models.Model):
     name = models.CharField(max_length=255, unique=True, primary_key=True)
 
 
-class AquariusLocations(models.Model):
+class Locations(models.Model):
     """
     Model to store Aquarius locations.
     """
@@ -31,8 +31,10 @@ class AquariusLocations(models.Model):
         unique=True,
         help_text="Unique ID for the location, e.g., UUID or similar")
     primaryFolder = models.ForeignKey(
-        AquariusLocationFolder,
+        LocationFolder,
         on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
         related_name="folder",
         help_text="Primary folder for the location")
     lastModified = models.DateTimeField(
@@ -52,7 +54,7 @@ class AquariusLocations(models.Model):
         default="m",
         help_text="Unit of elevation, e.g., 'm' for meters")
     tags = models.ManyToManyField(
-        AquariusLocationTags,
+        LocationTags,
         blank=True,
         related_name="tags",
         help_text="Tags associated with the location")
