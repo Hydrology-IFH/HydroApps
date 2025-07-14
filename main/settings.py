@@ -222,13 +222,6 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
         },
-        'logfile': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
-            'filename': os.getenv('DJANGO_LOG_FILE', BASE_DIR / "logs" / "django.log"),
-            'maxBytes': 50000,
-            'backupCount': 2
-        },
     },
     'loggers': {
         '': {
@@ -237,6 +230,16 @@ LOGGING = {
         }
     }
 }
+if "DJANGO_LOG_FILE" in os.environ:
+    LOGGING['handlers']['logfile'] = {
+        'class': 'logging.handlers.RotatingFileHandler',
+        'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
+        'filename': os.getenv('DJANGO_LOG_FILE'),
+        'maxBytes': 50000,
+        'backupCount': 2
+    }
+    LOGGING['loggers']['']['handlers'].append('logfile')
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -279,10 +282,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configure your Q cluster
 # More details https://django-q.readthedocs.io/en/latest/configure.html
 Q_CLUSTER = {
-    'retry': 60*60*24*2+2, # in seconds
+    'retry': 60*60+2, # in seconds
     'workers': 4,
     'orm': 'default',
-    "timeout": 60*60*24*2, # in seconds
+    "timeout": 60*60, # in seconds
     "max_attempts": 1,
     'has_replica': True,
     'name':'django_q'
