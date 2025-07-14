@@ -11,6 +11,14 @@ class LocationFolder(models.Model):
         related_name='subfolders',
         help_text="Parent folder for hierarchical structure")
 
+    def get_folder_list(self):
+        """
+        Returns a list of folder names in the hierarchy.
+        """
+        if self.parent is None:
+            return [self.name]
+        return [*self.parent.get_folder_list(), self.name]
+
     class Meta:
         verbose_name = "Location Folder"
         verbose_name_plural = "Location Folders"

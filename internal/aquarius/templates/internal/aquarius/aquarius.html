@@ -10,6 +10,7 @@
   {% csrf_token %}
   <script>
     window.aquariusApiUrl = "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' %}";
+    window.apiUrl = "{% url 'internal:aquarius:api' %}";
   </script>
 
 {% endblock %}

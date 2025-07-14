@@ -1,6 +1,8 @@
+from rest_framework import serializers
+
 from .. models import Location
 
-class LocationSerializer:
+class LocationListSerializer(serializers.ModelSerializer):
     """
     Serializer for AquariusLocations model.
     Converts model instances to JSON format and vice versa.
@@ -8,14 +10,22 @@ class LocationSerializer:
 
     class Meta:
         model = Location
-        fields = '__all__'  # Include all fields from the model
+        fields = [
+            "uniqueId",
+            "identifier",
+            "name",
+            "tags",
+            "primaryFolder",
+            'geometry'
+        ]
 
     def to_representation(self, instance):
         """
         Convert model instance to JSON representation.
         """
         representation = super().to_representation(instance)
-        representation['tags'] = [tag.name for tag in instance.tags.all()]
+        representation['tags'] = [tag.key for tag in instance.tags.all()]
+        representation['primaryFolder'] = instance.primaryFolder.get_folder_list()
         return representation
 
     def create(self, validated_data):
