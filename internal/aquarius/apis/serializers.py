@@ -1,13 +1,13 @@
-from .. models import Locations
+from .. models import Location
 
-class LocationsSerializer:
+class LocationSerializer:
     """
     Serializer for AquariusLocations model.
     Converts model instances to JSON format and vice versa.
     """
 
     class Meta:
-        model = Locations
+        model = Location
         fields = '__all__'  # Include all fields from the model
 
     def to_representation(self, instance):

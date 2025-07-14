@@ -216,31 +216,25 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
     },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
         },
-        # 'logfile': {
-        #     'level': 'DEBUG',
-        #     'class': 'logging.handlers.RotatingFileHandler',
-        #     'filename': BASE_DIR / "logs/django.log",
-        #     'maxBytes': 50000,
-        #     'backupCount': 2
-        # },
+        'logfile': {
+            'class': 'logging.handlers.RotatingFileHandler',
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
+            'filename': os.getenv('DJANGO_LOG_FILE', BASE_DIR / "logs" / "django.log"),
+            'maxBytes': 50000,
+            'backupCount': 2
+        },
     },
     'loggers': {
-      'django': {
+        '': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-        },
-        # '': {
-        #     'handlers': ['console', 'logfile'],
-        #     'level': 'DEBUG',
-        # },
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
+        }
     }
 }
 # Internationalization

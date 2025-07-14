@@ -1,17 +1,17 @@
 from rest_framework import viewsets, routers
 
-from ..models import Locations
-from .serializers import LocationsSerializer
+from ..models import Location
+from .serializers import LocationSerializer
 
 
-class LocationsViewSet(viewsets.ReadOnlyModelViewSet):
+class LocationViewSet(viewsets.ReadOnlyModelViewSet):
     """
     ViewSet for Locations model.
     """
-    queryset = Locations.objects.all()
-    serializer_class = LocationsSerializer
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
 
 
 # Create a router and register the viewset
 router = routers.DefaultRouter()
-router.register(r'locations', LocationsViewSet, basename='locations')
+router.register(r'locations', LocationViewSet, basename='locations')

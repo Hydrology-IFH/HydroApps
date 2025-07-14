@@ -9,7 +9,7 @@
   <div id="app" ></div>
   {% csrf_token %}
   <script>
-    window.aquariusApiUrl = "{% url 'internal:aquarius:aquarius_api_proxy' '${endpoint}' %}";
+    window.aquariusApiUrl = "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' %}";
   </script>
 
 {% endblock %}
