@@ -6,7 +6,7 @@ from django.views.decorators.cache import cache_page
 from rest_framework import permissions
 
 from ..models import Location
-from .serializers import LocationListSerializer
+from .serializers import LocationGeoJSONSerializer
 from .permissions import ReadPermission
 from ..config import API_CACHE_DURATION, API_CACHE_PREFIX
 
@@ -17,7 +17,7 @@ class LocationViewSet(viewsets.ReadOnlyModelViewSet):
     Query parameters:
     - filter: 'all' (default), 'valid', 'invalid'
     """
-    serializer_class = LocationListSerializer
+    serializer_class = LocationGeoJSONSerializer
     permission_classes = [
         permissions.IsAuthenticated,
         ReadPermission
