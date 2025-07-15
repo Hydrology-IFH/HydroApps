@@ -9,6 +9,7 @@
       default: () => 'EPSG:3857',
     },
     layers: {
+      // Array of layer names to be displayed, the first one is the default visible layer
       type: Array,
       default: () => ["OSM", "basemap.de grau", "basemap.de farbe"],
       validate: (value) => {
@@ -76,7 +77,7 @@
     v-if="layers.includes('basemap.de grau')"
     ref="bsmpGreyLayer"
     title="Grau basemap.de"
-    :visible="true"
+    :visible="layers[0] === 'basemap.de grau'"
     :base-layer="true"
   >
     <Sources.OlSourceTileWms
@@ -93,7 +94,7 @@
     v-if="layers.includes('basemap.de farbe')"
     ref="bsmpColorLayer"
     title="Color basemap.de"
-    :visible="false"
+    :visible="layers[0] === 'basemap.de farbe'"
     :base-layer="true"
   >
     <Sources.OlSourceTileWms
@@ -110,7 +111,7 @@
     v-if="layers.includes('OSM')"
     ref="osmLayer"
     title="OSM"
-    :visible="false"
+    :visible="layers[0] === 'OSM'"
     :base-layer="true"
   >
     <Sources.OlSourceOsm />

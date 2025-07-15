@@ -6,8 +6,8 @@
   window.VectorLayer = VectorLayer;
 
   const props = defineProps({
-    map: Object,
-    layer: Object,
+    map: { type: Object, required: true },
+    layer: { type: Object, required: true },
     unit: { type: String, default: "mm" },
     decimals: { type: Number, default: 2 },
     valueConverter: { type: Function, default: (x) => x },
