@@ -2,8 +2,15 @@ from django.contrib.gis.geos import Point
 import requests
 from urllib.parse import urljoin
 from logging import getLogger
+from django.conf import settings
+from django.db import connection
 
-from .config import AQUARIUS_API_URL, AQUARIUS_API_USER, AQUARIUS_API_PWD
+from .config import (
+    AQUARIUS_API_URL,
+    AQUARIUS_API_USER,
+    AQUARIUS_API_PWD,
+    API_CACHE_PREFIX
+)
 from .models import Location, LocationFolder, LocationTag, LocationNote
 
 logger = getLogger(__name__)
@@ -13,7 +20,7 @@ def update_aquarius_data():
     Placeholder function to update Aquarius data.
     This function should contain the logic to fetch and update data from Aquarius.
     """
-    logger.critical("Starting update of Aquarius data...")
+    logger.info("Starting update of Aquarius data...")
     api_auth = (AQUARIUS_API_USER, AQUARIUS_API_PWD)
 
     # get meta locations
@@ -24,16 +31,18 @@ def update_aquarius_data():
     meta_locations.raise_for_status()
 
     # get additional information on each location
+    any_updated = False
     for meta_location in meta_locations.json()['LocationDescriptions']:
 
         # check if location already exists in the database and if there was an update
         if Location.objects.filter(
                 uniqueId=meta_location['UniqueId'],
                 lastModified=meta_location['LastModified']).exists():
-            logger.info(f"Location {meta_location['Name']} already exists and is up to date.")
+            logger.debug(f"Location {meta_location['Name']} already exists and is up to date.")
             continue
         else:
             logger.info(f"Updating location {meta_location['Name']}...")
+            any_updated = True
 
         # get additional information on the location
         location_infos_req = requests.get(
@@ -86,3 +95,15 @@ def update_aquarius_data():
                 lastModified=note['LastModifiedUtc']
             )
             db_location.notes.add(note_obj)
+
+    # resetting the cache for the updated location
+    if any_updated:
+        logger.info("Resetting cache for location API calls.")
+        with connection.cursor() as cursor:
+            cursor.execute(f"""
+                DELETE FROM "{settings.CACHES['default']['LOCATION']}"
+                WHERE "cache_key" LIKE '%%{API_CACHE_PREFIX}%%';
+            """)
+
+# TODO: implement task as management command
+# TODO

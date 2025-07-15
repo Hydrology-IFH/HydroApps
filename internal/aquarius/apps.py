@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, date, time, timezone
+from datetime import datetime, timedelta, timezone
 import warnings
 from django.db.utils import ProgrammingError
 from django.db import connection
@@ -22,16 +22,12 @@ class InternalAquariusConfig:
                 if Schedule._meta.db_table in db_tables:
 
                     # Aquarius Data Update Schedule
-                    today = date.today()
                     options = dict(
                         name="internal.aquarius: Update Aquarius Data",
                         func="internal.aquarius.tasks.update_aquarius_data",
-                        schedule_type=Schedule.DAILY,
+                        schedule_type=Schedule.HOURLY,
                         repeats=-1,
-                        next_run=datetime.combine(
-                            today + timedelta(days=1 if datetime.now(timezone.utc).hour > 4 else 0),
-                            time(4, 0),
-                            timezone.utc)
+                        next_run=datetime.now(timezone.utc) + timedelta(minutes=1)
                     )
 
                     try:

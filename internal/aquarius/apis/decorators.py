@@ -32,16 +32,14 @@ def check_aquarius_permission(permission_class=PERMISSION_CLASS_READ):
             # Check if user has the required permission class
             try:
                 account = Account.objects.get(id=user.id)
-                user_permissions = account.permissions.filter(
-                    permission_class__name=permission_class,
-                    app__name=AQUARIUS_PERMISSION_APP
-                )
 
-                if not user_permissions.exists():
-                    return JsonResponse({
-                        'error': 'Permission denied',
-                        'message': f'User does not have {permission_class} permission'
-                    }, status=403)
+                if not account.has_perm(f"{AQUARIUS_PERMISSION_APP}.{permission_class}"):
+                    return JsonResponse(
+                        {
+                            'error': 'Permission denied',
+                            'message': f'User does not have {permission_class} permission'
+                        },
+                        status=403)
 
             except Account.DoesNotExist:
                 return JsonResponse({
