@@ -5,12 +5,19 @@
 {% block content %}
 
   <h1>{% trans "Aquarius Insights" %}</h1>
-  <p>{% trans "Here is a list of all defined locations in our Aquarius system: " %}</p>
-  <div id="app" ></div>
-  {% csrf_token %}
-  <script>
-    window.aquariusApiUrl = "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' %}";
-    window.apiUrl = "{% url 'internal:aquarius:api' %}";
-  </script>
-
-{% endblock %}
+  {% if permission_read %}
+    <p>{% trans "Here is a list of all defined locations in our Aquarius system: " %}</p>
+    <div id="app" ></div>
+    {% csrf_token %}
+    <script>
+      window.initSettings ={
+        aquariusApiUrl: "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' %}",
+        apiUrl: "{% url 'internal:aquarius:api:locations-list' %}",
+        csrfToken: "{{ csrf_token }}",
+        permissionEdit: {{ permission_edit|lower }},
+      };
+    </script>
+  {% else %}
+    <p>{% trans "You do not have permission to view this content. Please contact the HydroApps administrator to gain access." %}</p>
+  {% endif %}
+  {% endblock %}
