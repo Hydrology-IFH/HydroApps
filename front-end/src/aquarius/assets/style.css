@@ -1,0 +1,13 @@
+#main_page{
+    width: 80%;
+}
+@media (max-width: 1400px) {
+    #main_page{
+        width: 90%;
+    }
+}
+@media (max-width: 1000px) {
+    #main_page{
+        width: 100%;
+    }
+}

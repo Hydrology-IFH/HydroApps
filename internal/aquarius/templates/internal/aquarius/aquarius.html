@@ -1,6 +1,11 @@
 {% extends base_template %}
 {% load i18n %}
+{% load django_vite %}
 
+{% block head %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% vite_hmr_client %}
+{% endblock %}
 
 {% block content %}
 
@@ -8,16 +13,18 @@
   {% if permission_read %}
     <p>{% trans "Here is a list of all defined locations in our Aquarius system: " %}</p>
     <div id="app" ></div>
-    {% csrf_token %}
     <script>
       window.initSettings ={
         aquariusApiUrl: "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' %}",
-        apiUrl: "{% url 'internal:aquarius:api:locations-list' %}",
+        apiLocationsUrl: "{% url 'internal:aquarius:api:locations-list' %}",
         csrfToken: "{{ csrf_token }}",
         permissionEdit: {{ permission_edit|lower }},
       };
     </script>
+  {% block scripts %}
+    {% vite_asset 'src/aquarius/main.js' %}
+  {% endblock %}
   {% else %}
     <p>{% trans "You do not have permission to view this content. Please contact the HydroApps administrator to gain access." %}</p>
   {% endif %}
-  {% endblock %}
+{% endblock %}

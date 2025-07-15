@@ -15,7 +15,7 @@ module.exports = {
     func: { list: [], extensions: [] },
     debug: false,
     pluralSeparator: 'xacy_never-happens-ß?876',
-    ns: ['kombstra', 'sri_bw', 'sfi_demo', 'common'],
+    ns: ['kombstra', 'sri_bw', 'sfi_demo', 'common', 'aquarius'],
     defaultNs: "common",
     nsSeparator: ":",
     keySeparator: false, // key separator

@@ -16,8 +16,7 @@ class LocationGeoJSONSerializer(GeoFeatureModelSerializer):
             "identifier",
             "name",
             "tags",
-            "primaryFolder",
-            'geometry'
+            "primaryFolder"
         ]
 
     def to_representation(self, instance):
