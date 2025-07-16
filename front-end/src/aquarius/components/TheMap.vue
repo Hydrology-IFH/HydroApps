@@ -9,7 +9,7 @@
   } from "vue3-openlayers";
   import { GeoJSON } from "ol/format";
 
-  import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
+  import MapHoverOverlay from "~~/components/map/MapHoverOverlay.vue";
   // import ErrorFrame from '~~/components/ErrorFrame.vue';
   import { useConfig } from '~/stores/config.js';
   import MapBasemaps from '~~/components/map/MapBasemaps.vue';

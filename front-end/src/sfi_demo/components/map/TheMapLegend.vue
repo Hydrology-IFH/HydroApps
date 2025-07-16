@@ -2,7 +2,7 @@
   import { computed } from 'vue';
 
   import { useLayerLib } from '~/stores/layerLib.js';
-  import MapLegendFromStyle from '~~/components/MapLegendFromStyle.vue';
+  import MapLegendFromStyle from '~~/components/map/MapLegendFromStyle.vue';
 
   // define variables
   const layerLib = useLayerLib();

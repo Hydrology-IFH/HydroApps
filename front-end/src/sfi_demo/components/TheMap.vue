@@ -4,7 +4,7 @@
   import { buffer, getCenter } from 'ol/extent';
   import View from 'ol/View';
 
-  import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
+  import MapHoverOverlay from "~~/components/map/MapHoverOverlay.vue";
   import ErrorFrame from '~~/components/ErrorFrame.vue';
   import { useConfig } from '~/stores/config.js';
   import { useLayerLib } from '~/stores/layerLib.js';
