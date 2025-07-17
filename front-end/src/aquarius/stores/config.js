@@ -15,7 +15,13 @@ export const useConfig = defineStore(
     actions: {
       async fetchLocations() {
         this.loadingLocations = true;
-        axios.get(`${this.apiLocationsUrl}?filter=valid`)
+        axios.get(`${this.apiLocationsUrl}?filter=valid`, {
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+          })
           .then(response => {
             this.locations = response.data;
             this.loadingLocations = false;
@@ -24,28 +30,6 @@ export const useConfig = defineStore(
             console.error('Error fetching locations:', error);
             this.loadingLocations = false;
           });
-
-        // fetch(`${this.apiLocationsUrl}/?filter=valid`, {
-        //   method: "GET",
-        //   credentials: "include",
-        //   headers: {
-        //     'Content-Type': 'application/json',
-      //       'CSRF-Token': this.csrfToken
-      //     },
-      //   })
-      //     .then(response => {
-      //       if (!response.ok) {
-      //         throw new Error('Network response was not ok');
-      //       }
-      //       return response.json();
-      //     })
-      //     .then(data => {
-      //       this.locations = data;
-      //     })
-      //     .catch(error => {
-      //       console.error('Error fetching locations:', error);
-      //     });
-      // },
       }
     }
   }
