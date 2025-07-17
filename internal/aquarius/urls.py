@@ -11,5 +11,5 @@ app_name = 'aquarius'
 urlpatterns = [
     path("", aquarius_view, name="app"),
     path("api/", include((aquarius_router.urls, "api"))),
-    path("api_proxy/<str:endpoint>", AquariusAPIProxyView.as_view(), name="aquarius_api_proxy"),
+    path("api_proxy/<str:endpoint>/", AquariusAPIProxyView.as_view(), name="aquarius_api_proxy"),
 ]

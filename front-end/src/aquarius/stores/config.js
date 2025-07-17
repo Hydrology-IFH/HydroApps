@@ -11,6 +11,8 @@ export const useConfig = defineStore(
       csrfToken: window.initSettings.csrfToken,
       locations: undefined,
       loadingLocations: false,
+      availableTags: [],
+      selectedTags: [],
     }),
     actions: {
       async fetchLocations() {
@@ -18,7 +20,6 @@ export const useConfig = defineStore(
         axios.get(`${this.apiLocationsUrl}?filter=valid`, {
             headers: {
                 'Cache-Control': 'no-cache, no-store, must-revalidate',
-                'Pragma': 'no-cache',
                 'Expires': '0'
             }
           })
@@ -30,6 +31,24 @@ export const useConfig = defineStore(
             console.error('Error fetching locations:', error);
             this.loadingLocations = false;
           });
+      },
+      async fetchTags() {
+        try {
+          const response = await axios.get(
+            `${this.aquariusAPIUrl.replace('ENDPOINT', 'GetTagList')}`,
+            {
+              headers: {
+                'Cache-Control': 'max-age=60',
+                'Expires': new Date(Date.now() + 60 * 1000).toUTCString(),
+              },
+              params: {
+                Applicability: "AppliesToLocations",
+              }
+          });
+          this.availableTags = response.data.Tags.map(tag => tag.Key);
+        } catch (error) {
+          console.error('Error fetching tags:', error);
+        }
       }
     }
   }

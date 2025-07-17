@@ -10,6 +10,10 @@ import { createPinia } from 'pinia'
 import I18NextVue from 'i18next-vue'
 import { i18n as i18next } from "./utils/i18n.js"
 
+// vuetify
+import { createVuetify } from 'vuetify'
+import { vuetifyTheme } from '~~/styles/vuetifyTheme.js'
+
 import App from './App.vue'
 
 const app = createApp(App)
@@ -19,6 +23,17 @@ app.use(I18NextVue, { i18next });
 
 // use pinia
 app.use(createPinia())
+
+// use vuetify
+const vuetify = createVuetify({
+  theme: {
+    defaultTheme: 'HydroAppsTheme',
+    themes: {
+      HydroAppsTheme: vuetifyTheme
+    }
+  }
+})
+app.use(vuetify)
 
 // mount the app
 app.mount('#app')

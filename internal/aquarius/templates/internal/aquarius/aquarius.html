@@ -15,7 +15,7 @@
     <div id="app" ></div>
     <script>
       window.initSettings ={
-        aquariusApiUrl: "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' %}",
+        aquariusAPIUrl: "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' %}",
         apiLocationsUrl: "{% url 'internal:aquarius:api:locations-list' %}",
         csrfToken: "{{ csrf_token }}",
         permissionEdit: {{ permission_edit|lower }},

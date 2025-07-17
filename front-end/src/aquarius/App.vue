@@ -4,7 +4,8 @@
   import ScreenshotWrapper from '~~/components/screenshot/Wrapper.vue';
   import ScreenshotButton from '~~/components/screenshot/Button.vue';
   import TheMap from './components/TheMap.vue';
-  import TheMenu from './components/TheMenu.vue';
+  import TheFilterMenu from './components/TheFilterMenu.vue';
+  import TheLocationsDetails from './components/TheLocationsDetails.vue';
 </script>
 
 <template>
@@ -12,6 +13,7 @@
     <ScreenshotWrapper>
       <div class="container p-0 app">
         <div class="row top-row">
+          <TheFilterMenu />
           <div class="wrapper-buttons">
             <ScreenshotButton file-name="Aquarius_locations.png" />
             <FullscreenButton />
@@ -22,7 +24,7 @@
             <TheMap />
           </div>
           <div class="col-12 col-md-4">
-            <TheMenu />
+            <TheLocationsDetails />
           </div>
         </div>
       </div>
