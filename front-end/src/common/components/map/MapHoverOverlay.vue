@@ -3,7 +3,6 @@
   import { containsCoordinate } from 'ol/extent.js';
   import Overlay from 'ol/Overlay.js';
   import  VectorLayer  from 'ol/layer/Vector';
-  window.VectorLayer = VectorLayer;
 
   const props = defineProps({
     map: { type: Object, required: true },
@@ -11,7 +10,10 @@
     unit: { type: String, default: "mm" },
     decimals: { type: Number, default: 2 },
     valueConverter: { type: Function, default: (x) => x },
-    propertyName: { type: [Array, String], default: "value" },
+    propertyName: {
+      type: [String, Array], // Array propertyName purpose is to access nested properties
+      default: "value"
+    },
     dtype : { type: String, default: "number" } // number or string
   })
 
@@ -34,27 +36,27 @@
     if (pixel.value == null) return;
 
     // get raw value from raster or vector layer
-    let rawValue;
-    const extraProps = {};
+    var rawValue = null;
+    var extraProps = {};
     if (props.layer.constructor === VectorLayer) {
       // vector layer
-      [ rawValue, extraProps.features ] = await props.layer.getFeatures(pixel.value).then((features) => {
-        if (features.length > 0) {
-          if (Array.isArray(props.propertyName)) {
-            let prop = features[0].getProperties();
-            for (let id of props.propertyName) {
-              prop = prop[id];
-            }
-            return [prop, features];
-          }
-          return [features[0].get(props.propertyName), features];
-        }
-        return [null, features];
+      let features = props.map.getFeaturesAtPixel(pixel.value, {
+        layerFilter: (layerCandidate) => layerCandidate === props.layer,
       });
+      if (features.length > 0) {
+        if (Array.isArray(props.propertyName)) {
+          extraProps = features[0].getProperties();
+          rawValue = extraProps;
+          for (let id of props.propertyName) {
+            rawValue = rawValue[id];
+          }
+        } else {
+          rawValue = features[0].get(props.propertyName);
+        }
+      }
     } else {
       // raster layer
       let pixValue = props.layer.getData(pixel.value);
-      // console.log(pixValue);
       if ((pixValue != null) && (pixValue[1] != 0)) {
         rawValue = pixValue[0];
       }
@@ -148,10 +150,12 @@
 </script>
 
 <template>
-  <div class="hover" ref="hoverDiv"
+  <div
+    ref="hoverDiv"
+    class="hover"
     :style="hoverStyle"
-    v-html="hoverText">
-  </div>
+    v-html="hoverText"
+  />
 </template>
 
 <style scoped>
