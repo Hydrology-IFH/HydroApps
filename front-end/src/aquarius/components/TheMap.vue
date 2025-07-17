@@ -1,60 +1,30 @@
 <script setup>
-  import { ref, onMounted, computed, onBeforeMount } from 'vue';
+  import { ref } from 'vue';
   import {
     Map,
-    MapControls,
-    Layers,
-    Sources,
-    Styles
+    MapControls
   } from "vue3-openlayers";
-  import { GeoJSON } from "ol/format";
 
-  import MapHoverOverlay from "~~/components/map/MapHoverOverlay.vue";
-  // import ErrorFrame from '~~/components/ErrorFrame.vue';
-  import { useConfig } from '~/stores/config.js';
   import MapBasemaps from '~~/components/map/MapBasemaps.vue';
+  import TheLocationsLayer from './map/TheLocationsLayer.vue';
 
   // setup
-  const config = useConfig();
   const mapRef = ref(null);
-  const locationLayer = ref(null);
-  const locationLayerReady = ref(false);
 
   // define view
   const view = ref(null)
-  const fitViewToLocations = () => {
+  const fitViewToLocations = (locationLayer) => {
     view.value.fit(
-      locationLayer.value.vectorLayer.getSource().getExtent(),
+      locationLayer.vectorLayer.getSource().getExtent(),
     {
       padding: [20, 20, 20, 20], // optional padding around the extent
     });
   }
 
-  // compute features from config.locations
-  const geoJson = new GeoJSON();
-  const features = computed(() => {
-    return geoJson.readFeatures(config.locations, {
-      dataProjection: "EPSG:4326",
-      featureProjection: "EPSG:3857",
-    });
-  });
-
-  // trigger function for when the locations layer is ready
-  const onLocationLayerReady = () => {
-    locationLayerReady.value = true;
-    fitViewToLocations();
-  }
-
-  onBeforeMount(() => {
-    config.fetchLocations()
-  });
-
   // for debugging
   if (import.meta.env !== undefined) {
-    window.config = config;
     window.view = view;
     window.mapRef = mapRef;
-    window.locationLayer = locationLayer;
     // provide("ol-options", {debug: true,});
   }
 </script>
@@ -73,30 +43,10 @@
         projection="EPSG:3857"
       />
 
-      <Layers.OlVectorLayer
-        v-if="config.locations !== undefined"
-        ref="locationLayer"
-        @sourceready="onLocationLayerReady"
-      >
-        <Sources.OlSourceVector
-          :features="features"
-          :format="geoJson"
-        >
-          <Styles.OlStyle>
-            <Styles.OlStyleCircle
-              :radius="6"
-            >
-              <Styles.OlStyleFill
-                color="rgba(255,255,255,0.6)"
-              />
-              <Styles.OlStyleStroke
-                color="#3399CC"
-                width="3"
-              />
-            </Styles.OlStyleCircle>
-          </Styles.OlStyle>
-        </Sources.OlSourceVector>
-      </Layers.OlVectorLayer>
+      <TheLocationsLayer
+        :map="mapRef?.map"
+        @layer-ready="fitViewToLocations"
+      />
 
       <MapBasemaps
         projection="EPSG:3857"
@@ -104,21 +54,7 @@
       />
 
       <MapControls.OlFullscreenControl />
-      <MapHoverOverlay
-        v-if="locationLayerReady && (mapRef !== null)"
-        :map="mapRef?.map"
-        :layer="locationLayer.vectorLayer"
-        unit=""
-        dtype="string"
-        property-name="name"
-      />
     </Map.OlMap>
-    <!-- <ErrorFrame
-      v-if="layerError && layerAvailable"
-      type="danger"
-      :header="$t('map_popup_error_header')"
-      :msg="$t('map_popup_error_msg')"
-    /> -->
   </div>
 </template>
 
