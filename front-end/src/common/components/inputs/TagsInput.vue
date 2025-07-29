@@ -1,6 +1,7 @@
 <script setup>
   import { onMounted, ref } from 'vue'
   import { VAutocomplete } from 'vuetify/components/VAutocomplete';
+  import { mdiTagMultiple } from '@mdi/js'
 
   // define model for selected tags
   const selectedTags = defineModel({
@@ -18,7 +19,6 @@
 
   const id = props.name.replace(/\s/g, '_')
   const label_dom = ref(null)
-  const searchvalue = ref('')
 
   // Initialize Bootstrap tooltip
   onMounted(() => {
@@ -42,18 +42,17 @@
     <VAutocomplete
       v-model="selectedTags"
       class="form-control"
-      style="padding:0;"
+      style="border-top-left-radius: 0; padding:0;"
       :clearable="true"
-      clear-icon="bi bi-x-lg"
-      icon-color="#fff"
-      closable-chips
-      close-text="x"
+      icon-color="#000"
+      :closable-chips="true"
+      :prepend-inner-icon="mdiTagMultiple"
       chips
       multiple
       :items="validTags"
       density="comfortable"
       hide-details
       variant="filled"
-    ></VAutocomplete>
+    />
   </div>
 </template>

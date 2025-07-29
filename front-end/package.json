@@ -50,6 +50,7 @@
     "vuetify": "^3.7.14"
   },
   "devDependencies": {
+    "@mdi/js": "^7.4.47",
     "@vitejs/plugin-vue": "^5.2.1",
     "eslint": "^9.29.0",
     "eslint-plugin-vue": "^10.2.0",

@@ -13,6 +13,7 @@ import { i18n as i18next } from "./utils/i18n.js"
 // vuetify
 import { createVuetify } from 'vuetify'
 import { vuetifyTheme } from '~~/styles/vuetifyTheme.js'
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 
 import App from './App.vue'
 
@@ -31,7 +32,14 @@ const vuetify = createVuetify({
     themes: {
       HydroAppsTheme: vuetifyTheme
     }
-  }
+  },
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    },
+  },
 })
 app.use(vuetify)
 
