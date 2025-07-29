@@ -71,7 +71,7 @@
   // compute features from config.locations
   const geoJson = new GeoJSON();
   const features = computed(() => {
-    return geoJson.readFeatures(config.locations, {
+    return geoJson.readFeatures(config.filteredLocations, {
       dataProjection: "EPSG:4326",
       featureProjection: "EPSG:3857",
     });

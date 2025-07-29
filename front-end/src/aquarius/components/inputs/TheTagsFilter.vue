@@ -17,7 +17,6 @@
   <TagsInput
     v-model="config.selectedTags"
     :valid-tags="config.availableTags"
-    :name="$t('filter-tags-name')"
     :label="$t('filter-tags-label')"
     :tooltip-msg="$t('filter-tags-tooltip')"
   />

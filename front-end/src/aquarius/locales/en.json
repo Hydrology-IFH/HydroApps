@@ -1,6 +1,7 @@
 {
-  "map_popup_error_header": "",
-  "map_popup_error_msg": "",
-  "menu_header_event": "",
-  "menu_header_map": ""
+  "filter-menu-button": "Filter locations",
+  "filter-menu-header": "Filter locations by:",
+  "filter-tags-label": "Tags",
+  "filter-tags-tooltip": "Filter locations by tags",
+  "menu_header_event": ""
 }

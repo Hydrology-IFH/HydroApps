@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { markRaw } from 'vue'
 import axios from 'axios'
 
 export const useConfig = defineStore(
@@ -14,6 +15,17 @@ export const useConfig = defineStore(
       availableTags: [],
       selectedTags: [],
     }),
+    getters: {
+      filteredLocations: (state) => {
+        if (!state.locations) return undefined;
+        var locations = {...state.locations};
+        if (state.selectedTags.length === 0) return locations;
+        locations.features = locations.features.filter(feature => {
+          return feature.properties.tags.some(tag => state.selectedTags.includes(tag));
+        }).map(markRaw);
+        return locations;
+      },
+    },
     actions: {
       async fetchLocations() {
         this.loadingLocations = true;

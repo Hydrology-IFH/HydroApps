@@ -12,12 +12,11 @@
   // define props
   const props = defineProps({
     validTags: { type: Array[String], required: true },
-    name: { type: String, required: true },
-    label: { type: String, default: 'Select Tags' },
+    label: { type: String, required: true },
     tooltipMsg: { type: String, required: true }
   })
 
-  const id = props.name.replace(/\s/g, '_')
+  const id = props.label.replace(/\s/g, '_')
   const label_dom = ref(null)
 
   // Initialize Bootstrap tooltip
@@ -31,13 +30,13 @@
     <span
       :id="`label_Select${id}`"
       ref="label_dom"
-      class="input-group-text"
+      class="input-group-text px-2"
       style="padding: 0;"
       data-bs-toggle="tooltip"
       data-bs-placement="top"
       :data-bs-title="tooltipMsg"
     >
-      {{ name }}
+      {{ label }}
     </span>
     <VAutocomplete
       v-model="selectedTags"
