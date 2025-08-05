@@ -2,12 +2,12 @@
   import { onMounted, ref, computed } from 'vue'
   import { get_reasonable_digits } from '../utils/reasonable_digits'
 
-  const range = defineModel({required: true})
+  const range = defineModel({type: Array, required: true})
   const props = defineProps({
-    name: String,
-    min: {Number, default: 0},
-    max: {Number, default: 100},
-    tooltipMsg: String,
+    name: {type: String, required: true},
+    min: {type: Number, default: 0},
+    max: {type: Number, default: 100},
+    tooltipMsg: {type: String, default: ""},
   })
   const label_dom = ref(null)
 
@@ -25,29 +25,52 @@
   )
 
   onMounted(() => {
-    new window.bootstrap.Tooltip(label_dom.value)
+    if (props.tooltipMsg != "") {
+      new window.bootstrap.Tooltip(label_dom.value)
+    }
   })
 </script>
 
 <template>
   <div class="input-group mb-3">
-    <span class="input-group-text" :id="`label_RangeInput_${id}`" ref="label_dom"
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        :data-bs-title="tooltipMsg">
+    <span
+      :id="`label_RangeInput_${id}`"
+      ref="label_dom"
+      class="input-group-text"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      :data-bs-title="tooltipMsg"
+    >
       {{ name }}
     </span>
     <div class="form-control flex-column d-flex pl-0 pr-0 pb-0">
-      <v-range-slider v-model="range" :min="minr" :max="maxr" :step="step"
-        hide-details color="var(--bs-primary)" :strict="true"
-      ></v-range-slider>
+      <v-range-slider
+        v-model="range"
+        :min="minr"
+        :max="maxr"
+        :step="step"
+        hide-details
+        color="var(--bs-primary)"
+        :strict="true"
+      />
       <div class="d-flex flex-fill range-numbers">
-        <input type="number" class="form-control" :min="minr" :max="maxr"
-          v-model.number.lazy="range[0]"/>
-        <input type="number" class="form-control" :min="minr" :max="maxr"
-          v-model.number.lazy="range[1]" />
+        <input
+          v-model.number.lazy="range[0]"
+          type="number"
+          class="form-control"
+          :min="minr"
+          :max="maxr"
+        >
+        <input
+          v-model.number.lazy="range[1]"
+          type="number"
+          class="form-control"
+          :min="minr"
+          :max="maxr"
+        >
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <style scoped>

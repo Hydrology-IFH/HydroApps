@@ -3,8 +3,8 @@
 
   const decimals = defineModel({ required: true })
   const props = defineProps({
-    name: String,
-    tooltipMsg: String,
+    name: { type: String, required: true },
+    tooltipMsg: { type: String, required: false , default: "" },
     min: {
       type: Number,
       default: 0
@@ -19,22 +19,43 @@
   const label_dom = ref(null)
 
   onMounted(() => {
-    new window.bootstrap.Tooltip(label_dom.value)
+    if (props.tooltipMsg != "") {
+      new window.bootstrap.Tooltip(label_dom.value)
+    }
   })
 </script>
 
 <template>
   <div class="input-group mb-3">
-    <span class="input-group-text" :id="`label_SliderDecimals_${id}`" ref="label_dom"
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        :data-bs-title="tooltipMsg">
+    <span
+      :id="`label_SliderDecimals_${id}`"
+      ref="label_dom"
+      class="input-group-text"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      :data-bs-title="tooltipMsg"
+    >
       {{ name}}
     </span>
     <span class="form-control">
-      <input type="range" class="form-range" name="SliderDecimals" :id="`SliderDecimals_{id}`" :min="min" :max="max"
-        v-model.number="decimals"/>
+      <input
+        :id="`SliderDecimals_${id}`"
+        v-model.number="decimals"
+        type="range"
+        class="form-range"
+        name="SliderDecimals"
+        :min="min"
+        :max="max"
+      >
     </span>
-    <input type="number" class="form-control" name="SliderDecimalsNumber" :min="min" :max="max"
-      v-model.number="decimals" style="max-width:70px" />
+    <input
+      v-model.number="decimals"
+      type="number"
+      class="form-control"
+      name="SliderDecimalsNumber"
+      :min="min"
+      :max="max"
+      style="max-width:70px"
+    >
   </div>
 </template>

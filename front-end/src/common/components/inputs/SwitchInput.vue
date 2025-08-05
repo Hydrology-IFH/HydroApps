@@ -1,33 +1,43 @@
 <script setup>
   import { onMounted, ref } from 'vue'
 
-  const model = defineModel({ required: true })
+  const model = defineModel({ type: Boolean, required: true })
   const props = defineProps({
-    name: String,
-    tooltipMsg: String
+    name: { type: String, required: true },
+    tooltipMsg: { type: String, default: "" }
   })
   const id = props.name.replace(/\s/g, '_')
   const label_dom = ref(null)
 
   onMounted(() => {
-    new window.bootstrap.Tooltip(label_dom.value)
+    if (props.tooltipMsg != "") {
+      new window.bootstrap.Tooltip(label_dom.value)
+    }
   })
 </script>
 
 <template>
   <div class="input-group mb-3">
-    <span class="input-group-text" :id="`label_Select${id}`"
-        ref="label_dom"
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        :data-bs-title="tooltipMsg">
+    <span
+      :id="`label_Select${id}`"
+      ref="label_dom"
+      class="input-group-text"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      :data-bs-title="tooltipMsg"
+    >
       {{ name }}
     </span>
     <div class="form-control">
       <div class="form-check form-switch">
-        <input class="form-check-input " type="checkbox" role="switch" v-model="model" >
+        <input
+          v-model="model"
+          class="form-check-input "
+          type="checkbox"
+          role="switch"
+        >
       </div>
     </div>
-
   </div>
 </template>
 
