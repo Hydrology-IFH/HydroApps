@@ -1,10 +1,9 @@
 <script setup>
-  import { onMounted, ref } from 'vue'
+  import BaseInput from './BaseInput.vue'
 
-  const decimals = defineModel({ required: true })
+  const decimals = defineModel({ type: Number, required: true })
   const props = defineProps({
     name: { type: String, required: true },
-    tooltipMsg: { type: String, required: false , default: "" },
     min: {
       type: Number,
       default: 0
@@ -16,27 +15,11 @@
   })
 
   const id = props.name.replace(/\s/g, '_')
-  const label_dom = ref(null)
 
-  onMounted(() => {
-    if (props.tooltipMsg != "") {
-      new window.bootstrap.Tooltip(label_dom.value)
-    }
-  })
 </script>
 
 <template>
-  <div class="input-group mb-3">
-    <span
-      :id="`label_SliderDecimals_${id}`"
-      ref="label_dom"
-      class="input-group-text"
-      data-bs-toggle="tooltip"
-      data-bs-placement="top"
-      :data-bs-title="tooltipMsg"
-    >
-      {{ name}}
-    </span>
+  <BaseInput :name="name">
     <span class="form-control">
       <input
         :id="`SliderDecimals_${id}`"
@@ -57,5 +40,5 @@
       :max="max"
       style="max-width:70px"
     >
-  </div>
+  </BaseInput>
 </template>

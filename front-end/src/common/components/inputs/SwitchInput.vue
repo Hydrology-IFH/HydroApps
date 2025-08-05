@@ -1,33 +1,11 @@
 <script setup>
-  import { onMounted, ref } from 'vue'
-
+  import BaseInput from './BaseInput.vue'
   const model = defineModel({ type: Boolean, required: true })
-  const props = defineProps({
-    name: { type: String, required: true },
-    tooltipMsg: { type: String, default: "" }
-  })
-  const id = props.name.replace(/\s/g, '_')
-  const label_dom = ref(null)
 
-  onMounted(() => {
-    if (props.tooltipMsg != "") {
-      new window.bootstrap.Tooltip(label_dom.value)
-    }
-  })
 </script>
 
 <template>
-  <div class="input-group mb-3">
-    <span
-      :id="`label_Select${id}`"
-      ref="label_dom"
-      class="input-group-text"
-      data-bs-toggle="tooltip"
-      data-bs-placement="top"
-      :data-bs-title="tooltipMsg"
-    >
-      {{ name }}
-    </span>
+  <BaseInput>
     <div class="form-control">
       <div class="form-check form-switch">
         <input
@@ -38,7 +16,7 @@
         >
       </div>
     </div>
-  </div>
+  </BaseInput>
 </template>
 
 <style scoped>

@@ -1,7 +1,7 @@
 <script setup>
-  import { onMounted, ref } from 'vue'
   import { VAutocomplete } from 'vuetify/components/VAutocomplete';
-  import { mdiTagMultiple } from '@mdi/js'
+  import { mdiTagMultiple } from '@mdi/js';
+  import InputBase from './BaseInput.vue';
 
   // define model for selected tags
   const selectedTags = defineModel({
@@ -11,33 +11,13 @@
 
   // define props
   const props = defineProps({
-    validTags: { type: Array[String], required: true },
-    label: { type: String, required: true },
-    tooltipMsg: { type: String, required: true }
+    validTags: { type: Array[String], required: true }
   })
 
-  const id = props.label.replace(/\s/g, '_')
-  const label_dom = ref(null)
-
-  // Initialize Bootstrap tooltip
-  onMounted(() => {
-    new window.bootstrap.Tooltip(label_dom.value)
-  })
 </script>
 
 <template>
-  <div class="input-group mb-3">
-    <span
-      :id="`label_Select${id}`"
-      ref="label_dom"
-      class="input-group-text px-2"
-      style="padding: 0;"
-      data-bs-toggle="tooltip"
-      data-bs-placement="top"
-      :data-bs-title="tooltipMsg"
-    >
-      {{ label }}
-    </span>
+  <InputBase>
     <VAutocomplete
       v-model="selectedTags"
       class="form-control"
@@ -53,5 +33,5 @@
       hide-details
       variant="filled"
     />
-  </div>
+  </InputBase>
 </template>

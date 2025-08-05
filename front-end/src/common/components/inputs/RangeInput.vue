@@ -1,19 +1,18 @@
 <script setup>
   import { onMounted, ref, computed } from 'vue'
   import { get_reasonable_digits } from '../utils/reasonable_digits'
+  import BaseInput from './BaseInput.vue'
 
   const range = defineModel({type: Array, required: true})
   const props = defineProps({
     name: {type: String, required: true},
     min: {type: Number, default: 0},
     max: {type: Number, default: 100},
-    tooltipMsg: {type: String, default: ""},
   })
   const label_dom = ref(null)
 
   const digits = computed(() => get_reasonable_digits(props.min, props.max))
   const step = computed(() => Math.pow(10, -digits.value))
-  const id = computed(() => props.name.replace(/\s/g, '_'))
 
   const minr = computed(() => Math.min(
     Math.floor(props.min * Math.pow(10, digits.value)) / Math.pow(10, digits.value),
@@ -32,17 +31,7 @@
 </script>
 
 <template>
-  <div class="input-group mb-3">
-    <span
-      :id="`label_RangeInput_${id}`"
-      ref="label_dom"
-      class="input-group-text"
-      data-bs-toggle="tooltip"
-      data-bs-placement="top"
-      :data-bs-title="tooltipMsg"
-    >
-      {{ name }}
-    </span>
+  <BaseInput :name="name">
     <div class="form-control flex-column d-flex pl-0 pr-0 pb-0">
       <v-range-slider
         v-model="range"
@@ -70,7 +59,7 @@
         >
       </div>
     </div>
-  </div>
+  </BaseInput>
 </template>
 
 <style scoped>
