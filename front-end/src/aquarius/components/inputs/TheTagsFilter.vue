@@ -2,7 +2,7 @@
   import { onBeforeMount } from 'vue'
 
   import { useConfig } from '~/stores/config.js';
-  import TagsInput from '../../../common/components/inputs/TagsInput.vue';
+  import TagsInput from '~~/components/inputs/TagsInput.vue';
 
   const config = useConfig();
 
@@ -15,9 +15,9 @@
 
 <template>
   <TagsInput
-    v-model="config.selectedTags"
+    v-model="config.filter.tags"
     :valid-tags="config.availableTags"
-    :label="$t('filter-tags-label')"
-    :tooltip-msg="$t('filter-tags-tooltip')"
+    :label="$t('filter_tags_label')"
+    :tooltip-msg="$t('filter_tags_tooltip')"
   />
 </template>

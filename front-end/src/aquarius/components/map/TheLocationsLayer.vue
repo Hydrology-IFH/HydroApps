@@ -13,7 +13,7 @@
 
   <Interactions.OlInteractionSelect
     v-if="locationLayerReady && (map !== null)"
-    :condition="click"
+    :condition="selectCondition"
     :layers="[locationLayer.vectorLayer]"
     :multi="false"
     @select="featureSelected"
@@ -27,10 +27,17 @@
     dtype="string"
     property-name="name"
   />
+
+  <ErrorFrame
+    v-if="alertEditMode"
+    :header="$t('edit_mode_alert_header')"
+    :msg="$t('edit_mode_alert_msg')"
+    @close="alertEditMode = false"
+  />
 </template>
 
 <script setup>
-  import { ref, defineEmits, computed, onBeforeMount } from 'vue';
+  import { ref, computed, onBeforeMount } from 'vue';
   import {
     Layers,
     Sources,
@@ -42,6 +49,7 @@
 
   import { useConfig } from '~/stores/config.js';
   import MapHoverOverlay from "~~/components/map/MapHoverOverlay.vue";
+  import ErrorFrame from "~~/components/ErrorFrame.vue";
 
   //  setup
   const emit = defineEmits(['layer-ready']);
@@ -56,6 +64,7 @@
   const locationLayer = ref(null);
   const locationLayerReady = ref(false);
   const config = useConfig();
+  const alertEditMode = ref(false);
 
   // fetch locations before mounting
   onBeforeMount(() => {
@@ -95,12 +104,18 @@
     zIndex: 1000
   });
 
+  const selectCondition = (e) => {
+    if (click(e)){
+      if (config.editMode) {alertEditMode.value = true}
+      return !config.editMode;
+    }
+    return false;
+  }
   // handle feature selection
   const featureSelected = (event) => {
-    console.log("Feature selected:", event);
     if (event.selected.length > 0) {
       const feature = event.selected[0];
-      config.selectedLocation = feature.getId();
+      config.selectedLocation = feature;
       feature.setStyle(selectedStyle);
     }
     if (event.deselected.length > 0) {

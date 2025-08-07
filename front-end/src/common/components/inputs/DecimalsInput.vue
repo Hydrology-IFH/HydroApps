@@ -3,7 +3,7 @@
 
   const decimals = defineModel({ type: Number, required: true })
   const props = defineProps({
-    name: { type: String, required: true },
+    label: { type: String, required: true },
     min: {
       type: Number,
       default: 0
@@ -14,12 +14,12 @@
     }
   })
 
-  const id = props.name.replace(/\s/g, '_')
+  const id = props.label.replace(/\s/g, '_')
 
 </script>
 
 <template>
-  <BaseInput :name="name">
+  <BaseInput :label="label">
     <span class="form-control">
       <input
         :id="`SliderDecimals_${id}`"

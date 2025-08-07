@@ -2,7 +2,8 @@
   defineProps({
     msg: {
       type: String,
-      required: true
+      required: false,
+      default: ''
     },
     type: {
       type: String,
@@ -15,11 +16,20 @@
   })
 </script>
 <template>
-  <div class="ErrorFrame" id="ErrorFrame">
-    <div class="alert" :class="`alert-${type}`" role="alert">
-      <h4 class="alert-heading">{{ header }}</h4>
+  <div
+    id="ErrorFrame"
+    class="ErrorFrame"
+  >
+    <div
+      class="alert"
+      :class="`alert-${type}`"
+      role="alert"
+    >
+      <h4 class="alert-heading">
+        {{ header }}
+      </h4>
       <slot name="message">
-        <p v-html="msg"></p>
+        <p v-html="msg" />
       </slot>
     </div>
   </div>

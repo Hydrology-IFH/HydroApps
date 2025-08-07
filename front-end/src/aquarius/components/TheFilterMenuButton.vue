@@ -9,7 +9,7 @@
       aria-controls="filterMenu"
     >
       <i class="bi bi-funnel-fill" />
-      {{ $t('filter-menu-button') }}
+      {{ $t('filter_menu_button') }}
     </button>
   </p>
 </template>

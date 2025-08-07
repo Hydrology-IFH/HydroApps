@@ -4,15 +4,15 @@
   const selected = defineModel({ type: String, required: true })
   const props = defineProps({
     options: { type: Array[String], required: true },
-    name: { type: String, required: true },
+    label: { type: String, required: true },
   })
-  const id = props.name.replace(/\s/g, '_')
+  const id = props.label.replace(/\s/g, '_')
 
 
 </script>
 
 <template>
-  <BaseInput :name="name">
+  <BaseInput :label="label">
     <select
       :id="`Select${id}`"
       v-model="selected"

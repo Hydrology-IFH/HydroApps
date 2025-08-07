@@ -1,15 +1,14 @@
 <script setup>
-  import { onMounted, ref, computed } from 'vue'
+  import { ref, computed } from 'vue'
   import { get_reasonable_digits } from '../utils/reasonable_digits'
   import BaseInput from './BaseInput.vue'
 
   const range = defineModel({type: Array, required: true})
   const props = defineProps({
-    name: {type: String, required: true},
+    label: {type: String, required: true},
     min: {type: Number, default: 0},
     max: {type: Number, default: 100},
   })
-  const label_dom = ref(null)
 
   const digits = computed(() => get_reasonable_digits(props.min, props.max))
   const step = computed(() => Math.pow(10, -digits.value))
@@ -23,15 +22,10 @@
     range.value[1])
   )
 
-  onMounted(() => {
-    if (props.tooltipMsg != "") {
-      new window.bootstrap.Tooltip(label_dom.value)
-    }
-  })
 </script>
 
 <template>
-  <BaseInput :name="name">
+  <BaseInput :label="label">
     <div class="form-control flex-column d-flex pl-0 pr-0 pb-0">
       <v-range-slider
         v-model="range"

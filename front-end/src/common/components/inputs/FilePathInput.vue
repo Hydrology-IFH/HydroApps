@@ -4,23 +4,23 @@
   const path = defineModel({ type: String, required: true })
   const full_path = defineModel("full_path", { type: String, required: false })
   const props = defineProps({
-    name: {
+    label: {
       type: String,
       required: true
     },
   })
-  const id = props.name.replace(/\s/g, '_')
+  const id = props.label.replace(/\s/g, '_')
 
 </script>
 
 <template>
-  <BaseInput :name="name">
+  <BaseInput :label="label">
     <input
       :id="`input_FileInput_${id}`"
       v-model="path"
       type="text"
       class="form-control"
-      :name="`input_${name}`"
+      :name="`input_${label}`"
     >
     <span
       v-if="full_path"

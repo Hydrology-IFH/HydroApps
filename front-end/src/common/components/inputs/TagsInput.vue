@@ -6,12 +6,13 @@
   // define model for selected tags
   const selectedTags = defineModel({
     type: Array[String],
-    default: () => []
+    default: () => [],
   });
 
   // define props
   const props = defineProps({
-    validTags: { type: Array[String], required: true }
+    validTags: { type: Array[String], required: true },
+    disabled: { type: Boolean, default: false }
   })
 
 </script>
@@ -22,9 +23,9 @@
       v-model="selectedTags"
       class="form-control"
       style="border-top-left-radius: 0; padding:0;"
-      :clearable="true"
+      :clearable="!disabled"
       icon-color="#000"
-      :closable-chips="true"
+      :closable-chips="!disabled"
       :prepend-inner-icon="mdiTagMultiple"
       chips
       multiple
@@ -32,6 +33,7 @@
       density="comfortable"
       hide-details
       variant="filled"
+      :disabled="disabled"
     />
   </InputBase>
 </template>
