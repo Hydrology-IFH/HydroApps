@@ -10,23 +10,23 @@ This module provides a simple wrapper around the Aquarius API with:
 
 import requests
 import logging
-from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
+from urllib.parse import urljoin
 from .decorators import check_aquarius_permission, rate_limit_user
 
-from ..config import (AQUARIUS_API_ALLOWED_ENDPOINTS,
-                     PERMISSION_CLASS_READ,
-                     PERMISSION_CLASS_EDIT,
-                     AQUARIUS_API_USER,
-                     AQUARIUS_API_PWD,
-                     AQUARIUS_API_URL)
+from ..config import (AQUARIUS_API_ALLOWED_ROUTES,
+                      AQUARIUS_API_ENDPOINTS_URL,
+                      PERMISSION_CLASS_READ,
+                      PERMISSION_CLASS_EDIT,
+                      AQUARIUS_USER,
+                      AQUARIUS_PWD,
+                      AQUARIUS_URL)
 
 logger = logging.getLogger(__name__)
-
 
 class AquariusAPIException(Exception):
     """Custom exception for Aquarius API errors"""
@@ -38,48 +38,52 @@ class AquariusAPIAdapter:
     """
 
     def __init__(self):
-        self.base_url = getattr(settings, 'AQUARIUS_API_URL', AQUARIUS_API_URL)
-        self.username = getattr(settings, 'AQUARIUS_API_USER', AQUARIUS_API_USER)
-        self.password = getattr(settings, 'AQUARIUS_API_PWD', AQUARIUS_API_PWD)
+        self.auth = (AQUARIUS_USER, AQUARIUS_PWD)
+        if not AQUARIUS_URL or not AQUARIUS_USER or not AQUARIUS_PWD:
+            raise AquariusAPIException("AQUARIUS_URL, AQUARIUS_USER and AQUARIUS_PWD must be set in settings")
 
-        if not self.username or not self.password:
-            raise AquariusAPIException("AQUARIUS_API_USER and AQUARIUS_API_PWD must be set in settings")
-
-    def make_request(self, method: str, endpoint: str, **params):
+    def make_request(self, method: str, endpoint: str, route: str, **params):
         """
         Make a request to the Aquarius API and return JSON response
 
         Args:
             method: HTTP method (GET or POST)
-            endpoint: API endpoint name
+            endpoint: API endpoint name, e.g. 'publish' or 'provisioning'
+            route: Specific route within the endpoint
             **params: Query/form parameters for the request
 
         Returns:
             dict: API response data
         """
         # Validate endpoint
-        if endpoint not in AQUARIUS_API_ALLOWED_ENDPOINTS:
-            raise AquariusAPIException(f"Endpoint '{endpoint}' is not allowed")
+        if endpoint not in AQUARIUS_API_ENDPOINTS_URL.keys():
+            raise AquariusAPIException(f"Endpoint '{endpoint}' is not valid")
 
-        url = f"{self.base_url}/{endpoint}"
+        # Validate route
+        if route not in AQUARIUS_API_ALLOWED_ROUTES[endpoint]:
+            raise AquariusAPIException(f"Route '{route}' is not allowed")
 
+        # Construct full URL
+        url = urljoin(
+            urljoin(AQUARIUS_URL, AQUARIUS_API_ENDPOINTS_URL[endpoint]),
+            route)
+
+        # Make the request to Aquarius API
         try:
             if method.upper() == 'GET':
-                response = requests.get(
-                    url,
-                    params=params,
-                    auth=(self.username, self.password),
-                    timeout=30
-                )
+                requests_method = requests.get
             elif method.upper() == 'POST':
-                response = requests.post(
-                    url,
-                    data=params,
-                    auth=(self.username, self.password),
-                    timeout=30
-                )
+                requests_method = requests.post
+            elif method.upper() == 'PUT':
+                requests_method = requests.put
             else:
                 raise AquariusAPIException(f"HTTP method '{method}' not supported")
+            response = requests_method(
+                url,
+                params=params,
+                auth=self.auth,
+                timeout=30
+            )
 
             if response.status_code >= 400:
                 raise AquariusAPIException(f"API error: {response.status_code} - {response.text}")
@@ -108,26 +112,17 @@ class AquariusAPIProxyView(View):
         return super().dispatch(request, *args, **kwargs)
 
     @method_decorator(check_aquarius_permission(PERMISSION_CLASS_READ))
-    def get(self, request, endpoint):
+    def get(self, request, endpoint, route):
         """
         Handle GET requests to Aquarius API
         """
         try:
-            # endpoint = request.GET.get('endpoint')
-
-            # if not endpoint:
-            #     return JsonResponse({
-            #         'error': 'Missing endpoint parameter',
-            #         'message': 'endpoint parameter is required',
-            #         'allowed_endpoints': AQUARIUS_API_ALLOWED_ENDPOINTS
-            #     }, status=400)
-
             # Remove endpoint from params and pass the rest to the API
             params = request.GET.copy()
             # del params['endpoint']
 
             # Make GET request to external API
-            data = aquarius_adapter.make_request('GET', endpoint, **params.dict())
+            data = aquarius_adapter.make_request('GET', endpoint, route,**params.dict())
 
             # Return response directly from external API
             return JsonResponse(data)

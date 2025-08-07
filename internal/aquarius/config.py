@@ -7,27 +7,42 @@ try:
 except ImportError:
     raise ImportError("Please define AQUARIUS_CONFIG in your secretSettings_HydroApps.py file.")
 
-AQUARIUS_API_USER = AQUARIUS_CONFIG.get('AQUARIUS_API_USER')
-AQUARIUS_API_PWD = AQUARIUS_CONFIG.get('AQUARIUS_API_PWD')
-AQUARIUS_API_URL = AQUARIUS_CONFIG.get('AQUARIUS_API_URL')
-if not AQUARIUS_API_USER or not AQUARIUS_API_PWD or not AQUARIUS_API_URL:
-    raise ValueError("AQUARIUS_API_USER, AQUARIUS_API_PWD, and AQUARIUS_API_URL must be set in AQUARIUS_CONFIG in secretSettings_HydroApps.py")
+AQUARIUS_USER = AQUARIUS_CONFIG.get('AQUARIUS_USER')
+AQUARIUS_PWD = AQUARIUS_CONFIG.get('AQUARIUS_PWD')
+AQUARIUS_URL = AQUARIUS_CONFIG.get('AQUARIUS_URL')
+if not AQUARIUS_USER or not AQUARIUS_PWD or not AQUARIUS_URL:
+    raise ValueError("AQUARIUS_USER, AQUARIUS_PWD, and AQUARIUS_URL must be set in AQUARIUS_CONFIG in secretSettings_HydroApps.py")
+AQUARIUS_API_ENDPOINTS_URL = {
+    "provision": "Provisioning/v1/",
+    "publish": "Publish/v2/",
+    "acquisition": "Acquisition/v2/"
+}
+
 # Ensure the API URL ends with a slash
-if not AQUARIUS_API_URL.endswith('/'):
-    AQUARIUS_API_URL = AQUARIUS_API_URL + '/'
+if not AQUARIUS_URL.endswith('/'):
+    AQUARIUS_URL = AQUARIUS_URL + '/'
+for endpoint in AQUARIUS_API_ENDPOINTS_URL.keys():
+    if not AQUARIUS_API_ENDPOINTS_URL[endpoint].endswith('/'):
+        AQUARIUS_API_ENDPOINTS_URL[endpoint] += '/'
 
 # Rate limiting configuration (per user per minute)
 RATE_LIMIT_PER_USER = AQUARIUS_CONFIG.get('RATE_LIMIT_PER_USER', 20)
 
 # Allowed API endpoints
-AQUARIUS_API_ALLOWED_ENDPOINTS = [
-    'GetLocationData',
-    'GetLocationDescriptionList',
-    'GetParameterList',
-    'GetTagList',
-    'GetTimeSeriesDescriptionList',
-    'GetTimeSeriesData'
-]
+AQUARIUS_API_ALLOWED_ROUTES = {
+    "publish": [
+        'GetLocationData',
+        'GetLocationDescriptionList',
+        'GetParameterList',
+        'GetTagList',
+        'GetTimeSeriesDescriptionList',
+        'GetTimeSeriesData'
+    ],
+    "provision": [
+        'locations',
+        'locationfolders',
+    ]
+}
 
 # Required permission class for Aquarius API access
 PERMISSION_CLASS_READ = 'aquarius-read'

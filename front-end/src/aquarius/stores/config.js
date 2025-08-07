@@ -7,7 +7,10 @@ export const useConfig = defineStore(
   {
     state: () => ({
       apiLocationsUrl: window.initSettings.apiLocationsUrl,
-      aquariusAPIUrl: window.initSettings.aquariusAPIUrl,
+      aquariusAPIUrls: {
+        acquisition: window.initSettings.aquariusAPIUrl.replace('ENDPOINT', 'acquisition'),
+        publish: window.initSettings.aquariusAPIUrl.replace('ENDPOINT', 'publish')
+      },
       permissionEdit: window.initSettings.permissionEdit,
       csrfToken: window.initSettings.csrfToken,
       locations: undefined,
@@ -47,7 +50,7 @@ export const useConfig = defineStore(
       async fetchTags() {
         try {
           const response = await axios.get(
-            `${this.aquariusAPIUrl.replace('ENDPOINT', 'GetTagList')}`,
+            `${this.aquariusAPIUrls["publish"].replace('ROUTE', 'GetTagList')}`,
             {
               headers: {
                 'Cache-Control': 'max-age=60',
