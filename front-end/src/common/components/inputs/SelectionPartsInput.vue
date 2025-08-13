@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, watch, ref } from 'vue'
+  import { watch, ref } from 'vue'
   import BaseInput from './BaseInput.vue'
   import BaseSelectionPart from './BaseSelectionPart.vue'
 
@@ -9,72 +9,60 @@
     label: { type: String, required: true },
   })
   const id = props.label.replace(/\s/g, '_')
-  const newSelection = ref("")
+  const newSelection = ref(null)
+  const internModel = ref([...model.value]); // Create a reactive copy of the model
 
-  // const selectionsPlus = ref([...model.value, null])
-
-  // watch(model, (newValue) => {
-  //   console.log("model changed:", newValue);
-  //   selectionsPlus.value = [...newValue, null]
-  // }, { deep: true, immediate: true });
-
-  // watch(selectionsPlus, (newValue) => {
-  //   console.log("selectionsPlus changed:", newValue);
-  //   if (selectionsPlus.value.slice(-1)[0] !== null) {
-  //     selectionsPlus.value.push(null); // Ensure the last element is null
-  //   }
-  //   model.value = newValue.slice(0, -1);
-  // }, { deep: true });
+  // Watch for changes in newSelection and update model accordingly
   watch(newSelection, (newValue) => {
     if (newValue !== null && newValue !== "") {
-      // Use spread operator to create a new array reference for better reactivity
       model.value = [...model.value, newValue];
-      newSelection.value = ""; // Reset newSelection after adding
+      newSelection.value = null; // Reset newSelection after adding
     }
   });
 
-  // Debug model changes
+  // Keep internModel in sync
   watch(model, (newValue) => {
-    console.log('Model changed:', newValue);
+    if (JSON.stringify(newValue) !== JSON.stringify(internModel.value)) {
+      internModel.value = [...newValue];
+    }
   }, { deep: true });
-
-  // window.selectionsPlus = selectionsPlus; // For debugging purposes
-  window.model = model; // For debugging purposes
+  // Keep model in sync with internModel
+  watch(internModel, (newValue) => {
+    let newModel = [...newValue].filter(item => item !== null && item !== ""); // Filter out null and empty strings
+    if (JSON.stringify(newModel) !== JSON.stringify(model.value)) {
+      model.value = [...newModel];
+    }
+  }, { deep: true });
 </script>
 
 <template>
   <BaseInput :label="label">
-    <BaseSelectionPart
-      v-for="(selection, index) in model"
-      :key="`existing-${index}`"
-      v-model="model[index]"
-      :options="options.filter((opt) => index==0? opt.parentValue === null : opt.parentValue === model[index-1])"
-      :selection-id="id"
-      :index="index"
-    />
-    <BaseSelectionPart
-      key="new-selection"
-      v-model="newSelection"
-      :options="options.filter((opt) => model.length==0? opt.parentValue === null : opt.parentValue === model[model.length-1])"
-      :selection-id="id"
-      :index="10"
-    />
-    <!-- <select
-      v-for="(selection, index) in selectionsPlus"
-      :id="`Select${id}_${index}`"
-      :key="index"
-      v-model="selectionsPlus[index]"
-      class="form-select form-control"
-      :name="`Select${id}`"
-    >
-      <option
-        v-for="option in options.filter((opt) => index==0? opt.parentValue === null : opt.parentValue === selectionsPlus[index-1])"
-        :key="option.value"
-        :value="option.value"
-        :active="option.value === selection"
-      >
-        {{ option.label ? option.label : option.value }}
-      </option>
-    </select> -->
+    <span class="form-control flex-wrapper">
+      <BaseSelectionPart
+        v-for="(selection, index) in internModel"
+        :id="`${id}_${index}`"
+        :key="`existing-${index}`"
+        v-model="internModel[index]"
+        :options="options.filter((opt) => index==0? opt.parentValue === null : opt.parentValue === internModel[index-1])"
+        :add-empty="index > 0"
+        :add-chevron="index > 0"
+      />
+      <BaseSelectionPart
+        id="new-selection"
+        key="new-selection"
+        v-model="newSelection"
+        :options="options.filter((opt) => model.length==0? opt.parentValue === null : opt.parentValue === model[model.length-1])"
+        add-empty
+      />
+    </span>
   </BaseInput>
 </template>
+
+<style scoped>
+  .flex-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: start;
+  }
+</style>

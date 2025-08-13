@@ -1,6 +1,8 @@
 {
   "edit_mode_alert_header": "Editiermodus ist aktiviert",
   "edit_mode_alert_msg": "Bitte speichern oder verwerfen Sie Ihre Änderungen, bevor Sie einen neuen Standort auswählen.",
+  "filter_folders_label": "Verzeichnis",
+  "filter_folders_tooltip": "Filtere die Standorte nach deren Verzeichnis",
   "filter_menu_button": "Filtere die Standorte",
   "filter_menu_header": "Filtere die Standorte nach:",
   "filter_tags_label": "Schlagworte",
@@ -15,7 +17,7 @@
   "location_detail_name_tooltip": "Der Name des Standorts",
   "location_detail_notes_label": "Notizen",
   "location_detail_notes_tooltip": "Zusätzliche Informationen zum Standort",
-  "location_detail_primary_folder_label": "Ordner",
+  "location_detail_primary_folder_label": "Verzeichnis",
   "location_detail_primary_folder_tooltip": "Der Aquarius Ordner, in dem der Standort gespeichert ist",
   "location_detail_tags_label": "Schlagworte",
   "location_detail_tags_tooltip": "Die Schlagworte, die mit dem Standort verknüpft sind",

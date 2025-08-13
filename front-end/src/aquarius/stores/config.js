@@ -28,10 +28,25 @@ export const useConfig = defineStore(
       filteredLocations: (state) => {
         if (!state.locations) return undefined;
         var locations = {...state.locations};
-        if (state.filter.tags.length === 0) return locations;
-        locations.features = locations.features.filter(feature => {
-          return feature.properties.tags.some(tag => state.filter.tags.includes(tag));
-        }).map(markRaw);
+
+        // Filter by tags
+        if (state.filter.tags.length > 0){
+          locations.features = locations.features.filter(feature => {
+            return feature.properties.tags.some(tag => state.filter.tags.includes(tag));
+          });
+        }
+
+        // Filter by folders
+        if (state.filter.folders.length > 1 || (state.filter.folders.length == 1 && state.filter.folders[0] !== "All Locations")) {
+          locations.features = locations.features.filter(feature => {
+            return feature.properties.primaryFolder.length >= state.filter.folders.length &&
+              state.filter.folders.every((folder, index) => {
+                return folder === feature.properties.primaryFolder[index];
+              });
+          });
+        }
+        // Mark features as raw to prevent reactivity issues
+        locations.features = locations.features.map(markRaw);
         return locations;
       },
     },
@@ -81,21 +96,10 @@ export const useConfig = defineStore(
                 'Expires': new Date(Date.now() + 60 * 1000).toUTCString(),
               }
           });
-          // const iterationReducer = (acc, folder) => {
-          //   const subfolders = response.data.Results.filter(
-          //     subfolder => subfolder.ParentLocationFolderPath === folder.LocationFolderPath)
-          //   return {
-          //     ...acc,
-          //     [folder.LocationFolderName]: subfolders.reduce(iterationReducer, {})
-          //   };
-          // }
-          // this.availableFolders = response.data.Results
-          //   .filter(folder => folder.ParentLocationFolderPath === null)
-          //   .reduce(iterationReducer, {})
           this.availableFolders = response.data.Results.map(folder => {
             return {
               label: folder.LocationFolderName,
-              value: folder.LocationFolderPath,
+              value: folder.LocationFolderPath?.split(".").slice(-1)[0],
               parentValue: folder.ParentLocationFolderPath?.split(".").slice(-1)[0] || null
             };
           });
