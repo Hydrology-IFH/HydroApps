@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class KombStRAPolygons(models.Model):
     grid_id = models.IntegerField(unique=True, primary_key=True)
-    geometry = models.PolygonField(srid=97019, blank=True, null=True)
+    geometry = models.PolygonField(srid=4326, blank=True, null=True)
 
     class Meta:
         db_table = 'kombstra_polygons'
