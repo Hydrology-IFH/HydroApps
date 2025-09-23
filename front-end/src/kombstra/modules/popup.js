@@ -7,9 +7,9 @@ import { createApp } from 'vue';
 
 import { map } from './map.js';
 import { toggle_hover } from './hover.js';
-import PopupContent from './PopupContent.vue';
+import ThePopupContent from './ThePopupContent.vue';
 import { i13nVue, i18n } from './i18n.js';
-import { radolan_layer } from './radolan_layer.js';
+import { kombstra_layer } from './kombstra_layer.js';
 
 /**
  * Elements that make up the popup.
@@ -39,7 +39,7 @@ const popup_cell_layer = new VectorLayer({
 });
 
 // create PopupContent component
-let popupApp = i13nVue(createApp(PopupContent));
+let popupApp = i13nVue(createApp(ThePopupContent));
 let popupAppInst = popupApp.mount(content);
 
 // functions to set popup position
@@ -143,7 +143,7 @@ export function create_popup() {
       remove_popup_cell_layer();
 
       // check if inside sri_bw layer and update popup
-      let pix_value = radolan_layer.getData(map.getEventPixel(evt.originalEvent));
+      let pix_value = kombstra_layer.getData(map.getEventPixel(evt.originalEvent));
       if ((pix_value != null) && (pix_value[1] != 0)) {
         update_kombstra_data(coordinate[0], coordinate[1]);
       } else {

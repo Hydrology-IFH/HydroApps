@@ -1,5 +1,5 @@
 <script>
-import { parameter, sri, year, event_rank } from './Form.vue';
+import { parameter, sri, year, event_rank } from './TheParameterForm.vue';
 
 export default {
   data: function () {
@@ -36,6 +36,8 @@ export default {
           return cells_year
             .filter((data) => data.sri == max_year_sri)
             .map((data) => data.event_rank);
+        default:
+          return [];
       }
     },
     highlighted_parameters() {
@@ -51,6 +53,8 @@ export default {
           return ["all"];
         case 'Top_SRI_year':
           return ["date", "sri"];
+        default:
+          return [];
       }
     }
   },
@@ -60,6 +64,17 @@ export default {
         this.fetchData();
       }
     }
+  },
+  mounted() {
+    new bootstrap.Tooltip(
+      this.$el.parentElement,
+      {selector:'button[data-bs-toggle="tooltip"]'});
+  },
+  updated() {
+    this.table_tooltips.forEach((tooltip) => {tooltip.dispose()});
+    this.table_tooltips = [
+      ...this.$el.parentElement.querySelectorAll('table [data-bs-toggle="tooltip"]')]
+      .map((el) => new bootstrap.Tooltip(el, {placement: "auto"}));
   },
   methods: {
     update_popup_data(grid_id, lat, long) {
@@ -130,42 +145,47 @@ export default {
     highlight_bs_title(event_rank, parameter) {
       return this.highlight(event_rank, parameter) ? this.$t('popup_explanation_highlight') : "";
     }
-  },
-  mounted() {
-    new bootstrap.Tooltip(
-      this.$el.parentElement,
-      {selector:'button[data-bs-toggle="tooltip"]'});
-  },
-  updated() {
-    this.table_tooltips.forEach((tooltip) => {tooltip.dispose()});
-    this.table_tooltips = [
-      ...this.$el.parentElement.querySelectorAll('table [data-bs-toggle="tooltip"]')]
-      .map((el) => new bootstrap.Tooltip(el, {placement: "auto"}));
   }
 }
 </script>
 
 <template>
-  <div class="spinner-border text-primary m-2" role="status" v-if="loading">
-    <span class="sr-only"></span>
+  <div
+    v-if="loading"
+    class="spinner-border text-primary m-2"
+    role="status"
+  >
+    <span class="sr-only" />
   </div>
-  <div v-else-if="error_msg" class="alert alert-danger m-2" role="alert" style="max-width:300px;">
-    <h4 class="alert-heading"><i class="bi bi-exclamation-triangle"></i> {{ $t('popup_error_header') }}</h4>
+  <div
+    v-else-if="error_msg"
+    class="alert alert-danger m-2"
+    role="alert"
+    style="max-width:300px;"
+  >
+    <h4 class="alert-heading">
+      <i class="bi bi-exclamation-triangle" /> {{ $t('popup_error_header') }}
+    </h4>
     <p>{{ error_msg }}</p>
     <p>{{ $t('popup_error_footer') }}</p>
   </div>
-  <div v-else class="popup-data">
-
+  <div
+    v-else
+    class="popup-data"
+  >
     <div class="popup-header">
       <p>{{ $t('popup_explanation') }}<a href="./method">{{ $t('popup_explanation_method_link') }}</a>.</p>
       <div>
-        <button class="btn btn-primary" role="button"
-            @click="download_data()"
-            data-bs-toggle="tooltip"
-            data-bs-container="body"
-            data-bs-placement="top"
-            :data-bs-title="$t('popup_download_tooltip')">
-          <i class="bi bi-download"></i>
+        <button
+          class="btn btn-primary"
+          role="button"
+          data-bs-toggle="tooltip"
+          data-bs-container="body"
+          data-bs-placement="top"
+          :data-bs-title="$t('popup_download_tooltip')"
+          @click="download_data()"
+        >
+          <i class="bi bi-download" />
         </button>
       </div>
     </div>
@@ -173,61 +193,98 @@ export default {
       <table class="table table-hover table-striped">
         <thead class="table-light ">
           <tr>
-            <th colspan="3"></th>
-            <th style="text-align:center" colspan="2">{{ $t('popup_table_header_rain') }}</th>
-            <th></th>
+            <th colspan="3" />
+            <th
+              style="text-align:center"
+              colspan="2"
+            >
+              {{ $t('popup_table_header_rain') }}
+            </th>
+            <th />
           </tr>
           <tr>
-            <th scope="col">{{ $t('popup_table_header_event_rank') }}</th>
-            <th scope="col">{{ $t('popup_table_header_date') }}</th>
-            <th scope="col">{{ $t('popup_table_header_duration') }}</th>
-            <th scope="col">{{ $t('popup_table_header_pval') }}</th>
-            <th scope="col">{{ $t('popup_table_header_pint') }}</th>
-            <th scope="col">SRI</th>
+            <th scope="col">
+              {{ $t('popup_table_header_event_rank') }}
+            </th>
+            <th scope="col">
+              {{ $t('popup_table_header_date') }}
+            </th>
+            <th scope="col">
+              {{ $t('popup_table_header_duration') }}
+            </th>
+            <th scope="col">
+              {{ $t('popup_table_header_pval') }}
+            </th>
+            <th scope="col">
+              {{ $t('popup_table_header_pint') }}
+            </th>
+            <th scope="col">
+              SRI
+            </th>
           </tr>
           <tr class="th-units">
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">min</th>
-            <th scope="col">mm</th>
-            <th scope="col">mm/h</th>
-            <th scope="col"></th>
+            <th scope="col" />
+            <th scope="col" />
+            <th scope="col">
+              min
+            </th>
+            <th scope="col">
+              mm
+            </th>
+            <th scope="col">
+              mm/h
+            </th>
+            <th scope="col" />
           </tr>
         </thead>
         <tbody>
-          <tr v-for="data in cell_data" :key="data.event_rank"
-              :class="highlight_class(data.event_rank, 'all')"
-              :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'all')"
-              :title="highlight_bs_title(data.event_rank, 'all')"
-              >
-            <td :class="highlight_class(data.event_rank, 'event_rank')"
-                :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'event_rank')"
-                :title="highlight_bs_title(data.event_rank, 'event_rank')">
+          <tr
+            v-for="data in cell_data"
+            :key="data.event_rank"
+            :class="highlight_class(data.event_rank, 'all')"
+            :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'all')"
+            :title="highlight_bs_title(data.event_rank, 'all')"
+          >
+            <td
+              :class="highlight_class(data.event_rank, 'event_rank')"
+              :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'event_rank')"
+              :title="highlight_bs_title(data.event_rank, 'event_rank')"
+            >
               {{ data.event_rank }}
             </td>
-            <td :class="highlight_class(data.event_rank, 'date')"
-                :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'date')"
-                :title="highlight_bs_title(data.event_rank, 'date')">
+            <td
+              :class="highlight_class(data.event_rank, 'date')"
+              :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'date')"
+              :title="highlight_bs_title(data.event_rank, 'date')"
+            >
               {{ data.date }}
             </td>
-            <td :class="highlight_class(data.event_rank, 'duration')"
-                :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'duration')"
-                :title="highlight_bs_title(data.event_rank, 'duration')">
+            <td
+              :class="highlight_class(data.event_rank, 'duration')"
+              :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'duration')"
+              :title="highlight_bs_title(data.event_rank, 'duration')"
+            >
               {{ data.duration }}
             </td>
-            <td :class="highlight_class(data.event_rank, 'pval')"
-                :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'pval')"
-                :title="highlight_bs_title(data.event_rank, 'pval')">
+            <td
+              :class="highlight_class(data.event_rank, 'pval')"
+              :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'pval')"
+              :title="highlight_bs_title(data.event_rank, 'pval')"
+            >
               {{ data.pval }}
             </td>
-            <td :class="highlight_class(data.event_rank, 'pint')"
-                :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'event_rank')"
-                :title="highlight_bs_title(data.event_rank, 'pint')">
+            <td
+              :class="highlight_class(data.event_rank, 'pint')"
+              :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'event_rank')"
+              :title="highlight_bs_title(data.event_rank, 'pint')"
+            >
               {{ data.pint }}
             </td>
-            <td :class="highlight_class(data.event_rank, 'sri')"
-                :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'sri')"
-                :title="highlight_bs_title(data.event_rank, 'sri')">
+            <td
+              :class="highlight_class(data.event_rank, 'sri')"
+              :data-bs-toggle="highlight_bs_toggle(data.event_rank, 'sri')"
+              :title="highlight_bs_title(data.event_rank, 'sri')"
+            >
               {{ data.sri }}
             </td>
           </tr>

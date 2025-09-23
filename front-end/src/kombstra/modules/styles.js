@@ -1,5 +1,4 @@
-// import { gridFormPara } from './forms.js';
-import { parameter, sri } from './Form.vue';
+import { parameter, sri } from './TheParameterForm.vue';
 import colormap from 'colormap';
 import { spans } from './spans';
 

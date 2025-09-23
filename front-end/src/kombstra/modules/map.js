@@ -2,7 +2,7 @@ import { Map, View } from 'ol';
 
 import { basemap } from './basemap.js';
 import { create_legend } from './legend.js';
-import { radolan_layer, create_form_updaters } from './radolan_layer.js';
+import { kombstra_layer, create_form_updaters } from './kombstra_layer.js';
 import { create_hover } from './hover.js';
 import { create_popup } from './popup.js';
 import { create_basemap_updater } from './basemap.js';
@@ -12,11 +12,11 @@ export var map;
 
 export async function create_map() {
   // create the map
-  const init_tif_view = await radolan_layer.getSource().getView();
+  const init_tif_view = await kombstra_layer.getSource().getView();
   map = new Map({
     target: 'map',
     layers: [
-      radolan_layer,
+      kombstra_layer,
       basemap
     ],
     view: new View({

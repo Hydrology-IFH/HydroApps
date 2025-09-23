@@ -1,5 +1,5 @@
 <script>
-import { parameter, year, sri, event_rank } from "./Form.vue"
+import { parameter, year, sri, event_rank } from "./TheParameterForm.vue"
 import { i18n } from './i18n.js';
 
 export default {
@@ -26,6 +26,8 @@ export default {
           return i18n.t('map_header_NEvents_above', {sri: this.sri});
         case 'Top_SRI_year':
           return i18n.t('map_header_top_sri', {year: this.year});
+        default:
+          return "";
       }
     }
   },

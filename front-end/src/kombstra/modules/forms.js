@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 
-import formComponent from './Form.vue';
+import formComponent from './TheParameterForm.vue';
 import { i13nVue } from './i18n.js';
 
 export const form = {};

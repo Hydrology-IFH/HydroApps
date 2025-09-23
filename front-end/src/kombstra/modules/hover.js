@@ -1,7 +1,7 @@
-import { radolan_layer } from "./radolan_layer.js";
+import { kombstra_layer } from "./kombstra_layer.js";
 import { map } from "./map.js";
 // import { gridForm, gridFormPara } from "./forms.js";
-import { parameter } from "./Form.vue";
+import { parameter } from "./TheParameterForm.vue";
 import { form } from "./forms.js";
 import Overlay from 'ol/Overlay.js';
 import { containsCoordinate } from 'ol/extent.js';
@@ -66,7 +66,7 @@ export function create_hover() {
       return;
     }
 
-    let pix_value = radolan_layer.getData(pixel);
+    let pix_value = kombstra_layer.getData(pixel);
     if ((pix_value != null) && (pix_value[1] != 0)) {
       overlay.setPosition(evt.coordinate);
       if (pix_value[0] == 9998) {

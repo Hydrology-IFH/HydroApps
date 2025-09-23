@@ -1,4 +1,4 @@
-import MapHeader from "./MapHeader.vue";
+import MapHeader from "./TheMapHeader.vue";
 import { createApp } from 'vue';
 import { i13nVue } from './i18n.js';
 
