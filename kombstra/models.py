@@ -10,7 +10,7 @@ class KombStRAPolygons(models.Model):
         db_table = 'kombstra_polygons'
 
 class KombStRAData(models.Model):
-    data_id = models.BigAutoField(
+    data_id = models.AutoField(
         primary_key=True,
         help_text=_("ID of the event"))
     grid_id = models.ForeignKey(
