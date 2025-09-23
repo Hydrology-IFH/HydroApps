@@ -1,13 +1,11 @@
 <script setup>
   import { ref, onMounted, watchEffect } from 'vue';
-  import {
-    Map,
-    Layers,
-    Sources,
-    Geometries,
-    Interactions,
-    Styles
-  } from "vue3-openlayers";
+  import { OlFeature } from "vue3-openlayers/map";
+  import { OlStyle, OlStyleStroke, OlStyleFill } from "vue3-openlayers/styles";
+  import { OlVectorLayer } from "vue3-openlayers/layers";
+  import { OlSourceVector } from "vue3-openlayers/sources";
+  import { OlInteractionSelect } from "vue3-openlayers/interactions";
+  import { OlGeomPolygon } from "vue3-openlayers/geometries";
   import { useTranslation } from "i18next-vue";
   import { fromExtent } from 'ol/geom/Polygon';
   import { click } from 'ol/events/condition.js';
@@ -73,33 +71,33 @@
 </script>
 
 <template>
-  <Layers.OlVectorLayer
+  <OlVectorLayer
     ref="refLayer"
     :visible="layerVisible"
     class-name="regionLayer"
     :update-while-animating="true"
   >
-    <Sources.OlSourceVector>
-      <Map.OlFeature
+    <OlSourceVector>
+      <OlFeature
         v-for="(region, name) in regions"
         :key="name"
         :properties="{ name }"
       >
-        <Geometries.OlGeomPolygon
+        <OlGeomPolygon
           :coordinates="fromExtent(region.extent).getCoordinates()"
           :geometry-name_="name"
         />
-        <Styles.OlStyle>
-          <Styles.OlStyleStroke
+        <OlStyle>
+          <OlStyleStroke
             :color="config.region===name?'#00a082':'#344A9A'"
             :width="4"
           />
-          <Styles.OlStyleFill :color="config.region===name ? !config.region_selection_active? '#00000000':'#7bc6b480' : '#868DC260'" />
-        </Styles.OlStyle>
-      </Map.OlFeature>
-    </Sources.OlSourceVector>
-  </Layers.OlVectorLayer>
-  <Interactions.OlInteractionSelect
+          <OlStyleFill :color="config.region===name ? !config.region_selection_active? '#00000000':'#7bc6b480' : '#868DC260'" />
+        </OlStyle>
+      </OlFeature>
+    </OlSourceVector>
+  </OlVectorLayer>
+  <OlInteractionSelect
     v-if="config.region_selection_active"
     ref="selectRef"
     :condition="click"

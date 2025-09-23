@@ -1,8 +1,15 @@
+// import styles
+import 'ol/ol.css'
+import 'vue3-openlayers/vue3-openlayers.css'
+import "ol-ext/dist/ol-ext.css"
+
 import "~~/styles/uni-colors.css"
 import "./assets/style.css"
 
+// import polyfill for module preload
 import 'vite/modulepreload-polyfill';
 
+// import libraries
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
