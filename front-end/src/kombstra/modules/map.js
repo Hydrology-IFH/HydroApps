@@ -20,11 +20,11 @@ export async function create_map() {
       basemap
     ],
     view: new View({
-      projection: "SR-ORG:97019",
+      projection: "EPSG:4326",
       center: init_tif_view.center,
       extent: init_tif_view.extent,
       showFullExtent: true,
-      zoom: 7
+      zoom: 6
     }),
   });
 

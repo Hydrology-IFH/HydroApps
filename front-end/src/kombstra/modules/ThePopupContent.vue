@@ -102,15 +102,16 @@ export default {
     download_data() {
       // create the csv content
       let header = [
-        `This is the KombStRA data for the raster cell with the ID ${this.grid_id}`,
-        `The cells center is located at ${this.cell_lat}, ${this.cell_lon}.`,
+        "This is the KombStRA data for one raster cell"
+        `cell-ID, ${this.grid_id}`,
+        `The cell center is located at (EPSG:4326):,${this.cell_lat}, ${this.cell_lon}.`,
         "The columns are:",
-        "event_rank : The ranking of the event",
-        "date: The date of the event",
-        "duration: The duration of the event in minutes",
-        "pval: The rain amount in mm",
-        "pint: The rain intensity in mm/h",
-        "sri: The 'Starkregenindex' (SRI) of the event",
+        "event_rank,The ranking of the event",
+        "date,The date of the event",
+        "duration,The duration of the event in minutes",
+        "pval,The rain amount in mm",
+        "pint,The rain intensity in mm/h",
+        "sri,The 'Starkregenindex' (SRI) of the event",
         ""
       ];
       let items = this.cell_data;
