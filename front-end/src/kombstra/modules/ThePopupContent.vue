@@ -348,7 +348,6 @@ export default {
     bottom: -10px;
     border-left: none;
     border-top: none;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   }
 
   /* bottom arrow */
@@ -372,26 +371,19 @@ export default {
   /* left arrow */
   .ol-popup.popup-right{
     left: 12px;
-    /* top: -200px; */
   }
   .ol-popup.popup-right:after{
     left: -10px;
-    /* top: 200px; */
-    /* margin-top:-10px; */
     border-right: none;
     border-top: none;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   }
 
   /* right arrow */
   .ol-popup.popup-left{
     right: 12px;
-    /* top: -200px; */
   }
   .ol-popup.popup-left:after{
     right: -10px;
-    /* top: 200px; */
-    /* margin-top:-10px; */
     border-left: none;
     border-bottom: none;
   }

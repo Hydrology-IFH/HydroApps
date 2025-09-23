@@ -1,5 +1,3 @@
-import proj4 from 'proj4';
-import { register } from 'ol/proj/proj4.js';
 import { get as getProjection } from 'ol/proj.js';
 
 import TileLayer from 'ol/layer/WebGLTile.js';
@@ -9,9 +7,6 @@ import TileWMS from 'ol/source/TileWMS.js';
 import { form } from './forms.js';
 import { basemap as formBasemap } from './TheParameterForm.vue';
 
-proj4.defs("EPSG:25832", "+proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs");
-proj4.defs("EPSG:3857", "+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs +type=crs");
-register(proj4);
 let basemap_proj = getProjection("EPSG:4326");
 
 let basemap_sources = {
@@ -45,7 +40,7 @@ let basemap_sources = {
   }),
   osm: new OSM(),
 }
-
+window.basemap_sources = basemap_sources;
 let get_source = function(){
   return basemap_sources[formBasemap.value];
 }

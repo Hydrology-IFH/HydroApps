@@ -9,10 +9,6 @@ import { form } from './forms.js';
 import { parameter, opacity, year, event_rank, sri } from './TheParameterForm.vue';
 import { update_legend } from './legend.js';
 
-// found on https://www.spatialreference.org/ref/sr-org/7019/
-// and adjusted for proj4js: https://github.com/proj4js/proj4js/issues/456
-proj4.defs("SR-ORG:97019", '+proj=stere +lat_0=90 +lat_ts=60 +lon_0=10 +k=1 +x_0=0 +y_0=0 +a=6370040 +b=6370040 +to_meter=1000 +units=km +no_defs');
-register(proj4);
 const proj_kombstra = getProjection("EPSG:4326");
 
 export function get_tif_source(){

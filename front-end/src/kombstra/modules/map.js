@@ -1,4 +1,5 @@
 import { Map, View } from 'ol';
+import { buffer } from 'ol/extent';
 
 import { basemap } from './basemap.js';
 import { create_legend } from './legend.js';
@@ -22,7 +23,7 @@ export async function create_map() {
     view: new View({
       projection: "EPSG:4326",
       center: init_tif_view.center,
-      extent: init_tif_view.extent,
+      extent: buffer(init_tif_view.extent, 3),
       showFullExtent: true,
       zoom: 6
     }),
