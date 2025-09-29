@@ -12,7 +12,8 @@
     decimals: { type: Number, default: 2 },
     valueConverter: { type: Function, default: (x) => x },
     propertyName: { type: [Array, String], default: "value" },
-    dtype : { type: String, default: "number" } // number or string
+    dtype: { type: String, default: "number" }, // number or string
+    printConsole: { type: Boolean, default: false },
   })
 
   const hoverDiv = ref(null)
@@ -54,7 +55,9 @@
     } else {
       // raster layer
       let pixValue = props.layer.getData(pixel.value);
-      // console.log(pixValue);
+      if (props.printConsole) {
+        console.log(pixValue);
+      }
       if ((pixValue != null) && (pixValue[1] != 0)) {
         rawValue = pixValue[0];
       }
