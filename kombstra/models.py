@@ -15,7 +15,7 @@ class KombStRAData(models.Model):
         help_text=_("ID of the event"))
     grid_id = models.ForeignKey(
         KombStRAPolygons,
-        models.DO_NOTHING,
+        models.CASCADE,
         blank=False, null=False,
         help_text=_("ID to link to the Grid-Cell"),
         db_column='grid_id')
