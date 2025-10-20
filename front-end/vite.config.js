@@ -9,6 +9,7 @@ export default defineConfig({
   base: '/static/front-end/',
   build: {
     manifest: "manifest.json",
+    sourcemap: true,
     chunkSizeWarningLimit: 800,
     watch: {
       include: 'vite.config.js',

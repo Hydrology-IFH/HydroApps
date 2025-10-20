@@ -12,7 +12,8 @@
 
   <h1>{% trans "KombStRA map" %}</h1>
   <div class="container p-0 zoomable">
-    <div class="row">
+    <div id="app"></div>
+    {% comment %} <div class="row">
       <div class="col-md-7 col-12 order-md-1 order-2" >
         <div id="map-header"></div>
         <div id="map">
@@ -26,7 +27,7 @@
       <div class="col-md-5 col-12 order-md-2 order-1">
         <div class="container" id="form-app"></div>
       </div>
-    </div>
+    </div> {% endcomment %}
   </div>
 
 {% endblock content %}

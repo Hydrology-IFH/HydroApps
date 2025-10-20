@@ -1,37 +1,30 @@
-<script>
-import { ref } from 'vue';
-import { spans } from './spans';
+<script setup>
+  import { onMounted, watch, ref } from 'vue';
+  import { useConfig } from '~/stores/config.js';
+  import { useLayerLib } from '~~/stores/layerLib/layerLib.js';
 
-export const parameter = ref('sri');
-export const year = ref(2010);
-export const sri = ref(6);
-export const event_rank = ref(1);
-export const opacity = ref(80);
-export const basemap = ref('basemap_grey');
+  const config = useConfig();
+  const layerLib = useLayerLib();
+  const formRef = ref(null);
 
-export default {
-  data: function () {
-    return {
-      parameter: parameter,
-      year: year,
-      sri: sri,
-      event_rank: event_rank,
-      opacity: opacity,
-      basemap: basemap,
-      spans: spans
-    }
-  },
-  mounted() {
-    new bootstrap.Tooltip(this.$el.parentElement, {
+  onMounted(() => {
+    watch(
+      () => config.parameter,
+      (newVal) => {
+        layerLib.selectLayer(newVal);
+      },
+      { immediate: true });
+
+    new bootstrap.Tooltip(formRef.value, {
       selector: "[data-bs-toggle='tooltip']",
     });
-  },
-}
+  });
 </script>
 
 <template>
   <form
     id="form_select_grid"
+    ref="formRef"
     class="form-horizontal"
     action="javascript:void(0);"
   >
@@ -51,13 +44,13 @@ export default {
       >{{ $t("parameter_label") }}</span>
       <select
         id="parameter"
-        v-model="parameter"
+        v-model="config.parameter"
         class="form-select"
         name="parameter"
+        @update="layerLib.selectLayer(config.parameter)"
       >
         <option
           value="sri"
-          selected
         >
           {{ $t("parameter_option_SRI") }}
         </option>
@@ -80,7 +73,7 @@ export default {
     </div>
 
     <div
-      v-if="parameter === 'Top_SRI_year'"
+      v-if="config.parameter === 'Top_SRI_year'"
       class="form-group input-group mb-3"
     >
       <span
@@ -95,27 +88,27 @@ export default {
       <span class="form-control">
         <input
           id="SliderYear"
-          v-model.number="year"
+          v-model.number="config.year"
           type="range"
           class="form-range"
           name="SliderYearRange"
-          :min="spans.min_year"
-          :max="spans.max_year"
+          :min="config.spans.min_year"
+          :max="config.spans.max_year"
         >
       </span>
       <input
-        v-model.number="year"
+        v-model.number="config.year"
         type="number"
         class="form-control"
         name="SliderYearNumber"
-        :min="spans.min_year"
-        :max="spans.max_year"
+        :min="config.spans.min_year"
+        :max="config.spans.max_year"
         style="max-width:90px"
       >
     </div>
 
     <div
-      v-else-if="parameter === 'NEvents_above_SRI'"
+      v-else-if="config.parameter === 'NEvents_above_SRI'"
       class="form-group input-group mb-3"
     >
       <span
@@ -130,7 +123,7 @@ export default {
       <span class="form-control">
         <input
           id="SliderSRI"
-          v-model.number="sri"
+          v-model.number="config.sri"
           type="range"
           class="form-range"
           name="SliderSRIRange"
@@ -139,7 +132,7 @@ export default {
         >
       </span>
       <input
-        v-model.number="sri"
+        v-model.number="config.sri"
         type="number"
         class="form-control"
         name="SliderSRINumber"
@@ -165,21 +158,21 @@ export default {
       <span class="form-control">
         <input
           id="eventRank"
-          v-model.number="event_rank"
+          v-model.number="config.event_rank"
           type="range"
           class="form-range"
           name="eventRankRange"
           min="1"
-          :max="spans.max_rank"
+          :max="config.spans.max_rank"
         >
       </span>
       <input
-        v-model.number="event_rank"
+        v-model.number="config.event_rank"
         type="number"
         class="form-control"
         name="eventRankNumber"
         min="1"
-        :max="spans.max_rank"
+        :max="config.spans.max_rank"
         style="max-width:70px"
       >
     </div>
@@ -193,36 +186,6 @@ export default {
     <h4>{{ $t("map_form_header_map_settings") }}</h4>
     <div class="form-group input-group mb-3">
       <span
-        id="label_basemap"
-        class="input-group-text"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        data-bs-container="body"
-        data-bs-html="true"
-        :data-bs-title="$t('basemap_tooltip')"
-      >{{ $t("basemap_label") }}</span>
-      <select
-        id="basemap"
-        v-model="basemap"
-        class="form-select"
-        name="basemap"
-      >
-        <option
-          value="basemap_grey"
-          selected
-        >
-          {{ $t("basemap_option_basemap_grey") }}
-        </option>
-        <option value="basemap_color">
-          {{ $t("basemap_option_basemap_color") }}
-        </option>
-        <option value="osm">
-          {{ $t("basemap_option_osm") }}
-        </option>
-      </select>
-    </div>
-    <div class="form-group input-group mb-3">
-      <span
         id="label_opacity"
         class="input-group-text"
         data-bs-toggle="tooltip"
@@ -234,7 +197,7 @@ export default {
       <span class="form-control">
         <input
           id="Opacity"
-          v-model.number="opacity"
+          v-model.number="config.opacity"
           type="range"
           class="form-range"
           name="OpacityRange"
@@ -244,7 +207,7 @@ export default {
         >
       </span>
       <input
-        v-model.number="opacity"
+        v-model.number="config.opacity"
         type="number"
         class="form-control"
         name="OpacityNumber"

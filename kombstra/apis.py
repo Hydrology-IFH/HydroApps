@@ -4,7 +4,7 @@ from django.contrib.gis.geos import Point
 from .serializers import (KombStRADataSerializer,
                           KombStRAPolygonsSerializer)
 from .models import (KombStRAData,KombStRAPolygons)
-
+from rest_framework.exceptions import ValidationError
 
 class KombStRAPolygonsViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = KombStRAPolygonsSerializer
@@ -30,7 +30,10 @@ class KombStRADataViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self, *args, **kwargs):
         if "grid_id" in self.request.GET:
-            return KombStRAData.objects.filter(
+            qs = KombStRAData.objects.filter(
                 grid_id=self.request.GET["grid_id"])
+            if not qs.exists():
+                raise ValidationError("No data for provided grid_id")
+            return qs
         else:
-            return None
+            raise ValidationError("No grid_id provided")

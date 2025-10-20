@@ -10,8 +10,8 @@ const getLengthFactStep = function ({min, max, colorbar}) {
   let step = 1;
   let fact = 1;
   let minSteps = colorbar? colorscales[colorbar.toLowerCase()].length: MIN_STEPS;
-  if (length > minSteps){
-    step = Math.floor(length / MAX_STEPS);
+  if (length > MAX_STEPS){
+    step = length / MAX_STEPS;
     length = Math.ceil(length / step);
   } else if (length < minSteps) {
     // duplicate as some colormaps need at least 9 nshades
@@ -26,10 +26,10 @@ const getValueColors = function ({ min, max, colorbar, reverse = false, exponent
   if (exponentialBase) {
     let minExp = Math.log(min)/Math.log(exponentialBase);
     let maxExp = Math.log(max)/Math.log(exponentialBase);
-    let { length, fact, step } = getLengthFactStep({ min: minExp, max: maxExp, colorbar });
+    var { length, fact, step } = getLengthFactStep({ min: minExp, max: maxExp, colorbar });
     values = Array.from({ length: length }, (value, index) => Math.pow(exponentialBase, minExp + (index * step * fact)));
   } else {
-    let { length, fact, step } = getLengthFactStep({ min, max, colorbar });
+    var { length, fact, step } = getLengthFactStep({ min, max, colorbar });
     values = Array.from({ length: length }, (value, index) => min + (index * step * fact));
   }
 

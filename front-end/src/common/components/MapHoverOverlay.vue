@@ -2,8 +2,7 @@
   import { ref, toRef, onMounted, computed, watch } from 'vue';
   import { containsCoordinate } from 'ol/extent.js';
   import Overlay from 'ol/Overlay.js';
-  import  VectorLayer  from 'ol/layer/Vector';
-  window.VectorLayer = VectorLayer;
+  import  VectorLayer from 'ol/layer/Vector';
 
   const props = defineProps({
     map: Object,
