@@ -44,5 +44,6 @@ urlpatterns = [
         path("sri_bw/", include("sri_bw.urls")),
         path("kombstra/", include("kombstra.urls")),
         path("sfi_demo/", include("sfi_demo.urls")),
+        path("internal/", include("internal.urls"))
     )
 ]

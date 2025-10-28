@@ -21,6 +21,9 @@ export const vuetifyTheme = {
     info: getCSSVar('--bs-info'),
     success: getCSSVar('--bs-success'),
     warning: getCSSVar('--bs-warning')
-  }
+  },
+  variables: {
+    'disabled-opacity': 0.5,
+  },
 }
 window.vuetifyTheme = vuetifyTheme

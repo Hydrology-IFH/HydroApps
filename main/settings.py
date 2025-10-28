@@ -67,10 +67,11 @@ INSTALLED_APPS = [
     'rest_framework_gis', # djangorestframework-gis
     "django_vite", # django-vite
     'webmaster_verification', # django-webmaster-verification
+    'internal', # Hydro internal apps
 ]
 
 # apps that are not yet released and only visible to test users
-APPS_UNRELEASED = ["kombstra"]
+APPS_UNRELEASED = ["kombstra", "internal"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {
@@ -80,7 +81,8 @@ APPS_ALT_NAMES = {
     "RheiKlim": "RheiKlim",
     "kombstra": "kombstra",
     "sri_bw": "sri_bw",
-    "sfi_demo": "sfi_demo"
+    "sfi_demo": "sfi_demo",
+    "internal": "internal"
 }
 
 MIDDLEWARE = [
@@ -102,7 +104,10 @@ APPEND_SLASH = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.joinpath("main/templates")],
+        'DIRS': [
+            BASE_DIR.joinpath("main/templates"),
+            *BASE_DIR.glob("internal/**/templates"), # for all internal app templates
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -211,33 +216,30 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
     },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
         },
-        # 'logfile': {
-        #     'level': 'DEBUG',
-        #     'class': 'logging.handlers.RotatingFileHandler',
-        #     'filename': BASE_DIR / "logs/django.log",
-        #     'maxBytes': 50000,
-        #     'backupCount': 2
-        # },
     },
     'loggers': {
-      'django': {
+        '': {
             'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-        },
-        # '': {
-        #     'handlers': ['console', 'logfile'],
-        #     'level': 'DEBUG',
-        # },
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
+        }
     }
 }
+if "DJANGO_LOG_FILE" in os.environ:
+    LOGGING['handlers']['logfile'] = {
+        'class': 'logging.handlers.RotatingFileHandler',
+        'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO').upper(),
+        'filename': os.getenv('DJANGO_LOG_FILE'),
+        'maxBytes': 50000,
+        'backupCount': 2
+    }
+    LOGGING['loggers']['']['handlers'].append('logfile')
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -280,10 +282,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Configure your Q cluster
 # More details https://django-q.readthedocs.io/en/latest/configure.html
 Q_CLUSTER = {
-    'retry': 60*60*24*2+2, # in seconds
+    'retry': 60*60+2, # in seconds
     'workers': 4,
     'orm': 'default',
-    "timeout": 60*60*24*2, # in seconds
+    "timeout": 60*60, # in seconds
     "max_attempts": 1,
     'has_replica': True,
     'name':'django_q'
@@ -316,6 +318,18 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+# setup Caching
+CACHES = {
+    'default': {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "hydroapps_cache_table",
+    }
 }
 
 # GDAL

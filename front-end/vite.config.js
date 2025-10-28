@@ -19,6 +19,7 @@ export default defineConfig({
         kombstra: '/src/kombstra/main.js',
         sri_bw: '/src/sri_bw/main.js',
         sfi_demo: '/src/sfi_demo/main.js',
+        aquarius: '/src/aquarius/main.js',
       },
       // activate this to debug production with
       // > npx vite build --watch

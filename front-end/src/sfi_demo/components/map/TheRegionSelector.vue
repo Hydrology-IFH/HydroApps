@@ -14,7 +14,7 @@
   import { regions } from "./regions";
   import { useConfig } from "~/stores/config.js";
   import "./projections";
-  import MapHoverOverlay from "~~/components/MapHoverOverlay.vue";
+  import MapHoverOverlay from "~~/components/map/MapHoverOverlay.vue";
 
   const props = defineProps({
     map: {
