@@ -86,23 +86,18 @@
   }
   @media screen and (max-width: 768px) {
     #map {
-      /* 100% - navbar - footer - flowchart*/
+      /* 100vh - navbar - footer */
       height: calc(100vh - 165px - .5em - 100px);
     }
   }
   @media screen and (min-width: 768px){
     #map {
-      /* 100% - navbar - h1 - flowchart - body_bottom */
-      height: calc(100vh - 165px - .5em - 1.2*2.5em - 100px - 2em);
+      /* 100vh - navbar - h1 - body_bottom */
+      height: calc(100vh - 165px - .5em - 1.2*2.5em - 2em);
     }
   }
   .fullscreen-wrapper.fullscreen-active #map{
-    /* 100vh - 2 * margin+padding of fullscreeen - flowchart*/
-    height: calc(100vh - 2*20px - 100px)
-  }
-  .kombstra-map-wrapper {
-    position: relative;
-    width:100%;
-    height:100%;
+    /* 100vh - wrapper buttons - h4 - 2 * margin+padding of fullscreeen */
+    height: calc(100vh - 1em - ((1.275rem + .3vw) * 1.2 + .5em) - 2*20px )
   }
 </style>
