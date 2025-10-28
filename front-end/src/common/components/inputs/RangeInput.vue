@@ -1,6 +1,6 @@
 <script setup>
-  import { ref, computed } from 'vue'
-  import { get_reasonable_digits } from '../utils/reasonable_digits'
+  import { computed } from 'vue'
+  import { getReasonableDigits } from '../utils/reasonableDigits'
   import BaseInput from './BaseInput.vue'
 
   const range = defineModel({type: Array, required: true})
@@ -10,7 +10,7 @@
     max: {type: Number, default: 100},
   })
 
-  const digits = computed(() => get_reasonable_digits(props.min, props.max))
+  const digits = computed(() => getReasonableDigits(props.min, props.max))
   const step = computed(() => Math.pow(10, -digits.value))
 
   const minr = computed(() => Math.min(
