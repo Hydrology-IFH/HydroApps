@@ -1,4 +1,4 @@
-import './style.css';
+import './assets/style.css';
 import 'ol/ol.css'
 import 'vue3-openlayers/vue3-openlayers.css'
 import "ol-ext/dist/ol-ext.css"
