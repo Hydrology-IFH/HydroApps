@@ -121,12 +121,11 @@ export const LAYERS = [
   },
   {
     id: "duration",
-    file: "duration.tif",
-    name: (sri) => i18n.t('legend_label_duration', { sri: sri.value }),
+    name: (event_rank) => i18n.t('legend_label_duration', { event_rank: event_rank.value }),
     unit: "min",
     decimals: 0,
-    relevantConfigs: ["sri",],
-    url: ({ sri }) => `/static/kombstra/kombstra_views/duration_${sri}.tif`,
+    relevantConfigs: ["event_rank",],
+    url: ({ event_rank }) => `/static/kombstra/kombstra_views/duration_${event_rank}.tif`,
     style: {
       color: [
         "case",
@@ -154,7 +153,6 @@ export const LAYERS = [
   },
   {
     id: "sri",
-    file: "SRI.tif",
     name: (event_rank) => i18n.t('legend_label_sri', { event_rank: event_rank.value }),
     unit: "",
     decimals: 0,

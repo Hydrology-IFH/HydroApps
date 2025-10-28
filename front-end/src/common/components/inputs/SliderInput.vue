@@ -56,7 +56,8 @@
     >
     <span
       v-if="unit"
-      class="input-group-text">
+      class="input-group-text"
+    >
       {{ unit }}
     </span>
   </BaseInput>

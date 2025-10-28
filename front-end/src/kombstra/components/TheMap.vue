@@ -36,7 +36,7 @@
       view.value.setExtent(buffer(layerLib.selectedLayer.olLayer.getView().calculateExtent(), 1));
     }
     // expose for debugging
-    if (import.meta.env.MODE == 'dev'){
+    if (import.meta.env.MODE == 'development'){
       window.kombstraMap = map.value;
       window.layerLib = layerLib;
     }

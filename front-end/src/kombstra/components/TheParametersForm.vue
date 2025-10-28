@@ -20,6 +20,10 @@
     new bootstrap.Tooltip(formRef.value, {
       selector: "[data-bs-toggle='tooltip']",
     });
+
+    if (import.meta.env.MODE == 'development'){
+      window.config = config;
+    }
   });
 </script>
 
