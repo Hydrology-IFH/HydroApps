@@ -3,7 +3,7 @@
 
   const selected = defineModel({ type: String, required: true })
   const props = defineProps({
-    options: { type: Array[String], required: true },
+    options: { type: Array[String] || Array[Object], required: true },
     label: { type: String, required: true },
   })
   const id = props.label.replace(/\s/g, '_')
@@ -21,11 +21,11 @@
     >
       <option
         v-for="option in options"
-        :key="option"
-        :value="option"
-        :active="option == selected"
+        :key="option.key ? option.key : option"
+        :value="option.key ? option.key : option"
+        :active="option.key ? option.key == selected : option == selected"
       >
-        {{ option }}
+        {{ option.label ? option.label : option }}
       </option>
     </select>
   </BaseInput>
