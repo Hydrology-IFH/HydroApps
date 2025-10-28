@@ -49,7 +49,7 @@
   "slider_event_rank_label": "Ereignisrang",
   "slider_event_rank_tooltip": "Wählen Sie den Rang des Ereignisses. Z.B. das Top 1 Ereignis pro Gitterzelle.",
   "slider_opacity_label": "Deckkraft",
-  "slider_opactity_tooltip": "Stellen Sie die Deckkraft des Rasters ein, um die darunter liegende Karte zu sehen.",
+  "slider_opacity_tooltip": "Stellen Sie die Deckkraft des Rasters ein, um die darunter liegende Karte zu sehen.",
   "slider_sri_tooltip": "Wählen Sie den SRI, um die Anzahl der Ereignisse >= SRI zu erhalten.",
   "slider_year_label": "Jahr",
   "slider_year_tooltip": "Wählen Sie das Jahr, für das Sie das Top-Ereignis erhalten möchten.",

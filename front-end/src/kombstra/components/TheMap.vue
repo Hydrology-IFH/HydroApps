@@ -5,8 +5,8 @@
   import { buffer } from 'ol/extent';
   import View from 'ol/View';
 
-  import MapHoverOverlay from '~~/components/MapHoverOverlay.vue';
-  import MapLegendFromStyle from '~~/components/MapLegendFromStyle.vue';
+  import MapHoverOverlay from '~~/components/map/MapHoverOverlay.vue';
+  import MapLegendFromStyle from '~~/components/map/MapLegendFromStyle.vue';
   import TheBasemaps from './TheBasemaps.vue';
   import TheMapPopup from './TheMapPopup.vue';
   import { useLayerLib } from '~/stores/layerLib.js';

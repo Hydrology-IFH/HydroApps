@@ -1,5 +1,5 @@
 <script setup>
-  import TheParameterForm from './components/TheParameterForm.vue';
+  import TheParametersForm from './components/TheParametersForm.vue';
   import TheMapHeader from './components/TheMapHeader.vue';
   import TheMap from './components/TheMap.vue';
   import FullScreenWrapper from '~~/components/fullscreen/Wrapper.vue';
@@ -24,7 +24,7 @@
             <TheMap />
           </div>
           <div class="col-md-5 col-12 order-md-2 order-1">
-            <TheParameterForm />
+            <TheParametersForm />
           </div>
         </div>
       </div>

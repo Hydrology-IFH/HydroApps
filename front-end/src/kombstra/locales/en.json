@@ -49,7 +49,7 @@
   "slider_event_rank_label": "Event rank",
   "slider_event_rank_tooltip": "Choose the rank of the event. E.g. the Top 1 event per grid cell.",
   "slider_opacity_label": "Opacity",
-  "slider_opactity_tooltip": "Set the opacity of the layer, to see the underlying map.",
+  "slider_opacity_tooltip": "Set the opacity of the layer, to see the underlying map.",
   "slider_sri_tooltip": "Choose the SRI to get number of events >= SRI.",
   "slider_year_label": "Year",
   "slider_year_tooltip": "Choose the year for which to get the Top event.",

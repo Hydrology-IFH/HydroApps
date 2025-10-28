@@ -17,5 +17,10 @@ export const useConfig = defineStore(
       year: 2020,
       event_rank: 1,
       sri: 1,
+
+      // parameters for daily data
+      // ----------------------------------
+      daily_date: null,
+      daily_year: 2024,
     })
   })
