@@ -15,7 +15,7 @@
   const mapRef = ref(null);
   const map = ref(null);
   const layerLib = useLayerLib();
-  const popupActive = ref(true);
+  const popupActive = ref(false);
 
   // view definition
   const view = ref(new View({

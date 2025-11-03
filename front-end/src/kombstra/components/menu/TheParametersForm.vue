@@ -4,7 +4,8 @@
   import { useLayerLib } from '~~/stores/layerLib/layerLib.js';
   import SliderInput from '~~/components/inputs/SliderInput.vue';
   import SelectionInput from '~~/components/inputs/SelectionInput.vue';
-  import TheDailySRISelector from './TheDailySRISelector.vue';
+  import TheDailySRIDate from './TheDailySRIDate.vue';
+  import TheDailySRIDuration from './TheDailySRIDuration.vue';
 
   const config = useConfig();
   const layerLib = useLayerLib();
@@ -81,9 +82,12 @@
       :tooltip-msg="$t('slider_event_rank_tooltip')"
       num-field-width="70px"
     />
-    <TheDailySRISelector
+    <span
       v-show="config.parameter === 'daily_sri'"
-    />
+    >
+      <TheDailySRIDate />
+      <TheDailySRIDuration />
+    </span>
   </form>
 
   <form

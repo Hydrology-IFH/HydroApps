@@ -17,29 +17,29 @@ const sriCats = {
   12: { T: ">100", F: "2,80" }
 }
 
-const sriStyle = {
+const getSRIStyle = (band, numBands=1) => ({
   color: [
     "case",
-    ["!=", ["band", 2], 0],
+    ["!=", ["band", numBands+1], 0],
     [ 'case',
-      ["==", ["band", 1], 1], [161, 194, 31],
-      ["==", ["band", 1], 2], [178, 207, 129],
-      ["==", ["band", 1], 3], [222, 225, 14],
-      ["==", ["band", 1], 4], [255, 236, 1],
-      ["==", ["band", 1], 5], [241, 144, 6],
-      ["==", ["band", 1], 6], [233, 98, 25],
-      ["==", ["band", 1], 7], [229, 81, 26],
-      ["==", ["band", 1], 8], [226, 35, 35],
-      ["==", ["band", 1], 9], [227, 41, 64],
-      ["==", ["band", 1], 10], [228, 35, 95],
-      ["==", ["band", 1], 11], [224, 64, 141],
-      ["==", ["band", 1], 12], [160, 69, 144],
-      ["==", ["band", 1], 98], [200, 200, 200],
+      ["==", ["band", band], 1], [161, 194, 31],
+      ["==", ["band", band], 2], [178, 207, 129],
+      ["==", ["band", band], 3], [222, 225, 14],
+      ["==", ["band", band], 4], [255, 236, 1],
+      ["==", ["band", band], 5], [241, 144, 6],
+      ["==", ["band", band], 6], [233, 98, 25],
+      ["==", ["band", band], 7], [229, 81, 26],
+      ["==", ["band", band], 8], [226, 35, 35],
+      ["==", ["band", band], 9], [227, 41, 64],
+      ["==", ["band", band], 10], [228, 35, 95],
+      ["==", ["band", band], 11], [224, 64, 141],
+      ["==", ["band", band], 12], [160, 69, 144],
+      ["==", ["band", band], 98], [200, 200, 200],
       ["color", 0,0,0,0]
     ],
     ["color", 0,0,0,0]
   ]
-}
+});
 
 // Layer definitions
 export const LAYERS = [
@@ -50,7 +50,7 @@ export const LAYERS = [
     decimals: 0,
     relevantConfigs: ["year"],
     url: ({ year }) => `/static/kombstra/kombstra_views/Top_SRI_year_${year}.tif`,
-    style: sriStyle,
+    style: getSRIStyle(1, 1),
   },
   {
     id: "year",
@@ -156,12 +156,12 @@ export const LAYERS = [
     name: (daily_sri_date) => i18n.t('legend_label_daily_sri', { date: daily_sri_date.value }),
     unit: "",
     decimals: 0,
-    relevantConfigs: ["daily_sri_date",],
+    relevantConfigs: ["daily_sri_date", "daily_sri_duration"],
     url: ({ daily_sri_date }) => {
       let month = (daily_sri_date.getMonth() + 1).toString().padStart(2,"0");
       let day = daily_sri_date.getDate().toString().padStart(2,"0");
       return `/static/kombstra/daily_events/SRI_${daily_sri_date.getFullYear()}${month}${day}.tif`;
     },
-    style: sriStyle,
+    style: ({ daily_sri_duration }) => getSRIStyle(daily_sri_duration === "short" ? 1 : 2, 2),
   },
 ];
