@@ -180,5 +180,6 @@ export const LAYERS = [
     },
     style: ({ daily_sri_duration }) => getSRIStyle(daily_sri_duration === "short" ? 1 : 2, 2),
     valueConverter: (val) => val == 98 ? i18n.t('nodata_98') : val,
+    // TODO: add legend tooltips
   },
 ];

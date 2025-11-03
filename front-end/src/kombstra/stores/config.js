@@ -22,5 +22,6 @@ export const useConfig = defineStore(
       // ----------------------------------
       daily_sri_date: new Date(2006, 4, 1),
       daily_sri_duration: "short" // "short" or "long"
+      // TODO: add pval_daily as layer
     })
   })
