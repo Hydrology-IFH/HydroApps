@@ -196,7 +196,10 @@
             :data-bs-title="$t('popup_download_tooltip')"
             @click="downloadData()"
           >
-            <i class="bi bi-download" />
+            <i
+              class="bi bi-download"
+              style="color: white"
+            />
           </button>
         </div>
       </div>

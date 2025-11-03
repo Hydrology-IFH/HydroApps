@@ -1,7 +1,7 @@
 <script setup>
-  import TheParametersForm from './components/TheParametersForm.vue';
-  import TheMapHeader from './components/TheMapHeader.vue';
-  import TheMap from './components/TheMap.vue';
+  import TheParametersForm from './components/menu/TheParametersForm.vue';
+  import TheMapHeader from './components/map/TheMapHeader.vue';
+  import TheMap from './components/map/TheMap.vue';
   import FullScreenWrapper from '~~/components/fullscreen/Wrapper.vue';
   import FullscreenButton from '~~/components/fullscreen/Button.vue';
   import ScreenshotWrapper from '~~/components/screenshot/Wrapper.vue';

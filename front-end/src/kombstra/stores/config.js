@@ -20,7 +20,6 @@ export const useConfig = defineStore(
 
       // parameters for daily data
       // ----------------------------------
-      daily_date: null,
-      daily_year: 2024,
+      daily_sri_date: new Date(2006, 4, 1),
     })
   })

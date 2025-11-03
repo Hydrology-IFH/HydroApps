@@ -34,7 +34,7 @@ const sriStyle = {
       ["==", ["band", 1], 10], [228, 35, 95],
       ["==", ["band", 1], 11], [224, 64, 141],
       ["==", ["band", 1], 12], [160, 69, 144],
-      ["==", ["band", 1], 9998], [200, 200, 200],
+      ["==", ["band", 1], 98], [200, 200, 200],
       ["color", 0,0,0,0]
     ],
     ["color", 0,0,0,0]
@@ -152,12 +152,16 @@ export const LAYERS = [
     },
   },
   {
-    id: "sri",
-    name: (event_rank) => i18n.t('legend_label_sri', { event_rank: event_rank.value }),
+    id: "daily_sri",
+    name: (daily_sri_date) => i18n.t('legend_label_daily_sri', { date: daily_sri_date.value }),
     unit: "",
     decimals: 0,
-    relevantConfigs: ["event_rank",],
-    url: ({ event_rank }) => `/static/kombstra/kombstra_views/SRI_${event_rank}.tif`,
+    relevantConfigs: ["daily_sri_date",],
+    url: ({ daily_sri_date }) => {
+      let month = (daily_sri_date.getMonth() + 1).toString().padStart(2,"0");
+      let day = daily_sri_date.getDate().toString().padStart(2,"0");
+      return `/static/kombstra/daily_events/SRI_${daily_sri_date.getFullYear()}${month}${day}.tif`;
+    },
     style: sriStyle,
   },
 ];

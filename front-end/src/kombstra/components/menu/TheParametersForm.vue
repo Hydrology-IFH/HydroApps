@@ -4,6 +4,7 @@
   import { useLayerLib } from '~~/stores/layerLib/layerLib.js';
   import SliderInput from '~~/components/inputs/SliderInput.vue';
   import SelectionInput from '~~/components/inputs/SelectionInput.vue';
+  import TheDailySRISelector from './TheDailySRISelector.vue';
 
   const config = useConfig();
   const layerLib = useLayerLib();
@@ -48,6 +49,7 @@
         { key: 'month', label: $t('parameter_option_month') },
         { key: 'Top_SRI_year', label: $t('parameter_option_Top_SRI_year') },
         { key: 'NEvents_above_SRI', label: $t('parameter_option_NEvents_above_SRI') },
+        { key: 'daily_sri', label: $t('parameter_option_daily_sri') },
       ]"
       :tooltip-msg="$t('parameter_tooltip')"
     />
@@ -71,13 +73,16 @@
       num-field-width="70px"
     />
     <SliderInput
-      v-else
+      v-else-if="config.parameter !== 'daily_sri'"
       v-model="config.event_rank"
       :label="$t('slider_event_rank_label')"
       :min="1"
       :max="config.spans.max_rank"
       :tooltip-msg="$t('slider_event_rank_tooltip')"
       num-field-width="70px"
+    />
+    <TheDailySRISelector
+      v-show="config.parameter === 'daily_sri'"
     />
   </form>
 
