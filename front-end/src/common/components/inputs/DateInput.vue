@@ -1,5 +1,4 @@
 <script setup>
-  // import { VDateInput } from 'vuetify/labs/VDateInput';
   import { VueDatePicker } from '@vuepic/vue-datepicker';
   import '@vuepic/vue-datepicker/dist/main.css';
   import { enUS, de } from "date-fns/locale";

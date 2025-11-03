@@ -2,10 +2,10 @@
   import TheParametersForm from './components/menu/TheParametersForm.vue';
   import TheMapHeader from './components/map/TheMapHeader.vue';
   import TheMap from './components/map/TheMap.vue';
-  import FullScreenWrapper from '~~/components/fullscreen/Wrapper.vue';
-  import FullscreenButton from '~~/components/fullscreen/Button.vue';
-  import ScreenshotWrapper from '~~/components/screenshot/Wrapper.vue';
-  import ScreenshotButton from '~~/components/screenshot/Button.vue';
+  import FullScreenWrapper from '~~/components/fullscreen/FullscreenWrapper.vue';
+  import FullscreenButton from '~~/components/fullscreen/FullscreenButton.vue';
+  import ScreenshotWrapper from '~~/components/screenshot/ScreenshotWrapper.vue';
+  import ScreenshotButton from '~~/components/screenshot/ScreenshotButton.vue';
 </script>
 
 <template>

@@ -1,16 +1,16 @@
 <script setup>
-  import Button from './Button.vue';
-  import Wrapper from './Wrapper.vue';
+  import ScreenshotButton from './ScreenshotButton.vue';
+  import ScreenshotWrapper from './ScreenshotWrapper.vue';
 </script>
 
 <template>
-  <Wrapper>
+  <ScreenshotWrapper>
     <div class="wrapper-buttons">
-      <Button/>
+      <ScreenshotButton/>
     </div>
     <slot default>
     </slot>
-  </Wrapper>
+  </ScreenshotWrapper>
 </template>
 
 <style scoped>
