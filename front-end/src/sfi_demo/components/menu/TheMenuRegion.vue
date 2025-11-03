@@ -1,6 +1,6 @@
 <script setup>
   import { useConfig } from '~/stores/config.js';
-  import MenuSelection from "./utils/MenuSelection.vue";
+  import SelectionInput from "~~/components/inputs/SelectionInput.vue";
   import { regions } from "../map/regions.js";
 
   const config = useConfig();
@@ -14,12 +14,12 @@
 </script>
 
 <template>
-  <MenuSelection
+  <SelectionInput
     id="menu-region"
     v-model="config.region"
     :label="$t('menu_region_label')"
     :options="regions_keys"
-    :tooltip="$t('menu_region_tooltip')"
+    :tooltip-msg="$t('menu_region_tooltip')"
     @change="updateRegion"
   >
     <template #after>
@@ -34,7 +34,7 @@
         <i class="bi bi-geo" />
       </button>
     </template>
-  </MenuSelection>
+  </SelectionInput>
 </template>
 
 <style scoped>

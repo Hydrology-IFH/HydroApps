@@ -2,7 +2,7 @@
   import { useTranslation } from "i18next-vue";
 
   import { useConfig } from '~/stores/config.js';
-  import MenuSelection from "./utils/MenuSelection.vue";
+  import SelectionInput from "~~/components/inputs/SelectionInput.vue";
 
   const config = useConfig();
   const { i18next } = useTranslation();
@@ -15,12 +15,12 @@
 </script>
 
 <template>
-  <MenuSelection
+  <SelectionInput
     v-model="config.kind"
     :label="$t('menu_kind_label')"
     :options="kinds"
-    :tooltip="$t('menu_kind_tooltip')"
-    :as-buttons="true"
+    :tooltip-msg="$t('menu_kind_tooltip')"
+    as-buttons
     :active="!config.region_selection_active"
   />
 </template>

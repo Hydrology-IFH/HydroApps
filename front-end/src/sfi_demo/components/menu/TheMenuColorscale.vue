@@ -1,7 +1,7 @@
 <script setup>
   import { ref, watchEffect, computed } from 'vue';
 
-  import MenuSelection from "./utils/MenuSelection.vue";
+  import SelectionInput from "~~/components/inputs/SelectionInput.vue";
   import { useLayerLib } from '~/stores/layerLib.js';
   import { useConfig } from '~/stores/config.js';
 
@@ -28,12 +28,12 @@
 </script>
 
 <template>
-  <MenuSelection
+  <SelectionInput
     v-show="colorscalesAvailable"
     v-model="menuScale"
     :label="$t('menu_colorscale_label')"
     :options="colorscalesKeys"
-    :tooltip="$t('menu_colorscale_tooltip')"
+    :tooltip-msg="$t('menu_colorscale_tooltip')"
     :active="!config.region_selection_active"
     @change="updateScale"
   />
