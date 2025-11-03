@@ -1,6 +1,8 @@
 {
   "edit_mode_alert_header": "Editiermodus ist aktiviert",
   "edit_mode_alert_msg": "Bitte speichern oder verwerfen Sie Ihre Änderungen, bevor Sie einen neuen Standort auswählen.",
+  "filter_folders_label": "",
+  "filter_folders_tooltip": "",
   "filter_menu_button": "Filtere die Standorte",
   "filter_menu_header": "Filtere die Standorte nach:",
   "filter_tags_label": "Schlagworte",

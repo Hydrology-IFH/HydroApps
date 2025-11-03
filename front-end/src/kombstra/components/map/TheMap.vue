@@ -60,6 +60,7 @@
         :active="!popupActive"
         :band="layerLib.selectedLayer.band"
         :alpha-band="layerLib.selectedLayer.alphaBand"
+        :value-converter="layerLib.selectedLayer.valueConverter"
       />
       <MapLegendFromStyle
         v-if="map && layerLib.selectedLayer"
@@ -68,6 +69,7 @@
         :style="layerLib.selectedLayer.legendStyle"
         :unit="layerLib.selectedLayer.unit"
         :visible="true"
+        :value-converter="layerLib.selectedLayer.valueConverter"
         title-position="top"
       />
       <TheBasemaps />

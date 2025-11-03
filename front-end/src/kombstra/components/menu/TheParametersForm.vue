@@ -44,7 +44,7 @@
       v-model="config.parameter"
       :label="$t('parameter_label')"
       :options="[
-        { key: 'sri', label: $t('parameter_option_SRI') },
+        { key: 'event_sri', label: $t('parameter_option_event_SRI') },
         { key: 'duration', label: $t('parameter_option_duration') },
         { key: 'year', label: $t('parameter_option_year') },
         { key: 'month', label: $t('parameter_option_month') },

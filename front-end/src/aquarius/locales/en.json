@@ -1,6 +1,8 @@
 {
   "edit_mode_alert_header": "Edit mode is enabled",
   "edit_mode_alert_msg": "Please save or discard your changes before selecting a new location.",
+  "filter_folders_label": "",
+  "filter_folders_tooltip": "",
   "filter_menu_button": "Filter locations",
   "filter_menu_header": "Filter locations by:",
   "filter_tags_label": "Tags",

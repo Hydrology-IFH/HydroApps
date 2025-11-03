@@ -91,7 +91,7 @@
   //  highlighting logic
   const highlightedEventRanks = computed(() => {
     switch (config.parameter) {
-      case 'sri' :
+      case 'event_sri' :
       case 'duration':
       case 'month':
       case 'year':
@@ -114,7 +114,7 @@
 
   const highlightedParameters = computed(() => {
     switch (config.parameter) {
-      case 'sri' :
+      case 'event_sri' :
         return ["event_rank", "sri"];
       case 'duration':
         return ["event_rank", "duration"];

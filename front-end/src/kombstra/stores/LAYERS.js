@@ -51,6 +51,7 @@ export const LAYERS = [
     relevantConfigs: ["year"],
     url: ({ year }) => `/static/kombstra/kombstra_views/Top_SRI_year_${year}.tif`,
     style: getSRIStyle(1, 1),
+    valueConverter: (val) => val === "98" ? i18n.t('nodata_98') : val,
   },
   {
     id: "year",
@@ -152,8 +153,23 @@ export const LAYERS = [
     },
   },
   {
+    id: "event_sri",
+    name: ({ event_rank }) => i18n.t('legend_label_event_sri', { event_rank }),
+    unit: "",
+    decimals: 0,
+    relevantConfigs: ["event_rank"],
+    url: ({ event_rank }) => `/static/kombstra/kombstra_views/sri_${event_rank}.tif`,
+    style: getSRIStyle(1,1),
+    valueConverter: (val) => val == 98 ? i18n.t('nodata_98') : val,
+  },
+  {
     id: "daily_sri",
-    name: (daily_sri_date) => i18n.t('legend_label_daily_sri', { date: daily_sri_date.value }),
+    name: ({daily_sri_date}) => i18n.t(
+      'legend_label_daily_sri',
+      { date: daily_sri_date.toLocaleDateString(
+          i18n.language,
+          { year: 'numeric', month: 'long', day: 'numeric' })
+      }),
     unit: "",
     decimals: 0,
     relevantConfigs: ["daily_sri_date", "daily_sri_duration"],
@@ -163,5 +179,6 @@ export const LAYERS = [
       return `/static/kombstra/daily_events/SRI_${daily_sri_date.getFullYear()}${month}${day}.tif`;
     },
     style: ({ daily_sri_duration }) => getSRIStyle(daily_sri_duration === "short" ? 1 : 2, 2),
+    valueConverter: (val) => val == 98 ? i18n.t('nodata_98') : val,
   },
 ];
