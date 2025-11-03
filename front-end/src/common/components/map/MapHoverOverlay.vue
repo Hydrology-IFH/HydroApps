@@ -17,7 +17,9 @@
       type: [String, Array], // Array propertyName purpose is to access nested properties
       default: "value"
     },
-    dtype : { type: String, default: "number" } // number or string
+    dtype : { type: String, default: "number" }, // number or string
+    band : { type: Number, default: 1 },
+    alphaBand: { type: Number, default: 2 }
   })
 
   const hoverDiv = ref(null)
@@ -63,8 +65,8 @@
       if (props.printConsole) {
         console.log(pixValue);
       }
-      if ((pixValue != null) && (pixValue[1] != 0)) {
-        rawValue = pixValue[0];
+      if ((pixValue != null) && (pixValue[props.alphaBand - 1] != 0)) {
+        rawValue = pixValue[props.band - 1];
       }
     }
 

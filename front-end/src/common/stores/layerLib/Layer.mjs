@@ -79,7 +79,7 @@ class BaseLayer {
         }
         if (this._styleInit instanceof Function) {
           this._styles = null;
-          this.restyle(this.style);
+          this.restyle();
         }
         this._saveConfigState()
       });
@@ -115,9 +115,11 @@ class BaseLayer {
 
   get styles() {
     //  get initial style and replace precreation if styles is a function
-    let styleInit = this._styleInit;
-    if (styleInit instanceof Function) {
+    var styleInit;
+    if (this._styleInit instanceof Function) {
       styleInit = this._styleInit(this.config);
+    } else {
+      styleInit = {...this._styleInit};
     }
     // create styles if not already done
     if (!this._styles) {
@@ -221,7 +223,7 @@ class BaseLayer {
     return this._errorLayers.includes(this.url);
   }
 
-  restyle(style) {
+  restyle(style=this._styleInit) {
     delete this._style
     this._styleInit = style;
     Object.entries(this._olLayers).forEach(([key, layer]) => {
@@ -306,6 +308,14 @@ class GeoTiffLayer extends BaseLayer {
       );
     }
     return super.style;
+  }
+
+  get band() {
+    return this.style.color[2][1][1][1] || 0;
+  }
+
+  get alphaBand() {
+    return this.style.color[1][1][1] || 1;
   }
 }
 
@@ -395,7 +405,7 @@ class GeoJSONLayer extends BaseLayer {
   _updateLayer() {
     super._updateLayer();
     if (this._styleFunction) {
-      this.restyle(this.style);
+      this.restyle();
     }
   }
 }

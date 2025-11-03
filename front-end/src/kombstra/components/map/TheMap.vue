@@ -58,6 +58,8 @@
         :decimals="layerLib.selectedLayer.decimals"
         dtype="number"
         :active="!popupActive"
+        :band="layerLib.selectedLayer.band"
+        :alpha-band="layerLib.selectedLayer.alphaBand"
       />
       <MapLegendFromStyle
         v-if="map && layerLib.selectedLayer"
