@@ -18,18 +18,28 @@
 </script>
 
 <template>
-  <a class="fullscreen-button" @click="updateActive(!active)"
-    @mouseover="updateHighlight(true)" @mouseleave="updateHighlight(false)"
-    data-html2canvas-ignore>
-    <i  class="bi bi-arrows-fullscreen"
-        :class="['bi', active ? 'bi-x-lg' : 'bi-arrows-fullscreen']"
-        :data-bs-title='$t("common:tooltip_fullscreen_open")' data-bs-placement="top"
-        v-show="!active"
-        ref="openIconDom" />
-    <i  class="bi bi-x-lg"
-        :data-bs-title='$t("common:tooltip_fullscreen_close")' data-bs-placement="left"
-        v-show="active"
-        ref="closeIconDom" />
+  <a
+    class="fullscreen-button"
+    data-html2canvas-ignore
+    @click="updateActive(!active)"
+    @mouseover="updateHighlight(true)"
+    @mouseleave="updateHighlight(false)"
+  >
+    <i
+      v-show="!active"
+      ref="openIconDom"
+      class="bi bi-arrows-fullscreen"
+      :class="['bi', active ? 'bi-x-lg' : 'bi-arrows-fullscreen']"
+      :data-bs-title="$t('common:tooltip_fullscreen_open')"
+      data-bs-placement="top"
+    />
+    <i
+      v-show="active"
+      ref="closeIconDom"
+      class="bi bi-x-lg"
+      :data-bs-title="$t('common:tooltip_fullscreen_close')"
+      data-bs-placement="left"
+    />
   </a>
 </template>
 

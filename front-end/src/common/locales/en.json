@@ -1,4 +1,6 @@
 {
+  "dateInput_next_day_tooltip": "Jump to the next day",
+  "dateInput_previous_day_tooltip": "Jump to the previous day",
   "tooltip_fullscreen_close": "Close the fullscreen mode",
   "tooltip_fullscreen_open": "Open the app in fullscreen mode",
   "tooltip_screenshot": "Create a screenshot of the current view and download it as an image"

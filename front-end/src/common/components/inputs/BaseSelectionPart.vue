@@ -5,7 +5,6 @@
     selectionId: { type: String, required: true },
     index: { type: Number, required: true }
   })
-  console.log("SelectionPart props:", props)
 </script>
 
 <template>
