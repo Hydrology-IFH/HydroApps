@@ -63,10 +63,14 @@
 </script>
 
 <template>
-  <div class="fullscreen-wrapper" :class="{'fullscreen-active': active, highlight: highlight}" id="fullscreen-wrapper" ref="wrapperRef">
+  <div
+    id="fullscreen-wrapper"
+    ref="wrapperRef"
+    class="fullscreen-wrapper"
+    :class="{'fullscreen-active': active, highlight: highlight}"
+  >
     <div class="fullscreen-container">
-      <slot default>
-      </slot>
+      <slot default />
     </div>
   </div>
 </template>

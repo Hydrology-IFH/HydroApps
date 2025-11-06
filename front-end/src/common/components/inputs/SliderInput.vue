@@ -1,9 +1,15 @@
 <script setup>
   import BaseInput from './BaseInput.vue'
 
-  const decimals = defineModel({ type: Number, required: true })
+  const decimals = defineModel({
+    type: Number,
+    required: true
+  })
   const props = defineProps({
-    label: { type: String, required: true },
+    label: {
+      type: String,
+      required: true
+    },
     min: {
       type: Number,
       default: 0
@@ -11,6 +17,14 @@
     max: {
       type: Number,
       default: 6
+    },
+    numFieldWidth: {
+      type: String,
+      default: '70px'
+    },
+    unit: {
+      type: String,
+      default: null
     }
   })
 
@@ -38,7 +52,13 @@
       name="SliderDecimalsNumber"
       :min="min"
       :max="max"
-      style="max-width:70px"
+      :style="{'max-width': numFieldWidth}"
     >
+    <span
+      v-if="unit"
+      class="input-group-text"
+    >
+      {{ unit }}
+    </span>
   </BaseInput>
 </template>

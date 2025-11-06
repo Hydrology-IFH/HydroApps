@@ -2,7 +2,7 @@
   import { ref, toRef, onMounted, computed, watch } from 'vue';
   import { containsCoordinate } from 'ol/extent.js';
   import Overlay from 'ol/Overlay.js';
-  import  VectorLayer  from 'ol/layer/Vector';
+  import  VectorLayer from 'ol/layer/Vector';
 
   const props = defineProps({
     map: { type: Object, required: true },
@@ -10,11 +10,16 @@
     unit: { type: String, default: "mm" },
     decimals: { type: Number, default: 2 },
     valueConverter: { type: Function, default: (x) => x },
+    propertyName: { type: [Array, String], default: "value" },
+    dtype: { type: String, default: "number" }, // number or string
+    printConsole: { type: Boolean, default: false },
     propertyName: {
       type: [String, Array], // Array propertyName purpose is to access nested properties
       default: "value"
     },
-    dtype : { type: String, default: "number" } // number or string
+    dtype : { type: String, default: "number" }, // number or string
+    band : { type: Number, default: 1 },
+    alphaBand: { type: Number, default: 2 }
   })
 
   const hoverDiv = ref(null)
@@ -57,8 +62,11 @@
     } else {
       // raster layer
       let pixValue = props.layer.getData(pixel.value);
-      if ((pixValue != null) && (pixValue[1] != 0)) {
-        rawValue = pixValue[0];
+      if (props.printConsole) {
+        console.log(pixValue);
+      }
+      if ((pixValue != null) && (pixValue[props.alphaBand - 1] != 0)) {
+        rawValue = pixValue[props.band - 1];
       }
     }
 

@@ -1,0 +1,5 @@
+import { initI18n } from '~~/utils/i18n'
+import de from '~/locales/de.json'
+import en from '~/locales/en.json'
+
+export const i18next = initI18n("sfi_demo", { de, en })

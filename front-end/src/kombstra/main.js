@@ -1,12 +1,55 @@
-import './style.css';
+import './assets/style.css';
+import 'ol/ol.css'
+import 'vue3-openlayers/vue3-openlayers.css'
+import "ol-ext/dist/ol-ext.css"
 
+// import libraries
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
-import { createForm } from './modules/forms.js';
-import { create_map } from './modules/map.js';
-import { init_i18n } from './modules/i18n.js';
-import { create_zoomer } from './modules/zoomer.js';
+// I18n
+import I18NextVue from 'i18next-vue'
+import { i18next } from "./utils/i18n.js"
 
-init_i18n();
-createForm();
-create_map();
-create_zoomer();
+// vuetify
+// import { createVuetify } from 'vuetify'
+// import { vuetifyTheme } from '~~/styles/vuetifyTheme.js'
+// import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
+// import { de, en } from 'vuetify/locale'
+
+import App from './App.vue';
+
+// create vue app
+const app = createApp(App);
+
+// use i18n
+app.use(I18NextVue, { i18next });
+
+// use pinia
+app.use(createPinia())
+
+// initiate the vuetify instance
+// const vuetify = createVuetify({
+//   theme: {
+//     defaultTheme: 'HydroAppsTheme',
+//     themes: {
+//       HydroAppsTheme: vuetifyTheme
+//     }
+//   },
+//   icons: {
+//     defaultSet: 'mdi',
+//     aliases,
+//     sets: {
+//       mdi,
+//     },
+//   },
+//   locale: {
+//     locale: i18next.language,
+//     fallback: 'en',
+//     messages: { de, en }
+//   }
+// })
+// app.use(vuetify)
+
+// mount the app
+app.mount('#app');

@@ -268,38 +268,42 @@ def save_old_values(instance,**kwargs):
 
 @receiver(post_save, sender=Account, dispatch_uid="update_db_user")
 def update_db_user(instance, created, **kwargs):
-    with wdb_engine.connect() as cursor:
-        if instance.wdb_is_db_user:
-            if created or instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
-                if instance.db_password is None or instance.db_password == "":
-                    db_password = Account.objects.make_random_password(30)
-                else:
-                    db_password = instance.db_password
+    if instance.wdb_is_db_user:
+        if created or instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
+            if instance.db_password is None or instance.db_password == "":
+                db_password = Account.objects.make_random_password(30)
+            else:
+                db_password = instance.db_password
+
+            with wdb_engine.connect() as cursor:
                 cursor.execute(text(f"""
                     CREATE USER "{instance.username}"
                     NOSUPERUSER NOCREATEDB NOCREATEROLE
                     INHERIT IN ROLE "weather_users"
                     LOGIN PASSWORD '{db_password}';"""))
-                instance.db_password = db_password
-                instance._old_db_password = db_password
-                instance._old_wdb_is_db_user = instance.wdb_is_db_user
-                instance.save()
-            elif instance._old_username!=instance.username:
-                cursor.execute(text(f"""
-                    ALTER USER "{instance._old_username}"
-                    RENAME TO "{instance.username}";"""))
-            elif instance._old_db_password!=instance.db_password:
+            instance.db_password = db_password
+            instance._old_db_password = db_password
+            instance._old_wdb_is_db_user = instance.wdb_is_db_user
+            instance.save()
+        elif instance._old_username!=instance.username:
+            with wdb_engine.connect() as cursor:
+                    cursor.execute(text(f"""
+                        ALTER USER "{instance._old_username}"
+                        RENAME TO "{instance.username}";"""))
+        elif instance._old_db_password!=instance.db_password:
+            with wdb_engine.connect() as cursor:
                 cursor.execute(text(f"""
                     ALTER USER "{instance.username}"
                     WITH PASSWORD '{instance.db_password}';"""))
-        elif instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
+    elif instance._old_wdb_is_db_user!=instance.wdb_is_db_user:
+        with wdb_engine.connect() as cursor:
             cursor.execute(text(
                 f"DROP USER IF EXISTS \"{instance.username}\";"))
 
-        if instance.email!=instance._old_email and instance.is_email_confirmed:
-            instance.is_email_confirmed = False
-            instance._old_email = instance.email
-            instance.save()
+    if instance.email!=instance._old_email and instance.is_email_confirmed:
+        instance.is_email_confirmed = False
+        instance._old_email = instance.email
+        instance.save()
 
 
 class TokenPermission(models.Model):

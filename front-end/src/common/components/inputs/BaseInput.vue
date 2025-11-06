@@ -1,5 +1,5 @@
 <script setup>
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref, defineEmits } from 'vue'
 
   // define props
   const props = defineProps({
@@ -8,21 +8,28 @@
   })
 
   const id = props.label.replace(/\s/g, '_')
-  const label_dom = ref(null)
+  const labelRef = ref(null)
+
+  // define focus events
+  const emit = defineEmits(['focusin', 'focusout'])
 
   // Initialize Bootstrap tooltip
   onMounted(() => {
     if (props.tooltipMsg != "") {
-      new window.bootstrap.Tooltip(label_dom.value)
+      new window.bootstrap.Tooltip(labelRef.value)
     }
   })
 </script>
 
 <template>
-  <div class="input-group mb-3">
+  <div
+    class="input-group mb-3"
+    @focusin="emit('focusin')"
+    @focusout="emit('focusout')"
+  >
     <span
       :id="`label_Select${id}`"
-      ref="label_dom"
+      ref="labelRef"
       class="input-group-text px-2"
       style="padding: 0;"
       data-bs-toggle="tooltip"

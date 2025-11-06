@@ -1,16 +1,28 @@
 <script setup>
-  import { ref, computed } from 'vue'
-  import { get_reasonable_digits } from '../utils/reasonable_digits'
+  import { computed } from 'vue'
+  import { getReasonableDigits } from '../utils/reasonableDigits'
   import BaseInput from './BaseInput.vue'
 
-  const range = defineModel({type: Array, required: true})
+  const range = defineModel({
+    type: Array,
+    required: true
+  })
   const props = defineProps({
-    label: {type: String, required: true},
-    min: {type: Number, default: 0},
-    max: {type: Number, default: 100},
+    label: {
+      type: String,
+      required: true
+    },
+    min: {
+      type: Number,
+      default: 0
+    },
+    max: {
+      type: Number,
+      default: 100
+    }
   })
 
-  const digits = computed(() => get_reasonable_digits(props.min, props.max))
+  const digits = computed(() => getReasonableDigits(props.min, props.max))
   const step = computed(() => Math.pow(10, -digits.value))
 
   const minr = computed(() => Math.min(
@@ -27,6 +39,15 @@
 <template>
   <BaseInput :label="label">
     <div class="form-control flex-column d-flex pl-0 pr-0 pb-0">
+      <v-range-slider
+        v-model="range"
+        :min="minr"
+        :max="maxr"
+        :step="step"
+        hide-details
+        color="var(--bs-primary)"
+        :strict="true"
+      />
       <v-range-slider
         v-model="range"
         :min="minr"

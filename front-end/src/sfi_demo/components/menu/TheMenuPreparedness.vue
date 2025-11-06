@@ -4,7 +4,7 @@
 
   import { useConfig } from '~/stores/config.js';
   import { useLayerLib } from '~/stores/layerLib.js';
-  import MenuSlider from "./utils/MenuSlider.vue";
+  import SelectionInput from "~~/components/inputs/SelectionInput.vue";
 
   const config = useConfig();
   const layerLib = useLayerLib();
@@ -35,7 +35,7 @@
   })
 </script>
 <template>
-  <MenuSlider
+  <SelectionInput
     v-show="layerLib.selectedLayer?.id=='damage'"
     v-model="sliderValue"
     :label="$t('menu_preparedness_label')"
@@ -44,7 +44,7 @@
     :step="1"
     :ticks="labels"
     :get-label="(val) => labels[val]"
-    :tooltip="$t('menu_preparedness_tooltip')"
+    :tooltip-msg="$t('menu_preparedness_tooltip')"
     :active="!config.region_selection_active"
   />
 </template>

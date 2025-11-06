@@ -1,16 +1,16 @@
 <script setup>
-  import Button from './Button.vue';
-  import Wrapper from './Wrapper.vue';
+  import FullscreenButton from './FullscreenButton.vue';
+  import FullscreenWrapper from './FullscreenWrapper.vue';
 </script>
 
 <template>
-  <Wrapper>
+  <FullscreenWrapper>
     <div class="wrapper-buttons">
-      <Button/>
+      <FullscreenButton/>
     </div>
     <slot default>
     </slot>
-  </Wrapper>
+  </FullscreenWrapper>
 </template>
 
 <style scoped>

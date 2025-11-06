@@ -1,8 +1,8 @@
 <script setup>
-  import FullscreenWrapper from '~~/components/fullscreen/Wrapper.vue';
-  import FullscreenButton from '~~/components/fullscreen/Button.vue';
-  import ScreenshotWrapper from '~~/components/screenshot/Wrapper.vue';
-  import ScreenshotButton from '~~/components/screenshot/Button.vue';
+  import FullscreenWrapper from '~~/components/fullscreen/FullscreenWrapper.vue';
+  import FullscreenButton from '~~/components/fullscreen/FullscreenButton.vue';
+  import ScreenshotWrapper from '~~/components/screenshot/ScreenshotWrapper.vue';
+  import ScreenshotButton from '~~/components/screenshot/ScreenshotButton.vue';
   import TheMap from './components/TheMap.vue';
   import TheFilterMenu from './components/TheFilterMenu.vue';
   import TheFilterMenuButton from './components/TheFilterMenuButton.vue';

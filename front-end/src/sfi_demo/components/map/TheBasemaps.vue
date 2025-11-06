@@ -1,6 +1,8 @@
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { Layers, Sources, MapControls } from "vue3-openlayers";
+  import { OlTileLayer } from "vue3-openlayers/layers";
+  import { OlSourceTileWMS, OlSourceOSM } from "vue3-openlayers/sources";
+  import { OlLayerSwitcherImageControl } from "vue3-openlayers/controls";
   import { transform } from 'ol/proj';
 
   import "./projections";
@@ -50,13 +52,13 @@
 </script>
 
 <template>
-  <Layers.OlTileLayer
+  <OlTileLayer
     ref="bsmpGreyLayer"
     title="Grau basemap.de"
     :visible="true"
     :base-layer="true"
   >
-    <Sources.OlSourceTileWms
+    <OlSourceTileWMS
       url="https://sgx.geodatenzentrum.de/wms_basemapde"
       attributions="© GeoBasis-DE  <a href=&quot;https://www.bkg.bund.de&quot; target=&quot;_blank&quot;>BKG</a>  <a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot; target=&quot;_blank&quot;>CC BY 4.0</a>"
       layers="de_basemapde_web_raster_grau"
@@ -64,15 +66,15 @@
       projection="EPSG:25832"
       cross-origin=""
     />
-  </Layers.OlTileLayer>
+  </OlTileLayer>
 
-  <Layers.OlTileLayer
+  <OlTileLayer
     ref="bsmpColorLayer"
     title="Color basemap.de"
     :visible="false"
     :base-layer="true"
   >
-    <Sources.OlSourceTileWms
+    <OlSourceTileWMS
       url="https://sgx.geodatenzentrum.de/wms_basemapde"
       attributions="© GeoBasis-DE  <a href=&quot;https://www.bkg.bund.de&quot; target=&quot;_blank&quot;>BKG</a>  <a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot; target=&quot;_blank&quot;>CC BY 4.0</a>"
       layers="de_basemapde_web_raster_farbe"
@@ -80,18 +82,18 @@
       projection="EPSG:25832"
       cross-origin=""
     />
-  </Layers.OlTileLayer>
+  </OlTileLayer>
 
-  <Layers.OlTileLayer
+  <OlTileLayer
     ref="osmLayer"
     title="OSM"
     :visible="false"
     :base-layer="true"
   >
-    <Sources.OlSourceOsm />
-  </Layers.OlTileLayer>
+    <OlSourceOSM />
+  </OlTileLayer>
 
-  <MapControls.OlLayerswitcherimageControl
+  <OlLayerSwitcherImageControl
     :mouseover="true"
     :display-in-layer-switcher="showBasemapLayer"
   />

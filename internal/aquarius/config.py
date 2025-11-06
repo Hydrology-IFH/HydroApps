@@ -10,7 +10,7 @@ except ImportError:
 AQUARIUS_USER = AQUARIUS_CONFIG.get('AQUARIUS_USER')
 AQUARIUS_PWD = AQUARIUS_CONFIG.get('AQUARIUS_PWD')
 AQUARIUS_URL = AQUARIUS_CONFIG.get('AQUARIUS_URL')
-if not AQUARIUS_USER or not AQUARIUS_PWD or not AQUARIUS_URL:
+if AQUARIUS_USER is None or AQUARIUS_PWD is None or AQUARIUS_URL is None:
     raise ValueError("AQUARIUS_USER, AQUARIUS_PWD, and AQUARIUS_URL must be set in AQUARIUS_CONFIG in secretSettings_HydroApps.py")
 AQUARIUS_API_ENDPOINTS_URL = {
     "provision": "Provisioning/v1/",

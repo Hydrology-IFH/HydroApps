@@ -1,0 +1,69 @@
+{
+    "configurations": [
+        {
+            "name": "Django server + open browser",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder:hydroapps_repo}\\manage.py",
+            "args": [
+                "runserver",
+                "localhost:8000",
+                "--node-dev"
+            ],
+            "django": true,
+            "justMyCode": true,
+            "autoStartBrowser": true,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "Starting development server at http://localhost:8000/",
+                "uriFormat": "http://localhost:8000/"
+            }
+        },
+        {
+            "name": "Django server",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder:hydroapps_repo}\\manage.py",
+            "args": [
+                "runserver",
+                "localhost:8000",
+                "--node-dev"
+            ],
+            "django": true,
+            "justMyCode": true,
+            "autoStartBrowser": false,
+        },
+        {
+            "name": "Firefox Debugger",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://localhost:8000/",
+            "pathMappingIndex": "http://localhost:5173/static/front-end/manifest.json",
+            "pathMappings": [
+                {
+                    "url": "http://localhost:5173/static/front-end/src/common/utils/mapLayerStyles.mjs",
+                    "path": "${workspaceFolder}\\front-end\\src\\common\\utils\\mapLayerStyles.mjs"
+                },
+                {
+                    "url": "http://localhost:5173/static/front-end/src/",
+                    "path": "${workspaceFolder}\\front-end\\src/"
+                },
+                {
+                    "url": "http://localhost:5173/static/front-end/src",
+                    "path": "${workspaceFolder:hydroapps_repo}/front-end/src"
+                }
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/ClientFirefox",
+            "configurations": [
+                "Django server",
+                "Firefox Debugger"
+            ]
+        }
+    ],
+    "version": "0.2.0"
+}

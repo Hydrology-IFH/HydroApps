@@ -39,7 +39,7 @@ class AquariusAPIAdapter:
 
     def __init__(self):
         self.auth = (AQUARIUS_USER, AQUARIUS_PWD)
-        if not AQUARIUS_URL or not AQUARIUS_USER or not AQUARIUS_PWD:
+        if AQUARIUS_URL is None or AQUARIUS_USER is None or AQUARIUS_PWD is None:
             raise AquariusAPIException("AQUARIUS_URL, AQUARIUS_USER and AQUARIUS_PWD must be set in settings")
 
     def make_request(self, method: str, endpoint: str, route: str, **params):

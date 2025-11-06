@@ -1,6 +1,7 @@
 <script setup>
   import { ref, onMounted, computed } from 'vue';
-  import { Map, MapControls } from "vue3-openlayers";
+  import { OlMap } from "vue3-openlayers/map";
+  import { OlFullScreenControl } from 'vue3-openlayers/controls';
   import { buffer, getCenter } from 'ol/extent';
   import View from 'ol/View';
 
@@ -131,7 +132,7 @@
     class="map-container"
     @wheel="(event) => event.preventDefault()"
   >
-    <Map.OlMap
+    <OlMap
       id="map"
       ref="mapRef"
     >
@@ -159,8 +160,8 @@
         :opacity="config.opacity/100"
       />
 
-      <MapControls.OlFullscreenControl />
-    </Map.OlMap>
+      <OlFullScreenControl />
+    </OlMap>
     <ErrorFrame
       v-if="layerError && layerAvailable"
       type="danger"

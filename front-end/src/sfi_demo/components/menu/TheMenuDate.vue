@@ -3,7 +3,7 @@
 
   import { useConfig } from '~/stores/config.js';
   import MenuInfo from "./utils/MenuInfo.vue";
-  import MenuSelection from "./utils/MenuSelection.vue";
+  import SelectionInput from "~~/components/inputs/SelectionInput.vue";
 
   const config = useConfig();
 
@@ -42,10 +42,10 @@
       />
     </template>
     <template v-else>
-      <MenuSelection
+      <SelectionInput
         v-model="selected_date"
         :label="$t('menu_date_label')"
-        :tooltip="$t('menu_date_selection_tooltip')"
+        :tooltip-msg="$t('menu_date_selection_tooltip')"
         :options="regionDates"
         :active="!config.region_selection_active"
         @change="updateDate"

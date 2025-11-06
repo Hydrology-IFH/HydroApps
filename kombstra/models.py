@@ -4,18 +4,18 @@ from django.utils.translation import gettext_lazy as _
 
 class KombStRAPolygons(models.Model):
     grid_id = models.IntegerField(unique=True, primary_key=True)
-    geometry = models.PolygonField(srid=97019, blank=True, null=True)
+    geometry = models.PolygonField(srid=4326, blank=True, null=True)
 
     class Meta:
         db_table = 'kombstra_polygons'
 
 class KombStRAData(models.Model):
-    data_id = models.BigAutoField(
+    data_id = models.AutoField(
         primary_key=True,
         help_text=_("ID of the event"))
     grid_id = models.ForeignKey(
         KombStRAPolygons,
-        models.DO_NOTHING,
+        models.CASCADE,
         blank=False, null=False,
         help_text=_("ID to link to the Grid-Cell"),
         db_column='grid_id')
