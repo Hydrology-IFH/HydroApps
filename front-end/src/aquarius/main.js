@@ -1,5 +1,6 @@
 import "~~/styles/uni-colors.css"
 import "./assets/style.css"
+import "~~/styles/olmap.css"
 
 import 'vite/modulepreload-polyfill';
 
