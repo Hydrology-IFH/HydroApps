@@ -48,7 +48,6 @@
     <OlMap
       id="map"
       ref="mapRef"
-      :class="{'ol-map-loading': false}"
     >
       <MapHoverOverlay
         v-if="map && layerLib.selectedLayer && !popupActive"
@@ -103,5 +102,25 @@
   .fullscreen-wrapper.fullscreen-active #map{
     /* 100vh - wrapper buttons - h4 - 2 * margin+padding of fullscreeen */
     height: calc(100vh - 1em - ((1.275rem + .3vw) * 1.2 + .5em) - 2*20px )
+  }
+  @keyframes spinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .ol-map-loading:after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    border-radius: 50%;
+    border: 5px solid rgba(180, 180, 180, 0.6);
+    border-top-color: rgba(0, 0, 0, 0.6);
+    animation: spinner 0.6s linear infinite;
   }
 </style>
