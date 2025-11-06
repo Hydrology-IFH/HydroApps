@@ -15,6 +15,7 @@
   "location_detail_identifier_tooltip": "The unique identifier of the location",
   "location_detail_name_label": "Name",
   "location_detail_name_tooltip": "The name of the location",
+  "location_detail_no_location_selected": "Please select a location on the map to see the details here.",
   "location_detail_notes_label": "Notes",
   "location_detail_notes_tooltip": "Additional information about the location",
   "location_detail_primary_folder_label": "Folder",

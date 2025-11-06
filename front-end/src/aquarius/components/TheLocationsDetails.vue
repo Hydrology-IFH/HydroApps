@@ -19,7 +19,6 @@
             :data-bs-title="config.editMode ? $t('location_detail_edit_save_tooltip') : $t('location_detail_edit_tooltip')"
             @click="editButton"
           >
-
             <i :class="['bi', config.editMode ? 'bi-floppy' : 'bi-pencil']" />
           </button>
           <button
@@ -29,9 +28,9 @@
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             :data-bs-title="$t('location_detail_edit_abort_tooltip')"
-            @click="editButton"
+            @click="abortEditButton"
           >
-            <i :class="['bi', 'bi-x']" />
+            <i :class="['bi', 'bi-x-circle']" />
           </button>
         </div>
       </div>
@@ -73,7 +72,11 @@
         :tooltip-msg="$t('location_detail_primary_folder_tooltip')"
         :disabled="!config.editMode"
         :options="config.availableFolders"
+        :clearable="config.editMode"
       />
+    </template>
+    <template v-else>
+      <p>{{ $t('location_detail_no_location_selected') }}</p>
     </template>
   </form>
 </template>
@@ -119,6 +122,7 @@
   // button click handler to save changes
   const editButton = () => {
     if (config.editMode.value) {
+      // send updates to Aquarius
       axios.post(`${config.aquariusAPIUrl.replace("ENDPOINT", "UpdateLocationData")}`, {
         LocationIdentifier: locationData.value.LocationIdentifier,
         LocationName: locationData.value.LocationName,
@@ -137,12 +141,19 @@
     }
   };
 
+  // button click handler to reset changes
+  const abortEditButton = () => {
+    config.editMode = false;
+    locationData.value = { ...markRaw(onlineLocationData.value) };
+  };
+
   // Initialize tooltips for form elements
   onMounted(() => {
     formRef.value.querySelectorAll('[data-bs-toggle=tooltip]').forEach((input) => {
       new window.bootstrap.Tooltip(input, {html: true, delay: {show: 100, hide: 100}, sanitize: false})
     });
   });
+  window.onlineLocationData = onlineLocationData;
   window.locationData = locationData;
 </script>
 

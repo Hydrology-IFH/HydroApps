@@ -13,7 +13,7 @@
     v-if="options.length > 0"
     class="select-group"
   >
-    <icon
+    <i
       v-if="addChevron"
       class="bi bi-chevron-right"
     />

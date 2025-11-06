@@ -15,6 +15,7 @@
   "location_detail_identifier_tooltip": "Die eindeutige Kennung des Standorts",
   "location_detail_name_label": "Standortname",
   "location_detail_name_tooltip": "Der Name des Standorts",
+  "location_detail_no_location_selected": "Bitte wählen Sie einen Standort auf der Karte aus, um hier die Details zu sehen.",
   "location_detail_notes_label": "Notizen",
   "location_detail_notes_tooltip": "Zusätzliche Informationen zum Standort",
   "location_detail_primary_folder_label": "Verzeichnis",

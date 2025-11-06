@@ -106,4 +106,3 @@ def update_aquarius_data():
             """)
 
 # TODO: implement task as management command
-# TODO

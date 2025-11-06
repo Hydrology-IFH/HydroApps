@@ -1,5 +1,5 @@
 <script setup>
-  import { watch, ref } from 'vue'
+  import { watch, ref, onMounted } from 'vue'
   import BaseInput from './BaseInput.vue'
   import BaseSelectionPart from './BaseSelectionPart.vue'
 
@@ -7,10 +7,13 @@
   const props = defineProps({
     options: { type: Array[Object], required: true }, // Objects of type { value: String, label: String, parentValue: String }
     label: { type: String, required: true },
+    clearable: { type: Boolean, default: true },
+    cleareableTooltip: { type: String, default: 'Clear Entry' }
   })
   const id = props.label.replace(/\s/g, '_')
   const newSelection = ref(null)
   const internModel = ref([...model.value]); // Create a reactive copy of the model
+  const clearButton = ref(null)
 
   // Watch for changes in newSelection and update model accordingly
   watch(newSelection, (newValue) => {
@@ -33,6 +36,12 @@
       model.value = [...newModel];
     }
   }, { deep: true });
+
+  // Initialize Bootstrap tooltips
+  onMounted(() => {
+    bootstrap.Tooltip.getInstance(clearButton.value);
+  });
+
 </script>
 
 <template>
@@ -52,9 +61,22 @@
         key="new-selection"
         v-model="newSelection"
         :options="options.filter((opt) => model.length==0? opt.parentValue === null : opt.parentValue === model[model.length-1])"
+        :add-chevron="model.length>0"
         add-empty
       />
     </span>
+    <button
+      v-show="clearable && model.length > 0"
+      type="button"
+      class="btn btn-outline-secondary btn-sm"
+      @click="model = []"
+      ref="clearButton"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      :data-bs-title="cleareableTooltip"
+    >
+      <i class="bi bi-x"></i>
+    </button>
   </BaseInput>
 </template>
 
