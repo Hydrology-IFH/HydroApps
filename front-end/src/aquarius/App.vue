@@ -3,7 +3,7 @@
   import FullscreenButton from '~~/components/fullscreen/FullscreenButton.vue';
   import ScreenshotWrapper from '~~/components/screenshot/ScreenshotWrapper.vue';
   import ScreenshotButton from '~~/components/screenshot/ScreenshotButton.vue';
-  import TheMap from './components/TheMap.vue';
+  import TheMap from './components/map/TheMap.vue';
   import TheFilterMenu from './components/TheFilterMenu.vue';
   import TheFilterMenuButton from './components/TheFilterMenuButton.vue';
   import TheLocationsDetails from './components/TheLocationsDetails.vue';

@@ -1,12 +1,10 @@
 <script setup>
   import { ref } from 'vue';
-  import {
-    Map,
-    MapControls
-  } from "vue3-openlayers";
+  import { OlMap, OlView } from 'vue3-openlayers/map';
+  import { OlFullScreenControl } from 'vue3-openlayers/controls';
 
   import MapBasemaps from '~~/components/map/MapBasemaps.vue';
-  import TheLocationsLayer from './map/TheLocationsLayer.vue';
+  import TheLocationsLayer from './TheLocationsLayer.vue';
 
   // setup
   const mapRef = ref(null);
@@ -22,7 +20,7 @@
   }
 
   // for debugging
-  if (import.meta.env !== undefined) {
+  if (import.meta.env === "development") {
     window.view = view;
     window.mapRef = mapRef;
     // provide("ol-options", {debug: true,});
@@ -34,11 +32,11 @@
     class="map-container"
     @wheel="(event) => event.preventDefault()"
   >
-    <Map.OlMap
+    <OlMap
       id="map"
       ref="mapRef"
     >
-      <Map.OlView
+      <OlView
         ref="view"
         projection="EPSG:3857"
       />
@@ -53,8 +51,8 @@
         :layers="['OSM']"
       />
 
-      <MapControls.OlFullscreenControl />
-    </Map.OlMap>
+      <OlFullScreenControl />
+    </OlMap>
   </div>
 </template>
 

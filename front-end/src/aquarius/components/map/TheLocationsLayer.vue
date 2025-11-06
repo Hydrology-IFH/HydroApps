@@ -1,17 +1,17 @@
 <template>
-  <Layers.OlVectorLayer
+  <OlVectorLayer
     v-if="config.locations !== undefined"
     ref="locationLayer"
     :style="defaultStyle"
     @sourceready="onLocationLayerReady"
   >
-    <Sources.OlSourceVector
+    <OlSourceVector
       :features="features"
       :format="geoJson"
     />
-  </Layers.OlVectorLayer>
+  </OlVectorLayer>
 
-  <Interactions.OlInteractionSelect
+  <OlInteractionSelect
     v-if="locationLayerReady && (map !== null)"
     :condition="selectCondition"
     :layers="[locationLayer.vectorLayer]"
@@ -38,11 +38,9 @@
 
 <script setup>
   import { ref, computed, onBeforeMount } from 'vue';
-  import {
-    Layers,
-    Sources,
-    Interactions
-  } from "vue3-openlayers";
+  import { OlVectorLayer } from 'vue3-openlayers/layers';
+  import { OlSourceVector } from 'vue3-openlayers/sources';
+  import { OlInteractionSelect } from 'vue3-openlayers/interactions';
   import { GeoJSON } from 'ol/format';
   import { click } from 'ol/events/condition';
   import { Style, Fill, Stroke, Circle } from 'ol/style';
