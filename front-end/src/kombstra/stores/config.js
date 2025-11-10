@@ -7,7 +7,7 @@ export const useConfig = defineStore(
     state: () => ({
       // overall settings
       // ----------------
-      parameter: "NEvents_above_SRI",
+      parameter: "event_sri",
       slider: 1,
       opacity: 80,
       spans: spans,
@@ -20,8 +20,8 @@ export const useConfig = defineStore(
 
       // parameters for daily data
       // ----------------------------------
-      daily_sri_date: new Date(2006, 4, 1),
-      daily_sri_duration: "short" // "short" or "long"
-      // TODO: add pval_daily as layer
+      daily_date: new Date(2006, 4, 1),
+      daily_duration: "short", // "short" or "long"
+      daily_modus: "sri" // "sri" or "pval"
     })
   })

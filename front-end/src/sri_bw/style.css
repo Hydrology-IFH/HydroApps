@@ -49,7 +49,7 @@ div.colorbar-label{
   font-size: 1rem;
 }
 
-/* continous and discret colorbar mixed */
+/* continuous and discret colorbar mixed */
 div.colorbar-con-dis{
   display: flex;
   flex-direction: row;
@@ -68,7 +68,7 @@ div.colorbar-con-dis > div.colorbar-dis .colorbar-tick{
   width: max-content;
 }
 
-/* continous colorbar */
+/* continuous colorbar */
 div.colorbar-con {
   margin-top: 5px;
 }

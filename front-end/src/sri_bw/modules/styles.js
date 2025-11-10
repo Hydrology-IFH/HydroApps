@@ -4,7 +4,7 @@ import colormap from 'colormap';
 import { spans } from './spans';
 
 // helper functions for colorbars
-let get_colorscale = function (min, max, colorbar, continous=true, reverse=false) {
+let get_colorscale = function (min, max, colorbar, continuous=true, reverse=false) {
   let values = Array.from({ length: max - min + 1 }, (value, index) => min + index);
   window.values = values;
   let fact = values.length > 9 ? 1 : 9 / values.length;
@@ -17,7 +17,7 @@ let get_colorscale = function (min, max, colorbar, continous=true, reverse=false
   if (reverse) {
     colors = colors.reverse();
   }
-  if (continous) {
+  if (continuous) {
     return values.map((value, index) => [value, colors[Math.round(index*fact)]]).flat();
   } else {
     return values.map((value, index) => [["==", ["band", 1], value], colors[Math.round(index*fact)]]).flat();

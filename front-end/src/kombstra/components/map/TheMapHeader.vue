@@ -21,12 +21,23 @@
         return i18next.t('map_header_NEvents_above', {sri: config.sri});
       case 'Top_SRI_year':
         return i18next.t('map_header_top_sri', {year: config.year});
-      case 'daily_sri':
-        return i18next.t(
-          'map_header_daily_sri',
-          {date: config.daily_sri_date.toLocaleDateString(
-            i18next.language,
-            { year: 'numeric', month: 'long', day: 'numeric' })});
+      case 'daily':
+        let date = config.daily_date.toLocaleDateString(
+          i18next.language,
+          { year: 'numeric', month: 'long', day: 'numeric' })
+        if (config.daily_modus === 'pval') {
+          if (config.daily_duration == "short") {
+            return i18next.t('map_header_daily_pval_short', { date });
+          } else {
+            return i18next.t('map_header_daily_pval_long', { date });
+          }
+        } else {
+          if (config.daily_duration == "short") {
+            return i18next.t('map_header_daily_sri_short', { date });
+          } else {
+            return i18next.t('map_header_daily_sri_long', { date });
+          }
+        }
       default:
         return "";
     }
