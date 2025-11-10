@@ -51,6 +51,8 @@
     :tooltip-msg="$t('daily_modus_selection_input_tooltip')"
     as-buttons
   />
+  <!-- TODO: add plot of daily maximum SRI -->
+   <!-- TODO: add filter to only make dates with an SRI of at least slidervalue available in the calendar -->
 </template>
 
 
