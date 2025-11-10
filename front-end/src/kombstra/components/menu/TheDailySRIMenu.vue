@@ -25,10 +25,10 @@
 
 <template>
   <DateInput
-    v-model="config.daily_sri_date"
-    :label="$t('daily_sri_date_input_label')"
+    v-model="config.daily_date"
+    :label="$t('daily_date_input_label')"
     :allowed-dates="availableDates"
-    :tooltip-msg="$t('daily_sri_date_input_tooltip')"
+    :tooltip-msg="$t('daily_date_input_tooltip')"
     :add-day-switcher="true"
     :filters="{ months: [0,1,2,3,9,10,11,12] }"
     :min-date="new Date(Math.min( ...availableDates ))"
@@ -36,19 +36,19 @@
     prevent-min-max-navigation
   />
   <SelectionInput
-    v-model="config.daily_sri_duration"
-    :label="$t('daily_sri_duration_selection_input_label')"
-    :options="[{key: 'short', label: $t('daily_sri_duration_option_short')},
-               {key: 'long', label: $t('daily_sri_duration_option_long')}]"
-    :tooltip-msg="$t('daily_sri_duration_selection_input_tooltip')"
+    v-model="config.daily_duration"
+    :label="$t('daily_duration_selection_input_label')"
+    :options="[{key: 'short', label: $t('daily_duration_option_short')},
+               {key: 'long', label: $t('daily_duration_option_long')}]"
+    :tooltip-msg="$t('daily_duration_selection_input_tooltip')"
     as-buttons
   />
   <SelectionInput
-    v-model="config.daily_sri_modus"
-    :label="$t('daily_sri_modus_selection_input_label')"
-    :options="[{key: 'SRI', label: $t('daily_sri_modus_option_SRI')},
-               {key: 'P', label: $t('daily_sri_modus_option_P')}]"
-    :tooltip-msg="$t('daily_sri_modus_selection_input_tooltip')"
+    v-model="config.daily_modus"
+    :label="$t('daily_modus_selection_input_label')"
+    :options="[{key: 'sri', label: $t('daily_modus_option_SRI')},
+               {key: 'pval', label: $t('daily_modus_option_PVAL')}]"
+    :tooltip-msg="$t('daily_modus_selection_input_tooltip')"
     as-buttons
   />
 </template>

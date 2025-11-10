@@ -1,4 +1,7 @@
 import i18n from 'i18next';
+
+import '~/utils/extraColormaps.js';
+
 const spans = JSON.parse(document.getElementById('spans').textContent);
 
 // condition functions
@@ -164,22 +167,60 @@ export const LAYERS = [
   },
   {
     id: "daily_sri",
-    name: ({daily_sri_date}) => i18n.t(
-      'legend_label_daily_sri',
-      { date: daily_sri_date.toLocaleDateString(
+    name: ({ daily_date, daily_duration }) => {
+      let date = daily_date.toLocaleDateString(
           i18n.language,
-          { year: 'numeric', month: 'long', day: 'numeric' })
-      }),
+        { year: 'numeric', month: 'long', day: 'numeric' })
+      if (daily_duration === "short") {
+        return i18n.t(
+          'legend_label_daily_sri_short', { date });
+      } else {
+        return i18n.t(
+          'legend_label_daily_sri_long', { date });
+      }
+    },
     unit: "",
     decimals: 0,
-    relevantConfigs: ["daily_sri_date", "daily_sri_duration"],
-    url: ({ daily_sri_date }) => {
-      let month = (daily_sri_date.getMonth() + 1).toString().padStart(2,"0");
-      let day = daily_sri_date.getDate().toString().padStart(2,"0");
-      return `/static/kombstra/daily_events/SRI_${daily_sri_date.getFullYear()}${month}${day}.tif`;
+    relevantConfigs: ["daily_date", "daily_duration"],
+    url: ({ daily_date }) => {
+      let month = (daily_date.getMonth() + 1).toString().padStart(2,"0");
+      let day = daily_date.getDate().toString().padStart(2,"0");
+      return `/static/kombstra/daily_events/SRI_${daily_date.getFullYear()}${month}${day}.tif`;
     },
-    style: ({ daily_sri_duration }) => getSRIStyle(daily_sri_duration === "short" ? 1 : 2, 2),
+    style: ({ daily_duration }) => getSRIStyle(daily_duration === "short" ? 1 : 2, 2),
     valueConverter: (val) => val == 98 ? i18n.t('nodata_98') : val,
     // TODO: add legend tooltips
+  },
+    {
+    id: "daily_pval",
+    name: ({ daily_date, daily_duration }) => {
+      let date = daily_date.toLocaleDateString(
+        i18n.language,
+        { year: 'numeric', month: 'long', day: 'numeric' });
+      if (daily_duration === "short") {
+        return i18n.t('legend_label_daily_pval_short', { date });
+      } else {
+        return i18n.t('legend_label_daily_pval_long', { date });
+      }
+    },
+    unit: "mm",
+    decimals: 0,
+    relevantConfigs: ["daily_date", "daily_duration"],
+    url: ({ daily_date }) => {
+      let month = (daily_date.getMonth() + 1).toString().padStart(2,"0");
+      let day = daily_date.getDate().toString().padStart(2,"0");
+      return `/static/kombstra/daily_events/PVAL_${daily_date.getFullYear()}${month}${day}.tif`;
+    },
+    style: ({ daily_duration }) => ({
+      colorscale: {
+        colorbar: "cmocean:rain",
+        min: 0,
+        max: Math.ceil(spans.max_pval/10)*10,
+        continuous: true,
+        reverse: false,
+        band: daily_duration === "short" ? 1 : 2,
+      }
+    }),
+    valueConverter: (val) => val == 9998 ? i18n.t('nodata_98') : val,
   },
 ];

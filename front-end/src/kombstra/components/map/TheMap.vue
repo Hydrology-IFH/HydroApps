@@ -10,12 +10,14 @@
   import TheBasemaps from './TheBasemaps.vue';
   import TheMapPopup from './TheMapPopup.vue';
   import { useLayerLib } from '~/stores/layerLib.js';
+  import { useConfig } from '~/stores/config.js';
 
   // refs
   const mapRef = ref(null);
   const map = ref(null);
   const layerLib = useLayerLib();
   const popupActive = ref(false);
+  const config = useConfig();
 
   // view definition
   const view = ref(new View({
@@ -74,7 +76,7 @@
       <TheBasemaps />
       <OlFullScreenControl />
       <TheMapPopup
-        v-if="map && layerLib.selectedLayer"
+        v-if="map && layerLib.selectedLayer && config.parameter !== 'daily'"
         v-model:active="popupActive"
       />
     </OlMap>
