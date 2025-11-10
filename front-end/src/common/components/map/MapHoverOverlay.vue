@@ -18,8 +18,8 @@
       default: "value"
     },
     dtype : { type: String, default: "number" }, // number or string
-    band : { type: Number, default: 1 },
-    alphaBand: { type: Number, default: 2 }
+    band : { type: Number, default: 0 },
+    alphaBand: { type: Number, default: 1 }
   })
 
   const hoverDiv = ref(null)
@@ -65,8 +65,8 @@
       if (props.printConsole) {
         console.log(pixValue);
       }
-      if ((pixValue != null) && (pixValue[props.alphaBand - 1] != 0)) {
-        rawValue = pixValue[props.band - 1];
+      if ((pixValue != null) && (pixValue[props.alphaBand] != 0)) {
+        rawValue = pixValue[props.band];
       }
     }
 

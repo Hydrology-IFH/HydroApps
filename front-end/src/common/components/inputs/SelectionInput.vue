@@ -55,7 +55,6 @@
         event.stopPropagation();
         let currentIndex = optionsCleaned.value.map(option => option.key).indexOf(model.value);
         let nextIndex;
-        console.log("asButtons:", props.asButtons, "currentIndex:", currentIndex);
         if (props.asButtons) {
           if (event.key === 'ArrowRight') {
             nextIndex = (currentIndex + 1) % optionsCleaned.value.length;

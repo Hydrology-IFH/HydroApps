@@ -7,7 +7,7 @@ export const useConfig = defineStore(
     state: () => ({
       // overall settings
       // ----------------
-      parameter: "NEvents_above_SRI",
+      parameter: "event_sri",
       slider: 1,
       opacity: 80,
       spans: spans,

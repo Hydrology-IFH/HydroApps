@@ -18,8 +18,8 @@
           layerKey = `daily_${config.daily_modus}`
         }
         layerLib.selectLayer(layerKey);
-      },
-      { immediate: true });
+      }
+    );
 
     new bootstrap.Tooltip(formRef.value, {
       selector: "[data-bs-toggle='tooltip']",
