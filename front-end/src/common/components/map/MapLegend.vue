@@ -8,7 +8,7 @@
     title: {type: String, default: ""},
     elements: {type: Array, default: () => []}, // Array of elements {colors, labels=[String] || [{label, tooltip}], type="con"} || {color, label, tooltip, type="dis"} }
     map: {type: Object, required: true}, // the map object to which the legend should be added
-    titlePosition: { type: String, default: "topIfContinous" }, // top/bottom/topIfContinous, default topIfContinous: depending if continous elements are present,
+    titlePosition: { type: String, default: "topIfContinuous" }, // top/bottom/topIfContinuous, default topIfContinuous: depending if continuous elements are present,
     visible: { type: Boolean, default: true },
     opacity: { type: Number, default: 1 }
   })
@@ -28,7 +28,7 @@
             ))).reduce((a, b) => a && b, true))
         }
       })
-      // convert all continous elements labels to Object format
+      // convert all continuous elements labels to Object format
       return validElements.map((el) => {
         if (el.type === "con") {
           el.labels = el.labels.map((label) => (typeof label === "object") ? label : {label: label} )
@@ -42,14 +42,14 @@
   // get title position
   const titleStyle = computed(() => {
     if ((props.titlePosition === "top") ||
-        (props.titlePosition === "topIfContinous" && elements.value.some((el) => el.type === "con"))) {
+        (props.titlePosition === "topIfContinuous" && elements.value.some((el) => el.type === "con"))) {
       return {order: 0}
     } else {
       return {order: 2}
     }
   })
 
-  // get style for continous elements
+  // get style for continuous elements
   const cb_style = function(colors) {
     colors = colors.map((color) => {
       if (typeof color === "string") {
@@ -218,7 +218,7 @@
     white-space: nowrap;
   }
 
-  /* continous colorbar */
+  /* continuous colorbar */
   div.colorbar-con {
     width: -moz-available;
     width: -webkit-fill-available;

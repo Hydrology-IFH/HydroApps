@@ -115,7 +115,7 @@ export const LAYERS = [
         max: Math.max(3, spans.max_nevents[sri]),
         step: 1,
         colorbar: "plasma",
-        continous: false,
+        continuous: false,
         reverse: false,
       }
     }),
