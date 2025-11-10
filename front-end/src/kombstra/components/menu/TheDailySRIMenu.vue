@@ -1,7 +1,9 @@
 <script setup>
   import { onMounted, ref } from 'vue';
-  import { useConfig } from '~/stores/config.js';
+
+  import SelectionInput from '~~/components/inputs/SelectionInput.vue';
   import DateInput from '~~/components/inputs/DateInput.vue';
+  import { useConfig } from '~/stores/config.js';
 
   const config = useConfig();
   const availableDates = ref([]);
@@ -24,14 +26,30 @@
 <template>
   <DateInput
     v-model="config.daily_sri_date"
-    :label="$t('date_input_daily_sri_label')"
+    :label="$t('daily_sri_date_input_label')"
     :allowed-dates="availableDates"
-    :tooltip-msg="$t('date_input_daily_sri_tooltip')"
+    :tooltip-msg="$t('daily_sri_date_input_tooltip')"
     :add-day-switcher="true"
     :filters="{ months: [0,1,2,3,9,10,11,12] }"
     :min-date="new Date(Math.min( ...availableDates ))"
     :max-date="new Date(Math.max( ...availableDates ))"
     prevent-min-max-navigation
+  />
+  <SelectionInput
+    v-model="config.daily_sri_duration"
+    :label="$t('daily_sri_duration_selection_input_label')"
+    :options="[{key: 'short', label: $t('daily_sri_duration_option_short')},
+               {key: 'long', label: $t('daily_sri_duration_option_long')}]"
+    :tooltip-msg="$t('daily_sri_duration_selection_input_tooltip')"
+    as-buttons
+  />
+  <SelectionInput
+    v-model="config.daily_sri_modus"
+    :label="$t('daily_sri_modus_selection_input_label')"
+    :options="[{key: 'SRI', label: $t('daily_sri_modus_option_SRI')},
+               {key: 'P', label: $t('daily_sri_modus_option_P')}]"
+    :tooltip-msg="$t('daily_sri_modus_selection_input_tooltip')"
+    as-buttons
   />
 </template>
 

@@ -4,8 +4,7 @@
   import { useLayerLib } from '~~/stores/layerLib/layerLib.js';
   import SliderInput from '~~/components/inputs/SliderInput.vue';
   import SelectionInput from '~~/components/inputs/SelectionInput.vue';
-  import TheDailySRIDate from './TheDailySRIDate.vue';
-  import TheDailySRIDuration from './TheDailySRIDuration.vue';
+  import TheDailySRIMenu from './TheDailySRIMenu.vue';
 
   const config = useConfig();
   const layerLib = useLayerLib();
@@ -85,8 +84,7 @@
     <span
       v-show="config.parameter === 'daily_sri'"
     >
-      <TheDailySRIDate />
-      <TheDailySRIDuration />
+      <TheDailySRIMenu />
     </span>
   </form>
 
