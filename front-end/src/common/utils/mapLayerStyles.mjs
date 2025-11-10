@@ -11,8 +11,9 @@ const getLengthFactStep = function ({min, max, colorbar}) {
   let fact = 1;
   let minSteps = colorbar? colorscales[colorbar.toLowerCase()].length: MIN_STEPS;
   if (length > MAX_STEPS){
-    step = length / MAX_STEPS;
-    length = Math.ceil(length / step);
+    length = MAX_STEPS;
+    step = (max - min) / (length - 1);
+    console.log('adjusting colormap length to', length, fact, step, length / MAX_STEPS);
   } else if (length < minSteps) {
     // duplicate as some colormaps need at least 9 nshades
     fact = (length-1) / (minSteps-1);
