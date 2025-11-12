@@ -22,6 +22,7 @@ export const useConfig = defineStore(
       // ----------------------------------
       daily_date: new Date(2006, 4, 1),
       daily_duration: "short", // "short" or "long"
-      daily_modus: "sri" // "sri" or "pval"
+      daily_modus: "sri", // "sri" or "pval"
+      daily_min_sri: 0
     })
   })

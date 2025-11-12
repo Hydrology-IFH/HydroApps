@@ -5,6 +5,8 @@
   "daily_duration_option_short": "Kurz",
   "daily_duration_selection_input_label": "Dauerstufe",
   "daily_duration_selection_input_tooltip": "Wählen Sie die Dauerstufe des täglichen Starkregenereignisses auf das sich der SRI bezieht.",
+  "daily_min_sri_slider_label": "min. SRI",
+  "daily_min_sri_slider_tooltip": "Filtere alle zur auswahl stehenden Tage, so dass nur Tage an denen deutschlandweit mindestens ein SRI mit diesem Wert oder höher aufgetreten ist zur Auswahl stehen.",
   "daily_modus_option_PVAL": "Niederschlagsmenge",
   "daily_modus_option_SRI": "SRI",
   "daily_modus_selection_input_label": "Anzeigewert",

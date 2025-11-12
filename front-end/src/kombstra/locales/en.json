@@ -5,6 +5,8 @@
   "daily_duration_option_short": "short",
   "daily_duration_selection_input_label": "Duration",
   "daily_duration_selection_input_tooltip": "Choose the duration level of the daily heavy rain event to which the SRI refers.",
+  "daily_min_sri_slider_label": "min. SRI",
+  "daily_min_sri_slider_tooltip": "Filter all available days so that only days where at least one SRI with this value or higher occurred nationwide.",
   "daily_modus_option_PVAL": "Precipitation amount",
   "daily_modus_option_SRI": "SRI",
   "daily_modus_selection_input_label": "Mode",

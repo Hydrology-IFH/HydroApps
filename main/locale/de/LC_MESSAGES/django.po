@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-10 17:05+0100\n"
+"POT-Creation-Date: 2025-11-12 13:23+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,17 +16,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
+#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:12
+msgid "Aquarius Insights"
+msgstr "Aquarius Insights"
+
+#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:14
+msgid "Here is a list of all defined locations in our Aquarius system: "
+msgstr "Hier ist eine Liste aller definierten Standorte in unserem Aquarius System: "
+
+#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:28
+msgid ""
+"You do not have permission to view this content. Please contact the "
+"HydroApps administrator to gain access."
+msgstr "Sie haben keine Berechtigung, diesen Inhalt zu sehen. Bitte kontaktieren Sie den HydroApps-Administrator, um Zugriff zu erhalten."
+
+#: .\internal\templates\internal\base.html:8
+msgid "Those are some apps for internal use of the hydrology departement"
+msgstr "Dies sind einige Anwendungen für den internen Gebrauch der Professur für Hydrologie"
+
+#: .\internal\templates\internal\base.html:19
+#: .\internal\templates\internal\home.html:19
+#: .\template_new_app\templates\app_name\base.html:19
+#: .\template_new_app\templates\app_name\home.html:19
+msgid "Home"
+msgstr "Startseite"
+
+#: .\internal\templates\internal\home.html:20
+msgid ""
+"Here you will find some Hydro-internal apps that could be usefull for you. "
+msgstr "Hier finden Sie einige Hydro-interne Anwendungen, die für Sie nützlich sein könnten."
+
 #: .\template_new_app\templates\app_name\app.html:13
 msgid "App Name App"
 msgstr ""
 
 #: .\template_new_app\templates\app_name\base.html:8
 msgid "A description of your project."
-msgstr ""
-
-#: .\template_new_app\templates\app_name\base.html:19
-#: .\template_new_app\templates\app_name\home.html:19
-msgid "Home"
 msgstr ""
 
 #: .\template_new_app\templates\app_name\base.html:20
@@ -42,11 +67,11 @@ msgstr ""
 msgid "This web tool is .... "
 msgstr ""
 
-#: .\main\settings.py:252
+#: .\main\settings.py:251
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:253
+#: .\main\settings.py:252
 msgid "English"
 msgstr "Englisch"
 
@@ -58,27 +83,27 @@ msgstr ""
 "Eine Internetseite mit verschiedenen Web-Anwendungen die an der Professur "
 "für Hydrologie an der Uni Freiburg erstellt wurden."
 
-#: .\main\templates\base.html:174
+#: .\main\templates\base.html:172
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:176
+#: .\main\templates\base.html:174
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:180
+#: .\main\templates\base.html:178
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:183
+#: .\main\templates\base.html:181
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:219
+#: .\main\templates\base.html:217
 msgid "This website is in debuging mode"
 msgstr "Diese Website ist aktuel im Debug-Modus"
 
-#: .\main\templates\base.html:227
+#: .\main\templates\base.html:225
 msgid ""
 "This Application did not yet get released. You can see it, because you're a "
 "Test-User"
@@ -87,11 +112,11 @@ msgstr ""
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
 
-#: .\main\templates\base.html:239
+#: .\main\templates\base.html:237
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:240
+#: .\main\templates\base.html:238
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 
