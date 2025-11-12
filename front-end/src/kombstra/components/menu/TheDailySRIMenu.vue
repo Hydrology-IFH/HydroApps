@@ -1,29 +1,48 @@
 <script setup>
-  import { onMounted, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
 
   import SelectionInput from '~~/components/inputs/SelectionInput.vue';
   import DateInput from '~~/components/inputs/DateInput.vue';
+  import SliderInput from '~~/components/inputs/SliderInput.vue';
   import { useConfig } from '~/stores/config.js';
 
   const config = useConfig();
-  const availableDates = ref([]);
+  const maxDailySRI = ref([]);
+
+  const availableDates = computed(() => {
+    if (config.daily_duration === 'short') {
+      return maxDailySRI.value.filter(d => d.sri_60 >= config.daily_min_sri).map(d => d.date);
+    } else if (config.daily_duration === 'long') {
+      return maxDailySRI.value.filter(d => d.sri_240 >= config.daily_min_sri).map(d => d.date);
+    } else {
+      return [];
+    }
+  });
 
   onMounted(() => {
     // Fetch available dates
-    fetch(`/static/kombstra/daily_events/availableDates.json`)
-      .then((res) => res.json())
+    fetch(`/static/kombstra/daily_events/maxDailySRI.json`)
+      .then((res) => { window.res = res; return res.json() })
       .then((data) => {
-        let dates = data.map(dateStr => {
-          let parts = dateStr.split("-");
-          return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+        let obj = data.map(d => {
+          d.date = new Date(d.date);
+          return d;
         });
-        availableDates.value = dates;
+        maxDailySRI.value = obj;
+        config.daily_date = availableDates.value[0];
       });
   });
-
 </script>
 
 <template>
+  <SliderInput
+    v-model="config.daily_min_sri"
+    :label="$t('daily_min_sri_slider_label')"
+    :min="0"
+    :max="12"
+    :tooltip-msg="$t('daily_min_sri_slider_tooltip')"
+    num-field-width="70px"
+  />
   <DateInput
     v-model="config.daily_date"
     :label="$t('daily_date_input_label')"
