@@ -23,6 +23,21 @@ export const useConfig = defineStore(
       daily_date: new Date(2006, 4, 1),
       daily_duration: "short", // "short" or "long"
       daily_modus: "sri", // "sri" or "pval"
-      daily_min_sri: 0
-    })
+      daily_min_sri: 0,
+    }),
+    actions: {
+      fetchAllDatesMaxSRI() {
+        // Implementation for fetching all dates max SRI
+        fetch(`/static/kombstra/daily_events/allDatesMaxSRI.json`)
+          .then((res) => { window.res = res; return res.json() })
+          .then((data) => {
+            let obj = data.map(d => {
+              d.date = new Date(d.date);
+              return d;
+            });
+            allDatesMaxSRI.value = obj;
+            config.daily_date = filteredDates.value[0];
+          });
+      }
+    }
   })

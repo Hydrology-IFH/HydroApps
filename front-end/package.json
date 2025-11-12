@@ -43,6 +43,7 @@
     "ol-contextmenu": "^5.5.0",
     "ol-ext": "^4.0.35",
     "pinia": "^3.0.3",
+    "plotly.js-dist-min": "^3.2.0",
     "primevue": "^4.3.9",
     "proj4": "^2.19.10",
     "v-onboarding": "^2.9.0",

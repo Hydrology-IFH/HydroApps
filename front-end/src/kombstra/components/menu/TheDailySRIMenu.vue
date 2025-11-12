@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, onMounted, ref, provide } from 'vue';
 
   import SelectionInput from '~~/components/inputs/SelectionInput.vue';
   import DateInput from '~~/components/inputs/DateInput.vue';
@@ -7,29 +7,31 @@
   import { useConfig } from '~/stores/config.js';
 
   const config = useConfig();
-  const maxDailySRI = ref([]);
+  const allDatesMaxSRI = ref([]);
 
-  const availableDates = computed(() => {
+  const filteredDates = computed(() => {
     if (config.daily_duration === 'short') {
-      return maxDailySRI.value.filter(d => d.sri_60 >= config.daily_min_sri).map(d => d.date);
+      return allDatesMaxSRI.value.filter(d => d.sri_60 >= config.daily_min_sri).map(d => d.date);
     } else if (config.daily_duration === 'long') {
-      return maxDailySRI.value.filter(d => d.sri_240 >= config.daily_min_sri).map(d => d.date);
+      return allDatesMaxSRI.value.filter(d => d.sri_240 >= config.daily_min_sri).map(d => d.date);
     } else {
       return [];
     }
   });
+  provide('daily_sri-filteredDates', filteredDates);
+  provide('daily_sri-allDatesMaxSRI', allDatesMaxSRI);
 
   onMounted(() => {
     // Fetch available dates
-    fetch(`/static/kombstra/daily_events/maxDailySRI.json`)
+    fetch(`/static/kombstra/daily_events/allDatesMaxSRI.json`)
       .then((res) => { window.res = res; return res.json() })
       .then((data) => {
         let obj = data.map(d => {
           d.date = new Date(d.date);
           return d;
         });
-        maxDailySRI.value = obj;
-        config.daily_date = availableDates.value[0];
+        allDatesMaxSRI.value = obj;
+        config.daily_date = filteredDates.value[0];
       });
   });
 </script>
@@ -46,12 +48,12 @@
   <DateInput
     v-model="config.daily_date"
     :label="$t('daily_date_input_label')"
-    :allowed-dates="availableDates"
+    :allowed-dates="filteredDates"
     :tooltip-msg="$t('daily_date_input_tooltip')"
     :add-day-switcher="true"
     :filters="{ months: [0,1,2,3,9,10,11,12] }"
-    :min-date="new Date(Math.min( ...availableDates ))"
-    :max-date="new Date(Math.max( ...availableDates ))"
+    :min-date="new Date(Math.min( ...filteredDates ))"
+    :max-date="new Date(Math.max( ...filteredDates ))"
     prevent-min-max-navigation
   />
   <SelectionInput
@@ -71,7 +73,6 @@
     as-buttons
   />
   <!-- TODO: add plot of daily maximum SRI -->
-   <!-- TODO: add filter to only make dates with an SRI of at least slidervalue available in the calendar -->
 </template>
 
 
