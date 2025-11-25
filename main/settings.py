@@ -14,10 +14,11 @@ from pathlib import Path
 import os
 from urllib.parse import urlparse
 from django.utils.translation import gettext_lazy as _
-import weatherdb as wdb
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import secretSettings_HydroApps as secrets
+
+import weatherdb as wdb
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
