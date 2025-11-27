@@ -6,6 +6,10 @@
   import FullscreenButton from '~~/components/fullscreen/FullscreenButton.vue';
   import ScreenshotWrapper from '~~/components/screenshot/ScreenshotWrapper.vue';
   import ScreenshotButton from '~~/components/screenshot/ScreenshotButton.vue';
+  import TheDailySRIChart from './components/TheDailySRIChart.vue';
+  import { useConfig } from './stores/config';
+
+  const config = useConfig();
 </script>
 
 <template>
@@ -25,6 +29,12 @@
           </div>
           <div class="col-md-5 col-12 order-md-2 order-1">
             <TheParametersForm />
+          </div>
+          <div
+            v-if="config.parameter==='daily'"
+            class="col-12"
+          >
+            <TheDailySRIChart />
           </div>
         </div>
       </div>
