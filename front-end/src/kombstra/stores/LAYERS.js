@@ -85,25 +85,17 @@ export const LAYERS = [
         "case",
         ["!=", ["band", 2], 0],
         [ 'case',
-          // colorpalette from cmcrameri "romaO" -> cyclic
-          ["==", ["band", 1], 1], [81, 107, 164],
-          ["==", ["band", 1], 2], [98, 73, 125],
-          ["==", ["band", 1], 3], [114, 57, 89],
-          ["==", ["band", 1], 4], [130, 60, 61],
-          ["==", ["band", 1], 5], [148, 80, 46],
-          ["==", ["band", 1], 6], [170, 117, 47],
-          ["==", ["band", 1], 7], [195, 163, 75],
-          ["==", ["band", 1], 8], [213, 206, 129],
-          ["==", ["band", 1], 9], [203, 225, 179],
-          ["==", ["band", 1], 10], [164, 216, 203],
-          ["==", ["band", 1], 11], [116, 187, 205],
-          ["==", ["band", 1], 12], [83, 147, 191],
-          ["==", ["band", 1], 9998], [200, 200, 200],
+          ["==", ["band", 1], 5], [239, 248, 33, 1],
+          ["==", ["band", 1], 6], [247, 147, 65, 1],
+          ["==", ["band", 1], 7], [202, 70, 120, 1],
+          ["==", ["band", 1], 8], [124, 2, 167, 1],
+          ["==", ["band", 1], 9], [12, 7, 134, 1],
           ["color", 0,0,0,0]
         ],
         ["color", 0,0,0,0]
       ]
     },
+    valueConverter: (val) => val == 9998 ? i18n.t('nodata_98') : val,
   },
   {
     id: "NEvents_above_SRI",
@@ -191,7 +183,7 @@ export const LAYERS = [
     valueConverter: (val) => val == 98 ? i18n.t('nodata_98') : val,
     // TODO: add legend tooltips
   },
-    {
+  {
     id: "daily_pval",
     name: ({ daily_date, daily_duration }) => {
       let date = daily_date.toLocaleDateString(
