@@ -17,7 +17,7 @@
           <TheFlowchart id="flow-chart" />
           <div class="wrapper-buttons">
             <TheIntroTour />
-            <ScreenshotButton file-name="SFI_Demonstrator.png" />
+            <ScreenshotButton file-name="AVOSS_Demonstrator.png" />
             <FullscreenButton />
           </div>
         </div>

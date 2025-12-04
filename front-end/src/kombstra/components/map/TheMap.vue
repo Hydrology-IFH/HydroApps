@@ -52,7 +52,8 @@
       ref="mapRef"
     >
       <MapHoverOverlay
-        v-if="map && layerLib.selectedLayer && !popupActive"
+        v-if="map && layerLib.selectedLayer"
+        v-show="!popupActive"
         :map="map"
         :layer="layerLib.selectedLayer.olLayer"
         :unit="layerLib.selectedLayer.unit"
@@ -76,7 +77,7 @@
       <TheBasemaps />
       <OlFullScreenControl />
       <TheMapPopup
-        v-if="map && layerLib.selectedLayer && config.parameter !== 'daily'"
+        v-show="map && layerLib.selectedLayer && config.parameter !== 'daily'"
         v-model:active="popupActive"
       />
     </OlMap>
