@@ -11,8 +11,9 @@ const getLengthFactStep = function ({min, max, colorbar}) {
   let fact = 1;
   let minSteps = colorbar? colorscales[colorbar.toLowerCase()].length: MIN_STEPS;
   if (length > MAX_STEPS){
-    step = length / MAX_STEPS;
-    length = Math.ceil(length / step);
+    length = MAX_STEPS;
+    step = (max - min) / (length - 1);
+    console.log('adjusting colormap length to', length, fact, step, length / MAX_STEPS);
   } else if (length < minSteps) {
     // duplicate as some colormaps need at least 9 nshades
     fact = (length-1) / (minSteps-1);
@@ -45,26 +46,30 @@ const getValueColors = function ({ min, max, colorbar, reverse = false, exponent
   return { values, colors };
 }
 
-const getColorscaleTicks = function ({min, max, colorbar, continous=true, reverse=false, exponentialBase}) {
+const getColorscaleTicks = function ({min, max, colorbar, continuous=true, reverse=false, band=1, exponentialBase}) {
   let { values, colors } = getValueColors({ min, max, colorbar, reverse, exponentialBase });
-  if (continous) {
+  if (continuous) {
     return values.map((value, index) => [value, colors[index]]).flat();
   } else {
-    return values.map((value, index) => [["==", ["band", 1], value], colors[Math.round(index)]]).flat();
+    return values.map((value, index) => [["==", ["band", band], value], colors[Math.round(index)]]).flat();
   }
 }
 
 // get a style object for a tile layer
-export function getColorscaleTileLayerStyle({ min, max, colorbar, continous = true, reverse = false, exponentialBase }) {
-  if (continous) {
+export function getColorscaleTileLayerStyle({ min, max, colorbar, continuous = true, reverse = false, band = 1, nodataBand = 2, exponentialBase, continous }) {
+  if (continous !== undefined) {
+    console.warn("getColorscaleTileLayerStyle: 'continous' parameter is deprecated, use 'continuous' instead.");
+    continuous = continous;
+  }
+  if (continuous) {
     return {
       color: [
         "case",
-        ["!=", ["band", 2], 0],
+        ["!=", ["band", nodataBand], 0],
         [ 'interpolate',
           exponentialBase? ['exponential', exponentialBase]:['linear'],
-          ["band", 1],
-          ...getColorscaleTicks({min, max, colorbar, continous, reverse, exponentialBase}),
+          ["band", band],
+          ...getColorscaleTicks({min, max, colorbar, continuous, reverse, band, exponentialBase}),
         ],
         ["color", 0,0,0,0]
       ]
@@ -73,9 +78,9 @@ export function getColorscaleTileLayerStyle({ min, max, colorbar, continous = tr
     return {
       color: [
         "case",
-        ["!=", ['band', 2], 0],
+        ["!=", ['band', nodataBand], 0],
         ['case',
-          ...getColorscaleTicks({min, max, colorbar, continous, reverse, exponentialBase}),
+          ...getColorscaleTicks({min, max, colorbar, continuous, reverse, band, exponentialBase}),
           ["color", 0, 0, 0, 0]
         ],
         ["color", 0, 0, 0, 0]
@@ -85,9 +90,13 @@ export function getColorscaleTileLayerStyle({ min, max, colorbar, continous = tr
 }
 
 // get a function that returns a color for a specific value
-export const getColormap = function ({ min, max, colorbar, continous = true, reverse = false, exponentialBase}) {
+export const getColormap = function ({ min, max, colorbar, continuous = true, reverse = false, exponentialBase, continous }) {
+  if (continuous !== undefined) {
+    console.warn("getColormap: 'continous' parameter is deprecated, use 'continuous' instead.");
+    continuous = continous;
+  }
   let { values, colors } = getValueColors({ min, max, colorbar, length, reverse, exponentialBase });
-  if (continous) {
+  if (continuous) {
     var cmap = (val) => {
       if (val > max || val < min) {
         console.error('value out of colormap range', val, min, max);

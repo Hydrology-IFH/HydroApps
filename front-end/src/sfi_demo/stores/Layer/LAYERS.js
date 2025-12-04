@@ -90,7 +90,7 @@ export const LAYERS = [
         defaultColorscaleOpts: {
           min: 0,
           max: 120,
-          continous: true
+          continuous: true
         },
         colorscales: {
           "cmocean:rain": {
@@ -272,13 +272,13 @@ export const LAYERS = [
             return {
               min: 0,
               max: 60,
-              continous: true,
+              continuous: true,
             }
           } else {
             return {
               min: 0,
               max: 100,
-              continous: true,
+              continuous: true,
             }
           }
         },
@@ -358,7 +358,7 @@ export const LAYERS = [
         defaultColorscaleOpts: {
           min: 0,
           max: 90,
-          continous: true,
+          continuous: true,
         },
         colorscales: {
           density: {

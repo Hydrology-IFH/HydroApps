@@ -47,6 +47,7 @@ class KombStRADataSpans(models.Model):
     min_year = models.IntegerField(help_text="Minimum year of events")
     max_rank = models.IntegerField(help_text="Maximum rank of events")
     max_nevents = models.JSONField(help_text="Maximum number of events per SRI")
+    max_pval = models.FloatField(help_text="Maximum Pprecipitation value of all the events")
 
     class Meta:
         db_table = 'kombstra_data_spans'

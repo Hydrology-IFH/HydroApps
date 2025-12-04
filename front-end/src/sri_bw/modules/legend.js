@@ -106,7 +106,7 @@ function add_linear_colorbar(styleColorLin, cb_div, label) {
   let colors = col_ticks.filter((el) => el instanceof Array);
   let ticks = col_ticks.filter((el) => !(el instanceof Array));
 
-  // create continous legend div
+  // create continuous legend div
   cb_div.className = "colorbar colorbar-con ol-legend";
   let cb_bar = document.createElement("div");
   cb_bar.className = "colorbar-bar";

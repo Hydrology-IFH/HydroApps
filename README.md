@@ -22,11 +22,19 @@ The repository consists of a "normal" django setup with:
 
 To install the project you need to have python and node installed on your system.
 
-First you need to install the python dependencies. You can do this by running the following command in the main repository folder:
+#### Virtual Environment and dependencies
+First you need to install the python dependencies. You can do this by using `uv` to create a virtual environment inside the main repository folder, by running:
+
+```bash
+uv sync
+```
+Alternativly you can use another virtual environment manager of your choice and install the dependencies with `pip` by running the following command:
 
 ```bash
 pip install -r requirements.txt
 ```
+
+#### Database setup
 
 Furthermore you will need a postgresql database. The database credentials need to be set in the `.\secretSettings_HydroApps.py` file. You will find a template of this file in the main repository folder (`.\secretSettings_HydroApps.py.template`) and can copy and rename it to `.\secretSettings_HydroApps.py`.
 
