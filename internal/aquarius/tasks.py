@@ -6,10 +6,11 @@ from django.conf import settings
 from django.db import connection
 
 from .config import (
-    AQUARIUS_API_URL,
-    AQUARIUS_API_USER,
-    AQUARIUS_API_PWD,
-    API_CACHE_PREFIX
+    AQUARIUS_URL,
+    AQUARIUS_USER,
+    AQUARIUS_PWD,
+    API_CACHE_PREFIX,
+    AQUARIUS_API_ENDPOINTS_URL
 )
 from .models import Location, LocationFolder, LocationTag, LocationNote
 
@@ -21,11 +22,14 @@ def update_aquarius_data():
     This function should contain the logic to fetch and update data from Aquarius.
     """
     logger.info("Starting update of Aquarius data...")
-    api_auth = (AQUARIUS_API_USER, AQUARIUS_API_PWD)
+    api_auth = (AQUARIUS_USER, AQUARIUS_PWD)
 
     # get meta locations
     meta_locations = requests.get(
-        urljoin(AQUARIUS_API_URL, "GetLocationDescriptionList"),
+        urljoin(
+            AQUARIUS_URL,
+            AQUARIUS_API_ENDPOINTS_URL['publish']+\
+                "GetLocationDescriptionList"),
         auth=api_auth
     )
     meta_locations.raise_for_status()
@@ -46,7 +50,10 @@ def update_aquarius_data():
 
         # get additional information on the location
         location_infos_req = requests.get(
-            urljoin(AQUARIUS_API_URL, "GetLocationData"),
+            urljoin(
+                AQUARIUS_URL,
+                AQUARIUS_API_ENDPOINTS_URL['publish'] +\
+                    "GetLocationData"),
             params={"LocationIdentifier": meta_location['Identifier']},
             auth=api_auth
         )
@@ -104,5 +111,3 @@ def update_aquarius_data():
                 DELETE FROM "{settings.CACHES['default']['LOCATION']}"
                 WHERE "cache_key" LIKE '%%{API_CACHE_PREFIX}%%';
             """)
-
-# TODO: implement task as management command
