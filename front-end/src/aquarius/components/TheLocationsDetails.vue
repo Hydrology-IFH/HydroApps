@@ -12,12 +12,24 @@
         </div>
         <div class="col text-end mb-2">
           <button
+            v-if="!config.editMode"
             class="edit-button"
             type="button"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            :data-bs-title="config.editMode ? $t('location_detail_edit_save_tooltip') : $t('location_detail_edit_tooltip')"
-            @click="editButton"
+            :data-bs-title="$t('location_detail_edit_tooltip')"
+            @click="config.editMode = true"
+          >
+            <i :class="['bi', config.editMode ? 'bi-floppy' : 'bi-pencil']" />
+          </button>
+          <button
+            v-else
+            class="edit-button"
+            type="button"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            :data-bs-title="$t('location_detail_edit_save_tooltip')"
+            @click="saveButton"
           >
             <i :class="['bi', config.editMode ? 'bi-floppy' : 'bi-pencil']" />
           </button>
@@ -120,25 +132,21 @@
   });
 
   // button click handler to save changes
-  const editButton = () => {
-    if (config.editMode.value) {
-      // send updates to Aquarius
-      axios.post(`${config.aquariusAPIUrl.replace("ENDPOINT", "UpdateLocationData")}`, {
-        LocationIdentifier: locationData.value.LocationIdentifier,
-        LocationName: locationData.value.LocationName,
-        LocationNotes: locationData.value.LocationNotes,
-        LocationType: locationData.value.LocationType,
-        tags: locationData.value.tags,
-        primaryFolder: locationData.value.primaryFolder,
-      }).then(() => {
-        config.fetchLocations();
-      }).catch(error => {
+  const saveButton = () => {
+    console.log("Save button clicked. Edit mode:", config.editMode);
+    axios.put(`${config.aquariusAPIUrls["provision"].replace("ROUTE", "locations")}`, {
+      subroutes: [locationData.value.Identifier],
+      ...locationData.value,
+
+    })
+      .then(response => {
+        console.log("Location data saved successfully:", response.data);
+        onlineLocationData.value = { ...markRaw(locationData.value) };
+        config.editMode = false;
+      })
+      .catch(error => {
         console.error("Error saving location data:", error);
       });
-      config.editMode = false;
-    } else {
-      config.editMode = true;
-    }
   };
 
   // button click handler to reset changes

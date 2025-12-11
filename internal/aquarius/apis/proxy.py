@@ -65,7 +65,9 @@ class AquariusAPIAdapter:
 
         # Construct full URL
         url = urljoin(
-            urljoin(AQUARIUS_URL, AQUARIUS_API_ENDPOINTS_URL[endpoint]),
+            urljoin(AQUARIUS_URL,
+                    AQUARIUS_API_ENDPOINTS_URL[endpoint],
+                    *params.pop('subroutes', [])),
             route)
 
         # Make the request to Aquarius API
@@ -111,73 +113,36 @@ class AquariusAPIProxyView(View):
         """Override dispatch to handle method-specific permission checking"""
         return super().dispatch(request, *args, **kwargs)
 
+    def make_request(self, method: str, endpoint: str, route: str, **params):
+        try:
+            # Return response directly from external API
+            return JsonResponse(
+                aquarius_adapter.make_request(method, endpoint, route, **params)
+            )
+        except AquariusAPIException as e:
+            logger.error(f"Aquarius API error: {str(e)}")
+            return JsonResponse({
+                'error': 'API error',
+                'message': str(e)
+            }, status=400)
+
+        except Exception as e:
+            logger.error(f"Unexpected error: {str(e)}")
+            return JsonResponse({
+                'error': 'Internal server error',
+                'message': 'An unexpected error occurred'
+            }, status=500)
+
     @method_decorator(check_aquarius_permission(PERMISSION_CLASS_READ))
     def get(self, request, endpoint, route):
         """
         Handle GET requests to Aquarius API
         """
-        try:
-            # Remove endpoint from params and pass the rest to the API
-            params = request.GET.copy()
-            # del params['endpoint']
-
-            # Make GET request to external API
-            data = aquarius_adapter.make_request('GET', endpoint, route,**params.dict())
-
-            # Return response directly from external API
-            return JsonResponse(data)
-
-        except AquariusAPIException as e:
-            logger.error(f"Aquarius API error: {str(e)}")
-            return JsonResponse({
-                'error': 'API error',
-                'message': str(e)
-            }, status=400)
-
-        except Exception as e:
-            logger.error(f"Unexpected error: {str(e)}")
-            return JsonResponse({
-                'error': 'Internal server error',
-                'message': 'An unexpected error occurred'
-            }, status=500)
+        return self.make_request('GET', endpoint, route, **request.GET.dict())
 
     @method_decorator(check_aquarius_permission(PERMISSION_CLASS_EDIT))
-    def post(self, request, endpoint):
+    def put(self, request, endpoint, route):
         """
-        Handle POST requests to Aquarius API
+        Handle PUT requests to Aquarius API
         """
-        try:
-            # Check for endpoint in both GET and POST data
-            # endpoint = request.GET.get('endpoint') or request.POST.get('endpoint')
-
-            # if not endpoint:
-            #     return JsonResponse({
-            #         'error': 'Missing endpoint parameter',
-            #         'message': 'endpoint parameter is required (in GET or POST data)',
-            #         'allowed_endpoints': AQUARIUS_API_ALLOWED_ENDPOINTS
-            #     }, status=400)
-
-            # Get POST data and remove endpoint if it exists there
-            params = request.POST.copy()
-            # if 'endpoint' in params:
-            #     del params['endpoint']
-
-            # Make POST request to external API
-            data = aquarius_adapter.make_request('POST', endpoint, **params.dict())
-
-            # Return response directly from external API
-            return JsonResponse(data)
-
-        except AquariusAPIException as e:
-            logger.error(f"Aquarius API error: {str(e)}")
-            return JsonResponse({
-                'error': 'API error',
-                'message': str(e)
-            }, status=400)
-
-        except Exception as e:
-            logger.error(f"Unexpected error: {str(e)}")
-            return JsonResponse({
-                'error': 'Internal server error',
-                'message': 'An unexpected error occurred'
-            }, status=500)
+        return self.make_request('PUT', endpoint, route, **request.PUT.dict())
