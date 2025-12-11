@@ -1,6 +1,7 @@
 <script setup>
   const model = defineModel({ type: String, required: true })
   const props = defineProps({
+    disabled: { type: Boolean, default: false },
     addRemoverButton: { type: Boolean },
     addAdderButton: { type: Boolean }
   })

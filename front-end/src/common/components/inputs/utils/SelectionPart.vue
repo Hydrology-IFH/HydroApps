@@ -1,7 +1,10 @@
 <script setup>
+import { disable } from 'ol/rotationconstraint';
+
   const selection = defineModel({ type: [String, null], required: true })
   const props = defineProps({
     options: { type: Array[String], required: true },
+    disabled: { type: Boolean, default: false },
     addEmpty: { type: Boolean, default: false },
     id: { type: String, required: true },
     addChevron: { type: Boolean, default: true },
@@ -22,6 +25,7 @@
       v-model="selection"
       class="form-select"
       :name="`Select_${id}`"
+      :disabled="props.disabled"
     >
       <option
         v-if="addEmpty"
@@ -50,5 +54,7 @@
     display: flex;
     align-items: center;
   }
-
+  select:disabled{
+    background-image: none;
+  }
 </style>

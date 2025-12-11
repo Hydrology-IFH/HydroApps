@@ -1,12 +1,14 @@
 <script setup>
   import { watch, ref, onMounted } from 'vue'
   import BaseInput from './BaseInput.vue'
-  import BaseSelectionPart from './BaseSelectionPart.vue'
+  import SelectionPart from './utils/SelectionPart.vue'
+import { disable } from 'ol/rotationconstraint'
 
   const model = defineModel({ type: Array[String], required: true })
   const props = defineProps({
     options: { type: Array[Object], required: true }, // Objects of type { value: String, label: String, parentValue: String }
     label: { type: String, required: true },
+    disabled: { type: Boolean, default: false },
     clearable: { type: Boolean, default: true },
     cleareableTooltip: { type: String, default: 'Clear Entry' }
   })
@@ -47,19 +49,21 @@
 <template>
   <BaseInput :label="label">
     <span class="form-control flex-wrapper">
-      <BaseSelectionPart
+      <SelectionPart
         v-for="(selection, index) in internModel"
         :id="`${id}_${index}`"
         :key="`existing-${index}`"
         v-model="internModel[index]"
+        :disabled="disabled"
         :options="options.filter((opt) => index==0? opt.parentValue === null : opt.parentValue === internModel[index-1])"
         :add-empty="index > 0"
         :add-chevron="index > 0"
       />
-      <BaseSelectionPart
+      <SelectionPart
         id="new-selection"
         key="new-selection"
         v-model="newSelection"
+        :disabled="disabled"
         :options="options.filter((opt) => model.length==0? opt.parentValue === null : opt.parentValue === model[model.length-1])"
         :add-chevron="model.length>0"
         add-empty
@@ -67,15 +71,15 @@
     </span>
     <button
       v-show="clearable && model.length > 0"
+      ref="clearButton"
       type="button"
       class="btn btn-outline-secondary btn-sm"
-      @click="model = []"
-      ref="clearButton"
       data-bs-toggle="tooltip"
       data-bs-placement="top"
       :data-bs-title="cleareableTooltip"
+      @click="model = []"
     >
-      <i class="bi bi-x"></i>
+      <i class="bi bi-x" />
     </button>
   </BaseInput>
 </template>

@@ -2,7 +2,7 @@
   import { computed } from 'vue'
 
   import BaseInput from './BaseInput.vue'
-  import TextPartInput from './utils/TextPartInput.vue'
+  import TextPart from './utils/TextPart.vue'
 
   const model = defineModel({ type: Array[String], required: true })
   const props = defineProps({
@@ -29,20 +29,22 @@
 <template>
   <BaseInput>
     <div class="form-control text-part-input-container">
-      <TextPartInput
-        :key="0"
+      <TextPart
         v-model="firstPart"
+        :disabled="props.disabled"
         :add-adder-button="(!props.disabled) && (model.length > 0)"
         :add-remover-button="(!props.disabled) && (model.length > 0)"
         @add-part="model.splice(1, 0, '')"
         @remove-part="model.shift()"
       />
       <template
-        v-if="model.length > 1">
-        <TextPartInput
+        v-if="model.length > 1"
+      >
+        <TextPart
           v-for="(textPart, index) in model.slice(1)"
           :key="index"
           v-model="model[index+1]"
+          :disabled="props.disabled"
           :add-remover-button="!props.disabled"
           :add-adder-button="!props.disabled"
           @add-part="model.splice(index + 2, 0, '')"
