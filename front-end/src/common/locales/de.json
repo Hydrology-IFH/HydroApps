@@ -1,6 +1,8 @@
 {
   "dateInput_next_day_tooltip": "Springe zum nächsten Tag",
   "dateInput_previous_day_tooltip": "Springe zum vorherigen Tag",
+  "text_part_input-add_tooltip": "Füge einen neuen Eintrag hinzu",
+  "text_part_input-remove_tooltip": "Lösche den Eintrag",
   "tooltip_fullscreen_close": "Schließe die Vollbildansicht",
   "tooltip_fullscreen_open": "Öffne die App in der Vollbildansicht",
   "tooltip_screenshot": "Erstelle ein Screenshot der aktuellen Ansicht und lade dieses als Bild herunter"
