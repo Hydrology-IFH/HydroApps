@@ -2,6 +2,7 @@ from django.contrib.gis.geos import Point
 import requests
 from urllib.parse import urljoin
 from logging import getLogger
+from django.core.cache import cache
 from django.conf import settings
 from django.db import connection
 
@@ -16,7 +17,7 @@ from .models import Location, LocationFolder, LocationTag, LocationNote
 
 logger = getLogger(__name__)
 
-def update_aquarius_data():
+def update_aquarius_data(location_identifier: str = None):
     """
     Placeholder function to update Aquarius data.
     This function should contain the logic to fetch and update data from Aquarius.
@@ -30,7 +31,8 @@ def update_aquarius_data():
             AQUARIUS_URL,
             AQUARIUS_API_ENDPOINTS_URL['publish']+\
                 "GetLocationDescriptionList"),
-        auth=api_auth
+        auth=api_auth,
+        params={"LocationIdentifier": location_identifier} if location_identifier else {}
     )
     meta_locations.raise_for_status()
 
@@ -106,6 +108,7 @@ def update_aquarius_data():
     # resetting the cache for the updated location
     if any_updated:
         logger.info("Resetting cache for location API calls.")
+        cache.delete(API_CACHE_PREFIX)
         with connection.cursor() as cursor:
             cursor.execute(f"""
                 DELETE FROM "{settings.CACHES['default']['LOCATION']}"

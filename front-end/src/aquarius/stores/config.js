@@ -10,8 +10,9 @@ export const useConfig = defineStore(
       aquariusAPIUrls: {
         acquisition: window.initSettings.aquariusAPIUrl.replace('ENDPOINT', 'acquisition'),
         publish: window.initSettings.aquariusAPIUrl.replace('ENDPOINT', 'publish'),
-        provision: window.initSettings.aquariusAPIUrl.replace('ENDPOINT', 'provision'),
+        provision: window.initSettings.aquariusAPIUrl.replace('ENDPOINT', 'provision')
       },
+      apiUpdateLocationUrl: window.initSettings.apiUpdateLocationUrl,
       permissionEdit: window.initSettings.permissionEdit,
       csrfToken: window.initSettings.csrfToken,
       locations: undefined,
@@ -19,7 +20,7 @@ export const useConfig = defineStore(
       availableTags: [],
       availableFolders: [],
       filter: {
-        tags: [],
+        tagKeys: [],
         folders: ["All Locations"],
       },
       editMode: false,
@@ -30,9 +31,9 @@ export const useConfig = defineStore(
         var locations = {...state.locations};
 
         // Filter by tags
-        if (state.filter.tags.length > 0){
+        if (state.filter.tagKeys.length > 0){
           locations.features = locations.features.filter(feature => {
-            return feature.properties.tags.some(tag => state.filter.tags.includes(tag));
+            return feature.properties.tags.some(tag => state.filter.tagKeys.includes(tag));
           });
         }
 
@@ -48,6 +49,9 @@ export const useConfig = defineStore(
         // Mark features as raw to prevent reactivity issues
         locations.features = locations.features.map(markRaw);
         return locations;
+      },
+      availableTagKeys: (state) => {
+        return state.availableTags.map(tag => tag.Key);
       },
     },
     actions: {
@@ -81,7 +85,7 @@ export const useConfig = defineStore(
                 Applicability: "AppliesToLocations",
               }
           });
-          this.availableTags = response.data.Tags.map(tag => tag.Key);
+          this.availableTags = response.data.Tags;
         } catch (error) {
           console.error('Error fetching tags:', error);
         }

@@ -17,6 +17,7 @@
       window.initSettings ={
         aquariusAPIUrl: "{% url 'internal:aquarius:aquarius_api_proxy' 'ENDPOINT' 'ROUTE' %}",
         apiLocationsUrl: "{% url 'internal:aquarius:api:locations-list' %}",
+        apiUpdateLocationUrl: "{% url 'internal:aquarius:api:locations-detail' 'IDENTIFIER' %}",
         csrfToken: "{{ csrf_token }}",
         permissionEdit: {{ permission_edit|lower }},
       };

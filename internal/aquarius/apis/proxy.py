@@ -10,12 +10,13 @@ This module provides a simple wrapper around the Aquarius API with:
 
 import requests
 import logging
+import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
-from urllib.parse import urljoin
+from urllib.parse import urljoin, parse_qs
 from .decorators import check_aquarius_permission, rate_limit_user
 
 from ..config import (AQUARIUS_API_ALLOWED_ROUTES,
@@ -42,7 +43,7 @@ class AquariusAPIAdapter:
         if AQUARIUS_URL is None or AQUARIUS_USER is None or AQUARIUS_PWD is None:
             raise AquariusAPIException("AQUARIUS_URL, AQUARIUS_USER and AQUARIUS_PWD must be set in settings")
 
-    def make_request(self, method: str, endpoint: str, route: str, **params):
+    def make_request(self, method: str, endpoint: str, route: str, subroute: str, **params):
         """
         Make a request to the Aquarius API and return JSON response
 
@@ -64,9 +65,12 @@ class AquariusAPIAdapter:
             raise AquariusAPIException(f"Route '{route}' is not allowed")
 
         # Construct full URL
-        url = urljoin(
-            urljoin(AQUARIUS_URL, AQUARIUS_API_ENDPOINTS_URL[endpoint]),
-            route)
+        url = urljoin(AQUARIUS_URL,
+                      AQUARIUS_API_ENDPOINTS_URL[endpoint])
+        url = urljoin(url, route)
+        if subroute:
+            print("adding subroute:", subroute)
+            url = urljoin(f"{url}/", subroute)
 
         # Make the request to Aquarius API
         try:
@@ -78,11 +82,20 @@ class AquariusAPIAdapter:
                 requests_method = requests.put
             else:
                 raise AquariusAPIException(f"HTTP method '{method}' not supported")
+            logger.debug(f"Making {method} request to {url} with params: {params}")
+            request_kwargs = {}
+
+            # Use query params for GET and JSON body for mutations to keep empty lists intact
+            if method.upper() == 'GET':
+                request_kwargs['params'] = params
+            else:
+                request_kwargs['json'] = params
+
             response = requests_method(
                 url,
-                params=params,
                 auth=self.auth,
-                timeout=30
+                timeout=30,
+                **request_kwargs
             )
 
             if response.status_code >= 400:
@@ -111,73 +124,53 @@ class AquariusAPIProxyView(View):
         """Override dispatch to handle method-specific permission checking"""
         return super().dispatch(request, *args, **kwargs)
 
+    def make_request(self, method: str, endpoint: str, route: str, subroute=None, **params):
+        try:
+            # Return response directly from external API
+            return JsonResponse(
+                aquarius_adapter.make_request(method, endpoint, route, subroute, **params)
+            )
+        except AquariusAPIException as e:
+            logger.error(f"Aquarius API error: {str(e)}")
+            return JsonResponse({
+                'error': 'API error',
+                'message': str(e)
+            }, status=400)
+
+        except Exception as e:
+            logger.error(f"Unexpected error: {str(e)}")
+            return JsonResponse({
+                'error': 'Internal server error',
+                'message': 'An unexpected error occurred'
+            }, status=500)
+
     @method_decorator(check_aquarius_permission(PERMISSION_CLASS_READ))
-    def get(self, request, endpoint, route):
+    def get(self, request, endpoint, route, subroute=None):
         """
         Handle GET requests to Aquarius API
         """
-        try:
-            # Remove endpoint from params and pass the rest to the API
-            params = request.GET.copy()
-            # del params['endpoint']
-
-            # Make GET request to external API
-            data = aquarius_adapter.make_request('GET', endpoint, route,**params.dict())
-
-            # Return response directly from external API
-            return JsonResponse(data)
-
-        except AquariusAPIException as e:
-            logger.error(f"Aquarius API error: {str(e)}")
-            return JsonResponse({
-                'error': 'API error',
-                'message': str(e)
-            }, status=400)
-
-        except Exception as e:
-            logger.error(f"Unexpected error: {str(e)}")
-            return JsonResponse({
-                'error': 'Internal server error',
-                'message': 'An unexpected error occurred'
-            }, status=500)
+        return self.make_request('GET', endpoint, route, subroute, **request.GET.dict())
 
     @method_decorator(check_aquarius_permission(PERMISSION_CLASS_EDIT))
-    def post(self, request, endpoint):
+    def put(self, request, endpoint, route, subroute=None):
         """
-        Handle POST requests to Aquarius API
+        Handle PUT requests to Aquarius API
         """
+        # Parse PUT data from request body
         try:
-            # Check for endpoint in both GET and POST data
-            # endpoint = request.GET.get('endpoint') or request.POST.get('endpoint')
-
-            # if not endpoint:
-            #     return JsonResponse({
-            #         'error': 'Missing endpoint parameter',
-            #         'message': 'endpoint parameter is required (in GET or POST data)',
-            #         'allowed_endpoints': AQUARIUS_API_ALLOWED_ENDPOINTS
-            #     }, status=400)
-
-            # Get POST data and remove endpoint if it exists there
-            params = request.POST.copy()
-            # if 'endpoint' in params:
-            #     del params['endpoint']
-
-            # Make POST request to external API
-            data = aquarius_adapter.make_request('POST', endpoint, **params.dict())
-
-            # Return response directly from external API
-            return JsonResponse(data)
-
-        except AquariusAPIException as e:
-            logger.error(f"Aquarius API error: {str(e)}")
-            return JsonResponse({
-                'error': 'API error',
-                'message': str(e)
-            }, status=400)
-
-        except Exception as e:
-            logger.error(f"Unexpected error: {str(e)}")
-            return JsonResponse({
-                'error': 'Internal server error',
-                'message': 'An unexpected error occurred'
-            }, status=500)
+            if request.body:
+                # Try to parse as JSON first
+                put_data = json.loads(request.body)
+                # Convert to dict if it's already a dict, otherwise wrap in params
+                params = put_data if isinstance(put_data, dict) else {'data': put_data}
+            else:
+                # If no body, try to parse query string
+                params = parse_qs(request.META.get('QUERY_STRING', ''))
+                # Flatten the query string dict (parse_qs returns lists)
+                params = {k: v[0] if len(v) == 1 else v for k, v in params.items()}
+        except json.JSONDecodeError:
+            # If JSON parsing fails, try to parse as query string
+            params = parse_qs(request.META.get('QUERY_STRING', ''))
+            params = {k: v[0] if len(v) == 1 else v for k, v in params.items()}
+        print(params)
+        return self.make_request('PUT', endpoint, route, subroute, **params)
