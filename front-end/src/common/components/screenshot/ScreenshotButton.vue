@@ -53,7 +53,7 @@
       link.download = props.fileName;
       link.href = canvas.toDataURL();
       link.click();
-    }).exception((error) => {
+    }).catch((error) => {
       console.error('Screenshot failed:', error);
       updateSpinnerActive(false);
     });
