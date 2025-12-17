@@ -35,8 +35,10 @@
 
         // remove all shadows from legend
         let leg = clonedDOM.querySelector('div.legend-overlay');
-        leg.style.boxShadow = "none";
-        leg.style.border = "1px solid grey";
+        if (leg){
+          leg.style.boxShadow = "none";
+          leg.style.border = "1px solid grey";
+        }
 
         // there is a problem while rendering the closing svg
         clonedDOM.querySelectorAll('button.btn-close').forEach((b) => b.remove());
