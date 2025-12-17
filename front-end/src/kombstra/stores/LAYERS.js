@@ -62,6 +62,7 @@ export const LAYERS = [
     unit: "",
     decimals: 0,
     relevantConfigs: ["event_rank",],
+    valueConverter: (val) => `${val}`,
     url: ({ event_rank }) => `/static/kombstra/kombstra_views/year_${event_rank}.tif`,
     style: {
       colorscale: {
