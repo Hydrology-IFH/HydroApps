@@ -311,11 +311,11 @@ class GeoTiffLayer extends BaseLayer {
   }
 
   get band() {
-    if (!this.style?.color) {
+    if (this.style?.color) {
       if (this.style.color[2][0] == "case") {
-        return this.style.color[2][1][1] || 0;
-      } else if (this.style.color[0] == "interpolate") {
-        return this.style.color[2][2][1] || 0;
+        return this.style.color[2][1][1][1] - 1 || 0;
+      } else if (this.style.color[2][0] == "interpolate") {
+        return this.style.color[2][2][1] - 1 || 0;
       }
     }
     return 0;
