@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-18 10:06+0100\n"
+"POT-Creation-Date: 2025-12-18 12:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\internal\templates\internal\base.html:8
 msgid "Those are some apps for internal use of the hydrology departement"
 msgstr "Dies sind einige Hydrologie interne Anwendungen"
 
 #: .\internal\templates\internal\base.html:19
-#: .\internal\templates\internal\home.html:19
+#: .\internal\templates\internal\home.html:9
 msgid "Home"
 msgstr "Startseite"
 
-#: .\internal\templates\internal\home.html:20
+#: .\internal\templates\internal\home.html:10
 msgid ""
 "Here you will find some Hydro-internal apps that could be usefull for you. "
-msgstr "Hier finden Sie einige Hydro-interne Anwendungen, die für Sie nützlich sein könnten. "
+msgstr ""
+"Hier finden Sie einige Hydro-interne Anwendungen, die für Sie nützlich sein "
+"könnten. "
 
-#: .\internal\templates\internal\home.html:30
+#: .\internal\templates\internal\home.html:20
 msgid "Here you will see an overview of all locations in the Aquarius System"
 msgstr "Hier sehen Sie eine Übersicht über alle Standorte im Aquarius-System"

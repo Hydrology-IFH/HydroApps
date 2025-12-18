@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-12 13:23+0100\n"
+"POT-Creation-Date: 2025-12-18 12:13+0100\n"
 "PO-Revision-Date: 2024-02-14 12:13+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -67,30 +67,30 @@ msgstr ""
 msgid "Maximum allowed Stations to download at once"
 msgstr "Maximal erlaubte Stationen je Download"
 
-#: .\my_auth\models.py:29
+#: .\my_auth\models.py:28
 msgid "Users must have an email address"
 msgstr "Nutzer*in benötigt eine E-Mail Adresse"
 
-#: .\my_auth\models.py:31
+#: .\my_auth\models.py:30
 msgid "Users must have an unique username"
 msgstr "Nutzer*in benötigt einen eindeutigen Nutzernamen"
 
-#: .\my_auth\models.py:40
+#: .\my_auth\models.py:39
 msgid "This username is already a database user for the weatherDB database."
 msgstr ""
 "Dieser Nutzername ist bereits ein Datenbank-Nutzer für die WeatherDB-"
 "Datenbank."
 
-#: .\my_auth\models.py:93
+#: .\my_auth\models.py:92
 msgid "email address"
 msgstr "E-Mail Adresse"
 
-#: .\my_auth\models.py:100
+#: .\my_auth\models.py:99
 msgid "Comment of the user why he/she should have access to the Hydro-Apps"
 msgstr ""
 "Begründung des/der Nutzer*in wieso Er/Sie Zugang zu Hydro-Apps haben sollte"
 
-#: .\my_auth\models.py:102
+#: .\my_auth\models.py:101
 msgid ""
 "I agree to the terms of usage of my data and I did read and agree to the "
 "policy agreement of this website."
@@ -98,32 +98,32 @@ msgstr ""
 "Ich habe die Datenschutzerklärung dieser Seite gelesen und stimme der "
 "Nutzung meiner Daten zu."
 
-#: .\my_auth\models.py:103
+#: .\my_auth\models.py:102
 msgid "Designates whether the user confirmed the data policy agreement."
 msgstr "Gibt an ob der/die Nutzer*in die Datenschutzerklärung bestätigt hat."
 
-#: .\my_auth\models.py:105
+#: .\my_auth\models.py:104
 msgid "Designates whether the user confirmed it's e-mail address."
 msgstr "Gibt an ob der/die Nutzer*in die E-Mail Adresse bestätigt hat."
 
-#: .\my_auth\models.py:107
+#: .\my_auth\models.py:106
 msgid "Designates whether the user got activated by a super user."
 msgstr ""
 "Gibt an ob der/die Nutzer*in durch einen Administrator bestätigt wurde."
 
-#: .\my_auth\models.py:109
+#: .\my_auth\models.py:108
 msgid "Designates whether the user can log into this admin site."
 msgstr "Gibt an ob der/die Nutzer*in sich ins Admin Portal einloggen kann."
 
-#: .\my_auth\models.py:112
+#: .\my_auth\models.py:111
 msgid "Designates whether the user is superuser."
 msgstr "Gibt an ob der/die Nutzer*in super user Rechte hat."
 
-#: .\my_auth\models.py:114
+#: .\my_auth\models.py:113
 msgid "Designates whether the user can log into the WeatherDB-database."
 msgstr "Gibt an ob der/die Nutzer*in zugang zur WeatherDB-Datenbank hat."
 
-#: .\my_auth\models.py:117
+#: .\my_auth\models.py:116
 msgid ""
 "Designates the number of stations a user can download at once on the "
 "WeatherDB App."
@@ -131,19 +131,19 @@ msgstr ""
 "Gibt die Anzahl an Stationen die ein*e Nutzer*in auf einmal von der "
 "WeatherDB-App herunterladen kann."
 
-#: .\my_auth\models.py:119
+#: .\my_auth\models.py:118
 msgid "The Password for this user to log into the database."
 msgstr ""
 "Das Passwort für diese*n Nutzer*in um sich auf der WeatherDB-Datenbank "
 "einzuloggen."
 
-#: .\my_auth\models.py:122
+#: .\my_auth\models.py:121
 msgid ""
 "Designates the date and time when the user got noticed that his account will "
 "expire soon."
 msgstr ""
 
-#: .\my_auth\models.py:125
+#: .\my_auth\models.py:124
 msgid "The permissions the user has."
 msgstr ""
 
@@ -279,39 +279,48 @@ msgstr "Noch kein Konto?"
 msgid "Register"
 msgstr "Registrieren"
 
-#: .\my_auth\templates\registration\login.html:19
+#: .\my_auth\templates\registration\login.html:20
+msgid ""
+"To view this content, you need to be logged in and have the right "
+"permissions."
+msgstr "Um den Inhalt der aufgerufenen Seite anzusehen, müssen Sie eingeloggt sein und die entsprechenden Berechtigungen besitzen."
+
+#: .\my_auth\templates\registration\login.html:25
 msgid ""
 "Unfortunatly there was a problem with the database system and all user "
 "account changes between February 2025 and the 12th of November 2025 have "
 "been lost.<br>Therefor it could be that your account or your password has "
-"been reset. Please use the password reset function if you can't log in or create a new account."
+"been reset. Please use the password reset function if you can't log in or "
+"create a new account."
 msgstr ""
-"Leider gab es ein Problem mit dem Datenbanksystem, bei dem alle Änderungen an "
-"Nutzerkonten zwischen Februar 2025 und dem 12. November 2025 verloren gingen.<br>"
-"Daher kann es sein, dass Ihr Konto oder Ihr Passwort zurückgesetzt wurde. "
-"Bitte verwenden Sie die Passwort-Wiederherstellungsfunktion, falls Sie sich nicht anmelden können oder erstellen Sie ein neues Konto."
+"Leider gab es ein Problem mit dem Datenbanksystem, bei dem alle Änderungen "
+"an Nutzerkonten zwischen Februar 2025 und dem 12. November 2025 verloren "
+"gingen.<br>Daher kann es sein, dass Ihr Konto oder Ihr Passwort "
+"zurückgesetzt wurde. Bitte verwenden Sie die Passwort-"
+"Wiederherstellungsfunktion, falls Sie sich nicht anmelden können oder "
+"erstellen Sie ein neues Konto."
 
-#: .\my_auth\templates\registration\login.html:23
+#: .\my_auth\templates\registration\login.html:30
 #: .\my_auth\templates\registration\registration_form.html:10
 #: .\my_auth\templates\users\profile.html:49
 msgid "Username"
 msgstr "Nutzername"
 
-#: .\my_auth\templates\registration\login.html:23
+#: .\my_auth\templates\registration\login.html:30
 msgid "E-Mail/Username"
 msgstr "E-Mail/Nutzername"
 
-#: .\my_auth\templates\registration\login.html:25
+#: .\my_auth\templates\registration\login.html:32
 #: .\my_auth\templates\registration\registration_form.html:29
 #: .\my_auth\templates\users\profile.html:44
 msgid "Password"
 msgstr "Passwort"
 
-#: .\my_auth\templates\registration\login.html:27
+#: .\my_auth\templates\registration\login.html:34
 msgid "Login"
 msgstr "Anmelden"
 
-#: .\my_auth\templates\registration\login.html:33
+#: .\my_auth\templates\registration\login.html:40
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 
