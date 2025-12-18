@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
 from django.utils.translation import gettext_lazy as _
-from django.db import connections
 from django.db.models.signals import post_save, post_init
 from django.dispatch import receiver
 from django.contrib.sites.shortcuts import get_current_site
@@ -30,12 +29,12 @@ class AccountManager(BaseUserManager):
         if not username:
             raise ValueError(_("Users must have an unique username"))
         # check against database users
-        with connections["weatherdb"].cursor() as cursor:
-            cursor.execute("""
+        with wdb_engine.connect() as connection:
+            result = connection.execute(text("""
                 SELECT groname AS username
                 FROM pg_catalog.pg_group pg
-                UNION (SELECT usename FROM pg_catalog.pg_user);""")
-            db_users = [row[0] for row in cursor.fetchall()]
+                UNION (SELECT usename FROM pg_catalog.pg_user);"""))
+            db_users = [row[0] for row in result.fetchall()]
         if username in db_users:
             raise ValueError(_("This username is already a database user for the weatherDB database."))
         email=self.normalize_email(email)
@@ -137,8 +136,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def remove(self, **kwargs):
         if self.is_active and self.wdb_is_db_user:
-            with connections["weatherdb"].cursor() as cursor:
-                cursor.execute(
+            with wdb_engine.connect() as connection:
+                connection.execute(
                     f"DROP USER IF EXISTS \"{self.username}\";")
 
     @staticmethod
