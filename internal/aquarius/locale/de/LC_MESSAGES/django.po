@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-18 10:10+0100\n"
+"POT-Creation-Date: 2025-12-18 22:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:14
+#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:12
 msgid "Here is a list of all defined locations in our Aquarius system: "
 msgstr "Hier sehen Sie eine Übersicht über alle Standorte im Aquarius-System: "
-
-#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:29
-msgid ""
-"You do not have permission to view this content. Please contact the "
-"HydroApps administrator to gain access."
-msgstr ""
-"Sie haben keine Berechtigung, diesen Inhalt zu sehen. Bitte wenden Sie sich "
-"an den/die HydroApps-Administrator*in, um Zugriff zu erhalten."

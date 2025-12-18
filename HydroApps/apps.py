@@ -17,6 +17,8 @@ class MyAuthConfig(AppConfig):
                 from .models import App
                 if App._meta.db_table in connection.introspection.table_names():
                     for app_name in set(settings.APPS_ALT_NAMES.values()):
-                        App.objects.get_or_create(
-                            name=app_name,
-                            description="This app didn't yet get a description.")
+                        app, created = App.objects.get_or_create(
+                            name=app_name)
+                        if created:
+                            app.description = "This app is auto-created and has no description yet."
+                            app.save()

@@ -1,0 +1,3 @@
+USER_CLASS = "User"
+TEST_USER_CLASS = "Test-User"
+EDIT_USER_CLASS = "Edit-User"

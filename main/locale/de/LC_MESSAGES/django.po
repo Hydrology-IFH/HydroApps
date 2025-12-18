@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-18 12:13+0100\n"
+"POT-Creation-Date: 2025-12-18 12:39+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -1239,6 +1239,18 @@ msgstr ""
 "Die Kontaktdaten im Impressum sind nicht zu Werbezwecken zu verwenden. Eine "
 "kommerzielle Nutzung und Weitergabe dieser Daten ist nicht gestattet.\n"
 
+#: .\main\templates\missing-permissions.html:8
+msgid "Missing Permissions"
+msgstr ""
+
+#: .\main\templates\missing-permissions.html:10
+msgid ""
+"You don't have the permissions to see this app. Please reach out to the "
+"HydroApps administrator, to gain access."
+msgstr ""
+"Sie haben keine Berechtigung, diesen Inhalt zu sehen. Bitte kontaktieren Sie "
+"den/die HydroApps-Administrator*in, um Zugriff zu erhalten."
+
 #: .\main\templates\unreleased.html:8
 msgid "unreleased"
 msgstr "unveröffentlicht"
@@ -1251,38 +1263,3 @@ msgstr ""
 "Diese Anwendung wurde noch nicht veröffentlicht. Wenn Sie diese testen "
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
-
-#~ msgid "Those are some apps for internal use of the hydrology departement"
-#~ msgstr ""
-#~ "Dies sind einige Anwendungen für den internen Gebrauch der Professur für "
-#~ "Hydrologie"
-
-#~ msgid ""
-#~ "Here you will find some Hydro-internal apps that could be usefull for "
-#~ "you. "
-#~ msgstr ""
-#~ "Hier finden Sie einige Hydro-interne Anwendungen, die für Sie nützlich "
-#~ "sein könnten."
-
-#, fuzzy
-#~| msgid "Here is a list of all defined locations in our Aquarius system: "
-#~ msgid ""
-#~ "Here you will see an overview of all locations in the Aquarius System"
-#~ msgstr ""
-#~ "Hier ist eine Liste aller definierten Standorte in unserem Aquarius "
-#~ "System: "
-
-#~ msgid "Aquarius Insights"
-#~ msgstr "Aquarius Insights"
-
-#~ msgid "Here is a list of all defined locations in our Aquarius system: "
-#~ msgstr ""
-#~ "Hier ist eine Liste aller definierten Standorte in unserem Aquarius "
-#~ "System: "
-
-#~ msgid ""
-#~ "You do not have permission to view this content. Please contact the "
-#~ "HydroApps administrator to gain access."
-#~ msgstr ""
-#~ "Sie haben keine Berechtigung, diesen Inhalt zu sehen. Bitte kontaktieren "
-#~ "Sie den HydroApps-Administrator, um Zugriff zu erhalten."

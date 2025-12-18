@@ -44,10 +44,8 @@ AQUARIUS_API_ALLOWED_ROUTES = {
     ]
 }
 
-# Required permission class for Aquarius API access
-PERMISSION_CLASS_READ = 'aquarius-read'
-PERMISSION_CLASS_EDIT = 'aquarius-edit'
-AQUARIUS_PERMISSION_APP = 'internal:AQUARIUS'
+# Required for permissions
+AQUARIUS_APP_NAME = 'internal:AQUARIUS'
 
 # caching
 API_CACHE_DURATION = AQUARIUS_CONFIG.get('API_CACHE_DURATION', 60 * 60 * 24)

@@ -1,5 +1,6 @@
 from .settings import DEBUG, APPS_UNRELEASED, APPS_ALT_NAMES
 from my_auth.models import TokenPermission
+from my_auth.config import TEST_USER_CLASS
 
 def get_active_app(request):
     path_parts = request.META["PATH_INFO"].split("/")
@@ -14,7 +15,7 @@ def get_show_unreleased_app(request, active_app=None):
         request.user.permissions\
             .filter(
                 app__name=active_app,
-                permission_class__name="Test-User")\
+                permission_class__name=TEST_USER_CLASS)\
             .exists()):
         return True
     if ("token" in request.GET and
@@ -33,12 +34,11 @@ def get_dict_show_unreleased_apps(request):
 
 
 def default_context(request):
-    context = {
+    active_app = get_active_app(request)
+    return {
         "debug": DEBUG,
-        "active_app": get_active_app(request),
+        "active_app": active_app,
+        "base_template": f"{active_app}/base.html",
+        "app_unreleased": active_app in APPS_UNRELEASED,
+        "show_unreleased_apps": get_dict_show_unreleased_apps(request),
     }
-    context["base_template"] = f"{context['active_app']}/base.html"
-    context["app_unreleased"] = context['active_app'] in APPS_UNRELEASED
-    context["show_unreleased_apps"] = get_dict_show_unreleased_apps(request)
-
-    return context

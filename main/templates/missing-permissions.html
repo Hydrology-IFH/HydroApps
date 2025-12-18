@@ -1,0 +1,15 @@
+{% extends base_template %}
+{% load i18n %}
+
+{% block content %}
+<div class="container-fluid alert alert-danger d-flex align-items-center" role "alert">
+  <h1 class="me-2" ><i class="bi bi-exclamation-triangle-fill"></i></h1>
+  <div>
+    <h2>{% trans "Missing Permissions" %}</h2>
+    <p>
+    {% trans "You don't have the permissions to see this app. Please reach out to the HydroApps administrator, to gain access." %}
+    </p>
+  </div>
+  <h1 class="ms-2" ><i class="bi bi-exclamation-triangle-fill"></i></h1>
+</div>
+{% endblock %}

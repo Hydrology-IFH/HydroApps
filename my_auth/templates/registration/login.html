@@ -17,6 +17,7 @@
   <form method="post" action="{% url 'login' app_name=active_app %}?next={% url active_app|add:':home' %}">
     {% if "restricted_content_redirect" in request.GET %}
     <div class="alert alert-warning" role="alert">
+      <h2>{% trans "Login required" %}</h2>
       {% trans "To view this content, you need to be logged in and have the right permissions." %}
     </div>
     {% endif %}

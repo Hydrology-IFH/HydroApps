@@ -4,6 +4,8 @@ import warnings
 from django.db.utils import ProgrammingError
 from django.db import connection
 
+from .config import TEST_USER_CLASS, USER_CLASS, EDIT_USER_CLASS
+
 class MyAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'my_auth'
@@ -45,12 +47,27 @@ class MyAuthConfig(AppConfig):
                 from .models import PermissionClass, Permission
                 from HydroApps.models import App
                 if PermissionClass._meta.db_table in db_tables:
-                    test_class, _ = PermissionClass.objects.get_or_create(
-                        name="Test-User",
-                        description="Gives User test access to a specific app defined in the my_auth.Permission")
+                    test_class, created = PermissionClass.objects.get_or_create(
+                        name=TEST_USER_CLASS)
+                    if created:
+                        test_class.description = "Gives User test access to a specific app defined in the my_auth.Permission"
+                        test_class.save()
                     if Permission._meta.db_table in db_tables and App._meta.db_table in db_tables:
                         for app in App.objects.all():
                             Permission.objects.get_or_create(
                                 app=app,
                                 permission_class=test_class)
 
+                # create User class but don't associate with an app
+                user_class, created = PermissionClass.objects.get_or_create(
+                    name=USER_CLASS)
+                if created:
+                    user_class.description = "Gives User the ability to access a specific app"
+                    user_class.save()
+
+                # create Edit-User class but don't associate with an app
+                edit_user_class, created = PermissionClass.objects.get_or_create(
+                    name=EDIT_USER_CLASS)
+                if created:
+                    edit_user_class.description = "Gives User the ability to edit content in a specific app"
+                    edit_user_class.save()

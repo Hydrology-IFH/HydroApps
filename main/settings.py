@@ -72,7 +72,7 @@ INSTALLED_APPS = [
 ]
 
 # apps that are not yet released and only visible to test users
-APPS_UNRELEASED = ["kombstra", "internal"]
+APPS_UNRELEASED = ["kombstra"]
 
 # apps that have an alternative name url-prefix: app_name
 APPS_ALT_NAMES = {
@@ -189,6 +189,7 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = "user_profile"
 LOGOUT_REDIRECT_URL = "home"
+LOGIN_URL="/HydroApps/auth/accounts/login/"
 
 TEST_RUNNER = "main.tests.testRunner.HydroAppsTestRunner"
 

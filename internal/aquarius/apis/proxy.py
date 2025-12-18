@@ -17,12 +17,11 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
 from urllib.parse import urljoin, parse_qs
-from .decorators import check_aquarius_permission, rate_limit_user
 
+from my_auth.config import USER_CLASS, EDIT_USER_CLASS
+from .decorators import check_aquarius_permission, rate_limit_user
 from ..config import (AQUARIUS_API_ALLOWED_ROUTES,
                       AQUARIUS_API_ENDPOINTS_URL,
-                      PERMISSION_CLASS_READ,
-                      PERMISSION_CLASS_EDIT,
                       AQUARIUS_USER,
                       AQUARIUS_PWD,
                       AQUARIUS_URL)
@@ -144,14 +143,14 @@ class AquariusAPIProxyView(View):
                 'message': 'An unexpected error occurred'
             }, status=500)
 
-    @method_decorator(check_aquarius_permission(PERMISSION_CLASS_READ))
+    @method_decorator(check_aquarius_permission(USER_CLASS))
     def get(self, request, endpoint, route, subroute=None):
         """
         Handle GET requests to Aquarius API
         """
         return self.make_request('GET', endpoint, route, subroute, **request.GET.dict())
 
-    @method_decorator(check_aquarius_permission(PERMISSION_CLASS_EDIT))
+    @method_decorator(check_aquarius_permission(EDIT_USER_CLASS))
     def put(self, request, endpoint, route, subroute=None):
         """
         Handle PUT requests to Aquarius API

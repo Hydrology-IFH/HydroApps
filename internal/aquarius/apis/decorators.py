@@ -14,13 +14,13 @@ from functools import wraps
 from django.utils import timezone
 
 from my_auth.models import Account
+from my_auth.config import USER_CLASS
 from ..config import (RATE_LIMIT_PER_USER,
-                      PERMISSION_CLASS_READ,
-                      AQUARIUS_PERMISSION_APP)
+                      AQUARIUS_APP_NAME)
 
 logger = logging.getLogger(__name__)
 
-def check_aquarius_permission(permission_class=PERMISSION_CLASS_READ):
+def check_aquarius_permission(permission_class=USER_CLASS):
     """
     Decorator to check if user has aquarius API permission
     """
@@ -33,7 +33,7 @@ def check_aquarius_permission(permission_class=PERMISSION_CLASS_READ):
             try:
                 account = Account.objects.get(id=user.id)
 
-                if not account.has_perm(f"{AQUARIUS_PERMISSION_APP}.{permission_class}"):
+                if not account.has_perm(f"{AQUARIUS_APP_NAME}.{permission_class}"):
                     return JsonResponse(
                         {
                             'error': 'Permission denied',

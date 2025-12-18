@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
+
 from my_auth.models import Account, Permission, PermissionClass
+from my_auth.config import TEST_USER_CLASS
 from HydroApps.models import App
 
 # Base test case classes for views
@@ -59,7 +61,7 @@ class BaseTestCase:
             test_permission,_ = Permission.objects.get_or_create(
                 app=App.objects.get_or_create(name=self.app_name)[0],
                 permission_class=PermissionClass.objects.get_or_create(
-                    name="Test-User")[0])
+                    name=TEST_USER_CLASS)[0])
             self.account.permissions.add(test_permission)
             self.account.save()
 

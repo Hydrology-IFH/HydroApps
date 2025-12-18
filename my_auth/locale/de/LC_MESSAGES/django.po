@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-18 12:13+0100\n"
+"POT-Creation-Date: 2025-12-18 12:39+0100\n"
 "PO-Revision-Date: 2024-02-14 12:13+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -280,12 +280,18 @@ msgid "Register"
 msgstr "Registrieren"
 
 #: .\my_auth\templates\registration\login.html:20
+msgid "Login required"
+msgstr "Login erforderlich"
+
+#: .\my_auth\templates\registration\login.html:21
 msgid ""
 "To view this content, you need to be logged in and have the right "
 "permissions."
-msgstr "Um den Inhalt der aufgerufenen Seite anzusehen, müssen Sie eingeloggt sein und die entsprechenden Berechtigungen besitzen."
+msgstr ""
+"Um den Inhalt der aufgerufenen Seite anzusehen, müssen Sie eingeloggt sein "
+"und die entsprechenden Berechtigungen besitzen."
 
-#: .\my_auth\templates\registration\login.html:25
+#: .\my_auth\templates\registration\login.html:26
 msgid ""
 "Unfortunatly there was a problem with the database system and all user "
 "account changes between February 2025 and the 12th of November 2025 have "
@@ -300,27 +306,27 @@ msgstr ""
 "Wiederherstellungsfunktion, falls Sie sich nicht anmelden können oder "
 "erstellen Sie ein neues Konto."
 
-#: .\my_auth\templates\registration\login.html:30
+#: .\my_auth\templates\registration\login.html:31
 #: .\my_auth\templates\registration\registration_form.html:10
 #: .\my_auth\templates\users\profile.html:49
 msgid "Username"
 msgstr "Nutzername"
 
-#: .\my_auth\templates\registration\login.html:30
+#: .\my_auth\templates\registration\login.html:31
 msgid "E-Mail/Username"
 msgstr "E-Mail/Nutzername"
 
-#: .\my_auth\templates\registration\login.html:32
+#: .\my_auth\templates\registration\login.html:33
 #: .\my_auth\templates\registration\registration_form.html:29
 #: .\my_auth\templates\users\profile.html:44
 msgid "Password"
 msgstr "Passwort"
 
-#: .\my_auth\templates\registration\login.html:34
+#: .\my_auth\templates\registration\login.html:35
 msgid "Login"
 msgstr "Anmelden"
 
-#: .\my_auth\templates\registration\login.html:40
+#: .\my_auth\templates\registration\login.html:41
 msgid "Forgot Password"
 msgstr "Passwort vergessen"
 

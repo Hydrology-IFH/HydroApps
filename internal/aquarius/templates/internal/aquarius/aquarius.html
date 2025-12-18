@@ -8,9 +8,7 @@
 {% endblock %}
 
 {% block content %}
-
   <h1>Aquarius Insights</h1>
-  {% if permission_read %}
     <p>{% trans "Here is a list of all defined locations in our Aquarius system: " %}</p>
     <div id="app" ></div>
     <script>
@@ -25,7 +23,4 @@
   {% block scripts %}
     {% vite_asset 'src/aquarius/main.js' %}
   {% endblock %}
-  {% else %}
-    <p>{% trans "You do not have permission to view this content. Please contact the HydroApps administrator to gain access." %}</p>
-  {% endif %}
 {% endblock %}

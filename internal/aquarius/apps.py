@@ -3,7 +3,8 @@ import warnings
 from django.db.utils import ProgrammingError
 from django.db import connection
 
-from .config import PERMISSION_CLASS_READ, PERMISSION_CLASS_EDIT, AQUARIUS_PERMISSION_APP
+from my_auth.config import USER_CLASS, EDIT_USER_CLASS
+from .config import AQUARIUS_APP_NAME
 
 class InternalAquariusConfig:
     # This is a base class that needs to get imported in the internal app
@@ -45,19 +46,14 @@ class InternalAquariusConfig:
                 if PermissionClass._meta.db_table in db_tables and \
                         Permission._meta.db_table in db_tables and \
                         App._meta.db_table in db_tables:
-                    permission_class_read, _ = PermissionClass.objects.get_or_create(
-                        name=PERMISSION_CLASS_READ,
-                        description="Gives User the abilitiy to read Aquarius data")
-                    permission_class_edit, _ = PermissionClass.objects.get_or_create(
-                        name=PERMISSION_CLASS_EDIT,
-                        description="Gives User the ability to edit Aquarius data")
-                    internal_aq_app, _ = App.objects.get_or_create(
-                        name=AQUARIUS_PERMISSION_APP,
+                    internal_aq_app, _ = App.objects.update_or_create(
+                        name=AQUARIUS_APP_NAME,
                         description="Hydro-Apps for internal usage")
-                    Permission.objects.get_or_create(
+                    Permission.objects.update_or_create(
                         app=internal_aq_app,
-                        permission_class=permission_class_read,)
-                    Permission.objects.get_or_create(
+                        permission_class=PermissionClass.objects.get(name=USER_CLASS))
+                    Permission.objects.update_or_create(
                         app=internal_aq_app,
-                        permission_class=permission_class_edit,)
+                        permission_class=PermissionClass.objects.get(
+                            name=EDIT_USER_CLASS))
 
