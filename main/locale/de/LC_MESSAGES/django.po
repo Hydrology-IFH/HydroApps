@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-12 13:23+0100\n"
+"POT-Creation-Date: 2025-12-18 10:06+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,36 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:12
-msgid "Aquarius Insights"
-msgstr "Aquarius Insights"
-
-#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:14
-msgid "Here is a list of all defined locations in our Aquarius system: "
-msgstr "Hier ist eine Liste aller definierten Standorte in unserem Aquarius System: "
-
-#: .\internal\aquarius\templates\internal\aquarius\aquarius.html:28
-msgid ""
-"You do not have permission to view this content. Please contact the "
-"HydroApps administrator to gain access."
-msgstr "Sie haben keine Berechtigung, diesen Inhalt zu sehen. Bitte kontaktieren Sie den HydroApps-Administrator, um Zugriff zu erhalten."
-
-#: .\internal\templates\internal\base.html:8
-msgid "Those are some apps for internal use of the hydrology departement"
-msgstr "Dies sind einige Anwendungen für den internen Gebrauch der Professur für Hydrologie"
-
-#: .\internal\templates\internal\base.html:19
-#: .\internal\templates\internal\home.html:19
-#: .\template_new_app\templates\app_name\base.html:19
-#: .\template_new_app\templates\app_name\home.html:19
-msgid "Home"
-msgstr "Startseite"
-
-#: .\internal\templates\internal\home.html:20
-msgid ""
-"Here you will find some Hydro-internal apps that could be usefull for you. "
-msgstr "Hier finden Sie einige Hydro-interne Anwendungen, die für Sie nützlich sein könnten."
-
 #: .\template_new_app\templates\app_name\app.html:13
 msgid "App Name App"
 msgstr ""
@@ -53,6 +23,11 @@ msgstr ""
 #: .\template_new_app\templates\app_name\base.html:8
 msgid "A description of your project."
 msgstr ""
+
+#: .\template_new_app\templates\app_name\base.html:19
+#: .\template_new_app\templates\app_name\home.html:19
+msgid "Home"
+msgstr "Startseite"
 
 #: .\template_new_app\templates\app_name\base.html:20
 #: .\template_new_app\templates\app_name\method.html:7
@@ -67,11 +42,11 @@ msgstr ""
 msgid "This web tool is .... "
 msgstr ""
 
-#: .\main\settings.py:251
+#: .\main\settings.py:252
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:252
+#: .\main\settings.py:253
 msgid "English"
 msgstr "Englisch"
 
@@ -489,17 +464,6 @@ msgstr ""
 "(WIDERSPRUCH NACH ART. 21 ABS. 1 DSGVO)."
 
 #: .\main\templates\datenschutz.html:63
-#, fuzzy
-#| msgid ""
-#| "IF YOUR PERSONAL DATA ARE PROCESSED FOR THE PURPOSE OF DIRECT MARKETING, "
-#| "YOU \n"
-#| "  HAVE THE RIGHT TO OBJECT AT ANY TIME TO THE PROCESSING OF YOUR PERSONAL "
-#| "DATA \n"
-#| "  FOR THE PURPOSE OF SUCH MARKETING.THIS ALSO APPLIES TO PROFILING, TO "
-#| "THE EXTENT THAT IT IS CONNECTED WITH \n"
-#| "  SUCH DIRECT ADVERTISING. IF YOUOBJECT, YOUR PERSONAL DATA WILL NO "
-#| "LONGER BE USED FOR THE PURPOSE OF \n"
-#| "  DIRECT MARKETING.(ACCORDING TO ART. 21 PARA. 2 DSGVO)."
 msgid ""
 "IF YOUR PERSONAL DATA ARE PROCESSED FOR THE PURPOSE OF DIRECT MARKETING, "
 "YOU\n"
@@ -524,15 +488,6 @@ msgid "Right to complain to the competent supervisory authority"
 msgstr "Beschwerde&shy;recht bei der zuständigen Aufsichts&shy;behörde"
 
 #: .\main\templates\datenschutz.html:69
-#, fuzzy
-#| msgid ""
-#| "In the event of violations of the GDPR, the data subjects shall have a "
-#| "right \n"
-#| "  of appeal at a supervisory authority, in particular in the Member State "
-#| "of \n"
-#| "  their habitual residence, their place of work or the place of the "
-#| "alleged infringement. The right of appeal exists \n"
-#| "  without prejudice to other administrative or judicial remedies."
 msgid ""
 "In the event of violations of the GDPR, the data subjects shall have a "
 "right\n"
@@ -553,16 +508,6 @@ msgid "Right of data portability"
 msgstr "Recht auf Daten&shy;übertrag&shy;barkeit"
 
 #: .\main\templates\datenschutz.html:74
-#, fuzzy
-#| msgid ""
-#| "You have the right to get the data, that we process automatically on "
-#| "the \n"
-#| "  basis of your consent or in fulfillment of a contract, to yourself or "
-#| "to a third party in a valid, machine-\n"
-#| "  readable format.If you request the direct transfer of the data to "
-#| "another responsible \n"
-#| "  readable format. This will only be done to the extent that it is "
-#| "technically feasible."
 msgid ""
 "You have the right to get the data, that we process automatically on the\n"
 "  basis of your consent or in fulfillment of a contract, to yourself or to a "
@@ -584,15 +529,6 @@ msgid "Information, deletion and correction"
 msgstr "Auskunft, Löschung und Berichtigung"
 
 #: .\main\templates\datenschutz.html:79
-#, fuzzy
-#| msgid ""
-#| "Within the framework of the applicable legal provisions, you have the "
-#| "right at any time to free information \n"
-#| "  about your stored personal data, its origin and recipient and the "
-#| "purpose of data processing and, if necessary, \n"
-#| "  a right to correction or deletion of this data. \n"
-#| "  For this purpose, as well as for further questions on the subject of "
-#| "personal data, you can contact us at any time."
 msgid ""
 "Within the framework of the applicable legal provisions, you have the right "
 "at any time to free information\n"
@@ -1315,3 +1251,38 @@ msgstr ""
 "Diese Anwendung wurde noch nicht veröffentlicht. Wenn Sie diese testen "
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
+
+#~ msgid "Those are some apps for internal use of the hydrology departement"
+#~ msgstr ""
+#~ "Dies sind einige Anwendungen für den internen Gebrauch der Professur für "
+#~ "Hydrologie"
+
+#~ msgid ""
+#~ "Here you will find some Hydro-internal apps that could be usefull for "
+#~ "you. "
+#~ msgstr ""
+#~ "Hier finden Sie einige Hydro-interne Anwendungen, die für Sie nützlich "
+#~ "sein könnten."
+
+#, fuzzy
+#~| msgid "Here is a list of all defined locations in our Aquarius system: "
+#~ msgid ""
+#~ "Here you will see an overview of all locations in the Aquarius System"
+#~ msgstr ""
+#~ "Hier ist eine Liste aller definierten Standorte in unserem Aquarius "
+#~ "System: "
+
+#~ msgid "Aquarius Insights"
+#~ msgstr "Aquarius Insights"
+
+#~ msgid "Here is a list of all defined locations in our Aquarius system: "
+#~ msgstr ""
+#~ "Hier ist eine Liste aller definierten Standorte in unserem Aquarius "
+#~ "System: "
+
+#~ msgid ""
+#~ "You do not have permission to view this content. Please contact the "
+#~ "HydroApps administrator to gain access."
+#~ msgstr ""
+#~ "Sie haben keine Berechtigung, diesen Inhalt zu sehen. Bitte kontaktieren "
+#~ "Sie den HydroApps-Administrator, um Zugriff zu erhalten."

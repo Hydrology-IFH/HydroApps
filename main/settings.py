@@ -256,7 +256,8 @@ LANGUAGE_CODE = 'en'
 USE_I18N = True
 USE_L10N = True
 LOCALE_PATHS = [
-    BASE_DIR / "main/locale"
+    BASE_DIR / "main/locale",
+    BASE_DIR / "internal/aquarius/locale",
 ]
 
 # Static files (CSS, JavaScript, Images)

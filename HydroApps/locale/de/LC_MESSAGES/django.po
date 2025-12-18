@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-12 13:23+0100\n"
+"POT-Creation-Date: 2025-12-18 09:47+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: .\HydroApps\templates\HydroApps\home.html:40
+#: .\HydroApps\templates\HydroApps\home.html:7
 msgid ""
 "On this site you will find several Web Apllications that got created by the "
 "department of Hydrology at the University of Freiburg."
@@ -26,7 +26,7 @@ msgstr ""
 "Professur für Hydrologie der Albert-Ludwigs-Universität in Freiburg erstellt "
 "wurden."
 
-#: .\HydroApps\templates\HydroApps\home.html:49
+#: .\HydroApps\templates\HydroApps\home.html:16
 msgid ""
 "This is an Application to get quality checked, corrected and filled weather "
 "station time series for all of germany."
@@ -34,7 +34,7 @@ msgstr ""
 "Dies ist eine Anwendung, um qualitätsgeprüfte, korrigierte und gefüllte "
 "Wetterstations-Zeitreihen für ganz Deutschland zu erhalten."
 
-#: .\HydroApps\templates\HydroApps\home.html:59
+#: .\HydroApps\templates\HydroApps\home.html:26
 msgid ""
 "This is an Application to get the climate projections of single weather "
 "stations."
@@ -42,11 +42,11 @@ msgstr ""
 "Dies ist eine Anwendung zur Ermittlung wie sich die Klimaprojektionen auf "
 "einzelne Wetterstationen auswirken."
 
-#: .\HydroApps\templates\HydroApps\home.html:69
+#: .\HydroApps\templates\HydroApps\home.html:36
 msgid "Classification of heavy rain events for the state of Baden-Württemberg."
 msgstr "Klassifizierung von Starkregenereignissen für Baden-Württemberg."
 
-#: .\HydroApps\templates\HydroApps\home.html:79
+#: .\HydroApps\templates\HydroApps\home.html:46
 msgid ""
 "An app to demonstrate the outcomes of the AVOSS project. E.g. illustrate the "
 "benefits of the pluvial flood index (german: SFI)."
@@ -54,21 +54,21 @@ msgstr ""
 "Eine Anwendung, um die Ergebnisse des AVOSS Projekts darzustellen. Z.B. die "
 "Vorteile des Sturzflutindexes (SFI) zu zeigen."
 
-#: .\HydroApps\templates\HydroApps\home.html:90
+#: .\HydroApps\templates\HydroApps\home.html:57
 msgid "Classification of heavy rain events for all of germany."
 msgstr "Klassifizierung von Starkregenereignissen für ganz Deutschland."
 
-#: .\HydroApps\templates\HydroApps\home.html:102
-msgid "A collection of Hydro internal tools."
-msgstr "Eine Sammlung von internen Hydro-Tools."
+#: .\HydroApps\templates\HydroApps\home.html:69
+msgid "A collection of Hydrology internal tools."
+msgstr "Eine Sammlung von Hydrologie internen Tools."
 
-#: .\HydroApps\templates\HydroApps\home.html:114
+#: .\HydroApps\templates\HydroApps\home.html:81
 msgid "This is an Application to get the near natural water balance of cities."
 msgstr ""
 "Dies ist eine Anwendung, um die naturnahe urbanen Wasserbilanz von Städten "
 "zu bestimmen."
 
-#: .\HydroApps\templates\HydroApps\home.html:125
+#: .\HydroApps\templates\HydroApps\home.html:92
 msgid ""
 "This is an Application to simulate the water balance of a small area in "
 "Freiburg and to show the effects near natural rainwater management can have "
@@ -78,7 +78,7 @@ msgstr ""
 "Freiburg zu simulieren und um zu zeigen, welche Auswirkungen eine naturnahe "
 "Regenwasserbewirtschaftung darauf haben kann."
 
-#: .\HydroApps\templates\HydroApps\home.html:136
+#: .\HydroApps\templates\HydroApps\home.html:103
 msgid ""
 "This application simulates the mobilization of biocides from facades in "
 "cities and shows a potential risk to groundwater."
@@ -86,18 +86,18 @@ msgstr ""
 "Diese Anwendung simuliert die Mobilisierung von Bioziden aus Fassaden in "
 "Städten und zeigt ein mögliches Risiko für das Grundwasser auf."
 
-#: .\HydroApps\templates\HydroApps\home.html:146
+#: .\HydroApps\templates\HydroApps\home.html:113
 msgid "Measurments"
 msgstr "Messungen"
 
-#: .\HydroApps\templates\HydroApps\home.html:154
+#: .\HydroApps\templates\HydroApps\home.html:121
 msgid "Water level Dreisam"
 msgstr "Pegel Dreisam"
 
-#: .\HydroApps\templates\HydroApps\home.html:159
+#: .\HydroApps\templates\HydroApps\home.html:126
 msgid "Meteo Station Vauban"
 msgstr "Meteo-Station Vauban"
 
-#: .\HydroApps\templates\HydroApps\home.html:164
+#: .\HydroApps\templates\HydroApps\home.html:131
 msgid "Meteo Station Eichstetten"
 msgstr "Meteo-Station Eichstetten"
