@@ -16,8 +16,11 @@
   <p>{% trans "No Account yet?" %} --> <a href="{% url 'register' app_name=active_app %}" class ="btn btn-primary">{% trans "Register" %}</a></p>
   <form method="post" action="{% url 'login' app_name=active_app %}?next={% url active_app|add:':home' %}">
     <div class="alert alert-warning" role="alert">
+    {% if form.errors %}
+    <div class="alert alert-info" role="alert">
       {% trans "Unfortunatly there was a problem with the database system and all user account changes between February 2025 and the 12th of November 2025 have been lost.<br>Therefor it could be that your account or your password has been reset. Please use the password reset function if you can't log in or create a new account." %}
     </div>
+    {% endif %}
     {% csrf_token %}
     {% bootstrap_form_errors form %}
     {% trans "Username" as user %} {% trans "E-Mail/Username" as ph_user %}
