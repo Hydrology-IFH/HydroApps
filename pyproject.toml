@@ -3,10 +3,10 @@ name = "hydroapps"
 version = "0.0.0"
 description = "This is a django Website of different Hydrological Applications created by the department of hydrology at the University of Freiburg. The Website is hosted on [apps.hydro.uni-freiburg.de](https:\\\\apps.hydro.uni-freiburg.de)"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "croniter>=6.0.0",
-    "django==5.*",
+    "django==6.*",
     "django-bootstrap5>=25.1",
     "django-cors-headers>=4.7.0",
     "django-hcaptcha>=0.2.0",
@@ -14,8 +14,8 @@ dependencies = [
     "django-request>=1.7.0",
     "django-vite>=3.1.0",
     "django-webmaster-verification>=0.4.3",
-    "djangorestframework==3.*",
-    "djangorestframework-gis==1.*",
+    "djangorestframework>=3",
+    "djangorestframework-gis>=1.2",
     "gdal>=3.10.1",
     "geopandas>=1.0.1",
     "pandas>=2.2.3",
@@ -25,7 +25,7 @@ dependencies = [
     "rasterio>=1.4.3",
     "shapely>=2.0.7",
     "sqlalchemy==2.*",
-    "weatherdb>=1.2.1",
+    "weatherdb>=1.2.7",
 ]
 
 [tool.uv.sources]

@@ -336,10 +336,15 @@ CACHES = {
 }
 
 # GDAL
-if "GDAL_LIBRARY_PATH" in os.environ:
-    GDAL_LIBRARY_PATH = os.environ["GDAL_LIBRARY_PATH"]
-if "GEOS_LIBRARY_PATH" in os.environ:
-    GEOS_LIBRARY_PATH = os.environ["GEOS_LIBRARY_PATH"]
+try:
+    import osgeo
+    GDAL_LIBRARY_PATH = (Path(osgeo._here)/"gdal.dll").resolve().as_posix()
+    GEOS_LIBRARY_PATH = (Path(osgeo._here)/"geos_c.dll").resolve().as_posix()
+except ImportError:
+    if "GDAL_LIBRARY_PATH" in os.environ:
+        GDAL_LIBRARY_PATH = os.environ["GDAL_LIBRARY_PATH"]
+    if "GEOS_LIBRARY_PATH" in os.environ:
+        GEOS_LIBRARY_PATH = os.environ["GEOS_LIBRARY_PATH"]
 
 # temporary folder
 CACHE_DIR = Path(secrets.CACHE_DIR)
