@@ -222,3 +222,33 @@ a.nav-link{
   width: 0%;
   left: 50%;
 }
+
+/* cards on home page */
+  div.hydroapps-card{
+    width: 20rem;
+  }
+  div.hydroapps-card > img.card-img-top{
+    padding-top: 0.5rem;
+    margin-top: auto;
+    max-height: 15rem;
+    display: block;
+    width: auto;
+    max-width: 98%;
+  }
+  div.hydroapps-card > div.card-body{
+    flex-grow: 0;
+    margin-top: auto !important;
+  }
+  div.hydroapps-card > i.bi-box-arrow-up-right{
+    position: absolute;
+    align-self: end;
+    margin-right: 0.8rem !important;
+    margin-top: 0.5rem !important;
+    font-size: 1.5rem;
+    align-self: flex-end !important;
+    color: #004A99;
+  }
+  div.a.list-group-item {
+    --bs-list-group-action-hover-color: #fff;
+    --bs-list-group-action-hover-bg: #0d6efd;
+  }

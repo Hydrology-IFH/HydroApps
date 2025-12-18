@@ -2,46 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{%block head %}
-<style type="text/css">
-  div.card{
-    width: 20rem;
-  }
-  img.card-img-top{
-    padding-top: 0.5rem;
-    margin-top: auto;
-    max-height: 15rem;
-    disply: block;
-    width: auto;
-    max-width: 98%;
-  }
-  div.card-body{
-    flex-grow: 0;
-    margin-top: auto !important;
-  }
-  div.card > i.bi-box-arrow-up-right{
-    position: absolute;
-    align-self: end;
-    margin-right: 0.8rem !important;
-    margin-top: 0.5rem !important;
-    font-size: 1.5rem;
-    align-self: flex-end !important;
-    color: #004A99;
-  }
-  a.list-group-item {
-    --bs-list-group-action-hover-color: #fff;
-    --bs-list-group-action-hover-bg: #0d6efd;
-  }
-</style>
-{% endblock %}
-
 {% block content %}
   <h3>Hydro-Apps</h3>
   <p>{% trans "On this site you will find several Web Apllications that got created by the department of Hydrology at the University of Freiburg." %}</p>
   <div class="container">
     <div class="row g-4">
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a href="{% url 'weatherdb:home' %}" class="stretched-link"></a>
           <img src="{% static 'weatherdb/img/icon-big.png' %}" class="card-img-top mx-auto" alt="Logo of WeatherDB" >
           <div class="card-body">
@@ -51,7 +18,7 @@
         </div>
       </div>
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a href="{% url 'RheiKlim:home' %}" class="stretched-link"></a>
           <img src="{% static 'RheiKlim/img/logo-520.png' %}" class="card-img-top mx-auto" alt="Logo of RheiKlim">
           <div class="card-body">
@@ -61,7 +28,7 @@
         </div>
       </div>
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a href="{% url 'sri_bw:home' %}" class="stretched-link"></a>
           <img src="{% static 'sri_bw/img/Logo_512.png' %}" class="card-img-top mx-auto" alt="Logo of SRI-BW">
           <div class="card-body">
@@ -71,7 +38,7 @@
         </div>
       </div>
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a href="{% url 'sfi_demo:home' %}" class="stretched-link"></a>
           <img src="{% static 'sfi_demo/img/AVOSS-Logo_512.png' %}" class="card-img-top mx-auto" alt="Logo of AVOSS project for SFI-Demonstrator App">
           <div class="card-body">
@@ -82,7 +49,7 @@
       </div>
       {% if show_unreleased_apps.kombstra %}
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a href="{% url 'kombstra:home' %}" class="stretched-link"></a>
           <img src="{% static 'kombstra/img/Logo_512.png' %}" class="card-img-top mx-auto" alt="Logo of KombStRA">
           <div class="card-body">
@@ -92,20 +59,20 @@
         </div>
       </div>
       {% endif %}
-      {% if show_unreleased_apps.internal %}
+      {% if True %}
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a href="{% url 'internal:home' %}" class="stretched-link"></a>
           <img src="{% static 'img/logo_HydroApps.png' %}" class="card-img-top mx-auto" alt="Logo of Hydro-internals">
           <div class="card-body">
             <h5 class="card-title">Hydro-Internals</h5>
-            <p class="card-text">{% trans "A collection of Hydro internal tools." %} </p>
+            <p class="card-text">{% trans "A collection of Hydrology internal tools." %} </p>
           </div>
         </div>
       </div>
       {% endif %}
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-cardh-100">
           <a target="_blank" rel="noopener noreferrer" href="https://naturwb.de" class="stretched-link"></a>
           <img src="{% static 'logos_other_sites/Logo_NatUrWB.png' %}" class="card-img-top mx-auto" alt="Logo of NatUrWB" >
           <i class="bi bi-box-arrow-up-right"></i>
@@ -116,7 +83,7 @@
         </div>
       </div>
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a target="_blank" rel="noopener noreferrer" href="http://www.naturnahe-regenwasserbewirtschaftung.info/" class="stretched-link"></a>
           <img src="{% static 'logos_other_sites/Logo_FReWaB.png' %}" class="card-img-top mx-auto" alt="Logo of FReWaB" >
           <i class="bi bi-box-arrow-up-right"></i>
@@ -127,7 +94,7 @@
         </div>
       </div>
       <div class="col col-flex flex-grow-0">
-        <div class="card h-100">
+        <div class="card hydroapps-card h-100">
           <a target="_blank" rel="noopener noreferrer" href="https://www.biozidauswaschung.de/" class="stretched-link"></a>
           <img src="{% static 'logos_other_sites/Logo_FReWaB-PLUS.png' %}" class="card-img-top mx-auto" alt="Logo of FReWaB-Plus" >
           <i class="bi bi-box-arrow-up-right"></i>
