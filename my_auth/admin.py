@@ -11,16 +11,42 @@ class UserAdminConfig(UserAdmin):
     search_fields=['email', 'username']
     readonly_fields=['date_joined', 'last_login', "db_password", "expiration_notification"]
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('username', 'first_name', 'last_name', "personal_introduction", "confirmed_data_policy")}),
-        ('Activity', {'fields': ('date_joined', 'last_login', 'expiration_notification')}),
-        ('WeatherDB', {'fields': ("wdb_is_db_user", 'wdb_max_downloads', 'db_password')}),
-        ('Permissions', {'fields': ('is_email_confirmed', "is_staff", 'is_superuser', 'is_active', 'permissions')}),
+        ("Login", {
+            'classes': ('wide',),
+            'fields': ('email', 'username', 'password')
+        }),
+        ('Personal info', {
+            'fields': ('first_name', 'last_name', "personal_introduction", "confirmed_data_policy")
+        }),
+        ('Activity', {
+            'classes': ('wide',),
+            'fields': ('date_joined', 'last_login', 'expiration_notification')
+        }),
+        ('WeatherDB', {
+            'classes': ('wide',),
+            'fields': ("wdb_is_db_user", 'wdb_max_downloads', 'db_password')
+        }),
+        ('Permissions', {
+            'classes': ('wide',),
+            'fields': ('is_email_confirmed', "is_staff", 'is_superuser', 'is_active', 'permissions')
+        }),
     )
     add_fieldsets = (
-        (None, {
+        ("Login", {
             'classes': ('wide',),
-            'fields': ('email', 'first_name', 'password1', 'password2'),
+            'fields': ('email', 'username', 'password1', 'password2'),
+        }),
+        ('Personal info', {
+            'classes': ('wide',),
+            'fields': ('first_name', 'last_name', "personal_introduction", "confirmed_data_policy")
+        }),
+        ('WeatherDB', {
+            'classes': ('wide',),
+            'fields': ("wdb_is_db_user", 'wdb_max_downloads')
+        }),
+        ('Permissions', {
+            'classes': ('wide',),
+            'fields': ('is_email_confirmed', 'is_active', 'permissions')
         }),
     )
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'wdb_is_db_user')
