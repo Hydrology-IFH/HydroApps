@@ -57,7 +57,7 @@ class LocationViewSet(viewsets.ReadOnlyModelViewSet):
         elif filter_type == 'valid':
             return Location.objects.filter(~filter_invalid)
 
-    @method_decorator(check_aquarius_permission(EditPermission))
+    @method_decorator(check_aquarius_permission(EditPermission()))
     def patch(self, request, identifier, *args, **kwargs):
         """
         Trigger location update from Aquarius for a specific location.

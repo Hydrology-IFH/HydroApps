@@ -58,19 +58,19 @@ export const useConfig = defineStore(
       async fetchLocations() {
         this.loadingLocations = true;
         axios.get(`${this.apiLocationsUrl}?filter=valid`, {
-            headers: {
-                'Cache-Control': 'no-cache, no-store, must-revalidate',
-                'Expires': '0'
-            }
-          })
-          .then(response => {
-            this.locations = response.data;
-            this.loadingLocations = false;
-          })
-          .catch(error => {
-            console.error('Error fetching locations:', error);
-            this.loadingLocations = false;
-          });
+          headers: {
+              'Cache-Control': 'no-cache, no-store, must-revalidate',
+              'Expires': '0'
+          }
+        })
+        .then(response => {
+          this.locations = response.data;
+          this.loadingLocations = false;
+        })
+        .catch(error => {
+          console.error('Error fetching locations:', error);
+          this.loadingLocations = false;
+        });
       },
       async fetchTags() {
         try {
@@ -85,21 +85,21 @@ export const useConfig = defineStore(
                 Applicability: "AppliesToLocations",
               }
           });
+          console.log('Fetched tags:', response.data);
           this.availableTags = response.data.Tags;
         } catch (error) {
           console.error('Error fetching tags:', error);
         }
       },
       async fetchFolders() {
-        try {
-          const response = await axios.get(
-            `${this.aquariusAPIUrls["provision"].replace('ROUTE', 'locationfolders')}`,
-            {
-              headers: {
-                'Cache-Control': 'max-age=60',
-                'Expires': new Date(Date.now() + 60 * 1000).toUTCString(),
-              }
-          });
+        axios.get(
+          `${this.aquariusAPIUrls["provision"].replace('ROUTE', 'locationfolders')}`,
+          {
+            headers: {
+              'Cache-Control': 'max-age=60',
+              'Expires': new Date(Date.now() + 60 * 1000).toUTCString(),
+            }
+        }).then(response => {
           this.availableFolders = response.data.Results.map(folder => {
             return {
               label: folder.LocationFolderName,
@@ -107,9 +107,9 @@ export const useConfig = defineStore(
               parentValue: folder.ParentLocationFolderPath?.split(".").slice(-1)[0] || null
             };
           });
-        } catch (error) {
+        }).catch(error => {
           console.error('Error fetching folders:', error);
-        }
+        });
       }
     }
   }

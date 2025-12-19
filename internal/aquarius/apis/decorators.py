@@ -13,39 +13,26 @@ from django.http import JsonResponse
 from functools import wraps
 from django.utils import timezone
 
-from my_auth.models import Account
-from my_auth.config import USER_CLASS
-from ..config import (RATE_LIMIT_PER_USER,
-                      AQUARIUS_APP_NAME)
+from ..config import RATE_LIMIT_PER_USER
+from .permissions import ReadPermission
 
 logger = logging.getLogger(__name__)
 
-def check_aquarius_permission(permission_class=USER_CLASS):
+def check_aquarius_permission(permission=ReadPermission()):
     """
     Decorator to check if user has aquarius API permission
     """
     def decorator(view_func):
         @wraps(view_func)
         def wrapper(request, *args, **kwargs):
-            user = request.user
-
-            # Check if user has the required permission class
-            try:
-                account = Account.objects.get(id=user.id)
-
-                if not account.has_perm(f"{AQUARIUS_APP_NAME}.{permission_class}"):
-                    return JsonResponse(
-                        {
-                            'error': 'Permission denied',
-                            'message': f'User does not have {permission_class} permission'
-                        },
-                        status=403)
-
-            except Account.DoesNotExist:
-                return JsonResponse({
-                    'error': 'Permission denied',
-                    'message': 'User account not found'
-                }, status=403)
+            # Check for token permission first
+            if not permission.has_permission(request):
+                return JsonResponse(
+                    {
+                        'error': 'Permission denied',
+                        'message': 'User does not have the needed permission'
+                    },
+                    status=403)
 
             return view_func(request, *args, **kwargs)
         return wrapper

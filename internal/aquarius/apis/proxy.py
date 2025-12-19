@@ -13,18 +13,17 @@ import logging
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import View
 from urllib.parse import urljoin, parse_qs
 
-from my_auth.config import USER_CLASS, EDIT_USER_CLASS
 from .decorators import check_aquarius_permission, rate_limit_user
 from ..config import (AQUARIUS_API_ALLOWED_ROUTES,
                       AQUARIUS_API_ENDPOINTS_URL,
                       AQUARIUS_USER,
                       AQUARIUS_PWD,
                       AQUARIUS_URL)
+from .permissions import ReadPermission, EditPermission
 
 logger = logging.getLogger(__name__)
 
@@ -112,7 +111,6 @@ aquarius_adapter = AquariusAPIAdapter()
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-@method_decorator(login_required, name='dispatch')
 @method_decorator(rate_limit_user, name='dispatch')
 class AquariusAPIProxyView(View):
     """
@@ -143,14 +141,14 @@ class AquariusAPIProxyView(View):
                 'message': 'An unexpected error occurred'
             }, status=500)
 
-    @method_decorator(check_aquarius_permission(USER_CLASS))
+    @method_decorator(check_aquarius_permission(ReadPermission()))
     def get(self, request, endpoint, route, subroute=None):
         """
         Handle GET requests to Aquarius API
         """
         return self.make_request('GET', endpoint, route, subroute, **request.GET.dict())
 
-    @method_decorator(check_aquarius_permission(EDIT_USER_CLASS))
+    @method_decorator(check_aquarius_permission(EditPermission()))
     def put(self, request, endpoint, route, subroute=None):
         """
         Handle PUT requests to Aquarius API
@@ -171,5 +169,5 @@ class AquariusAPIProxyView(View):
             # If JSON parsing fails, try to parse as query string
             params = parse_qs(request.META.get('QUERY_STRING', ''))
             params = {k: v[0] if len(v) == 1 else v for k, v in params.items()}
-        print(params)
+
         return self.make_request('PUT', endpoint, route, subroute, **params)
