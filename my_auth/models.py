@@ -341,6 +341,20 @@ class TokenPermission(models.Model):
                 ).exists()
         return False
 
+    def has_perm(self, perm_names:str):
+        return perm_names in self.get_permissions()
+
+    def has_perms(self, perm_names:list):
+        return all([self.has_perm(perm) for perm in perm_names])
+
+    def get_permissions(self):
+        if not hasattr(self, "_perm_cache"):
+            perms = self.permissions.values_list("app__name", "permission_class__name").order_by()
+            setattr(
+                self, "_perm_cache", {f"{app}.{perm}" for app, perm in perms}
+            )
+        return getattr(self, "_perm_cache")
+
     @property
     def token_url(self):
         return f"{settings.BASE_URL}?token={self.token}"
