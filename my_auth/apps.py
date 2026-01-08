@@ -58,16 +58,16 @@ class MyAuthConfig(AppConfig):
                                 app=app,
                                 permission_class=test_class)
 
-                # create User class but don't associate with an app
-                user_class, created = PermissionClass.objects.get_or_create(
-                    name=USER_CLASS)
-                if created:
-                    user_class.description = "Gives User the ability to access a specific app"
-                    user_class.save()
+                    # create User class but don't associate with an app
+                    user_class, created = PermissionClass.objects.get_or_create(
+                        name=USER_CLASS)
+                    if created:
+                        user_class.description = "Gives User the ability to access a specific app"
+                        user_class.save()
 
-                # create Edit-User class but don't associate with an app
-                edit_user_class, created = PermissionClass.objects.get_or_create(
-                    name=EDIT_USER_CLASS)
-                if created:
-                    edit_user_class.description = "Gives User the ability to edit content in a specific app"
-                    edit_user_class.save()
+                    # create Edit-User class but don't associate with an app
+                    edit_user_class, created = PermissionClass.objects.get_or_create(
+                        name=EDIT_USER_CLASS)
+                    if created:
+                        edit_user_class.description = "Gives User the ability to edit content in a specific app"
+                        edit_user_class.save()
