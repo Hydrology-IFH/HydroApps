@@ -1,6 +1,4 @@
 <script setup>
-import { disable } from 'ol/rotationconstraint';
-
   const selection = defineModel({ type: [String, null], required: true })
   const props = defineProps({
     options: { type: Array[String], required: true },

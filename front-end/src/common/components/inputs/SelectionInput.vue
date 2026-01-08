@@ -2,6 +2,7 @@
   import { computed, ref, onMounted } from 'vue';
 
   import BaseInput from './BaseInput.vue';
+  import SelectionButton from './utils/SelectionButton.vue';
 
   const props = defineProps({
     label: {
@@ -48,69 +49,69 @@
 
   // add arrow listener
   const selectRef = ref(null);
-  const buttonsRef = ref({});
   const handleKeyDown = (event) => {
-      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-        event.preventDefault();
-        event.stopPropagation();
-        let currentIndex = optionsCleaned.value.map(option => option.key).indexOf(model.value);
-        let nextIndex;
-        if (props.asButtons) {
-          if (event.key === 'ArrowRight') {
-            nextIndex = (currentIndex + 1) % optionsCleaned.value.length;
-          } else if (event.key === 'ArrowLeft') {
-            nextIndex = (currentIndex - 1 + optionsCleaned.value.length) % optionsCleaned.value.length;
-          }
-        } else {
-          if (event.key === 'ArrowDown') {
-            nextIndex = (currentIndex + 1) % optionsCleaned.value.length;
-          } else if (event.key === 'ArrowUp') {
-            nextIndex = (currentIndex - 1 + optionsCleaned.value.length) % optionsCleaned.value.length;
-          }
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      event.stopPropagation();
+      let currentIndex = optionsCleaned.value.map(option => option.key).indexOf(model.value);
+      let nextIndex;
+      if (props.asButtons) {
+        if (event.key === 'ArrowRight') {
+          nextIndex = (currentIndex + 1) % optionsCleaned.value.length;
+        } else if (event.key === 'ArrowLeft') {
+          nextIndex = (currentIndex - 1 + optionsCleaned.value.length) % optionsCleaned.value.length;
         }
-        if (!nextIndex) {
-          console.warn("Unhandled arrow key:", event.key);
-          return;
+      } else {
+        if (event.key === 'ArrowDown') {
+          nextIndex = (currentIndex + 1) % optionsCleaned.value.length;
+        } else if (event.key === 'ArrowUp') {
+          nextIndex = (currentIndex - 1 + optionsCleaned.value.length) % optionsCleaned.value.length;
         }
-        model.value = optionsCleaned.value[nextIndex].key;
-        emits('change', optionsCleaned.value[nextIndex].key);
-        event.preventDefault();
-        event.stopPropagation();
       }
-    };
-  const addEventListeners = (refObj) => {
-    refObj.value.addEventListener('focus', () => {
-      window.addEventListener('keydown', handleKeyDown);
-      refObj.value.addEventListener('focusout', () => {
-        window.removeEventListener('keydown', handleKeyDown);
-      });
+      if (nextIndex == undefined) {
+        console.warn("Unhandled arrow key:", event.key);
+        return;
+      }
+      model.value = optionsCleaned.value[nextIndex].key;
+      emits('change', optionsCleaned.value[nextIndex].key);
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
+  const addMouseEventListeners = (event) => {
+    window.addEventListener('keydown', handleKeyDown);
+    event.target.addEventListener('focusout', () => {
+      window.removeEventListener('keydown', handleKeyDown);
     });
   };
-
-  onMounted(() => {
-    window.selectRef = selectRef;
-    if (props.asButtons) {
-      Object.keys(buttonsRef.value).forEach((key) => {
-        addEventListeners(buttonsRef.value[key]);
-      });
-    } else {
-      addEventListeners(selectRef);
-    }
-  });
-
 
 </script>
 
 <template>
   <BaseInput :label="label">
+    <template
+      v-if="asButtons"
+    >
+      <SelectionButton
+        v-for="option in optionsCleaned"
+        :key="option.key"
+        v-model="model"
+        :button-key="option.key"
+        :label="option.label"
+        :active="active"
+        @change="$emit('change', $event)"
+        @focus="addMouseEventListeners"
+      />
+    </template>
     <select
-      v-if="!asButtons"
+      v-else
       ref="selectRef"
       v-model="model"
       class="form-select"
       :aria-label="label"
       :disabled="!active"
       @change="$emit('change', $event)"
+      @focus="addMouseEventListeners"
     >
       <option
         v-for="option in optionsCleaned"
@@ -121,21 +122,6 @@
         {{ option.label }}
       </option>
     </select>
-    <template
-      v-if="asButtons"
-    >
-      <button
-        v-for="option in optionsCleaned"
-        ref="buttonsRef[option.key]"
-        :key="option.key"
-        class="btn btn-stretch"
-        :class="[(option.key == model) ? 'btn-primary':'btn-secondary']"
-        :disabled="!active"
-        @click="model = option.key; $emit('change', $event)"
-      >
-        {{ option.label ? option.label : option }}
-      </button>
-    </template>
     <slot name="after" />
   </BaseInput>
 </template>
