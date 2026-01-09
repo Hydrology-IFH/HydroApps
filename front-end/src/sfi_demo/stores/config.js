@@ -42,6 +42,13 @@ export const useConfig = defineStore(
       preparedness: "medium", // one of low, medium, high
       damagePerHoushold: false, // true, false
 
+      // nowcast settings
+      nowcast: {
+        leadTime: "-45", // in minutes, either -15 or -45
+        kind: "nowcast", // one of hindcast, nowcast
+        ensemble: "med", // one of low, med, high
+      },
+
       // System settings
       region_selection_active: true,
     })

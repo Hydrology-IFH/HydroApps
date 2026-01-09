@@ -31,7 +31,7 @@
 </script>
 
 <template>
-  <template v-if="config.kind=='event'">
+  <template v-if="config.kind=='event' || config.kind=='nowcast'">
     <template v-if="regionDates.length==1">
       <MenuInfo
         :label="$t('menu_date_label')"

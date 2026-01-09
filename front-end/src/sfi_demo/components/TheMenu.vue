@@ -10,6 +10,7 @@
   import TheMenuOpacity from './menu/TheMenuOpacity.vue';
   import TheMenuColorscale from './menu/TheMenuColorscale.vue';
   import TheMenuPreparedness from './menu/TheMenuPreparedness.vue';
+  import TheMenuNowcast from './menu/TheMenuNowcast.vue';
 
   const fromRef = ref(null);
 
@@ -35,6 +36,7 @@
       <TheMenuDuration />
     </div>
     <TheMenuDate />
+    <TheMenuNowcast />
     <TheMenuPreparedness />
     <h4>{{ $t('menu_header_map') }}</h4>
     <div id="menu-map">

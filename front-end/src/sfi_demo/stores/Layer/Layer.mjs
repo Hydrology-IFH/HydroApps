@@ -92,13 +92,21 @@ class BaseLayer {
       sri: this.config.sri,
       duration: this.config.duration,
       soilMoisture: this.config.soilMoisture,
-      date: this.config.date[this.config.region]
+      date: this.config.date[this.config.region],
+      nowcast: this.config.nowcast,
     });
     let base_url = `/static/sfi_demo/${this.config.region}/${this.config.kind}`
     if (this.config.kind == "matrix") {
       return `${base_url}/${this.config.sri}/${this.config.duration}/${this.config.soilMoisture}/${this.file}`
     } else if (this.config.kind == "event") {
       return `${base_url}/${this.config.date[this.config.region]}/${this.file}`
+    } else if (this.config.kind == "nowcast") {
+      base_url = `${base_url}/${this.config.date[this.config.region]}/${this.config.nowcast.leadTime}/${this.config.nowcast.kind}`
+      if (this.config.nowcast.kind == "hindcast") {
+        return `${base_url}/${this.file}`
+      } else if (this.config.nowcast.kind == "nowcast") {
+        return `${base_url}_${this.config.nowcast.ensemble}/${this.file}`
+      }
     } else {
       console.error("Invalid kind for layer")
       return ""

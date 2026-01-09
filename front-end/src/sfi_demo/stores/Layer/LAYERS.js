@@ -72,13 +72,20 @@ export const LAYERS = [
     name: i18n.t("label_layer_precipitation"),
     unit: "mm",
     decimals: 0,
-    relevantConfigs: [...relevantConfigsDefaults, "sri", "duration",],
-    url: ({ region, kind, sri, duration, date }) => {
+    relevantConfigs: [...relevantConfigsDefaults, "sri", "duration", "nowcast", ],
+    url: ({ region, kind, sri, duration, date, nowcast }) => {
       let base_url = `/static/sfi_demo/${region}/${kind}`
       if (kind == "matrix") {
         return `${base_url}/${sri}/${duration}/N.tif`
       } else if (kind == "event") {
         return `${base_url}/${date}/N.tif`
+      } else if (kind == "nowcast") {
+        base_url = `${base_url}/${date}/${nowcast.leadTime}/${nowcast.kind}`
+        if (nowcast.kind == "hindcast") {
+          return `${base_url}/N.tif`
+        } else if (nowcast.kind == "nowcast") {
+          return `${base_url}_${nowcast.ensemble}/N.tif`
+        }
       } else {
         console.error("Invalid kind for precipitation layer")
         return ""
@@ -135,12 +142,19 @@ export const LAYERS = [
   },
   {
     id: "SRI",
-    url: ({ region, kind, sri, duration, date }) => {
+    url: ({ region, kind, sri, duration, date, nowcast }) => {
       let base_url = `/static/sfi_demo/${region}/${kind}`
       if (kind == "matrix") {
         return `${base_url}/${sri}/${duration}/SRI.tif`
       } else if (kind == "event") {
         return `${base_url}/${date}/SRI.tif`
+      } else if (kind == "nowcast") {
+        base_url = `${base_url}/${date}/${nowcast.leadTime}/${nowcast.kind}`
+        if (nowcast.kind == "hindcast") {
+          return `${base_url}/SRI.tif`
+        } else if (nowcast.kind == "nowcast") {
+          return `${base_url}_${nowcast.ensemble}/SRI.tif`
+        }
       } else {
         console.error("Invalid kind for SRI layer")
         return ""
@@ -149,7 +163,7 @@ export const LAYERS = [
     name: i18n.t("label_layer_sri"),
     unit: "",
     decimals: 1,
-    relevantConfigs: [...relevantConfigsDefaults, "sri", "duration",],
+    relevantConfigs: [...relevantConfigsDefaults, "sri", "duration", "nowcast"],
     legend: {
       tooltips: Object.entries(sriCats).map((el) => {
         let i18n_opts = {
@@ -239,11 +253,13 @@ export const LAYERS = [
   {
     id: "soil_moisture",
     url: ({ region, kind, soilMoisture, date }) => {
-      let base_url = `/static/sfi_demo/${region}/${kind}`
+      let base_url = `/static/sfi_demo/${region}`
       if (kind == "matrix") {
-        return `${base_url}/theta/${soilMoisture}/theta_wrzl.tif`
+        return `${base_url}/${kind}/theta/${soilMoisture}/theta_wrzl.tif`
       } else if (kind == "event") {
-        return `${base_url}/${date}/theta_wrzl.tif`
+        return `${base_url}/${kind}/${date}/theta_wrzl.tif`
+      } else if (kind == "nowcast") {
+        return `${base_url}/event/${date}/theta_wrzl.tif`
       } else {
         console.error("Invalid kind for soil moisture layer")
         return ""
@@ -351,7 +367,7 @@ export const LAYERS = [
     decimals: 1,
     relevantConfigs: [
       ...relevantConfigsDefaults,
-      "soil_moisture", "sri", "duration"],
+      "soil_moisture", "sri", "duration", "nowcast"],
     style: {
       options: {
         defaultKey: "density",
@@ -420,7 +436,7 @@ export const LAYERS = [
     },
     relevantConfigs: [
       ...relevantConfigsDefaults,
-      "soil_moisture", "sri", "duration"],
+      "soil_moisture", "sri", "duration", "nowcast"],
     legend: {
       tooltips: [
         { label: "0", message: i18n.t("tooltip_sfi_0") },
@@ -489,7 +505,7 @@ export const LAYERS = [
       decimals: 0,
       relevantConfigs: [
         ...relevantConfigsDefaults,
-        "soil_moisture", "sri", "duration", "show_sfgf"],
+        "soil_moisture", "sri", "duration", "show_sfgf", "nowcast"],
       legend: {
         tooltips: [
           { label: "1", message: i18n.t("tooltip_sfgf_1") }

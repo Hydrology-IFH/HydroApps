@@ -1,16 +1,31 @@
 <script setup>
+  import { computed, watchEffect } from "vue";
   import { useTranslation } from "i18next-vue";
 
-  import { useConfig } from '~/stores/config.js';
   import SelectionInput from "~~/components/inputs/SelectionInput.vue";
+  import { useConfig } from '~/stores/config.js';
 
   const config = useConfig();
   const { i18next } = useTranslation();
 
-  const kinds = {
-    matrix: i18next.t('menu_kind_matrix'),
-    event: i18next.t('menu_kind_event'),
-  }
+  const kinds = computed(() => {
+    let _kinds = {
+      matrix: i18next.t('menu_kind_matrix'),
+      event: i18next.t('menu_kind_event'),
+    };
+    if (config.region == "Wieslauf"){
+      _kinds["nowcast"] = i18next.t('menu_kind_nowcast');
+    }
+
+    return _kinds;
+  });
+
+  // ensure valid kind when region changes
+  watchEffect(() => {
+    if (config.kind == "nowcast" && config.region != "Wieslauf") {
+      config.kind = "event";
+    }
+  });
 
 </script>
 

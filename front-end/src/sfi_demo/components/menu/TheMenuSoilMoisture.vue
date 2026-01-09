@@ -15,10 +15,12 @@
   const min = {
     matrix: 10,
     event: 5,
+    nowcast: NaN
   };
   const max = {
     matrix: 90,
     event: 95,
+    nowcast: NaN
   };
 
   const getTickTooltip = (value) => {
