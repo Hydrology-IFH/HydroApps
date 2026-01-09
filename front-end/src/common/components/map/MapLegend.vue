@@ -147,15 +147,16 @@
                     :style="{ transform: `translateX(${(-50 + index / (element.labels.length-1) * 100)}%)` }"
                   >
                     {{ label.label }}
-                    <v-tooltip
-                      v-if="label.hasOwnProperty('tooltip')"
-                      :text="label.tooltip"
-                      class="arrow-bottom"
-                      offset="20px"
-                      activator="parent"
-                      location="top"
-                    />
+
                   </div>
+                  <v-tooltip
+                    v-if="label.hasOwnProperty('tooltip')"
+                    :text="label.tooltip"
+                    class="arrow-bottom"
+                    offset="20px"
+                    activator="parent"
+                    location="top"
+                  />
                 </div>
               </slot>
               <slot v-else>
@@ -167,10 +168,12 @@
                 </div>
                 <v-tooltip
                   v-if="element.hasOwnProperty('tooltip')"
+                  :text="element.tooltip"
                   class="arrow-bottom"
                   offset="0px"
                   activator="parent"
-                  location="top">
+                  location="top"
+                >
                   <span
                     v-html="element.tooltip"
                   />

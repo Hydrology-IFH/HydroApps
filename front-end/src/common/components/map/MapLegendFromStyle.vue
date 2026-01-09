@@ -6,12 +6,12 @@
 
   // define variables
   const props = defineProps({
-    layerName: String,
-    style: Object,
-    map: Object,
-    ignoreLabels: { type: Array, default: [] }, // ["label1", "label2"]
+    layerName: {type: String, required: true},
+    style: {type: Object, required: true},
+    map: {type: Object, required: true},
+    ignoreLabels: { type: Array, default: () => [] }, // ["label1", "label2"]
     valueConverter: { type: Function, default: (x) => x},
-    tooltips: { type: Array, default: [] }, // [{label: "label", message: "message"}]
+    tooltips: { type: Array, default: () => [] }, // [{label: "label", message: "message"}]
     unit: { type: String, default: "" },
     visible: { type: Boolean, default: true }
   })
@@ -153,5 +153,10 @@
 </script>
 
 <template>
-  <MapLegend :title="title" :elements="elements" :map="map" :visible="visible" />
+  <MapLegend
+    :title="title"
+    :elements="elements"
+    :map="map"
+    :visible="visible"
+  />
 </template>
