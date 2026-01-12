@@ -147,16 +147,15 @@
                     :style="{ transform: `translateX(${(-50 + index / (element.labels.length-1) * 100)}%)` }"
                   >
                     {{ label.label }}
-
+                    <v-tooltip
+                      v-if="label.hasOwnProperty('tooltip')"
+                      :text="label.tooltip"
+                      class="arrow-bottom"
+                      offset="20px"
+                      activator="parent"
+                      location="top"
+                    />
                   </div>
-                  <v-tooltip
-                    v-if="label.hasOwnProperty('tooltip')"
-                    :text="label.tooltip"
-                    class="arrow-bottom"
-                    offset="20px"
-                    activator="parent"
-                    location="top"
-                  />
                 </div>
               </slot>
               <slot v-else>
@@ -223,8 +222,7 @@
 
   /* continuous colorbar */
   div.colorbar-con {
-    width: -moz-available;
-    width: -webkit-fill-available;
+    flex-grow: 1;
     min-width: 50%;
   }
 
