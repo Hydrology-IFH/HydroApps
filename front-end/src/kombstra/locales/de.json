@@ -65,7 +65,7 @@
   "popup_table_header_pval": "Menge",
   "popup_table_header_rain": "Niederschlag",
   "slider_event_rank_label": "Ereignisrang",
-  "slider_event_rank_tooltip": "Wählen Sie den Rang des Ereignisses. Z.B. das Top 1 Ereignis pro Gitterzelle.",
+  "slider_event_rank_tooltip": "Wählen Sie den Rang des Ereignisses. Z.B. das Top {{ event_rank }} Ereignis pro Gitterzelle.",
   "slider_opacity_label": "Deckkraft",
   "slider_opacity_tooltip": "Stellen Sie die Deckkraft des Rasters ein, um die darunter liegende Karte zu sehen.",
   "slider_sri_tooltip": "Wählen Sie den SRI, um die Anzahl der Ereignisse >= SRI zu erhalten.",

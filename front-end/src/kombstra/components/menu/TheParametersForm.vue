@@ -81,7 +81,7 @@
       :label="$t('slider_event_rank_label')"
       :min="1"
       :max="config.spans.max_rank"
-      :tooltip-msg="$t('slider_event_rank_tooltip')"
+      :tooltip-msg="$t('slider_event_rank_tooltip', { event_rank: config.event_rank })"
       num-field-width="70px"
     />
     <span

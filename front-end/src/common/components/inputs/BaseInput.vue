@@ -1,5 +1,5 @@
 <script setup>
-  import { onMounted, ref, defineEmits } from 'vue'
+  import { onMounted, ref, defineEmits, watch } from 'vue'
 
   // define props
   const props = defineProps({
@@ -14,9 +14,21 @@
   const emit = defineEmits(['focusin', 'focusout'])
 
   // Initialize Bootstrap tooltip
+  let tooltip
   onMounted(() => {
     if (props.tooltipMsg != "") {
-      new window.bootstrap.Tooltip(labelRef.value)
+      tooltip = new window.bootstrap.Tooltip(labelRef.value)
+    }
+  })
+
+  // Update tooltip content when tooltipMsg prop changes
+  watch(() => props.tooltipMsg, (newVal) => {
+    if (labelRef.value) {
+      if (tooltip) {
+        tooltip.setContent({ '.tooltip-inner': newVal })
+      } else {
+        tooltip = new window.bootstrap.Tooltip(labelRef.value)
+      }
     }
   })
 </script>
