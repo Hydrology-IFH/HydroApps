@@ -147,6 +147,7 @@ export const LAYERS = [
         ["color", 0,0,0,0]
       ]
     },
+    valueConverter: (val) => val == 9998 ? i18n.t('nodata_98') : val,
   },
   {
     id: "event_sri",
