@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-18 09:47+0100\n"
+"POT-Creation-Date: 2026-01-12 18:15+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -53,6 +53,10 @@ msgid ""
 msgstr ""
 "Eine Anwendung, um die Ergebnisse des AVOSS Projekts darzustellen. Z.B. die "
 "Vorteile des Sturzflutindexes (SFI) zu zeigen."
+
+#: .\HydroApps\templates\HydroApps\home.html:56
+msgid "Classified summer heavy rainfall events"
+msgstr ""
 
 #: .\HydroApps\templates\HydroApps\home.html:57
 msgid "Classification of heavy rain events for all of germany."

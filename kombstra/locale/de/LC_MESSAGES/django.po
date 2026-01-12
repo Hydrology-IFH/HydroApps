@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-05 22:01+0100\n"
+"POT-Creation-Date: 2026-01-12 18:19+0100\n"
 "PO-Revision-Date: 2024-01-25 14:42+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -50,6 +50,12 @@ msgstr "Datum des Events"
 #: .\kombstra\models.py:39
 msgid "Rank of the event in the grid-cell"
 msgstr "Rang des Ereignisses in dieser Rasterzelle"
+
+#: .\kombstra\templates\kombstra\base.html:6
+#: .\kombstra\templates\kombstra\base.html:15
+#: .\kombstra\templates\kombstra\map.html:13
+msgid "Classified summer heavy rainfall events"
+msgstr "Klassifizierte sommerliche Starkregenereignisse"
 
 #: .\kombstra\templates\kombstra\base.html:8
 msgid ""
@@ -141,10 +147,6 @@ msgstr ""
 "AVOSS ist Teil der Fördermaßnahme WAX des Bundesminsiteriums für Forschung, "
 "Technologie und Raumfahrt (BMFTR)"
 
-#: .\kombstra\templates\kombstra\map.html:13
-msgid "KombStRA map"
-msgstr "KombStRA Karte"
-
 #: .\kombstra\templates\kombstra\method.html:7
 msgid "KomBStRA Method"
 msgstr "KomBStRA Methode"
@@ -209,8 +211,8 @@ msgstr ""
 #: .\kombstra\templates\kombstra\method.html:12
 msgid ""
 "In general, precipitation events in heavy rainfall categories&nbsp;1 and 2 "
-"can be classified as normal, events with HRI&nbsp;3 to 5 as intense and events "
-"with HRI&nbsp;6 and 7 as exceptional heavy rainfall events. Events in "
+"can be classified as normal, events with HRI&nbsp;3 to 5 as intense and "
+"events with HRI&nbsp;6 and 7 as exceptional heavy rainfall events. Events in "
 "category&nbsp;8 and above can be categorized as extreme heavy rainfall "
 "events."
 msgstr ""

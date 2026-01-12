@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-05 17:43+0100\n"
+"POT-Creation-Date: 2026-01-12 18:15+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -32,27 +32,31 @@ msgstr ""
 "Eine Internetseite mit verschiedenen Web-Anwendungen die an der Professur "
 "für Hydrologie an der Uni Freiburg erstellt wurden."
 
-#: .\main\templates\base.html:172
+#: .\main\templates\base.html:111
+msgid "Classified summer heavy rainfall events"
+msgstr "Klassifizierte sommerliche Starkregenereignisse"
+
+#: .\main\templates\base.html:180
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:174
+#: .\main\templates\base.html:182
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:178
+#: .\main\templates\base.html:186
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:181
+#: .\main\templates\base.html:189
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:217
+#: .\main\templates\base.html:225
 msgid "This website is in debuging mode"
 msgstr "Diese Website ist aktuel im Debug-Modus"
 
-#: .\main\templates\base.html:225
+#: .\main\templates\base.html:233
 msgid ""
 "This Application did not yet get released. You can see it, because you're a "
 "Test-User"
@@ -61,11 +65,11 @@ msgstr ""
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
 
-#: .\main\templates\base.html:237
+#: .\main\templates\base.html:245
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:238
+#: .\main\templates\base.html:246
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 
