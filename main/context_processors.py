@@ -1,6 +1,7 @@
 from .settings import DEBUG, APPS_UNRELEASED, APPS_ALT_NAMES
 from my_auth.models import TokenPermission
 from my_auth.config import TEST_USER_CLASS
+from internal.context_processor import internal_context_processor
 
 def get_active_app(request):
     path_parts = request.META["PATH_INFO"].split("/")
@@ -28,7 +29,6 @@ def get_show_unreleased_app(request, active_app=None):
             active_app)
     return False
 
-
 def get_dict_show_unreleased_apps(request):
     return {app: get_show_unreleased_app(request, app) for app in set(APPS_ALT_NAMES.values())}
 
@@ -41,4 +41,5 @@ def default_context(request):
         "base_template": f"{active_app}/base.html",
         "app_unreleased": active_app in APPS_UNRELEASED,
         "show_unreleased_apps": get_dict_show_unreleased_apps(request),
+        **internal_context_processor(request),
     }

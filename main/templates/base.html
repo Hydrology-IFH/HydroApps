@@ -112,6 +112,14 @@
                               </a>
                             </li>
                           {% endif %}
+                          {% if "home" in internal_app_permissions %}
+                            <li>
+                              <a href="{% url 'internal:home' %}"
+                                class="dropdown-item  {% if active_app == 'internal' %}active{% endif %}">
+                                Hydro-Internals
+                              </a>
+                            </li>
+                          {% endif %}
                           <li><a href="https://naturwb.de" class="dropdown-item" target="_blank" rel="noopener noreferrer">
                             <div class="d-flex">
                               <span class="me-auto">NatUrWB</span>
