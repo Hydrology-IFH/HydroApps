@@ -26,9 +26,21 @@
           <div class="col-md-7 col-12 order-md-1 order-2">
             <TheMapHeader />
             <TheMap />
+            <p
+              v-if="config.parameter === 'daily'"
+              class="explanation-daily-pos-1"
+            >
+              {{ $t('map_form_explanation_daily') }}
+            </p>
           </div>
           <div class="col-md-5 col-12 order-md-2 order-1">
             <TheParametersForm />
+            <p
+              v-if="config.parameter === 'daily'"
+              class="explanation-daily-pos-2"
+            >
+              {{ $t('map_form_explanation_daily') }}
+            </p>
           </div>
           <div
             v-if="config.parameter==='daily'"
@@ -36,6 +48,12 @@
           >
             <TheDailySRIChart />
           </div>
+          <p
+            v-if="config.parameter === 'daily'"
+            class="explanation-daily-pos-3 col-12"
+          >
+            {{ $t('map_form_explanation_daily') }}
+          </p>
         </div>
       </div>
     </ScreenshotWrapper>
@@ -52,6 +70,40 @@
     flex: 0 0 auto;
     width: auto;
     height: 1em;
+  }
+
+  @media (min-width: 0px) and (max-width: 767px) {
+    .explanation-daily-pos-1{
+      display: none;
+    }
+    .explanation-daily-pos-2{
+      display: none;
+    }
+    .explanation-daily-pos-3{
+      display: block;
+    }
+  }
+  @media (min-width: 768px) and (max-height: 750px) {
+    .explanation-daily-pos-1{
+      display: block;
+    }
+    .explanation-daily-pos-2{
+      display: none;
+    }
+    .explanation-daily-pos-3{
+      display: none;
+    }
+  }
+  @media (min-width: 768px) and (min-height: 751px) {
+    .explanation-daily-pos-1{
+      display: none;
+    }
+    .explanation-daily-pos-2{
+      display: block;
+    }
+    .explanation-daily-pos-3{
+      display: none;
+    }
   }
 </style>
 
