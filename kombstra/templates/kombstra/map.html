@@ -11,6 +11,8 @@
 {% block content %}
 
   <h1>{% trans "Classified summer heavy rainfall events" %}</h1>
+  <p>{% blocktrans %}Below, you can select various parameters to visualize. These generally refer to the 15 severest events per grid cell. However, if you select the menu item "Max. SRI on a specific date" as parameter, you can display the max. SRI or the max. precipitation amount for each grid cell for any day in the data period.{% endblocktrans %}</p>
+  <p>{% blocktrans %}If you click on a cell in the map, you will see a list of the 15 strongest events at that cell. You can see the respective value by hovering your mouse over it.{% endblocktrans %}</p>
   <div class="container p-0 zoomable">
     <div id="app"></div>
   </div>
