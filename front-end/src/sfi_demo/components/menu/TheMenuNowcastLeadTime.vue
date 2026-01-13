@@ -12,6 +12,7 @@
 
 <template>
   <SelectionInput
+    v-if="config.nowcast.kind === 'nowcast'"
     v-model="config.nowcast.leadTime"
     :label="$t('menu_nowcast_lead-time_label')"
     :options="times"
