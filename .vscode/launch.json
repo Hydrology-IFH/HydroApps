@@ -4,7 +4,7 @@
             "name": "Django server + open browser",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder:hydroapps_repo}\\manage.py",
+            "program": "${workspaceFolder:hydroapps_repo}/manage.py",
             "args": [
                 "runserver",
                 "localhost:8000",
@@ -23,7 +23,7 @@
             "name": "Django server",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder:hydroapps_repo}\\manage.py",
+            "program": "${workspaceFolder:hydroapps_repo}/manage.py",
             "args": [
                 "runserver",
                 "localhost:8000",
@@ -43,11 +43,11 @@
             "pathMappings": [
                 {
                     "url": "http://localhost:5173/static/front-end/src/common/utils/mapLayerStyles.mjs",
-                    "path": "${workspaceFolder}\\front-end\\src\\common\\utils\\mapLayerStyles.mjs"
+                    "path": "${workspaceFolder}/front-end/src/common/utils/mapLayerStyles.mjs"
                 },
                 {
                     "url": "http://localhost:5173/static/front-end/src/",
-                    "path": "${workspaceFolder}\\front-end\\src/"
+                    "path": "${workspaceFolder}/front-end/src/"
                 },
                 {
                     "url": "http://localhost:5173/static/front-end/src",
