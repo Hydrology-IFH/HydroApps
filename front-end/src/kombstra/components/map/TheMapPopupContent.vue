@@ -56,7 +56,7 @@
   const downloadData = () => {
     // create the csv content
     let header = [
-      "This is the KombStRA data for one raster cell"
+      "This is the KombStRA data for one raster cell",
       `cell-ID, ${props.gridId}`,
       `The cell center is located at (EPSG:4326): ${props.cellCenter[0]}, ${props.cellCenter[1]}.`,
       "The columns are:",
