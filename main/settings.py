@@ -367,6 +367,10 @@ DJANGO_VITE = {
     "default": {
         "static_url_prefix": "front-end/",
         "manifest_path": f"{STATIC_ROOT}/front-end/manifest.json",
+        "dev_mode": DEBUG,
+        "dev_server_protocol": "http",
+        "dev_server_host": "localhost",
+        "dev_server_port": 5173,
     },
 }
 
@@ -381,7 +385,3 @@ if DEBUG:
         "http://localhost:8080",
         "http://localhost:5173"]
 
-    # Vite settings
-    DJANGO_VITE["default"].update({
-        "dev_mode": True
-    })

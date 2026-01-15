@@ -14,6 +14,7 @@ export default defineConfig({
     watch: {
       include: 'vite.config.js',
     },
+    // outDir: path.resolve(rootDir, 'dist'),
     rollupOptions: {
       input: {
         kombstra: '/src/kombstra/main.js',

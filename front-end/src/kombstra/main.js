@@ -1,6 +1,9 @@
 import './assets/style.css';
 import '~~/styles/olmap.css';
 
+// import polyfill for module preload
+import 'vite/modulepreload-polyfill';
+
 // import libraries
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
