@@ -144,22 +144,19 @@ DATABASES = {
         }
     }
 }
-try:
-    if hasattr(secrets, "WDB_CON"):
-        wdb.config.set("database", "connection", secrets.WDB_CON)
-    wdb_url = wdb.db.db_engine.engine.url
-    DATABASES["weatherdb"] = {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': wdb_url.database,
-        'USER': wdb_url.username,
-        'PASSWORD': wdb_url.password,
-        'HOST': wdb_url.host,
-        'PORT': wdb_url.port,
-        'CONN_MAX_AGE': 120,
-        'CONN_HEALTH_CHECKS': True,
-    }
-except:
-    print("Could not connect to weatherdb")
+if hasattr(secrets, "WDB_CON"):
+    wdb.config.set("database", "connection", secrets.WDB_CON)
+wdb_url = wdb.db.db_engine.engine.url
+DATABASES["weatherdb"] = {
+    'ENGINE': 'django.contrib.gis.db.backends.postgis',
+    'NAME': wdb_url.database,
+    'USER': wdb_url.username,
+    'PASSWORD': wdb_url.password,
+    'HOST': wdb_url.host,
+    'PORT': wdb_url.port,
+    'CONN_MAX_AGE': 120,
+    'CONN_HEALTH_CHECKS': True,
+}
 
 
 DATABASE_ROUTERS = ['main.routers.MainRouter']
