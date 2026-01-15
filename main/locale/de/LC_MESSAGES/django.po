@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-12 18:15+0100\n"
+"POT-Creation-Date: 2026-01-15 15:32+0000\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: .\main\settings.py:253
+#: main/settings.py:250
 msgid "German"
 msgstr "Deutsch"
 
-#: .\main\settings.py:254
+#: main/settings.py:251
 msgid "English"
 msgstr "Englisch"
 
-#: .\main\templates\base.html:13
+#: main/templates/base.html:13
 msgid ""
 "A website with different Webtools created by the hydrology department at the "
 "university of Freiburg."
@@ -32,31 +32,31 @@ msgstr ""
 "Eine Internetseite mit verschiedenen Web-Anwendungen die an der Professur "
 "für Hydrologie an der Uni Freiburg erstellt wurden."
 
-#: .\main\templates\base.html:111
+#: main/templates/base.html:111
 msgid "Classified summer heavy rainfall events"
 msgstr "Klassifizierte sommerliche Starkregenereignisse"
 
-#: .\main\templates\base.html:180
+#: main/templates/base.html:180
 msgid "Profil"
 msgstr "Profil"
 
-#: .\main\templates\base.html:182
+#: main/templates/base.html:182
 msgid "Admin"
 msgstr "Admin"
 
-#: .\main\templates\base.html:186
+#: main/templates/base.html:186
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: .\main\templates\base.html:189
+#: main/templates/base.html:189
 msgid "Login"
 msgstr "Einloggen"
 
-#: .\main\templates\base.html:225
+#: main/templates/base.html:225
 msgid "This website is in debuging mode"
 msgstr "Diese Website ist aktuel im Debug-Modus"
 
-#: .\main\templates\base.html:233
+#: main/templates/base.html:233
 msgid ""
 "This Application did not yet get released. You can see it, because you're a "
 "Test-User"
@@ -65,27 +65,27 @@ msgstr ""
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
 
-#: .\main\templates\base.html:245
+#: main/templates/base.html:245
 msgid "imprint"
 msgstr "Impressum"
 
-#: .\main\templates\base.html:246
+#: main/templates/base.html:246
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 
-#: .\main\templates\datenschutz.html:6
+#: main/templates/datenschutz.html:6
 msgid "Privacy aggrement"
 msgstr "Datenschutzerklärung"
 
-#: .\main\templates\datenschutz.html:7
+#: main/templates/datenschutz.html:7
 msgid "Overview of privacy agreement"
 msgstr "Datenschutz auf einen Blick"
 
-#: .\main\templates\datenschutz.html:9
+#: main/templates/datenschutz.html:9
 msgid "General notes"
 msgstr "Allgemeine Hinweise"
 
-#: .\main\templates\datenschutz.html:10
+#: main/templates/datenschutz.html:10
 msgid ""
 "The following notices provide a simple overview of what happens to your "
 "personal data\n"
@@ -101,15 +101,15 @@ msgstr ""
 "Datenschutz entnehmen Sie unserer unter  diesem Text aufgeführten "
 "Datenschutzerklärung."
 
-#: .\main\templates\datenschutz.html:13 .\main\templates\datenschutz.html:95
+#: main/templates/datenschutz.html:13 main/templates/datenschutz.html:95
 msgid "Data collection on this site"
 msgstr "Datenerfassung auf dieser Website"
 
-#: .\main\templates\datenschutz.html:14
+#: main/templates/datenschutz.html:14
 msgid "Who is responsible for the data Collection on this site?"
 msgstr "Wer ist verantwortlich für die Datenerfassung auf dieser Website?"
 
-#: .\main\templates\datenschutz.html:15
+#: main/templates/datenschutz.html:15
 msgid ""
 "Data processing on this website is carried out by the website operator. You "
 "can find his contact details in the section &ldquo;Notice on the responsible "
@@ -119,11 +119,11 @@ msgstr ""
 "Dessen Kontaktdaten können Sie dem Abschnitt &ldquo;Hinweis zur "
 "Verantwortlichen Stelle&ldquo; in dieser Datenschutzerklärung entnehmen."
 
-#: .\main\templates\datenschutz.html:16
+#: main/templates/datenschutz.html:16
 msgid "How is your data collected?"
 msgstr "Wie erfassen wir Ihre Daten?"
 
-#: .\main\templates\datenschutz.html:17
+#: main/templates/datenschutz.html:17
 msgid ""
 "On the one hand, your data is collected by you providing it to us. This can "
 "be e.g. data that you enter in a contact that you enter in a contact form, "
@@ -133,7 +133,7 @@ msgstr ""
 "Hierbei kann es sich z.&nbsp;B. um Daten  handeln, die Sie in ein "
 "Kontaktformular, Anmeldeformular oder Anfrageformular eingeben."
 
-#: .\main\templates\datenschutz.html:18
+#: main/templates/datenschutz.html:18
 msgid ""
 "Other data is collected automatically or after your consent when you visit "
 "the website by our IT systems. This is mainly technical data (e.&nbsp;g. "
@@ -147,7 +147,7 @@ msgstr ""
 "des Seitenaufrufs). Die  Erfassung dieser Daten erfolgt automatisch, sobald "
 "Sie diese Website betreten."
 
-#: .\main\templates\datenschutz.html:20
+#: main/templates/datenschutz.html:20
 msgid ""
 "Part of the data is collected to ensure error-free provision of the website. "
 "Other data may be used to analyze your user behavior."
@@ -156,11 +156,11 @@ msgstr ""
 "Website zu gewährleisten. Andere Daten  können zur Analyse Ihres "
 "Nutzerverhaltens verwendet werden."
 
-#: .\main\templates\datenschutz.html:21
+#: main/templates/datenschutz.html:21
 msgid "What rights do you have regarding your data?"
 msgstr "Welche Rechte haben Sie bezüglich Ihrer Daten?"
 
-#: .\main\templates\datenschutz.html:22
+#: main/templates/datenschutz.html:22
 msgid ""
 "At any time you have the right to receive information free of charge about "
 "the origin, recipient and purpose of your stored personal data. You also "
@@ -181,7 +181,7 @@ msgstr ""
 "Des Weiteren steht  Ihnen ein Beschwerderecht bei der zuständigen "
 "Aufsichtsbehörde zu."
 
-#: .\main\templates\datenschutz.html:23
+#: main/templates/datenschutz.html:23
 msgid ""
 "You can contact us at any time with regard to this or any other questions on "
 "the subject of data protection."
@@ -189,15 +189,15 @@ msgstr ""
 "Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich "
 "jederzeit an uns wenden."
 
-#: .\main\templates\datenschutz.html:24
+#: main/templates/datenschutz.html:24
 msgid "General notes and mandatory&shy;information"
 msgstr "2. Allgemeine Hinweise und Pflicht&shy;informationen"
 
-#: .\main\templates\datenschutz.html:25
+#: main/templates/datenschutz.html:25
 msgid "Privacy"
 msgstr "Datenschutz"
 
-#: .\main\templates\datenschutz.html:26
+#: main/templates/datenschutz.html:26
 msgid ""
 "The operator of these pages take the protection of your personal data very "
 "seriously. We treat your personal data confidentially in accordance to the "
@@ -208,7 +208,7 @@ msgstr ""
 "entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser  "
 "Datenschutzerklärung."
 
-#: .\main\templates\datenschutz.html:27
+#: main/templates/datenschutz.html:27
 msgid ""
 "When you use this website, various personal data are collected. Personal "
 "data is data with which you can be personally identified. This data "
@@ -221,7 +221,7 @@ msgstr ""
 "erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert "
 "auch, wie und zu welchem  Zweck das geschieht."
 
-#: .\main\templates\datenschutz.html:28
+#: main/templates/datenschutz.html:28
 msgid ""
 "We would like to point out that data transmission on the Internet (e.g. "
 "communication by e-mail) may be subject to security gaps. Complete "
@@ -231,24 +231,24 @@ msgstr ""
 "der Kommunikation per E-Mail)  Sicherheitslücken aufweisen kann. Ein "
 "lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht  möglich."
 
-#: .\main\templates\datenschutz.html:29
+#: main/templates/datenschutz.html:29
 msgid "Note on the responsible entity"
 msgstr "Hinweis zur verantwortlichen Stelle"
 
-#: .\main\templates\datenschutz.html:30
+#: main/templates/datenschutz.html:30
 msgid "The responsible body for data processing on this website is"
 msgstr ""
 "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist"
 
-#: .\main\templates\datenschutz.html:31
+#: main/templates/datenschutz.html:31
 msgid "Albert-Ludwigs University Freiburg"
 msgstr "Albert-Ludwigs-Universität Freiburg"
 
-#: .\main\templates\datenschutz.html:32
+#: main/templates/datenschutz.html:32
 msgid "Chair of Hydrology"
 msgstr "Professur für Hydrologie"
 
-#: .\main\templates\datenschutz.html:38
+#: main/templates/datenschutz.html:38
 msgid ""
 "The responsible entity is the natural or legal person who alone or jointly "
 "with others on the purposes and means of the processing of personal data (eg "
@@ -259,19 +259,19 @@ msgstr ""
 "Verarbeitung von personenbezogenen Daten (z.&nbsp;B. Namen, E-Mail-Adressen "
 "o.  ä.) entscheidet."
 
-#: .\main\templates\datenschutz.html:40
+#: main/templates/datenschutz.html:40
 msgid "Data Protection Officer"
 msgstr "Datenschutzbeauftragte*r"
 
-#: .\main\templates\datenschutz.html:41
+#: main/templates/datenschutz.html:41
 msgid "Albert-Ludwigs-University Freiburg"
 msgstr "Albert-Ludwigs-Universität Freiburg"
 
-#: .\main\templates\datenschutz.html:47
+#: main/templates/datenschutz.html:47
 msgid "Storage duration"
 msgstr "Speicherdauer"
 
-#: .\main\templates\datenschutz.html:48
+#: main/templates/datenschutz.html:48
 msgid ""
 "Unless a more specific storage period is specified in this data protection "
 "statement, your personal data will remain with us until the purpose of the "
@@ -290,7 +290,7 @@ msgstr ""
 "(z.&nbsp;B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im "
 "letztgenannten Fall  erfolgt die Löschung nach Fortfall dieser Gründe."
 
-#: .\main\templates\datenschutz.html:49
+#: main/templates/datenschutz.html:49
 msgid ""
 "We will delete your created account and the associated data after 2 years of "
 "inactivity."
@@ -298,14 +298,14 @@ msgstr ""
 "Ihr angelegtes Konto und die dazugehörigen Daten löschen wir nach einer "
 "Inaktivität von 2 Jahren."
 
-#: .\main\templates\datenschutz.html:50
+#: main/templates/datenschutz.html:50
 msgid ""
 "General information on the legal basis for data processing on this website"
 msgstr ""
 "Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser "
 "Website"
 
-#: .\main\templates\datenschutz.html:51
+#: main/templates/datenschutz.html:51
 msgid ""
 "If you have consented to the data processing, we process your personal data "
 "on the basis of Art. 6 para. 1 lit. a DSGVO or Art. 9 para. 2 lit. a DSGVO, "
@@ -346,11 +346,11 @@ msgstr ""
 "einschlägigen Rechtsgrundlagen wird in den folgenden Absätzen dieser "
 "Datenschutzerklärung  informiert."
 
-#: .\main\templates\datenschutz.html:52
+#: main/templates/datenschutz.html:52
 msgid "Note on data transfer to the USA and other third countries"
 msgstr "Hinweis zur Datenweitergabe in die USA und sonstige Drittstaaten"
 
-#: .\main\templates\datenschutz.html:53
+#: main/templates/datenschutz.html:53
 msgid ""
 "Among other things, we use tools from companies based in the USA or other "
 "third countries that are not secure under data protection law. If these "
@@ -377,11 +377,11 @@ msgstr ""
 "und dauerhaft speichern. Wir  haben auf diese Verarbeitungstätigkeiten "
 "keinen Einfluss."
 
-#: .\main\templates\datenschutz.html:54
+#: main/templates/datenschutz.html:54
 msgid "Revocation of your consent to data processing"
 msgstr "Widerruf Ihrer Einwilligung zur Datenverarbeitung"
 
-#: .\main\templates\datenschutz.html:55
+#: main/templates/datenschutz.html:55
 msgid ""
 "Many data processing operations are only possible with your consent. You can "
 "revoke your consent at any time. The legality of the data processing carried "
@@ -392,7 +392,7 @@ msgstr ""
 "jederzeit widerrufen. Die Rechtmäßigkeit der bis zum  Widerruf erfolgten "
 "Datenverarbeitung bleibt vom Widerruf unberührt."
 
-#: .\main\templates\datenschutz.html:56
+#: main/templates/datenschutz.html:56
 msgid ""
 "Right to refuse to the collection of data in special cases and to direct "
 "advertising"
@@ -400,7 +400,7 @@ msgstr ""
 "Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen sowie gegen "
 "Direktwerbung"
 
-#: .\main\templates\datenschutz.html:57
+#: main/templates/datenschutz.html:57
 #, fuzzy
 #| msgid ""
 #| "IF THE DATA PROCESSING IS CARRIED OUT ON THE BASIS OF ART. 6 ABS. 1 LIT. "
@@ -441,7 +441,7 @@ msgstr ""
 "GELTENDMACHUNG,  AUSüBUNG ODER VERTEIDIGUNG VON RECHTSANSPRüCHEN "
 "(WIDERSPRUCH NACH ART. 21 ABS. 1 DSGVO)."
 
-#: .\main\templates\datenschutz.html:63
+#: main/templates/datenschutz.html:63
 msgid ""
 "IF YOUR PERSONAL DATA ARE PROCESSED FOR THE PURPOSE OF DIRECT MARKETING, "
 "YOU\n"
@@ -461,11 +461,11 @@ msgstr ""
 "PERSONENBEZOGENEN DATEN ANSCHLIESSEND NICHT MEHR ZUM ZWECKE DER "
 "DIREKTWERBUNG VERWENDET  (WIDERSPRUCH NACH ART. 21 ABS. 2 DSGVO)."
 
-#: .\main\templates\datenschutz.html:68
+#: main/templates/datenschutz.html:68
 msgid "Right to complain to the competent supervisory authority"
 msgstr "Beschwerde&shy;recht bei der zuständigen Aufsichts&shy;behörde"
 
-#: .\main\templates\datenschutz.html:69
+#: main/templates/datenschutz.html:69
 msgid ""
 "In the event of violations of the GDPR, the data subjects shall have a "
 "right\n"
@@ -481,11 +481,11 @@ msgstr ""
 "Orts des mutmaßlichen Verstoßes zu. Das Beschwerderecht besteht unbeschadet "
 "anderweitiger  verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe."
 
-#: .\main\templates\datenschutz.html:73
+#: main/templates/datenschutz.html:73
 msgid "Right of data portability"
 msgstr "Recht auf Daten&shy;übertrag&shy;barkeit"
 
-#: .\main\templates\datenschutz.html:74
+#: main/templates/datenschutz.html:74
 msgid ""
 "You have the right to get the data, that we process automatically on the\n"
 "  basis of your consent or in fulfillment of a contract, to yourself or to a "
@@ -502,11 +502,11 @@ msgstr ""
 "Verantwortlichen  verlangen, erfolgt dies nur, soweit es technisch machbar "
 "ist."
 
-#: .\main\templates\datenschutz.html:78
+#: main/templates/datenschutz.html:78
 msgid "Information, deletion and correction"
 msgstr "Auskunft, Löschung und Berichtigung"
 
-#: .\main\templates\datenschutz.html:79
+#: main/templates/datenschutz.html:79
 msgid ""
 "Within the framework of the applicable legal provisions, you have the right "
 "at any time to free information\n"
@@ -523,11 +523,11 @@ msgstr ""
 "weiteren Fragen zum Thema  personenbezogene Daten können Sie sich jederzeit "
 "an uns wenden."
 
-#: .\main\templates\datenschutz.html:83
+#: main/templates/datenschutz.html:83
 msgid "Right to restrict the processing"
 msgstr "Recht auf Einschränkung der Verarbeitung"
 
-#: .\main\templates\datenschutz.html:84
+#: main/templates/datenschutz.html:84
 msgid ""
 "You have the right to request the restriction of the processing of your "
 "personal data. For this purpose, you can contact us at any time. The right "
@@ -538,7 +538,7 @@ msgstr ""
 "uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in "
 "folgenden Fällen"
 
-#: .\main\templates\datenschutz.html:86
+#: main/templates/datenschutz.html:86
 msgid ""
 "If you dispute the accuracy of your personal data stored by us, we usually "
 "need time to verify this. For the duration of the review, you have the right "
@@ -549,7 +549,7 @@ msgstr ""
 "Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung "
 "Ihrer personenbezogenen Daten zu verlangen."
 
-#: .\main\templates\datenschutz.html:87
+#: main/templates/datenschutz.html:87
 msgid ""
 "If the processing of your personal data happened/is happening unlawfully, "
 "you may request the restriction of data processing instead of erasure."
@@ -558,7 +558,7 @@ msgstr ""
 "geschieht, können Sie statt der Löschung die Einschränkung der "
 "Datenverarbeitung verlangen."
 
-#: .\main\templates\datenschutz.html:88
+#: main/templates/datenschutz.html:88
 msgid ""
 "If we no longer need your personal data, but you need them to exercise, "
 "defend or assert legal claims, you have the right to demand restriction of "
@@ -570,7 +570,7 @@ msgstr ""
 "benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der "
 "Verarbeitung Ihrer personenbezogenen Daten zu verlangen."
 
-#: .\main\templates\datenschutz.html:89
+#: main/templates/datenschutz.html:89
 msgid ""
 "If you have lodged an objection pursuant to Art. 21 (1) DSGVO, a balancing "
 "of your and our interests must be carried out. As long as it has not yet "
@@ -583,7 +583,7 @@ msgstr ""
 "Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu "
 "verlangen."
 
-#: .\main\templates\datenschutz.html:91
+#: main/templates/datenschutz.html:91
 msgid ""
 "If you have restricted the processing of your personal data, such data may "
 "be processed&ndash; apart from being stored &ndash; only with your consent "
@@ -599,11 +599,11 @@ msgstr ""
 "Interesses der Europäischen Union oder eines  Mitgliedstaats verarbeitet "
 "werden."
 
-#: .\main\templates\datenschutz.html:92
+#: main/templates/datenschutz.html:92
 msgid "SSL or TLS encryption"
 msgstr "SSL- bzw. TLS-Verschlüsselung"
 
-#: .\main\templates\datenschutz.html:93
+#: main/templates/datenschutz.html:93
 msgid ""
 "This site uses SSL or TLS encryption for security reasons and to protect the "
 "transmission of confidential content, such as orders or requests that you "
@@ -619,7 +619,7 @@ msgstr ""
 "Browsers  von &bdquo;http://&ldquo; auf &bdquo;https://&ldquo; wechselt und "
 "an dem Schloss-Symbol in Ihrer Browserzeile."
 
-#: .\main\templates\datenschutz.html:94
+#: main/templates/datenschutz.html:94
 msgid ""
 "If the SSL or TLS encryption is activated, the data that you transmit to us, "
 "cannot be read by third parties."
@@ -627,11 +627,11 @@ msgstr ""
 "Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die "
 "Sie an uns übermitteln, nicht von Dritten mitgelesen werden."
 
-#: .\main\templates\datenschutz.html:96
+#: main/templates/datenschutz.html:96
 msgid "Contact form"
 msgstr "Kontaktformular"
 
-#: .\main\templates\datenschutz.html:97
+#: main/templates/datenschutz.html:97
 msgid ""
 "If you send us inquiries via the contact form, your data from the inquiry "
 "form, including the contact data provided by you will be stored by us for "
@@ -644,7 +644,7 @@ msgstr ""
 "Anschlussfragen bei  uns gespeichert. Diese Daten geben wir nicht ohne Ihre "
 "Einwilligung weiter."
 
-#: .\main\templates\datenschutz.html:98 .\main\templates\datenschutz.html:102
+#: main/templates/datenschutz.html:98 main/templates/datenschutz.html:102
 msgid ""
 "The processing of this data is based on Art. 6 para. 1 lit. b DSGVO, if your "
 "request is related to the fulfillment of a contract or is necessary for the "
@@ -665,7 +665,7 @@ msgstr ""
 "  6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist "
 "jederzeit widerrufbar."
 
-#: .\main\templates\datenschutz.html:99 .\main\templates\datenschutz.html:103
+#: main/templates/datenschutz.html:99 main/templates/datenschutz.html:103
 msgid ""
 "The data you send to us via contact requests will remain with us until you "
 "request us to delete it, revoke your consent to storage or the purpose for "
@@ -681,11 +681,11 @@ msgstr ""
 "gesetzliche Bestimmungen &ndash; insbesondere\n"
 "  gesetzliche Aufbewahrungsfristen &ndash; bleiben unberührt."
 
-#: .\main\templates\datenschutz.html:100
+#: main/templates/datenschutz.html:100
 msgid "Request by e-mail, phone or fax"
 msgstr "Anfrage per E-Mail, Telefon oder Telefax"
 
-#: .\main\templates\datenschutz.html:101
+#: main/templates/datenschutz.html:101
 msgid ""
 "If you contact us by e-mail, telephone or fax, your inquiry, including all "
 "resulting data (name, inquiry) will be stored and processed by us for the "
@@ -698,7 +698,7 @@ msgstr ""
 "Anliegens bei uns gespeichert und\n"
 "  verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter."
 
-#: .\main\templates\datenschutz.html:105
+#: main/templates/datenschutz.html:105
 msgid ""
 "This website consists of various web applications that store different data "
 "and are therefore explained individually below."
@@ -707,7 +707,7 @@ msgstr ""
 "unterschiedliche Daten abspeichern und deshalb im Folgenden einzeln "
 "erläutert werden."
 
-#: .\main\templates\datenschutz.html:108
+#: main/templates/datenschutz.html:108
 msgid ""
 "When downloading individual time series in the WeatherDB app, the created "
 "time series are saved temporarily."
@@ -715,7 +715,7 @@ msgstr ""
 "Beim herunterladen einzelner Zeitreihen in der WeatherDB-App werden die "
 "erstellten Zeitreihen temporär gespeichert."
 
-#: .\main\templates\datenschutz.html:110
+#: main/templates/datenschutz.html:110
 msgid ""
 "Furthermore, the IP address, the user name, the time of the download and the "
 "parameters entered in the form are saved. The purpose of this is to save "
@@ -728,26 +728,26 @@ msgstr ""
 "bei einer erneuten Anfrage die Daten nicht neu\n"
 "    erstellt werden müssen."
 
-#: .\main\templates\datenschutz.html:111
+#: main/templates/datenschutz.html:111
 msgid "This collected data is kept for a maximum of 1 day and is then deleted."
 msgstr ""
 "Diese erhobenen Daten werden maximal 1 Tag aufbewahrt und anschließend "
 "gelöscht."
 
-#: .\main\templates\datenschutz.html:114
+#: main/templates/datenschutz.html:114
 msgid "No additional data is collected and stored in this process."
 msgstr "Hierbei werden keine zusätzlichen Daten erhoben und abgespeichert."
 
-#: .\main\templates\datenschutz.html:117
+#: main/templates/datenschutz.html:117
 msgid "This tool links to an external page, which is only linked here."
 msgstr ""
 "Dieses Tool verweist auf eine externe Seite, die hier nur verlinkt ist."
 
-#: .\main\templates\datenschutz.html:118
+#: main/templates/datenschutz.html:118
 msgid "Storage for the purpose of user statistics"
 msgstr "Speicherung zum Zweck der Nutzerstatistik"
 
-#: .\main\templates\datenschutz.html:119
+#: main/templates/datenschutz.html:119
 msgid ""
 "For purposes of user statistics, the IP address, the current time, the "
 "username and the URL are stored when the page is called up. A transfer to "
@@ -759,11 +759,11 @@ msgstr ""
 "Weitergabe an Dritte, zu kommerziellen oder nicht kommerziellen Zwecken, "
 "findet nicht statt."
 
-#: .\main\templates\datenschutz.html:120
+#: main/templates/datenschutz.html:120
 msgid "Plugins and tools"
 msgstr "Plugins und Tools"
 
-#: .\main\templates\datenschutz.html:122
+#: main/templates/datenschutz.html:122
 msgid ""
 "\n"
 "<p>We use the hCaptcha anti-bot service (hereinafter \"hCaptcha\") on our "
@@ -784,8 +784,8 @@ msgid ""
 "or mobile app operator has a legitimate\n"
 "  interest in protecting its site from abusive automated crawling and spam. "
 "IMI acts as a \"data processor\" acting on\n"
-"  behalf of its customers as defined under the GDPR, and a \"service provider"
-"\" for the purposes of the California\n"
+"  behalf of its customers as defined under the GDPR, and a \"service "
+"provider\" for the purposes of the California\n"
 "  Consumer Privacy Act (CCPA). </p>\n"
 "<p>For more information about hCaptcha and IMI's privacy policy and terms of "
 "use, please\n"
@@ -821,19 +821,19 @@ msgstr ""
 "entnehmen.</p><p>Weitere Informationen zu hCaptcha entnehmen Sie den "
 "Datenschutzbestimmungen und Nutzungsbedingungen unter folgenden Links:"
 
-#: .\main\templates\datenschutz.html:138 .\main\templates\impressum.html:147
+#: main/templates/datenschutz.html:138 main/templates/impressum.html:147
 msgid "and"
 msgstr "und"
 
-#: .\main\templates\datenschutz.html:140
+#: main/templates/datenschutz.html:140
 msgid "Source"
 msgstr "Quelle"
 
-#: .\main\templates\impressum.html:6
+#: main/templates/impressum.html:6
 msgid "Imprint"
 msgstr "Impressum"
 
-#: .\main\templates\impressum.html:8
+#: main/templates/impressum.html:8
 msgid ""
 "This site was created in 2022 by Max Schmit at the Chair of Hydrology at the "
 "University of Freiburg."
@@ -841,56 +841,56 @@ msgstr ""
 "Diese Seite wurde 2022 von Max Schmit an der Professur für Hydrologie der "
 "Universität Freiburg erstellt."
 
-#: .\main\templates\impressum.html:11
+#: main/templates/impressum.html:11
 msgid ""
 "Author - content, structure, implementation and conception of the website"
 msgstr "Autor - Inhalt, Aufbau, Umsetzung und Konzeption der Webseite"
 
-#: .\main\templates\impressum.html:19
+#: main/templates/impressum.html:19
 msgid "Max Schmit is at your disposal for questions, problems and comments."
 msgstr ""
 "Zu Fragen, Problemen und Anmerkungen steht Ihnen Max Schmit gerne zur "
 "Verfügung."
 
-#: .\main\templates\impressum.html:22
+#: main/templates/impressum.html:22
 msgid "Editor"
 msgstr "Herausgeber"
 
-#: .\main\templates\impressum.html:24
+#: main/templates/impressum.html:24
 msgid "Chair of Hydrology - Albert-Ludwigs University of Freiburg i.Br."
 msgstr "Professur für Hydrologie - Albert-Ludwigs Universität Freiburg i.Br."
 
-#: .\main\templates\impressum.html:25
+#: main/templates/impressum.html:25
 msgid "Managing Director"
 msgstr "Geschäftsführender Direktor"
 
-#: .\main\templates\impressum.html:30
+#: main/templates/impressum.html:30
 msgid "Tax identification number"
 msgstr "Umsatzsteueridentifikationsnummer"
 
-#: .\main\templates\impressum.html:33
+#: main/templates/impressum.html:33
 msgid "used images"
 msgstr "genutzte Bilder"
 
-#: .\main\templates\impressum.html:34
+#: main/templates/impressum.html:34
 msgid "The following image sources were used for this page"
 msgstr "Folgende Bild-Quellen wurden für diese Seite genutzt"
 
-#: .\main\templates\impressum.html:40 .\main\templates\impressum.html:41
+#: main/templates/impressum.html:40 main/templates/impressum.html:41
 msgid "created by Jürgen Strub"
 msgstr "von Jürgen Strub erstellt"
 
-#: .\main\templates\impressum.html:44
+#: main/templates/impressum.html:44
 msgid "used software"
 msgstr "Benutzte Software"
 
-#: .\main\templates\impressum.html:45
+#: main/templates/impressum.html:45
 msgid "The following software packages got used for creating this website"
 msgstr ""
 "Die folgenden Software-Pakete wurden für die Erstellung dieser Webseite "
 "genutzt"
 
-#: .\main\templates\impressum.html:76
+#: main/templates/impressum.html:76
 msgid ""
 "This list does not claim to be a complete list of all the software used, but "
 "only lists the main packages. We thank all the developers of these packages "
@@ -902,7 +902,7 @@ msgstr ""
 "Entwickler*Innen dieser Pakete soll hiermit für ihre Arbeit gedankt werden, "
 "da ohne deren Arbeit dieses Projekt nicht hätte entstehen können."
 
-#: .\main\templates\impressum.html:77
+#: main/templates/impressum.html:77
 msgid ""
 "Certainly many more software packages were used that are not listed here. "
 "However, we would like to thank them as well."
@@ -910,11 +910,11 @@ msgstr ""
 "Sicher kamen noch viele weitere Software-Pakete zum Einsatz die hier nicht "
 "aufgeführt werden können. Der Dank gilt ihnen aber ebenso."
 
-#: .\main\templates\impressum.html:79
+#: main/templates/impressum.html:79
 msgid "Used datasets"
 msgstr "Genutzte Datensätze"
 
-#: .\main\templates\impressum.html:80
+#: main/templates/impressum.html:80
 msgid ""
 "For each Application on this website different data sources were used. Here "
 "you will find a list of data sources used depending for each Application:"
@@ -923,35 +923,35 @@ msgstr ""
 "genutzt. Hier finden Sie je nach Anwendung eine Liste der genutzten "
 "Datenquellen:"
 
-#: .\main\templates\impressum.html:84 .\main\templates\impressum.html:86
-#: .\main\templates\impressum.html:90 .\main\templates\impressum.html:92
-#: .\main\templates\impressum.html:94 .\main\templates\impressum.html:96
-#: .\main\templates\impressum.html:98
+#: main/templates/impressum.html:84 main/templates/impressum.html:86
+#: main/templates/impressum.html:90 main/templates/impressum.html:92
+#: main/templates/impressum.html:94 main/templates/impressum.html:96
+#: main/templates/impressum.html:98
 msgid "Available online at"
 msgstr "Online verfügbar unter"
 
-#: .\main\templates\impressum.html:90 .\main\templates\impressum.html:92
-#: .\main\templates\impressum.html:94 .\main\templates\impressum.html:96
+#: main/templates/impressum.html:90 main/templates/impressum.html:92
+#: main/templates/impressum.html:94 main/templates/impressum.html:96
 msgid "last checked on"
 msgstr "zuletzt geprüft am"
 
-#: .\main\templates\impressum.html:104
+#: main/templates/impressum.html:104
 msgid "different Climate model szenario results from"
 msgstr ""
 
-#: .\main\templates\impressum.html:110
+#: main/templates/impressum.html:110
 msgid "Online available"
 msgstr ""
 
-#: .\main\templates\impressum.html:110
+#: main/templates/impressum.html:110
 msgid "here"
 msgstr ""
 
-#: .\main\templates\impressum.html:117
+#: main/templates/impressum.html:117
 msgid "Disclaimer"
 msgstr "Haftungsausschluss"
 
-#: .\main\templates\impressum.html:118
+#: main/templates/impressum.html:118
 msgid ""
 "\n"
 "  The Chair of Hydrology as publisher and Max Schmit as author of the "
@@ -974,7 +974,7 @@ msgstr ""
 "Verantwortung für missbräuchliche oder unsachgemäße Anwendung der hier "
 "angebotenen Dienste durch Dritte."
 
-#: .\main\templates\impressum.html:120
+#: main/templates/impressum.html:120
 msgid ""
 "\n"
 "  The use of the contents of this website, including downloading time "
@@ -988,7 +988,7 @@ msgstr ""
 "Nutzers. Mit der reinen Nutzung der Website kommt keinerlei "
 "Vertragsverhältnis zwischen dem Nutzer und dem Herausgeber zustande.\n"
 
-#: .\main\templates\impressum.html:122
+#: main/templates/impressum.html:122
 msgid ""
 "\n"
 "  Excluded are claims for direct or indirect damages or consequences of a "
@@ -1008,11 +1008,11 @@ msgstr ""
 "Pflichten zwischen der Professur für Hydrologie und dem Nutzer dieser "
 "Website oder Dritten.\n"
 
-#: .\main\templates\impressum.html:126
+#: main/templates/impressum.html:126
 msgid "Disclaimer for external links"
 msgstr "Haftungsausschluss bei externen links"
 
-#: .\main\templates\impressum.html:127
+#: main/templates/impressum.html:127
 msgid ""
 "\n"
 "  The contents of external sites or the services offered by them, to which "
@@ -1033,7 +1033,7 @@ msgstr ""
 "externen Links bedeutet nicht, dass sich der Herausgeber die hinter dem "
 "Verweis oder Link liegenden Inhalte zu Eigen macht.\n"
 
-#: .\main\templates\impressum.html:129
+#: main/templates/impressum.html:129
 msgid ""
 "\n"
 "  The Chair of Hydrology declares that it has no influence whatsoever on the "
@@ -1049,11 +1049,11 @@ msgstr ""
 "von allen Inhalten aller verlinkte Seiten auf dieser Homepage. Diese "
 "Erklärung gilt für alle auf dieser Homepage angezeigten Links.\n"
 
-#: .\main\templates\impressum.html:133
+#: main/templates/impressum.html:133
 msgid "Copyright"
 msgstr "Urheberrecht"
 
-#: .\main\templates\impressum.html:134
+#: main/templates/impressum.html:134
 msgid ""
 "\n"
 "  The texts, illustrations, photos and maps published on this website as "
@@ -1086,7 +1086,7 @@ msgstr ""
 "einem Proxy-Server zur Optimierung der Zugriffsgeschwindigkeit ist "
 "gestattet.\n"
 
-#: .\main\templates\impressum.html:136
+#: main/templates/impressum.html:136
 msgid ""
 "\n"
 "  The graphics and downloaded time series may be used without permission. "
@@ -1100,11 +1100,11 @@ msgstr ""
 "unsere Webseite sind ausdrücklich erlaubt. Bei Darstellung dieser Webseite "
 "in fremden Frames bitten wir um vorherige Rücksprache und Zustimmung.\n"
 
-#: .\main\templates\impressum.html:140
+#: main/templates/impressum.html:140
 msgid "Data protection"
 msgstr "Datenschutz"
 
-#: .\main\templates\impressum.html:141
+#: main/templates/impressum.html:141
 msgid ""
 "\n"
 "  By visiting this website, files may be temporarily stored when downloading "
@@ -1123,7 +1123,7 @@ msgstr ""
 "findet nicht statt. Die Daten werden in regelmässigen Abständen gelöscht "
 "(maximal 7 Tage).\n"
 
-#: .\main\templates\impressum.html:144
+#: main/templates/impressum.html:144
 msgid ""
 "For the purpose of user statistics, the IP address, the current time and the "
 "URL are stored when the page is called up. Data will not be passed on to "
@@ -1134,7 +1134,7 @@ msgstr ""
 "Weitergabe an Dritte, zu kommerziellen oder nicht kommerziellen Zwecken, "
 "findet nicht statt."
 
-#: .\main\templates\impressum.html:147
+#: main/templates/impressum.html:147
 msgid ""
 "We use the hCaptcha anti-bot service (hereinafter \"hCaptcha\") on our "
 "website. This service is provided by Intuition Machines, Inc., a Delaware US "
@@ -1177,11 +1177,11 @@ msgstr ""
 "(CCPA). Weitere Informationen über hCaptcha und die Datenschutzrichtlinien "
 "und Nutzungsbedingungen von IMI finden Sie unter den folgenden Links: "
 
-#: .\main\templates\impressum.html:149
+#: main/templates/impressum.html:149
 msgid "Notes"
 msgstr "Hinweise"
 
-#: .\main\templates\impressum.html:150
+#: main/templates/impressum.html:150
 msgid ""
 "\n"
 "  The fact that a term or designation on this website is not identified as a "
@@ -1195,7 +1195,7 @@ msgstr ""
 "Schluss zu, dass es sich nicht evtl. doch um eine Marke oder ein "
 "Warenzeichen handelt. Gleiches gilt für Patente und andere Schutzformen.\n"
 
-#: .\main\templates\impressum.html:152
+#: main/templates/impressum.html:152
 msgid ""
 "\n"
 "  The Professorship of Hydrology and the author expressly reserve the right "
@@ -1207,7 +1207,7 @@ msgstr ""
 "jederzeit Inhalte ohne Ankündigung ganz oder teilweise zu ändern, zu löschen "
 "oder zeitweise nicht zu veröffentlichen.\n"
 
-#: .\main\templates\impressum.html:154
+#: main/templates/impressum.html:154
 msgid ""
 "\n"
 "  The contact data in the imprint are not to be used for advertising "
@@ -1217,11 +1217,11 @@ msgstr ""
 "Die Kontaktdaten im Impressum sind nicht zu Werbezwecken zu verwenden. Eine "
 "kommerzielle Nutzung und Weitergabe dieser Daten ist nicht gestattet.\n"
 
-#: .\main\templates\missing-permissions.html:8
+#: main/templates/missing-permissions.html:8
 msgid "Missing Permissions"
 msgstr ""
 
-#: .\main\templates\missing-permissions.html:10
+#: main/templates/missing-permissions.html:10
 msgid ""
 "You don't have the permissions to see this app. Please reach out to the "
 "HydroApps administrator, to gain access."
@@ -1229,11 +1229,11 @@ msgstr ""
 "Sie haben keine Berechtigung, diesen Inhalt zu sehen. Bitte kontaktieren Sie "
 "den/die HydroApps-Administrator*in, um Zugriff zu erhalten."
 
-#: .\main\templates\unreleased.html:8
+#: main/templates/unreleased.html:8
 msgid "unreleased"
 msgstr "unveröffentlicht"
 
-#: .\main\templates\unreleased.html:10
+#: main/templates/unreleased.html:10
 msgid ""
 "This Application didn't get released yet. If you want to test it, you need "
 "to login and apply for a test User account."
@@ -1242,28 +1242,28 @@ msgstr ""
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
 
-#: .\template_new_app\templates\app_name\app.html:13
+#: template_new_app/templates/app_name/app.html:13
 msgid "App Name App"
 msgstr ""
 
-#: .\template_new_app\templates\app_name\base.html:8
+#: template_new_app/templates/app_name/base.html:8
 msgid "A description of your project."
 msgstr ""
 
-#: .\template_new_app\templates\app_name\base.html:19
-#: .\template_new_app\templates\app_name\home.html:19
+#: template_new_app/templates/app_name/base.html:19
+#: template_new_app/templates/app_name/home.html:19
 msgid "Home"
 msgstr "Startseite"
 
-#: .\template_new_app\templates\app_name\base.html:20
-#: .\template_new_app\templates\app_name\method.html:7
+#: template_new_app/templates/app_name/base.html:20
+#: template_new_app/templates/app_name/method.html:7
 msgid "Method"
 msgstr ""
 
-#: .\template_new_app\templates\app_name\base.html:21
+#: template_new_app/templates/app_name/base.html:21
 msgid "Map"
 msgstr ""
 
-#: .\template_new_app\templates\app_name\home.html:20
+#: template_new_app/templates/app_name/home.html:20
 msgid "This web tool is .... "
 msgstr ""

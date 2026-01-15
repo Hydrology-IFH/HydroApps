@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block content %}
-  <h1>{% trans "KomBStRA Method" %}</h1>
+  <h1>{% trans "Method to classify summer heavy rainfall events" %}</h1>
   <h3>{% trans "Data basis" %}</h3>
   <p>{% blocktrans %}This web application is based on homogenized and quality-controlled precipitation time series from nationwide radar measurements. The underlying data period extends from 2006 to 2024, with only data from May to September (extended summer period) being used. The precipitation radar data was processed and provided in the AVOSS project by Kachelmann GmbH and is described in{% endblocktrans %} <a href="#quelle-Weiler">Weiler et al. (2019)</a>{% if LANGUAGE_CODE == 'de'%} beschrieben{% endif %}.</p>
   <h3>{% trans "Classification of heavy rainfall events using the Heavy Rainfall Index (HRI, german: SRI)" %}</h3>

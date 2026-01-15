@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 15:12+0100\n"
+"POT-Creation-Date: 2026-01-15 15:32+0000\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.4.2\n"
 
-#: .\sri_bw\models.py:15
+#: sri_bw/models.py:15
 msgid "ID of the event"
 msgstr "ID des Ereignisses"
 
-#: .\sri_bw\models.py:20
+#: sri_bw/models.py:20
 msgid "ID to link to the Grid-Cell"
 msgstr "Id zur Verknüpfung mit der Rasterzelle"
 
-#: .\sri_bw\models.py:24
+#: sri_bw/models.py:24
 msgid "Duration class of the event (Dauerstufe) in minutes"
 msgstr "Dauerstuffe des Niederschlagereignisses in Minuten"
 
-#: .\sri_bw\models.py:27
+#: sri_bw/models.py:27
 msgid "Precipitation amount of the event in mm"
 msgstr "Niederschlagsmenge des Ereignisses in mm"
 
-#: .\sri_bw\models.py:30
+#: sri_bw/models.py:30
 msgid "Precipitation intensity of the event in mm/h"
 msgstr "Niederschlagsmenge des Ereignisses in mm/h"
 
-#: .\sri_bw\models.py:33
+#: sri_bw/models.py:33
 msgid "Starkregen-Index (SRI) of the event"
 msgstr "Starkregen-Index (SRI) dieses Ereignisses"
 
-#: .\sri_bw\models.py:36
+#: sri_bw/models.py:36
 msgid "Date of the event"
 msgstr "Datum des Events"
 
-#: .\sri_bw\models.py:39
+#: sri_bw/models.py:39
 msgid "Rank of the event in the grid-cell"
 msgstr "Rang des Ereignisses in dieser Rasterzelle"
 
-#: .\sri_bw\templates\sri_bw\base.html:8
+#: sri_bw/templates/sri_bw/base.html:8
 msgid ""
 "A presentation of heavy rain events and their classification (SRI) out of "
 "radar measurements for the state of Baden-Württemberg."
@@ -58,21 +58,19 @@ msgstr ""
 "Eine Darstellung von Starkregenereignissen und deren Klassifizierung (SRI) "
 "aus Radarmessungen für Baden-Württemberg."
 
-#: .\sri_bw\templates\sri_bw\base.html:19
-#: .\sri_bw\templates\sri_bw\home.html:19
+#: sri_bw/templates/sri_bw/base.html:19 sri_bw/templates/sri_bw/home.html:19
 msgid "Home"
 msgstr "Home"
 
-#: .\sri_bw\templates\sri_bw\base.html:20
-#: .\sri_bw\templates\sri_bw\home.html:22
+#: sri_bw/templates/sri_bw/base.html:20 sri_bw/templates/sri_bw/home.html:22
 msgid "Method"
 msgstr "Methode"
 
-#: .\sri_bw\templates\sri_bw\base.html:21
+#: sri_bw/templates/sri_bw/base.html:21
 msgid "Map"
 msgstr "Karte"
 
-#: .\sri_bw\templates\sri_bw\home.html:20
+#: sri_bw/templates/sri_bw/home.html:20
 msgid ""
 "This web tool is used to visualize past heavy rainfall events, which were "
 "classified state-wide for Baden-Württemberg using a heavy rainfall index "
@@ -82,13 +80,13 @@ msgstr ""
 "die landesweit für Baden-Württemberg anhand eines Starkregenindex (SRI) "
 "klassifiziert wurden. "
 
-#: .\sri_bw\templates\sri_bw\home.html:21
+#: sri_bw/templates/sri_bw/home.html:21
 msgid ""
 "In order to provide municipalities in Baden-Württemberg with assistance "
 "within the framework of "
 msgstr "Um den Kommunen in Baden-Württemberg im Rahmen von "
 
-#: .\sri_bw\templates\sri_bw\home.html:21
+#: sri_bw/templates/sri_bw/home.html:21
 msgid ""
 "the Chair of Hydrology at the University of Freiburg, in cooperation with "
 "the Regional Council of Stuttgart and the Baden-Württemberg State Institute "
@@ -104,18 +102,18 @@ msgstr ""
 "Einteilung erfolgt rasterbasiert auf einem ~ 2km x 2km Raster und für 12 "
 "verschiedene Dauerstufen, die ihm Zuge des "
 
-#: .\sri_bw\templates\sri_bw\home.html:21
+#: sri_bw/templates/sri_bw/home.html:21
 msgid "state's heavy rain risk management"
 msgstr "Starkregenrisikomanagments"
 
-#: .\sri_bw\templates\sri_bw\home.html:22
+#: sri_bw/templates/sri_bw/home.html:22
 msgid ""
 "Details on the data basis and the methodological approaches are listed in "
 "the "
 msgstr ""
 "Details zur Datengrundlage und den methodischen Ansätzen sind im Reiter "
 
-#: .\sri_bw\templates\sri_bw\home.html:23
+#: sri_bw/templates/sri_bw/home.html:23
 msgid ""
 "In FLIWAS, the heavy rainfall index provides the basis for evaluating "
 "location-specific precipitation forecasts in terms of their intensity. To "
@@ -128,7 +126,7 @@ msgstr ""
 "Rasterzelle vergangene Starkregenereignisse anhand des ortsspezifischen SRI "
 "klassifiziert."
 
-#: .\sri_bw\templates\sri_bw\home.html:24
+#: sri_bw/templates/sri_bw/home.html:24
 msgid ""
 "Based on these analyses, corresponding tables of the SRI and classified "
 "heavy rainfall events are now available for the individual grid cells "
@@ -141,34 +139,31 @@ msgstr ""
 "unten dargestellt, können aber über das Kartentool spezifisch für jede "
 "Raster-Zelle abgerufen werden."
 
-#: .\sri_bw\templates\sri_bw\home.html:29
-#: .\sri_bw\templates\sri_bw\home.html:30
+#: sri_bw/templates/sri_bw/home.html:29 sri_bw/templates/sri_bw/home.html:30
 msgid "Example of a site-specific heavy rainfall index table"
 msgstr "Beispiel einer standortspezifischen Tabelle des Starkregenindex"
 
-#: .\sri_bw\templates\sri_bw\home.html:30
-#: .\sri_bw\templates\sri_bw\home.html:34
+#: sri_bw/templates/sri_bw/home.html:30 sri_bw/templates/sri_bw/home.html:34
 msgid "Fig."
 msgstr "Abb."
 
-#: .\sri_bw\templates\sri_bw\home.html:33
-#: .\sri_bw\templates\sri_bw\home.html:34
+#: sri_bw/templates/sri_bw/home.html:33 sri_bw/templates/sri_bw/home.html:34
 msgid "Example table of classified heavy rain events"
 msgstr "Beispieltabelle klassifizierter Starkregenereignisse"
 
-#: .\sri_bw\templates\sri_bw\map.html:13
+#: sri_bw/templates/sri_bw/map.html:13
 msgid "Classified heavy rain events"
 msgstr "Klassifizierte Starkregenereignisse"
 
-#: .\sri_bw\templates\sri_bw\method.html:7
+#: sri_bw/templates/sri_bw/method.html:7
 msgid "KOSTRA Method"
 msgstr "Methode KOSTRA"
 
-#: .\sri_bw\templates\sri_bw\method.html:8
+#: sri_bw/templates/sri_bw/method.html:8
 msgid "Heavy rainfall index (SRI)"
 msgstr "Starkregenindex (SRI)"
 
-#: .\sri_bw\templates\sri_bw\method.html:9
+#: sri_bw/templates/sri_bw/method.html:9
 msgid ""
 "The present Heavy Rainfall Index (SRI) assigns various precipitation levels "
 "to a 12-stage heavy rainfall scale. The heavy rainfall index was created "
@@ -182,7 +177,7 @@ msgstr ""
 "erstellt. Je nach Dauerstufe führt eine gegebene Niederschlagsmenge zu einem "
 "unterschiedlichen Starkregenindex."
 
-#: .\sri_bw\templates\sri_bw\method.html:10
+#: sri_bw/templates/sri_bw/method.html:10
 msgid ""
 "The classification of precipitation levels into individual heavy rainfall "
 "categories is based on the method of"
@@ -190,7 +185,7 @@ msgstr ""
 "Die Einteilung von Niederschlagshöhen zu einzelnen Starkregenkategorien "
 "erfolgt dabei nach der Methode von"
 
-#: .\sri_bw\templates\sri_bw\method.html:10
+#: sri_bw/templates/sri_bw/method.html:10
 msgid ""
 "For the heavy rainfall categories from 1 to 7, precipitation with a certain "
 "probability of recurrence is used. The precipitation amounts of the heavy "
@@ -204,7 +199,7 @@ msgstr ""
 "für alle Dauerstufen konstanten, Erhöhungsfaktor aus den Niederschlagshöhen "
 "der Starkregenkategorie 7 abgeleitet."
 
-#: .\sri_bw\templates\sri_bw\method.html:11
+#: sri_bw/templates/sri_bw/method.html:11
 msgid ""
 "In general, precipitation events in heavy rainfall categories 1 and 2 can be "
 "categorized as <i>\"normal\"</i> heavy rainfall events; events in categories "
@@ -220,11 +215,11 @@ msgstr ""
 "Starkregenereignissen und Ereignisse der Kategorie 8 und mehr können als "
 "<i>extreme</i> Starkregenereignisse kategorisiert werden."
 
-#: .\sri_bw\templates\sri_bw\method.html:12
+#: sri_bw/templates/sri_bw/method.html:12
 msgid "Data basis SRI"
 msgstr "Datengrundlage SRI"
 
-#: .\sri_bw\templates\sri_bw\method.html:13
+#: sri_bw/templates/sri_bw/method.html:13
 msgid ""
 "The assignment of precipitation heights to the heavy rainfall scale is based "
 "on area-wide available design precipitations, in each case for each of the "
@@ -236,11 +231,11 @@ msgstr ""
 "betrachteten Dauerstufen.  In diesem Fall wurden als Basisdaten die "
 "Bemessungsniederschläge aus"
 
-#: .\sri_bw\templates\sri_bw\method.html:13
+#: sri_bw/templates/sri_bw/method.html:13
 msgid "was used as the base data."
 msgstr "verwendet."
 
-#: .\sri_bw\templates\sri_bw\method.html:13
+#: sri_bw/templates/sri_bw/method.html:13
 msgid ""
 "However, as the KOSTRA-DWD-2020 data are not available for each of the "
 "duration levels or required return intervals considered in the SRI, the "
@@ -256,11 +251,11 @@ msgstr ""
 "anschließend konservativ auf das räumlich höher aufgelöste SRI-Raster (~ 2km "
 "x 2km) aufgeteilt."
 
-#: .\sri_bw\templates\sri_bw\method.html:15
+#: sri_bw/templates/sri_bw/method.html:15
 msgid "Event data"
 msgstr "Ereignisdaten"
 
-#: .\sri_bw\templates\sri_bw\method.html:16
+#: sri_bw/templates/sri_bw/method.html:16
 msgid ""
 "The heavy rainfall events listed in this web application were extracted from "
 "the"
@@ -268,15 +263,15 @@ msgstr ""
 "Die in dieser Web-Anwendung angeführten Starkregenereignisse wurden aus den "
 "Daten der"
 
-#: .\sri_bw\templates\sri_bw\method.html:16
+#: sri_bw/templates/sri_bw/method.html:16
 msgid "radar climatology data"
 msgstr "Radarklimatologie"
 
-#: .\sri_bw\templates\sri_bw\method.html:16
+#: sri_bw/templates/sri_bw/method.html:16
 msgid "of the German Weather Service (DWD)."
 msgstr "des Deutschen Wetterdienst (DWD) extrahiert."
 
-#: .\sri_bw\templates\sri_bw\method.html:16
+#: sri_bw/templates/sri_bw/method.html:16
 msgid ""
 "This data is available throughout Germany in a grid of approx. 1km&nbsp;"
 "x&nbsp;1km. All events that occurred in the period from 2001 to 2021 were "
@@ -288,13 +283,13 @@ msgstr ""
 "berücksichtigt, die im Zeitraum von 2001 bis 2021 auftraten. Mehr "
 "Informationen zu dem RADKLIM-Produkt des DWD erhalten Sie "
 
-#: .\sri_bw\templates\sri_bw\method.html:16
-#: .\sri_bw\templates\sri_bw\method.html:24
-#: .\sri_bw\templates\sri_bw\method.html:26
+#: sri_bw/templates/sri_bw/method.html:16
+#: sri_bw/templates/sri_bw/method.html:24
+#: sri_bw/templates/sri_bw/method.html:26
 msgid "here"
 msgstr "hier"
 
-#: .\sri_bw\templates\sri_bw\method.html:17
+#: sri_bw/templates/sri_bw/method.html:17
 msgid ""
 "In order to compensate for the systematic underreporting of heavy rainfall "
 "events in the radar data compared to station measurements, the events were "
@@ -305,7 +300,7 @@ msgstr ""
 "Ereignisse mittels eines statistischen Verfahrens korrigiert. Dieses "
 "Verfahren ist in"
 
-#: .\sri_bw\templates\sri_bw\method.html:18
+#: sri_bw/templates/sri_bw/method.html:18
 msgid ""
 "In order to intersect the RADKLIM data with the coarser SRI tiles (approx."
 "&nbsp;2km&nbsp;x&nbsp;2km), the original 5-minute data from the grid points "
@@ -317,7 +312,7 @@ msgstr ""
 "Rasterpunkten, die sich mit der jeweiligen SRI-Kachel schneiden, "
 "entsprechend ihrem Flächenanteil gemittelt."
 
-#: .\sri_bw\templates\sri_bw\method.html:19
+#: sri_bw/templates/sri_bw/method.html:19
 msgid ""
 "In general, only events that correspond to an SRI&nbsp;≥&nbsp;1 are "
 "displayed. Furthermore, the maximum number of events shown was limited to "
@@ -329,7 +324,7 @@ msgstr ""
 "begrenzt. Wurden im betrachteten Zeitraum weniger als 15 Ereignisse mit "
 "einem SRI ≥ 1 beobachtet, werden entsprechend weniger Ereignisse dargestellt."
 
-#: .\sri_bw\templates\sri_bw\method.html:20
+#: sri_bw/templates/sri_bw/method.html:20
 msgid ""
 "In order to prevent the majority of the events listed from being caused by "
 "the same precipitation event (same event, but different duration level), the "
@@ -341,7 +336,7 @@ msgstr ""
 "Dauerstufe) wurde zusätzlich noch das Kriterium eingeführt, dass pro "
 "Ereignis maximal 4 Dauerstufen in der Tabelle dargestellt werden."
 
-#: .\sri_bw\templates\sri_bw\method.html:24
-#: .\sri_bw\templates\sri_bw\method.html:26
+#: sri_bw/templates/sri_bw/method.html:24
+#: sri_bw/templates/sri_bw/method.html:26
 msgid "Online available"
 msgstr "Online verfügbar"
