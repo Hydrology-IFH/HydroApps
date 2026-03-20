@@ -104,14 +104,12 @@
                               AVOSS Web-Demonstrator
                             </a>
                           </li>
-                          {% if show_unreleased_apps.kombstra %}
                             <li>
                               <a href="{% url 'kombstra:home' %}"
                                 class="dropdown-item  {% if active_app == 'kombstra' %}active{% endif %}">
                                 {% trans "Classified summer heavy rainfall events" %}
                               </a>
                             </li>
-                          {% endif %}
                           {% if "home" in internal_app_permissions %}
                             <li>
                               <a href="{% url 'internal:home' %}"

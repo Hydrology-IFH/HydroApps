@@ -47,7 +47,6 @@
           </div>
         </div>
       </div>
-      {% if show_unreleased_apps.kombstra %}
       <div class="col col-flex flex-grow-0">
         <div class="card hydroapps-card h-100">
           <a href="{% url 'kombstra:home' %}" class="stretched-link"></a>
@@ -58,7 +57,6 @@
           </div>
         </div>
       </div>
-      {% endif %}
       {% if "aquarius" in internal_app_permissions %}
       <div class="col col-flex flex-grow-0">
         <div class="card hydroapps-card h-100">
