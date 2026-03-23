@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 15:32+0000\n"
+"POT-Creation-Date: 2026-03-23 16:41+0000\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -32,31 +32,31 @@ msgstr ""
 "Eine Internetseite mit verschiedenen Web-Anwendungen die an der Professur "
 "für Hydrologie an der Uni Freiburg erstellt wurden."
 
-#: main/templates/base.html:111
+#: main/templates/base.html:110
 msgid "Classified summer heavy rainfall events"
 msgstr "Klassifizierte sommerliche Starkregenereignisse"
 
-#: main/templates/base.html:180
+#: main/templates/base.html:178
 msgid "Profil"
 msgstr "Profil"
 
-#: main/templates/base.html:182
+#: main/templates/base.html:180
 msgid "Admin"
 msgstr "Admin"
 
-#: main/templates/base.html:186
+#: main/templates/base.html:184
 msgid "Log out"
 msgstr "Ausloggen"
 
-#: main/templates/base.html:189
+#: main/templates/base.html:187
 msgid "Login"
 msgstr "Einloggen"
 
-#: main/templates/base.html:225
+#: main/templates/base.html:223
 msgid "This website is in debuging mode"
 msgstr "Diese Website ist aktuel im Debug-Modus"
 
-#: main/templates/base.html:233
+#: main/templates/base.html:231
 msgid ""
 "This Application did not yet get released. You can see it, because you're a "
 "Test-User"
@@ -65,11 +65,11 @@ msgstr ""
 "möchten, müssen Sie sich anmelden und beantragen, dass Sie als Test Nutzer "
 "freigeschaltet werden."
 
-#: main/templates/base.html:245
+#: main/templates/base.html:243
 msgid "imprint"
 msgstr "Impressum"
 
-#: main/templates/base.html:246
+#: main/templates/base.html:244
 msgid "privacy agreement"
 msgstr "Datenschutzerklärung"
 

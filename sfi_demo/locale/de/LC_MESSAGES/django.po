@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-15 15:32+0000\n"
+"POT-Creation-Date: 2026-03-23 16:38+0000\n"
 "PO-Revision-Date: 2025-03-10 17:12+0100\n"
 "Last-Translator: Max Schmit <max.schmit@hydrology.uni-freiburg.de>\n"
 "Language-Team: \n"
@@ -229,8 +229,21 @@ msgid "Method section"
 msgstr "Bereich Methode"
 
 #: sfi_demo/templates/sfi_demo/home.html:26
-msgid "and in the further information linked there."
-msgstr ", bzw. in den dort verlinkten weiterführenden Informationen."
+msgid "and in the further information linked there. We have developed a"
+msgstr ", bzw. in den dort verlinkten weiterführenden Informationen. Für die "
+"dargestellten Niederschläge haben wir ein"
+
+#: sfi_demo/templates/sfi_demo/home.html:26
+msgid "dedicated portal"
+msgstr "eigenständiges Portal"
+
+#: sfi_demo/templates/sfi_demo/home.html:26
+msgid ""
+"for the precipitation events shown here, where you can explore information "
+"on summer heavy rain events across the country."
+msgstr ""
+"entwickelt, in dem Sie bundesweit Informationen zu sommerlichen "
+"Starkniederschlägen erkunden können."
 
 #: sfi_demo/templates/sfi_demo/home.html:30
 #: sfi_demo/templates/sfi_demo/home.html:31
@@ -374,6 +387,14 @@ msgstr ""
 #: sfi_demo/templates/sfi_demo/method.html:42
 msgid "Kachelmann GmbH website"
 msgstr "Kachelmann GmbH Webseite"
+
+#: sfi_demo/templates/sfi_demo/method.html:42
+msgid "as well as on our"
+msgstr "sowie auf unserer"
+
+#: sfi_demo/templates/sfi_demo/method.html:42
+msgid "classified summer heavy rainfall events web application"
+msgstr "Webplattform klassifizierte sommerliche Starkregenereignisse"
 
 #: sfi_demo/templates/sfi_demo/method.html:42
 msgid ""
